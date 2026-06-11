@@ -2,7 +2,7 @@
 
 This project provides a local Kakao SDK / Infodesk mock server for the game Eversoul, alongside C++ injection wrappers and an offline game server to intercept and handle Unity web requests offline.
 
-- English Documentation | 中文文档: README.md
+- **English Documentation** | [中文文档](README.md)
 
 ---
 
@@ -64,17 +64,41 @@ The network request redirection is planned in two phases:
 
 ---
 
+## Offline Backend Runtime Process
+
+The offline backend operates through a coordinated process of low-level hooks and asynchronous services:
+
+1. **Library Entry and Hook Installation**
+   When the game engine loads the library `libswappywrapper.so` through the Java layer, the constructor function `eversoul_entry` in [entry.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/entry.cpp) runs immediately.
+   This entry function invokes the installation logic in [anticheat_patch.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/anticheat_patch.cpp), applying an ARM64 inline hook to `pthread_create` in libc.so (replacing the beginning with a 16-byte absolute jump instruction).
+   The hook checks if the `start_routine` of any newly requested thread belongs to the LIAPP anti-cheat module `libcawwyayy.so` using `dladdr`. If it is identified as an anti-cheat scanner thread, the call is diverted to a dummy no-op thread, effectively suspending anti-cheat detection, while normal game threads are allowed to execute.
+
+2. **Data Initialization and Background Server Startup**
+   Once the anti-cheat bypass is set up, [entry.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/entry.cpp) starts the offline server on a background thread (implemented in [server.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/server.cpp)).
+   Upon startup, [offline_data.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/offline_data.cpp) locates and parses `libofflinedata.so` (disguised archive containing JSON fixtures). If the blob is missing, it falls back to raw directories.
+   Next, [fixture_store.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/fixture_store.cpp) reads the Protobuf structures in `schema/` and decodes the JSON fixtures in `responses/` and `responses_newbie/` into memory-cached binary Protobuf payloads. It also loads WebSockets configurations.
+
+3. **Routing and Dynamic Interception**
+   HTTP and WebSockets requests from the game client are redirected to localhost port 9999. The server handles connections in detached threads.
+   Requests are processed by [router.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/router.cpp). If they are Kakao SDK setup calls, they receive static mock JSONs, which redirect further game server requests (`gameServerAddr`) to port 9999. Game business endpoints are matched as follows:
+   - Full Account Mode: Requests are served directly from the compiled binary Protobuf caches in `FixtureStore`, allowing high-fidelity offline replays of the high-level profile.
+   - Newbie Account Mode: To prevent tutorial state deadlocks (caused by static responses failing to match changing client parameters), [router.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/router.cpp) intercepts critical progress endpoints (e.g. `/UserInfo`, `/TutorialActive`, `/StageClear`, `/FormationSave`). These endpoints interact with the local SQLite database via [src/orm](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/orm). As players clear stages or update formations, the database is modified and correct progress updates are returned, resolving tutorial loops.
+
+---
+
 ## Runtime Modes
 
 ### A. Capture / Proxy Mode
 
-In this mode, the local server functions as a transparent HTTP proxy, intercepting authentication/SDK requests of interest while forwarding game-server traffic to live servers and saving capture dumps.
+In this mode, the PC desktop server functions as a transparent HTTP proxy, intercepting authentication/SDK requests of interest while forwarding game-server traffic to live servers and saving capture dumps.
+
+Since the proxy server is running on the computer, port forwarding is required:
 
 ```bash
-# 1. Reverse-forward TCP port 9999
+# 1. Reverse-forward TCP port 9999 (only needed in PC proxy / capture mode)
 adb reverse tcp:9999 tcp:9999
 
-# 2. Start the local server in proxy mode
+# 2. Start the local server in proxy mode on PC
 ./build/eversoul_offline_server --proxy --port 9999
 
 # 3. Hook the game process using Frida to redirect Unity HTTP/WebSocket endpoints
@@ -85,14 +109,10 @@ frida -H 127.0.0.1:27042 -f com.kakaogames.eversoul -l monitor_unity_web_request
 
 In this mode, all platform and game requests are mocked by the local server or the injected offline package.
 
+When running in a completely offline state (i.e. running the game standalone on the device), the offline server is already started inside the wrapper dynamic library `libswappywrapper.so` as a background thread. Therefore, **the game client and the mock server reside in the same local device environment, and no port forwarding is required**. You can start the Frida script directly. Port forwarding via `adb reverse` is only required if you run the mock server on a PC instead.
+
 ```bash
-# 1. Reverse-forward TCP port 9999
-adb reverse tcp:9999 tcp:9999
-
-# 2. Start the mock-only server and point the game server host address to localhost
-./build/eversoul_offline_server --mock-only --port 9999 --game-server-url http://127.0.0.1:9999
-
-# 3. Hook the game process with Frida
+# 1. Hook the game process directly with Frida (no port forwarding required)
 frida -H 127.0.0.1:27042 -f com.kakaogames.eversoul -l monitor_unity_web_request.js
 ```
 
@@ -169,6 +189,24 @@ The following endpoints are currently mocked:
 Detailed traffic analysis reports:
 - captured_requests.md (Standard traffic capture analysis)
 - captured_new_user_registration.md (Registration and tutorial state flow)
+
+---
+
+## Contribution Guide
+
+We warmly welcome contributions to Eversoul Offline. You can help improve the project in the following areas:
+
+- **Dynamic Route Rewrite**
+  Most game business responses are currently static. You can add dynamic logic to routes in [router.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/router.cpp) and bind them to the local SQLite database in [src/orm](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/orm) to handle item purchases, gacha calculations, or stats updates.
+  
+- **Schema & ORM Enhancements**
+  To support additional features (e.g. Guild systems, Spirit Tree upgrades), you can modify [orm/schema.hpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/orm/schema.hpp) and [orm/storage.hpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/orm/storage.hpp) to add tables and database operations.
+
+- **Expanding Capture Coverage**
+  Capture additional routes in proxy mode, format them as JSON, extract their Schemas, and add them to `responses/` and `schema/` to expand API coverage.
+
+- **Hook & Redirection Optimizations**
+  Submit Smali patches for rootless bypass, or provide bug fixes and stability enhancements for the inline hook implementation in [anticheat_patch.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/anticheat_patch.cpp).
 
 ---
 
