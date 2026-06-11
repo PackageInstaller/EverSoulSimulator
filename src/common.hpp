@@ -39,7 +39,7 @@ namespace eversoul
         bool proxy_enabled = false;
         std::string game_server_url = "http://127.0.0.1:9999";
         // Fixtures (responses/ + schema/) are pushed alongside the app data.
-        std::string data_dir = "/data/data/com.kakaogames.eversoul/files/offline_data";
+        std::string data_dir = "/data/data/offline.eversoul/files/offline_data";
         // Existing-account mode: account-DATA endpoints are served from the captured
         // JSON fixtures (the developed account) instead of the new-account tutorial
         // stubs. Tutorial-only routes are disabled in router.cpp.

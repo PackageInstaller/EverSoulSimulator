@@ -10,10 +10,30 @@ This project provides a local Kakao SDK / Infodesk mock server for the game Ever
 
 ### 1. Build Desktop and Android Libraries
 
-Run the unified build script directly from the project root:
+#### Prerequisites
+
+| Tool | Version | Install |
+|------|---------|---------|
+| CMake | 3.21+ | `winget install Kitware.CMake` |
+| GCC (MinGW-W64 POSIX UCRT) | 15.x | `winget install BrechtSanders.WinLibs.POSIX.UCRT` |
+| Python | 3.x | `winget install Python.Python.3` |
+| protoc | 35.x | `winget install Google.Protobuf` |
+| protobuf (Python) | 4.21+ | `pip install protobuf` |
+| libcurl (MinGW) | 8.x | `winget install cURL.cURL` |
+| Android NDK | r27+ | `winget install Google.AndroidCLI` then `sdkmanager "ndk;27.2.12479018"` |
+
+Run the unified build script from the project root (Git Bash on Windows):
 
 ```bash
 ./build.sh
+```
+
+To select the output language for Python tool messages:
+
+```bash
+EVERSOUL_LANG=en ./build.sh   # English (default)
+EVERSOUL_LANG=ko ./build.sh   # Korean
+EVERSOUL_LANG=zh ./build.sh   # Chinese
 ```
 
 If the build script detects that the .har capture files are missing in the root directory, it will automatically skip the HAR merge steps and use the pre-existing JSON fixtures in responses/ and responses_newbie/ for compilation, making it easy to build directly after cloning.

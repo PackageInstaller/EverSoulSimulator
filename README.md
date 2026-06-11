@@ -10,10 +10,30 @@
 
 ### 1. 构建桌面端与 Android 动态库
 
-在项目根目录下运行统一构建脚本：
+#### 依赖环境（Windows）
+
+| 工具 | 版本 | 安装方法 |
+|------|------|---------|
+| CMake | 3.21+ | `winget install Kitware.CMake` |
+| GCC (MinGW-W64 POSIX UCRT) | 15.x | `winget install BrechtSanders.WinLibs.POSIX.UCRT` |
+| Python | 3.x | `winget install Python.Python.3` |
+| protoc | 35.x | `winget install Google.Protobuf` |
+| protobuf (Python) | 4.21+ | `pip install protobuf` |
+| libcurl (MinGW) | 8.x | `winget install cURL.cURL` |
+| Android NDK | r27+ | `winget install Google.AndroidCLI` 后执行 `sdkmanager "ndk;27.2.12479018"` |
+
+在项目根目录下运行统一构建脚本（Windows 使用 Git Bash）：
 
 ```bash
 ./build.sh
+```
+
+可通过环境变量选择工具输出语言：
+
+```bash
+EVERSOUL_LANG=en ./build.sh   # 英文（默认）
+EVERSOUL_LANG=ko ./build.sh   # 韩文
+EVERSOUL_LANG=zh ./build.sh   # 中文
 ```
 
 如果当前目录下没有 .har 抓包文件，构建脚本会自动跳过 HAR 合并提取步骤，直接读取 responses/ 和 responses_newbie/ 目录中的数据进行编译，从而不影响克隆项目后的正常编译。

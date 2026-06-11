@@ -10,10 +10,45 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 cd "$ROOT"
 
+_gxx=$(command -v g++ 2>/dev/null || command -v c++ 2>/dev/null || true)
+if [ -n "$_gxx" ]; then
+    export PATH="$(dirname "$_gxx"):$PATH"
+fi
+
+PYTHON=""
+for _py in python3 python; do
+  if command -v "$_py" &>/dev/null && "$_py" -c "import sys; sys.exit(0)" &>/dev/null 2>&1; then
+    PYTHON="$_py"
+    break
+  fi
+done
+if [ -z "$PYTHON" ]; then
+  echo "ERROR: python3 or python not found or not functional in PATH" >&2
+  exit 1
+fi
+
 HAR="${EVERSOUL_HAR:-cdp.cloud.unity3d.com_2026_06_10_09_18_58.har}"
 NEWBIE_HAR="${EVERSOUL_NEWBIE_HAR:-cdp.cloud.unity3d.com_2026_06_11_01_37_55.har}"
 BASELINE_HAR="${EVERSOUL_BASELINE_HAR:-cdp.cloud.unity3d.com_2026_06_08_08_38_04.har}"
-NDK_ROOT="${NDK_ROOT:-/opt/android-ndk}"
+if [ -z "${NDK_ROOT:-}" ]; then
+    case "$(uname -s)" in
+        MINGW*|MSYS*|CYGWIN*)
+            NDK_ROOT="$(ls -d "/c/Users/$USERNAME/AppData/Local/Android/Sdk/ndk"/*/ 2>/dev/null | sort -V | tail -1)"
+            NDK_ROOT="${NDK_ROOT%/}"
+            ;;
+        Darwin)
+            NDK_ROOT="$(ls -d "$HOME/Library/Android/sdk/ndk"/*/ 2>/dev/null | sort -V | tail -1)"
+            NDK_ROOT="${NDK_ROOT%/}"
+            ;;
+        *)
+            NDK_ROOT="/opt/android-ndk"
+            ;;
+    esac
+fi
+if [ -z "${NDK_ROOT:-}" ] || [ ! -d "$NDK_ROOT" ]; then
+    echo "ERROR: Android NDK not found. Set NDK_ROOT to your NDK installation path." >&2
+    exit 1
+fi
 ANDROID_API="${ANDROID_API:-21}"
 DESKTOP_BUILD_DIR="${DESKTOP_BUILD_DIR:-build/desktop}"
 ANDROID_BUILD_DIR="${ANDROID_BUILD_DIR:-build/android}"
@@ -29,13 +64,13 @@ fi
 if [ "${SKIP_HAR_MERGE:-0}" != "1" ]; then
   echo "== Merge full-account HAR fixtures =="
   if [ -f "$BASELINE_HAR" ]; then
-    python3 tools/merge_har.py "$HAR" --baseline "$BASELINE_HAR" --force --clean --out-dir responses
+    $PYTHON tools/merge_har.py "$HAR" --baseline "$BASELINE_HAR" --force --clean --out-dir responses
   else
-    python3 tools/merge_har.py "$HAR" --force --clean --out-dir responses
+    $PYTHON tools/merge_har.py "$HAR" --force --clean --out-dir responses
   fi
   if [ -f "$NEWBIE_HAR" ]; then
     echo "== Merge newbie HAR fixtures =="
-    python3 tools/merge_har.py "$NEWBIE_HAR" --force --clean --out-dir responses_newbie
+    $PYTHON tools/merge_har.py "$NEWBIE_HAR" --force --clean --out-dir responses_newbie
   else
     echo "WARNING: newbie HAR not found: $NEWBIE_HAR" >&2
   fi
@@ -44,16 +79,35 @@ else
 fi
 
 echo "== Regenerate schema/ =="
-python3 tools/export_schema.py
+$PYTHON tools/export_schema.py
 
 echo "== Regenerate expected/ =="
-python3 tools/dump_expected.py
+$PYTHON tools/dump_expected.py
 
 echo "== Pack offline data =="
-python3 tools/pack_offline_data.py
+$PYTHON tools/pack_offline_data.py
+
+CURL_CMAKE_ARGS=""
+if [ -n "${CURL_ROOT:-}" ]; then
+  CURL_WIN="${CURL_ROOT//\\/\/}"
+  if [ -f "$CURL_WIN/lib/libcurl.dll.a" ]; then
+    CURL_CMAKE_ARGS="-DCURL_INCLUDE_DIR=$CURL_WIN/include -DCURL_LIBRARY=$CURL_WIN/lib/libcurl.dll.a"
+  elif [ -f "$CURL_WIN/lib/libcurl.a" ]; then
+    CURL_CMAKE_ARGS="-DCURL_INCLUDE_DIR=$CURL_WIN/include -DCURL_LIBRARY=$CURL_WIN/lib/libcurl.a"
+  fi
+fi
+if [ -z "$CURL_CMAKE_ARGS" ]; then
+  WINGET_CURL=$(find "/c/Users/$USERNAME/AppData/Local/Microsoft/WinGet/Packages" \
+    -name "libcurl.dll.a" 2>/dev/null | head -1)
+  if [ -n "$WINGET_CURL" ]; then
+    CURL_LIB_DIR="$(dirname "$WINGET_CURL")"
+    CURL_INC_DIR="$(dirname "$CURL_LIB_DIR")/include"
+    CURL_CMAKE_ARGS="-DCURL_INCLUDE_DIR=$CURL_INC_DIR -DCURL_LIBRARY=$WINGET_CURL"
+  fi
+fi
 
 echo "== Configure desktop =="
-cmake -S . -B "$DESKTOP_BUILD_DIR" -DCMAKE_BUILD_TYPE=Release
+cmake -S . -B "$DESKTOP_BUILD_DIR" -DCMAKE_BUILD_TYPE=Release $CURL_CMAKE_ARGS
 
 echo "== Build desktop =="
 cmake --build "$DESKTOP_BUILD_DIR" --target eversoul_offline_server encoder_validate offline_data_test -j"$JOBS"

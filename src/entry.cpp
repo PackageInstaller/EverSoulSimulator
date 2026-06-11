@@ -9,6 +9,7 @@
 #include <android/log.h>
 
 #include "anticheat_patch.hpp"
+#include "asset_migration.hpp"
 #include "common.hpp"
 #include "server.hpp"
 
@@ -25,6 +26,7 @@ extern "C"
         // Order matters: hook before the anti-cheat library spawns its detection threads,
         // then bring up the in-process server (its own threads are not anti-cheat threads,
         // so the hook's cawwyayy filter never diverts them).
+        eversoul::asset_migration::migrate();
         eversoul::anticheat::install();
         eversoul::start_async(eversoul::kDefaultPort);
     }

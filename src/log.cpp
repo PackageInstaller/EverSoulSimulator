@@ -2,6 +2,9 @@
 #include "log.hpp"
 
 #include <sys/stat.h>
+#ifdef _WIN32
+#include <direct.h>
+#endif
 
 #include <fstream>
 #include <mutex>
@@ -54,7 +57,11 @@ namespace eversoul
         mkdir("/data/data/com.kakaogames.eversoul/files", 0700);
         const std::string path = "/data/data/com.kakaogames.eversoul/files/offline_server.log";
 #else
+#ifdef _WIN32
+        _mkdir("logs");
+#else
         mkdir("logs", 0755);
+#endif
         const std::string path = "logs/offline_server.log";
 #endif
         // 每次 server 启动清空旧日志，重新开始记录（不与上次会话混在一起）。

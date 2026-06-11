@@ -13,6 +13,9 @@
 #include <vector>
 
 #include <sys/stat.h>
+#ifdef _WIN32
+#include <direct.h>
+#endif
 
 #include "json.hpp"
 #include "log.hpp"
@@ -394,8 +397,13 @@ bool seed_from_userinfo(const std::string& data_dir, const std::string& response
 
 std::vector<std::string> candidate_paths(const std::string& override_path) {
     if (!override_path.empty()) return {override_path};
+#ifdef _WIN32
+    _mkdir("/sdcard/Android/data/com.kakaogames.eversoul");
+    _mkdir("/sdcard/Android/data/com.kakaogames.eversoul/files");
+#else
     ::mkdir("/sdcard/Android/data/com.kakaogames.eversoul", 0770);
     ::mkdir("/sdcard/Android/data/com.kakaogames.eversoul/files", 0770);
+#endif
     return {
         "/sdcard/Android/data/com.kakaogames.eversoul/files/eversoul_orm.db",
         "/storage/emulated/0/Android/data/com.kakaogames.eversoul/files/eversoul_orm.db",

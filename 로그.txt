@@ -1,0 +1,693 @@
+koiya@taeyeon-pc:/d/26_project/EverSoulSimulator korean_language-work_by.nekoi
+$ EVERSOUL_LANG=ko ./build.sh
+NOTICE: HAR file 'cdp.cloud.unity3d.com_2026_06_10_09_18_58.har' not found. Skipping HAR merge step and using existing responses/.
+== Merge HAR fixtures skipped ==
+== Regenerate schema/ ==
+wrote schema/ for 159 proto endpoints
+== Regenerate expected/ ==
+wrote expected/ canonical payloads for 90 proto endpoints
+== Pack offline data ==
+420개 파일 패킹, 원본 4489875 바이트 -> 4506406 바이트
+출력: D:\26_project\EverSoulSimulator\build\offline_data\libofflinedata.so
+  responses/: 102개 파일
+  responses_newbie/: 156개 파일
+  schema/: 159개 파일
+  web/: 1개 파일
+  wss/: 2개 파일
+== Configure desktop ==
+-- Building for: Ninja
+-- The C compiler identification is GNU 15.2.0
+-- The CXX compiler identification is GNU 15.2.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/bin/gcc.exe - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/bin/c++.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE
+-- Found CURL: C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/cURL.cURL_Microsoft.Winget.Source_8wekyb3d8bbwe/curl-8.20.0_5-win64-mingw/lib/libcurl.dll.a (found version "8.20.0")
+-- Configuring done (2.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: D:/26_project/EverSoulSimulator/build/desktop
+== Build desktop ==
+[34/36] Building CXX object CMakeFiles/eversoul_offline_server.dir/src/orm/storage.cpp.obj
+In file included from D:/26_project/EverSoulSimulator/src/orm/storage.cpp:23:
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:2787:48: warning: space between quotes and suffix is deprecated in C++23 [-Wdeprecated-literal-operator]
+ 2787 |         [[nodiscard]] consteval auto operator"" _alias() {
+      |                                                ^~
+      |                                                --
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:2787:48: warning: space between quotes and suffix is deprecated in C++23 [-Wdeprecated-literal-operator]
+ 2787 |         [[nodiscard]] consteval auto operator"" _alias() {
+      |                                                ^~
+      |                                                --
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:2797:48: warning: space between quotes and suffix is deprecated in C++23 [-Wdeprecated-literal-operator]
+ 2797 |         [[nodiscard]] consteval auto operator"" _col() {
+      |                                                ^~
+      |                                                --
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:2797:48: warning: space between quotes and suffix is deprecated in C++23 [-Wdeprecated-literal-operator]
+ 2797 |         [[nodiscard]] consteval auto operator"" _col() {
+      |                                                ^~
+      |                                                --
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:2810:59: warning: space between quotes and suffix is deprecated in C++23 [-Wdeprecated-literal-operator]
+ 2810 |         [[nodiscard]] SQLITE_ORM_CONSTEVAL auto operator"" _colalias() {
+      |                                                           ^~
+      |                                                           --
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:2810:59: warning: space between quotes and suffix is deprecated in C++23 [-Wdeprecated-literal-operator]
+ 2810 |         [[nodiscard]] SQLITE_ORM_CONSTEVAL auto operator"" _colalias() {
+      |                                                           ^~
+      |                                                           --
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h: In member function 'std::string sqlite_orm::field_printer<T, typename std::enable_if<std::is_base_of<std::__cxx11::basic_string<wchar_t>, T>::value, void>::type>::operator()(const std::wstring&) const':
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:3939:18: warning: 'template<class _Codecvt, class _Elem, class _Wide_alloc, class _Byte_alloc> class std::__cxx11::wstring_convert' is deprecated [-Wdeprecated-declarations]
+ 3939 |             std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+      |                  ^~~~~~~~~~~~~~~
+In file included from C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/include/c++/15.2.0/locale:47,
+                 from C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/include/c++/15.2.0/bits/fs_path.h:36,
+                 from C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/include/c++/15.2.0/filesystem:54,
+                 from D:/26_project/EverSoulSimulator/src/orm/storage.cpp:5:
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/include/c++/15.2.0/bits/locale_conv.h:262:33: note: declared here
+  262 |     class _GLIBCXX17_DEPRECATED wstring_convert
+      |                                 ^~~~~~~~~~~~~~~
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h: At global scope:
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:8317:59: warning: space between quotes and suffix is deprecated in C++23 [-Wdeprecated-literal-operator]
+ 8317 |         [[nodiscard]] SQLITE_ORM_CONSTEVAL auto operator"" _ctealias() {
+      |                                                           ^~
+      |                                                           --
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:8317:59: warning: space between quotes and suffix is deprecated in C++23 [-Wdeprecated-literal-operator]
+ 8317 |         [[nodiscard]] SQLITE_ORM_CONSTEVAL auto operator"" _ctealias() {
+      |                                                           ^~
+      |                                                           --
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:8327:48: warning: space between quotes and suffix is deprecated in C++23 [-Wdeprecated-literal-operator]
+ 8327 |         [[nodiscard]] consteval auto operator"" _cte() {
+      |                                                ^~
+      |                                                --
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:8327:48: warning: space between quotes and suffix is deprecated in C++23 [-Wdeprecated-literal-operator]
+ 8327 |         [[nodiscard]] consteval auto operator"" _cte() {
+      |                                                ^~
+      |                                                --
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:9698:48: warning: space between quotes and suffix is deprecated in C++23 [-Wdeprecated-literal-operator]
+ 9698 |         [[nodiscard]] consteval auto operator"" _pointer_type() {
+      |                                                ^~
+      |                                                --
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:9698:48: warning: space between quotes and suffix is deprecated in C++23 [-Wdeprecated-literal-operator]
+ 9698 |         [[nodiscard]] consteval auto operator"" _pointer_type() {
+      |                                                ^~
+      |                                                --
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h: In member function 'int sqlite_orm::statement_binder<V, typename std::enable_if<std::disjunction<std::is_base_of<std::__cxx11::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> >, T>, std::is_same<V, const wchar_t*>, std::is_same<V, std::basic_string_view<wchar_t, std::char_traits<wchar_t> > > >::value, void>::type>::bind(sqlite3_stmt*, int, const V&) const':
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:10117:18: warning: 'template<class _Codecvt, class _Elem, class _Wide_alloc, class _Byte_alloc> class std::__cxx11::wstring_convert' is deprecated [-Wdeprecated-declarations]
+10117 |             std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+      |                  ^~~~~~~~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/include/c++/15.2.0/bits/locale_conv.h:262:33: note: declared here
+  262 |     class _GLIBCXX17_DEPRECATED wstring_convert
+      |                                 ^~~~~~~~~~~~~~~
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h: In member function 'consteval auto sqlite_orm::internal::quoted_function_builder<N>::quote(F) const':
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:11263:23: warning: typedef 'using call_operator_type = decltype (static_cast<using Sig = sqlite_orm::internal::function_signature_type_t<decltype (& F::operator())> F::*>(& F::operator()))' locally defined but not used [-Wunused-local-typedefs]
+11263 |                 using call_operator_type = decltype(static_cast<Sig F::*>(&F::operator()));
+      |                       ^~~~~~~~~~~~~~~~~~
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h: In member function 'consteval auto sqlite_orm::internal::quoted_function_builder<N>::quote(F) const':
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:11274:23: warning: typedef 'using call_operator_type = decltype (static_cast<Sig F::*>(& F::operator()))' locally defined but not used [-Wunused-local-typedefs]
+11274 |                 using call_operator_type = decltype(static_cast<Sig F::*>(&F::operator()));
+      |                       ^~~~~~~~~~~~~~~~~~
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h: In member function 'consteval auto sqlite_orm::internal::quoted_function_builder<N>::quote(Args&& ...) const':
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:11295:23: warning: typedef 'using call_operator_type = decltype (static_cast<Sig F::*>(& F::operator()))' locally defined but not used [-Wunused-local-typedefs]
+11295 |                 using call_operator_type = decltype(static_cast<Sig F::*>(&F::operator()));
+      |                       ^~~~~~~~~~~~~~~~~~
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h: At global scope:
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:11357:48: warning: space between quotes and suffix is deprecated in C++23 [-Wdeprecated-literal-operator]
+11357 |         [[nodiscard]] consteval auto operator"" _scalar() {
+      |                                                ^~
+      |                                                --
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:11357:48: warning: space between quotes and suffix is deprecated in C++23 [-Wdeprecated-literal-operator]
+11357 |         [[nodiscard]] consteval auto operator"" _scalar() {
+      |                                                ^~
+      |                                                --
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h: In member function 'std::wstring sqlite_orm::row_extractor<std::__cxx11::basic_string<wchar_t>, void>::extract(const char*) const':
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:13015:22: warning: 'template<class _Codecvt, class _Elem, class _Wide_alloc, class _Byte_alloc> class std::__cxx11::wstring_convert' is deprecated [-Wdeprecated-declarations]
+13015 |                 std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+      |                      ^~~~~~~~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/include/c++/15.2.0/bits/locale_conv.h:262:33: note: declared here
+  262 |     class _GLIBCXX17_DEPRECATED wstring_convert
+      |                                 ^~~~~~~~~~~~~~~
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h: In member function 'std::wstring sqlite_orm::row_extractor<std::__cxx11::basic_string<wchar_t>, void>::extract(sqlite3_stmt*, int) const':
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:13025:22: warning: 'template<class _Codecvt, class _Elem, class _Wide_alloc, class _Byte_alloc> class std::__cxx11::wstring_convert' is deprecated [-Wdeprecated-declarations]
+13025 |                 std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+      |                      ^~~~~~~~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/include/c++/15.2.0/bits/locale_conv.h:262:33: note: declared here
+  262 |     class _GLIBCXX17_DEPRECATED wstring_convert
+      |                                 ^~~~~~~~~~~~~~~
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h: In member function 'std::string sqlite_orm::internal::statement_serializer<T, typename std::enable_if<sqlite_orm::internal::is_bindable<T>::value, void>::type>::do_serialize(const wchar_t*) const':
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:19499:22: warning: 'template<class _Codecvt, class _Elem, class _Wide_alloc, class _Byte_alloc> class std::__cxx11::wstring_convert' is deprecated [-Wdeprecated-declarations]
+19499 |                 std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+      |                      ^~~~~~~~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/include/c++/15.2.0/bits/locale_conv.h:262:33: note: declared here
+  262 |     class _GLIBCXX17_DEPRECATED wstring_convert
+      |                                 ^~~~~~~~~~~~~~~
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h: In member function 'std::string sqlite_orm::internal::statement_serializer<T, typename std::enable_if<sqlite_orm::internal::is_bindable<T>::value, void>::type>::do_serialize(const std::wstring_view&) const':
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:19509:22: warning: 'template<class _Codecvt, class _Elem, class _Wide_alloc, class _Byte_alloc> class std::__cxx11::wstring_convert' is deprecated [-Wdeprecated-declarations]
+19509 |                 std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+      |                      ^~~~~~~~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/include/c++/15.2.0/bits/locale_conv.h:262:33: note: declared here
+  262 |     class _GLIBCXX17_DEPRECATED wstring_convert
+      |                                 ^~~~~~~~~~~~~~~
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h: In function 'auto sqlite_orm::internal::make_cte_column(std::string, const ColRef&)':
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:21931:19: warning: typedef 'using object_type = sqlite_orm::internal::table_type_of_t<C>' locally defined but not used [-Wunused-local-typedefs]
+21931 |             using object_type = table_type_of_t<ColRef>;
+      |                   ^~~~~~~~~~~
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h: In instantiation of 'constexpr R sqlite_orm::internal::create_from_tuple(Tpl&&, std::index_sequence<_Idx ...>, Projection) [with R = std::vector<std::__cxx11::basic_string<char> >; Tpl = const std::tuple<column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroEquipSlot::*, empty_setter>, column_t<int eversoul::orm::HeroEquipSlot::*, empty_setter>, column_t<long long int eversoul::orm::HeroEquipSlot::*, empty_setter>, primary_key_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroEquipSlot::*, int eversoul::orm::HeroEquipSlot::*> >&; long long unsigned int ...Idx = {}; Projection = std::__cxx11::basic_string<char> column_identifier::*; std::index_sequence<_Idx ...> = std::integer_sequence<long long unsigned int>]':
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:12207:71:   required from 'std::vector<std::__cxx11::basic_string<char> > sqlite_orm::internal::table_t<O, WithoutRowId, Cs>::primary_key_column_names() const [with O = eversoul::orm::HeroEquipSlot; bool WithoutRowId = false; Cs = {sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroEquipSlot::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroEquipSlot::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::HeroEquipSlot::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::primary_key_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroEquipSlot::*, int eversoul::orm::HeroEquipSlot::*>}]'
+12207 |                     return create_from_tuple<std::vector<std::string>>(this->elements,
+      |                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~
+12208 |                                                                        pkcol_index_sequence{},
+      |                                                                        ~~~~~~~~~~~~~~~~~~~~~~~
+12209 |                                                                        &column_identifier::name);
+      |                                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:21071:72:   required from 'std::string sqlite_orm::internal::serialize_get_impl(const T&, const Ctx&) [with T = get_optional_t<eversoul::orm::HeroEquipSlot, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int>; Ctx = serializer_context<std::tuple<table_t<eversoul::orm::Kv, false, column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Kv::*, empty_setter, primary_key_t<> >, column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Kv::*, empty_setter> >, table_t<eversoul::orm::Hero, false, column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Hero::*, empty_setter, primary_key_t<> >, column_t<int eversoul::orm::Hero::*, empty_setter>, column_t<int eversoul::orm::Hero::*, empty_setter>, column_t<int eversoul::orm::Hero::*, empty_setter>, column_t<int eversoul::orm::Hero::*, empty_setter>, column_t<int eversoul::orm::Hero::*, empty_setter>, column_t<int eversoul::orm::Hero::*, empty_setter> >, table_t<eversoul::orm::HeroRep, false, column_t<int eversoul::orm::HeroRep::*, empty_setter, primary_key_t<> >, column_t<int eversoul::orm::HeroRep::*, empty_setter>, column_t<int eversoul::orm::HeroRep::*, empty_setter>, column_t<int eversoul::orm::HeroRep::*, empty_setter>, column_t<long long int eversoul::orm::HeroRep::*, empty_setter>, column_t<long long int eversoul::orm::HeroRep::*, empty_setter>, column_t<int eversoul::orm::HeroRep::*, empty_setter>, column_t<int eversoul::orm::HeroRep::*, empty_setter>, column_t<int eversoul::orm::HeroRep::*, empty_setter>, column_t<int eversoul::orm::HeroRep::*, empty_setter>, column_t<long long int eversoul::orm::HeroRep::*, empty_setter>, column_t<int eversoul::orm::HeroRep::*, empty_setter>, column_t<int eversoul::orm::HeroRep::*, empty_setter>, column_t<long longint eversoul::orm::HeroRep::*, empty_setter>, column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroRep::*, empty_setter> >, table_t<eversoul::orm::Currency, false,column_t<int eversoul::orm::Currency::*, empty_setter, primary_key_t<> >, column_t<long long int eversoul::orm::Currency::*, empty_setter> >, table_t<eversoul::orm::ItemEtc, false, column_t<int eversoul::orm::ItemEtc::*, empty_setter, primary_key_t<> >, column_t<int eversoul::orm::ItemEtc::*, empty_setter> >, table_t<eversoul::orm::ItemEquip, false, column_t<long long int eversoul::orm::ItemEquip::*, empty_setter, primary_key_t<> >, column_t<int eversoul::orm::ItemEquip::*, empty_setter>, column_t<int eversoul::orm::ItemEquip::*, empty_setter> >, table_t<eversoul::orm::HeroEquipSlot, false, column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroEquipSlot::*, empty_setter>, column_t<int eversoul::orm::HeroEquipSlot::*, empty_setter>, column_t<long long int eversoul::orm::HeroEquipSlot::*, empty_setter>, primary_key_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroEquipSlot::*, int eversoul::orm::HeroEquipSlot::*> >, table_t<eversoul::orm::Formation, false, column_t<int eversoul::orm::Formation::*, empty_setter>, column_t<int eversoul::orm::Formation::*, empty_setter>, column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Formation::*, empty_setter>, column_t<int eversoul::orm::Formation::*, empty_setter>, column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Formation::*, empty_setter>, primary_key_t<int eversoul::orm::Formation::*, int eversoul::orm::Formation::*> >, table_t<eversoul::orm::SpiritTree, false, column_t<int eversoul::orm::SpiritTree::*, empty_setter, primary_key_t<> >, column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::SpiritTree::*, empty_setter>, column_t<long long int eversoul::orm::SpiritTree::*, empty_setter> >, table_t<eversoul::orm::HeroOption, false, column_t<int eversoul::orm::HeroOption::*, empty_setter, primary_key_t<> >, column_t<int eversoul::orm::HeroOption::*, empty_setter>, column_t<int eversoul::orm::HeroOption::*, empty_setter>, column_t<int eversoul::orm::HeroOption::*, empty_setter>, column_t<int eversoul::orm::HeroOption::*, empty_setter>, column_t<int eversoul::orm::HeroOption::*, empty_setter>, column_t<int eversoul::orm::HeroOption::*, empty_setter>, column_t<int eversoul::orm::HeroOption::*, empty_setter> >, table_t<eversoul::orm::ChallengeMode, false, column_t<int eversoul::orm::ChallengeMode::*, empty_setter, primary_key_t<> >, column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::ChallengeMode::*, empty_setter> >, table_t<eversoul::orm::Stage, false, column_t<int eversoul::orm::Stage::*, empty_setter, primary_key_t<> >, column_t<int eversoul::orm::Stage::*, empty_setter>, column_t<long long int eversoul::orm::Stage::*, empty_setter> >, table_t<eversoul::orm::Story, false, column_t<int eversoul::orm::Story::*, empty_setter, primary_key_t<> >, column_t<long long int eversoul::orm::Story::*, empty_setter> >, table_t<eversoul::orm::Tutorial, false, column_t<int eversoul::orm::Tutorial::*, empty_setter, primary_key_t<> > >, table_t<eversoul::orm::Dungeon, false, column_t<int eversoul::orm::Dungeon::*, empty_setter, primary_key_t<> >, column_t<long long int eversoul::orm::Dungeon::*, empty_setter>, column_t<int eversoul::orm::Dungeon::*, empty_setter> > > >; std::string = std::__cxx11::basic_string<char>]'
+21071 |             auto primaryKeyColumnNames = table.primary_key_column_names();
+      |                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:21147:42:   required from 'std::string sqlite_orm::internal::statement_serializer<sqlite_orm::internal::get_optional_t<T, Ids ...>, void>::operator()(const statement_type&, const Ctx&) const [with Ctx = sqlite_orm::internal::serializer_context<std::tuple<sqlite_orm::internal::table_t<eversoul::orm::Kv, false, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Kv::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Kv::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Hero, false, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::HeroRep, false, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Currency, false, sqlite_orm::internal::column_t<int eversoul::orm::Currency::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<long long int eversoul::orm::Currency::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::ItemEtc, false, sqlite_orm::internal::column_t<inteversoul::orm::ItemEtc::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::ItemEtc::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::ItemEquip, false, sqlite_orm::internal::column_t<long long int eversoul::orm::ItemEquip::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::ItemEquip::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::ItemEquip::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::HeroEquipSlot, false, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroEquipSlot::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroEquipSlot::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::HeroEquipSlot::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::primary_key_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroEquipSlot::*, int eversoul::orm::HeroEquipSlot::*> >, sqlite_orm::internal::table_t<eversoul::orm::Formation, false, sqlite_orm::internal::column_t<int eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::primary_key_t<int eversoul::orm::Formation::*, int eversoul::orm::Formation::*> >, sqlite_orm::internal::table_t<eversoul::orm::SpiritTree, false, sqlite_orm::internal::column_t<int eversoul::orm::SpiritTree::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::SpiritTree::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::SpiritTree::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::HeroOption, false, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::ChallengeMode, false, sqlite_orm::internal::column_t<int eversoul::orm::ChallengeMode::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::ChallengeMode::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Stage, false, sqlite_orm::internal::column_t<int eversoul::orm::Stage::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::Stage::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::Stage::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Story, false, sqlite_orm::internal::column_t<int eversoul::orm::Story::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<long long int eversoul::orm::Story::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Tutorial, false, sqlite_orm::internal::column_t<int eversoul::orm::Tutorial::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> > >, sqlite_orm::internal::table_t<eversoul::orm::Dungeon, false, sqlite_orm::internal::column_t<int eversoul::orm::Dungeon::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<long long int eversoul::orm::Dungeon::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Dungeon::*, sqlite_orm::internal::empty_setter> > > >; T = eversoul::orm::HeroEquipSlot; Ids = {std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int}; std::string = std::__cxx11::basic_string<char>; statement_type = sqlite_orm::internal::get_optional_t<eversoul::orm::HeroEquipSlot, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int>]'
+21147 |                 return serialize_get_impl(get, context);
+      |                        ~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:19450:30:   required from 'auto sqlite_orm::internal::serialize(const T&, const Ctx&) [with T = get_optional_t<eversoul::orm::HeroEquipSlot, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int>; Ctx = serializer_context<std::tuple<table_t<eversoul::orm::Kv, false, column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Kv::*, empty_setter, primary_key_t<> >, column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Kv::*, empty_setter> >, table_t<eversoul::orm::Hero, false, column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Hero::*, empty_setter, primary_key_t<> >, column_t<int eversoul::orm::Hero::*, empty_setter>, column_t<int eversoul::orm::Hero::*, empty_setter>, column_t<int eversoul::orm::Hero::*, empty_setter>, column_t<int eversoul::orm::Hero::*, empty_setter>, column_t<int eversoul::orm::Hero::*, empty_setter>, column_t<int eversoul::orm::Hero::*, empty_setter> >, table_t<eversoul::orm::HeroRep, false, column_t<int eversoul::orm::HeroRep::*, empty_setter, primary_key_t<> >, column_t<int eversoul::orm::HeroRep::*, empty_setter>, column_t<inteversoul::orm::HeroRep::*, empty_setter>, column_t<int eversoul::orm::HeroRep::*, empty_setter>, column_t<long long int eversoul::orm::HeroRep::*, empty_setter>, column_t<long long int eversoul::orm::HeroRep::*, empty_setter>, column_t<int eversoul::orm::HeroRep::*, empty_setter>, column_t<int eversoul::orm::HeroRep::*, empty_setter>, column_t<int eversoul::orm::HeroRep::*, empty_setter>, column_t<int eversoul::orm::HeroRep::*, empty_setter>, column_t<long long int eversoul::orm::HeroRep::*, empty_setter>, column_t<int eversoul::orm::HeroRep::*, empty_setter>, column_t<int eversoul::orm::HeroRep::*, empty_setter>, column_t<long long int eversoul::orm::HeroRep::*, empty_setter>, column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroRep::*, empty_setter> >, table_t<eversoul::orm::Currency, false, column_t<int eversoul::orm::Currency::*, empty_setter, primary_key_t<> >, column_t<long long int eversoul::orm::Currency::*, empty_setter> >, table_t<eversoul::orm::ItemEtc, false, column_t<int eversoul::orm::ItemEtc::*, empty_setter,primary_key_t<> >, column_t<int eversoul::orm::ItemEtc::*, empty_setter> >, table_t<eversoul::orm::ItemEquip, false, column_t<long long int eversoul::orm::ItemEquip::*, empty_setter, primary_key_t<> >, column_t<int eversoul::orm::ItemEquip::*, empty_setter>, column_t<int eversoul::orm::ItemEquip::*, empty_setter> >, table_t<eversoul::orm::HeroEquipSlot, false, column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroEquipSlot::*, empty_setter>, column_t<int eversoul::orm::HeroEquipSlot::*, empty_setter>, column_t<long long int eversoul::orm::HeroEquipSlot::*, empty_setter>, primary_key_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroEquipSlot::*, int eversoul::orm::HeroEquipSlot::*> >, table_t<eversoul::orm::Formation, false, column_t<int eversoul::orm::Formation::*, empty_setter>, column_t<int eversoul::orm::Formation::*, empty_setter>, column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Formation::*, empty_setter>, column_t<int eversoul::orm::Formation::*, empty_setter>, column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Formation::*, empty_setter>, primary_key_t<int eversoul::orm::Formation::*, int eversoul::orm::Formation::*> >, table_t<eversoul::orm::SpiritTree, false, column_t<int eversoul::orm::SpiritTree::*, empty_setter, primary_key_t<> >, column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::SpiritTree::*, empty_setter>, column_t<long long int eversoul::orm::SpiritTree::*, empty_setter> >, table_t<eversoul::orm::HeroOption, false, column_t<int eversoul::orm::HeroOption::*, empty_setter, primary_key_t<> >, column_t<int eversoul::orm::HeroOption::*, empty_setter>, column_t<int eversoul::orm::HeroOption::*, empty_setter>, column_t<int eversoul::orm::HeroOption::*, empty_setter>, column_t<int eversoul::orm::HeroOption::*, empty_setter>, column_t<int eversoul::orm::HeroOption::*, empty_setter>, column_t<int eversoul::orm::HeroOption::*, empty_setter>, column_t<int eversoul::orm::HeroOption::*, empty_setter> >, table_t<eversoul::orm::ChallengeMode, false, column_t<int eversoul::orm::ChallengeMode::*, empty_setter, primary_key_t<> >, column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::ChallengeMode::*, empty_setter> >, table_t<eversoul::orm::Stage, false, column_t<int eversoul::orm::Stage::*, empty_setter, primary_key_t<> >, column_t<int eversoul::orm::Stage::*, empty_setter>, column_t<long long int eversoul::orm::Stage::*, empty_setter> >, table_t<eversoul::orm::Story, false, column_t<int eversoul::orm::Story::*, empty_setter, primary_key_t<> >, column_t<long long int eversoul::orm::Story::*, empty_setter> >, table_t<eversoul::orm::Tutorial, false, column_t<int eversoul::orm::Tutorial::*, empty_setter, primary_key_t<> > >, table_t<eversoul::orm::Dungeon, false, column_t<int eversoul::orm::Dungeon::*, empty_setter, primary_key_t<> >, column_t<long long int eversoul::orm::Dungeon::*, empty_setter>, column_t<int eversoul::orm::Dungeon::*, empty_setter> > > >]'
+19450 |             return serializer(t, context);
+      |                    ~~~~~~~~~~^~~~~~~~~~~~
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:23319:44:   required from 'sqlite_orm::internal::prepared_statement_t<S> sqlite_orm::internal::storage_t<DBO>::prepare_impl(S) [with S = sqlite_orm::internal::get_optional_t<eversoul::orm::HeroEquipSlot, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int>; DBO = {sqlite_orm::internal::table_t<eversoul::orm::Kv, false, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Kv::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Kv::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Hero, false, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::HeroRep, false, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long longint eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Currency, false, sqlite_orm::internal::column_t<int eversoul::orm::Currency::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<long long int eversoul::orm::Currency::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::ItemEtc, false, sqlite_orm::internal::column_t<int eversoul::orm::ItemEtc::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::ItemEtc::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::ItemEquip, false, sqlite_orm::internal::column_t<long long int eversoul::orm::ItemEquip::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::ItemEquip::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::ItemEquip::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::HeroEquipSlot, false, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroEquipSlot::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroEquipSlot::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::HeroEquipSlot::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::primary_key_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroEquipSlot::*, int eversoul::orm::HeroEquipSlot::*> >, sqlite_orm::internal::table_t<eversoul::orm::Formation, false, sqlite_orm::internal::column_t<int eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::primary_key_t<int eversoul::orm::Formation::*, int eversoul::orm::Formation::*> >, sqlite_orm::internal::table_t<eversoul::orm::SpiritTree, false, sqlite_orm::internal::column_t<int eversoul::orm::SpiritTree::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::SpiritTree::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::SpiritTree::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::HeroOption, false, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::ChallengeMode, false, sqlite_orm::internal::column_t<int eversoul::orm::ChallengeMode::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::ChallengeMode::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Stage, false, sqlite_orm::internal::column_t<int eversoul::orm::Stage::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::Stage::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::Stage::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Story, false, sqlite_orm::internal::column_t<int eversoul::orm::Story::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<long long int eversoul::orm::Story::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Tutorial, false, sqlite_orm::internal::column_t<int eversoul::orm::Tutorial::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> > >, sqlite_orm::internal::table_t<eversoul::orm::Dungeon, false, sqlite_orm::internal::column_t<int eversoul::orm::Dungeon::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<long long int eversoul::orm::Dungeon::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Dungeon::*, sqlite_orm::internal::empty_setter> >}]'
+23319 |                 std::string sql = serialize(statement, context);
+      |                                   ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:23450:42:   required from 'sqlite_orm::internal::prepared_statement_t<sqlite_orm::internal::get_optional_t<T, Ids ...> > sqlite_orm::internal::storage_t<DBO>::prepare(sqlite_orm::internal::get_optional_t<T, Ids ...>) [with T = eversoul::orm::HeroEquipSlot; Ids = {std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int}; DBO = {sqlite_orm::internal::table_t<eversoul::orm::Kv, false, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Kv::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Kv::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Hero, false, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::HeroRep, false, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<inteversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Currency, false, sqlite_orm::internal::column_t<int eversoul::orm::Currency::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<long long int eversoul::orm::Currency::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::ItemEtc, false, sqlite_orm::internal::column_t<int eversoul::orm::ItemEtc::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::ItemEtc::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::ItemEquip, false, sqlite_orm::internal::column_t<long long int eversoul::orm::ItemEquip::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::ItemEquip::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::ItemEquip::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::HeroEquipSlot, false, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroEquipSlot::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroEquipSlot::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::HeroEquipSlot::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::primary_key_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroEquipSlot::*, int eversoul::orm::HeroEquipSlot::*> >, sqlite_orm::internal::table_t<eversoul::orm::Formation, false, sqlite_orm::internal::column_t<int eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::primary_key_t<int eversoul::orm::Formation::*, int eversoul::orm::Formation::*> >, sqlite_orm::internal::table_t<eversoul::orm::SpiritTree, false, sqlite_orm::internal::column_t<int eversoul::orm::SpiritTree::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::SpiritTree::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<longlong int eversoul::orm::SpiritTree::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::HeroOption, false, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::ChallengeMode, false, sqlite_orm::internal::column_t<int eversoul::orm::ChallengeMode::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::ChallengeMode::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Stage, false, sqlite_orm::internal::column_t<int eversoul::orm::Stage::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::Stage::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::Stage::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Story, false, sqlite_orm::internal::column_t<int eversoul::orm::Story::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<long long int eversoul::orm::Story::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Tutorial, false, sqlite_orm::internal::column_t<int eversoul::orm::Tutorial::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> > >, sqlite_orm::internal::table_t<eversoul::orm::Dungeon, false, sqlite_orm::internal::column_t<int eversoul::orm::Dungeon::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<long long int eversoul::orm::Dungeon::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Dungeon::*, sqlite_orm::internal::empty_setter> >}]'
+23450 |                 return this->prepare_impl(std::move(statement));
+      |                        ~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:22639:47:   required from 'std::optional<_From> sqlite_orm::internal::storage_t<DBO>::get_optional(Ids ...) [with O = eversoul::orm::HeroEquipSlot; Ids = {std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int}; DBO = {sqlite_orm::internal::table_t<eversoul::orm::Kv, false, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Kv::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Kv::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Hero, false, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::HeroRep, false, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long inteversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Currency, false, sqlite_orm::internal::column_t<int eversoul::orm::Currency::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<long long int eversoul::orm::Currency::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::ItemEtc, false, sqlite_orm::internal::column_t<int eversoul::orm::ItemEtc::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::ItemEtc::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::ItemEquip, false, sqlite_orm::internal::column_t<long long int eversoul::orm::ItemEquip::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::ItemEquip::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::ItemEquip::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::HeroEquipSlot, false, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroEquipSlot::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroEquipSlot::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::HeroEquipSlot::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::primary_key_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroEquipSlot::*, int eversoul::orm::HeroEquipSlot::*> >, sqlite_orm::internal::table_t<eversoul::orm::Formation, false, sqlite_orm::internal::column_t<int eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::primary_key_t<int eversoul::orm::Formation::*, int eversoul::orm::Formation::*> >, sqlite_orm::internal::table_t<eversoul::orm::SpiritTree, false, sqlite_orm::internal::column_t<int eversoul::orm::SpiritTree::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::SpiritTree::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::SpiritTree::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::HeroOption, false, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::ChallengeMode, false, sqlite_orm::internal::column_t<int eversoul::orm::ChallengeMode::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::ChallengeMode::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Stage, false, sqlite_orm::internal::column_t<int eversoul::orm::Stage::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::Stage::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::Stage::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Story, false, sqlite_orm::internal::column_t<int eversoul::orm::Story::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<long long int eversoul::orm::Story::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Tutorial, false, sqlite_orm::internal::column_t<int eversoul::orm::Tutorial::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> > >, sqlite_orm::internal::table_t<eversoul::orm::Dungeon, false, sqlite_orm::internal::column_t<int eversoul::orm::Dungeon::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<long long int eversoul::orm::Dungeon::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Dungeon::*, sqlite_orm::internal::empty_setter> >}]'
+22639 |                 auto statement = this->prepare(sqlite_orm::get_optional<O>(std::forward<Ids>(ids)...));
+      |                                  ~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+D:/26_project/EverSoulSimulator/src/orm/storage.cpp:554:50:   required from here
+  554 |     return g_storage->get_optional<HeroEquipSlot>(hero_idx, slot);
+      |            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:1610:90: warning: parameter 'project' set but not used [-Wunused-but-set-parameter]
+ 1610 |         constexpr R create_from_tuple(Tpl&& tpl, std::index_sequence<Idx...>, Projection project = {}) {
+      |                                                                               ~~~~~~~~~~~^~~~~~~~~~~~
+[36/36] Linking CXX executable eversoul_offline_server.exe
+Built: build/eversoul_offline_server
+== Validate encoder ==
+encoder_validate: 90/90 endpoints match canonical bytes, skipped 69 profile-only schemas
+[2026-06-11 22:40:52][#0][OFFLINE_DATA] loaded blob build/offline_data/libofflinedata.so entries=420
+from_blob=1 entries=420 source=build/offline_data/libofflinedata.so
+responses/UserInfo.json = 591171 bytes, schema = 42859 bytes
+煐뽫쟻 UserInfo -> protobuf 94000 bytes
+responses/ ??102 訝ゆ뻼餓
+OK
+[2026-06-11 22:40:52][#0][OFFLINE_DATA] loaded blob build/offline_data/libofflinedata.so entries=420
+from_blob=1 entries=420 source=build/offline_data/libofflinedata.so
+responses_newbie/UserInfo.json = 7298 bytes, schema = 42859 bytes
+煐뽫쟻 UserInfo -> protobuf 893 bytes
+responses_newbie/ ??156 訝ゆ뻼餓
+OK
+== Configure Android ==
+-- Building for: Ninja
+CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android.toolchain.cmake:35 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/CMakeDetermineSystem.cmake:146 (include)
+  CMakeLists.txt:2 (project)
+
+
+CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android-legacy.toolchain.cmake:35 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android.toolchain.cmake:55 (include)
+  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/CMakeDetermineSystem.cmake:146 (include)
+  CMakeLists.txt:2 (project)
+
+
+CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android.toolchain.cmake:35 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  build/android/CMakeFiles/4.3.1/CMakeSystem.cmake:6 (include)
+  CMakeLists.txt:2 (project)
+
+
+-- The C compiler identification is Clang 18.0.3
+-- The CXX compiler identification is Clang 18.0.3
+CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/flags.cmake:18 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/Platform/Android-Clang.cmake:23 (include)
+  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/Platform/Android-Clang-C.cmake:1 (include)
+  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/CMakeCInformation.cmake:48 (include)
+  CMakeLists.txt:2 (project)
+
+
+-- Detecting C compiler ABI info
+CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android.toolchain.cmake:35 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/4.3.1/CMakeSystem.cmake:6 (include)
+  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/CMakeScratch/TryCompile-u2jbwi/CMakeLists.txt:3 (project)
+
+
+CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android-legacy.toolchain.cmake:35 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android.toolchain.cmake:55 (include)
+  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/4.3.1/CMakeSystem.cmake:6 (include)
+  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/CMakeScratch/TryCompile-u2jbwi/CMakeLists.txt:3 (project)
+
+
+CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/flags.cmake:18 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/Platform/Android-Clang.cmake:23 (include)
+  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/Platform/Android-Clang-C.cmake:1 (include)
+  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/CMakeCInformation.cmake:48 (include)
+  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/CMakeScratch/TryCompile-u2jbwi/CMakeLists.txt:3 (project)
+
+
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android.toolchain.cmake:35 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/4.3.1/CMakeSystem.cmake:6 (include)
+  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/CMakeScratch/TryCompile-o4nmn6/CMakeLists.txt:3 (project)
+
+
+CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android-legacy.toolchain.cmake:35 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android.toolchain.cmake:55 (include)
+  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/4.3.1/CMakeSystem.cmake:6 (include)
+  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/CMakeScratch/TryCompile-o4nmn6/CMakeLists.txt:3 (project)
+
+
+CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/flags.cmake:18 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/Platform/Android-Clang.cmake:23 (include)
+  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/Platform/Android-Clang-CXX.cmake:1 (include)
+  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/CMakeCXXInformation.cmake:48 (include)
+  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/CMakeScratch/TryCompile-o4nmn6/CMakeLists.txt:3 (project)
+
+
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android.toolchain.cmake:35 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/4.3.1/CMakeSystem.cmake:6 (include)
+  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/CMakeScratch/TryCompile-n7hz1o/CMakeLists.txt:3 (project)
+
+
+CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android-legacy.toolchain.cmake:35 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android.toolchain.cmake:55 (include)
+  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/4.3.1/CMakeSystem.cmake:6 (include)
+  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/CMakeScratch/TryCompile-n7hz1o/CMakeLists.txt:3 (project)
+
+
+CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/flags.cmake:18 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/Platform/Android-Clang.cmake:23 (include)
+  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/Platform/Android-Clang-C.cmake:1 (include)
+  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/CMakeCInformation.cmake:48 (include)
+  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/CMakeScratch/TryCompile-n7hz1o/CMakeLists.txt:3 (project)
+
+
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+-- Looking for pthread_create in pthreads
+CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android.toolchain.cmake:35 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/4.3.1/CMakeSystem.cmake:6 (include)
+  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/CMakeScratch/TryCompile-ghjr6y/CMakeLists.txt:3 (project)
+
+
+CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android-legacy.toolchain.cmake:35 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android.toolchain.cmake:55 (include)
+  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/4.3.1/CMakeSystem.cmake:6 (include)
+  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/CMakeScratch/TryCompile-ghjr6y/CMakeLists.txt:3 (project)
+
+
+CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/flags.cmake:18 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/Platform/Android-Clang.cmake:23 (include)
+  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/Platform/Android-Clang-C.cmake:1 (include)
+  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/CMakeCInformation.cmake:48 (include)
+  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/CMakeScratch/TryCompile-ghjr6y/CMakeLists.txt:3 (project)
+
+
+-- Looking for pthread_create in pthreads - not found
+-- Looking for pthread_create in pthread
+CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android.toolchain.cmake:35 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/4.3.1/CMakeSystem.cmake:6 (include)
+  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/CMakeScratch/TryCompile-xr6zt9/CMakeLists.txt:3 (project)
+
+
+CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android-legacy.toolchain.cmake:35 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android.toolchain.cmake:55 (include)
+  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/4.3.1/CMakeSystem.cmake:6 (include)
+  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/CMakeScratch/TryCompile-xr6zt9/CMakeLists.txt:3 (project)
+
+
+CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/flags.cmake:18 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/Platform/Android-Clang.cmake:23 (include)
+  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/Platform/Android-Clang-C.cmake:1 (include)
+  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/CMakeCInformation.cmake:48 (include)
+  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/CMakeScratch/TryCompile-xr6zt9/CMakeLists.txt:3 (project)
+
+
+-- Looking for pthread_create in pthread - not found
+-- Check if compiler accepts -pthread
+CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android.toolchain.cmake:35 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/4.3.1/CMakeSystem.cmake:6 (include)
+  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/CMakeScratch/TryCompile-oywmow/CMakeLists.txt:3 (project)
+
+
+CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android-legacy.toolchain.cmake:35 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android.toolchain.cmake:55 (include)
+  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/4.3.1/CMakeSystem.cmake:6 (include)
+  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/CMakeScratch/TryCompile-oywmow/CMakeLists.txt:3 (project)
+
+
+CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/flags.cmake:18 (cmake_minimum_required):
+  Compatibility with CMake < 3.10 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+  to tell CMake that the project requires at least <min> but has been updated
+  to work with policies introduced by <max> or earlier.
+Call Stack (most recent call first):
+  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/Platform/Android-Clang.cmake:23 (include)
+  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/Platform/Android-Clang-C.cmake:1 (include)
+  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/CMakeCInformation.cmake:48 (include)
+  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/CMakeScratch/TryCompile-oywmow/CMakeLists.txt:3 (project)
+
+
+-- Check if compiler accepts -pthread - yes
+-- Found Threads: TRUE
+-- Configuring done (2.4s)
+-- Generating done (0.0s)
+-- Build files have been written to: D:/26_project/EverSoulSimulator/build/android
+== Build Android ==
+[17/23] Building CXX object CMakeFiles/swappywrapper.dir/src/server.cpp.o
+FAILED: [code=1] CMakeFiles/swappywrapper.dir/src/server.cpp.o 
+C:\Users\koiya\AppData\Local\Android\Sdk\ndk\27.2.12479018\toolchains\llvm\prebuilt\windows-x86_64\bin\clang++.exe --target=aarch64-none-linux-android21 --sysroot=C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dswappywrapper_EXPORTS -ID:/26_project/EverSoulSimulator/src -ID:/26_project/EverSoulSimulator -ID:/26_project/EverSoulSimulator/third_party/sqlite -ID:/26_project/EverSoulSimulator/third_party/sqlite_orm -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -O3 -DNDEBUG -std=c++23 -fPIC -O2 -fvisibility=hidden -MD -MT CMakeFiles/swappywrapper.dir/src/server.cpp.o -MF CMakeFiles\swappywrapper.dir\src\server.cpp.o.d -o CMakeFiles/swappywrapper.dir/src/server.cpp.o -c D:/26_project/EverSoulSimulator/src/server.cpp
+In file included from D:/26_project/EverSoulSimulator/src/server.cpp:4:
+D:/26_project/EverSoulSimulator/src/platform.hpp:36:57: error: use of undeclared identifier 'std'
+   36 | inline ssize_t platform_recv(socket_fd_t fd, char *buf, std::size_t len) {
+      |                                                         ^
+D:/26_project/EverSoulSimulator/src/platform.hpp:39:63: error: use of undeclared identifier 'std'
+   39 | inline ssize_t platform_send(socket_fd_t fd, const char *buf, std::size_t len) {
+      |                                                               ^
+2 errors generated.
+[21/23] Building CXX object CMakeFiles/swappywrapper.dir/src/orm/storage.cpp.o
+In file included from D:/26_project/EverSoulSimulator/src/orm/storage.cpp:23:
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:3939:39: warning: 'codecvt_utf8_utf16<wchar_t>' is deprecated [-Wdeprecated-declarations]
+ 3939 |             std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+      |                                       ^
+C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/codecvt:569:28: note: 'codecvt_utf8_utf16<wchar_t>' has been explicitly marked deprecated here
+  569 | class _LIBCPP_TEMPLATE_VIS _LIBCPP_DEPRECATED_IN_CXX17 codecvt_utf8_utf16 : public __codecvt_utf8_utf16<_Elem> {
+      |                            ^
+C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:942:41: note: expanded from macro '_LIBCPP_DEPRECATED_IN_CXX17'
+  942 | #    define _LIBCPP_DEPRECATED_IN_CXX17 _LIBCPP_DEPRECATED
+      |                                         ^
+C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:915:49: note: expanded from macro '_LIBCPP_DEPRECATED'
+  915 | #      define _LIBCPP_DEPRECATED __attribute__((__deprecated__))
+      |                                                 ^
+In file included from D:/26_project/EverSoulSimulator/src/orm/storage.cpp:23:
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:3939:18: warning: 'wstring_convert<std::codecvt_utf8_utf16<wchar_t>>' is deprecated [-Wdeprecated-declarations]
+ 3939 |             std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+      |                  ^
+C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/locale:3114:28: note: 'wstring_convert<std::codecvt_utf8_utf16<wchar_t>>' has been explicitly marked deprecated here
+ 3114 | class _LIBCPP_TEMPLATE_VIS _LIBCPP_DEPRECATED_IN_CXX17 wstring_convert {
+      |                            ^
+C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:942:41: note: expanded from macro '_LIBCPP_DEPRECATED_IN_CXX17'
+  942 | #    define _LIBCPP_DEPRECATED_IN_CXX17 _LIBCPP_DEPRECATED
+      |                                         ^
+C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:915:49: note: expanded from macro '_LIBCPP_DEPRECATED'
+  915 | #      define _LIBCPP_DEPRECATED __attribute__((__deprecated__))
+      |                                                 ^
+In file included from D:/26_project/EverSoulSimulator/src/orm/storage.cpp:23:
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:10117:39: warning: 'codecvt_utf8_utf16<wchar_t>' is deprecated [-Wdeprecated-declarations]
+ 10117 |             std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+       |                                       ^
+C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/codecvt:569:28: note: 'codecvt_utf8_utf16<wchar_t>' has been explicitly marked deprecated here
+  569 | class _LIBCPP_TEMPLATE_VIS _LIBCPP_DEPRECATED_IN_CXX17 codecvt_utf8_utf16 : public __codecvt_utf8_utf16<_Elem> {
+      |                            ^
+C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:942:41: note: expanded from macro '_LIBCPP_DEPRECATED_IN_CXX17'
+  942 | #    define _LIBCPP_DEPRECATED_IN_CXX17 _LIBCPP_DEPRECATED
+      |                                         ^
+C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:915:49: note: expanded from macro '_LIBCPP_DEPRECATED'
+  915 | #      define _LIBCPP_DEPRECATED __attribute__((__deprecated__))
+      |                                                 ^
+In file included from D:/26_project/EverSoulSimulator/src/orm/storage.cpp:23:
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:10117:18: warning: 'wstring_convert<std::codecvt_utf8_utf16<wchar_t>>' is deprecated [-Wdeprecated-declarations]
+ 10117 |             std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+       |                  ^
+C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/locale:3114:28: note: 'wstring_convert<std::codecvt_utf8_utf16<wchar_t>>' has been explicitly marked deprecated here
+ 3114 | class _LIBCPP_TEMPLATE_VIS _LIBCPP_DEPRECATED_IN_CXX17 wstring_convert {
+      |                            ^
+C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:942:41: note: expanded from macro '_LIBCPP_DEPRECATED_IN_CXX17'
+  942 | #    define _LIBCPP_DEPRECATED_IN_CXX17 _LIBCPP_DEPRECATED
+      |                                         ^
+C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:915:49: note: expanded from macro '_LIBCPP_DEPRECATED'
+  915 | #      define _LIBCPP_DEPRECATED __attribute__((__deprecated__))
+      |                                                 ^
+In file included from D:/26_project/EverSoulSimulator/src/orm/storage.cpp:23:
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:13015:43: warning: 'codecvt_utf8_utf16<wchar_t>' is deprecated [-Wdeprecated-declarations]
+ 13015 |                 std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+       |                                           ^
+C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/codecvt:569:28: note: 'codecvt_utf8_utf16<wchar_t>' has been explicitly marked deprecated here
+  569 | class _LIBCPP_TEMPLATE_VIS _LIBCPP_DEPRECATED_IN_CXX17 codecvt_utf8_utf16 : public __codecvt_utf8_utf16<_Elem> {
+      |                            ^
+C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:942:41: note: expanded from macro '_LIBCPP_DEPRECATED_IN_CXX17'
+  942 | #    define _LIBCPP_DEPRECATED_IN_CXX17 _LIBCPP_DEPRECATED
+      |                                         ^
+C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:915:49: note: expanded from macro '_LIBCPP_DEPRECATED'
+  915 | #      define _LIBCPP_DEPRECATED __attribute__((__deprecated__))
+      |                                                 ^
+In file included from D:/26_project/EverSoulSimulator/src/orm/storage.cpp:23:
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:13015:22: warning: 'wstring_convert<std::codecvt_utf8_utf16<wchar_t>>' is deprecated [-Wdeprecated-declarations]
+ 13015 |                 std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+       |                      ^
+C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/locale:3114:28: note: 'wstring_convert<std::codecvt_utf8_utf16<wchar_t>>' has been explicitly marked deprecated here
+ 3114 | class _LIBCPP_TEMPLATE_VIS _LIBCPP_DEPRECATED_IN_CXX17 wstring_convert {
+      |                            ^
+C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:942:41: note: expanded from macro '_LIBCPP_DEPRECATED_IN_CXX17'
+  942 | #    define _LIBCPP_DEPRECATED_IN_CXX17 _LIBCPP_DEPRECATED
+      |                                         ^
+C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:915:49: note: expanded from macro '_LIBCPP_DEPRECATED'
+  915 | #      define _LIBCPP_DEPRECATED __attribute__((__deprecated__))
+      |                                                 ^
+In file included from D:/26_project/EverSoulSimulator/src/orm/storage.cpp:23:
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:13025:43: warning: 'codecvt_utf8_utf16<wchar_t>' is deprecated [-Wdeprecated-declarations]
+ 13025 |                 std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+       |                                           ^
+C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/codecvt:569:28: note: 'codecvt_utf8_utf16<wchar_t>' has been explicitly marked deprecated here
+  569 | class _LIBCPP_TEMPLATE_VIS _LIBCPP_DEPRECATED_IN_CXX17 codecvt_utf8_utf16 : public __codecvt_utf8_utf16<_Elem> {
+      |                            ^
+C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:942:41: note: expanded from macro '_LIBCPP_DEPRECATED_IN_CXX17'
+  942 | #    define _LIBCPP_DEPRECATED_IN_CXX17 _LIBCPP_DEPRECATED
+      |                                         ^
+C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:915:49: note: expanded from macro '_LIBCPP_DEPRECATED'
+  915 | #      define _LIBCPP_DEPRECATED __attribute__((__deprecated__))
+      |                                                 ^
+In file included from D:/26_project/EverSoulSimulator/src/orm/storage.cpp:23:
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:13025:22: warning: 'wstring_convert<std::codecvt_utf8_utf16<wchar_t>>' is deprecated [-Wdeprecated-declarations]
+ 13025 |                 std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+       |                      ^
+C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/locale:3114:28: note: 'wstring_convert<std::codecvt_utf8_utf16<wchar_t>>' has been explicitly marked deprecated here
+ 3114 | class _LIBCPP_TEMPLATE_VIS _LIBCPP_DEPRECATED_IN_CXX17 wstring_convert {
+      |                            ^
+C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:942:41: note: expanded from macro '_LIBCPP_DEPRECATED_IN_CXX17'
+  942 | #    define _LIBCPP_DEPRECATED_IN_CXX17 _LIBCPP_DEPRECATED
+      |                                         ^
+C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:915:49: note: expanded from macro '_LIBCPP_DEPRECATED'
+  915 | #      define _LIBCPP_DEPRECATED __attribute__((__deprecated__))
+      |                                                 ^
+In file included from D:/26_project/EverSoulSimulator/src/orm/storage.cpp:23:
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:19499:43: warning: 'codecvt_utf8_utf16<wchar_t>' is deprecated [-Wdeprecated-declarations]
+ 19499 |                 std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+       |                                           ^
+C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/codecvt:569:28: note: 'codecvt_utf8_utf16<wchar_t>' has been explicitly marked deprecated here
+  569 | class _LIBCPP_TEMPLATE_VIS _LIBCPP_DEPRECATED_IN_CXX17 codecvt_utf8_utf16 : public __codecvt_utf8_utf16<_Elem> {
+      |                            ^
+C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:942:41: note: expanded from macro '_LIBCPP_DEPRECATED_IN_CXX17'
+  942 | #    define _LIBCPP_DEPRECATED_IN_CXX17 _LIBCPP_DEPRECATED
+      |                                         ^
+C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:915:49: note: expanded from macro '_LIBCPP_DEPRECATED'
+  915 | #      define _LIBCPP_DEPRECATED __attribute__((__deprecated__))
+      |                                                 ^
+In file included from D:/26_project/EverSoulSimulator/src/orm/storage.cpp:23:
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:19499:22: warning: 'wstring_convert<std::codecvt_utf8_utf16<wchar_t>>' is deprecated [-Wdeprecated-declarations]
+ 19499 |                 std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+       |                      ^
+C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/locale:3114:28: note: 'wstring_convert<std::codecvt_utf8_utf16<wchar_t>>' has been explicitly marked deprecated here
+ 3114 | class _LIBCPP_TEMPLATE_VIS _LIBCPP_DEPRECATED_IN_CXX17 wstring_convert {
+      |                            ^
+C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:942:41: note: expanded from macro '_LIBCPP_DEPRECATED_IN_CXX17'
+  942 | #    define _LIBCPP_DEPRECATED_IN_CXX17 _LIBCPP_DEPRECATED
+      |                                         ^
+C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:915:49: note: expanded from macro '_LIBCPP_DEPRECATED'
+  915 | #      define _LIBCPP_DEPRECATED __attribute__((__deprecated__))
+      |                                                 ^
+In file included from D:/26_project/EverSoulSimulator/src/orm/storage.cpp:23:
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:19509:43: warning: 'codecvt_utf8_utf16<wchar_t>' is deprecated [-Wdeprecated-declarations]
+ 19509 |                 std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+       |                                           ^
+C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/codecvt:569:28: note: 'codecvt_utf8_utf16<wchar_t>' has been explicitly marked deprecated here
+  569 | class _LIBCPP_TEMPLATE_VIS _LIBCPP_DEPRECATED_IN_CXX17 codecvt_utf8_utf16 : public __codecvt_utf8_utf16<_Elem> {
+      |                            ^
+C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:942:41: note: expanded from macro '_LIBCPP_DEPRECATED_IN_CXX17'
+  942 | #    define _LIBCPP_DEPRECATED_IN_CXX17 _LIBCPP_DEPRECATED
+      |                                         ^
+C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:915:49: note: expanded from macro '_LIBCPP_DEPRECATED'
+  915 | #      define _LIBCPP_DEPRECATED __attribute__((__deprecated__))
+      |                                                 ^
+In file included from D:/26_project/EverSoulSimulator/src/orm/storage.cpp:23:
+D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:19509:22: warning: 'wstring_convert<std::codecvt_utf8_utf16<wchar_t>>' is deprecated [-Wdeprecated-declarations]
+ 19509 |                 std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+       |                      ^
+C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/locale:3114:28: note: 'wstring_convert<std::codecvt_utf8_utf16<wchar_t>>' has been explicitly marked deprecated here
+ 3114 | class _LIBCPP_TEMPLATE_VIS _LIBCPP_DEPRECATED_IN_CXX17 wstring_convert {
+      |                            ^
+C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:942:41: note: expanded from macro '_LIBCPP_DEPRECATED_IN_CXX17'
+  942 | #    define _LIBCPP_DEPRECATED_IN_CXX17 _LIBCPP_DEPRECATED
+      |                                         ^
+C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:915:49: note: expanded from macro '_LIBCPP_DEPRECATED'
+  915 | #      define _LIBCPP_DEPRECATED __attribute__((__deprecated__))
+      |                                                 ^
+12 warnings generated.
+[22/23] Building C object CMakeFiles/swappywrapper.dir/third_party/sqlite/sqlite3.c.o
+ninja: build stopped: subcommand failed.
+koiya@taeyeon-pc:/d/26_project/EverSoulSimulator korean_language-work_by.nekoi
+$ 

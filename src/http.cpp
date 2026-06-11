@@ -1,7 +1,7 @@
 // http.cpp — HTTP/1.1 parse + response.
 #include "http.hpp"
 
-#include <sys/socket.h>
+#include "platform.hpp"
 
 #include <sstream>
 
@@ -10,13 +10,13 @@
 namespace eversoul
 {
 
-    std::string recv_until_headers(int fd, std::string &extra)
+    std::string recv_until_headers(socket_fd_t fd, std::string &extra)
     {
         std::string data;
         char buf[4096];
         while (data.size() < kMaxHeaderBytes)
         {
-            ssize_t n = recv(fd, buf, sizeof(buf), 0);
+            ssize_t n = platform_recv(fd, buf, sizeof(buf));
             if (n <= 0)
                 break;
             data.append(buf, static_cast<std::size_t>(n));
@@ -30,7 +30,7 @@ namespace eversoul
         return data;
     }
 
-    bool parse_request(int fd, HttpRequest &req)
+    bool parse_request(socket_fd_t fd, HttpRequest &req)
     {
         std::string extra;
         std::string header_blob = recv_until_headers(fd, extra);
@@ -78,7 +78,7 @@ namespace eversoul
         while (req.body.size() < content_length)
         {
             char buf[4096];
-            ssize_t n = recv(fd, buf, sizeof(buf), 0);
+            ssize_t n = platform_recv(fd, buf, sizeof(buf));
             if (n <= 0)
                 break;
             req.body.append(buf, static_cast<std::size_t>(n));
@@ -90,13 +90,13 @@ namespace eversoul
         return true;
     }
 
-    void send_all(int fd, const std::string &data)
+    void send_all(socket_fd_t fd, const std::string &data)
     {
         const char *p = data.data();
         std::size_t left = data.size();
         while (left > 0)
         {
-            ssize_t n = send(fd, p, left, 0);
+            ssize_t n = platform_send(fd, p, left);
             if (n <= 0)
                 return;
             p += n;
@@ -123,7 +123,7 @@ namespace eversoul
         }
     }
 
-    void send_response(int fd, const HttpResponse &res)
+    void send_response(socket_fd_t fd, const HttpResponse &res)
     {
         std::ostringstream out;
         out << "HTTP/1.1 " << res.status << " " << status_text(res.status) << "\r\n";

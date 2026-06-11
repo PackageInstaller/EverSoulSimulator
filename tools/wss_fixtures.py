@@ -108,15 +108,15 @@ def build_chat(har):
 
 def main():
     har_path = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_HAR
-    har = json.load(open(har_path))
+    har = json.load(open(har_path, encoding="utf-8"))
     os.makedirs(WSS_DIR, exist_ok=True)
 
     session = build_session(har)
-    with open(os.path.join(WSS_DIR, "session_replies.json"), "w") as f:
+    with open(os.path.join(WSS_DIR, "session_replies.json"), "w", encoding="utf-8") as f:
         json.dump(session, f, indent=2, ensure_ascii=False)
 
     chat = build_chat(har)
-    with open(os.path.join(WSS_DIR, "chat_engineio.json"), "w") as f:
+    with open(os.path.join(WSS_DIR, "chat_engineio.json"), "w", encoding="utf-8") as f:
         json.dump(chat, f, indent=2, ensure_ascii=False)
 
     print(f"session_replies: {len(session['replies'])} topics, "

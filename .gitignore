@@ -74,4 +74,6 @@ Testing/
 *.db
 .claude/
 tutorial_decode_out/
+apk/
+tools/__pycache__/*
 

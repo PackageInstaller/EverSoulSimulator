@@ -116,7 +116,7 @@ def main():
     for resp_dir in ("responses", "responses_newbie"):
         man_path = os.path.join(ROOT, resp_dir, "_manifest.json")
         if os.path.exists(man_path):
-            manifests.append(json.load(open(man_path)))
+            manifests.append(json.load(open(man_path, encoding="utf-8")))
     out_dir = os.path.join(ROOT, "schema")
     if os.path.isdir(out_dir):
         for fn in os.listdir(out_dir):
@@ -134,7 +134,7 @@ def main():
         if not reg.has("Response", ep):
             continue  # empty/raw need no schema
         sch = schema_for(reg, ep)
-        with open(os.path.join(out_dir, ep + ".json"), "w") as f:
+        with open(os.path.join(out_dir, ep + ".json"), "w", encoding="utf-8") as f:
             json.dump(sch, f, indent=1, ensure_ascii=False)
         count += 1
     print(f"wrote schema/ for {count} proto endpoints")

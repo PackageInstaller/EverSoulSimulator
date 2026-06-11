@@ -86,7 +86,7 @@ def rewrite_formation(fbytes, hero_idxs):
 
 
 def main():
-    src = open("src/payloads.cpp").read()
+    src = open("src/payloads.cpp", encoding="utf-8").read()
     m = re.search(r'user_info_payload\(\).*?hex_to_bytes\(\s*(.*?)\);', src, re.S)
     hexstr = "".join(re.findall(r'"([0-9a-fA-F]+)"', m.group(1)))
     data = bytes.fromhex(hexstr)
@@ -118,7 +118,7 @@ def main():
     body += "// Fresh-account UserInfo with the 4 starter heroes placed into formations 0 and 1\n"
     body += "// so the tutorial battle actually fields them.\n"
     body += "\n".join(lines) + "\n"
-    open("src/user_info_payload.inc", "w").write(body)
+    open("src/user_info_payload.inc", "w", encoding="utf-8").write(body)
     print(f"wrote src/user_info_payload.inc ({len(out)} bytes)")
 
 

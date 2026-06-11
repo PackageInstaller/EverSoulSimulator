@@ -41,6 +41,14 @@ set(EVERSOUL_INCLUDE_DIRS src ${CMAKE_CURRENT_SOURCE_DIR} third_party/sqlite thi
 find_package(Threads REQUIRED)
 
 if(ANDROID)
+  if(ANDROID_ABI STREQUAL "x86_64")
+    set(OBJCOPY_OUTPUT_FORMAT "elf64-x86-64")
+    set(OBJCOPY_ARCH          "i386:x86-64")
+  else()
+    set(OBJCOPY_OUTPUT_FORMAT "elf64-littleaarch64")
+    set(OBJCOPY_ARCH          "aarch64")
+  endif()
+
   # Embed all Global protobuf schemas as a binary blob for later extraction/debugging.
   set(PROTO_BLOB "${CMAKE_CURRENT_BINARY_DIR}/proto_schema_global.txt")
   set(PROTO_OBJ "${CMAKE_CURRENT_BINARY_DIR}/proto_schema_global.o")
@@ -51,7 +59,7 @@ if(ANDROID)
       -DBLOB=${PROTO_BLOB}
       -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/gen_proto_blob.cmake
     COMMAND ${CMAKE_OBJCOPY}
-      -I binary -O elf64-littleaarch64 -B aarch64 ${PROTO_BLOB} ${PROTO_OBJ}
+      -I binary -O ${OBJCOPY_OUTPUT_FORMAT} -B ${OBJCOPY_ARCH} ${PROTO_BLOB} ${PROTO_OBJ}
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
     VERBATIM)
 
@@ -60,12 +68,21 @@ if(ANDROID)
   add_library(swappywrapper SHARED
     ${EVERSOUL_CORE_SOURCES}
     src/anticheat_patch.cpp
+    src/asset_migration.cpp
     src/entry.cpp
     ${PROTO_OBJ})
   target_include_directories(swappywrapper PRIVATE ${EVERSOUL_INCLUDE_DIRS})
   target_compile_options(swappywrapper PRIVATE -O2 -fvisibility=hidden)
   target_link_libraries(swappywrapper PRIVATE log dl m)
   target_link_options(swappywrapper PRIVATE -static-libstdc++ -s)
+
+  add_custom_command(TARGET swappywrapper POST_BUILD
+    COMMAND python
+      ${CMAKE_SOURCE_DIR}/tools/inject.py
+      --so $<TARGET_FILE:swappywrapper>
+      --frida-server ${CMAKE_SOURCE_DIR}/tools/frida/frida-server-android-x86_64
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    COMMENT "Injecting libswappywrapper.so into emulator")
 else()
   # Desktop capture/proxy/mock server.
   find_package(CURL REQUIRED)
@@ -73,6 +90,9 @@ else()
   target_include_directories(eversoul_offline_server PRIVATE ${EVERSOUL_INCLUDE_DIRS})
   target_compile_options(eversoul_offline_server PRIVATE -O2 -Wall -Wextra)
   target_link_libraries(eversoul_offline_server PRIVATE CURL::libcurl Threads::Threads ${CMAKE_DL_LIBS})
+  if(WIN32)
+    target_link_libraries(eversoul_offline_server PRIVATE ws2_32)
+  endif()
 
   # Desktop validator for the descriptor-driven JSON->protobuf encoder. Links
   # only the small pieces it needs (no curl/sqlite), so it builds fast.
