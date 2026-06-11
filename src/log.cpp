@@ -10,6 +10,7 @@
 #include <mutex>
 #include <string>
 
+#include "admin_log_sink.hpp"
 #include "common.hpp"
 #include "util.hpp"
 
@@ -37,7 +38,8 @@ namespace eversoul
     void log_line(std::uint64_t id, const std::string &tag, const std::string &text)
     {
         std::lock_guard<std::mutex> lock(g_log_mutex);
-        std::string line = "[" + now_string() + "][#" + std::to_string(id) + "][" + tag + "] " + text + "\n";
+        std::string ts   = now_string();
+        std::string line = "[" + ts + "][#" + std::to_string(id) + "][" + tag + "] " + text + "\n";
 #ifdef __ANDROID__
         __android_log_print(ANDROID_LOG_INFO, "eversoul_offline", "%s", line.c_str());
 #else
@@ -49,6 +51,7 @@ namespace eversoul
             g_log_file << line;
             g_log_file.flush();
         }
+        admin::log_sink_push(admin::LogEntry{id, ts, tag, text});
     }
 
     void open_log_file()

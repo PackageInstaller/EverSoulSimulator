@@ -1,693 +1,803 @@
-koiya@taeyeon-pc:/d/26_project/EverSoulSimulator korean_language-work_by.nekoi
-$ EVERSOUL_LANG=ko ./build.sh
-NOTICE: HAR file 'cdp.cloud.unity3d.com_2026_06_10_09_18_58.har' not found. Skipping HAR merge step and using existing responses/.
-== Merge HAR fixtures skipped ==
-== Regenerate schema/ ==
-wrote schema/ for 159 proto endpoints
-== Regenerate expected/ ==
-wrote expected/ canonical payloads for 90 proto endpoints
-== Pack offline data ==
-420개 파일 패킹, 원본 4489875 바이트 -> 4506406 바이트
-출력: D:\26_project\EverSoulSimulator\build\offline_data\libofflinedata.so
-  responses/: 102개 파일
-  responses_newbie/: 156개 파일
-  schema/: 159개 파일
-  web/: 1개 파일
-  wss/: 2개 파일
-== Configure desktop ==
--- Building for: Ninja
--- The C compiler identification is GNU 15.2.0
--- The CXX compiler identification is GNU 15.2.0
--- Detecting C compiler ABI info
--- Detecting C compiler ABI info - done
--- Check for working C compiler: C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/bin/gcc.exe - skipped
--- Detecting C compile features
--- Detecting C compile features - done
--- Detecting CXX compiler ABI info
--- Detecting CXX compiler ABI info - done
--- Check for working CXX compiler: C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/bin/c++.exe - skipped
--- Detecting CXX compile features
--- Detecting CXX compile features - done
--- Performing Test CMAKE_HAVE_LIBC_PTHREAD
--- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
--- Found Threads: TRUE
--- Found CURL: C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/cURL.cURL_Microsoft.Winget.Source_8wekyb3d8bbwe/curl-8.20.0_5-win64-mingw/lib/libcurl.dll.a (found version "8.20.0")
--- Configuring done (2.0s)
--- Generating done (0.0s)
--- Build files have been written to: D:/26_project/EverSoulSimulator/build/desktop
-== Build desktop ==
-[34/36] Building CXX object CMakeFiles/eversoul_offline_server.dir/src/orm/storage.cpp.obj
-In file included from D:/26_project/EverSoulSimulator/src/orm/storage.cpp:23:
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:2787:48: warning: space between quotes and suffix is deprecated in C++23 [-Wdeprecated-literal-operator]
- 2787 |         [[nodiscard]] consteval auto operator"" _alias() {
-      |                                                ^~
-      |                                                --
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:2787:48: warning: space between quotes and suffix is deprecated in C++23 [-Wdeprecated-literal-operator]
- 2787 |         [[nodiscard]] consteval auto operator"" _alias() {
-      |                                                ^~
-      |                                                --
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:2797:48: warning: space between quotes and suffix is deprecated in C++23 [-Wdeprecated-literal-operator]
- 2797 |         [[nodiscard]] consteval auto operator"" _col() {
-      |                                                ^~
-      |                                                --
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:2797:48: warning: space between quotes and suffix is deprecated in C++23 [-Wdeprecated-literal-operator]
- 2797 |         [[nodiscard]] consteval auto operator"" _col() {
-      |                                                ^~
-      |                                                --
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:2810:59: warning: space between quotes and suffix is deprecated in C++23 [-Wdeprecated-literal-operator]
- 2810 |         [[nodiscard]] SQLITE_ORM_CONSTEVAL auto operator"" _colalias() {
-      |                                                           ^~
-      |                                                           --
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:2810:59: warning: space between quotes and suffix is deprecated in C++23 [-Wdeprecated-literal-operator]
- 2810 |         [[nodiscard]] SQLITE_ORM_CONSTEVAL auto operator"" _colalias() {
-      |                                                           ^~
-      |                                                           --
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h: In member function 'std::string sqlite_orm::field_printer<T, typename std::enable_if<std::is_base_of<std::__cxx11::basic_string<wchar_t>, T>::value, void>::type>::operator()(const std::wstring&) const':
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:3939:18: warning: 'template<class _Codecvt, class _Elem, class _Wide_alloc, class _Byte_alloc> class std::__cxx11::wstring_convert' is deprecated [-Wdeprecated-declarations]
- 3939 |             std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-      |                  ^~~~~~~~~~~~~~~
-In file included from C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/include/c++/15.2.0/locale:47,
-                 from C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/include/c++/15.2.0/bits/fs_path.h:36,
-                 from C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/include/c++/15.2.0/filesystem:54,
-                 from D:/26_project/EverSoulSimulator/src/orm/storage.cpp:5:
-C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/include/c++/15.2.0/bits/locale_conv.h:262:33: note: declared here
-  262 |     class _GLIBCXX17_DEPRECATED wstring_convert
-      |                                 ^~~~~~~~~~~~~~~
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h: At global scope:
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:8317:59: warning: space between quotes and suffix is deprecated in C++23 [-Wdeprecated-literal-operator]
- 8317 |         [[nodiscard]] SQLITE_ORM_CONSTEVAL auto operator"" _ctealias() {
-      |                                                           ^~
-      |                                                           --
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:8317:59: warning: space between quotes and suffix is deprecated in C++23 [-Wdeprecated-literal-operator]
- 8317 |         [[nodiscard]] SQLITE_ORM_CONSTEVAL auto operator"" _ctealias() {
-      |                                                           ^~
-      |                                                           --
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:8327:48: warning: space between quotes and suffix is deprecated in C++23 [-Wdeprecated-literal-operator]
- 8327 |         [[nodiscard]] consteval auto operator"" _cte() {
-      |                                                ^~
-      |                                                --
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:8327:48: warning: space between quotes and suffix is deprecated in C++23 [-Wdeprecated-literal-operator]
- 8327 |         [[nodiscard]] consteval auto operator"" _cte() {
-      |                                                ^~
-      |                                                --
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:9698:48: warning: space between quotes and suffix is deprecated in C++23 [-Wdeprecated-literal-operator]
- 9698 |         [[nodiscard]] consteval auto operator"" _pointer_type() {
-      |                                                ^~
-      |                                                --
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:9698:48: warning: space between quotes and suffix is deprecated in C++23 [-Wdeprecated-literal-operator]
- 9698 |         [[nodiscard]] consteval auto operator"" _pointer_type() {
-      |                                                ^~
-      |                                                --
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h: In member function 'int sqlite_orm::statement_binder<V, typename std::enable_if<std::disjunction<std::is_base_of<std::__cxx11::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> >, T>, std::is_same<V, const wchar_t*>, std::is_same<V, std::basic_string_view<wchar_t, std::char_traits<wchar_t> > > >::value, void>::type>::bind(sqlite3_stmt*, int, const V&) const':
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:10117:18: warning: 'template<class _Codecvt, class _Elem, class _Wide_alloc, class _Byte_alloc> class std::__cxx11::wstring_convert' is deprecated [-Wdeprecated-declarations]
-10117 |             std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-      |                  ^~~~~~~~~~~~~~~
-C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/include/c++/15.2.0/bits/locale_conv.h:262:33: note: declared here
-  262 |     class _GLIBCXX17_DEPRECATED wstring_convert
-      |                                 ^~~~~~~~~~~~~~~
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h: In member function 'consteval auto sqlite_orm::internal::quoted_function_builder<N>::quote(F) const':
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:11263:23: warning: typedef 'using call_operator_type = decltype (static_cast<using Sig = sqlite_orm::internal::function_signature_type_t<decltype (& F::operator())> F::*>(& F::operator()))' locally defined but not used [-Wunused-local-typedefs]
-11263 |                 using call_operator_type = decltype(static_cast<Sig F::*>(&F::operator()));
-      |                       ^~~~~~~~~~~~~~~~~~
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h: In member function 'consteval auto sqlite_orm::internal::quoted_function_builder<N>::quote(F) const':
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:11274:23: warning: typedef 'using call_operator_type = decltype (static_cast<Sig F::*>(& F::operator()))' locally defined but not used [-Wunused-local-typedefs]
-11274 |                 using call_operator_type = decltype(static_cast<Sig F::*>(&F::operator()));
-      |                       ^~~~~~~~~~~~~~~~~~
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h: In member function 'consteval auto sqlite_orm::internal::quoted_function_builder<N>::quote(Args&& ...) const':
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:11295:23: warning: typedef 'using call_operator_type = decltype (static_cast<Sig F::*>(& F::operator()))' locally defined but not used [-Wunused-local-typedefs]
-11295 |                 using call_operator_type = decltype(static_cast<Sig F::*>(&F::operator()));
-      |                       ^~~~~~~~~~~~~~~~~~
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h: At global scope:
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:11357:48: warning: space between quotes and suffix is deprecated in C++23 [-Wdeprecated-literal-operator]
-11357 |         [[nodiscard]] consteval auto operator"" _scalar() {
-      |                                                ^~
-      |                                                --
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:11357:48: warning: space between quotes and suffix is deprecated in C++23 [-Wdeprecated-literal-operator]
-11357 |         [[nodiscard]] consteval auto operator"" _scalar() {
-      |                                                ^~
-      |                                                --
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h: In member function 'std::wstring sqlite_orm::row_extractor<std::__cxx11::basic_string<wchar_t>, void>::extract(const char*) const':
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:13015:22: warning: 'template<class _Codecvt, class _Elem, class _Wide_alloc, class _Byte_alloc> class std::__cxx11::wstring_convert' is deprecated [-Wdeprecated-declarations]
-13015 |                 std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-      |                      ^~~~~~~~~~~~~~~
-C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/include/c++/15.2.0/bits/locale_conv.h:262:33: note: declared here
-  262 |     class _GLIBCXX17_DEPRECATED wstring_convert
-      |                                 ^~~~~~~~~~~~~~~
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h: In member function 'std::wstring sqlite_orm::row_extractor<std::__cxx11::basic_string<wchar_t>, void>::extract(sqlite3_stmt*, int) const':
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:13025:22: warning: 'template<class _Codecvt, class _Elem, class _Wide_alloc, class _Byte_alloc> class std::__cxx11::wstring_convert' is deprecated [-Wdeprecated-declarations]
-13025 |                 std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-      |                      ^~~~~~~~~~~~~~~
-C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/include/c++/15.2.0/bits/locale_conv.h:262:33: note: declared here
-  262 |     class _GLIBCXX17_DEPRECATED wstring_convert
-      |                                 ^~~~~~~~~~~~~~~
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h: In member function 'std::string sqlite_orm::internal::statement_serializer<T, typename std::enable_if<sqlite_orm::internal::is_bindable<T>::value, void>::type>::do_serialize(const wchar_t*) const':
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:19499:22: warning: 'template<class _Codecvt, class _Elem, class _Wide_alloc, class _Byte_alloc> class std::__cxx11::wstring_convert' is deprecated [-Wdeprecated-declarations]
-19499 |                 std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-      |                      ^~~~~~~~~~~~~~~
-C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/include/c++/15.2.0/bits/locale_conv.h:262:33: note: declared here
-  262 |     class _GLIBCXX17_DEPRECATED wstring_convert
-      |                                 ^~~~~~~~~~~~~~~
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h: In member function 'std::string sqlite_orm::internal::statement_serializer<T, typename std::enable_if<sqlite_orm::internal::is_bindable<T>::value, void>::type>::do_serialize(const std::wstring_view&) const':
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:19509:22: warning: 'template<class _Codecvt, class _Elem, class _Wide_alloc, class _Byte_alloc> class std::__cxx11::wstring_convert' is deprecated [-Wdeprecated-declarations]
-19509 |                 std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-      |                      ^~~~~~~~~~~~~~~
-C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/include/c++/15.2.0/bits/locale_conv.h:262:33: note: declared here
-  262 |     class _GLIBCXX17_DEPRECATED wstring_convert
-      |                                 ^~~~~~~~~~~~~~~
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h: In function 'auto sqlite_orm::internal::make_cte_column(std::string, const ColRef&)':
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:21931:19: warning: typedef 'using object_type = sqlite_orm::internal::table_type_of_t<C>' locally defined but not used [-Wunused-local-typedefs]
-21931 |             using object_type = table_type_of_t<ColRef>;
-      |                   ^~~~~~~~~~~
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h: In instantiation of 'constexpr R sqlite_orm::internal::create_from_tuple(Tpl&&, std::index_sequence<_Idx ...>, Projection) [with R = std::vector<std::__cxx11::basic_string<char> >; Tpl = const std::tuple<column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroEquipSlot::*, empty_setter>, column_t<int eversoul::orm::HeroEquipSlot::*, empty_setter>, column_t<long long int eversoul::orm::HeroEquipSlot::*, empty_setter>, primary_key_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroEquipSlot::*, int eversoul::orm::HeroEquipSlot::*> >&; long long unsigned int ...Idx = {}; Projection = std::__cxx11::basic_string<char> column_identifier::*; std::index_sequence<_Idx ...> = std::integer_sequence<long long unsigned int>]':
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:12207:71:   required from 'std::vector<std::__cxx11::basic_string<char> > sqlite_orm::internal::table_t<O, WithoutRowId, Cs>::primary_key_column_names() const [with O = eversoul::orm::HeroEquipSlot; bool WithoutRowId = false; Cs = {sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroEquipSlot::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroEquipSlot::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::HeroEquipSlot::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::primary_key_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroEquipSlot::*, int eversoul::orm::HeroEquipSlot::*>}]'
-12207 |                     return create_from_tuple<std::vector<std::string>>(this->elements,
-      |                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~
-12208 |                                                                        pkcol_index_sequence{},
-      |                                                                        ~~~~~~~~~~~~~~~~~~~~~~~
-12209 |                                                                        &column_identifier::name);
-      |                                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:21071:72:   required from 'std::string sqlite_orm::internal::serialize_get_impl(const T&, const Ctx&) [with T = get_optional_t<eversoul::orm::HeroEquipSlot, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int>; Ctx = serializer_context<std::tuple<table_t<eversoul::orm::Kv, false, column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Kv::*, empty_setter, primary_key_t<> >, column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Kv::*, empty_setter> >, table_t<eversoul::orm::Hero, false, column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Hero::*, empty_setter, primary_key_t<> >, column_t<int eversoul::orm::Hero::*, empty_setter>, column_t<int eversoul::orm::Hero::*, empty_setter>, column_t<int eversoul::orm::Hero::*, empty_setter>, column_t<int eversoul::orm::Hero::*, empty_setter>, column_t<int eversoul::orm::Hero::*, empty_setter>, column_t<int eversoul::orm::Hero::*, empty_setter> >, table_t<eversoul::orm::HeroRep, false, column_t<int eversoul::orm::HeroRep::*, empty_setter, primary_key_t<> >, column_t<int eversoul::orm::HeroRep::*, empty_setter>, column_t<int eversoul::orm::HeroRep::*, empty_setter>, column_t<int eversoul::orm::HeroRep::*, empty_setter>, column_t<long long int eversoul::orm::HeroRep::*, empty_setter>, column_t<long long int eversoul::orm::HeroRep::*, empty_setter>, column_t<int eversoul::orm::HeroRep::*, empty_setter>, column_t<int eversoul::orm::HeroRep::*, empty_setter>, column_t<int eversoul::orm::HeroRep::*, empty_setter>, column_t<int eversoul::orm::HeroRep::*, empty_setter>, column_t<long long int eversoul::orm::HeroRep::*, empty_setter>, column_t<int eversoul::orm::HeroRep::*, empty_setter>, column_t<int eversoul::orm::HeroRep::*, empty_setter>, column_t<long longint eversoul::orm::HeroRep::*, empty_setter>, column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroRep::*, empty_setter> >, table_t<eversoul::orm::Currency, false,column_t<int eversoul::orm::Currency::*, empty_setter, primary_key_t<> >, column_t<long long int eversoul::orm::Currency::*, empty_setter> >, table_t<eversoul::orm::ItemEtc, false, column_t<int eversoul::orm::ItemEtc::*, empty_setter, primary_key_t<> >, column_t<int eversoul::orm::ItemEtc::*, empty_setter> >, table_t<eversoul::orm::ItemEquip, false, column_t<long long int eversoul::orm::ItemEquip::*, empty_setter, primary_key_t<> >, column_t<int eversoul::orm::ItemEquip::*, empty_setter>, column_t<int eversoul::orm::ItemEquip::*, empty_setter> >, table_t<eversoul::orm::HeroEquipSlot, false, column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroEquipSlot::*, empty_setter>, column_t<int eversoul::orm::HeroEquipSlot::*, empty_setter>, column_t<long long int eversoul::orm::HeroEquipSlot::*, empty_setter>, primary_key_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroEquipSlot::*, int eversoul::orm::HeroEquipSlot::*> >, table_t<eversoul::orm::Formation, false, column_t<int eversoul::orm::Formation::*, empty_setter>, column_t<int eversoul::orm::Formation::*, empty_setter>, column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Formation::*, empty_setter>, column_t<int eversoul::orm::Formation::*, empty_setter>, column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Formation::*, empty_setter>, primary_key_t<int eversoul::orm::Formation::*, int eversoul::orm::Formation::*> >, table_t<eversoul::orm::SpiritTree, false, column_t<int eversoul::orm::SpiritTree::*, empty_setter, primary_key_t<> >, column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::SpiritTree::*, empty_setter>, column_t<long long int eversoul::orm::SpiritTree::*, empty_setter> >, table_t<eversoul::orm::HeroOption, false, column_t<int eversoul::orm::HeroOption::*, empty_setter, primary_key_t<> >, column_t<int eversoul::orm::HeroOption::*, empty_setter>, column_t<int eversoul::orm::HeroOption::*, empty_setter>, column_t<int eversoul::orm::HeroOption::*, empty_setter>, column_t<int eversoul::orm::HeroOption::*, empty_setter>, column_t<int eversoul::orm::HeroOption::*, empty_setter>, column_t<int eversoul::orm::HeroOption::*, empty_setter>, column_t<int eversoul::orm::HeroOption::*, empty_setter> >, table_t<eversoul::orm::ChallengeMode, false, column_t<int eversoul::orm::ChallengeMode::*, empty_setter, primary_key_t<> >, column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::ChallengeMode::*, empty_setter> >, table_t<eversoul::orm::Stage, false, column_t<int eversoul::orm::Stage::*, empty_setter, primary_key_t<> >, column_t<int eversoul::orm::Stage::*, empty_setter>, column_t<long long int eversoul::orm::Stage::*, empty_setter> >, table_t<eversoul::orm::Story, false, column_t<int eversoul::orm::Story::*, empty_setter, primary_key_t<> >, column_t<long long int eversoul::orm::Story::*, empty_setter> >, table_t<eversoul::orm::Tutorial, false, column_t<int eversoul::orm::Tutorial::*, empty_setter, primary_key_t<> > >, table_t<eversoul::orm::Dungeon, false, column_t<int eversoul::orm::Dungeon::*, empty_setter, primary_key_t<> >, column_t<long long int eversoul::orm::Dungeon::*, empty_setter>, column_t<int eversoul::orm::Dungeon::*, empty_setter> > > >; std::string = std::__cxx11::basic_string<char>]'
-21071 |             auto primaryKeyColumnNames = table.primary_key_column_names();
-      |                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:21147:42:   required from 'std::string sqlite_orm::internal::statement_serializer<sqlite_orm::internal::get_optional_t<T, Ids ...>, void>::operator()(const statement_type&, const Ctx&) const [with Ctx = sqlite_orm::internal::serializer_context<std::tuple<sqlite_orm::internal::table_t<eversoul::orm::Kv, false, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Kv::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Kv::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Hero, false, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::HeroRep, false, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Currency, false, sqlite_orm::internal::column_t<int eversoul::orm::Currency::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<long long int eversoul::orm::Currency::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::ItemEtc, false, sqlite_orm::internal::column_t<inteversoul::orm::ItemEtc::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::ItemEtc::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::ItemEquip, false, sqlite_orm::internal::column_t<long long int eversoul::orm::ItemEquip::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::ItemEquip::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::ItemEquip::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::HeroEquipSlot, false, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroEquipSlot::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroEquipSlot::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::HeroEquipSlot::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::primary_key_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroEquipSlot::*, int eversoul::orm::HeroEquipSlot::*> >, sqlite_orm::internal::table_t<eversoul::orm::Formation, false, sqlite_orm::internal::column_t<int eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::primary_key_t<int eversoul::orm::Formation::*, int eversoul::orm::Formation::*> >, sqlite_orm::internal::table_t<eversoul::orm::SpiritTree, false, sqlite_orm::internal::column_t<int eversoul::orm::SpiritTree::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::SpiritTree::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::SpiritTree::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::HeroOption, false, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::ChallengeMode, false, sqlite_orm::internal::column_t<int eversoul::orm::ChallengeMode::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::ChallengeMode::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Stage, false, sqlite_orm::internal::column_t<int eversoul::orm::Stage::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::Stage::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::Stage::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Story, false, sqlite_orm::internal::column_t<int eversoul::orm::Story::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<long long int eversoul::orm::Story::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Tutorial, false, sqlite_orm::internal::column_t<int eversoul::orm::Tutorial::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> > >, sqlite_orm::internal::table_t<eversoul::orm::Dungeon, false, sqlite_orm::internal::column_t<int eversoul::orm::Dungeon::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<long long int eversoul::orm::Dungeon::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Dungeon::*, sqlite_orm::internal::empty_setter> > > >; T = eversoul::orm::HeroEquipSlot; Ids = {std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int}; std::string = std::__cxx11::basic_string<char>; statement_type = sqlite_orm::internal::get_optional_t<eversoul::orm::HeroEquipSlot, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int>]'
-21147 |                 return serialize_get_impl(get, context);
-      |                        ~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:19450:30:   required from 'auto sqlite_orm::internal::serialize(const T&, const Ctx&) [with T = get_optional_t<eversoul::orm::HeroEquipSlot, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int>; Ctx = serializer_context<std::tuple<table_t<eversoul::orm::Kv, false, column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Kv::*, empty_setter, primary_key_t<> >, column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Kv::*, empty_setter> >, table_t<eversoul::orm::Hero, false, column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Hero::*, empty_setter, primary_key_t<> >, column_t<int eversoul::orm::Hero::*, empty_setter>, column_t<int eversoul::orm::Hero::*, empty_setter>, column_t<int eversoul::orm::Hero::*, empty_setter>, column_t<int eversoul::orm::Hero::*, empty_setter>, column_t<int eversoul::orm::Hero::*, empty_setter>, column_t<int eversoul::orm::Hero::*, empty_setter> >, table_t<eversoul::orm::HeroRep, false, column_t<int eversoul::orm::HeroRep::*, empty_setter, primary_key_t<> >, column_t<int eversoul::orm::HeroRep::*, empty_setter>, column_t<inteversoul::orm::HeroRep::*, empty_setter>, column_t<int eversoul::orm::HeroRep::*, empty_setter>, column_t<long long int eversoul::orm::HeroRep::*, empty_setter>, column_t<long long int eversoul::orm::HeroRep::*, empty_setter>, column_t<int eversoul::orm::HeroRep::*, empty_setter>, column_t<int eversoul::orm::HeroRep::*, empty_setter>, column_t<int eversoul::orm::HeroRep::*, empty_setter>, column_t<int eversoul::orm::HeroRep::*, empty_setter>, column_t<long long int eversoul::orm::HeroRep::*, empty_setter>, column_t<int eversoul::orm::HeroRep::*, empty_setter>, column_t<int eversoul::orm::HeroRep::*, empty_setter>, column_t<long long int eversoul::orm::HeroRep::*, empty_setter>, column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroRep::*, empty_setter> >, table_t<eversoul::orm::Currency, false, column_t<int eversoul::orm::Currency::*, empty_setter, primary_key_t<> >, column_t<long long int eversoul::orm::Currency::*, empty_setter> >, table_t<eversoul::orm::ItemEtc, false, column_t<int eversoul::orm::ItemEtc::*, empty_setter,primary_key_t<> >, column_t<int eversoul::orm::ItemEtc::*, empty_setter> >, table_t<eversoul::orm::ItemEquip, false, column_t<long long int eversoul::orm::ItemEquip::*, empty_setter, primary_key_t<> >, column_t<int eversoul::orm::ItemEquip::*, empty_setter>, column_t<int eversoul::orm::ItemEquip::*, empty_setter> >, table_t<eversoul::orm::HeroEquipSlot, false, column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroEquipSlot::*, empty_setter>, column_t<int eversoul::orm::HeroEquipSlot::*, empty_setter>, column_t<long long int eversoul::orm::HeroEquipSlot::*, empty_setter>, primary_key_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroEquipSlot::*, int eversoul::orm::HeroEquipSlot::*> >, table_t<eversoul::orm::Formation, false, column_t<int eversoul::orm::Formation::*, empty_setter>, column_t<int eversoul::orm::Formation::*, empty_setter>, column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Formation::*, empty_setter>, column_t<int eversoul::orm::Formation::*, empty_setter>, column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Formation::*, empty_setter>, primary_key_t<int eversoul::orm::Formation::*, int eversoul::orm::Formation::*> >, table_t<eversoul::orm::SpiritTree, false, column_t<int eversoul::orm::SpiritTree::*, empty_setter, primary_key_t<> >, column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::SpiritTree::*, empty_setter>, column_t<long long int eversoul::orm::SpiritTree::*, empty_setter> >, table_t<eversoul::orm::HeroOption, false, column_t<int eversoul::orm::HeroOption::*, empty_setter, primary_key_t<> >, column_t<int eversoul::orm::HeroOption::*, empty_setter>, column_t<int eversoul::orm::HeroOption::*, empty_setter>, column_t<int eversoul::orm::HeroOption::*, empty_setter>, column_t<int eversoul::orm::HeroOption::*, empty_setter>, column_t<int eversoul::orm::HeroOption::*, empty_setter>, column_t<int eversoul::orm::HeroOption::*, empty_setter>, column_t<int eversoul::orm::HeroOption::*, empty_setter> >, table_t<eversoul::orm::ChallengeMode, false, column_t<int eversoul::orm::ChallengeMode::*, empty_setter, primary_key_t<> >, column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::ChallengeMode::*, empty_setter> >, table_t<eversoul::orm::Stage, false, column_t<int eversoul::orm::Stage::*, empty_setter, primary_key_t<> >, column_t<int eversoul::orm::Stage::*, empty_setter>, column_t<long long int eversoul::orm::Stage::*, empty_setter> >, table_t<eversoul::orm::Story, false, column_t<int eversoul::orm::Story::*, empty_setter, primary_key_t<> >, column_t<long long int eversoul::orm::Story::*, empty_setter> >, table_t<eversoul::orm::Tutorial, false, column_t<int eversoul::orm::Tutorial::*, empty_setter, primary_key_t<> > >, table_t<eversoul::orm::Dungeon, false, column_t<int eversoul::orm::Dungeon::*, empty_setter, primary_key_t<> >, column_t<long long int eversoul::orm::Dungeon::*, empty_setter>, column_t<int eversoul::orm::Dungeon::*, empty_setter> > > >]'
-19450 |             return serializer(t, context);
-      |                    ~~~~~~~~~~^~~~~~~~~~~~
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:23319:44:   required from 'sqlite_orm::internal::prepared_statement_t<S> sqlite_orm::internal::storage_t<DBO>::prepare_impl(S) [with S = sqlite_orm::internal::get_optional_t<eversoul::orm::HeroEquipSlot, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int>; DBO = {sqlite_orm::internal::table_t<eversoul::orm::Kv, false, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Kv::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Kv::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Hero, false, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::HeroRep, false, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long longint eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Currency, false, sqlite_orm::internal::column_t<int eversoul::orm::Currency::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<long long int eversoul::orm::Currency::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::ItemEtc, false, sqlite_orm::internal::column_t<int eversoul::orm::ItemEtc::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::ItemEtc::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::ItemEquip, false, sqlite_orm::internal::column_t<long long int eversoul::orm::ItemEquip::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::ItemEquip::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::ItemEquip::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::HeroEquipSlot, false, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroEquipSlot::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroEquipSlot::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::HeroEquipSlot::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::primary_key_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroEquipSlot::*, int eversoul::orm::HeroEquipSlot::*> >, sqlite_orm::internal::table_t<eversoul::orm::Formation, false, sqlite_orm::internal::column_t<int eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::primary_key_t<int eversoul::orm::Formation::*, int eversoul::orm::Formation::*> >, sqlite_orm::internal::table_t<eversoul::orm::SpiritTree, false, sqlite_orm::internal::column_t<int eversoul::orm::SpiritTree::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::SpiritTree::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::SpiritTree::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::HeroOption, false, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::ChallengeMode, false, sqlite_orm::internal::column_t<int eversoul::orm::ChallengeMode::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::ChallengeMode::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Stage, false, sqlite_orm::internal::column_t<int eversoul::orm::Stage::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::Stage::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::Stage::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Story, false, sqlite_orm::internal::column_t<int eversoul::orm::Story::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<long long int eversoul::orm::Story::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Tutorial, false, sqlite_orm::internal::column_t<int eversoul::orm::Tutorial::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> > >, sqlite_orm::internal::table_t<eversoul::orm::Dungeon, false, sqlite_orm::internal::column_t<int eversoul::orm::Dungeon::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<long long int eversoul::orm::Dungeon::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Dungeon::*, sqlite_orm::internal::empty_setter> >}]'
-23319 |                 std::string sql = serialize(statement, context);
-      |                                   ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:23450:42:   required from 'sqlite_orm::internal::prepared_statement_t<sqlite_orm::internal::get_optional_t<T, Ids ...> > sqlite_orm::internal::storage_t<DBO>::prepare(sqlite_orm::internal::get_optional_t<T, Ids ...>) [with T = eversoul::orm::HeroEquipSlot; Ids = {std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int}; DBO = {sqlite_orm::internal::table_t<eversoul::orm::Kv, false, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Kv::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Kv::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Hero, false, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::HeroRep, false, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<inteversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Currency, false, sqlite_orm::internal::column_t<int eversoul::orm::Currency::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<long long int eversoul::orm::Currency::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::ItemEtc, false, sqlite_orm::internal::column_t<int eversoul::orm::ItemEtc::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::ItemEtc::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::ItemEquip, false, sqlite_orm::internal::column_t<long long int eversoul::orm::ItemEquip::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::ItemEquip::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::ItemEquip::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::HeroEquipSlot, false, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroEquipSlot::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroEquipSlot::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::HeroEquipSlot::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::primary_key_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroEquipSlot::*, int eversoul::orm::HeroEquipSlot::*> >, sqlite_orm::internal::table_t<eversoul::orm::Formation, false, sqlite_orm::internal::column_t<int eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::primary_key_t<int eversoul::orm::Formation::*, int eversoul::orm::Formation::*> >, sqlite_orm::internal::table_t<eversoul::orm::SpiritTree, false, sqlite_orm::internal::column_t<int eversoul::orm::SpiritTree::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::SpiritTree::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<longlong int eversoul::orm::SpiritTree::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::HeroOption, false, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::ChallengeMode, false, sqlite_orm::internal::column_t<int eversoul::orm::ChallengeMode::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::ChallengeMode::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Stage, false, sqlite_orm::internal::column_t<int eversoul::orm::Stage::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::Stage::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::Stage::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Story, false, sqlite_orm::internal::column_t<int eversoul::orm::Story::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<long long int eversoul::orm::Story::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Tutorial, false, sqlite_orm::internal::column_t<int eversoul::orm::Tutorial::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> > >, sqlite_orm::internal::table_t<eversoul::orm::Dungeon, false, sqlite_orm::internal::column_t<int eversoul::orm::Dungeon::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<long long int eversoul::orm::Dungeon::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Dungeon::*, sqlite_orm::internal::empty_setter> >}]'
-23450 |                 return this->prepare_impl(std::move(statement));
-      |                        ~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:22639:47:   required from 'std::optional<_From> sqlite_orm::internal::storage_t<DBO>::get_optional(Ids ...) [with O = eversoul::orm::HeroEquipSlot; Ids = {std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, int}; DBO = {sqlite_orm::internal::table_t<eversoul::orm::Kv, false, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Kv::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Kv::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Hero, false, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Hero::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::HeroRep, false, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long inteversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroRep::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Currency, false, sqlite_orm::internal::column_t<int eversoul::orm::Currency::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<long long int eversoul::orm::Currency::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::ItemEtc, false, sqlite_orm::internal::column_t<int eversoul::orm::ItemEtc::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::ItemEtc::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::ItemEquip, false, sqlite_orm::internal::column_t<long long int eversoul::orm::ItemEquip::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::ItemEquip::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::ItemEquip::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::HeroEquipSlot, false, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroEquipSlot::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroEquipSlot::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::HeroEquipSlot::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::primary_key_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::HeroEquipSlot::*, int eversoul::orm::HeroEquipSlot::*> >, sqlite_orm::internal::table_t<eversoul::orm::Formation, false, sqlite_orm::internal::column_t<int eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::Formation::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::primary_key_t<int eversoul::orm::Formation::*, int eversoul::orm::Formation::*> >, sqlite_orm::internal::table_t<eversoul::orm::SpiritTree, false, sqlite_orm::internal::column_t<int eversoul::orm::SpiritTree::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::SpiritTree::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::SpiritTree::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::HeroOption, false, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::HeroOption::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::ChallengeMode, false, sqlite_orm::internal::column_t<int eversoul::orm::ChallengeMode::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > eversoul::orm::ChallengeMode::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Stage, false, sqlite_orm::internal::column_t<int eversoul::orm::Stage::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<int eversoul::orm::Stage::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<long long int eversoul::orm::Stage::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Story, false, sqlite_orm::internal::column_t<int eversoul::orm::Story::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<long long int eversoul::orm::Story::*, sqlite_orm::internal::empty_setter> >, sqlite_orm::internal::table_t<eversoul::orm::Tutorial, false, sqlite_orm::internal::column_t<int eversoul::orm::Tutorial::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> > >, sqlite_orm::internal::table_t<eversoul::orm::Dungeon, false, sqlite_orm::internal::column_t<int eversoul::orm::Dungeon::*, sqlite_orm::internal::empty_setter, sqlite_orm::internal::primary_key_t<> >, sqlite_orm::internal::column_t<long long int eversoul::orm::Dungeon::*, sqlite_orm::internal::empty_setter>, sqlite_orm::internal::column_t<int eversoul::orm::Dungeon::*, sqlite_orm::internal::empty_setter> >}]'
-22639 |                 auto statement = this->prepare(sqlite_orm::get_optional<O>(std::forward<Ids>(ids)...));
-      |                                  ~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-D:/26_project/EverSoulSimulator/src/orm/storage.cpp:554:50:   required from here
-  554 |     return g_storage->get_optional<HeroEquipSlot>(hero_idx, slot);
-      |            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:1610:90: warning: parameter 'project' set but not used [-Wunused-but-set-parameter]
- 1610 |         constexpr R create_from_tuple(Tpl&& tpl, std::index_sequence<Idx...>, Projection project = {}) {
-      |                                                                               ~~~~~~~~~~~^~~~~~~~~~~~
-[36/36] Linking CXX executable eversoul_offline_server.exe
-Built: build/eversoul_offline_server
-== Validate encoder ==
-encoder_validate: 90/90 endpoints match canonical bytes, skipped 69 profile-only schemas
-[2026-06-11 22:40:52][#0][OFFLINE_DATA] loaded blob build/offline_data/libofflinedata.so entries=420
-from_blob=1 entries=420 source=build/offline_data/libofflinedata.so
-responses/UserInfo.json = 591171 bytes, schema = 42859 bytes
-煐뽫쟻 UserInfo -> protobuf 94000 bytes
-responses/ ??102 訝ゆ뻼餓
-OK
-[2026-06-11 22:40:52][#0][OFFLINE_DATA] loaded blob build/offline_data/libofflinedata.so entries=420
-from_blob=1 entries=420 source=build/offline_data/libofflinedata.so
-responses_newbie/UserInfo.json = 7298 bytes, schema = 42859 bytes
-煐뽫쟻 UserInfo -> protobuf 893 bytes
-responses_newbie/ ??156 訝ゆ뻼餓
-OK
-== Configure Android ==
--- Building for: Ninja
-CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android.toolchain.cmake:35 (cmake_minimum_required):
-  Compatibility with CMake < 3.10 will be removed from a future version of
-  CMake.
-
-  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
-  to tell CMake that the project requires at least <min> but has been updated
-  to work with policies introduced by <max> or earlier.
-Call Stack (most recent call first):
-  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/CMakeDetermineSystem.cmake:146 (include)
-  CMakeLists.txt:2 (project)
-
-
-CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android-legacy.toolchain.cmake:35 (cmake_minimum_required):
-  Compatibility with CMake < 3.10 will be removed from a future version of
-  CMake.
-
-  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
-  to tell CMake that the project requires at least <min> but has been updated
-  to work with policies introduced by <max> or earlier.
-Call Stack (most recent call first):
-  C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android.toolchain.cmake:55 (include)
-  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/CMakeDetermineSystem.cmake:146 (include)
-  CMakeLists.txt:2 (project)
-
-
-CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android.toolchain.cmake:35 (cmake_minimum_required):
-  Compatibility with CMake < 3.10 will be removed from a future version of
-  CMake.
-
-  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
-  to tell CMake that the project requires at least <min> but has been updated
-  to work with policies introduced by <max> or earlier.
-Call Stack (most recent call first):
-  build/android/CMakeFiles/4.3.1/CMakeSystem.cmake:6 (include)
-  CMakeLists.txt:2 (project)
-
-
--- The C compiler identification is Clang 18.0.3
--- The CXX compiler identification is Clang 18.0.3
-CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/flags.cmake:18 (cmake_minimum_required):
-  Compatibility with CMake < 3.10 will be removed from a future version of
-  CMake.
-
-  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
-  to tell CMake that the project requires at least <min> but has been updated
-  to work with policies introduced by <max> or earlier.
-Call Stack (most recent call first):
-  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/Platform/Android-Clang.cmake:23 (include)
-  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/Platform/Android-Clang-C.cmake:1 (include)
-  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/CMakeCInformation.cmake:48 (include)
-  CMakeLists.txt:2 (project)
-
-
--- Detecting C compiler ABI info
-CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android.toolchain.cmake:35 (cmake_minimum_required):
-  Compatibility with CMake < 3.10 will be removed from a future version of
-  CMake.
-
-  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
-  to tell CMake that the project requires at least <min> but has been updated
-  to work with policies introduced by <max> or earlier.
-Call Stack (most recent call first):
-  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/4.3.1/CMakeSystem.cmake:6 (include)
-  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/CMakeScratch/TryCompile-u2jbwi/CMakeLists.txt:3 (project)
-
-
-CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android-legacy.toolchain.cmake:35 (cmake_minimum_required):
-  Compatibility with CMake < 3.10 will be removed from a future version of
-  CMake.
-
-  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
-  to tell CMake that the project requires at least <min> but has been updated
-  to work with policies introduced by <max> or earlier.
-Call Stack (most recent call first):
-  C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android.toolchain.cmake:55 (include)
-  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/4.3.1/CMakeSystem.cmake:6 (include)
-  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/CMakeScratch/TryCompile-u2jbwi/CMakeLists.txt:3 (project)
-
-
-CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/flags.cmake:18 (cmake_minimum_required):
-  Compatibility with CMake < 3.10 will be removed from a future version of
-  CMake.
-
-  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
-  to tell CMake that the project requires at least <min> but has been updated
-  to work with policies introduced by <max> or earlier.
-Call Stack (most recent call first):
-  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/Platform/Android-Clang.cmake:23 (include)
-  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/Platform/Android-Clang-C.cmake:1 (include)
-  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/CMakeCInformation.cmake:48 (include)
-  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/CMakeScratch/TryCompile-u2jbwi/CMakeLists.txt:3 (project)
-
-
--- Detecting C compiler ABI info - done
--- Check for working C compiler: C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe - skipped
--- Detecting C compile features
--- Detecting C compile features - done
--- Detecting CXX compiler ABI info
-CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android.toolchain.cmake:35 (cmake_minimum_required):
-  Compatibility with CMake < 3.10 will be removed from a future version of
-  CMake.
-
-  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
-  to tell CMake that the project requires at least <min> but has been updated
-  to work with policies introduced by <max> or earlier.
-Call Stack (most recent call first):
-  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/4.3.1/CMakeSystem.cmake:6 (include)
-  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/CMakeScratch/TryCompile-o4nmn6/CMakeLists.txt:3 (project)
-
-
-CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android-legacy.toolchain.cmake:35 (cmake_minimum_required):
-  Compatibility with CMake < 3.10 will be removed from a future version of
-  CMake.
-
-  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
-  to tell CMake that the project requires at least <min> but has been updated
-  to work with policies introduced by <max> or earlier.
-Call Stack (most recent call first):
-  C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android.toolchain.cmake:55 (include)
-  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/4.3.1/CMakeSystem.cmake:6 (include)
-  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/CMakeScratch/TryCompile-o4nmn6/CMakeLists.txt:3 (project)
-
-
-CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/flags.cmake:18 (cmake_minimum_required):
-  Compatibility with CMake < 3.10 will be removed from a future version of
-  CMake.
-
-  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
-  to tell CMake that the project requires at least <min> but has been updated
-  to work with policies introduced by <max> or earlier.
-Call Stack (most recent call first):
-  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/Platform/Android-Clang.cmake:23 (include)
-  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/Platform/Android-Clang-CXX.cmake:1 (include)
-  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/CMakeCXXInformation.cmake:48 (include)
-  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/CMakeScratch/TryCompile-o4nmn6/CMakeLists.txt:3 (project)
-
-
--- Detecting CXX compiler ABI info - done
--- Check for working CXX compiler: C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe - skipped
--- Detecting CXX compile features
--- Detecting CXX compile features - done
--- Performing Test CMAKE_HAVE_LIBC_PTHREAD
-CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android.toolchain.cmake:35 (cmake_minimum_required):
-  Compatibility with CMake < 3.10 will be removed from a future version of
-  CMake.
-
-  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
-  to tell CMake that the project requires at least <min> but has been updated
-  to work with policies introduced by <max> or earlier.
-Call Stack (most recent call first):
-  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/4.3.1/CMakeSystem.cmake:6 (include)
-  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/CMakeScratch/TryCompile-n7hz1o/CMakeLists.txt:3 (project)
-
-
-CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android-legacy.toolchain.cmake:35 (cmake_minimum_required):
-  Compatibility with CMake < 3.10 will be removed from a future version of
-  CMake.
-
-  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
-  to tell CMake that the project requires at least <min> but has been updated
-  to work with policies introduced by <max> or earlier.
-Call Stack (most recent call first):
-  C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android.toolchain.cmake:55 (include)
-  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/4.3.1/CMakeSystem.cmake:6 (include)
-  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/CMakeScratch/TryCompile-n7hz1o/CMakeLists.txt:3 (project)
-
-
-CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/flags.cmake:18 (cmake_minimum_required):
-  Compatibility with CMake < 3.10 will be removed from a future version of
-  CMake.
-
-  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
-  to tell CMake that the project requires at least <min> but has been updated
-  to work with policies introduced by <max> or earlier.
-Call Stack (most recent call first):
-  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/Platform/Android-Clang.cmake:23 (include)
-  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/Platform/Android-Clang-C.cmake:1 (include)
-  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/CMakeCInformation.cmake:48 (include)
-  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/CMakeScratch/TryCompile-n7hz1o/CMakeLists.txt:3 (project)
-
-
--- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
--- Looking for pthread_create in pthreads
-CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android.toolchain.cmake:35 (cmake_minimum_required):
-  Compatibility with CMake < 3.10 will be removed from a future version of
-  CMake.
-
-  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
-  to tell CMake that the project requires at least <min> but has been updated
-  to work with policies introduced by <max> or earlier.
-Call Stack (most recent call first):
-  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/4.3.1/CMakeSystem.cmake:6 (include)
-  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/CMakeScratch/TryCompile-ghjr6y/CMakeLists.txt:3 (project)
-
-
-CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android-legacy.toolchain.cmake:35 (cmake_minimum_required):
-  Compatibility with CMake < 3.10 will be removed from a future version of
-  CMake.
-
-  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
-  to tell CMake that the project requires at least <min> but has been updated
-  to work with policies introduced by <max> or earlier.
-Call Stack (most recent call first):
-  C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android.toolchain.cmake:55 (include)
-  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/4.3.1/CMakeSystem.cmake:6 (include)
-  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/CMakeScratch/TryCompile-ghjr6y/CMakeLists.txt:3 (project)
-
-
-CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/flags.cmake:18 (cmake_minimum_required):
-  Compatibility with CMake < 3.10 will be removed from a future version of
-  CMake.
-
-  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
-  to tell CMake that the project requires at least <min> but has been updated
-  to work with policies introduced by <max> or earlier.
-Call Stack (most recent call first):
-  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/Platform/Android-Clang.cmake:23 (include)
-  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/Platform/Android-Clang-C.cmake:1 (include)
-  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/CMakeCInformation.cmake:48 (include)
-  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/CMakeScratch/TryCompile-ghjr6y/CMakeLists.txt:3 (project)
-
-
--- Looking for pthread_create in pthreads - not found
--- Looking for pthread_create in pthread
-CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android.toolchain.cmake:35 (cmake_minimum_required):
-  Compatibility with CMake < 3.10 will be removed from a future version of
-  CMake.
-
-  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
-  to tell CMake that the project requires at least <min> but has been updated
-  to work with policies introduced by <max> or earlier.
-Call Stack (most recent call first):
-  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/4.3.1/CMakeSystem.cmake:6 (include)
-  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/CMakeScratch/TryCompile-xr6zt9/CMakeLists.txt:3 (project)
-
-
-CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android-legacy.toolchain.cmake:35 (cmake_minimum_required):
-  Compatibility with CMake < 3.10 will be removed from a future version of
-  CMake.
-
-  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
-  to tell CMake that the project requires at least <min> but has been updated
-  to work with policies introduced by <max> or earlier.
-Call Stack (most recent call first):
-  C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android.toolchain.cmake:55 (include)
-  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/4.3.1/CMakeSystem.cmake:6 (include)
-  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/CMakeScratch/TryCompile-xr6zt9/CMakeLists.txt:3 (project)
-
-
-CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/flags.cmake:18 (cmake_minimum_required):
-  Compatibility with CMake < 3.10 will be removed from a future version of
-  CMake.
-
-  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
-  to tell CMake that the project requires at least <min> but has been updated
-  to work with policies introduced by <max> or earlier.
-Call Stack (most recent call first):
-  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/Platform/Android-Clang.cmake:23 (include)
-  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/Platform/Android-Clang-C.cmake:1 (include)
-  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/CMakeCInformation.cmake:48 (include)
-  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/CMakeScratch/TryCompile-xr6zt9/CMakeLists.txt:3 (project)
-
-
--- Looking for pthread_create in pthread - not found
--- Check if compiler accepts -pthread
-CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android.toolchain.cmake:35 (cmake_minimum_required):
-  Compatibility with CMake < 3.10 will be removed from a future version of
-  CMake.
-
-  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
-  to tell CMake that the project requires at least <min> but has been updated
-  to work with policies introduced by <max> or earlier.
-Call Stack (most recent call first):
-  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/4.3.1/CMakeSystem.cmake:6 (include)
-  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/CMakeScratch/TryCompile-oywmow/CMakeLists.txt:3 (project)
-
-
-CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android-legacy.toolchain.cmake:35 (cmake_minimum_required):
-  Compatibility with CMake < 3.10 will be removed from a future version of
-  CMake.
-
-  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
-  to tell CMake that the project requires at least <min> but has been updated
-  to work with policies introduced by <max> or earlier.
-Call Stack (most recent call first):
-  C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/android.toolchain.cmake:55 (include)
-  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/4.3.1/CMakeSystem.cmake:6 (include)
-  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/CMakeScratch/TryCompile-oywmow/CMakeLists.txt:3 (project)
-
-
-CMake Deprecation Warning at C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/build/cmake/flags.cmake:18 (cmake_minimum_required):
-  Compatibility with CMake < 3.10 will be removed from a future version of
-  CMake.
-
-  Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
-  to tell CMake that the project requires at least <min> but has been updated
-  to work with policies introduced by <max> or earlier.
-Call Stack (most recent call first):
-  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/Platform/Android-Clang.cmake:23 (include)
-  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/Platform/Android-Clang-C.cmake:1 (include)
-  C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/share/cmake-4.3/Modules/CMakeCInformation.cmake:48 (include)
-  D:/26_project/EverSoulSimulator/build/android/CMakeFiles/CMakeScratch/TryCompile-oywmow/CMakeLists.txt:3 (project)
-
-
--- Check if compiler accepts -pthread - yes
--- Found Threads: TRUE
--- Configuring done (2.4s)
--- Generating done (0.0s)
--- Build files have been written to: D:/26_project/EverSoulSimulator/build/android
-== Build Android ==
-[17/23] Building CXX object CMakeFiles/swappywrapper.dir/src/server.cpp.o
-FAILED: [code=1] CMakeFiles/swappywrapper.dir/src/server.cpp.o 
-C:\Users\koiya\AppData\Local\Android\Sdk\ndk\27.2.12479018\toolchains\llvm\prebuilt\windows-x86_64\bin\clang++.exe --target=aarch64-none-linux-android21 --sysroot=C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot -Dswappywrapper_EXPORTS -ID:/26_project/EverSoulSimulator/src -ID:/26_project/EverSoulSimulator -ID:/26_project/EverSoulSimulator/third_party/sqlite -ID:/26_project/EverSoulSimulator/third_party/sqlite_orm -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -O3 -DNDEBUG -std=c++23 -fPIC -O2 -fvisibility=hidden -MD -MT CMakeFiles/swappywrapper.dir/src/server.cpp.o -MF CMakeFiles\swappywrapper.dir\src\server.cpp.o.d -o CMakeFiles/swappywrapper.dir/src/server.cpp.o -c D:/26_project/EverSoulSimulator/src/server.cpp
-In file included from D:/26_project/EverSoulSimulator/src/server.cpp:4:
-D:/26_project/EverSoulSimulator/src/platform.hpp:36:57: error: use of undeclared identifier 'std'
-   36 | inline ssize_t platform_recv(socket_fd_t fd, char *buf, std::size_t len) {
-      |                                                         ^
-D:/26_project/EverSoulSimulator/src/platform.hpp:39:63: error: use of undeclared identifier 'std'
-   39 | inline ssize_t platform_send(socket_fd_t fd, const char *buf, std::size_t len) {
-      |                                                               ^
-2 errors generated.
-[21/23] Building CXX object CMakeFiles/swappywrapper.dir/src/orm/storage.cpp.o
-In file included from D:/26_project/EverSoulSimulator/src/orm/storage.cpp:23:
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:3939:39: warning: 'codecvt_utf8_utf16<wchar_t>' is deprecated [-Wdeprecated-declarations]
- 3939 |             std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-      |                                       ^
-C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/codecvt:569:28: note: 'codecvt_utf8_utf16<wchar_t>' has been explicitly marked deprecated here
-  569 | class _LIBCPP_TEMPLATE_VIS _LIBCPP_DEPRECATED_IN_CXX17 codecvt_utf8_utf16 : public __codecvt_utf8_utf16<_Elem> {
-      |                            ^
-C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:942:41: note: expanded from macro '_LIBCPP_DEPRECATED_IN_CXX17'
-  942 | #    define _LIBCPP_DEPRECATED_IN_CXX17 _LIBCPP_DEPRECATED
-      |                                         ^
-C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:915:49: note: expanded from macro '_LIBCPP_DEPRECATED'
-  915 | #      define _LIBCPP_DEPRECATED __attribute__((__deprecated__))
-      |                                                 ^
-In file included from D:/26_project/EverSoulSimulator/src/orm/storage.cpp:23:
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:3939:18: warning: 'wstring_convert<std::codecvt_utf8_utf16<wchar_t>>' is deprecated [-Wdeprecated-declarations]
- 3939 |             std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+FAILED: [code=1] CMakeFiles/eversoul_offline_server.dir/src/main.cpp.obj
+C:\Users\koiya\AppData\Local\Microsoft\WinGet\Packages\BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe\mingw64\bin\c++.exe  -ID:/26_project/EverSoulSimulator/src -ID:/26_project/EverSoulSimulator -ID:/26_project/EverSoulSimulator/third_party/sqlite -ID:/26_project/EverSoulSimulator/third_party/sqlite_orm -isystem C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/cURL.cURL_Microsoft.Winget.Source_8wekyb3d8bbwe/curl-8.20.0_5-win64-mingw/include -O3 -DNDEBUG -std=c++23 -O2 -Wall -Wextra -MD -MT CMakeFiles/eversoul_offline_server.dir/src/main.cpp.obj -MF CMakeFiles\eversoul_offline_server.dir\src\main.cpp.obj.d -o CMakeFiles/eversoul_offline_server.dir/src/main.cpp.obj -c D:/26_project/EverSoulSimulator/src/main.cpp
+In file included from D:/26_project/EverSoulSimulator/src/main.cpp:8:
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:60:18: error: expected constructor, destructor, or type conversion before '(' token
+   60 |   DECLARE_HANDLE (HDROP);
       |                  ^
-C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/locale:3114:28: note: 'wstring_convert<std::codecvt_utf8_utf16<wchar_t>>' has been explicitly marked deprecated here
- 3114 | class _LIBCPP_TEMPLATE_VIS _LIBCPP_DEPRECATED_IN_CXX17 wstring_convert {
-      |                            ^
-C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:942:41: note: expanded from macro '_LIBCPP_DEPRECATED_IN_CXX17'
-  942 | #    define _LIBCPP_DEPRECATED_IN_CXX17 _LIBCPP_DEPRECATED
-      |                                         ^
-C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:915:49: note: expanded from macro '_LIBCPP_DEPRECATED'
-  915 | #      define _LIBCPP_DEPRECATED __attribute__((__deprecated__))
-      |                                                 ^
-In file included from D:/26_project/EverSoulSimulator/src/orm/storage.cpp:23:
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:10117:39: warning: 'codecvt_utf8_utf16<wchar_t>' is deprecated [-Wdeprecated-declarations]
- 10117 |             std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-       |                                       ^
-C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/codecvt:569:28: note: 'codecvt_utf8_utf16<wchar_t>' has been explicitly marked deprecated here
-  569 | class _LIBCPP_TEMPLATE_VIS _LIBCPP_DEPRECATED_IN_CXX17 codecvt_utf8_utf16 : public __codecvt_utf8_utf16<_Elem> {
-      |                            ^
-C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:942:41: note: expanded from macro '_LIBCPP_DEPRECATED_IN_CXX17'
-  942 | #    define _LIBCPP_DEPRECATED_IN_CXX17 _LIBCPP_DEPRECATED
-      |                                         ^
-C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:915:49: note: expanded from macro '_LIBCPP_DEPRECATED'
-  915 | #      define _LIBCPP_DEPRECATED __attribute__((__deprecated__))
-      |                                                 ^
-In file included from D:/26_project/EverSoulSimulator/src/orm/storage.cpp:23:
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:10117:18: warning: 'wstring_convert<std::codecvt_utf8_utf16<wchar_t>>' is deprecated [-Wdeprecated-declarations]
- 10117 |             std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-       |                  ^
-C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/locale:3114:28: note: 'wstring_convert<std::codecvt_utf8_utf16<wchar_t>>' has been explicitly marked deprecated here
- 3114 | class _LIBCPP_TEMPLATE_VIS _LIBCPP_DEPRECATED_IN_CXX17 wstring_convert {
-      |                            ^
-C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:942:41: note: expanded from macro '_LIBCPP_DEPRECATED_IN_CXX17'
-  942 | #    define _LIBCPP_DEPRECATED_IN_CXX17 _LIBCPP_DEPRECATED
-      |                                         ^
-C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:915:49: note: expanded from macro '_LIBCPP_DEPRECATED'
-  915 | #      define _LIBCPP_DEPRECATED __attribute__((__deprecated__))
-      |                                                 ^
-In file included from D:/26_project/EverSoulSimulator/src/orm/storage.cpp:23:
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:13015:43: warning: 'codecvt_utf8_utf16<wchar_t>' is deprecated [-Wdeprecated-declarations]
- 13015 |                 std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-       |                                           ^
-C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/codecvt:569:28: note: 'codecvt_utf8_utf16<wchar_t>' has been explicitly marked deprecated here
-  569 | class _LIBCPP_TEMPLATE_VIS _LIBCPP_DEPRECATED_IN_CXX17 codecvt_utf8_utf16 : public __codecvt_utf8_utf16<_Elem> {
-      |                            ^
-C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:942:41: note: expanded from macro '_LIBCPP_DEPRECATED_IN_CXX17'
-  942 | #    define _LIBCPP_DEPRECATED_IN_CXX17 _LIBCPP_DEPRECATED
-      |                                         ^
-C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:915:49: note: expanded from macro '_LIBCPP_DEPRECATED'
-  915 | #      define _LIBCPP_DEPRECATED __attribute__((__deprecated__))
-      |                                                 ^
-In file included from D:/26_project/EverSoulSimulator/src/orm/storage.cpp:23:
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:13015:22: warning: 'wstring_convert<std::codecvt_utf8_utf16<wchar_t>>' is deprecated [-Wdeprecated-declarations]
- 13015 |                 std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-       |                      ^
-C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/locale:3114:28: note: 'wstring_convert<std::codecvt_utf8_utf16<wchar_t>>' has been explicitly marked deprecated here
- 3114 | class _LIBCPP_TEMPLATE_VIS _LIBCPP_DEPRECATED_IN_CXX17 wstring_convert {
-      |                            ^
-C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:942:41: note: expanded from macro '_LIBCPP_DEPRECATED_IN_CXX17'
-  942 | #    define _LIBCPP_DEPRECATED_IN_CXX17 _LIBCPP_DEPRECATED
-      |                                         ^
-C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:915:49: note: expanded from macro '_LIBCPP_DEPRECATED'
-  915 | #      define _LIBCPP_DEPRECATED __attribute__((__deprecated__))
-      |                                                 ^
-In file included from D:/26_project/EverSoulSimulator/src/orm/storage.cpp:23:
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:13025:43: warning: 'codecvt_utf8_utf16<wchar_t>' is deprecated [-Wdeprecated-declarations]
- 13025 |                 std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-       |                                           ^
-C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/codecvt:569:28: note: 'codecvt_utf8_utf16<wchar_t>' has been explicitly marked deprecated here
-  569 | class _LIBCPP_TEMPLATE_VIS _LIBCPP_DEPRECATED_IN_CXX17 codecvt_utf8_utf16 : public __codecvt_utf8_utf16<_Elem> {
-      |                            ^
-C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:942:41: note: expanded from macro '_LIBCPP_DEPRECATED_IN_CXX17'
-  942 | #    define _LIBCPP_DEPRECATED_IN_CXX17 _LIBCPP_DEPRECATED
-      |                                         ^
-C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:915:49: note: expanded from macro '_LIBCPP_DEPRECATED'
-  915 | #      define _LIBCPP_DEPRECATED __attribute__((__deprecated__))
-      |                                                 ^
-In file included from D:/26_project/EverSoulSimulator/src/orm/storage.cpp:23:
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:13025:22: warning: 'wstring_convert<std::codecvt_utf8_utf16<wchar_t>>' is deprecated [-Wdeprecated-declarations]
- 13025 |                 std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-       |                      ^
-C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/locale:3114:28: note: 'wstring_convert<std::codecvt_utf8_utf16<wchar_t>>' has been explicitly marked deprecated here
- 3114 | class _LIBCPP_TEMPLATE_VIS _LIBCPP_DEPRECATED_IN_CXX17 wstring_convert {
-      |                            ^
-C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:942:41: note: expanded from macro '_LIBCPP_DEPRECATED_IN_CXX17'
-  942 | #    define _LIBCPP_DEPRECATED_IN_CXX17 _LIBCPP_DEPRECATED
-      |                                         ^
-C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:915:49: note: expanded from macro '_LIBCPP_DEPRECATED'
-  915 | #      define _LIBCPP_DEPRECATED __attribute__((__deprecated__))
-      |                                                 ^
-In file included from D:/26_project/EverSoulSimulator/src/orm/storage.cpp:23:
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:19499:43: warning: 'codecvt_utf8_utf16<wchar_t>' is deprecated [-Wdeprecated-declarations]
- 19499 |                 std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-       |                                           ^
-C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/codecvt:569:28: note: 'codecvt_utf8_utf16<wchar_t>' has been explicitly marked deprecated here
-  569 | class _LIBCPP_TEMPLATE_VIS _LIBCPP_DEPRECATED_IN_CXX17 codecvt_utf8_utf16 : public __codecvt_utf8_utf16<_Elem> {
-      |                            ^
-C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:942:41: note: expanded from macro '_LIBCPP_DEPRECATED_IN_CXX17'
-  942 | #    define _LIBCPP_DEPRECATED_IN_CXX17 _LIBCPP_DEPRECATED
-      |                                         ^
-C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:915:49: note: expanded from macro '_LIBCPP_DEPRECATED'
-  915 | #      define _LIBCPP_DEPRECATED __attribute__((__deprecated__))
-      |                                                 ^
-In file included from D:/26_project/EverSoulSimulator/src/orm/storage.cpp:23:
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:19499:22: warning: 'wstring_convert<std::codecvt_utf8_utf16<wchar_t>>' is deprecated [-Wdeprecated-declarations]
- 19499 |                 std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-       |                      ^
-C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/locale:3114:28: note: 'wstring_convert<std::codecvt_utf8_utf16<wchar_t>>' has been explicitly marked deprecated here
- 3114 | class _LIBCPP_TEMPLATE_VIS _LIBCPP_DEPRECATED_IN_CXX17 wstring_convert {
-      |                            ^
-C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:942:41: note: expanded from macro '_LIBCPP_DEPRECATED_IN_CXX17'
-  942 | #    define _LIBCPP_DEPRECATED_IN_CXX17 _LIBCPP_DEPRECATED
-      |                                         ^
-C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:915:49: note: expanded from macro '_LIBCPP_DEPRECATED'
-  915 | #      define _LIBCPP_DEPRECATED __attribute__((__deprecated__))
-      |                                                 ^
-In file included from D:/26_project/EverSoulSimulator/src/orm/storage.cpp:23:
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:19509:43: warning: 'codecvt_utf8_utf16<wchar_t>' is deprecated [-Wdeprecated-declarations]
- 19509 |                 std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-       |                                           ^
-C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/codecvt:569:28: note: 'codecvt_utf8_utf16<wchar_t>' has been explicitly marked deprecated here
-  569 | class _LIBCPP_TEMPLATE_VIS _LIBCPP_DEPRECATED_IN_CXX17 codecvt_utf8_utf16 : public __codecvt_utf8_utf16<_Elem> {
-      |                            ^
-C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:942:41: note: expanded from macro '_LIBCPP_DEPRECATED_IN_CXX17'
-  942 | #    define _LIBCPP_DEPRECATED_IN_CXX17 _LIBCPP_DEPRECATED
-      |                                         ^
-C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:915:49: note: expanded from macro '_LIBCPP_DEPRECATED'
-  915 | #      define _LIBCPP_DEPRECATED __attribute__((__deprecated__))
-      |                                                 ^
-In file included from D:/26_project/EverSoulSimulator/src/orm/storage.cpp:23:
-D:/26_project/EverSoulSimulator/third_party/sqlite_orm/sqlite_orm.h:19509:22: warning: 'wstring_convert<std::codecvt_utf8_utf16<wchar_t>>' is deprecated [-Wdeprecated-declarations]
- 19509 |                 std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
-       |                      ^
-C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/locale:3114:28: note: 'wstring_convert<std::codecvt_utf8_utf16<wchar_t>>' has been explicitly marked deprecated here
- 3114 | class _LIBCPP_TEMPLATE_VIS _LIBCPP_DEPRECATED_IN_CXX17 wstring_convert {
-      |                            ^
-C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:942:41: note: expanded from macro '_LIBCPP_DEPRECATED_IN_CXX17'
-  942 | #    define _LIBCPP_DEPRECATED_IN_CXX17 _LIBCPP_DEPRECATED
-      |                                         ^
-C:/Users/koiya/AppData/Local/Android/Sdk/ndk/27.2.12479018/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/c++/v1/__config:915:49: note: expanded from macro '_LIBCPP_DEPRECATED'
-  915 | #      define _LIBCPP_DEPRECATED __attribute__((__deprecated__))
-      |                                                 ^
-12 warnings generated.
-[22/23] Building C object CMakeFiles/swappywrapper.dir/third_party/sqlite/sqlite3.c.o
-ninja: build stopped: subcommand failed.
-koiya@taeyeon-pc:/d/26_project/EverSoulSimulator korean_language-work_by.nekoi
-$ 
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:70:3: error: 'EXTERN_C' does not name a type
+   70 |   SHSTDAPI_(UINT) DragQueryFileA (HDROP hDrop, UINT iFile, LPSTR lpszFile, UINT cch);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:70:3: note: the macro 'EXTERN_C' had not yet been defined
+In file included from C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/minwindef.h:163,
+                 from C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/windef.h:9,
+                 from C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/windows.h:69,
+                 from D:/26_project/EverSoulSimulator/src/main.cpp:9:
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:71:3: error: 'EXTERN_C' does not name a type
+   71 |   SHSTDAPI_(UINT) DragQueryFileW (HDROP hDrop, UINT iFile, LPWSTR lpszFile, UINT cch);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:71:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:72:3: error: 'EXTERN_C' does not name a type
+   72 |   SHSTDAPI_(WINBOOL) DragQueryPoint (HDROP hDrop, POINT *ppt);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:72:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:73:3: error: 'EXTERN_C' does not name a type
+   73 |   SHSTDAPI_(void) DragFinish (HDROP hDrop);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:73:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:74:3: error: 'EXTERN_C' does not name a type
+   74 |   SHSTDAPI_(void) DragAcceptFiles (HWND hWnd, WINBOOL fAccept);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:74:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:75:3: error: 'EXTERN_C' does not name a type
+   75 |   SHSTDAPI_(HINSTANCE) ShellExecuteA (HWND hwnd, LPCSTR lpOperation, LPCSTR lpFile, LPCSTR lpParameters, LPCSTR lpDirectory, INT nShowCmd);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:75:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:76:3: error: 'EXTERN_C' does not name a type
+   76 |   SHSTDAPI_(HINSTANCE) ShellExecuteW (HWND hwnd, LPCWSTR lpOperation, LPCWSTR lpFile, LPCWSTR lpParameters, LPCWSTR lpDirectory, INT nShowCmd);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:76:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:77:3: error: 'EXTERN_C' does not name a type
+   77 |   SHSTDAPI_(HINSTANCE) FindExecutableA (LPCSTR lpFile, LPCSTR lpDirectory, LPSTR lpResult);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:77:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:78:3: error: 'EXTERN_C' does not name a type
+   78 |   SHSTDAPI_(HINSTANCE) FindExecutableW (LPCWSTR lpFile, LPCWSTR lpDirectory, LPWSTR lpResult);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:78:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:79:3: error: 'EXTERN_C' does not name a type
+   79 |   SHSTDAPI_(INT) ShellAboutA (HWND hWnd, LPCSTR szApp, LPCSTR szOtherStuff, HICON hIcon);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:79:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:80:3: error: 'EXTERN_C' does not name a type
+   80 |   SHSTDAPI_(INT) ShellAboutW (HWND hWnd, LPCWSTR szApp, LPCWSTR szOtherStuff, HICON hIcon);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:80:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:81:3: error: 'EXTERN_C' does not name a type
+   81 |   SHSTDAPI_(HICON) DuplicateIcon (HINSTANCE hInst, HICON hIcon);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:81:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:82:3: error: 'EXTERN_C' does not name a type
+   82 |   SHSTDAPI_(HICON) ExtractAssociatedIconA (HINSTANCE hInst, LPSTR pszIconPath, WORD *piIcon);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:82:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:83:3: error: 'EXTERN_C' does not name a type
+   83 |   SHSTDAPI_(HICON) ExtractAssociatedIconW (HINSTANCE hInst, LPWSTR pszIconPath, WORD *piIcon);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:83:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:84:3: error: 'EXTERN_C' does not name a type
+   84 |   SHSTDAPI_(HICON) ExtractAssociatedIconExA (HINSTANCE hInst, LPSTR pszIconPath, WORD *piIconIndex, WORD *piIconId);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:84:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:85:3: error: 'EXTERN_C' does not name a type
+   85 |   SHSTDAPI_(HICON) ExtractAssociatedIconExW (HINSTANCE hInst, LPWSTR pszIconPath, WORD *piIconIndex, WORD *piIconId);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:85:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:86:3: error: 'EXTERN_C' does not name a type
+   86 |   SHSTDAPI_(HICON) ExtractIconA (HINSTANCE hInst, LPCSTR pszExeFileName, UINT nIconIndex);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:86:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:87:3: error: 'EXTERN_C' does not name a type
+   87 |   SHSTDAPI_(HICON) ExtractIconW (HINSTANCE hInst, LPCWSTR pszExeFileName, UINT nIconIndex);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:87:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:90:5: error: 'UINT' does not name a type
+   90 |     UINT uSize;
+      |     ^~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:91:5: error: 'POINT' does not name a type; did you mean 'LPOINET'?
+   91 |     POINT pt;
+      |     ^~~~~
+      |     LPOINET
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:92:5: error: 'WINBOOL' does not name a type
+   92 |     WINBOOL fNC;
+      |     ^~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:93:5: error: 'LPSTR' does not name a type; did you mean 'LPTR'?
+   93 |     LPSTR lpFileList;
+      |     ^~~~~
+      |     LPTR
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:94:5: error: 'DWORD' does not name a type; did you mean 'HIWORD'?
+   94 |     DWORD grfKeyState;
+      |     ^~~~~
+      |     HIWORD
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:98:5: error: 'UINT' does not name a type
+   98 |     UINT uSize;
+      |     ^~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:99:5: error: 'POINT' does not name a type; did you mean 'LPOINET'?
+   99 |     POINT pt;
+      |     ^~~~~
+      |     LPOINET
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:100:5: error: 'WINBOOL' does not name a type
+  100 |     WINBOOL fNC;
+      |     ^~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:101:5: error: 'LPWSTR' does not name a type; did you mean 'LPTR'?
+  101 |     LPWSTR lpFileList;
+      |     ^~~~~~
+      |     LPTR
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:102:5: error: 'DWORD' does not name a type; did you mean 'HIWORD'?
+  102 |     DWORD grfKeyState;
+      |     ^~~~~
+      |     HIWORD
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:139:5: error: 'DWORD' does not name a type; did you mean 'HIWORD'?
+  139 |     DWORD cbSize;
+      |     ^~~~~
+      |     HIWORD
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:140:5: error: 'HWND' does not name a type
+  140 |     HWND hWnd;
+      |     ^~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:141:5: error: 'UINT' does not name a type
+  141 |     UINT uCallbackMessage;
+      |     ^~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:142:5: error: 'UINT' does not name a type
+  142 |     UINT uEdge;
+      |     ^~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:143:5: error: 'RECT' does not name a type
+  143 |     RECT rc;
+      |     ^~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:144:5: error: 'LPARAM' does not name a type
+  144 |     LPARAM lParam;
+      |     ^~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:147:3: error: 'EXTERN_C' does not name a type
+  147 |   SHSTDAPI_(UINT_PTR) SHAppBarMessage (DWORD dwMessage, PAPPBARDATA pData);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:147:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:148:3: error: 'EXTERN_C' does not name a type
+  148 |   SHSTDAPI_(DWORD) DoEnvironmentSubstA (LPSTR pszSrc, UINT cchSrc);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:148:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:149:3: error: 'EXTERN_C' does not name a type
+  149 |   SHSTDAPI_(DWORD) DoEnvironmentSubstW (LPWSTR pszSrc, UINT cchSrc);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:149:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:150:3: error: 'EXTERN_C' does not name a type
+  150 |   SHSTDAPI_(UINT) ExtractIconExA (LPCSTR lpszFile, int nIconIndex, HICON *phiconLarge, HICON *phiconSmall, UINT nIcons);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:150:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:151:3: error: 'EXTERN_C' does not name a type
+  151 |   SHSTDAPI_(UINT) ExtractIconExW (LPCWSTR lpszFile, int nIconIndex, HICON *phiconLarge, HICON *phiconSmall, UINT nIcons);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:151:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:182:11: error: 'WORD' does not name a type; did you mean 'HIWORD'?
+  182 |   typedef WORD FILEOP_FLAGS;
+      |           ^~~~
+      |           HIWORD
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:190:11: error: 'WORD' does not name a type; did you mean 'HIWORD'?
+  190 |   typedef WORD PRINTEROP_FLAGS;
+      |           ^~~~
+      |           HIWORD
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:193:5: error: 'HWND' does not name a type
+  193 |     HWND hwnd;
+      |     ^~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:194:5: error: 'UINT' does not name a type
+  194 |     UINT wFunc;
+      |     ^~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:195:5: error: 'LPCSTR' does not name a type; did you mean 'LPTR'?
+  195 |     LPCSTR pFrom;
+      |     ^~~~~~
+      |     LPTR
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:196:5: error: 'LPCSTR' does not name a type; did you mean 'LPTR'?
+  196 |     LPCSTR pTo;
+      |     ^~~~~~
+      |     LPTR
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:197:5: error: 'FILEOP_FLAGS' does not name a type
+  197 |     FILEOP_FLAGS fFlags;
+      |     ^~~~~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:198:5: error: 'WINBOOL' does not name a type
+  198 |     WINBOOL fAnyOperationsAborted;
+      |     ^~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:199:5: error: 'LPVOID' does not name a type; did you mean 'VOID'?
+  199 |     LPVOID hNameMappings;
+      |     ^~~~~~
+      |     VOID
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:200:5: error: 'PCSTR' does not name a type
+  200 |     PCSTR lpszProgressTitle;
+      |     ^~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:204:5: error: 'HWND' does not name a type
+  204 |     HWND hwnd;
+      |     ^~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:205:5: error: 'UINT' does not name a type
+  205 |     UINT wFunc;
+      |     ^~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:206:5: error: 'LPCWSTR' does not name a type; did you mean 'LPTR'?
+  206 |     LPCWSTR pFrom;
+      |     ^~~~~~~
+      |     LPTR
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:207:5: error: 'LPCWSTR' does not name a type; did you mean 'LPTR'?
+  207 |     LPCWSTR pTo;
+      |     ^~~~~~~
+      |     LPTR
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:208:5: error: 'FILEOP_FLAGS' does not name a type
+  208 |     FILEOP_FLAGS fFlags;
+      |     ^~~~~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:209:5: error: 'WINBOOL' does not name a type
+  209 |     WINBOOL fAnyOperationsAborted;
+      |     ^~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:210:5: error: 'LPVOID' does not name a type; did you mean 'VOID'?
+  210 |     LPVOID hNameMappings;
+      |     ^~~~~~
+      |     VOID
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:211:5: error: 'PCWSTR' does not name a type
+  211 |     PCWSTR lpszProgressTitle;
+      |     ^~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:217:3: error: 'EXTERN_C' does not name a type
+  217 |   SHSTDAPI_(int) SHFileOperationA (LPSHFILEOPSTRUCTA lpFileOp);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:217:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:218:3: error: 'EXTERN_C' does not name a type
+  218 |   SHSTDAPI_(int) SHFileOperationW (LPSHFILEOPSTRUCTW lpFileOp);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:218:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:222:3: error: 'EXTERN_C' does not name a type
+  222 |   SHSTDAPI_(void) SHFreeNameMappings (HANDLE hNameMappings);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:222:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:225:5: error: 'LPSTR' does not name a type; did you mean 'LPTR'?
+  225 |     LPSTR pszOldPath;
+      |     ^~~~~
+      |     LPTR
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:226:5: error: 'LPSTR' does not name a type; did you mean 'LPTR'?
+  226 |     LPSTR pszNewPath;
+      |     ^~~~~
+      |     LPTR
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:232:5: error: 'LPWSTR' does not name a type; did you mean 'LPTR'?
+  232 |     LPWSTR pszOldPath;
+      |     ^~~~~~
+      |     LPTR
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:233:5: error: 'LPWSTR' does not name a type; did you mean 'LPTR'?
+  233 |     LPWSTR pszNewPath;
+      |     ^~~~~~
+      |     LPTR
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:302:5: error: 'DWORD' does not name a type; did you mean 'HIWORD'?
+  302 |     DWORD cbSize;
+      |     ^~~~~
+      |     HIWORD
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:303:5: error: 'ULONG' does not name a type
+  303 |     ULONG fMask;
+      |     ^~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:304:5: error: 'HWND' does not name a type
+  304 |     HWND hwnd;
+      |     ^~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:305:5: error: 'LPCSTR' does not name a type; did you mean 'LPTR'?
+  305 |     LPCSTR lpVerb;
+      |     ^~~~~~
+      |     LPTR
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:306:5: error: 'LPCSTR' does not name a type; did you mean 'LPTR'?
+  306 |     LPCSTR lpFile;
+      |     ^~~~~~
+      |     LPTR
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:307:5: error: 'LPCSTR' does not name a type; did you mean 'LPTR'?
+  307 |     LPCSTR lpParameters;
+      |     ^~~~~~
+      |     LPTR
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:308:5: error: 'LPCSTR' does not name a type; did you mean 'LPTR'?
+  308 |     LPCSTR lpDirectory;
+      |     ^~~~~~
+      |     LPTR
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:310:5: error: 'HINSTANCE' does not name a type
+  310 |     HINSTANCE hInstApp;
+      |     ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:312:5: error: 'LPCSTR' does not name a type; did you mean 'LPTR'?
+  312 |     LPCSTR lpClass;
+      |     ^~~~~~
+      |     LPTR
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:313:5: error: 'HKEY' does not name a type
+  313 |     HKEY hkeyClass;
+      |     ^~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:314:5: error: 'DWORD' does not name a type; did you mean 'HIWORD'?
+  314 |     DWORD dwHotKey;
+      |     ^~~~~
+      |     HIWORD
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:316:7: error: 'HANDLE' does not name a type; did you mean 'E_HANDLE'?
+  316 |       HANDLE hIcon;
+      |       ^~~~~~
+      |       E_HANDLE
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:317:7: error: 'HANDLE' does not name a type; did you mean 'E_HANDLE'?
+  317 |       HANDLE hMonitor;
+      |       ^~~~~~
+      |       E_HANDLE
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:319:5: error: 'HANDLE' does not name a type; did you mean 'E_HANDLE'?
+  319 |     HANDLE hProcess;
+      |     ^~~~~~
+      |     E_HANDLE
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:323:5: error: 'DWORD' does not name a type; did you mean 'HIWORD'?
+  323 |     DWORD cbSize;
+      |     ^~~~~
+      |     HIWORD
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:324:5: error: 'ULONG' does not name a type
+  324 |     ULONG fMask;
+      |     ^~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:325:5: error: 'HWND' does not name a type
+  325 |     HWND hwnd;
+      |     ^~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:326:5: error: 'LPCWSTR' does not name a type; did you mean 'LPTR'?
+  326 |     LPCWSTR lpVerb;
+      |     ^~~~~~~
+      |     LPTR
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:327:5: error: 'LPCWSTR' does not name a type; did you mean 'LPTR'?
+  327 |     LPCWSTR lpFile;
+      |     ^~~~~~~
+      |     LPTR
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:328:5: error: 'LPCWSTR' does not name a type; did you mean 'LPTR'?
+  328 |     LPCWSTR lpParameters;
+      |     ^~~~~~~
+      |     LPTR
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:329:5: error: 'LPCWSTR' does not name a type; did you mean 'LPTR'?
+  329 |     LPCWSTR lpDirectory;
+      |     ^~~~~~~
+      |     LPTR
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:331:5: error: 'HINSTANCE' does not name a type
+  331 |     HINSTANCE hInstApp;
+      |     ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:333:5: error: 'LPCWSTR' does not name a type; did you mean 'LPTR'?
+  333 |     LPCWSTR lpClass;
+      |     ^~~~~~~
+      |     LPTR
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:334:5: error: 'HKEY' does not name a type
+  334 |     HKEY hkeyClass;
+      |     ^~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:335:5: error: 'DWORD' does not name a type; did you mean 'HIWORD'?
+  335 |     DWORD dwHotKey;
+      |     ^~~~~
+      |     HIWORD
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:337:7: error: 'HANDLE' does not name a type; did you mean 'E_HANDLE'?
+  337 |       HANDLE hIcon;
+      |       ^~~~~~
+      |       E_HANDLE
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:338:7: error: 'HANDLE' does not name a type; did you mean 'E_HANDLE'?
+  338 |       HANDLE hMonitor;
+      |       ^~~~~~
+      |       E_HANDLE
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:340:5: error: 'HANDLE' does not name a type; did you mean 'E_HANDLE'?
+  340 |     HANDLE hProcess;
+      |     ^~~~~~
+      |     E_HANDLE
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:346:3: error: 'EXTERN_C' does not name a type
+  346 |   SHSTDAPI_(WINBOOL) ShellExecuteExA (SHELLEXECUTEINFOA *pExecInfo);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:346:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:347:3: error: 'EXTERN_C' does not name a type
+  347 |   SHSTDAPI_(WINBOOL) ShellExecuteExW (SHELLEXECUTEINFOW *pExecInfo);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:347:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:352:5: error: 'DWORD' does not name a type; did you mean 'HIWORD'?
+  352 |     DWORD cbSize;
+      |     ^~~~~
+      |     HIWORD
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:353:5: error: 'ULONG' does not name a type
+  353 |     ULONG fMask;
+      |     ^~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:354:5: error: 'HWND' does not name a type
+  354 |     HWND hwnd;
+      |     ^~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:355:5: error: 'LPCWSTR' does not name a type; did you mean 'LPTR'?
+  355 |     LPCWSTR pszFile;
+      |     ^~~~~~~
+      |     LPTR
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:356:5: error: 'LPCWSTR' does not name a type; did you mean 'LPTR'?
+  356 |     LPCWSTR pszParameters;
+      |     ^~~~~~~
+      |     LPTR
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:357:5: error: 'LPCWSTR' does not name a type; did you mean 'LPTR'?
+  357 |     LPCWSTR pszCurrentDirectory;
+      |     ^~~~~~~
+      |     LPTR
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:358:5: error: 'HANDLE' does not name a type; did you mean 'E_HANDLE'?
+  358 |     HANDLE hUserToken;
+      |     ^~~~~~
+      |     E_HANDLE
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:359:5: error: 'LPSECURITY_ATTRIBUTES' does not name a type; did you mean 'FILE_WRITE_ATTRIBUTES'?
+  359 |     LPSECURITY_ATTRIBUTES lpProcessAttributes;
+      |     ^~~~~~~~~~~~~~~~~~~~~
+      |     FILE_WRITE_ATTRIBUTES
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:360:5: error: 'LPSECURITY_ATTRIBUTES' does not name a type; did you mean 'FILE_WRITE_ATTRIBUTES'?
+  360 |     LPSECURITY_ATTRIBUTES lpThreadAttributes;
+      |     ^~~~~~~~~~~~~~~~~~~~~
+      |     FILE_WRITE_ATTRIBUTES
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:361:5: error: 'WINBOOL' does not name a type
+  361 |     WINBOOL bInheritHandles;
+      |     ^~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:362:5: error: 'DWORD' does not name a type; did you mean 'HIWORD'?
+  362 |     DWORD dwCreationFlags;
+      |     ^~~~~
+      |     HIWORD
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:363:5: error: 'LPSTARTUPINFOW' does not name a type
+  363 |     LPSTARTUPINFOW lpStartupInfo;
+      |     ^~~~~~~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:364:5: error: 'LPPROCESS_INFORMATION' does not name a type; did you mean 'PROCESS_SET_INFORMATION'?
+  364 |     LPPROCESS_INFORMATION lpProcessInformation;
+      |     ^~~~~~~~~~~~~~~~~~~~~
+      |     PROCESS_SET_INFORMATION
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:367:3: error: 'EXTERN_C' does not name a type
+  367 |   SHSTDAPI_(WINBOOL) SHCreateProcessAsUserW (PSHCREATEPROCESSINFOW pscpi);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:367:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:399:5: error: 'DWORD' does not name a type; did you mean 'HIWORD'?
+  399 |     DWORD cbSize;
+      |     ^~~~~
+      |     HIWORD
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:408:3: error: 'EXTERN_C' does not name a type
+  408 |   SHSTDAPI SHQueryRecycleBinA (LPCSTR pszRootPath, LPSHQUERYRBINFO pSHQueryRBInfo);
+      |   ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:408:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:409:3: error: 'EXTERN_C' does not name a type
+  409 |   SHSTDAPI SHQueryRecycleBinW (LPCWSTR pszRootPath, LPSHQUERYRBINFO pSHQueryRBInfo);
+      |   ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:409:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:413:3: error: 'EXTERN_C' does not name a type
+  413 |   SHSTDAPI SHEmptyRecycleBinA (HWND hwnd, LPCSTR pszRootPath, DWORD dwFlags);
+      |   ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:413:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:414:3: error: 'EXTERN_C' does not name a type
+  414 |   SHSTDAPI SHEmptyRecycleBinW (HWND hwnd, LPCWSTR pszRootPath, DWORD dwFlags);
+      |   ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:414:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:443:5: error: 'DWORD' does not name a type; did you mean 'HIWORD'?
+  443 |     DWORD cbSize;
+      |     ^~~~~
+      |     HIWORD
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:444:5: error: 'HWND' does not name a type
+  444 |     HWND hWnd;
+      |     ^~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:445:5: error: 'UINT' does not name a type
+  445 |     UINT uID;
+      |     ^~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:446:5: error: 'UINT' does not name a type
+  446 |     UINT uFlags;
+      |     ^~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:447:5: error: 'UINT' does not name a type
+  447 |     UINT uCallbackMessage;
+      |     ^~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:448:5: error: 'HICON' does not name a type
+  448 |     HICON hIcon;
+      |     ^~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:449:5: error: 'CHAR' does not name a type
+  449 |     CHAR szTip[128];
+      |     ^~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:450:5: error: 'DWORD' does not name a type; did you mean 'HIWORD'?
+  450 |     DWORD dwState;
+      |     ^~~~~
+      |     HIWORD
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:451:5: error: 'DWORD' does not name a type; did you mean 'HIWORD'?
+  451 |     DWORD dwStateMask;
+      |     ^~~~~
+      |     HIWORD
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:452:5: error: 'CHAR' does not name a type
+  452 |     CHAR szInfo[256];
+      |     ^~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:454:7: error: 'UINT' does not name a type
+  454 |       UINT uTimeout;
+      |       ^~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:455:7: error: 'UINT' does not name a type
+  455 |       UINT uVersion;
+      |       ^~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:457:5: error: 'CHAR' does not name a type
+  457 |     CHAR szInfoTitle[64];
+      |     ^~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:458:5: error: 'DWORD' does not name a type; did you mean 'HIWORD'?
+  458 |     DWORD dwInfoFlags;
+      |     ^~~~~
+      |     HIWORD
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:459:5: error: 'GUID' does not name a type
+  459 |     GUID guidItem;
+      |     ^~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:466:5: error: 'DWORD' does not name a type; did you mean 'HIWORD'?
+  466 |     DWORD cbSize;
+      |     ^~~~~
+      |     HIWORD
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:467:5: error: 'HWND' does not name a type
+  467 |     HWND hWnd;
+      |     ^~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:468:5: error: 'UINT' does not name a type
+  468 |     UINT uID;
+      |     ^~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:469:5: error: 'UINT' does not name a type
+  469 |     UINT uFlags;
+      |     ^~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:470:5: error: 'UINT' does not name a type
+  470 |     UINT uCallbackMessage;
+      |     ^~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:471:5: error: 'HICON' does not name a type
+  471 |     HICON hIcon;
+      |     ^~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:472:5: error: 'WCHAR' does not name a type; did you mean 'WM_CHAR'?
+  472 |     WCHAR szTip[128];
+      |     ^~~~~
+      |     WM_CHAR
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:473:5: error: 'DWORD' does not name a type; did you mean 'HIWORD'?
+  473 |     DWORD dwState;
+      |     ^~~~~
+      |     HIWORD
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:474:5: error: 'DWORD' does not name a type; did you mean 'HIWORD'?
+  474 |     DWORD dwStateMask;
+      |     ^~~~~
+      |     HIWORD
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:475:5: error: 'WCHAR' does not name a type; did you mean 'WM_CHAR'?
+  475 |     WCHAR szInfo[256];
+      |     ^~~~~
+      |     WM_CHAR
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:477:7: error: 'UINT' does not name a type
+  477 |       UINT uTimeout;
+      |       ^~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:478:7: error: 'UINT' does not name a type
+  478 |       UINT uVersion;
+      |       ^~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:480:5: error: 'WCHAR' does not name a type; did you mean 'WM_CHAR'?
+  480 |     WCHAR szInfoTitle[64];
+      |     ^~~~~
+      |     WM_CHAR
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:481:5: error: 'DWORD' does not name a type; did you mean 'HIWORD'?
+  481 |     DWORD dwInfoFlags;
+      |     ^~~~~
+      |     HIWORD
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:482:5: error: 'GUID' does not name a type
+  482 |     GUID guidItem;
+      |     ^~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:557:5: error: 'DWORD' does not name a type; did you mean 'HIWORD'?
+  557 |     DWORD cbSize;
+      |     ^~~~~
+      |     HIWORD
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:558:5: error: 'HWND' does not name a type
+  558 |     HWND hWnd;
+      |     ^~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:559:5: error: 'UINT' does not name a type
+  559 |     UINT uID;
+      |     ^~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:560:5: error: 'GUID' does not name a type
+  560 |     GUID guidItem;
+      |     ^~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:563:3: error: 'EXTERN_C' does not name a type
+  563 |   SHSTDAPI_(WINBOOL) Shell_NotifyIconA (DWORD dwMessage, PNOTIFYICONDATAA lpData);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:563:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:564:3: error: 'EXTERN_C' does not name a type
+  564 |   SHSTDAPI_(WINBOOL) Shell_NotifyIconW (DWORD dwMessage, PNOTIFYICONDATAW lpData);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:564:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:576:5: error: 'HICON' does not name a type
+  576 |     HICON hIcon;
+      |     ^~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:578:5: error: 'DWORD' does not name a type; did you mean 'HIWORD'?
+  578 |     DWORD dwAttributes;
+      |     ^~~~~
+      |     HIWORD
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:579:5: error: 'CHAR' does not name a type
+  579 |     CHAR szDisplayName[MAX_PATH];
+      |     ^~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:580:5: error: 'CHAR' does not name a type
+  580 |     CHAR szTypeName[80];
+      |     ^~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:584:5: error: 'HICON' does not name a type
+  584 |     HICON hIcon;
+      |     ^~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:586:5: error: 'DWORD' does not name a type; did you mean 'HIWORD'?
+  586 |     DWORD dwAttributes;
+      |     ^~~~~
+      |     HIWORD
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:587:5: error: 'WCHAR' does not name a type; did you mean 'WM_CHAR'?
+  587 |     WCHAR szDisplayName[MAX_PATH];
+      |     ^~~~~
+      |     WM_CHAR
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:588:5: error: 'WCHAR' does not name a type; did you mean 'WM_CHAR'?
+  588 |     WCHAR szTypeName[80];
+      |     ^~~~~
+      |     WM_CHAR
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:615:3: error: 'EXTERN_C' does not name a type
+  615 |   SHSTDAPI_(DWORD_PTR) SHGetFileInfoA (LPCSTR pszPath, DWORD dwFileAttributes, SHFILEINFOA *psfi, UINT cbFileInfo, UINT uFlags);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:615:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:616:3: error: 'EXTERN_C' does not name a type
+  616 |   SHSTDAPI_(DWORD_PTR) SHGetFileInfoW (LPCWSTR pszPath, DWORD dwFileAttributes, SHFILEINFOW *psfi, UINT cbFileInfo, UINT uFlags);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:616:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:744:3: error: 'EXTERN_C' does not name a type
+  744 |   SHSTDAPI_(WINBOOL) SHGetDiskFreeSpaceExA (LPCSTR pszDirectoryName, ULARGE_INTEGER *pulFreeBytesAvailableToCaller, ULARGE_INTEGER *pulTotalNumberOfBytes, ULARGE_INTEGER *pulTotalNumberOfFreeBytes);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:744:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:745:3: error: 'EXTERN_C' does not name a type
+  745 |   SHSTDAPI_(WINBOOL) SHGetDiskFreeSpaceExW (LPCWSTR pszDirectoryName, ULARGE_INTEGER *pulFreeBytesAvailableToCaller, ULARGE_INTEGER *pulTotalNumberOfBytes, ULARGE_INTEGER *pulTotalNumberOfFreeBytes);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:745:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:746:3: error: 'EXTERN_C' does not name a type
+  746 |   SHSTDAPI_(WINBOOL) SHGetNewLinkInfoA (LPCSTR pszLinkTo, LPCSTR pszDir, LPSTR pszName, WINBOOL *pfMustCopy, UINT uFlags);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:746:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:747:3: error: 'EXTERN_C' does not name a type
+  747 |   SHSTDAPI_(WINBOOL) SHGetNewLinkInfoW (LPCWSTR pszLinkTo, LPCWSTR pszDir, LPWSTR pszName, WINBOOL *pfMustCopy, UINT uFlags);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:747:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:772:3: error: 'EXTERN_C' does not name a type
+  772 |   SHSTDAPI_(WINBOOL) SHInvokePrinterCommandA (HWND hwnd, UINT uAction, LPCSTR lpBuf1, LPCSTR lpBuf2, WINBOOL fModal);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:772:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:773:3: error: 'EXTERN_C' does not name a type
+  773 |   SHSTDAPI_(WINBOOL) SHInvokePrinterCommandW (HWND hwnd, UINT uAction, LPCWSTR lpBuf1, LPCWSTR lpBuf2, WINBOOL fModal);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:773:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:799:3: error: 'EXTERN_C' does not name a type
+  799 |   SHSTDAPI SHLoadNonloadedIconOverlayIdentifiers (void);
+      |   ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:799:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:800:3: error: 'EXTERN_C' does not name a type
+  800 |   SHSTDAPI SHIsFileAvailableOffline (PCWSTR pwszPath, DWORD *pdwStatus);
+      |   ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:800:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:806:3: error: 'EXTERN_C' does not name a type
+  806 |   SHSTDAPI SHSetLocalizedName (PCWSTR pszPath, PCWSTR pszResModule, int idsRes);
+      |   ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:806:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:819:3: error: 'EXTERN_C' does not name a type
+  819 |   LWSTDAPIV_ (int) ShellMessageBoxA (HINSTANCE hAppInst, HWND hWnd, LPCSTR lpcText, LPCSTR lpcTitle, UINT fuStyle,...);
+      |   ^~~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:819:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:820:3: error: 'EXTERN_C' does not name a type
+  820 |   LWSTDAPIV_ (int) ShellMessageBoxW (HINSTANCE hAppInst, HWND hWnd, LPCWSTR lpcText, LPCWSTR lpcTitle, UINT fuStyle,...);
+      |   ^~~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:820:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:824:3: error: 'EXTERN_C' does not name a type
+  824 |   SHSTDAPI_(WINBOOL) IsLFNDriveA (LPCSTR pszPath);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:824:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:825:3: error: 'EXTERN_C' does not name a type
+  825 |   SHSTDAPI_(WINBOOL) IsLFNDriveW (LPCWSTR pszPath);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:825:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:867:3: error: 'EXTERN_C' does not name a type
+  867 |   SHSTDAPI_(LPWSTR *) CommandLineToArgvW (LPCWSTR lpCmdLine, int *pNumArgs);
+      |   ^~~~~~~~~
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/shellapi.h:867:3: note: the macro 'EXTERN_C' had not yet been defined
+C:/Users/koiya/AppData/Local/Microsoft/WinGet/Packages/BrechtSanders.WinLibs.POSIX.UCRT_Microsoft.Winget.Source_8wekyb3d8bbwe/mingw64/x86_64-w64-mingw32/include/winnt.h:460:9: note: it was later defined here
+  460 | #define EXTERN_C extern "C"
+      |         ^~~~~~~~
+D:/26_project/EverSoulSimulator/src/main.cpp: In lambda function:
+D:/26_project/EverSoulSimulator/src/main.cpp:23:9: error: 'ShellExecuteA' was not declared in this scope; did you mean 'ShellExecute'?
+   23 |         ShellExecuteA(nullptr, "open", url.c_str(), nullptr, nullptr, SW_SHOWNORMAL);
+      |         ^~~~~~~~~~~~~
+      |         ShellExecute

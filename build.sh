@@ -32,10 +32,6 @@ NEWBIE_HAR="${EVERSOUL_NEWBIE_HAR:-cdp.cloud.unity3d.com_2026_06_11_01_37_55.har
 BASELINE_HAR="${EVERSOUL_BASELINE_HAR:-cdp.cloud.unity3d.com_2026_06_08_08_38_04.har}"
 if [ -z "${NDK_ROOT:-}" ]; then
     case "$(uname -s)" in
-        MINGW*|MSYS*|CYGWIN*)
-            NDK_ROOT="$(ls -d "/c/Users/$USERNAME/AppData/Local/Android/Sdk/ndk"/*/ 2>/dev/null | sort -V | tail -1)"
-            NDK_ROOT="${NDK_ROOT%/}"
-            ;;
         Darwin)
             NDK_ROOT="$(ls -d "$HOME/Library/Android/sdk/ndk"/*/ 2>/dev/null | sort -V | tail -1)"
             NDK_ROOT="${NDK_ROOT%/}"
@@ -89,20 +85,10 @@ $PYTHON tools/pack_offline_data.py
 
 CURL_CMAKE_ARGS=""
 if [ -n "${CURL_ROOT:-}" ]; then
-  CURL_WIN="${CURL_ROOT//\\/\/}"
-  if [ -f "$CURL_WIN/lib/libcurl.dll.a" ]; then
-    CURL_CMAKE_ARGS="-DCURL_INCLUDE_DIR=$CURL_WIN/include -DCURL_LIBRARY=$CURL_WIN/lib/libcurl.dll.a"
-  elif [ -f "$CURL_WIN/lib/libcurl.a" ]; then
-    CURL_CMAKE_ARGS="-DCURL_INCLUDE_DIR=$CURL_WIN/include -DCURL_LIBRARY=$CURL_WIN/lib/libcurl.a"
-  fi
-fi
-if [ -z "$CURL_CMAKE_ARGS" ]; then
-  WINGET_CURL=$(find "/c/Users/$USERNAME/AppData/Local/Microsoft/WinGet/Packages" \
-    -name "libcurl.dll.a" 2>/dev/null | head -1)
-  if [ -n "$WINGET_CURL" ]; then
-    CURL_LIB_DIR="$(dirname "$WINGET_CURL")"
-    CURL_INC_DIR="$(dirname "$CURL_LIB_DIR")/include"
-    CURL_CMAKE_ARGS="-DCURL_INCLUDE_DIR=$CURL_INC_DIR -DCURL_LIBRARY=$WINGET_CURL"
+  if [ -f "${CURL_ROOT}/lib/libcurl.a" ]; then
+    CURL_CMAKE_ARGS="-DCURL_INCLUDE_DIR=${CURL_ROOT}/include -DCURL_LIBRARY=${CURL_ROOT}/lib/libcurl.a"
+  elif [ -f "${CURL_ROOT}/lib/libcurl.so" ]; then
+    CURL_CMAKE_ARGS="-DCURL_INCLUDE_DIR=${CURL_ROOT}/include -DCURL_LIBRARY=${CURL_ROOT}/lib/libcurl.so"
   fi
 fi
 
@@ -113,9 +99,14 @@ echo "== Build desktop =="
 cmake --build "$DESKTOP_BUILD_DIR" --target eversoul_offline_server encoder_validate offline_data_test -j"$JOBS"
 
 mkdir -p build
+
 cp "$DESKTOP_BUILD_DIR/eversoul_offline_server" build/eversoul_offline_server.new
 mv -f build/eversoul_offline_server.new build/eversoul_offline_server
 echo "Built: build/eversoul_offline_server"
+
+for _dir in web wss responses responses_newbie schema; do
+  [ -d "$_dir" ] && cp -rf "$_dir" build/ && echo "Synced: build/$_dir"
+done
 
 echo "== Validate encoder =="
 "$DESKTOP_BUILD_DIR/encoder_validate"

@@ -551,7 +551,11 @@ std::optional<ItemEquip> item_equip_by_id(std::int64_t id) {
 std::optional<HeroEquipSlot> hero_equip_slot(const std::string& hero_idx, int slot) {
     std::lock_guard<std::mutex> lock(g_mu);
     if (!ensure_ready_locked(".", "")) return std::nullopt;
-    return g_storage->get_optional<HeroEquipSlot>(hero_idx, slot);
+    using namespace sqlite_orm;
+    auto rows = g_storage->get_all<HeroEquipSlot>(
+        where(c(&HeroEquipSlot::heroIdx) == hero_idx and c(&HeroEquipSlot::slot) == slot));
+    if (rows.empty()) return std::nullopt;
+    return rows[0];
 }
 
 int max_stage_no() {

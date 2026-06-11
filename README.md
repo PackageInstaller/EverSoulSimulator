@@ -34,19 +34,58 @@
 EVERSOUL_LANG=en ./build.sh   # 英文（默认）
 EVERSOUL_LANG=ko ./build.sh   # 韩文
 EVERSOUL_LANG=zh ./build.sh   # 中文
+ ./build.ps1 -NoExit #windwos only
 ```
 
 如果当前目录下没有 .har 抓包文件，构建脚本会自动跳过 HAR 合并提取步骤，直接读取 responses/ 和 responses_newbie/ 目录中的数据进行编译，从而不影响克隆项目后的正常编译。
 
 编译生成的主要产物包括：
 
-- build/eversoul_offline_server (本地代理与离线数据 Mock 服务端)
-- build/android/libswappywrapper.so (用于 Android 端的拦截注入包装库)
-- build/offline_data/libofflinedata.so (打包了离线静态 JSON 数据的 Android 动态库)
+| 路径 | 用途 |
+|------|------|
+| `build/eversoul_offline_server` | 桌面端离线服务端 / 代理 |
+| `build/eversoul_injector.exe` | MuMu 模拟器自动注入器（Windows） |
+| `build/android/libswappywrapper.so` | Android 拦截注入包装库 |
+| `build/offline_data/libofflinedata.so` | 打包了离线 JSON 数据的 Android 动态库 |
 
 ---
 
-### 2. 部署离线数据与注入库到 Android 设备
+### 2. 启动桌面服务端
+
+```bash
+# 离线模式（默认）
+./build/eversoul_offline_server
+
+# 代理模式（抓包实时流量）
+./build/eversoul_offline_server --proxy
+
+# 完整参数
+./build/eversoul_offline_server \
+  --port 9999          \   # 游戏服务器端口（默认: 9999）
+  --admin-port 9998    \   # 管理后台端口（默认: 9998）
+  --lang zh            \   # 终端输出语言: ko / en / zh
+  --data-dir ./        \   # responses/ 和 schema/ 的根路径
+  --game-server-url https://live-sea.esoul.kakaogames.com:1739
+```
+
+启动后，用浏览器打开 `http://localhost:9998/admin/` 即可进入管理后台。
+
+#### 管理后台功能（端口 9998）
+
+| 页面 | 内容 |
+|------|------|
+| 仪表板 | 实时显示端口、请求数、运行时长、fixture 数量、DB 信息 |
+| 健康检查 | 服务器·数据库·fixture·离线数据·代理等 9 项状态 |
+| 请求日志 | SSE 实时推流、过滤、暂停、清除 |
+| 数据库 | SQLite 表列表及行级数据查看 |
+| Fixtures | 已加载的 JSON 响应索引及内容预览 |
+| 设置 | 运行时切换代理、修改游戏服务器 URL 和数据目录 |
+
+侧边栏底部支持一键切换语言（한국어 / English / 中文），即时生效。
+
+---
+
+### 3. 部署离线数据与注入库到 Android 设备
 
 确保您的 Android 设备已开启 ADB 调试并连接，然后运行：
 
@@ -58,11 +97,27 @@ EVERSOUL_LANG=zh ./build.sh   # 中文
 1. 将 libswappywrapper.so 和 libofflinedata.so 推送至游戏安装包的 Native 动态库目录中。
 2. 校验设备中的文件哈希值以确保部署正确。
 
+### 4. 自动注入 Android 模拟器（Windows）
+
+`eversoul_injector.exe` 通过 Frida 自动完成对 MuMu Player 12 的注入流程：
+
+1. 从 `D:\MuMuPlayer\nx_device\12.0\shell\adb.exe` 或系统 PATH 查找 ADB
+2. 自动识别并选择已连接的模拟器/设备
+3. 若设备上不存在 `frida-server`，则从 `tools/frida/` 推送并启动
+4. 通过 `Module.load()` 将 `libswappywrapper.so` 注入 Eversoul 进程
+5. 在独立线程中持续流式输出 `logcat -s libswappywrapper`
+
+Android 构建完成后，CMake POST_BUILD 钩子会自动触发注入器。
+
 ---
 
 ## 核心技术实现细节
 
-### 1. 注入与 Patch 加载方式 (反作弊绕过)
+### 1. 多语言 (i18n)
+
+`src/i18n.cpp` 与 `tools/i18n.py` 共享同一套键值表。C++ 运行时（`--lang`）、Python 工具（`EVERSOUL_LANG`）以及 Web 管理后台（侧边栏切换器）均从同一键表解析字符串。支持语言：한국어·English·中文。
+
+### 2. 注入与 Patch 加载方式 (反作弊绕过)
 
 由于游戏使用了 LIAPP 反作弊保护，进行整包脱壳不仅过程繁琐且难以维护。目前的绕过与加载方案如下：
 

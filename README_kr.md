@@ -34,6 +34,7 @@ Python 도구 출력 언어를 선택할 수 있습니다:
 EVERSOUL_LANG=en ./build.sh   # 영어 (기본값)
 EVERSOUL_LANG=ko ./build.sh   # 한국어
 EVERSOUL_LANG=zh ./build.sh   # 중국어
+ ./build.ps1 -NoExit #windwos only
 ```
 
 현재 디렉토리에 .har 패킷 캡처 파일이 없는 경우, 빌드 스크립트는 HAR 병합 추출 단계를 자동으로 건너뛰고 `responses/` 및 `responses_newbie/` 디렉토리의 데이터를 읽어 컴파일합니다. 따라서 프로젝트 클론 이후 정상적인 빌드에 영향을 주지 않습니다.

@@ -19,6 +19,10 @@ set(EVERSOUL_CORE_SOURCES
   src/fixture_store.cpp
   src/websocket.cpp
   src/ws_session.cpp
+  src/i18n.cpp
+  src/adb_finder.cpp
+  src/admin_log_sink.cpp
+  src/admin_server.cpp
   src/log.cpp
   src/http.cpp
   src/proxy.cpp
@@ -76,13 +80,28 @@ if(ANDROID)
   target_link_libraries(swappywrapper PRIVATE log dl m)
   target_link_options(swappywrapper PRIVATE -static-libstdc++ -s)
 
+  # After building libswappywrapper.so, run eversoul_injector if it is present
+  # in the desktop build directory.  EVERSOUL_INJECTOR can be overridden on the
+  # cmake command line; defaults to build/eversoul_injector[.exe].
+  if(NOT DEFINED EVERSOUL_INJECTOR)
+    set(EVERSOUL_INJECTOR
+      "${CMAKE_SOURCE_DIR}/build/eversoul_injector${CMAKE_EXECUTABLE_SUFFIX}")
+  endif()
+  if(NOT DEFINED EVERSOUL_SERVER)
+    set(EVERSOUL_SERVER
+      "${CMAKE_SOURCE_DIR}/build/eversoul_offline_server${CMAKE_EXECUTABLE_SUFFIX}")
+  endif()
+  set(EVERSOUL_FRIDA_SERVER
+    "${CMAKE_SOURCE_DIR}/tools/frida/frida-server-android-x86_64")
+
   add_custom_command(TARGET swappywrapper POST_BUILD
-    COMMAND python
-      ${CMAKE_SOURCE_DIR}/tools/inject.py
-      --so $<TARGET_FILE:swappywrapper>
-      --frida-server ${CMAKE_SOURCE_DIR}/tools/frida/frida-server-android-x86_64
-    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-    COMMENT "Injecting libswappywrapper.so into emulator")
+    COMMAND ${CMAKE_COMMAND}
+      -DINJECTOR=${EVERSOUL_INJECTOR}
+      -DSO=$<TARGET_FILE:swappywrapper>
+      -DSERVER=${EVERSOUL_SERVER}
+      -DFRIDA_SRV=${EVERSOUL_FRIDA_SERVER}
+      -P ${CMAKE_SOURCE_DIR}/cmake/run_injector.cmake
+    COMMENT "Injecting libswappywrapper.so into emulator via eversoul_injector")
 else()
   # Desktop capture/proxy/mock server.
   find_package(CURL REQUIRED)
@@ -92,7 +111,43 @@ else()
   target_link_libraries(eversoul_offline_server PRIVATE CURL::libcurl Threads::Threads ${CMAKE_DL_LIBS})
   if(WIN32)
     target_link_libraries(eversoul_offline_server PRIVATE ws2_32)
+
+    # Copy MinGW runtime DLLs and libcurl DLL next to the executable.
+    get_filename_component(_CXX_DIR "${CMAKE_CXX_COMPILER}" DIRECTORY)
+    foreach(_dll
+        libgcc_s_seh-1.dll
+        libstdc++-6.dll
+        libwinpthread-1.dll)
+      if(EXISTS "${_CXX_DIR}/${_dll}")
+        add_custom_command(TARGET eversoul_offline_server POST_BUILD
+          COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "${_CXX_DIR}/${_dll}"
+            "$<TARGET_FILE_DIR:eversoul_offline_server>")
+      endif()
+    endforeach()
+
+    # libcurl DLL — check lib/ then ../bin/ relative to the import library.
+    if(DEFINED CURL_LIBRARY)
+      get_filename_component(_CURL_LIB_DIR "${CURL_LIBRARY}" DIRECTORY)
+      set(_CURL_SEARCH_DIRS "${_CURL_LIB_DIR}" "${_CURL_LIB_DIR}/../bin")
+      foreach(_curl_dll libcurl.dll libcurl-4.dll curl.dll)
+        foreach(_dir ${_CURL_SEARCH_DIRS})
+          if(EXISTS "${_dir}/${_curl_dll}")
+            add_custom_command(TARGET eversoul_offline_server POST_BUILD
+              COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                "${_dir}/${_curl_dll}"
+                "$<TARGET_FILE_DIR:eversoul_offline_server>")
+            set(_CURL_DLL_FOUND TRUE)
+            break()
+          endif()
+        endforeach()
+        if(DEFINED _CURL_DLL_FOUND)
+          break()
+        endif()
+      endforeach()
+    endif()
   endif()
+
 
   # Desktop validator for the descriptor-driven JSON->protobuf encoder. Links
   # only the small pieces it needs (no curl/sqlite), so it builds fast.
@@ -102,10 +157,10 @@ else()
   target_include_directories(encoder_validate PRIVATE ${EVERSOUL_INCLUDE_DIRS})
   target_compile_options(encoder_validate PRIVATE -O2 -Wall -Wextra)
 
-  # 验证 OfflineData 能从 blob（伪装 so）读取并编码。
   add_executable(offline_data_test
     src/json.cpp src/json_encoder.cpp src/protobuf.cpp src/crypto.cpp
-    src/offline_data.cpp src/log.cpp src/util.cpp src/offline_data_test.cpp)
+    src/offline_data.cpp src/log.cpp src/util.cpp
+    src/admin_log_sink.cpp src/offline_data_test.cpp)
   target_include_directories(offline_data_test PRIVATE ${EVERSOUL_INCLUDE_DIRS})
   target_compile_options(offline_data_test PRIVATE -O2 -Wall -Wextra)
   target_link_libraries(offline_data_test PRIVATE ${CMAKE_DL_LIBS})
@@ -113,7 +168,8 @@ else()
   add_executable(orm_seed_check
     src/json.cpp src/json_encoder.cpp src/protobuf.cpp src/crypto.cpp
     src/offline_data.cpp src/log.cpp src/util.cpp src/orm/storage.cpp
-    src/orm/userinfo_builder.cpp src/orm_seed_check.cpp third_party/sqlite/sqlite3.c)
+    src/orm/userinfo_builder.cpp src/admin_log_sink.cpp
+    src/orm_seed_check.cpp third_party/sqlite/sqlite3.c)
   target_include_directories(orm_seed_check PRIVATE ${EVERSOUL_INCLUDE_DIRS})
   target_compile_options(orm_seed_check PRIVATE -O2 -Wall -Wextra)
   target_link_libraries(orm_seed_check PRIVATE ${CMAKE_DL_LIBS})
