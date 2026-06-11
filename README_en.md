@@ -1,8 +1,17 @@
-# Eversoul Offline — Offline Server & Injection Tools
+<p align="center">
+  <img src="src/assets/logo.png" width="140" alt="EverSoul Offline" />
+</p>
 
-A local Kakao SDK / Infodesk mock server for the Eversoul game client, along with a C++ injection wrapper and admin dashboard that lets you run the game in a fully offline in-process environment.
+<h1 align="center">Eversoul Offline</h1>
+<h3 align="center">Offline Server &amp; Injection Tools</h3>
 
-- **English Documentation** | [中文文档](README.md) | [한국어 문서](README_kr.md)
+<p align="center">
+  A local Kakao SDK / Infodesk mock server for the Eversoul game client, along with a C++ injection wrapper and admin dashboard that lets you run the game in a fully offline in-process environment.
+</p>
+
+<p align="center">
+  <strong>English</strong> &nbsp;|&nbsp; <a href="README.md">中文</a> &nbsp;|&nbsp; <a href="README_kr.md">한국어</a>
+</p>
 
 ---
 

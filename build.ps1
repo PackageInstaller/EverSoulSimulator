@@ -146,9 +146,11 @@ if (-not $VSWHERE) {
         $env:CLINK_NOAUTORUN = "1"
         $env:_INJECTOR_CMD = (
             "call `"$VCVARS`" >nul 2>&1 && " +
+            "rc.exe /nologo /fo `"$OUT_DIR\injector.res`" src\injector_resources.rc && " +
             "cl.exe /nologo /O2 /MT /EHsc /std:c++17 /utf-8 " +
             "/I`"$FRIDA_DIR`" /I`"src`" " +
             "src\injector_main.cpp src\adb_finder.cpp " +
+            "`"$OUT_DIR\injector.res`" " +
             "/link /OUT:`"$OUT_DIR\eversoul_injector.exe`" /SUBSYSTEM:CONSOLE " +
             "`"$FRIDA_DIR\frida-core.lib`" " +
             "ws2_32.lib iphlpapi.lib psapi.lib crypt32.lib secur32.lib bcrypt.lib dnsapi.lib shlwapi.lib setupapi.lib"

@@ -103,6 +103,18 @@ if(ANDROID)
       -P ${CMAKE_SOURCE_DIR}/cmake/run_injector.cmake
     COMMENT "Injecting libswappywrapper.so into emulator via eversoul_injector")
 else()
+  function(add_win32_version_info target description internal_name orig_filename)
+    set(EVERSOUL_FILE_DESC "${description}")
+    set(EVERSOUL_INTERNAL_NAME "${internal_name}")
+    set(EVERSOUL_ORIG_FILENAME "${orig_filename}")
+    set(EVERSOUL_ICON_PATH "${CMAKE_SOURCE_DIR}/src/assets/logo.ico")
+    configure_file(
+      "${CMAKE_SOURCE_DIR}/cmake/version_resources.rc.in"
+      "${CMAKE_CURRENT_BINARY_DIR}/${target}_resources.rc"
+      @ONLY)
+    target_sources(${target} PRIVATE "${CMAKE_CURRENT_BINARY_DIR}/${target}_resources.rc")
+  endfunction()
+
   # Desktop capture/proxy/mock server.
   find_package(CURL REQUIRED)
   add_executable(eversoul_offline_server ${EVERSOUL_CORE_SOURCES} src/main.cpp)
@@ -173,4 +185,10 @@ else()
   target_include_directories(orm_seed_check PRIVATE ${EVERSOUL_INCLUDE_DIRS})
   target_compile_options(orm_seed_check PRIVATE -O2 -Wall -Wextra)
   target_link_libraries(orm_seed_check PRIVATE ${CMAKE_DL_LIBS})
+  if(WIN32)
+    add_win32_version_info(eversoul_offline_server "EverSoul Offline Server" "eversoul_offline_server" "eversoul_offline_server.exe")
+    add_win32_version_info(encoder_validate "EverSoul Encoder Validator" "encoder_validate" "encoder_validate.exe")
+    add_win32_version_info(offline_data_test "EverSoul Offline Data Test" "offline_data_test" "offline_data_test.exe")
+    add_win32_version_info(orm_seed_check "EverSoul ORM Seed Check" "orm_seed_check" "orm_seed_check.exe")
+  endif()
 endif()

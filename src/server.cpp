@@ -11,6 +11,7 @@
 #include "fixture_store.hpp"
 #include "http.hpp"
 #include "log.hpp"
+#include "orm/storage.hpp"
 #include "router.hpp"
 #include "websocket.hpp"
 #include "ws_session.hpp"
@@ -108,11 +109,9 @@ namespace eversoul
 #endif
         open_log_file();
 
-        // Load editable JSON response fixtures (responses/ + schema/) and encode
-        // them to protobuf via the descriptor-driven encoder. Served by the router.
         fixture_store().load(config().data_dir);
-        // Load WebSocket replay fixtures (Kakao session + socket.io chat).
         ws_load_fixtures(config().data_dir);
+        orm::ensure_ready(config().data_dir);
 
         socket_fd_t server_fd = socket(AF_INET, SOCK_STREAM, 0);
         if (server_fd == kInvalidSocket)

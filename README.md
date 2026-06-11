@@ -1,8 +1,17 @@
-# Eversoul Offline (永恒灵魂离线服务端与注入工具)
+<p align="center">
+  <img src="src/assets/logo.png" width="140" alt="EverSoul Offline" />
+</p>
 
-本项目提供了针对《永恒灵魂》(Eversoul) 客户端的本地 Kakao SDK / Infodesk 模拟服务，以及用于拦截和解析 Unity 网络请求的 C++ 注入包装器与离线数据服务端。
+<h1 align="center">Eversoul Offline</h1>
+<h3 align="center">永恒灵魂 离线服务端与注入工具</h3>
 
-- [English Documentation](README_en.md) | **中文文档** | [한국어 문서](README_kr.md)
+<p align="center">
+  本项目提供了针对《永恒灵魂》(Eversoul) 客户端的本地 Kakao SDK / Infodesk 模拟服务，以及用于拦截和解析 Unity 网络请求的 C++ 注入包装器与离线数据服务端。
+</p>
+
+<p align="center">
+  <a href="README_en.md">English</a> &nbsp;|&nbsp; <strong>中文</strong> &nbsp;|&nbsp; <a href="README_kr.md">한국어</a>
+</p>
 
 ---
 

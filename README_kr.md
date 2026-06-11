@@ -1,8 +1,17 @@
-# Eversoul Offline (오프라인 서버 및 인젝션 툴)
+<p align="center">
+  <img src="src/assets/logo.png" width="140" alt="EverSoul Offline" />
+</p>
 
-본 프로젝트는 《에버소울》(Eversoul) 클라이언트를 위한 로컬 Kakao SDK / Infodesk 모의 서버와, Unity 네트워크 요청을 가로채고 파싱하기 위한 C++ 인젝션 래퍼 및 오프라인 데이터 서버를 제공합니다.
+<h1 align="center">Eversoul Offline</h1>
+<h3 align="center">오프라인 서버 및 인젝션 툴</h3>
 
-- [영문 문서](README_en.md) | [中文文档](README.md) | **한국어 문서**
+<p align="center">
+  본 프로젝트는 《에버소울》(Eversoul) 클라이언트를 위한 로컬 Kakao SDK / Infodesk 모의 서버와, Unity 네트워크 요청을 가로채고 파싱하기 위한 C++ 인젝션 래퍼 및 오프라인 데이터 서버를 제공합니다.
+</p>
+
+<p align="center">
+  <a href="README_en.md">English</a> &nbsp;|&nbsp; <a href="README.md">中文</a> &nbsp;|&nbsp; <strong>한국어</strong>
+</p>
 
 ---
 

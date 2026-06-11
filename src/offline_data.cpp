@@ -132,7 +132,6 @@ namespace eversoul
         {
             dir_ = dir;
             source_ = dir;
-            // 统计一下条目数（responses + schema + wss）。
             std::size_t n = 0;
             for (const char *sub : {"responses", "schema", "wss"})
             {
@@ -145,6 +144,7 @@ namespace eversoul
                         ++n;
                 }
             }
+            dir_count_ = n;
             log_line(0, "OFFLINE_DATA", "using dir " + dir + " json=" + std::to_string(n));
             return n;
         }
