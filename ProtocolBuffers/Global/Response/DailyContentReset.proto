@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package EsPb;
+
+message DailyContentReset {
+  sDailyContent dailyContent = 1;
+}
+
+message sDailyContent {
+  int32 arenaCnt = 1;
+  int32 townCoin = 2;
+  int32 raceSno = 3;
+  int32 ahQuickCnt = 4;
+  int32 teamarenaCnt = 5;
+  int32 doubleGateNormalTicketBuyCount = 6;
+}
+

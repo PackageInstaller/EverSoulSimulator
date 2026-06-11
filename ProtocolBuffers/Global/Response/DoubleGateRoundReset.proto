@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package EsPb;
+
+message DoubleGateRoundReset {
+  sDoubleGateRecord record = 1;
+}
+
+message sDoubleGateRecord {
+  int32 roundType = 1;
+  repeated sDoubleGateHero heroInfo = 2;
+}
+
+message sDoubleGateHero {
+  string heroIdx = 1;
+  int32 heroNo = 2;
+  int32 level = 3;
+  int32 gradeSno = 4;
+}
+

@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package ReqPb;
+
+enum eDungeonReviveType {
+  ResurrectionPotion = 0;
+  EverStone = 1;
+}
+
+message DungeonRevive {
+  eDungeonReviveType type = 1;
+  int32 dungeonId = 2;
+}
+

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message BossRushDungeonClear {
+  int32 eventGroup = 1;
+  int32 eventNumber = 2;
+  int32 dungeonId = 3;
+}
+

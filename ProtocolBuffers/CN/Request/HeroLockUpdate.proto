@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message HeroLockUpdate {
+  string heroIdx = 1;
+  int32 isLock = 2;
+}
+

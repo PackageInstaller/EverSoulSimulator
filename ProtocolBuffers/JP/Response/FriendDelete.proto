@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package EsPb;
+
+message FriendDelete {
+  string friendDelete_ = 1;
+}
+

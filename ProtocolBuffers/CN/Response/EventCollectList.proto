@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package EsPb;
+
+message EventCollectList {
+  repeated sEvent event = 1;
+  repeated sEventResult eventResult = 2;
+}
+
+message sEvent {
+  int32 eventType = 1;
+  int32 group = 2;
+  int32 eventNumber = 3;
+  int32 behavior = 4;
+  int32 value = 5;
+  int32 no = 6;
+}
+
+message sEventResult {
+  int32 eventType = 1;
+  int32 group = 2;
+  int32 eventNumber = 3;
+  int32 subNo = 4;
+  int32 isReceive = 5;
+  int64 dt = 6;
+}
+

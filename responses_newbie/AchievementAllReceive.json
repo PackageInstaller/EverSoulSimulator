@@ -1,0 +1,289 @@
+{
+  "achievement": [
+    {
+      "behavior": 207,
+      "value": "5"
+    },
+    {
+      "behavior": 211,
+      "value": "75"
+    },
+    {
+      "behavior": 212,
+      "value": "12"
+    },
+    {
+      "behavior": 501,
+      "value": "3"
+    },
+    {
+      "behavior": 503,
+      "value": "4"
+    },
+    {
+      "behavior": 504,
+      "value": "3"
+    },
+    {
+      "behavior": 513,
+      "value": "3"
+    },
+    {
+      "behavior": 517,
+      "value": "3",
+      "lastReceivedNo": 7101
+    }
+  ],
+  "currency": {
+    "allCurrency": [
+      {
+        "type": "Gold",
+        "value": "14835"
+      },
+      {
+        "type": "FreeDia",
+        "value": "250"
+      },
+      {
+        "type": "ManaDust",
+        "value": "17180"
+      },
+      {
+        "type": "ManaCrystal",
+        "value": "100"
+      },
+      {
+        "type": "Exp",
+        "value": "333"
+      },
+      {
+        "type": "Heart"
+      },
+      {
+        "type": "LifeEssence"
+      },
+      {
+        "type": "ArenaTicket",
+        "value": "1"
+      },
+      {
+        "type": "Dungeon"
+      },
+      {
+        "type": "Guild"
+      },
+      {
+        "type": "Release"
+      },
+      {
+        "type": "Arena"
+      },
+      {
+        "type": "Relics"
+      },
+      {
+        "type": "Silver"
+      },
+      {
+        "type": "SingleRaidCoin"
+      },
+      {
+        "type": "PickupGachaTicket"
+      },
+      {
+        "type": "Sign1"
+      },
+      {
+        "type": "Sign2"
+      },
+      {
+        "type": "SignHuman"
+      },
+      {
+        "type": "SignFurry"
+      },
+      {
+        "type": "SignElf"
+      },
+      {
+        "type": "SignUndead"
+      },
+      {
+        "type": "SignAngel"
+      },
+      {
+        "type": "SignDemon"
+      },
+      {
+        "type": "NormalTicket",
+        "value": "1"
+      },
+      {
+        "type": "RaceTicket"
+      },
+      {
+        "type": "RareSoulstone",
+        "value": "65"
+      },
+      {
+        "type": "EpicSoulstone"
+      },
+      {
+        "type": "EquipExp"
+      },
+      {
+        "type": "CollaborationSummonTicket"
+      },
+      {
+        "type": "PayDia"
+      },
+      {
+        "type": "TeamarenaTicket"
+      },
+      {
+        "type": "SignatureGachaTicket"
+      },
+      {
+        "type": "PremiumGachaTicket"
+      },
+      {
+        "type": "MonthlyHeroResetTicket"
+      },
+      {
+        "type": "EquipExpMiddle"
+      },
+      {
+        "type": "EquipExpHigh"
+      },
+      {
+        "type": "ZodiacExp"
+      },
+      {
+        "type": "LabyrinthTicket"
+      },
+      {
+        "type": "TranscendentStone"
+      },
+      {
+        "type": "SingleRaidTicket"
+      },
+      {
+        "type": "SetItemEngrave"
+      },
+      {
+        "type": "RotationDungeonTicket"
+      },
+      {
+        "type": "EdenCoin"
+      },
+      {
+        "type": "TypeBarrierGateTicket"
+      },
+      {
+        "type": "OriginTowerTicket"
+      },
+      {
+        "type": "DoubleGateNormalTicket",
+        "value": "3"
+      },
+      {
+        "type": "DoubleGateNormalTicketCharge"
+      },
+      {
+        "type": "SignatureEnhanceStone"
+      },
+      {
+        "type": "HeroOptionChangeStone"
+      },
+      {
+        "type": "WishGachaTicket"
+      },
+      {
+        "type": "TotalDia",
+        "value": "250"
+      }
+    ]
+  },
+  "itemEtc": [
+    {
+      "itemNo": 6201,
+      "cnt": 1
+    },
+    {
+      "itemNo": 3001,
+      "cnt": 2
+    },
+    {
+      "itemNo": 3006,
+      "cnt": 1
+    },
+    {
+      "itemNo": 3011,
+      "cnt": 1
+    }
+  ],
+  "taskDaily": {
+    "days": 1,
+    "taskValue": [
+      {
+        "val": 3
+      },
+      {
+        "val": 1
+      },
+      {},
+      {},
+      {},
+      {},
+      {},
+      {
+        "val": 4
+      },
+      {
+        "val": 11
+      },
+      {},
+      {},
+      {},
+      {}
+    ],
+    "taskReceive": [
+      {
+        "val": 1
+      },
+      {
+        "val": 1
+      },
+      {},
+      {},
+      {}
+    ]
+  },
+  "taskWeekly": {
+    "weeks": 1,
+    "taskValue": [
+      {
+        "val": 1
+      },
+      {},
+      {},
+      {},
+      {},
+      {},
+      {
+        "val": 11
+      },
+      {},
+      {},
+      {}
+    ],
+    "taskReceive": [
+      {},
+      {},
+      {},
+      {},
+      {}
+    ]
+  },
+  "__format__": "proto"
+}

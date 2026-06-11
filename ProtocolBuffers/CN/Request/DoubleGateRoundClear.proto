@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package ReqPb;
+
+enum eDoubleGateRoundType {
+  First = 0;
+  Second = 1;
+}
+
+enum eDoubleGateFriendHeroType {
+  None = 0;
+  Friend = 1;
+}
+
+enum eDoubleGateStageType {
+  DoubleGateStageTypeNone = 0;
+  DoubleGateNormalManaCrystal = 1;
+  DoubleGateNormalGold = 2;
+  DoubleGateNormalManaDust = 3;
+  DoubleGateNormalEnhanceStone = 4;
+}
+
+message DoubleGateRoundClear {
+  eDoubleGateRoundType roundType = 1;
+  repeated sDoubleGateRecord record = 2;
+  eDoubleGateStageType stageType = 3;
+}
+
+message sDoubleGateRecord {
+  string heroIdx = 1;
+  int32 heroNo = 2;
+  int32 level = 3;
+  int32 gradeSno = 4;
+  eDoubleGateFriendHeroType type = 5;
+}
+

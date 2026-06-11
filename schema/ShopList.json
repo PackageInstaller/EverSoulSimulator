@@ -1,0 +1,83 @@
+{
+ "root": "ShopList",
+ "messages": {
+  "ShopList": {
+   "fields": [
+    {
+     "name": "shop",
+     "number": 1,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sShop",
+     "packed": false
+    },
+    {
+     "name": "shopItem",
+     "number": 2,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sShopItem",
+     "packed": false
+    }
+   ]
+  },
+  "sShop": {
+   "fields": [
+    {
+     "name": "shopNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "refreshAbleCnt",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "nextResetYyyymmdd",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sShopItem": {
+   "fields": [
+    {
+     "name": "no",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "shopNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "shopItemNo",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "buyCnt",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

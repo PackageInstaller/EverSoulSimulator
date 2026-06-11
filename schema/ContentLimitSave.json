@@ -1,0 +1,17 @@
+{
+ "root": "ContentLimitSave",
+ "messages": {
+  "ContentLimitSave": {
+   "fields": [
+    {
+     "name": "no",
+     "number": 1,
+     "repeated": true,
+     "type": "int32",
+     "packed": true
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

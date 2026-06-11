@@ -1,0 +1,78 @@
+{
+ "root": "DungeonShopOpen",
+ "messages": {
+  "DungeonShopOpen": {
+   "fields": [
+    {
+     "name": "dungeonShopItem",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sDungeonShopItem",
+     "packed": false
+    }
+   ]
+  },
+  "sDungeonShopItem": {
+   "fields": [
+    {
+     "name": "no",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "slotNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "itemNo",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "sellCnt",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "payItemNo",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "payAmount",
+     "number": 6,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "saleRate",
+     "number": 7,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "soldOut",
+     "number": 8,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

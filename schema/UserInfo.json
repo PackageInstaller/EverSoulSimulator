@@ -1,0 +1,2285 @@
+{
+ "root": "UserInfo",
+ "messages": {
+  "UserInfo": {
+   "fields": [
+    {
+     "name": "user",
+     "number": 1,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sUser",
+     "packed": false
+    },
+    {
+     "name": "currency",
+     "number": 2,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sCurrencyAll",
+     "packed": false
+    },
+    {
+     "name": "hero",
+     "number": 3,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sHero",
+     "packed": false
+    },
+    {
+     "name": "heroEquip",
+     "number": 4,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sHeroEquipAll",
+     "packed": false
+    },
+    {
+     "name": "stage",
+     "number": 5,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sStage",
+     "packed": false
+    },
+    {
+     "name": "zodiac",
+     "number": 6,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sZodiac",
+     "packed": false
+    },
+    {
+     "name": "formation",
+     "number": 7,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sFormation",
+     "packed": false
+    },
+    {
+     "name": "heroReputation",
+     "number": 8,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sHeroReputation",
+     "packed": false
+    },
+    {
+     "name": "autoHunt",
+     "number": 9,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sAutoHunt",
+     "packed": false
+    },
+    {
+     "name": "spiritTree",
+     "number": 10,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sSpiritTree",
+     "packed": false
+    },
+    {
+     "name": "building",
+     "number": 11,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sBuilding",
+     "packed": false
+    },
+    {
+     "name": "dailyContent",
+     "number": 12,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sDailyContent",
+     "packed": false
+    },
+    {
+     "name": "talk",
+     "number": 13,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sTalk",
+     "packed": false
+    },
+    {
+     "name": "tutorial",
+     "number": 14,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sTutorial",
+     "packed": false
+    },
+    {
+     "name": "story",
+     "number": 15,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sStory",
+     "packed": false
+    },
+    {
+     "name": "itemEquip",
+     "number": 17,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sItemEquip",
+     "packed": false
+    },
+    {
+     "name": "itemEtc",
+     "number": 18,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sItemEtc",
+     "packed": false
+    },
+    {
+     "name": "guild",
+     "number": 19,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sGuild",
+     "packed": false
+    },
+    {
+     "name": "guildMember",
+     "number": 20,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sGuildMember",
+     "packed": false
+    },
+    {
+     "name": "guildJoinRequest",
+     "number": 21,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sGuildJoinRequest",
+     "packed": false
+    },
+    {
+     "name": "doubleGate",
+     "number": 22,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sDoubleGate",
+     "packed": false
+    },
+    {
+     "name": "secureSeed",
+     "number": 23,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "lobbyBackground",
+     "number": 24,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sLobbyBackground",
+     "packed": false
+    },
+    {
+     "name": "dungeonList",
+     "number": 25,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sDungeonList",
+     "packed": false
+    },
+    {
+     "name": "bgm",
+     "number": 26,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sBGM",
+     "packed": false
+    },
+    {
+     "name": "buff",
+     "number": 27,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sContentBuff",
+     "packed": false
+    },
+    {
+     "name": "chatKey",
+     "number": 28,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "collectionNo",
+     "number": 29,
+     "repeated": true,
+     "type": "int32",
+     "packed": true
+    },
+    {
+     "name": "dungeonFirstRewardList",
+     "number": 30,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sDungeonFirstReward",
+     "packed": false
+    },
+    {
+     "name": "chatServerUrl",
+     "number": 31,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "sdHeroNo",
+     "number": 32,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "speed",
+     "number": 33,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "battleAutoActive",
+     "number": 34,
+     "repeated": false,
+     "type": "bool",
+     "packed": false
+    },
+    {
+     "name": "cashDailyN",
+     "number": 36,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sCashDailyN",
+     "packed": false
+    },
+    {
+     "name": "battleAutoUltimate",
+     "number": 37,
+     "repeated": false,
+     "type": "bool",
+     "packed": false
+    },
+    {
+     "name": "scalingLevel",
+     "number": 38,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "lastClearDungeonLevel",
+     "number": 39,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "townVisitHero",
+     "number": 40,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sTownVisitHero",
+     "packed": false
+    },
+    {
+     "name": "monthlyHeroResetFlag",
+     "number": 41,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "tutorialStory",
+     "number": 42,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sTutorialStory",
+     "packed": false
+    },
+    {
+     "name": "challengeMode",
+     "number": 43,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sChallengeMode",
+     "packed": false
+    },
+    {
+     "name": "arkCore",
+     "number": 44,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sArkCore",
+     "packed": false
+    },
+    {
+     "name": "actionActive",
+     "number": 45,
+     "repeated": false,
+     "type": "bool",
+     "packed": false
+    },
+    {
+     "name": "actionUltimate",
+     "number": 46,
+     "repeated": false,
+     "type": "bool",
+     "packed": false
+    },
+    {
+     "name": "contentLimitNo",
+     "number": 47,
+     "repeated": true,
+     "type": "int32",
+     "packed": true
+    },
+    {
+     "name": "arkOverClockLevel",
+     "number": 48,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "arkOperator",
+     "number": 49,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "doubleGateDailyContent",
+     "number": 50,
+     "repeated": true,
+     "type": "message",
+     "type_name": "DoubleGateDailyContent",
+     "packed": false
+    },
+    {
+     "name": "heroOption",
+     "number": 51,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sHeroOption",
+     "packed": false
+    },
+    {
+     "name": "arbeitOption",
+     "number": 52,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sArbeitOption",
+     "packed": false
+    }
+   ]
+  },
+  "sUser": {
+   "fields": [
+    {
+     "name": "idx",
+     "number": 1,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "nickName",
+     "number": 2,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "lastLoginDt",
+     "number": 3,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "channelNo",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "treeLevel",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "isLog",
+     "number": 6,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "about",
+     "number": 7,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "returnUserDt",
+     "number": 8,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "createdDt",
+     "number": 9,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "thumbnail",
+     "number": 10,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sThumbnail",
+     "packed": false
+    },
+    {
+     "name": "popularity",
+     "number": 11,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "isFirstCashBuy",
+     "number": 12,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "reviewFlag",
+     "number": 13,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "reviewDt",
+     "number": 14,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "equipFlag",
+     "number": 15,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "paymentAgreeDt",
+     "number": 16,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "paymentAgreeType",
+     "number": 17,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "firstTitle",
+     "number": 18,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "secondTitle",
+     "number": 19,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sThumbnail": {
+   "fields": [
+    {
+     "name": "thumbnailFrame",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "thumbnailImage",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "useCustom",
+     "number": 3,
+     "repeated": false,
+     "type": "bool",
+     "packed": false
+    },
+    {
+     "name": "thumbnail",
+     "number": 4,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    },
+    {
+     "name": "firstTitle",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "secondTitle",
+     "number": 6,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sCurrencyAll": {
+   "fields": [
+    {
+     "name": "allCurrency",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sCurrency",
+     "packed": false
+    }
+   ]
+  },
+  "sCurrency": {
+   "fields": [
+    {
+     "name": "type",
+     "number": 1,
+     "repeated": false,
+     "type": "enum",
+     "type_name": "E_CURRENCY",
+     "packed": false
+    },
+    {
+     "name": "value",
+     "number": 2,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    }
+   ]
+  },
+  "sHero": {
+   "fields": [
+    {
+     "name": "idx",
+     "number": 1,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "heroNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "level",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "isResonance",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "gradeSno",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "raceSno",
+     "number": 6,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "isLock",
+     "number": 7,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sHeroEquipAll": {
+   "fields": [
+    {
+     "name": "heroIdx",
+     "number": 1,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "equip",
+     "number": 2,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sSlotAndEquipId",
+     "packed": false
+    }
+   ]
+  },
+  "sSlotAndEquipId": {
+   "fields": [
+    {
+     "name": "slot",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "itemEquipId",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sStage": {
+   "fields": [
+    {
+     "name": "stageNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "stageType",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "updateDt",
+     "number": 3,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    }
+   ]
+  },
+  "sZodiac": {
+   "fields": [
+    {
+     "name": "zodiacNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sFormation": {
+   "fields": [
+    {
+     "name": "no",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "kind",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "heroidx",
+     "number": 3,
+     "repeated": true,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "formationType",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "formationName",
+     "number": 5,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "relic",
+     "number": 6,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sRelic",
+     "packed": false
+    }
+   ]
+  },
+  "sRelic": {
+   "fields": [
+    {
+     "name": "type",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "formation",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "relicOrder",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "relicNo",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sHeroReputation": {
+   "fields": [
+    {
+     "name": "heroNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "reputation",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "state",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "stress",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "lastUpdateDt",
+     "number": 5,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "giftDt",
+     "number": 6,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "costumeItemNo",
+     "number": 7,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "storyReward",
+     "number": 8,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "maxGradeSno",
+     "number": 9,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "objetUid",
+     "number": 10,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "maxLevelDt",
+     "number": 11,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "arbeitExp",
+     "number": 12,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "priority",
+     "number": 13,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "restFinishDt",
+     "number": 14,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "objetNo",
+     "number": 15,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    }
+   ]
+  },
+  "sAutoHunt": {
+   "fields": [
+    {
+     "name": "stageNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "labDt",
+     "number": 2,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "receiveDt",
+     "number": 3,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    }
+   ]
+  },
+  "sSpiritTree": {
+   "fields": [
+    {
+     "name": "slotNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "heroIdx",
+     "number": 2,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "enableDt",
+     "number": 3,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    }
+   ]
+  },
+  "sBuilding": {
+   "fields": [
+    {
+     "name": "buildingNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "slot",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "buildFinishDt",
+     "number": 3,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "isOpen",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "heroNo",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sDailyContent": {
+   "fields": [
+    {
+     "name": "arenaCnt",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "townCoin",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "raceSno",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "ahQuickCnt",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "teamarenaCnt",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "doubleGateNormalTicketBuyCount",
+     "number": 6,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sTalk": {
+   "fields": [
+    {
+     "name": "talkNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "heroNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "talkDt",
+     "number": 3,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    }
+   ]
+  },
+  "sTutorial": {
+   "fields": [
+    {
+     "name": "tutorialNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sStory": {
+   "fields": [
+    {
+     "name": "storyNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "updateDt",
+     "number": 2,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    }
+   ]
+  },
+  "sItemEquip": {
+   "fields": [
+    {
+     "name": "id",
+     "number": 1,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "itemNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "exp",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sItemEtc": {
+   "fields": [
+    {
+     "name": "itemNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "cnt",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sGuild": {
+   "fields": [
+    {
+     "name": "idx",
+     "number": 1,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "emblemNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "name",
+     "number": 3,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "exp",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "cnt",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "joinType",
+     "number": 6,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "limitLv",
+     "number": 7,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "notice",
+     "number": 8,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "dt",
+     "number": 9,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "regularRaidNo",
+     "number": 10,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "irregularRaidNo",
+     "number": 11,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "raidPoint",
+     "number": 12,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "useSkillPoint",
+     "number": 13,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "skillLevel",
+     "number": 14,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "customEmblem",
+     "number": 15,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    },
+    {
+     "name": "skillResetDt",
+     "number": 16,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "introduction",
+     "number": 17,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    }
+   ]
+  },
+  "sGuildMember": {
+   "fields": [
+    {
+     "name": "guildIdx",
+     "number": 1,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "userIdx",
+     "number": 2,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "channelNo",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "grade",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "dt",
+     "number": 5,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "contribution",
+     "number": 6,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "nickName",
+     "number": 7,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "lastLoginDt",
+     "number": 8,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "thumbnail",
+     "number": 9,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sThumbnail",
+     "packed": false
+    },
+    {
+     "name": "power",
+     "number": 10,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "level",
+     "number": 11,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "logoutDt",
+     "number": 12,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "weeklyContribution",
+     "number": 13,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sGuildJoinRequest": {
+   "fields": [
+    {
+     "name": "guildIdx",
+     "number": 1,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "userIdx",
+     "number": 2,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "level",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "nickName",
+     "number": 4,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "dt",
+     "number": 5,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "thumbnail",
+     "number": 6,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sThumbnail",
+     "packed": false
+    },
+    {
+     "name": "power",
+     "number": 7,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    }
+   ]
+  },
+  "sDoubleGate": {
+   "fields": [
+    {
+     "name": "stageType",
+     "number": 1,
+     "repeated": false,
+     "type": "enum",
+     "type_name": "eDoubleGateStageType",
+     "packed": false
+    },
+    {
+     "name": "difficulty",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "isEnter",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "sweepDifficulty",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "record",
+     "number": 5,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sDoubleGateRecord",
+     "packed": false
+    }
+   ]
+  },
+  "sDoubleGateRecord": {
+   "fields": [
+    {
+     "name": "roundType",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "heroInfo",
+     "number": 2,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sDoubleGateHero",
+     "packed": false
+    }
+   ]
+  },
+  "sDoubleGateHero": {
+   "fields": [
+    {
+     "name": "heroIdx",
+     "number": 1,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "heroNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "level",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "gradeSno",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sLobbyBackground": {
+   "fields": [
+    {
+     "name": "type",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "heroNo1",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "heroNo2",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "heroNo3",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "heroNo4",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "heroNo5",
+     "number": 6,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "backgroundId",
+     "number": 7,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "illustId",
+     "number": 8,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "angle1",
+     "number": 9,
+     "repeated": false,
+     "type": "float",
+     "packed": false
+    },
+    {
+     "name": "angle2",
+     "number": 10,
+     "repeated": false,
+     "type": "float",
+     "packed": false
+    },
+    {
+     "name": "angle3",
+     "number": 11,
+     "repeated": false,
+     "type": "float",
+     "packed": false
+    },
+    {
+     "name": "angle4",
+     "number": 12,
+     "repeated": false,
+     "type": "float",
+     "packed": false
+    },
+    {
+     "name": "angle5",
+     "number": 13,
+     "repeated": false,
+     "type": "float",
+     "packed": false
+    }
+   ]
+  },
+  "sDungeonList": {
+   "fields": [
+    {
+     "name": "dungeonReward",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sDungeonAndReward",
+     "packed": false
+    },
+    {
+     "name": "dungeonPerfectClearRecord",
+     "number": 2,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sDungeonPerfectClearRecord",
+     "packed": false
+    },
+    {
+     "name": "rotationDungeonNo",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "rotationDungeonExpireDt",
+     "number": 4,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "labyrinthExpireDt",
+     "number": 5,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "labyrinthClearCnt",
+     "number": 6,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "labyrinthTicketCnt",
+     "number": 7,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "rotationDungeonClearCnt",
+     "number": 8,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "rotationDungeonTicketCnt",
+     "number": 9,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sDungeonAndReward": {
+   "fields": [
+    {
+     "name": "dungeon",
+     "number": 1,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sDungeon",
+     "packed": false
+    },
+    {
+     "name": "dungeonReward",
+     "number": 2,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sDungeonReward",
+     "packed": false
+    }
+   ]
+  },
+  "sDungeon": {
+   "fields": [
+    {
+     "name": "id",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "dungeonNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "dungeonLevel",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "x",
+     "number": 4,
+     "repeated": false,
+     "type": "float",
+     "packed": false
+    },
+    {
+     "name": "z",
+     "number": 5,
+     "repeated": false,
+     "type": "float",
+     "packed": false
+    },
+    {
+     "name": "mapInfo",
+     "number": 6,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    },
+    {
+     "name": "conditionInfo",
+     "number": 7,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    },
+    {
+     "name": "heroInfo",
+     "number": 8,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    },
+    {
+     "name": "additionalInfo",
+     "number": 9,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    },
+    {
+     "name": "relicInfo",
+     "number": 10,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    },
+    {
+     "name": "isEnter",
+     "number": 11,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "isClear",
+     "number": 12,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "isFirstClear",
+     "number": 13,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "missionNo",
+     "number": 14,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "missionCnt",
+     "number": 15,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "seed",
+     "number": 16,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "dungeonItem",
+     "number": 17,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    },
+    {
+     "name": "difficulty",
+     "number": 18,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "ultimatePoint",
+     "number": 19,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "playerObjectId",
+     "number": 20,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "useTicket",
+     "number": 21,
+     "repeated": false,
+     "type": "bool",
+     "packed": false
+    },
+    {
+     "name": "maxClearLevel",
+     "number": 22,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "isSweep",
+     "number": 23,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "isPerfectClear",
+     "number": 24,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "isHiddenKeyNotAvailable",
+     "number": 25,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "randomGimmickSeed",
+     "number": 26,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sDungeonReward": {
+   "fields": [
+    {
+     "name": "type",
+     "number": 1,
+     "repeated": false,
+     "type": "enum",
+     "type_name": "eDungeonRewardType",
+     "packed": false
+    },
+    {
+     "name": "rewardNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sDungeonPerfectClearRecord": {
+   "fields": [
+    {
+     "name": "type",
+     "number": 1,
+     "repeated": false,
+     "type": "enum",
+     "type_name": "eDungeonMaxLevelType",
+     "packed": false
+    },
+    {
+     "name": "dungeonNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "dungeonLevel",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sBGM": {
+   "fields": [
+    {
+     "name": "lobbyBgm",
+     "number": 1,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    },
+    {
+     "name": "battleBgm",
+     "number": 2,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    }
+   ]
+  },
+  "sContentBuff": {
+   "fields": [
+    {
+     "name": "contentType",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "buffType",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "buffNo",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "value",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sDungeonFirstReward": {
+   "fields": [
+    {
+     "name": "rewardNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sCashDailyN": {
+   "fields": [
+    {
+     "name": "packageNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "rewardYyyymmdd",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "endYyyymmdd",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sTownVisitHero": {
+   "fields": [
+    {
+     "name": "heroNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "pickUpFlag",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sTutorialStory": {
+   "fields": [
+    {
+     "name": "storyNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sChallengeMode": {
+   "fields": [
+    {
+     "name": "clearStageNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "clearTaskNo",
+     "number": 2,
+     "repeated": true,
+     "type": "int32",
+     "packed": true
+    }
+   ]
+  },
+  "sArkCore": {
+   "fields": [
+    {
+     "name": "coreType01",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "coreType02",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "coreLevel",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "DoubleGateDailyContent": {
+   "fields": [
+    {
+     "name": "stageType",
+     "number": 1,
+     "repeated": false,
+     "type": "enum",
+     "type_name": "eDoubleGateStageType",
+     "packed": false
+    },
+    {
+     "name": "firstDoubleGateGroupNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "secondDoubleGateGroupNo",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "buffNo",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "debuffNo",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "globalDebuffNo",
+     "number": 6,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sHeroOption": {
+   "fields": [
+    {
+     "name": "heroNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "groupNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "optionSlot",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "optionNo",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "optionValue",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "optionType",
+     "number": 6,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "optionLock",
+     "number": 7,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sArbeitOption": {
+   "fields": [
+    {
+     "name": "option1",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "option2",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {
+  "E_CURRENCY": {
+   "None": 0,
+   "Gold": 1,
+   "FreeDia": 2,
+   "ManaDust": 3,
+   "ManaCrystal": 4,
+   "Exp": 5,
+   "Heart": 6,
+   "LifeEssence": 8,
+   "ArenaTicket": 9,
+   "Dungeon": 10,
+   "Guild": 11,
+   "Release": 12,
+   "Arena": 13,
+   "Relics": 14,
+   "Silver": 16,
+   "SingleRaidCoin": 18,
+   "PickupGachaTicket": 19,
+   "Sign1": 20,
+   "Sign2": 21,
+   "SignHuman": 22,
+   "SignFurry": 23,
+   "SignElf": 24,
+   "SignUndead": 25,
+   "SignAngel": 26,
+   "SignDemon": 27,
+   "NormalTicket": 28,
+   "RaceTicket": 29,
+   "RareSoulstone": 30,
+   "EpicSoulstone": 31,
+   "EquipExp": 32,
+   "CollaborationSummonTicket": 33,
+   "PayDia": 42,
+   "TeamarenaTicket": 44,
+   "SignatureGachaTicket": 45,
+   "PremiumGachaTicket": 46,
+   "MonthlyHeroResetTicket": 47,
+   "EquipExpMiddle": 48,
+   "EquipExpHigh": 49,
+   "ZodiacExp": 50,
+   "LabyrinthTicket": 51,
+   "TranscendentStone": 52,
+   "SingleRaidTicket": 53,
+   "SetItemEngrave": 54,
+   "RotationDungeonTicket": 55,
+   "EdenCoin": 57,
+   "TypeBarrierGateTicket": 58,
+   "OriginTowerTicket": 59,
+   "DoubleGateNormalTicket": 60,
+   "DoubleGateNormalTicketCharge": 62,
+   "SignatureEnhanceStone": 64,
+   "HeroOptionChangeStone": 65,
+   "WishGachaTicket": 66,
+   "TotalDia": 100
+  },
+  "eDoubleGateStageType": {
+   "DoubleGateStageTypeNone": 0,
+   "DoubleGateNormalManaCrystal": 1,
+   "DoubleGateNormalGold": 2,
+   "DoubleGateNormalManaDust": 3,
+   "DoubleGateNormalEnhanceStone": 4
+  },
+  "eDungeonRewardType": {
+   "NoneDungeonReward": 0,
+   "Mission": 1,
+   "Object": 2,
+   "Monster": 3,
+   "Chest": 4
+  },
+  "eDungeonMaxLevelType": {
+   "Weekly": 0,
+   "Training": 1
+  }
+ }
+}

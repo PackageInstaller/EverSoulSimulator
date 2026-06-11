@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package EsPb;
+
+message HeroEquipPresetList {
+  int32 presetSlot = 1;
+  string presetName = 2;
+  repeated sHeroEquipPresetHero presetHero = 3;
+}
+
+message sHeroEquipPresetHero {
+  string heroIdx = 1;
+  repeated sHeroEquipPresetItemSlot itemSlot = 2;
+}
+
+message sHeroEquipPresetItemSlot {
+  int32 slot = 1;
+  int32 itemEquipId = 2;
+}
+

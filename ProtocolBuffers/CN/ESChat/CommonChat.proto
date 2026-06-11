@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package EsChatPb;
+
+message CommonChat {
+  int32 channel = 1;
+  tUserInfo userInfo = 2;
+  string message = 3;
+  int64 dt = 4;
+}
+
+message tUserInfo {
+  string chatKey = 1;
+  string userIdx = 2;
+  string nickname = 3;
+  sThumbnail thumbnail = 4;
+  int64 guildGrade = 5;
+  sMuteInfo muteInfo = 6;
+}
+
+message sThumbnail {
+  int32 thumbnailFrame = 1;
+  int32 thumbnailImage = 2;
+  bool useCustom = 3;
+  bytes thumbnail = 4;
+}
+
+message sMuteInfo {
+  int32 operation = 1;
+  int64 until = 2;
+  bool isPermanent = 3;
+  string reason = 4;
+  string operator = 5;
+}
+

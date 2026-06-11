@@ -1,0 +1,233 @@
+{
+  "currency": {
+    "allCurrency": [
+      {
+        "type": "Gold",
+        "value": "2685656918"
+      },
+      {
+        "type": "FreeDia",
+        "value": "805"
+      },
+      {
+        "type": "ManaDust",
+        "value": "6029769765"
+      },
+      {
+        "type": "ManaCrystal",
+        "value": "48453"
+      },
+      {
+        "type": "Exp",
+        "value": "33693965"
+      },
+      {
+        "type": "Heart",
+        "value": "3666"
+      },
+      {
+        "type": "LifeEssence",
+        "value": "94329"
+      },
+      {
+        "type": "ArenaTicket",
+        "value": "42"
+      },
+      {
+        "type": "Dungeon",
+        "value": "17229"
+      },
+      {
+        "type": "Guild",
+        "value": "84640"
+      },
+      {
+        "type": "Release",
+        "value": "374350"
+      },
+      {
+        "type": "Arena",
+        "value": "872780"
+      },
+      {
+        "type": "Relics",
+        "value": "261870"
+      },
+      {
+        "type": "Silver",
+        "value": "27030"
+      },
+      {
+        "type": "SingleRaidCoin",
+        "value": "220635"
+      },
+      {
+        "type": "PickupGachaTicket"
+      },
+      {
+        "type": "Sign1",
+        "value": "19193"
+      },
+      {
+        "type": "Sign2",
+        "value": "4997"
+      },
+      {
+        "type": "SignHuman"
+      },
+      {
+        "type": "SignFurry"
+      },
+      {
+        "type": "SignElf"
+      },
+      {
+        "type": "SignUndead"
+      },
+      {
+        "type": "SignAngel"
+      },
+      {
+        "type": "SignDemon"
+      },
+      {
+        "type": "NormalTicket",
+        "value": "138"
+      },
+      {
+        "type": "RaceTicket"
+      },
+      {
+        "type": "RareSoulstone",
+        "value": "4529"
+      },
+      {
+        "type": "EpicSoulstone",
+        "value": "1272"
+      },
+      {
+        "type": "EquipExp",
+        "value": "3777"
+      },
+      {
+        "type": "CollaborationSummonTicket"
+      },
+      {
+        "type": "PayDia",
+        "value": "982"
+      },
+      {
+        "type": "TeamarenaTicket"
+      },
+      {
+        "type": "SignatureGachaTicket",
+        "value": "122"
+      },
+      {
+        "type": "PremiumGachaTicket",
+        "value": "4"
+      },
+      {
+        "type": "MonthlyHeroResetTicket",
+        "value": "1"
+      },
+      {
+        "type": "EquipExpMiddle",
+        "value": "197"
+      },
+      {
+        "type": "EquipExpHigh",
+        "value": "210"
+      },
+      {
+        "type": "ZodiacExp"
+      },
+      {
+        "type": "LabyrinthTicket"
+      },
+      {
+        "type": "TranscendentStone",
+        "value": "1511"
+      },
+      {
+        "type": "SingleRaidTicket"
+      },
+      {
+        "type": "SetItemEngrave"
+      },
+      {
+        "type": "RotationDungeonTicket"
+      },
+      {
+        "type": "EdenCoin",
+        "value": "6250"
+      },
+      {
+        "type": "TypeBarrierGateTicket"
+      },
+      {
+        "type": "OriginTowerTicket"
+      },
+      {
+        "type": "DoubleGateNormalTicket"
+      },
+      {
+        "type": "DoubleGateNormalTicketCharge"
+      },
+      {
+        "type": "SignatureEnhanceStone",
+        "value": "2840"
+      },
+      {
+        "type": "HeroOptionChangeStone",
+        "value": "31628"
+      },
+      {
+        "type": "WishGachaTicket",
+        "value": "40"
+      },
+      {
+        "type": "TotalDia",
+        "value": "1787"
+      }
+    ]
+  },
+  "itemEtc": [
+    {
+      "itemNo": 3001,
+      "cnt": 387
+    },
+    {
+      "itemNo": 3006,
+      "cnt": 329
+    }
+  ],
+  "dungeonReward": {
+    "dungeon": {
+      "id": 1102894,
+      "dungeonNo": 5009,
+      "x": 999.0,
+      "z": 999.0,
+      "isEnter": 1,
+      "isClear": 1,
+      "isFirstClear": 1,
+      "missionCnt": -1,
+      "difficulty": 1,
+      "isSweep": 1
+    },
+    "dungeonReward": [
+      {}
+    ]
+  },
+  "labyrinthInfo": {
+    "isPlaying": true,
+    "currentLabyrinthNo": 5009,
+    "maxClearFloor": 4,
+    "isClear": 1,
+    "isSweep": 1,
+    "maxLabyrinthNo": 5009,
+    "labyrinthClearCnt": 1,
+    "isLabyrinthOpen": true
+  },
+  "__format__": "proto"
+}

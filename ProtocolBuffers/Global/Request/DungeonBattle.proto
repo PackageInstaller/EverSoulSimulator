@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message DungeonBattle {
+  string friendHeroIdx = 1;
+  repeated string heroIdx = 2;
+  int32 stageNo = 3;
+  int32 stageType = 4;
+  repeated sRentalHero rentalHero = 5;
+  int32 monsterPowerSum = 6;
+}
+
+message sRentalHero {
+  int32 level = 1;
+  int32 heroNo = 2;
+  int32 gradeSno = 3;
+  int32 raceSno = 4;
+}
+

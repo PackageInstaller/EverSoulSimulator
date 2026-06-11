@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message ItemUse {
+  int32 itemNo = 1;
+  int32 useCount = 2;
+  string choiceBox = 3;
+  string choiceCount = 4;
+}
+

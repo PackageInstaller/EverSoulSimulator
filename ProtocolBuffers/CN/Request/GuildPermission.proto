@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message GuildPermission {
+  string tUserIdx = 1;
+  string guildIdx = 2;
+  int32 grade = 3;
+}
+

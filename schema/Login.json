@@ -1,0 +1,24 @@
+{
+ "root": "Login",
+ "messages": {
+  "Login": {
+   "fields": [
+    {
+     "name": "playerId",
+     "number": 1,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "type",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

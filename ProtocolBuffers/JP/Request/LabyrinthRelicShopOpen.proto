@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message LabyrinthRelicShopOpen {
+  int32 dungeonId = 1;
+  int32 uid = 2;
+  int32 allWeight = 3;
+  int32 hiddenWeight = 4;
+  int32 overrideSlot = 5;
+  repeated sLabyrinthRelicHidden labyrinthRelicHidden = 6;
+}
+
+message sLabyrinthRelicHidden {
+  int32 relicNo = 1;
+  int32 weight = 2;
+}
+

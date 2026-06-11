@@ -1,0 +1,217 @@
+{
+  "arenaFormation": [
+    {
+      "formationOrder": 1,
+      "formationType": 1,
+      "formationHero": [
+        {
+          "heroIdx": "1932682",
+          "heroOrder": 4
+        },
+        {
+          "heroIdx": "1932683",
+          "heroOrder": 1
+        },
+        {
+          "heroIdx": "1932684",
+          "heroOrder": 5
+        },
+        {
+          "heroIdx": "1932685",
+          "heroOrder": 3
+        },
+        {
+          "heroIdx": "1932686",
+          "heroOrder": 2
+        }
+      ]
+    }
+  ],
+  "buff": [
+    {
+      "contentType": 2,
+      "buffType": 2,
+      "buffNo": 182,
+      "value": 3100
+    },
+    {
+      "contentType": 2,
+      "buffType": 2,
+      "buffNo": 183,
+      "value": 3100
+    },
+    {
+      "contentType": 2,
+      "buffType": 2,
+      "buffNo": 184,
+      "value": 3100
+    },
+    {
+      "contentType": 2,
+      "buffType": 2,
+      "buffNo": 182,
+      "value": 1060
+    },
+    {
+      "contentType": 2,
+      "buffType": 2,
+      "buffNo": 183,
+      "value": 1060
+    },
+    {
+      "contentType": 2,
+      "buffType": 2,
+      "buffNo": 184,
+      "value": 1060
+    },
+    {
+      "contentType": 2,
+      "buffType": 2,
+      "buffNo": 182,
+      "value": 120
+    },
+    {
+      "contentType": 2,
+      "buffType": 2,
+      "buffNo": 183,
+      "value": 120
+    },
+    {
+      "contentType": 2,
+      "buffType": 2,
+      "buffNo": 184,
+      "value": 120
+    },
+    {
+      "contentType": 2,
+      "buffType": 2,
+      "buffNo": 236,
+      "value": 410
+    },
+    {
+      "contentType": 2,
+      "buffType": 2,
+      "buffNo": 237,
+      "value": 410
+    },
+    {
+      "contentType": 2,
+      "buffType": 2,
+      "buffNo": 238,
+      "value": 410
+    },
+    {
+      "contentType": 2,
+      "buffType": 2,
+      "buffNo": 239,
+      "value": 410
+    },
+    {
+      "contentType": 2,
+      "buffType": 2,
+      "buffNo": 236,
+      "value": 2110
+    },
+    {
+      "contentType": 2,
+      "buffType": 2,
+      "buffNo": 237,
+      "value": 2110
+    },
+    {
+      "contentType": 2,
+      "buffType": 2,
+      "buffNo": 238,
+      "value": 2110
+    },
+    {
+      "contentType": 2,
+      "buffType": 2,
+      "buffNo": 239,
+      "value": 2110
+    }
+  ],
+  "arenaFormationHeroInfo": [
+    {
+      "heroIdx": "1932682",
+      "originalHeroIdx": "0_111WhSEa_SGH",
+      "heroNo": 120,
+      "level": 1,
+      "gradeSno": 110015,
+      "power": 1337,
+      "raceSno": 110052
+    },
+    {
+      "heroIdx": "1932683",
+      "originalHeroIdx": "0_121WhSEa_Vzc",
+      "heroNo": 6540,
+      "level": 80,
+      "gradeSno": 110019,
+      "power": 18823,
+      "raceSno": 110058,
+      "slotAndEquipItem": [
+        {
+          "itemEquip": {
+            "id": "26156633",
+            "itemNo": 201,
+            "exp": 80
+          }
+        },
+        {
+          "slot": 1,
+          "itemEquip": {
+            "id": "26157569",
+            "itemNo": 466
+          }
+        },
+        {
+          "slot": 2,
+          "itemEquip": {
+            "id": "26157567",
+            "itemNo": 203
+          }
+        },
+        {
+          "slot": 3,
+          "itemEquip": {
+            "id": "26157568",
+            "itemNo": 204
+          }
+        }
+      ],
+      "signature": {
+        "itemNo": 6541,
+        "grade": 110015,
+        "level": 1
+      }
+    },
+    {
+      "heroIdx": "1932684",
+      "originalHeroIdx": "0_141WhSEa_TxI",
+      "heroNo": 3100,
+      "level": 1,
+      "gradeSno": 110015,
+      "power": 1337,
+      "raceSno": 110054
+    },
+    {
+      "heroIdx": "1932685",
+      "originalHeroIdx": "0_631WhSES_Rb8",
+      "heroNo": 410,
+      "level": 1,
+      "gradeSno": 110015,
+      "power": 1337,
+      "raceSno": 110055
+    },
+    {
+      "heroIdx": "1932686",
+      "originalHeroIdx": "0_641WhSES_WkH",
+      "heroNo": 2110,
+      "level": 1,
+      "gradeSno": 110015,
+      "power": 1657,
+      "raceSno": 110053
+    }
+  ],
+  "__format__": "proto"
+}

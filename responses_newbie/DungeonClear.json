@@ -1,0 +1,22 @@
+{
+  "dungeon": {
+    "id": 1406786,
+    "dungeonNo": 10001,
+    "x": -487.389,
+    "z": 55.0399,
+    "mapInfo": "LYpBDgAgDMKYsoj7/4Nliz00QEiSGU1+dNUUERg2Lec+1VkMQi5AWbPP7QE=",
+    "conditionInfo": "Y2LCARgB",
+    "heroInfo": "M4w3MzEMzwh2DY43NHdN1DHUMdCzNLUAkmYmNYbxhsZgycR4Q5NIf6CkoZ6BgQFQ0sQUTdIbrNPcAqzTAE3SByxpYWoKJA3RdfoiGYuh0w9J0sCgBgA=",
+    "additionalInfo": "q1ZyUbKqVjI0NzCE0kZKVgY6IIaxkpUhmGGiZGUMZpgqWZnU1uoouYGVhClZKRnqGSrpKDkCVdYCAA==",
+    "relicInfo": "MTAx",
+    "isEnter": 1,
+    "isClear": 1,
+    "isFirstClear": 1,
+    "missionNo": 200112,
+    "seed": 13457,
+    "difficulty": 1,
+    "ultimatePoint": 10000,
+    "playerObjectId": 1701
+  },
+  "__format__": "proto"
+}

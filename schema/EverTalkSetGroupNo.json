@@ -1,0 +1,31 @@
+{
+ "root": "EverTalkSetGroupNo",
+ "messages": {
+  "EverTalkSetGroupNo": {
+   "fields": [
+    {
+     "name": "heroNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "groupNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "recordedDt",
+     "number": 3,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

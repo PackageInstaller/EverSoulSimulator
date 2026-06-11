@@ -1,0 +1,86 @@
+{
+ "root": "GuildRaidRanking",
+ "messages": {
+  "GuildRaidRanking": {
+   "fields": [
+    {
+     "name": "guildRaidRankGroup",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sGuildRaidRankGroup",
+     "packed": false
+    },
+    {
+     "name": "myGuildRaidRankInfo",
+     "number": 2,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sGuildRaidRankGroup",
+     "packed": false
+    }
+   ]
+  },
+  "sGuildRaidRankGroup": {
+   "fields": [
+    {
+     "name": "guildIdx",
+     "number": 1,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "emblemNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "name",
+     "number": 3,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "rank",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "score",
+     "number": 5,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "scheduleId",
+     "number": 6,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "customEmblem",
+     "number": 7,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    },
+    {
+     "name": "isDelete",
+     "number": 8,
+     "repeated": false,
+     "type": "bool",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

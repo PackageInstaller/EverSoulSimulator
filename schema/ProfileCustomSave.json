@@ -1,0 +1,17 @@
+{
+ "root": "ProfileCustomSave",
+ "messages": {
+  "ProfileCustomSave": {
+   "fields": [
+    {
+     "name": "uid",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

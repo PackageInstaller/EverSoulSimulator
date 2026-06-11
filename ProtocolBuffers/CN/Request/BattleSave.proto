@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package ReqPb;
+
+enum eBattleBufferType {
+  UseUltimate = 0;
+  UseActive = 1;
+  AutoBattle = 2;
+  AutoUltimate = 3;
+  UltimatePriority = 4;
+}
+
+message BattleSave {
+  string userIdx = 1;
+  int32 stageNo = 2;
+  int32 formationKind = 3;
+  repeated string heroIdx = 4;
+  string friendHeroIdx = 5;
+  int32 skip = 6;
+  repeated eBattleSkillList skill = 7;
+  string clientVersion = 8;
+  string tableVersion = 9;
+  repeated int32 option = 10;
+  repeated int32 random = 11;
+  string log = 12;
+}
+
+message eBattleSkillList {
+  repeated sBattleSkill skill = 1;
+}
+
+message sBattleSkill {
+  string heroIdx = 1;
+  int64 frame = 2;
+  bool flag = 3;
+  eBattleBufferType battleBuffType = 4;
+  repeated sHeroActionPriority heroActionPriority = 5;
+}
+
+message sHeroActionPriority {
+  int32 heroNo = 1;
+  int32 priority = 2;
+}
+

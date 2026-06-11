@@ -1,0 +1,1368 @@
+{
+  "myRank": {
+    "userIdx": "2_e21PMpdN_mcP",
+    "nickName": "旅游的sensei",
+    "thumbnail": {
+      "thumbnailFrame": 5692,
+      "useCustom": true,
+      "thumbnail": "MSwxMTYsNTQ5LjcxMzYsLTc0LjA5ODAzLDAuNTUsMC41NSww",
+      "firstTitle": 6602,
+      "secondTitle": 6612
+    },
+    "rank": 1,
+    "maxLevel": 2000,
+    "totalBattleTime": "12"
+  },
+  "rankList": [
+    {
+      "userIdx": "2_e21PMpdN_mcP",
+      "nickName": "旅游的sensei",
+      "thumbnail": {
+        "thumbnailFrame": 5692,
+        "useCustom": true,
+        "thumbnail": "MSwxMTYsNTQ5LjcxMzYsLTc0LjA5ODAzLDAuNTUsMC41NSww",
+        "firstTitle": 6602,
+        "secondTitle": 6612
+      },
+      "rank": 1,
+      "maxLevel": 2000,
+      "totalBattleTime": "12"
+    },
+    {
+      "userIdx": "2_541PdeSx_mV5",
+      "nickName": "力口貝",
+      "thumbnail": {
+        "thumbnailFrame": 5719,
+        "useCustom": true,
+        "thumbnail": "MiwzMTEwNiwxOC4zMjkxOSwtNC4xODg0ODQsMC4yNjA0MzY4LDAuMjYwNDM2OCwzNTUuMzUyNQ==",
+        "firstTitle": 6444,
+        "secondTitle": 531101
+      },
+      "rank": 2,
+      "maxLevel": 2000,
+      "totalBattleTime": "12"
+    },
+    {
+      "userIdx": "1_e21PfYMc_3KOr",
+      "nickName": "ArataKaiba",
+      "thumbnail": {
+        "thumbnailFrame": 5686,
+        "useCustom": true,
+        "thumbnail": "MSwzMTEwNCw0ODcuNDU3NiwtNjQzLjI3NTYsMS4yODkyNjEsMS4yODkyNjEsMzQ5LjAxOTc=",
+        "firstTitle": 520101,
+        "secondTitle": 521601
+      },
+      "rank": 3,
+      "maxLevel": 2000,
+      "totalBattleTime": "13"
+    },
+    {
+      "userIdx": "0_231PdeSx_2tI",
+      "nickName": "AppIeple",
+      "thumbnail": {
+        "thumbnailFrame": 5700,
+        "useCustom": true,
+        "thumbnail": "MSwzMTIwNSwtMTQ2Ljk5NTQsLTcwLjc1MTk1LDAuMzcyMDc1LDAuMzcyMDc1LDAuMzQyNzIzNw==",
+        "firstTitle": 6701,
+        "secondTitle": 6705
+      },
+      "rank": 4,
+      "maxLevel": 2000,
+      "totalBattleTime": "13"
+    },
+    {
+      "userIdx": "0_621PUvsc_3Kq",
+      "nickName": "袱鈴",
+      "thumbnail": {
+        "thumbnailFrame": 5623,
+        "useCustom": true,
+        "thumbnail": "MywyMzI5LDI1MS45MjY0LC0xODIuMjMwMiwwLjg5NzMyNSwwLjg5NzMyNSwwLjI2NjkwNjU=",
+        "firstTitle": 540201,
+        "secondTitle": 541701
+      },
+      "rank": 5,
+      "maxLevel": 2000,
+      "totalBattleTime": "13"
+    },
+    {
+      "userIdx": "0_a41PdeSF_ajM",
+      "nickName": "Regina",
+      "thumbnail": {
+        "thumbnailFrame": 5723,
+        "useCustom": true,
+        "thumbnail": "Miw5MDgwMSwxLjg4NDg0MiwtNDAuMjA5OTYsMC4zMjkyOTIsMC4zMjkyOTIsMzU5Ljk3MDM=",
+        "firstTitle": 60002,
+        "secondTitle": 60003
+      },
+      "rank": 6,
+      "maxLevel": 2000,
+      "totalBattleTime": "14"
+    },
+    {
+      "userIdx": "1_341PdILo_1k5",
+      "nickName": "MeeK",
+      "thumbnail": {
+        "thumbnailFrame": 5694,
+        "useCustom": true,
+        "thumbnail": "MSw3OTMsMjEuMTk4OTQsLTQ0LjU0MjA1LDAuMzMwMDAwMiwwLjMzMDAwMDIsMA==",
+        "firstTitle": 6117,
+        "secondTitle": 6409
+      },
+      "rank": 7,
+      "maxLevel": 2000,
+      "totalBattleTime": "14"
+    },
+    {
+      "userIdx": "0_621QTgRr_chR",
+      "nickName": "杜子騰",
+      "thumbnail": {
+        "thumbnailFrame": 5703,
+        "useCustom": true,
+        "thumbnail": "MSw3OTEsLTI3Ni4xMjYzLC0zNjMuODQ2LDEuMDUxMDc5LDEuMDUxMDc5LDM1OS45MDU0",
+        "firstTitle": 550801,
+        "secondTitle": 565401
+      },
+      "rank": 8,
+      "maxLevel": 2000,
+      "totalBattleTime": "14"
+    },
+    {
+      "userIdx": "1_741QwqT1_4Qe",
+      "nickName": "LomiVeku",
+      "thumbnail": {
+        "thumbnailFrame": 5651,
+        "useCustom": true,
+        "thumbnail": "MSw2MDIwNiw1MTguNTA4OCwtMjI3LjI0MzUsMC42NzExNjM2LDAuNjcxMTYzNiwwLjA2NDQ4OTEx",
+        "firstTitle": 560201,
+        "secondTitle": 6439
+      },
+      "rank": 9,
+      "maxLevel": 2000,
+      "totalBattleTime": "14"
+    },
+    {
+      "userIdx": "2_241PMp77_uMo",
+      "nickName": "Friska",
+      "thumbnail": {
+        "thumbnailFrame": 5651,
+        "useCustom": true,
+        "thumbnail": "Miw0MDIwMSwyMy4zMTM0OCw0NTkuNTc1MiwxLjE5MjUwMywxLjE5MjUwMyw0LjY3Nzc1NQ==",
+        "firstTitle": 6815,
+        "secondTitle": 6809
+      },
+      "rank": 10,
+      "maxLevel": 2000,
+      "totalBattleTime": "16"
+    },
+    {
+      "userIdx": "2_121PdeSx_1pfu",
+      "nickName": "猫芙可可",
+      "thumbnail": {
+        "thumbnailFrame": 5633,
+        "useCustom": true,
+        "thumbnail": "MSwxMTQwNiw1Ny41MTk1MywtMTY5LjM1NDIsMC41NSwwLjU1LDA=",
+        "firstTitle": 565201,
+        "secondTitle": 6814
+      },
+      "rank": 11,
+      "maxLevel": 2000,
+      "totalBattleTime": "17"
+    },
+    {
+      "userIdx": "1_631PfYyI_2U5z",
+      "nickName": "FaQNovaFront",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MSw5MTcwMiwyODIuMzUyNywtMC41MTAyMjkxLDAuNTEwMDAwMSwwLjUxMDAwMDEsMA==",
+        "firstTitle": 569901,
+        "secondTitle": 569801
+      },
+      "rank": 12,
+      "maxLevel": 2000,
+      "totalBattleTime": "17"
+    },
+    {
+      "userIdx": "2_631PfYyI_2tB8",
+      "nickName": "Solarcore",
+      "thumbnail": {
+        "thumbnailFrame": 5719,
+        "useCustom": true,
+        "thumbnail": "MSw1MDYwMSwtNS4yNjMyMTQsLTEyMi43NDY5LDAuNTUsMC41NSww",
+        "firstTitle": 550601,
+        "secondTitle": 560701
+      },
+      "rank": 13,
+      "maxLevel": 2000,
+      "totalBattleTime": "17"
+    },
+    {
+      "userIdx": "2_521PdeSx_8IJ",
+      "nickName": "gigachad",
+      "thumbnail": {
+        "thumbnailFrame": 5701,
+        "useCustom": true,
+        "thumbnail": "MSwyMDkwNiwtNDUzLjY5MTcsLTEyMy45MTE4LDAuNTUsMC41NSwzNTYuMTA1NQ==",
+        "firstTitle": 510401,
+        "secondTitle": 6807
+      },
+      "rank": 14,
+      "maxLevel": 2000,
+      "totalBattleTime": "17"
+    },
+    {
+      "userIdx": "1_b11PdeSE_Bo",
+      "nickName": "Khalis",
+      "thumbnail": {
+        "thumbnailFrame": 5672,
+        "useCustom": true,
+        "thumbnail": "MSwxNjEsNjQyLjE4NzQsMTA0LjY4NzUsMC42MDU2Njc3LDAuNjA1NjY3NywxLjI1OTU1MQ==",
+        "firstTitle": 6809,
+        "secondTitle": 6807
+      },
+      "rank": 15,
+      "maxLevel": 2000,
+      "totalBattleTime": "17"
+    },
+    {
+      "userIdx": "1_b31PdeSE_1Mp",
+      "nickName": "DULA",
+      "thumbnail": {
+        "thumbnailFrame": 5656,
+        "useCustom": true,
+        "thumbnail": "MSwzMTAwMSwtMzExLjgzMTEsNjAuMjgwMzksMC43NTUzNTg0LDAuNzU1MzU4NCwwLjgxMDkzNA=="
+      },
+      "rank": 16,
+      "maxLevel": 2000,
+      "totalBattleTime": "17"
+    },
+    {
+      "userIdx": "2_911PdeSE_1fRm",
+      "nickName": "Apollo",
+      "thumbnail": {
+        "thumbnailFrame": 5653,
+        "thumbnailImage": 35080,
+        "firstTitle": 6822,
+        "secondTitle": 6819
+      },
+      "rank": 17,
+      "maxLevel": 2000,
+      "totalBattleTime": "18"
+    },
+    {
+      "userIdx": "2_911PdILv_1Vzi",
+      "nickName": "Csquallz",
+      "thumbnail": {
+        "thumbnailFrame": 5656,
+        "thumbnailImage": 30001
+      },
+      "rank": 18,
+      "maxLevel": 2000,
+      "totalBattleTime": "18"
+    },
+    {
+      "userIdx": "1_521PfYyH_3amk",
+      "nickName": "Hextor",
+      "thumbnail": {
+        "thumbnailFrame": 5700,
+        "useCustom": true,
+        "thumbnail": "MywyMjgxLDEyLjc2NDgyLC0yNDUuNzk5NywwLjUwMTE5MjUsMC41MDExOTI1LDM1OC43OTA5",
+        "firstTitle": 550801,
+        "secondTitle": 565401
+      },
+      "rank": 19,
+      "maxLevel": 2000,
+      "totalBattleTime": "19"
+    },
+    {
+      "userIdx": "2_841PdeSE_asj",
+      "nickName": "Pazumin",
+      "thumbnail": {
+        "thumbnailFrame": 5707,
+        "useCustom": true,
+        "thumbnail": "MSwxMDgwMSwzMTksLTEyNS4wMDAxLDAuNTUsMC41NSww",
+        "firstTitle": 6816,
+        "secondTitle": 6808
+      },
+      "rank": 20,
+      "maxLevel": 2000,
+      "totalBattleTime": "19"
+    },
+    {
+      "userIdx": "0_331PAymE_euH",
+      "nickName": "細水長流",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "thumbnailImage": 31010,
+        "firstTitle": 6705,
+        "secondTitle": 6706
+      },
+      "rank": 21,
+      "maxLevel": 2000,
+      "totalBattleTime": "20"
+    },
+    {
+      "userIdx": "1_c21PdeSF_Xb",
+      "nickName": "Ku",
+      "thumbnail": {
+        "thumbnailFrame": 5661,
+        "useCustom": true,
+        "thumbnail": "MSwyMDEwMiwyMjUuNzk1NiwxNjEuNDYxMiwwLjU1LDAuNTUsMA==",
+        "firstTitle": 565401,
+        "secondTitle": 550801
+      },
+      "rank": 22,
+      "maxLevel": 2000,
+      "totalBattleTime": "20"
+    },
+    {
+      "userIdx": "2_611PfYyI_4nBo",
+      "nickName": "好耶",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MywyNDE1LDE0Mi4yNzQ4LC01NTQuNjUxMiwxLjI1NjEyOSwxLjI1NjEyOSw1LjgzNzMxMQ==",
+        "firstTitle": 6822,
+        "secondTitle": 6816
+      },
+      "rank": 23,
+      "maxLevel": 2000,
+      "totalBattleTime": "20"
+    },
+    {
+      "userIdx": "0_321PdeSx_1DFz",
+      "nickName": "GENKI2INC",
+      "thumbnail": {
+        "thumbnailFrame": 5653,
+        "useCustom": true,
+        "thumbnail": "MSwxMDcwMiw5LjIxMzg2Nyw0LjYxNDI4OCwwLjM5MDE2OTMsMC4zOTAxNjkzLDMyNC40MDUx",
+        "firstTitle": 510701,
+        "secondTitle": 510601
+      },
+      "rank": 24,
+      "maxLevel": 2000,
+      "totalBattleTime": "20"
+    },
+    {
+      "userIdx": "2_721RApP2_hDr",
+      "nickName": "光鴉",
+      "thumbnail": {
+        "thumbnailFrame": 5704,
+        "thumbnailImage": 33050,
+        "thumbnail": "MSw1MTEsMTY4Ljc1NTYsLTEyNi4zMTA0LDAuNDk3NDUwNywwLjQ5NzQ1MDcsMC40MjUxMjkx"
+      },
+      "rank": 25,
+      "maxLevel": 2000,
+      "totalBattleTime": "21"
+    },
+    {
+      "userIdx": "1_921QjLoV_RJ",
+      "nickName": "龍依",
+      "thumbnail": {
+        "thumbnailFrame": 5723,
+        "thumbnailImage": 32160,
+        "firstTitle": 6705,
+        "secondTitle": 60007
+      },
+      "rank": 26,
+      "maxLevel": 2000,
+      "totalBattleTime": "24"
+    },
+    {
+      "userIdx": "0_521Roagi_gJI",
+      "nickName": "心拍",
+      "thumbnail": {
+        "thumbnailFrame": 5632,
+        "useCustom": true,
+        "thumbnail": "MSwyMDgwMiwyODQuNzkwNCwtMTI4Ljg5NjgsMC40Nzk1MzA1LDAuNDc5NTMwNSwzNTkuOTM3NQ==",
+        "firstTitle": 60007,
+        "secondTitle": 60005
+      },
+      "rank": 27,
+      "maxLevel": 2000,
+      "totalBattleTime": "27"
+    },
+    {
+      "userIdx": "0_211PdILo_2Emz",
+      "nickName": "Sitlove",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MSw5MjUwMiwtMzI3LjA5MjMsLTI2NC40MTg3LDAuNzUyMjEyNiwwLjc1MjIxMjYsMzU5LjY0MjY=",
+        "firstTitle": 550801,
+        "secondTitle": 6706
+      },
+      "rank": 28,
+      "maxLevel": 1900,
+      "totalBattleTime": "24"
+    },
+    {
+      "userIdx": "1_a41PfLpr_cRn",
+      "nickName": "JoshuaKei",
+      "thumbnail": {
+        "thumbnailFrame": 5700,
+        "useCustom": true,
+        "thumbnail": "MSw5MDEwMywtMzAuODMzMzQsMTAwLjgzMzMsMC41NSwwLjU1LDA=",
+        "firstTitle": 6804,
+        "secondTitle": 6803
+      },
+      "rank": 29,
+      "maxLevel": 1800,
+      "totalBattleTime": "21"
+    },
+    {
+      "userIdx": "0_411PZrVd_1FT",
+      "nickName": "Mormore",
+      "thumbnail": {
+        "thumbnailFrame": 5501,
+        "thumbnailImage": 30001
+      },
+      "rank": 30,
+      "maxLevel": 1800,
+      "totalBattleTime": "24"
+    },
+    {
+      "userIdx": "2_531QYlvG_adW",
+      "nickName": "米垛",
+      "thumbnail": {
+        "thumbnailFrame": 5700,
+        "thumbnailImage": 36050,
+        "firstTitle": 60006,
+        "secondTitle": 60007
+      },
+      "rank": 31,
+      "maxLevel": 1800,
+      "totalBattleTime": "24"
+    },
+    {
+      "userIdx": "0_111PHKfl_553",
+      "nickName": "不好看",
+      "thumbnail": {
+        "thumbnailFrame": 5503,
+        "thumbnailImage": 35020
+      },
+      "rank": 32,
+      "maxLevel": 1800,
+      "totalBattleTime": "24"
+    },
+    {
+      "userIdx": "2_a21PdeSF_jOU",
+      "nickName": "raitoryuulk",
+      "thumbnail": {
+        "thumbnailFrame": 5643,
+        "useCustom": true,
+        "thumbnail": "MCw2MDMwLDY4LjU3OTI1LC0xOTkuMDY4OCwxLDEsMA==",
+        "firstTitle": 6701,
+        "secondTitle": 6705
+      },
+      "rank": 33,
+      "maxLevel": 1800,
+      "totalBattleTime": "25"
+    },
+    {
+      "userIdx": "2_621RI22o_65C",
+      "nickName": "長鰭蓑鮋",
+      "thumbnail": {
+        "thumbnailFrame": 5623,
+        "useCustom": true,
+        "thumbnail": "MiwxMDIwMywtMy44MDg2MjQsLTE0Ni41NTc2LDAuNTI2OTc2MiwwLjUyNjk3NjIsMzU5Ljg1NQ==",
+        "firstTitle": 6822,
+        "secondTitle": 6813
+      },
+      "rank": 34,
+      "maxLevel": 1700,
+      "totalBattleTime": "20"
+    },
+    {
+      "userIdx": "0_f31PdILw_9AQ",
+      "nickName": "菸菸",
+      "thumbnail": {
+        "thumbnailFrame": 5723,
+        "useCustom": true,
+        "thumbnail": "MSwzMDQwMywtODcuMzQ4ODMsLTUxLjAyNjcxLDAuMzE3NjAyMSwwLjMxNzYwMjEsMC42MzMxMDE2",
+        "firstTitle": 60001,
+        "secondTitle": 60005
+      },
+      "rank": 35,
+      "maxLevel": 1700,
+      "totalBattleTime": "25"
+    },
+    {
+      "userIdx": "0_d21PdeSF_WpF",
+      "nickName": "NoMercy",
+      "thumbnail": {
+        "thumbnailFrame": 5711,
+        "useCustom": true,
+        "thumbnail": "MiwxMDkwMiwtMTE0LjcwODYsLTgxLjk1ODAxLDAuMzg5NTU1MSwwLjM4OTU1NTEsMzU5Ljc3OTQ=",
+        "firstTitle": 6439,
+        "secondTitle": 6803
+      },
+      "rank": 36,
+      "maxLevel": 1700,
+      "totalBattleTime": "32"
+    },
+    {
+      "userIdx": "1_011PdeSx_1D86",
+      "nickName": "無語",
+      "thumbnail": {
+        "thumbnailFrame": 5632,
+        "useCustom": true,
+        "thumbnail": "MiwyMTYwMSwyOS4wNDA1MywtODEuNzM4MjgsMC4zOTM2MzcxLDAuMzkzNjM3MSwxLjEzNDk4NA==",
+        "firstTitle": 6807,
+        "secondTitle": 6812
+      },
+      "rank": 37,
+      "maxLevel": 1660,
+      "totalBattleTime": "24"
+    },
+    {
+      "userIdx": "2_731PdeSx_Bsj",
+      "nickName": "Rv",
+      "thumbnail": {
+        "thumbnailFrame": 5633,
+        "useCustom": true,
+        "thumbnail": "MSwxMDEwMywzNjAsMzQuNzk5ODksMC4zOTM0MzgzLDAuMzkzNDM4MywxLjI2MDYzMg==",
+        "firstTitle": 6705,
+        "secondTitle": 6706
+      },
+      "rank": 38,
+      "maxLevel": 1651,
+      "totalBattleTime": "20"
+    },
+    {
+      "userIdx": "2_041PdeSx_HV",
+      "nickName": "沖田總司",
+      "thumbnail": {
+        "thumbnailFrame": 5695,
+        "thumbnailImage": 36510,
+        "thumbnail": "MCw2MDEwLDEuODc1MDQ2LC00MDguNzUsMSwxLDA=",
+        "firstTitle": 6807,
+        "secondTitle": 6705
+      },
+      "rank": 39,
+      "maxLevel": 1643,
+      "totalBattleTime": "15"
+    },
+    {
+      "userIdx": "2_711QtYZx_4vQ",
+      "nickName": "FEI",
+      "thumbnail": {
+        "thumbnailFrame": 5505,
+        "useCustom": true,
+        "thumbnail": "MSwyMDEwNiw3NzcuMTMwMiwtMTEuMjg1MjgsMC45MjIwNjM1LDAuOTIyMDYzNSwxLjcwMTY2MQ==",
+        "firstTitle": 550301,
+        "secondTitle": 6814
+      },
+      "rank": 40,
+      "maxLevel": 1601,
+      "totalBattleTime": "14"
+    },
+    {
+      "userIdx": "2_731PdeSx_5dB",
+      "nickName": "RonanBYE",
+      "thumbnail": {
+        "thumbnailFrame": 5623,
+        "useCustom": true,
+        "thumbnail": "MywyMjgxLC0yLjEwMTgyMiwtMTMxLjA3NDcsMC4yNzU2NTYsMC4yNzU2NTYsMzUyLjkxMzI=",
+        "firstTitle": 6807,
+        "secondTitle": 6812
+      },
+      "rank": 41,
+      "maxLevel": 1601,
+      "totalBattleTime": "18"
+    },
+    {
+      "userIdx": "0_b11PdeSE_oZ",
+      "nickName": "維尼吃包子",
+      "thumbnail": {
+        "thumbnailFrame": 5653,
+        "thumbnailImage": 30001,
+        "firstTitle": 565301,
+        "secondTitle": 6804
+      },
+      "rank": 42,
+      "maxLevel": 1601,
+      "totalBattleTime": "26"
+    },
+    {
+      "userIdx": "2_441UKjw4_dvG",
+      "nickName": "黑鳥",
+      "thumbnail": {
+        "thumbnailFrame": 5655,
+        "thumbnailImage": 30010,
+        "firstTitle": 6814,
+        "secondTitle": 6822
+      },
+      "rank": 43,
+      "maxLevel": 1601,
+      "totalBattleTime": "28"
+    },
+    {
+      "userIdx": "1_141PdILo_48fU",
+      "nickName": "Darren",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MiwxMTMwMSwzMjkuMTk4MSwtMjQ4LjQ2MTQsMC43NDA0MzE1LDAuNzQwNDMxNSwwLjU3Nzk5Mzg=",
+        "firstTitle": 6701,
+        "secondTitle": 6706
+      },
+      "rank": 44,
+      "maxLevel": 1600,
+      "totalBattleTime": "15"
+    },
+    {
+      "userIdx": "1_e41QBxmF_PC",
+      "nickName": "Lecia",
+      "thumbnail": {
+        "thumbnailFrame": 5711,
+        "useCustom": true,
+        "thumbnail": "MSw0MTcwMywtOC4zOTIyNzMsLTEwOS4xNjAzLDAuNDc0NDc3OSwwLjQ3NDQ3NzksMC45MDkzNTcz",
+        "firstTitle": 6822,
+        "secondTitle": 6831
+      },
+      "rank": 45,
+      "maxLevel": 1600,
+      "totalBattleTime": "25"
+    },
+    {
+      "userIdx": "2_e31Ptddj_TV",
+      "nickName": "海格爾",
+      "thumbnail": {
+        "thumbnailFrame": 5696,
+        "useCustom": true,
+        "thumbnail": "Miw4NDEsMjIuNDE4NCwtMTI0LjA2NTQsMC43MzI4ODQsMC43MzI4ODQsMzU5LjkzNjE=",
+        "firstTitle": 6429,
+        "secondTitle": 6424
+      },
+      "rank": 46,
+      "maxLevel": 1600,
+      "totalBattleTime": "30"
+    },
+    {
+      "userIdx": "2_631RZUIQ_fEA",
+      "nickName": "ZhiYao",
+      "thumbnail": {
+        "thumbnailFrame": 5701,
+        "useCustom": true,
+        "thumbnail": "Miw2MTIsMjEuNjY2OSwtMzAxLjY2NjcsMSwxLDA=",
+        "firstTitle": 6830,
+        "secondTitle": 6804
+      },
+      "rank": 47,
+      "maxLevel": 1505,
+      "totalBattleTime": "19"
+    },
+    {
+      "userIdx": "1_a41PfLpr_79v",
+      "nickName": "kelly",
+      "thumbnail": {
+        "thumbnailFrame": 5613,
+        "thumbnailImage": 36510,
+        "firstTitle": 6147,
+        "secondTitle": 6157
+      },
+      "rank": 48,
+      "maxLevel": 1502,
+      "totalBattleTime": "23"
+    },
+    {
+      "userIdx": "0_711Roabb_4zE",
+      "nickName": "輝煌時代",
+      "thumbnail": {
+        "thumbnailFrame": 5723,
+        "useCustom": true,
+        "thumbnail": "Miw1MDMwMiwxMjAuOTUyMSwtNjIuNDIzOTgsMC4zNzY5MjM2LDAuMzc2OTIzNiwzNTkuNjM5MQ==",
+        "firstTitle": 565201,
+        "secondTitle": 565301
+      },
+      "rank": 49,
+      "maxLevel": 1501,
+      "totalBattleTime": "21"
+    },
+    {
+      "userIdx": "1_131QOcgc_n6",
+      "nickName": "阿維",
+      "thumbnail": {
+        "thumbnailFrame": 5603,
+        "thumbnailImage": 36010,
+        "thumbnail": "MSw5MTAwMSwtMTA2LjI5MTEsLTE4MC43Njg0LDAuNTUsMC41NSww",
+        "firstTitle": 6705,
+        "secondTitle": 6701
+      },
+      "rank": 50,
+      "maxLevel": 1501,
+      "totalBattleTime": "23"
+    },
+    {
+      "userIdx": "0_241QyY0m_351",
+      "nickName": "艾莉希雅",
+      "thumbnail": {
+        "thumbnailFrame": 5700,
+        "useCustom": true,
+        "thumbnail": "MSw0MTUwNiwtMzQuOTgyMTEsLTkyLjgzMDM5LDAuNDEwMDAwMSwwLjQxMDAwMDEsMA==",
+        "firstTitle": 6701,
+        "secondTitle": 6705
+      },
+      "rank": 51,
+      "maxLevel": 1500,
+      "totalBattleTime": "16"
+    },
+    {
+      "userIdx": "2_d31PdILw_433J",
+      "nickName": "Elfen一玩到關服",
+      "thumbnail": {
+        "thumbnailFrame": 5678,
+        "useCustom": true,
+        "thumbnail": "MSw1MDgwMSwwLjcwMDU2MTUsLTg0LjgxMzE5LDAuMjU3NTc3NSwwLjI1NzU3NzUsMjY5LjE5NjU=",
+        "firstTitle": 6706,
+        "secondTitle": 60003
+      },
+      "rank": 52,
+      "maxLevel": 1500,
+      "totalBattleTime": "19"
+    },
+    {
+      "userIdx": "2_621Spj8n_7gY",
+      "nickName": "微光",
+      "thumbnail": {
+        "thumbnailFrame": 5701,
+        "thumbnailImage": 36530
+      },
+      "rank": 53,
+      "maxLevel": 1500,
+      "totalBattleTime": "20"
+    },
+    {
+      "userIdx": "2_811QyY0s_2ZF",
+      "nickName": "wenAmin",
+      "thumbnail": {
+        "thumbnailFrame": 5704,
+        "thumbnailImage": 30001,
+        "firstTitle": 6804,
+        "secondTitle": 6807
+      },
+      "rank": 54,
+      "maxLevel": 1500,
+      "totalBattleTime": "22"
+    },
+    {
+      "userIdx": "1_441PdeSx_1GzS",
+      "nickName": "結月",
+      "thumbnail": {
+        "thumbnailFrame": 5693,
+        "useCustom": true,
+        "thumbnail": "MSwxMDkwMSwtNjIuNDc1NTksLTEzMy4wMzI5LDAuNTUsMC41NSww",
+        "firstTitle": 60005,
+        "secondTitle": 60004
+      },
+      "rank": 55,
+      "maxLevel": 1500,
+      "totalBattleTime": "22"
+    },
+    {
+      "userIdx": "0_e31PdeSE_58f",
+      "nickName": "Xtactic",
+      "thumbnail": {
+        "thumbnailFrame": 5507,
+        "useCustom": true,
+        "thumbnail": "MSwzMTQwMywtMTEzLjIzMjMsLTE0MS4xNDkxLDAuNzM1NTkwOCwwLjczNTU5MDgsMC4wODAyMDA2NA==",
+        "firstTitle": 520101,
+        "secondTitle": 521601
+      },
+      "rank": 56,
+      "maxLevel": 1500,
+      "totalBattleTime": "25"
+    },
+    {
+      "userIdx": "2_121PdeSx_Dqo",
+      "nickName": "poko",
+      "thumbnail": {
+        "thumbnailFrame": 5613,
+        "useCustom": true,
+        "thumbnail": "MywyMjg2LDQ2Ny4zNzUyLDI3My40Mzc1LDEsMSww",
+        "firstTitle": 60001,
+        "secondTitle": 60002
+      },
+      "rank": 57,
+      "maxLevel": 1450,
+      "totalBattleTime": "39"
+    },
+    {
+      "userIdx": "1_521PdeSx_bMx",
+      "nickName": "屮屮屮",
+      "thumbnail": {
+        "thumbnailFrame": 5623,
+        "thumbnailImage": 31080,
+        "thumbnail": "MCwxMTIwLC0zNy40OTk5NywyMDQuMTY2NywwLjk3MTEzNzIsMC45NzExMzcyLDAuNTQwNDczNg=="
+      },
+      "rank": 58,
+      "maxLevel": 1401,
+      "totalBattleTime": "23"
+    },
+    {
+      "userIdx": "0_f11PdeSF_yDo",
+      "nickName": "Elijah",
+      "thumbnail": {
+        "thumbnailFrame": 5689,
+        "thumbnailImage": 30001,
+        "firstTitle": 6429,
+        "secondTitle": 6439
+      },
+      "rank": 59,
+      "maxLevel": 1401,
+      "totalBattleTime": "23"
+    },
+    {
+      "userIdx": "0_241SJAzZ_dpr",
+      "nickName": "我想吃雞排",
+      "thumbnail": {
+        "thumbnailFrame": 5651,
+        "useCustom": true,
+        "thumbnail": "MSw1MDYwNiwtNjUuNTk5MzYsMS4yMTUxNzIsMC4yNTAwMDAzLDAuMjUwMDAwMyww",
+        "firstTitle": 550601,
+        "secondTitle": 560501
+      },
+      "rank": 60,
+      "maxLevel": 1400,
+      "totalBattleTime": "14"
+    },
+    {
+      "userIdx": "1_211SZ7DR_n38",
+      "nickName": "Synchro",
+      "thumbnail": {
+        "thumbnailFrame": 5701,
+        "thumbnailImage": 34050
+      },
+      "rank": 61,
+      "maxLevel": 1400,
+      "totalBattleTime": "15"
+    },
+    {
+      "userIdx": "2_741PdeSx_8p9",
+      "nickName": "Mccg",
+      "thumbnail": {
+        "thumbnailFrame": 5704,
+        "useCustom": true,
+        "thumbnail": "MSw5MDAwMSwtMTU5LjY3NTgsNDM0LjQwNDcsMS43NzI3OTksMS43NzI3OTksMzE1Ljk1NTc=",
+        "firstTitle": 510101,
+        "secondTitle": 565301
+      },
+      "rank": 62,
+      "maxLevel": 1400,
+      "totalBattleTime": "20"
+    },
+    {
+      "userIdx": "1_011PdeSx_9DU",
+      "nickName": "NongYujin",
+      "thumbnail": {
+        "thumbnailFrame": 5696,
+        "useCustom": true,
+        "thumbnail": "MSwzMDYwNCw1MS42NjY4NywtNjIuNDk5OTQsMC4zNTUxMTE3LDAuMzU1MTExNywzNTkuMDI4",
+        "firstTitle": 6812,
+        "secondTitle": 6808
+      },
+      "rank": 63,
+      "maxLevel": 1400,
+      "totalBattleTime": "21"
+    },
+    {
+      "userIdx": "1_131WhSEa_G55",
+      "nickName": "Leviathann",
+      "thumbnail": {
+        "thumbnailFrame": 5501,
+        "thumbnailImage": 36540
+      },
+      "rank": 64,
+      "maxLevel": 1400,
+      "totalBattleTime": "29"
+    },
+    {
+      "userIdx": "1_531Ri25S_1XL",
+      "nickName": "紫寒6月30後永別",
+      "thumbnail": {
+        "thumbnailFrame": 5701,
+        "thumbnailImage": 34050,
+        "firstTitle": 540501,
+        "secondTitle": 6701
+      },
+      "rank": 65,
+      "maxLevel": 1400,
+      "totalBattleTime": "31"
+    },
+    {
+      "userIdx": "2_a21Pl0Fb_8lq",
+      "nickName": "Bocchi",
+      "thumbnail": {
+        "thumbnailFrame": 5687,
+        "useCustom": true,
+        "thumbnail": "MSwzMjEsMTAxLjU4LC0xMTEuMTQ2NiwwLjU1LDAuNTUsMzU5LjY2Mzk=",
+        "firstTitle": 530401,
+        "secondTitle": 6171
+      },
+      "rank": 66,
+      "maxLevel": 1350,
+      "totalBattleTime": "16"
+    },
+    {
+      "userIdx": "2_c31PdeSF_RBQ",
+      "nickName": "RufusAragon",
+      "thumbnail": {
+        "thumbnailFrame": 5613,
+        "thumbnailImage": 32040
+      },
+      "rank": 67,
+      "maxLevel": 1350,
+      "totalBattleTime": "23"
+    },
+    {
+      "userIdx": "1_111WhSEa_XUP",
+      "nickName": "VeeraAdelia",
+      "thumbnail": {
+        "thumbnailFrame": 5501,
+        "thumbnailImage": 36540
+      },
+      "rank": 68,
+      "maxLevel": 1326,
+      "totalBattleTime": "20"
+    },
+    {
+      "userIdx": "1_b41PdILw_3WGu",
+      "nickName": "Aquila",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MSw5MzUsLTU0Ljk0OTI1LDEyLjA1MTY0LDAuMzIwMjE0MiwwLjMyMDIxNDIsMzU5Ljg5OTk=",
+        "firstTitle": 6706,
+        "secondTitle": 6830
+      },
+      "rank": 69,
+      "maxLevel": 1325,
+      "totalBattleTime": "26"
+    },
+    {
+      "userIdx": "0_c41PdeSF_Y3Y",
+      "nickName": "猪头鸭",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MSw5MTMwMiwtMzk4LjU2MzQsMTIwLjAyMjUsMC41NSwwLjU1LDA=",
+        "firstTitle": 6822,
+        "secondTitle": 6830
+      },
+      "rank": 70,
+      "maxLevel": 1325,
+      "totalBattleTime": "26"
+    },
+    {
+      "userIdx": "1_721PdeSx_2Kj",
+      "nickName": "花花五趾襪",
+      "thumbnail": {
+        "thumbnailFrame": 5623,
+        "useCustom": true,
+        "thumbnail": "MCw2MDMwLDg2LjEyNjM3LC0yMDkuNDkxNywxLDEsMA==",
+        "firstTitle": 6137,
+        "secondTitle": 6117
+      },
+      "rank": 71,
+      "maxLevel": 1325,
+      "totalBattleTime": "26"
+    },
+    {
+      "userIdx": "1_c71PfkCz_112C",
+      "nickName": "Alan",
+      "thumbnail": {
+        "thumbnailFrame": 5622,
+        "useCustom": true,
+        "thumbnail": "MywyMzE1LC00MDEuMDQxMiwxMDIuNjM1LDEsMSww",
+        "firstTitle": 6815,
+        "secondTitle": 6809
+      },
+      "rank": 72,
+      "maxLevel": 1302,
+      "totalBattleTime": "32"
+    },
+    {
+      "userIdx": "2_421PdILo_KpD",
+      "nickName": "Arzpro",
+      "thumbnail": {
+        "thumbnailFrame": 5704,
+        "useCustom": true,
+        "thumbnail": "Miw0NDEsLTIzNy41MDUsLTExNy45ODgsMC40MTM1MjUzLDAuNDEzNTI1Myw4LjM1OTU1Mw==",
+        "firstTitle": 560201,
+        "secondTitle": 565201
+      },
+      "rank": 73,
+      "maxLevel": 1301,
+      "totalBattleTime": "16"
+    },
+    {
+      "userIdx": "2_b11PdeSE_EWt",
+      "nickName": "大吉凜",
+      "thumbnail": {
+        "thumbnailFrame": 5621,
+        "useCustom": true,
+        "thumbnail": "MSwxMDkwMywtMTA1LjkwMjcsLTE2OS45NTY4LDAuNTUsMC41NSww",
+        "firstTitle": 565301,
+        "secondTitle": 565201
+      },
+      "rank": 74,
+      "maxLevel": 1301,
+      "totalBattleTime": "17"
+    },
+    {
+      "userIdx": "1_121PdeSx_MwL",
+      "nickName": "豆腐",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "Miw1MDIwMiwtMTU2LjIyMzEsLTIyOC44MzcsMC44MTY2NTQ1LDAuODE2NjU0NSwzMzYuODQzNg==",
+        "firstTitle": 565201,
+        "secondTitle": 510401
+      },
+      "rank": 75,
+      "maxLevel": 1301,
+      "totalBattleTime": "24"
+    },
+    {
+      "userIdx": "0_421PdeSx_rlR",
+      "nickName": "SetsuR",
+      "thumbnail": {
+        "thumbnailFrame": 5622,
+        "thumbnailImage": 36020
+      },
+      "rank": 76,
+      "maxLevel": 1301,
+      "totalBattleTime": "27"
+    },
+    {
+      "userIdx": "2_411QoPR6_6rM",
+      "nickName": "夜雨若雪",
+      "thumbnail": {
+        "thumbnailFrame": 5613,
+        "useCustom": true,
+        "thumbnail": "MSw2NTMwMSwtNDAuMTY5NjcsLTEwMC41NTU0LDAuNDAwMDAwMiwwLjQwMDAwMDIsMA==",
+        "firstTitle": 6804,
+        "secondTitle": 6809
+      },
+      "rank": 77,
+      "maxLevel": 1300,
+      "totalBattleTime": "16"
+    },
+    {
+      "userIdx": "0_a31PiKaK_ZrQ",
+      "nickName": "Ntoma581",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MywyMjg4LDQ0LjM3NzgxLC00OTkuMiwxLDEsMA==",
+        "firstTitle": 550301,
+        "secondTitle": 60008
+      },
+      "rank": 78,
+      "maxLevel": 1300,
+      "totalBattleTime": "19"
+    },
+    {
+      "userIdx": "0_f31PdILw_52",
+      "nickName": "CatLover",
+      "thumbnail": {
+        "thumbnailFrame": 5656,
+        "useCustom": true,
+        "thumbnail": "MywyMjg2LDIxMC45MzM0LC0xNDMuOTY0LDAuOTQwMDAwMSwwLjk0MDAwMDEsMA==",
+        "firstTitle": 6615,
+        "secondTitle": 6610
+      },
+      "rank": 79,
+      "maxLevel": 1300,
+      "totalBattleTime": "20"
+    },
+    {
+      "userIdx": "2_e11PdILv_8BPO",
+      "nickName": "Crystalesia",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "thumbnailImage": 36530,
+        "thumbnail": "MSw5MTYwMSwxOS42MTUzMywtMjMuNzk3NDEsMC4yOTM4MjQzLDAuMjkzODI0MywzNTkuOTkxNQ==",
+        "firstTitle": 6804,
+        "secondTitle": 565301
+      },
+      "rank": 80,
+      "maxLevel": 1300,
+      "totalBattleTime": "23"
+    },
+    {
+      "userIdx": "1_711Ri21T_3gu",
+      "nickName": "有情人終成未亡人",
+      "thumbnail": {
+        "thumbnailFrame": 5653,
+        "useCustom": true,
+        "thumbnail": "MSw5MDYwMSwyMTkuOTQ0NSwtNTcuNDQ2ODYsMC40OTk5MTAxLDAuNDk5OTEwMSwzNTkuMjgxMw==",
+        "firstTitle": 6807,
+        "secondTitle": 6804
+      },
+      "rank": 81,
+      "maxLevel": 1300,
+      "totalBattleTime": "38"
+    },
+    {
+      "userIdx": "2_631U7Kt3_spt",
+      "nickName": "Tristitia",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MywyNDE1LDY1LjI3MzUsLTQ1OC42MzY1LDEsMSww",
+        "firstTitle": 6830,
+        "secondTitle": 6706
+      },
+      "rank": 82,
+      "maxLevel": 1275,
+      "totalBattleTime": "17"
+    },
+    {
+      "userIdx": "1_321PdeSx_nqx",
+      "nickName": "ChaiYo",
+      "thumbnail": {
+        "thumbnailFrame": 5632,
+        "useCustom": true,
+        "thumbnail": "MSw5MDgwMSwtMjQuMTU3MjYsLTY0LjEwNzM1LDAuNTcsMC41NywzNTg=",
+        "firstTitle": 6701,
+        "secondTitle": 6705
+      },
+      "rank": 83,
+      "maxLevel": 1252,
+      "totalBattleTime": "25"
+    },
+    {
+      "userIdx": "0_941Rldj3_d93",
+      "nickName": "泉泉",
+      "thumbnail": {
+        "thumbnailFrame": 5700,
+        "useCustom": true,
+        "thumbnail": "MywyMzE5LC01NS41MzEwMiwtMjg2LjYwNjIsMSwxLDA=",
+        "firstTitle": 6815,
+        "secondTitle": 6812
+      },
+      "rank": 84,
+      "maxLevel": 1251,
+      "totalBattleTime": "19"
+    },
+    {
+      "userIdx": "1_411PdeSx_7M",
+      "nickName": "Wumbo",
+      "thumbnail": {
+        "thumbnailFrame": 5632,
+        "thumbnailImage": 32020,
+        "thumbnail": "MCwyMDIwLDk1LjE0MjU2LC0xNzMuNTIwNiwxLDEsMA==",
+        "firstTitle": 520201,
+        "secondTitle": 510401
+      },
+      "rank": 85,
+      "maxLevel": 1250,
+      "totalBattleTime": "23"
+    },
+    {
+      "userIdx": "1_211R6mtU_1Rh",
+      "nickName": "皓月如心",
+      "thumbnail": {
+        "thumbnailFrame": 5633,
+        "useCustom": true,
+        "thumbnail": "MSwxMDQwNiwwLDAsMC4yMywwLjIzLDA=",
+        "firstTitle": 510401,
+        "secondTitle": 6830
+      },
+      "rank": 86,
+      "maxLevel": 1250,
+      "totalBattleTime": "31"
+    },
+    {
+      "userIdx": "1_741QE2Ux_6Ay",
+      "nickName": "Aeter",
+      "thumbnail": {
+        "thumbnailFrame": 5501,
+        "useCustom": true,
+        "thumbnail": "MSw5MjYwMSwtMjg3LjM0OTUsLTM2LjYzMzMyLDAuNDkwMDAwMSwwLjQ5MDAwMDEsMA==",
+        "firstTitle": 6701,
+        "secondTitle": 6171
+      },
+      "rank": 87,
+      "maxLevel": 1226,
+      "totalBattleTime": "20"
+    },
+    {
+      "userIdx": "1_511QJfGZ_3s2",
+      "nickName": "紫色的肯基基",
+      "thumbnail": {
+        "thumbnailFrame": 5700,
+        "useCustom": true,
+        "thumbnail": "MSw2MDMwMSw5MS42Nzk4MSwxMzkuMDM1NywxLjQ2MDkxMSwxLjQ2MDkxMSwxLjE2MzQyOQ==",
+        "firstTitle": 531401,
+        "secondTitle": 511301
+      },
+      "rank": 88,
+      "maxLevel": 1226,
+      "totalBattleTime": "24"
+    },
+    {
+      "userIdx": "0_231Tgss1_12Yb",
+      "nickName": "Krexios",
+      "thumbnail": {
+        "thumbnailFrame": 5701,
+        "useCustom": true,
+        "thumbnail": "Miw5MjgwNiwtMzQxLjM0NTEsNTAuOTc2NTYsMC42NTQxMTI0LDAuNjU0MTEyNCwzNTkuNDc2Ng==",
+        "firstTitle": 6830,
+        "secondTitle": 6705
+      },
+      "rank": 89,
+      "maxLevel": 1226,
+      "totalBattleTime": "35"
+    },
+    {
+      "userIdx": "2_531R6mBd_19t",
+      "nickName": "Boss",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "Miw5MjgwMywtMjIwLjU3MDQsMjM4LjE2ODIsMC43MjM2NzAxLDAuNzIzNjcwMSwzNTkuODg0OQ==",
+        "firstTitle": 6830,
+        "secondTitle": 6822
+      },
+      "rank": 90,
+      "maxLevel": 1202,
+      "totalBattleTime": "40"
+    },
+    {
+      "userIdx": "0_111Spj8n_cbW",
+      "nickName": "西伯利亞金漸層",
+      "thumbnail": {
+        "thumbnailFrame": 5504,
+        "useCustom": true,
+        "thumbnail": "MSw1MDYwNiwtNjMuOTU3MjgsLTUuNjAwMDE1LDAuMjQ1MTM5NiwwLjI0NTEzOTYsMzU5LjYyNTk=",
+        "firstTitle": 6816,
+        "secondTitle": 6822
+      },
+      "rank": 91,
+      "maxLevel": 1201,
+      "totalBattleTime": "16"
+    },
+    {
+      "userIdx": "1_011PdeSx_gvB",
+      "nickName": "冰月",
+      "thumbnail": {
+        "thumbnailFrame": 5633,
+        "thumbnailImage": 31010
+      },
+      "rank": 92,
+      "maxLevel": 1201,
+      "totalBattleTime": "18"
+    },
+    {
+      "userIdx": "0_c41PdeSF_147k",
+      "nickName": "Aries",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MSwzMDYwNSwxMTMuNjgwMywtMTEzLjAyMzMsMC40MzE3NTIyLDAuNDMxNzUyMiwzMzkuODQxNA==",
+        "firstTitle": 6830,
+        "secondTitle": 6822
+      },
+      "rank": 93,
+      "maxLevel": 1201,
+      "totalBattleTime": "18"
+    },
+    {
+      "userIdx": "2_411Sftwd_4HY",
+      "nickName": "无败之龍",
+      "thumbnail": {
+        "thumbnailFrame": 5705,
+        "useCustom": true,
+        "thumbnail": "MSwxMDEyLDYzLjUxMTQsLTExNi45NDM1LDAuNTUsMC41NSww",
+        "firstTitle": 6822,
+        "secondTitle": 6830
+      },
+      "rank": 94,
+      "maxLevel": 1201,
+      "totalBattleTime": "20"
+    },
+    {
+      "userIdx": "1_411TqCDO_aeR",
+      "nickName": "救援掌握我手",
+      "thumbnail": {
+        "thumbnailFrame": 5501,
+        "useCustom": true,
+        "thumbnail": "MSw0MDMwMiw4MS43ODcxMSwtMjEyLjcyMjgsMC42NDM1ODA0LDAuNjQzNTgwNCwwLjQxNDI4Nzk=",
+        "firstTitle": 565201,
+        "secondTitle": 565301
+      },
+      "rank": 95,
+      "maxLevel": 1201,
+      "totalBattleTime": "21"
+    },
+    {
+      "userIdx": "2_711T3LvA_7CE",
+      "nickName": "六月華",
+      "thumbnail": {
+        "thumbnailFrame": 5507,
+        "useCustom": true,
+        "thumbnail": "MSwxMjIsLTc0LjEyOTEsMC4zMzYwNTAzLDAuMjUwMDAwMywwLjI1MDAwMDMsMzU4Ljk5OTk=",
+        "firstTitle": 6822,
+        "secondTitle": 6830
+      },
+      "rank": 96,
+      "maxLevel": 1201,
+      "totalBattleTime": "22"
+    },
+    {
+      "userIdx": "2_611T7Pee_3lF",
+      "nickName": "欸嘿",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "thumbnailImage": 30001,
+        "firstTitle": 6705,
+        "secondTitle": 6706
+      },
+      "rank": 97,
+      "maxLevel": 1201,
+      "totalBattleTime": "23"
+    },
+    {
+      "userIdx": "1_611RXnJD_6UO",
+      "nickName": "uqi",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "thumbnailImage": 36540,
+        "thumbnail": "MCw2NTQwLDY4LjI5NzU4LC01OC4yNzg4LDIuMDI5OTk5LDIuMDI5OTk5LDM0My45OTkz",
+        "firstTitle": 6705,
+        "secondTitle": 6706
+      },
+      "rank": 98,
+      "maxLevel": 1201,
+      "totalBattleTime": "24"
+    },
+    {
+      "userIdx": "0_031SJAzZ_dQp",
+      "nickName": "ki7y",
+      "thumbnail": {
+        "thumbnailFrame": 5501,
+        "thumbnailImage": 30001
+      },
+      "rank": 99,
+      "maxLevel": 1201,
+      "totalBattleTime": "25"
+    },
+    {
+      "userIdx": "1_a11QGCaK_16m",
+      "nickName": "Espoir",
+      "thumbnail": {
+        "thumbnailFrame": 5613,
+        "thumbnailImage": 30001,
+        "firstTitle": 6701,
+        "secondTitle": 6705
+      },
+      "rank": 100,
+      "maxLevel": 1201,
+      "totalBattleTime": "27"
+    }
+  ],
+  "__format__": "proto"
+}

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package EsPb;
+
+message Login {
+  string playerId = 1;
+  int32 type = 2;
+}
+

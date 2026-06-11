@@ -1,0 +1,17 @@
+{
+ "root": "LabyrinthInfo",
+ "messages": {
+  "LabyrinthInfo": {
+   "fields": [
+    {
+     "name": "labyrinthInfo_",
+     "number": 1,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

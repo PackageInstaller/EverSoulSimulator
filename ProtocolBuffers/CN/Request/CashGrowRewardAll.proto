@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message CashGrowRewardAll {
+  int32 shopItemNo = 1;
+}
+

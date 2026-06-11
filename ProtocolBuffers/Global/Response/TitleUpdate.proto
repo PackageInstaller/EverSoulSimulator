@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package EsPb;
+
+message TitleUpdate {
+  int32 firstTitle = 1;
+  int32 secondTitle = 2;
+}
+

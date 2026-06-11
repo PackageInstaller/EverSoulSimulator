@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package EsPb;
+
+message Sequence {
+  repeated sSequence seq = 1;
+}
+
+message sSequence {
+  int32 type = 1;
+  int32 serverSeq = 2;
+  int32 userSeq = 3;
+}
+

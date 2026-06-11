@@ -1,0 +1,26 @@
+{
+  "worldRaid": {
+    "scheduleNo": 35,
+    "raidNo": 3,
+    "startDt": "1779926400000",
+    "endDt": "1780531200000",
+    "adjustmentEndDt": "1780617600000",
+    "rewardEndDt": "1781740800000",
+    "nextRaidStartDt": "1781740800000",
+    "score": 5000000,
+    "firstRankingData": {
+      "userIdx": "2_e21PMpdN_mcP",
+      "nickName": "旅游的sensei",
+      "thumbnail": {
+        "thumbnailFrame": 5692,
+        "useCustom": true,
+        "thumbnail": "MSwxMTYsNTQ5LjcxMzYsLTc0LjA5ODAzLDAuNTUsMC41NSww",
+        "firstTitle": 6602,
+        "secondTitle": 6612
+      },
+      "rank": 1,
+      "userDamage": "525000000000"
+    }
+  },
+  "__format__": "proto"
+}

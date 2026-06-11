@@ -1,0 +1,24 @@
+{
+ "root": "ArbeitOption",
+ "messages": {
+  "ArbeitOption": {
+   "fields": [
+    {
+     "name": "option1",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "option2",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

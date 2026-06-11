@@ -1,0 +1,121 @@
+{
+ "root": "EverTalkList",
+ "messages": {
+  "EverTalkList": {
+   "fields": [
+    {
+     "name": "everTalkData",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sEverTalkDataList",
+     "packed": false
+    },
+    {
+     "name": "everTalkMemorialPicture",
+     "number": 4,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sEverTalkMemorialPicture",
+     "packed": false
+    }
+   ]
+  },
+  "sEverTalkDataList": {
+   "fields": [
+    {
+     "name": "heroNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "destinyTalkData",
+     "number": 2,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sEverTalkHeroDestinyData",
+     "packed": false
+    },
+    {
+     "name": "anniversaryTalkData",
+     "number": 3,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sEverTalkHeroAnniversaryData",
+     "packed": false
+    }
+   ]
+  },
+  "sEverTalkHeroDestinyData": {
+   "fields": [
+    {
+     "name": "groupNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "lastReceiveGroupNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "recordedDt",
+     "number": 3,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    }
+   ]
+  },
+  "sEverTalkHeroAnniversaryData": {
+   "fields": [
+    {
+     "name": "groupNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "receiveFlag",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "recordedDt",
+     "number": 3,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    }
+   ]
+  },
+  "sEverTalkMemorialPicture": {
+   "fields": [
+    {
+     "name": "talkNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "memorialMessage",
+     "number": 2,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

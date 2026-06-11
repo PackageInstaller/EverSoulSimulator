@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package ReqPb;
+
+enum eEquipSlot {
+  Weapon = 0;
+  Helmet = 1;
+  Armor = 2;
+  Boot = 3;
+  Signature = 4;
+}
+
+message HeroEquipPresetSave {
+  int32 presetSlot = 1;
+  string presetName = 2;
+  repeated sHeroEquipPresetHero presetHero = 3;
+}
+
+message sHeroEquipPresetHero {
+  string heroIdx = 1;
+  repeated sHeroEquipPresetItemSlot itemSlot = 2;
+}
+
+message sHeroEquipPresetItemSlot {
+  eEquipSlot slot = 1;
+  int64 itemEquipId = 2;
+}
+

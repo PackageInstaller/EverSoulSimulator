@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message SetHeroSlotObjet {
+  int32 heroNo = 1;
+  int32 objetUid = 2;
+}
+

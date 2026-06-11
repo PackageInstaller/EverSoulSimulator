@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message ArkEnhanceCoreAuto {
+  int32 coreType01 = 1;
+  int32 coreType02 = 2;
+}
+

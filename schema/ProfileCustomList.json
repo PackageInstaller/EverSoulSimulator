@@ -1,0 +1,36 @@
+{
+ "root": "ProfileCustomList",
+ "messages": {
+  "ProfileCustomList": {
+   "fields": [
+    {
+     "name": "profile",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sProfileCustom",
+     "packed": false
+    }
+   ]
+  },
+  "sProfileCustom": {
+   "fields": [
+    {
+     "name": "uid",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "profile",
+     "number": 2,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

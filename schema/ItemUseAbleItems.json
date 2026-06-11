@@ -1,0 +1,97 @@
+{
+ "root": "ItemUseAbleItems",
+ "messages": {
+  "ItemUseAbleItems": {
+   "fields": [
+    {
+     "name": "itemUseAbleGachaGrade",
+     "number": 1,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sItemUseAbleGachaGrade",
+     "packed": false
+    },
+    {
+     "name": "itemUseAbleGachaTribe",
+     "number": 2,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sItemUseAbleGachaTribe",
+     "packed": false
+    },
+    {
+     "name": "signatureAbleCnt",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sItemUseAbleGachaGrade": {
+   "fields": [
+    {
+     "name": "epic",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "rare",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sItemUseAbleGachaTribe": {
+   "fields": [
+    {
+     "name": "human",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "furry",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "elf",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "undead",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "angel",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "devil",
+     "number": 6,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

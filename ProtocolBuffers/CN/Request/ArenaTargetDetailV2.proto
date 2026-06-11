@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message ArenaTargetDetailV2 {
+  int32 arenaType = 1;
+  string targetUserIdx = 2;
+}
+

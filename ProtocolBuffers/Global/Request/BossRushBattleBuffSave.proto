@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message BossRushBattleBuffSave {
+  repeated sBossRushBattleBuff bossRushBattleBuff = 1;
+}
+
+message sBossRushBattleBuff {
+  int32 group = 1;
+  int32 level = 2;
+}
+

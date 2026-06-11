@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package EsPb;
+
+message CnFirstBuyRewardInfo {
+  int32 isFirstCashBuy = 1;
+  int32 currentStep = 2;
+  int64 lastRewardDt = 3;
+  int32 totalStepCount = 4;
+  bool canReceiveToday = 5;
+}
+

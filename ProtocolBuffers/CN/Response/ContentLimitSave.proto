@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package EsPb;
+
+message ContentLimitSave {
+  repeated int32 no = 1;
+}
+

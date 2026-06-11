@@ -1,0 +1,248 @@
+{
+ "root": "OriginTowerList",
+ "messages": {
+  "OriginTowerList": {
+   "fields": [
+    {
+     "name": "originTower",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sOriginTower",
+     "packed": false
+    },
+    {
+     "name": "originTowerExtend",
+     "number": 2,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sOriginTowerExtend",
+     "packed": false
+    }
+   ]
+  },
+  "sOriginTower": {
+   "fields": [
+    {
+     "name": "towerNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "stageNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "firstConquerorUserIdx",
+     "number": 3,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "firstConquerorNickName",
+     "number": 4,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "firstConquerorThumbnail",
+     "number": 5,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sThumbnail",
+     "packed": false
+    }
+   ]
+  },
+  "sThumbnail": {
+   "fields": [
+    {
+     "name": "thumbnailFrame",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "thumbnailImage",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "useCustom",
+     "number": 3,
+     "repeated": false,
+     "type": "bool",
+     "packed": false
+    },
+    {
+     "name": "thumbnail",
+     "number": 4,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    },
+    {
+     "name": "firstTitle",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "secondTitle",
+     "number": 6,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sOriginTowerExtend": {
+   "fields": [
+    {
+     "name": "towerNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "myRank",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "myClearStageNo",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "myBattleTs",
+     "number": 4,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "rankRewardReceiveFlag",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "originTowerExtendRank",
+     "number": 6,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sOriginTowerExtendRank",
+     "packed": false
+    },
+    {
+     "name": "playStartDt",
+     "number": 7,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "playEndDt",
+     "number": 8,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "adjustmentStartDt",
+     "number": 9,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "adjustmentEndDt",
+     "number": 10,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "rewardStartDt",
+     "number": 11,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "rewardEndDt",
+     "number": 12,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    }
+   ]
+  },
+  "sOriginTowerExtendRank": {
+   "fields": [
+    {
+     "name": "userIdx",
+     "number": 1,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "nickname",
+     "number": 2,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "thumbnail",
+     "number": 3,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sThumbnail",
+     "packed": false
+    },
+    {
+     "name": "rank",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "clearStageNo",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "battleTs",
+     "number": 6,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

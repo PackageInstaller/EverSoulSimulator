@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message AnniversaryGiftReceive {
+  int32 heroNo = 1;
+  int32 groupNo = 2;
+}
+

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message AchievementReceive {
+  int32 achievementNo = 1;
+  int32 behavior = 2;
+  int32 group = 3;
+}
+

@@ -1,0 +1,17 @@
+{
+ "root": "TripKeyword",
+ "messages": {
+  "TripKeyword": {
+   "fields": [
+    {
+     "name": "tripKeyword_",
+     "number": 1,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

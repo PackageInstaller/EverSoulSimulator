@@ -1,0 +1,36 @@
+{
+ "root": "TownDevelopPointRefresh",
+ "messages": {
+  "TownDevelopPointRefresh": {
+   "fields": [
+    {
+     "name": "townInfo",
+     "number": 1,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sTownInfo",
+     "packed": false
+    }
+   ]
+  },
+  "sTownInfo": {
+   "fields": [
+    {
+     "name": "townLevel",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "currentDevelopPoint",
+     "number": 2,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

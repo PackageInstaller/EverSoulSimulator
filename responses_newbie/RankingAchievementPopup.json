@@ -1,0 +1,616 @@
+{
+  "rankAchievementUser": [
+    {
+      "no": 1000,
+      "rankNo": 1000,
+      "value": 125,
+      "itemNo": 2,
+      "itemAmount": 100,
+      "userIdx": "1_441PdeSx_y",
+      "nickName": "Gumiho",
+      "level": 68,
+      "thumbnail": {
+        "thumbnailFrame": 5643,
+        "thumbnailImage": 31010
+      },
+      "popularity": 596,
+      "updateDt": "1672896743212"
+    },
+    {
+      "no": 1001,
+      "rankNo": 1000,
+      "value": 160,
+      "itemNo": 2,
+      "itemAmount": 100,
+      "userIdx": "1_e41PdeSE_4f",
+      "nickName": "紅蘭我老婆各位請自重",
+      "level": 81,
+      "thumbnail": {
+        "thumbnailFrame": 5507,
+        "useCustom": true,
+        "thumbnail": "MCwxMDEwLDU4LjExNzEsMjA0LjM3NSwxLDEsMA=="
+      },
+      "popularity": 205,
+      "updateDt": "1672899157630"
+    },
+    {
+      "no": 1002,
+      "rankNo": 1000,
+      "value": 195,
+      "itemNo": 2,
+      "itemAmount": 100,
+      "userIdx": "1_e41PdeSE_4f",
+      "nickName": "紅蘭我老婆各位請自重",
+      "level": 81,
+      "thumbnail": {
+        "thumbnailFrame": 5507,
+        "useCustom": true,
+        "thumbnail": "MCwxMDEwLDU4LjExNzEsMjA0LjM3NSwxLDEsMA=="
+      },
+      "popularity": 205,
+      "updateDt": "1672903008803"
+    },
+    {
+      "no": 1003,
+      "rankNo": 1000,
+      "value": 230,
+      "itemNo": 2,
+      "itemAmount": 100,
+      "userIdx": "0_241PdeSx_V",
+      "nickName": "Ellian",
+      "level": 124,
+      "thumbnail": {
+        "thumbnailFrame": 5643,
+        "useCustom": true,
+        "thumbnail": "MCw2MDMwLDc3Ljk5ODg3LC0xOTYuNzQ0MiwxLDEsMA=="
+      },
+      "popularity": 2270,
+      "updateDt": "1672910896451"
+    },
+    {
+      "no": 1004,
+      "rankNo": 1000,
+      "value": 270,
+      "itemNo": 2,
+      "itemAmount": 100,
+      "userIdx": "0_241PdeSx_V",
+      "nickName": "Ellian",
+      "level": 124,
+      "thumbnail": {
+        "thumbnailFrame": 5643,
+        "useCustom": true,
+        "thumbnail": "MCw2MDMwLDc3Ljk5ODg3LC0xOTYuNzQ0MiwxLDEsMA=="
+      },
+      "popularity": 2270,
+      "updateDt": "1672922343569"
+    },
+    {
+      "no": 1005,
+      "rankNo": 1000,
+      "value": 310,
+      "itemNo": 2,
+      "itemAmount": 100,
+      "userIdx": "0_241PdeSx_V",
+      "nickName": "Ellian",
+      "level": 124,
+      "thumbnail": {
+        "thumbnailFrame": 5643,
+        "useCustom": true,
+        "thumbnail": "MCw2MDMwLDc3Ljk5ODg3LC0xOTYuNzQ0MiwxLDEsMA=="
+      },
+      "popularity": 2270,
+      "updateDt": "1672975870594"
+    },
+    {
+      "no": 1006,
+      "rankNo": 1000,
+      "value": 350,
+      "itemNo": 2,
+      "itemAmount": 100,
+      "userIdx": "0_241PdeSx_V",
+      "nickName": "Ellian",
+      "level": 124,
+      "thumbnail": {
+        "thumbnailFrame": 5643,
+        "useCustom": true,
+        "thumbnail": "MCw2MDMwLDc3Ljk5ODg3LC0xOTYuNzQ0MiwxLDEsMA=="
+      },
+      "popularity": 2270,
+      "updateDt": "1673062484670"
+    },
+    {
+      "no": 1007,
+      "rankNo": 1000,
+      "value": 390,
+      "itemNo": 2,
+      "itemAmount": 100,
+      "userIdx": "0_241PdeSx_V",
+      "nickName": "Ellian",
+      "level": 124,
+      "thumbnail": {
+        "thumbnailFrame": 5643,
+        "useCustom": true,
+        "thumbnail": "MCw2MDMwLDc3Ljk5ODg3LC0xOTYuNzQ0MiwxLDEsMA=="
+      },
+      "popularity": 2270,
+      "updateDt": "1673105822116"
+    },
+    {
+      "no": 1008,
+      "rankNo": 1000,
+      "value": 435,
+      "itemNo": 2,
+      "itemAmount": 100,
+      "userIdx": "0_431PdeSx_0",
+      "nickName": "siun",
+      "level": 400,
+      "thumbnail": {
+        "thumbnailFrame": 5716,
+        "useCustom": true,
+        "thumbnail": "MywyMjIwLDU2My45ODA0LDM0NC4yMDY1LDAuOTgwMDAwMywwLjk4MDAwMDMsMzU5LjQ5OTk="
+      },
+      "popularity": 29263,
+      "updateDt": "1673246162891"
+    },
+    {
+      "no": 1009,
+      "rankNo": 1000,
+      "value": 480,
+      "itemNo": 2,
+      "itemAmount": 100,
+      "userIdx": "1_841PdILv_2hS",
+      "nickName": "Puliody",
+      "level": 144,
+      "thumbnail": {
+        "thumbnailFrame": 5502,
+        "useCustom": true,
+        "thumbnail": "MSw5MDEwMSw1NjIuODAwNSwxNTIuOTE5LDAuNTYzNjQ5OSwwLjU2MzY0OTksMzU5LjE2NjM="
+      },
+      "popularity": 3262,
+      "updateDt": "1673282020672"
+    },
+    {
+      "no": 1010,
+      "rankNo": 1000,
+      "value": 525,
+      "itemNo": 2,
+      "itemAmount": 100,
+      "userIdx": "1_841PdILv_2hS",
+      "nickName": "Puliody",
+      "level": 144,
+      "thumbnail": {
+        "thumbnailFrame": 5502,
+        "useCustom": true,
+        "thumbnail": "MSw5MDEwMSw1NjIuODAwNSwxNTIuOTE5LDAuNTYzNjQ5OSwwLjU2MzY0OTksMzU5LjE2NjM="
+      },
+      "popularity": 3262,
+      "updateDt": "1673342985944"
+    },
+    {
+      "no": 1011,
+      "rankNo": 1000,
+      "value": 570,
+      "itemNo": 2,
+      "itemAmount": 100,
+      "userIdx": "1_731PdILo_3cw8",
+      "nickName": "P2W",
+      "level": 128,
+      "thumbnail": {
+        "thumbnailFrame": 5501,
+        "thumbnailImage": 30001
+      },
+      "popularity": 1870,
+      "updateDt": "1675304960682"
+    },
+    {
+      "no": 1012,
+      "rankNo": 1000,
+      "value": 620,
+      "itemNo": 2,
+      "itemAmount": 100,
+      "userIdx": "0_041PdeSx_1r0V",
+      "nickName": "Mew",
+      "level": 281,
+      "thumbnail": {
+        "thumbnailFrame": 5700,
+        "useCustom": true,
+        "thumbnail": "MSwzMTEwMiwtMjc4LjE4NDUsLTYwLjMwOTY2LDAuNTUsMC41NSw0NC4yMTEwNA=="
+      },
+      "popularity": 17617,
+      "updateDt": "1677118721237"
+    },
+    {
+      "no": 1013,
+      "rankNo": 1000,
+      "value": 670,
+      "itemNo": 2,
+      "itemAmount": 100,
+      "userIdx": "0_041PdeSx_1r0V",
+      "nickName": "Mew",
+      "level": 281,
+      "thumbnail": {
+        "thumbnailFrame": 5700,
+        "useCustom": true,
+        "thumbnail": "MSwzMTEwMiwtMjc4LjE4NDUsLTYwLjMwOTY2LDAuNTUsMC41NSw0NC4yMTEwNA=="
+      },
+      "popularity": 17617,
+      "updateDt": "1678338308605"
+    },
+    {
+      "no": 1014,
+      "rankNo": 1000,
+      "value": 720,
+      "itemNo": 2,
+      "itemAmount": 100,
+      "userIdx": "0_041PdeSx_1r0V",
+      "nickName": "Mew",
+      "level": 281,
+      "thumbnail": {
+        "thumbnailFrame": 5700,
+        "useCustom": true,
+        "thumbnail": "MSwzMTEwMiwtMjc4LjE4NDUsLTYwLjMwOTY2LDAuNTUsMC41NSw0NC4yMTEwNA=="
+      },
+      "popularity": 17617,
+      "updateDt": "1680790599752"
+    },
+    {
+      "no": 1015,
+      "rankNo": 1000,
+      "value": 770,
+      "itemNo": 2,
+      "itemAmount": 100,
+      "userIdx": "1_621PdeSx_5W",
+      "nickName": "Rest",
+      "level": 283,
+      "thumbnail": {
+        "thumbnailFrame": 5653,
+        "useCustom": true,
+        "thumbnail": "MSw2MDIwNywtNDguODE0ODIsLTE3Ni43MDkxLDAuNTg0MzkxMiwwLjU4NDM5MTIsMTQuMTgxMzE="
+      },
+      "popularity": 21071,
+      "updateDt": "1683175794177"
+    },
+    {
+      "no": 1016,
+      "rankNo": 1000,
+      "value": 825,
+      "itemNo": 2,
+      "itemAmount": 100,
+      "userIdx": "1_621PdeSx_5W",
+      "nickName": "Rest",
+      "level": 283,
+      "thumbnail": {
+        "thumbnailFrame": 5653,
+        "useCustom": true,
+        "thumbnail": "MSw2MDIwNywtNDguODE0ODIsLTE3Ni43MDkxLDAuNTg0MzkxMiwwLjU4NDM5MTIsMTQuMTgxMzE="
+      },
+      "popularity": 21071,
+      "updateDt": "1686194304919"
+    },
+    {
+      "no": 1017,
+      "rankNo": 1000,
+      "value": 880,
+      "itemNo": 2,
+      "itemAmount": 100,
+      "userIdx": "1_621PdeSx_5W",
+      "nickName": "Rest",
+      "level": 283,
+      "thumbnail": {
+        "thumbnailFrame": 5653,
+        "useCustom": true,
+        "thumbnail": "MSw2MDIwNywtNDguODE0ODIsLTE3Ni43MDkxLDAuNTg0MzkxMiwwLjU4NDM5MTIsMTQuMTgxMzE="
+      },
+      "popularity": 21071,
+      "updateDt": "1689216573756"
+    },
+    {
+      "no": 1018,
+      "rankNo": 1000,
+      "value": 935,
+      "itemNo": 2,
+      "itemAmount": 100,
+      "userIdx": "1_621PdeSx_5W",
+      "nickName": "Rest",
+      "level": 283,
+      "thumbnail": {
+        "thumbnailFrame": 5653,
+        "useCustom": true,
+        "thumbnail": "MSw2MDIwNywtNDguODE0ODIsLTE3Ni43MDkxLDAuNTg0MzkxMiwwLjU4NDM5MTIsMTQuMTgxMzE="
+      },
+      "popularity": 21071,
+      "updateDt": "1693454007253"
+    },
+    {
+      "no": 1019,
+      "rankNo": 1000,
+      "value": 990,
+      "itemNo": 2,
+      "itemAmount": 100,
+      "userIdx": "1_621PdeSx_5W",
+      "nickName": "Rest",
+      "level": 283,
+      "thumbnail": {
+        "thumbnailFrame": 5653,
+        "useCustom": true,
+        "thumbnail": "MSw2MDIwNywtNDguODE0ODIsLTE3Ni43MDkxLDAuNTg0MzkxMiwwLjU4NDM5MTIsMTQuMTgxMzE="
+      },
+      "popularity": 21071,
+      "updateDt": "1697082514073"
+    },
+    {
+      "no": 1020,
+      "rankNo": 1000,
+      "value": 1050,
+      "itemNo": 2,
+      "itemAmount": 100,
+      "userIdx": "0_041PdeSx_1r0V",
+      "nickName": "Mew",
+      "level": 281,
+      "thumbnail": {
+        "thumbnailFrame": 5700,
+        "useCustom": true,
+        "thumbnail": "MSwzMTEwMiwtMjc4LjE4NDUsLTYwLjMwOTY2LDAuNTUsMC41NSw0NC4yMTEwNA=="
+      },
+      "popularity": 17617,
+      "updateDt": "1700712711376"
+    },
+    {
+      "no": 1021,
+      "rankNo": 1000,
+      "value": 1110,
+      "itemNo": 2,
+      "itemAmount": 100,
+      "userIdx": "1_621PdeSx_5W",
+      "nickName": "Rest",
+      "level": 283,
+      "thumbnail": {
+        "thumbnailFrame": 5653,
+        "useCustom": true,
+        "thumbnail": "MSw2MDIwNywtNDguODE0ODIsLTE3Ni43MDkxLDAuNTg0MzkxMiwwLjU4NDM5MTIsMTQuMTgxMzE="
+      },
+      "popularity": 21071,
+      "updateDt": "1704338496284"
+    },
+    {
+      "no": 1022,
+      "rankNo": 1000,
+      "value": 1170,
+      "itemNo": 2,
+      "itemAmount": 100,
+      "userIdx": "0_031PdILo_44sV",
+      "nickName": "Mink",
+      "level": 488,
+      "thumbnail": {
+        "thumbnailFrame": 5723,
+        "useCustom": true,
+        "thumbnail": "MiwzMTIwMSwxMjguODA0NiwtNTQuNDkyMTksMC4zMzYxNzY1LDAuMzM2MTc2NSwwLjE2Njk2OTU="
+      },
+      "popularity": 45307,
+      "updateDt": "1712203004549"
+    },
+    {
+      "no": 1023,
+      "rankNo": 1000,
+      "value": 1230,
+      "itemNo": 2,
+      "itemAmount": 100,
+      "userIdx": "2_741PdILo_Px4",
+      "nickName": "柏木文香",
+      "level": 642,
+      "thumbnail": {
+        "thumbnailFrame": 5701,
+        "useCustom": true,
+        "thumbnail": "MSwzMDgwNCw1NC41MjE2NSwtMzEuNDg3NjksMC44NTk5OTk4LDAuODU5OTk5OCwzMTEuOTk5NA==",
+        "firstTitle": 550801,
+        "secondTitle": 6604
+      },
+      "popularity": 49238,
+      "updateDt": "1717037166702"
+    },
+    {
+      "no": 1024,
+      "rankNo": 1000,
+      "value": 1290,
+      "itemNo": 2,
+      "itemAmount": 100,
+      "userIdx": "0_731PdILo_38u8",
+      "nickName": "米爾斯",
+      "level": 468,
+      "thumbnail": {
+        "thumbnailFrame": 5696,
+        "useCustom": true,
+        "thumbnail": "MSw0MTIwNiwtMTExLjg5MTksLTE2Ny40NjkzLDAuNTUsMC41NSww"
+      },
+      "popularity": 34951,
+      "updateDt": "1723085553151"
+    },
+    {
+      "no": 1025,
+      "rankNo": 1000,
+      "value": 1350,
+      "itemNo": 2,
+      "itemAmount": 100,
+      "userIdx": "1_221PdeSx_4M",
+      "nickName": "癒月巧可天下第一",
+      "level": 479,
+      "thumbnail": {
+        "thumbnailFrame": 5680,
+        "useCustom": true,
+        "thumbnail": "MSwyMTYwMSwzMi4xMzU1OSwtMTAzLjc3MiwwLjQ1MzY3MjgsMC40NTM2NzI4LDAuMDQ0ODE2MDY="
+      },
+      "popularity": 40441,
+      "updateDt": "1728533918273"
+    },
+    {
+      "no": 1026,
+      "rankNo": 1000,
+      "value": 1410,
+      "itemNo": 2,
+      "itemAmount": 100,
+      "userIdx": "1_221PdeSx_4M",
+      "nickName": "癒月巧可天下第一",
+      "level": 479,
+      "thumbnail": {
+        "thumbnailFrame": 5680,
+        "useCustom": true,
+        "thumbnail": "MSwyMTYwMSwzMi4xMzU1OSwtMTAzLjc3MiwwLjQ1MzY3MjgsMC40NTM2NzI4LDAuMDQ0ODE2MDY="
+      },
+      "popularity": 40441,
+      "updateDt": "1733973686138"
+    },
+    {
+      "no": 1027,
+      "rankNo": 1000,
+      "value": 1470,
+      "itemNo": 2,
+      "itemAmount": 100,
+      "userIdx": "1_441PdeSx_1GzS",
+      "nickName": "結月",
+      "level": 659,
+      "thumbnail": {
+        "thumbnailFrame": 5693,
+        "useCustom": true,
+        "thumbnail": "MSwxMDkwMSwtNjIuNDc1NTksLTEzMy4wMzI5LDAuNTUsMC41NSww",
+        "firstTitle": 60005,
+        "secondTitle": 60004
+      },
+      "popularity": 50041,
+      "updateDt": "1739416067540"
+    },
+    {
+      "no": 1028,
+      "rankNo": 1000,
+      "value": 1530,
+      "itemNo": 2,
+      "itemAmount": 100,
+      "userIdx": "1_441PdeSx_1GzS",
+      "nickName": "結月",
+      "level": 659,
+      "thumbnail": {
+        "thumbnailFrame": 5693,
+        "useCustom": true,
+        "thumbnail": "MSwxMDkwMSwtNjIuNDc1NTksLTEzMy4wMzI5LDAuNTUsMC41NSww",
+        "firstTitle": 60005,
+        "secondTitle": 60004
+      },
+      "popularity": 50041,
+      "updateDt": "1744858887359"
+    },
+    {
+      "no": 1029,
+      "rankNo": 1000,
+      "value": 1590,
+      "itemNo": 2,
+      "itemAmount": 100,
+      "userIdx": "1_441PdeSx_1GzS",
+      "nickName": "結月",
+      "level": 659,
+      "thumbnail": {
+        "thumbnailFrame": 5693,
+        "useCustom": true,
+        "thumbnail": "MSwxMDkwMSwtNjIuNDc1NTksLTEzMy4wMzI5LDAuNTUsMC41NSww",
+        "firstTitle": 60005,
+        "secondTitle": 60004
+      },
+      "popularity": 50041,
+      "updateDt": "1750304438848"
+    },
+    {
+      "no": 1030,
+      "rankNo": 1000,
+      "value": 1650,
+      "itemNo": 2,
+      "itemAmount": 100,
+      "userIdx": "1_441PdeSx_1GzS",
+      "nickName": "結月",
+      "level": 659,
+      "thumbnail": {
+        "thumbnailFrame": 5693,
+        "useCustom": true,
+        "thumbnail": "MSwxMDkwMSwtNjIuNDc1NTksLTEzMy4wMzI5LDAuNTUsMC41NSww",
+        "firstTitle": 60005,
+        "secondTitle": 60004
+      },
+      "popularity": 50041,
+      "updateDt": "1754535784081"
+    },
+    {
+      "no": 1031,
+      "rankNo": 1000,
+      "value": 1710,
+      "itemNo": 2,
+      "itemAmount": 100,
+      "userIdx": "1_441PdeSx_1GzS",
+      "nickName": "結月",
+      "level": 659,
+      "thumbnail": {
+        "thumbnailFrame": 5693,
+        "useCustom": true,
+        "thumbnail": "MSwxMDkwMSwtNjIuNDc1NTksLTEzMy4wMzI5LDAuNTUsMC41NSww",
+        "firstTitle": 60005,
+        "secondTitle": 60004
+      },
+      "popularity": 50041,
+      "updateDt": "1756954967597"
+    },
+    {
+      "no": 1032,
+      "rankNo": 1000,
+      "value": 1770,
+      "itemNo": 2,
+      "itemAmount": 100,
+      "userIdx": "1_441PdeSx_1GzS",
+      "nickName": "結月",
+      "level": 659,
+      "thumbnail": {
+        "thumbnailFrame": 5693,
+        "useCustom": true,
+        "thumbnail": "MSwxMDkwMSwtNjIuNDc1NTksLTEzMy4wMzI5LDAuNTUsMC41NSww",
+        "firstTitle": 60005,
+        "secondTitle": 60004
+      },
+      "popularity": 50041,
+      "updateDt": "1759377934386"
+    },
+    {
+      "no": 1033,
+      "rankNo": 1000,
+      "value": 1830,
+      "itemNo": 2,
+      "itemAmount": 100,
+      "userIdx": "1_a41QmLII_5Mb",
+      "nickName": "末日已近",
+      "level": 601,
+      "thumbnail": {
+        "thumbnailFrame": 5656,
+        "useCustom": true,
+        "thumbnail": "MywyMjg4LC00NTEuMTgyNCw0MTEuNDQ4NSwwLjkwOTY1OTIsMC45MDk2NTkyLDM1NS41MDcy",
+        "firstTitle": 6804,
+        "secondTitle": 6439
+      },
+      "popularity": 40534,
+      "updateDt": "1761793493796"
+    },
+    {
+      "no": 1034,
+      "rankNo": 1000,
+      "value": 1890,
+      "itemNo": 2,
+      "itemAmount": 100,
+      "userIdx": "2_331QrSek_74M",
+      "nickName": "KK",
+      "level": 595,
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MSwxMTMwMSwyMjAuODQ4OCwtMjc0LjE4MzgsMC42NTA1ODczLDAuNjUwNTg3MywzNDUuMzUyOQ==",
+        "firstTitle": 541201,
+        "secondTitle": 6609
+      },
+      "popularity": 47798,
+      "updateDt": "1764213604634"
+    }
+  ],
+  "__format__": "proto"
+}

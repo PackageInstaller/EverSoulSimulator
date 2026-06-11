@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package EsPb;
+
+message MissionPassSelectRewardType {
+  sMissionPass missionPass = 1;
+}
+
+message sMissionPass {
+  int32 missionPassNo = 1;
+  int32 point = 2;
+  int32 rewardedPoint = 3;
+  int32 isBuyTicket = 4;
+  int32 rewardNo = 5;
+  int64 expiredDt = 6;
+}
+

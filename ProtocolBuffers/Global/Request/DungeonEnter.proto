@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message DungeonEnter {
+  int32 dungeonNo = 1;
+  float x = 2;
+  float z = 3;
+  bytes heroInfo = 4;
+  int32 dungeonLevel = 5;
+  bool useTicket = 6;
+}
+

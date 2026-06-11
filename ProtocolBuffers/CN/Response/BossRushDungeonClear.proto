@@ -1,0 +1,139 @@
+syntax = "proto3";
+
+package EsPb;
+
+enum E_CURRENCY {
+  None = 0;
+  Gold = 1;
+  FreeDia = 2;
+  ManaDust = 3;
+  ManaCrystal = 4;
+  Exp = 5;
+  Heart = 6;
+  LifeEssence = 8;
+  ArenaTicket = 9;
+  Dungeon = 10;
+  Guild = 11;
+  Release = 12;
+  Arena = 13;
+  Relics = 14;
+  Silver = 16;
+  SingleRaidCoin = 18;
+  PickupGachaTicket = 19;
+  Sign1 = 20;
+  Sign2 = 21;
+  SignHuman = 22;
+  SignFurry = 23;
+  SignElf = 24;
+  SignUndead = 25;
+  SignAngel = 26;
+  SignDemon = 27;
+  NormalTicket = 28;
+  RaceTicket = 29;
+  RareSoulstone = 30;
+  EpicSoulstone = 31;
+  EquipExp = 32;
+  CollaborationSummonTicket = 33;
+  PayDia = 42;
+  TeamarenaTicket = 44;
+  SignatureGachaTicket = 45;
+  PremiumGachaTicket = 46;
+  MonthlyHeroResetTicket = 47;
+  EquipExpMiddle = 48;
+  EquipExpHigh = 49;
+  ZodiacExp = 50;
+  LabyrinthTicket = 51;
+  TranscendentStone = 52;
+  SingleRaidTicket = 53;
+  SetItemEngrave = 54;
+  RotationDungeonTicket = 55;
+  EdenCoin = 57;
+  TypeBarrierGateTicket = 58;
+  OriginTowerTicket = 59;
+  DoubleGateNormalTicket = 60;
+  DoubleGateNormalTicketCharge = 62;
+  SignatureEnhanceStone = 64;
+  HeroOptionChangeStone = 65;
+  WishGachaTicket = 66;
+  TotalDia = 100;
+}
+
+message BossRushDungeonClear {
+  sBossRushDungeon bossRushDungeon = 1;
+  sDungeon dungeon = 2;
+  sCurrencyAll currency = 3;
+  repeated sItemEquip itemEquip = 4;
+  repeated sItemEtc itemEtc = 5;
+  repeated sItemChangeAmount itemChangeAmount = 6;
+}
+
+message sBossRushDungeon {
+  int32 eventGroup = 1;
+  int32 eventNumber = 2;
+  int32 clearCnt = 3;
+  int32 diaUseCount = 4;
+  int32 maxLevel = 5;
+  int32 sumTrainingPoint = 6;
+  int32 currentLevel = 7;
+  repeated sBossRushBattleBuff battleBuff = 8;
+}
+
+message sBossRushBattleBuff {
+  int32 group = 1;
+  int32 level = 2;
+}
+
+message sDungeon {
+  int32 id = 1;
+  int32 dungeonNo = 2;
+  int32 dungeonLevel = 3;
+  float x = 4;
+  float z = 5;
+  bytes mapInfo = 6;
+  bytes conditionInfo = 7;
+  bytes heroInfo = 8;
+  bytes additionalInfo = 9;
+  bytes relicInfo = 10;
+  int32 isEnter = 11;
+  int32 isClear = 12;
+  int32 isFirstClear = 13;
+  int32 missionNo = 14;
+  int32 missionCnt = 15;
+  int32 seed = 16;
+  bytes dungeonItem = 17;
+  int32 difficulty = 18;
+  int32 ultimatePoint = 19;
+  int32 playerObjectId = 20;
+  bool useTicket = 21;
+  int32 maxClearLevel = 22;
+  int32 isSweep = 23;
+  int32 isPerfectClear = 24;
+  int32 isHiddenKeyNotAvailable = 25;
+  int32 randomGimmickSeed = 26;
+}
+
+message sCurrencyAll {
+  repeated sCurrency allCurrency = 1;
+}
+
+message sCurrency {
+  E_CURRENCY type = 1;
+  int64 value = 2;
+}
+
+message sItemEquip {
+  int64 id = 1;
+  int32 itemNo = 2;
+  int32 exp = 3;
+}
+
+message sItemEtc {
+  int32 itemNo = 1;
+  int32 cnt = 2;
+}
+
+message sItemChangeAmount {
+  int32 itemNo = 1;
+  int32 cnt = 2;
+}
+

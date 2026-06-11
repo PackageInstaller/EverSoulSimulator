@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package EsPb;
+
+message LostFoundWaitClear {
+  sLostFound lostFound = 1;
+}
+
+message sLostFound {
+  int32 heroNo = 1;
+  int32 lastNo = 2;
+  int32 state = 3;
+  int32 id = 4;
+  int64 clearDt = 5;
+}
+

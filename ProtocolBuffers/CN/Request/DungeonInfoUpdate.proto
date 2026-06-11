@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message DungeonInfoUpdate {
+  float x = 1;
+  float z = 2;
+  int32 dungeonId = 3;
+  bytes mapInfo = 4;
+  bytes conditionInfo = 5;
+  bytes additionalInfo = 6;
+  bytes relicInfo = 7;
+  int32 missionNo = 8;
+  int32 missionCnt = 9;
+  bytes heroInfo = 10;
+  bytes dungeonItem = 11;
+  int32 ultimatePoint = 12;
+  int32 playerObjectId = 13;
+  repeated int32 getRelic = 14;
+  repeated int32 loseRelic = 15;
+  int32 isHiddenKeyNotAvailable = 16;
+}
+

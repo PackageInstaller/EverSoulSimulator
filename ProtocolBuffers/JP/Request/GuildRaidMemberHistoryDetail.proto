@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message GuildRaidMemberHistoryDetail {
+  string otherUserIdx = 1;
+  int32 scheduleId = 2;
+}
+

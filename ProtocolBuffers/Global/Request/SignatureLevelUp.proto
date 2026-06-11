@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message SignatureLevelUp {
+  int32 no = 1;
+  int32 toLevel = 2;
+}
+

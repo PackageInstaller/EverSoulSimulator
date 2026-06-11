@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message BattleStart {
+  repeated int32 heroNoList = 1;
+  string hashCode = 2;
+  repeated sHeroLevel hero = 4;
+}
+
+message sHeroLevel {
+  string heroIdx = 1;
+  int32 level = 2;
+}
+

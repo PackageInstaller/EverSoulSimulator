@@ -1,0 +1,474 @@
+{
+ "root": "LabyrinthReward",
+ "messages": {
+  "LabyrinthReward": {
+   "fields": [
+    {
+     "name": "currency",
+     "number": 1,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sCurrencyAll",
+     "packed": false
+    },
+    {
+     "name": "itemEquip",
+     "number": 2,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sItemEquip",
+     "packed": false
+    },
+    {
+     "name": "itemEtc",
+     "number": 3,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sItemEtc",
+     "packed": false
+    },
+    {
+     "name": "dungeonReward",
+     "number": 4,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sDungeonReward",
+     "packed": false
+    },
+    {
+     "name": "dungeon",
+     "number": 5,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sDungeon",
+     "packed": false
+    },
+    {
+     "name": "labyrinthInfo",
+     "number": 6,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sLabyrinthInfo",
+     "packed": false
+    }
+   ]
+  },
+  "sCurrencyAll": {
+   "fields": [
+    {
+     "name": "allCurrency",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sCurrency",
+     "packed": false
+    }
+   ]
+  },
+  "sCurrency": {
+   "fields": [
+    {
+     "name": "type",
+     "number": 1,
+     "repeated": false,
+     "type": "enum",
+     "type_name": "E_CURRENCY",
+     "packed": false
+    },
+    {
+     "name": "value",
+     "number": 2,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    }
+   ]
+  },
+  "sItemEquip": {
+   "fields": [
+    {
+     "name": "id",
+     "number": 1,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "itemNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "exp",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sItemEtc": {
+   "fields": [
+    {
+     "name": "itemNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "cnt",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sDungeonReward": {
+   "fields": [
+    {
+     "name": "type",
+     "number": 1,
+     "repeated": false,
+     "type": "enum",
+     "type_name": "eDungeonRewardType",
+     "packed": false
+    },
+    {
+     "name": "rewardNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sDungeon": {
+   "fields": [
+    {
+     "name": "id",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "dungeonNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "dungeonLevel",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "x",
+     "number": 4,
+     "repeated": false,
+     "type": "float",
+     "packed": false
+    },
+    {
+     "name": "z",
+     "number": 5,
+     "repeated": false,
+     "type": "float",
+     "packed": false
+    },
+    {
+     "name": "mapInfo",
+     "number": 6,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    },
+    {
+     "name": "conditionInfo",
+     "number": 7,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    },
+    {
+     "name": "heroInfo",
+     "number": 8,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    },
+    {
+     "name": "additionalInfo",
+     "number": 9,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    },
+    {
+     "name": "relicInfo",
+     "number": 10,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    },
+    {
+     "name": "isEnter",
+     "number": 11,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "isClear",
+     "number": 12,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "isFirstClear",
+     "number": 13,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "missionNo",
+     "number": 14,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "missionCnt",
+     "number": 15,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "seed",
+     "number": 16,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "dungeonItem",
+     "number": 17,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    },
+    {
+     "name": "difficulty",
+     "number": 18,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "ultimatePoint",
+     "number": 19,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "playerObjectId",
+     "number": 20,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "useTicket",
+     "number": 21,
+     "repeated": false,
+     "type": "bool",
+     "packed": false
+    },
+    {
+     "name": "maxClearLevel",
+     "number": 22,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "isSweep",
+     "number": 23,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "isPerfectClear",
+     "number": 24,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "isHiddenKeyNotAvailable",
+     "number": 25,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "randomGimmickSeed",
+     "number": 26,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sLabyrinthInfo": {
+   "fields": [
+    {
+     "name": "isPlaying",
+     "number": 1,
+     "repeated": false,
+     "type": "bool",
+     "packed": false
+    },
+    {
+     "name": "currentLabyrinthNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "currentAdditionalInfo",
+     "number": 3,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    },
+    {
+     "name": "maxClearFloor",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "isClear",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "isSweep",
+     "number": 6,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "maxLabyrinthNo",
+     "number": 7,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "labyrinthClearCnt",
+     "number": 8,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "labyrinthTicketCnt",
+     "number": 9,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "isLabyrinthOpen",
+     "number": 10,
+     "repeated": false,
+     "type": "bool",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {
+  "E_CURRENCY": {
+   "None": 0,
+   "Gold": 1,
+   "FreeDia": 2,
+   "ManaDust": 3,
+   "ManaCrystal": 4,
+   "Exp": 5,
+   "Heart": 6,
+   "LifeEssence": 8,
+   "ArenaTicket": 9,
+   "Dungeon": 10,
+   "Guild": 11,
+   "Release": 12,
+   "Arena": 13,
+   "Relics": 14,
+   "Silver": 16,
+   "SingleRaidCoin": 18,
+   "PickupGachaTicket": 19,
+   "Sign1": 20,
+   "Sign2": 21,
+   "SignHuman": 22,
+   "SignFurry": 23,
+   "SignElf": 24,
+   "SignUndead": 25,
+   "SignAngel": 26,
+   "SignDemon": 27,
+   "NormalTicket": 28,
+   "RaceTicket": 29,
+   "RareSoulstone": 30,
+   "EpicSoulstone": 31,
+   "EquipExp": 32,
+   "CollaborationSummonTicket": 33,
+   "PayDia": 42,
+   "TeamarenaTicket": 44,
+   "SignatureGachaTicket": 45,
+   "PremiumGachaTicket": 46,
+   "MonthlyHeroResetTicket": 47,
+   "EquipExpMiddle": 48,
+   "EquipExpHigh": 49,
+   "ZodiacExp": 50,
+   "LabyrinthTicket": 51,
+   "TranscendentStone": 52,
+   "SingleRaidTicket": 53,
+   "SetItemEngrave": 54,
+   "RotationDungeonTicket": 55,
+   "EdenCoin": 57,
+   "TypeBarrierGateTicket": 58,
+   "OriginTowerTicket": 59,
+   "DoubleGateNormalTicket": 60,
+   "DoubleGateNormalTicketCharge": 62,
+   "SignatureEnhanceStone": 64,
+   "HeroOptionChangeStone": 65,
+   "WishGachaTicket": 66,
+   "TotalDia": 100
+  },
+  "eDungeonRewardType": {
+   "NoneDungeonReward": 0,
+   "Mission": 1,
+   "Object": 2,
+   "Monster": 3,
+   "Chest": 4
+  }
+ }
+}

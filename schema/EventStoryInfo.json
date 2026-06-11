@@ -1,0 +1,50 @@
+{
+ "root": "EventStoryInfo",
+ "messages": {
+  "EventStoryInfo": {
+   "fields": [
+    {
+     "name": "story",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sEventStory",
+     "packed": false
+    }
+   ]
+  },
+  "sEventStory": {
+   "fields": [
+    {
+     "name": "eventType",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "eventGroup",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "eventNumber",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "lastStoryNo",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package EsPb;
+
+message ShopList {
+  sShop shop = 1;
+  repeated sShopItem shopItem = 2;
+}
+
+message sShop {
+  int32 shopNo = 1;
+  int32 refreshAbleCnt = 2;
+  int32 nextResetYyyymmdd = 3;
+}
+
+message sShopItem {
+  int32 no = 1;
+  int32 shopNo = 2;
+  int32 shopItemNo = 3;
+  int32 buyCnt = 4;
+}
+

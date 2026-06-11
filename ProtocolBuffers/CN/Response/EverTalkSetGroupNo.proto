@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package EsPb;
+
+message EverTalkSetGroupNo {
+  int32 heroNo = 1;
+  int32 groupNo = 2;
+  int64 recordedDt = 3;
+}
+

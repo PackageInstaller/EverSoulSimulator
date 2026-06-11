@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package EsPb;
+
+message GuildJoinRequestList {
+  repeated sGuildJoinRequest guildJoinRequest = 1;
+}
+
+message sGuildJoinRequest {
+  string guildIdx = 1;
+  string userIdx = 2;
+  int32 level = 3;
+  string nickName = 4;
+  int64 dt = 5;
+  sThumbnail thumbnail = 6;
+  int64 power = 7;
+}
+
+message sThumbnail {
+  int32 thumbnailFrame = 1;
+  int32 thumbnailImage = 2;
+  bool useCustom = 3;
+  bytes thumbnail = 4;
+}
+

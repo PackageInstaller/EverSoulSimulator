@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package EsPb;
+
+message DailyContent {
+  string dailyContent_ = 1;
+}
+

@@ -1,0 +1,25 @@
+{
+  "trip": {
+    "heroNo": 3090,
+    "isReceive": 1,
+    "yymmdd": "1781053916842"
+  },
+  "keywordLovePoint": 182,
+  "tripKeyword": [
+    {
+      "keywordNo": 13,
+      "heroNo": 3090
+    },
+    {
+      "keywordNo": 14,
+      "heroNo": 3090
+    },
+    {
+      "keywordNo": 8,
+      "heroNo": 3090
+    }
+  ],
+  "reputation": 41522,
+  "bonusLovePoint": 20,
+  "__format__": "proto"
+}

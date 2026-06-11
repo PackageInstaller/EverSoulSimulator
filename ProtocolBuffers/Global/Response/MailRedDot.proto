@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package EsPb;
+
+message MailRedDot {
+  int32 cashRedDot = 1;
+  int32 normalRedDot = 2;
+  int32 adminRedDot = 3;
+  int32 messageRedDot = 4;
+}
+

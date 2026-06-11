@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message PrevChat {
+  int32 chatType = 1;
+  string targetInfoStr = 2;
+}
+

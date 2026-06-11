@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message SignatureLevelUpForAdmin {
+  int32 no = 1;
+  int32 level = 2;
+  string heroIdx = 3;
+}
+

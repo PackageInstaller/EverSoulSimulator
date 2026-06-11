@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package EsPb;
+
+message SignatureDeleteForAdmin {
+  sItemSignature itemSignature = 1;
+}
+
+message sItemSignature {
+  int32 itemNo = 1;
+  int32 grade = 2;
+  int32 level = 3;
+}
+

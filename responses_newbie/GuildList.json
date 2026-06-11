@@ -1,0 +1,209 @@
+{
+  "guild": [
+    {
+      "idx": "0_011PdILo_2p7l",
+      "name": "月心小築",
+      "exp": 1623140,
+      "cnt": 26,
+      "limitLv": 100,
+      "notice": "~ 休閒公會~<br>目前視狀況清幽靈<br>有事可請假",
+      "skillLevel": "[4,4,9]",
+      "customEmblem": "MSw2MDIwNCw4Ny40NjU4NCwtMTUyLjI2MTgsMC41NSwwLjU1LDA=",
+      "skillResetDt": "1763450248834",
+      "introduction": "休閒公會 視工會營運狀況清幽靈<br>"
+    },
+    {
+      "idx": "0_131Rvl2J_a1N",
+      "name": "關門放喵",
+      "exp": 742690,
+      "cnt": 28,
+      "notice": "感謝大家的陪伴~<br>",
+      "skillLevel": "[3,6,7]",
+      "customEmblem": "MSw5MDEwMSwxNDIuMzQ5NywtNDkuOTk5OTcsMC4zMTA3ODg4LDAuMzEwNzg4OCwzNTkuOTc5MQ==",
+      "skillResetDt": "1742697834090",
+      "introduction": "三天沒上會踢（可先請假）"
+    },
+    {
+      "idx": "0_211PdeSx_1B9",
+      "name": "PadKaPoW",
+      "exp": 1006600,
+      "cnt": 20,
+      "limitLv": 100,
+      "notice": "Welcome Baby!",
+      "skillLevel": "[2,4,9]",
+      "customEmblem": "MSw0MDQwMSwtNjguMzQyMTgsMjY2LjY0NTgsMC40MDAzOTk2LDAuNDAwMzk5NiwyNjkuMzgyNA==",
+      "skillResetDt": "1775897707417"
+    },
+    {
+      "idx": "0_441PdILo_pRP",
+      "name": "ThaiX",
+      "exp": 630830,
+      "cnt": 24,
+      "limitLv": 40,
+      "notice": "Casual player<br> Welcome everyone",
+      "skillLevel": "[3,3,7]",
+      "customEmblem": "MSwyMDEwMiw2NC4wNjI0OCw3LjAzMTI1MSwwLjI2MTE4NDgsMC4yNjExODQ4LDAuOTQ5NTc1Mw==",
+      "skillResetDt": "1681388063982"
+    },
+    {
+      "idx": "0_541PHKfl_apH",
+      "name": "邪馬台",
+      "exp": 190630,
+      "cnt": 21,
+      "notice": "太久沒出現的，就會踢踢囉！",
+      "skillLevel": "[2,4,5]",
+      "customEmblem": "MCw2MDIwLDE5My4zNjk3LDQxNC41MDc2LDEuNjQwNTU2LDEuNjQwNTU2LDM1OC4yMTY1",
+      "skillResetDt": "1683561162396"
+    },
+    {
+      "idx": "0_541QjSGK_h3",
+      "emblemNo": 520,
+      "name": "都要上線過每日喔",
+      "exp": 696740,
+      "cnt": 7,
+      "notice": "要每天過每日任務哦～～～",
+      "skillLevel": "[3,5,7]",
+      "skillResetDt": "1691600552731"
+    },
+    {
+      "idx": "0_621WhSES_15Eg",
+      "emblemNo": 6980,
+      "name": "LastPlayer",
+      "exp": 280,
+      "cnt": 1,
+      "notice": "For Last Player ON",
+      "skillLevel": "[0,0,0]"
+    },
+    {
+      "idx": "0_641QcdBN_kY",
+      "name": "AsnycAwait",
+      "exp": 566170,
+      "cnt": 12,
+      "skillLevel": "[4,4,7]",
+      "customEmblem": "MSw5MjUwMiwtMzIyLjQxNjQsLTI2Ny43ODAyLDAuNzM5NTk5OCwwLjczOTU5OTgsMzU5Ljc0MTQ="
+    },
+    {
+      "idx": "0_741PvqPo_bep",
+      "name": "銀色車輪",
+      "exp": 1109610,
+      "cnt": 9,
+      "notice": "<br>6/30關服",
+      "skillLevel": "[2,1,10]",
+      "customEmblem": "MSw0MTIwMSwtMjY5Ljg1OTMsLTU4Ni45NTY0LDEuMSwxLjEsMjUuNDk5OTE=",
+      "skillResetDt": "1746233000628"
+    },
+    {
+      "idx": "0_831QhdAE_rd",
+      "emblemNo": 1,
+      "name": "vxo",
+      "exp": 474440,
+      "cnt": 7,
+      "skillLevel": "[3,2,8]"
+    },
+    {
+      "idx": "0_841Q73Dg_7zd",
+      "emblemNo": 2010,
+      "name": "Unranker",
+      "exp": 975130,
+      "cnt": 14,
+      "notice": "Chill ＆ Hv Fun, 7D Inactive = Kicked Out",
+      "skillLevel": "[6,5,6]",
+      "customEmblem": "MSwxMzUsLTUuMDA1MTUsLTQuMTYxMjY2LDAuMjU3NDAyNywwLjI1NzQwMjcsMC4wMjY0MjkxOQ=="
+    },
+    {
+      "idx": "0_a21PdeSF_OYp",
+      "name": "GarudaIndo",
+      "exp": 599420,
+      "cnt": 4,
+      "notice": "JOIN discord.gg/JpWcFUgN",
+      "skillLevel": "[2,1,9]",
+      "customEmblem": "MSwxMDEwMSwtODYuOTQxODYsLTE2NS4yMTc0LDAuNTUsMC41NSww",
+      "skillResetDt": "1743611128910"
+    },
+    {
+      "idx": "0_a41Rldj4_izu",
+      "name": "閃耀十字軍",
+      "exp": 266150,
+      "cnt": 10,
+      "skillLevel": "[0,3,7]",
+      "customEmblem": "MSw5MDEwMSwyNDkuNTA0MiwtMTQxLjA5MzEsMC41NSwwLjU1LDA="
+    },
+    {
+      "idx": "0_b21PdeSE_gcT",
+      "name": "TENGA",
+      "exp": 1206720,
+      "cnt": 14,
+      "limitLv": 100,
+      "notice": "development guild of R1 guild COPE MASH uWu ",
+      "skillLevel": "[1,2,9]",
+      "customEmblem": "MSwzMTEwMyw2NS44MzMyNywtNTQuNjQ4NTcsMC4zNDAwMDAyLDAuMzQwMDAwMiww",
+      "skillResetDt": "1709014912826",
+      "introduction": "just join!"
+    },
+    {
+      "idx": "0_b31PdeSE_1g12",
+      "emblemNo": 1100,
+      "name": "寶鐘海賊團",
+      "exp": 1537460,
+      "cnt": 22,
+      "limitLv": 30,
+      "notice": "Ahoy！每日任務要做，公會才會發展；二日未上（新人一日）即出航！~",
+      "skillLevel": "[0,4,10]",
+      "customEmblem": "MCwxMTAwLDE1MS4wNjUsLTkyLjg5OTIzLDAuODIwMzYxMSwwLjgyMDM2MTEsMTEuMjczNjg=",
+      "skillResetDt": "1755782691123"
+    },
+    {
+      "idx": "0_b41Pnnp9_K2p",
+      "emblemNo": 120,
+      "name": "SpadeMY",
+      "exp": 83100,
+      "cnt": 16,
+      "notice": "Selamat Datang ke SpadeMY",
+      "skillLevel": "[2,3,4]",
+      "customEmblem": "MSw5MDEwMiwtMTk2LjY0OTUsLTEwNC4xNjY3LDAuNDMwMzIyNSwwLjQzMDMyMjUsMC41NzIyMzEz"
+    },
+    {
+      "idx": "0_c11PdILv_2Eoo",
+      "emblemNo": 1,
+      "name": "88不存在的伊甸園",
+      "exp": 1626130,
+      "cnt": 27,
+      "limitLv": 100,
+      "notice": "開心休閒玩～<br>一起歐氣滿滿！解每日提升公會資源推主線！<br>2天沒出現會請離開p(^_^)q",
+      "skillLevel": "[3,7,7]",
+      "skillResetDt": "1706717611851"
+    },
+    {
+      "idx": "0_d21PfYMb_1sJY",
+      "name": "雪月琉璃",
+      "exp": 1444840,
+      "cnt": 28,
+      "notice": "2026.06.30 bye bye",
+      "skillLevel": "[3,2,10]",
+      "customEmblem": "MSw2MDEwMiwxMzQ0Ljc4LC0yNzIuNjIxMiwxLjE1NDU3NiwxLjE1NDU3Niww",
+      "skillResetDt": "1751283988707"
+    },
+    {
+      "idx": "0_e11PdeSE_Q1O",
+      "name": "擦邊球",
+      "exp": 879350,
+      "cnt": 24,
+      "notice": "輕鬆玩 戰力隨意<br>超過3天不上線會請離",
+      "skillLevel": "[0,0,10]",
+      "customEmblem": "MSw2ODEsMTU1LjYxMzUsLTU5LjgwMDMyLDAuNTY0MjkwNSwwLjU2NDI5MDUsMzU2LjU0MTg=",
+      "skillResetDt": "1757114879029"
+    },
+    {
+      "idx": "0_e41PdeSE_1Ek9",
+      "name": "彼岸花開",
+      "exp": 1251130,
+      "cnt": 6,
+      "limitLv": 30,
+      "notice": "偶爾清久未上線者<br>歡迎加入OUOvv<br>新人記得去商店古物店購買週年裝備呦",
+      "skillLevel": "[4,1,9]",
+      "customEmblem": "MSw2MDMwNywtNC4yMDU2NTgsMS41NzQ0NzgsMC4yNTcwODg3LDAuMjU3MDg4NywzNTkuNDg5",
+      "skillResetDt": "1680766436804"
+    }
+  ],
+  "__format__": "proto"
+}

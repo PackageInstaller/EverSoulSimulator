@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package EsPb;
+
+message EverTalkList {
+  repeated sEverTalkDataList everTalkData = 1;
+  repeated sEverTalkMemorialPicture everTalkMemorialPicture = 4;
+}
+
+message sEverTalkDataList {
+  int32 heroNo = 1;
+  sEverTalkHeroDestinyData destinyTalkData = 2;
+  repeated sEverTalkHeroAnniversaryData anniversaryTalkData = 3;
+}
+
+message sEverTalkHeroDestinyData {
+  int32 groupNo = 1;
+  int32 lastReceiveGroupNo = 2;
+  int64 recordedDt = 3;
+}
+
+message sEverTalkHeroAnniversaryData {
+  int32 groupNo = 1;
+  int32 receiveFlag = 2;
+  int64 recordedDt = 3;
+}
+
+message sEverTalkMemorialPicture {
+  int32 talkNo = 1;
+  string memorialMessage = 2;
+}
+

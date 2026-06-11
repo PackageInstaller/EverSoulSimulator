@@ -1,0 +1,55 @@
+{
+ "root": "HeroEquipMulti",
+ "messages": {
+  "HeroEquipMulti": {
+   "fields": [
+    {
+     "name": "heroEquipList",
+     "number": 1,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sHeroEquipAll",
+     "packed": false
+    }
+   ]
+  },
+  "sHeroEquipAll": {
+   "fields": [
+    {
+     "name": "heroIdx",
+     "number": 1,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "equip",
+     "number": 2,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sSlotAndEquipId",
+     "packed": false
+    }
+   ]
+  },
+  "sSlotAndEquipId": {
+   "fields": [
+    {
+     "name": "slot",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "itemEquipId",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

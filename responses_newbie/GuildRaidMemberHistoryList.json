@@ -1,0 +1,47 @@
+{
+  "guildRaidPlayMemberHistory": [
+    {
+      "otherGuildUserIdx": "2_131W311a_qDw",
+      "scheduleId": 58,
+      "maxScore": "613149626",
+      "nickName": "蘇Kyokou",
+      "thumbnail": {
+        "thumbnailFrame": 5612,
+        "useCustom": true,
+        "thumbnail": "MywyMjAxLDExOS45MDY0LC0xNTAuNjQ2MiwxLDEsMA=="
+      }
+    },
+    {
+      "otherGuildUserIdx": "2_441Rvl2I_2fT",
+      "scheduleId": 58,
+      "maxScore": "8701684592",
+      "nickName": "韭菜公主要玩到最後",
+      "thumbnail": {
+        "thumbnailFrame": 5621,
+        "thumbnailImage": 32100,
+        "thumbnail": "MywyMzEzLDEzLjk0OTk3LDMuOTM2NzYsMC4zMTQ2MTQ2LDAuMzE0NjE0NiwzNTkuNDc5NA=="
+      }
+    },
+    {
+      "otherGuildUserIdx": "2_631WhSES_Ogh",
+      "scheduleId": 58,
+      "maxScore": "22993179",
+      "nickName": "飛天小母豬",
+      "thumbnail": {
+        "thumbnailFrame": 5501,
+        "thumbnailImage": 30001
+      }
+    },
+    {
+      "otherGuildUserIdx": "2_131WhSEa_130R",
+      "scheduleId": 58,
+      "maxScore": "20748383",
+      "nickName": "MUNHWAN",
+      "thumbnail": {
+        "thumbnailFrame": 5501,
+        "thumbnailImage": 36530
+      }
+    }
+  ],
+  "__format__": "proto"
+}

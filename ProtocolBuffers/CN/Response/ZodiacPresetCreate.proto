@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package EsPb;
+
+message ZodiacPresetCreate {
+  sZodiacPreset zodiacPreset = 1;
+}
+
+message sZodiacPreset {
+  int64 presetIdx = 1;
+  string presetName = 2;
+  int32 presetOrder = 3;
+  repeated sZodiac zodiacNo = 4;
+}
+
+message sZodiac {
+  int32 zodiacNo = 1;
+}
+

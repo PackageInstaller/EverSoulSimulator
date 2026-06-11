@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message ShopList {
+  int32 shopNo = 1;
+}
+

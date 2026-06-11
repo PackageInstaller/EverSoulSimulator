@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message SetHeroUnsignedObjet {
+  int32 objetNo = 1;
+  int32 oldHeroNo = 2;
+  int32 newHeroNo = 3;
+}
+

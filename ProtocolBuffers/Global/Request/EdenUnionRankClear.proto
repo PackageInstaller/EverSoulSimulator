@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message EdenUnionRankClear {
+  int32 level = 1;
+  repeated string heroIdx = 2;
+  int64 totalBattleTime = 3;
+}
+

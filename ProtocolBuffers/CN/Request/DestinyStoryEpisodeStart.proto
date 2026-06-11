@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message DestinyStoryEpisodeStart {
+  int32 heroNo = 1;
+  int32 storyNo = 2;
+}
+

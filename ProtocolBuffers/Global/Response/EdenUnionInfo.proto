@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package EsPb;
+
+enum eRankRewardState {
+  Rewarded = 0;
+  Available = 1;
+  Empty = 2;
+  RankCalculating = 3;
+  Progressing = 4;
+}
+
+message EdenUnionInfo {
+  int32 unionGroup = 1;
+  repeated sEdenUnionMission mission = 2;
+  repeated int32 lastSelectConstraintNo = 3;
+  int32 day = 4;
+  int32 maxLevel = 5;
+  int32 tierNo = 6;
+  eRankRewardState rewardState = 7;
+  bool isNormalOpen = 8;
+  bool isRankOpen = 9;
+  int32 isDailyRewarded = 10;
+}
+
+message sEdenUnionMission {
+  int32 missionNo = 1;
+  int32 isRewarded = 2;
+}
+

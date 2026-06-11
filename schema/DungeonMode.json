@@ -1,0 +1,24 @@
+{
+ "root": "DungeonMode",
+ "messages": {
+  "DungeonMode": {
+   "fields": [
+    {
+     "name": "dungeonNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "difficulty",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

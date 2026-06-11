@@ -1,0 +1,64 @@
+{
+ "root": "EventDailyPassList",
+ "messages": {
+  "EventDailyPassList": {
+   "fields": [
+    {
+     "name": "passInfo",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sEventDailyPass",
+     "packed": false
+    }
+   ]
+  },
+  "sEventDailyPass": {
+   "fields": [
+    {
+     "name": "eventGroup",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "eventNumber",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "lastReceivedNo",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "bought",
+     "number": 4,
+     "repeated": false,
+     "type": "bool",
+     "packed": false
+    },
+    {
+     "name": "startDate",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "lastReceivedDate",
+     "number": 6,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

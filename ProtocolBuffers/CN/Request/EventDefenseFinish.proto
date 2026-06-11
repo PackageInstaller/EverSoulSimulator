@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message EventDefenseFinish {
+  int32 eventGroup = 1;
+  int32 eventNumber = 2;
+  int32 score = 3;
+  int32 isCleared = 4;
+  int32 sweepCnt = 5;
+  int32 level = 6;
+  string taskList = 7;
+  repeated string log = 8;
+}
+

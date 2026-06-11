@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package EsPb;
+
+message SetTripKeywordList {
+  repeated sTripKeyword tripKeyword = 1;
+}
+
+message sTripKeyword {
+  int32 keywordNo = 1;
+  int32 isFirst = 2;
+  int32 heroNo = 3;
+}
+

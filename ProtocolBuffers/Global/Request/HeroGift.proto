@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message HeroGift {
+  int32 giftNo = 1;
+  int32 heroNo = 2;
+  int32 giftCount = 3;
+}
+

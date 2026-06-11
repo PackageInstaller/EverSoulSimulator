@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package EsPb;
+
+message ArbeitList {
+  string arbeitList_ = 1;
+}
+

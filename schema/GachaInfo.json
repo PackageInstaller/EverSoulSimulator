@@ -1,0 +1,203 @@
+{
+ "root": "GachaInfo",
+ "messages": {
+  "GachaInfo": {
+   "fields": [
+    {
+     "name": "gachaMileage",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sGachaMileage",
+     "packed": false
+    },
+    {
+     "name": "gachaLimit",
+     "number": 2,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sGachaLimit",
+     "packed": false
+    },
+    {
+     "name": "gacha",
+     "number": 3,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sGacha",
+     "packed": false
+    },
+    {
+     "name": "gachaWish",
+     "number": 4,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sGachaWish",
+     "packed": false
+    },
+    {
+     "name": "gachaPeriod",
+     "number": 5,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sGachaPeriod",
+     "packed": false
+    }
+   ]
+  },
+  "sGachaMileage": {
+   "fields": [
+    {
+     "name": "mileageNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "changedPoint",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "afterPoint",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "rewardedPoint",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sGachaLimit": {
+   "fields": [
+    {
+     "name": "gachaNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "ableCnt",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "expiredDt",
+     "number": 3,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    }
+   ]
+  },
+  "sGacha": {
+   "fields": [
+    {
+     "name": "heroGachaCeilCnt",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "premiumGachaCeilCnt",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "heroWishGachaCeilCnt",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "heroGachaTutorialFixed",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "heroGachaAutoRelease",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "signatureGachaAutoRelease",
+     "number": 6,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sGachaWish": {
+   "fields": [
+    {
+     "name": "gachaType",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "slotNum",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "wishId",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sGachaPeriod": {
+   "fields": [
+    {
+     "name": "gachaNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "startDt",
+     "number": 2,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "endDt",
+     "number": 3,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

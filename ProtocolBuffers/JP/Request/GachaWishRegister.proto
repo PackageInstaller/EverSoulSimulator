@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message GachaWishRegister {
+  int32 gachaNo = 1;
+  repeated sGachaWish gachaWish = 2;
+}
+
+message sGachaWish {
+  int32 gachaType = 1;
+  int32 slotNum = 2;
+  int32 wishId = 3;
+}
+

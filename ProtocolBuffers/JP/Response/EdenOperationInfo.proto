@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package EsPb;
+
+message EdenOperationInfo {
+  bool isEvent = 1;
+  int32 season = 2;
+  int32 permitCount = 3;
+  repeated sEdenOperationMission mission = 4;
+  repeated int32 lastSelectConstraintNo = 5;
+  int32 day = 6;
+  sEdenTier tier = 7;
+  int32 maxScore = 8;
+}
+
+message sEdenOperationMission {
+  int32 missionNo = 1;
+  int32 isReceive = 2;
+}
+
+message sEdenTier {
+  int32 tierNo = 1;
+  bool tierRewardReceive = 2;
+  int64 nextTierRewardDt = 3;
+  float myPercent = 4;
+  int32 rewardTierNo = 5;
+  float rewardTierPercent = 6;
+}
+

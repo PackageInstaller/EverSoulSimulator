@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message EdenUnionNormalClear {
+  repeated string heroIdx = 1;
+}
+

@@ -1,0 +1,15 @@
+{
+  "heroEquipList": {
+    "heroIdx": "1_641WhSES_17Ea",
+    "equip": [
+      {
+        "itemEquipId": 25885374
+      },
+      {
+        "slot": 1,
+        "itemEquipId": 25885383
+      }
+    ]
+  },
+  "__format__": "proto"
+}

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message GuildMailSendForAll {
+  string guildIdx = 1;
+  string context = 2;
+}
+

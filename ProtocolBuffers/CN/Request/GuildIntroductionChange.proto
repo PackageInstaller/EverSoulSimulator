@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message GuildIntroductionChange {
+  string guildIdx = 1;
+  string guildIntroduction = 2;
+}
+

@@ -1,0 +1,278 @@
+{
+ "root": "DestinyInfoList",
+ "messages": {
+  "DestinyInfoList": {
+   "fields": [
+    {
+     "name": "destinyStoryEpisode",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sDestinyStoryEpisode",
+     "packed": false
+    },
+    {
+     "name": "pickUpHeroNoList",
+     "number": 2,
+     "repeated": true,
+     "type": "int32",
+     "packed": true
+    },
+    {
+     "name": "tempReputation",
+     "number": 3,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sTempReputation",
+     "packed": false
+    },
+    {
+     "name": "destinyStoryAffinityPoint",
+     "number": 4,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sDestinyStoryAffinityPoint",
+     "packed": false
+    },
+    {
+     "name": "trip",
+     "number": 6,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sTrip",
+     "packed": false
+    },
+    {
+     "name": "tripRemainCount",
+     "number": 7,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "tripKeyword",
+     "number": 8,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sTripKeyword",
+     "packed": false
+    },
+    {
+     "name": "tripResetDt",
+     "number": 9,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "lostFound",
+     "number": 10,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sLostFound",
+     "packed": false
+    }
+   ]
+  },
+  "sDestinyStoryEpisode": {
+   "fields": [
+    {
+     "name": "storyNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "state",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "heroNo",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "happy",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "normal",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "bad",
+     "number": 6,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "lastReceiveStoryNo",
+     "number": 7,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sTempReputation": {
+   "fields": [
+    {
+     "name": "heroNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "reputation",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "giftDt",
+     "number": 3,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "maxLevelDt",
+     "number": 4,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    }
+   ]
+  },
+  "sDestinyStoryAffinityPoint": {
+   "fields": [
+    {
+     "name": "heroNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "affinityPoint",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sTrip": {
+   "fields": [
+    {
+     "name": "heroNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "isReceive",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "yymmdd",
+     "number": 3,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "uid",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sTripKeyword": {
+   "fields": [
+    {
+     "name": "keywordNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "isFirst",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "heroNo",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sLostFound": {
+   "fields": [
+    {
+     "name": "heroNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "lastNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "state",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "id",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "clearDt",
+     "number": 5,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

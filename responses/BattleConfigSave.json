@@ -1,0 +1,7 @@
+{
+  "speed": 2,
+  "actionActive": true,
+  "actionUltimate": true,
+  "battleAutoUltimate": true,
+  "__format__": "proto"
+}

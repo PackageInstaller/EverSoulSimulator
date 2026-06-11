@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message BossRushDungeonTicketBuy {
+  int32 eventGroup = 1;
+  int32 eventNumber = 2;
+  int32 useDiaAmount = 3;
+  int32 buyTicketCount = 4;
+}
+

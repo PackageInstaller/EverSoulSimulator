@@ -1,0 +1,17 @@
+{
+  "cashGrow": [
+    {
+      "shopItemNo": 501
+    },
+    {
+      "shopItemNo": 502
+    },
+    {
+      "shopItemNo": 503
+    },
+    {
+      "shopItemNo": 511
+    }
+  ],
+  "__format__": "proto"
+}

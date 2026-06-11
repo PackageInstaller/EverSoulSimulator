@@ -1,0 +1,374 @@
+{
+ "root": "FriendTotalList",
+ "messages": {
+  "FriendTotalList": {
+   "fields": [
+    {
+     "name": "friendTotalList_",
+     "number": 1,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    },
+    {
+     "name": "rentHeroList",
+     "number": 2,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sRentHero",
+     "packed": false
+    },
+    {
+     "name": "useRentHeroList",
+     "number": 3,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sRentUseHero",
+     "packed": false
+    },
+    {
+     "name": "remainHeartSendCnt",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "remainHeartReceiveCnt",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sRentHero": {
+   "fields": [
+    {
+     "name": "idx",
+     "number": 1,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "heroNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "level",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "gradeSno",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "raceSno",
+     "number": 6,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "power",
+     "number": 7,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "nickName",
+     "number": 8,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "userIdx",
+     "number": 9,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "costumeItemNo",
+     "number": 10,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sRentUseHero": {
+   "fields": [
+    {
+     "name": "heroIdx",
+     "number": 1,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "userIdx",
+     "number": 2,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "heroNo",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "level",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "gradeSno",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "raceSno",
+     "number": 6,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "power",
+     "number": 7,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "nickName",
+     "number": 8,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "used",
+     "number": 9,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "costumeItemNo",
+     "number": 10,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "slotAndEquipItem",
+     "number": 11,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sSlotAndEquipItem",
+     "packed": false
+    },
+    {
+     "name": "signature",
+     "number": 12,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sItemSignature",
+     "packed": false
+    },
+    {
+     "name": "buff",
+     "number": 13,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sContentBuff",
+     "packed": false
+    },
+    {
+     "name": "heroOption",
+     "number": 14,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sHeroOption",
+     "packed": false
+    }
+   ]
+  },
+  "sSlotAndEquipItem": {
+   "fields": [
+    {
+     "name": "slot",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "itemEquip",
+     "number": 2,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sItemEquip",
+     "packed": false
+    }
+   ]
+  },
+  "sItemEquip": {
+   "fields": [
+    {
+     "name": "id",
+     "number": 1,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "itemNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "exp",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sItemSignature": {
+   "fields": [
+    {
+     "name": "itemNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "grade",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "level",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sContentBuff": {
+   "fields": [
+    {
+     "name": "contentType",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "buffType",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "buffNo",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "value",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sHeroOption": {
+   "fields": [
+    {
+     "name": "heroNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "groupNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "optionSlot",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "optionNo",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "optionValue",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "optionType",
+     "number": 6,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "optionLock",
+     "number": 7,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

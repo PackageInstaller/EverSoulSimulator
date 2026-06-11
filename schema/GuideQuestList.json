@@ -1,0 +1,50 @@
+{
+ "root": "GuideQuestList",
+ "messages": {
+  "GuideQuestList": {
+   "fields": [
+    {
+     "name": "guideQuest",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sGuideQuest",
+     "packed": false
+    },
+    {
+     "name": "completeNoList",
+     "number": 2,
+     "repeated": true,
+     "type": "int32",
+     "packed": true
+    },
+    {
+     "name": "receiveNoList",
+     "number": 3,
+     "repeated": true,
+     "type": "int32",
+     "packed": true
+    }
+   ]
+  },
+  "sGuideQuest": {
+   "fields": [
+    {
+     "name": "questNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "value",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

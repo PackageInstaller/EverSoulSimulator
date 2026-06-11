@@ -1,0 +1,17 @@
+{
+ "root": "ServerTime",
+ "messages": {
+  "ServerTime": {
+   "fields": [
+    {
+     "name": "dt",
+     "number": 1,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

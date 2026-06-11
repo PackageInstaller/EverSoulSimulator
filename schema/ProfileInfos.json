@@ -1,0 +1,555 @@
+{
+ "root": "ProfileInfos",
+ "messages": {
+  "ProfileInfos": {
+   "fields": [
+    {
+     "name": "profileInfo",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sProfileInfo",
+     "packed": false
+    },
+    {
+     "name": "buff",
+     "number": 2,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sContentBuff",
+     "packed": false
+    }
+   ]
+  },
+  "sProfileInfo": {
+   "fields": [
+    {
+     "name": "profileBase",
+     "number": 1,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sProfileBase",
+     "packed": false
+    },
+    {
+     "name": "profileCustom",
+     "number": 2,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sProfileCustom",
+     "packed": false
+    }
+   ]
+  },
+  "sProfileBase": {
+   "fields": [
+    {
+     "name": "userIdx",
+     "number": 1,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "channelNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "nickName",
+     "number": 3,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "aboutMe",
+     "number": 4,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "guildIdx",
+     "number": 5,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "guildName",
+     "number": 6,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "currentStageNo",
+     "number": 7,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "currentBarrierNo",
+     "number": 8,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "thumbnail",
+     "number": 9,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sThumbnail",
+     "packed": false
+    },
+    {
+     "name": "popularity",
+     "number": 10,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "power",
+     "number": 11,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "spritTreeLevel",
+     "number": 12,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "ownedHeroCount",
+     "number": 13,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "arenaScore",
+     "number": 14,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "activatedZodiacBlessNo",
+     "number": 15,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "heroes",
+     "number": 16,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sProfileHero",
+     "packed": false
+    },
+    {
+     "name": "id",
+     "number": 17,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "arkMainCoreLevel",
+     "number": 18,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "hallOfFameMyRank",
+     "number": 19,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sHallOfFameMyRank",
+     "packed": false
+    },
+    {
+     "name": "costumeCount",
+     "number": 20,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "createdDt",
+     "number": 21,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "townLevel",
+     "number": 22,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "destinyStoryTrueEndingCount",
+     "number": 23,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "stickerCount",
+     "number": 24,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "frameCount",
+     "number": 25,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "sdCharacterHeroNo",
+     "number": 26,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "guildRaidRecord",
+     "number": 27,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sGuildRaidMyMaxScoreRecord",
+     "packed": false
+    },
+    {
+     "name": "singleRaidRecord",
+     "number": 28,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sProfileSingleRaidRecord",
+     "packed": false
+    },
+    {
+     "name": "edenAllianceRecord",
+     "number": 29,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sProfileEdenAllianceRecord",
+     "packed": false
+    },
+    {
+     "name": "profileVisibleBase64",
+     "number": 30,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "championsArenaRank",
+     "number": 31,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "userLevel",
+     "number": 32,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "worldRaidRecord",
+     "number": 33,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sProfileWorldRaidRecord",
+     "packed": false
+    },
+    {
+     "name": "maxHeroCount",
+     "number": 34,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sThumbnail": {
+   "fields": [
+    {
+     "name": "thumbnailFrame",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "thumbnailImage",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "useCustom",
+     "number": 3,
+     "repeated": false,
+     "type": "bool",
+     "packed": false
+    },
+    {
+     "name": "thumbnail",
+     "number": 4,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    },
+    {
+     "name": "firstTitle",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "secondTitle",
+     "number": 6,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sProfileHero": {
+   "fields": [
+    {
+     "name": "idx",
+     "number": 1,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "heroNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "level",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "isResonance",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "gradeSno",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "raceSno",
+     "number": 6,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "isLock",
+     "number": 7,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "costumeItemNo",
+     "number": 8,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "order",
+     "number": 9,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sHallOfFameMyRank": {
+   "fields": [
+    {
+     "name": "id",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "rank",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sGuildRaidMyMaxScoreRecord": {
+   "fields": [
+    {
+     "name": "bossNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "score",
+     "number": 2,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    }
+   ]
+  },
+  "sProfileSingleRaidRecord": {
+   "fields": [
+    {
+     "name": "levelGroup",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "level",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "rank",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sProfileEdenAllianceRecord": {
+   "fields": [
+    {
+     "name": "nameSno",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "tier",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sProfileWorldRaidRecord": {
+   "fields": [
+    {
+     "name": "raidNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "rank",
+     "number": 2,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    }
+   ]
+  },
+  "sProfileCustom": {
+   "fields": [
+    {
+     "name": "uid",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "profile",
+     "number": 2,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    }
+   ]
+  },
+  "sContentBuff": {
+   "fields": [
+    {
+     "name": "contentType",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "buffType",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "buffNo",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "value",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

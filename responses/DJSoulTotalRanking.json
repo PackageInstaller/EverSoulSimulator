@@ -1,0 +1,1268 @@
+{
+  "totalRank": [
+    {
+      "userIdx": "0_031Q2Kf4_2jP",
+      "nickName": "Lucielle",
+      "thumbnail": {
+        "thumbnailFrame": 5705,
+        "useCustom": true,
+        "thumbnail": "MSwzMTYwMSwxMDIuNDg5LC05Ny4xNjQzMiwwLjQ1ODk5MTEsMC40NTg5OTExLDAuMzY3NTk2NA==",
+        "firstTitle": 6701,
+        "secondTitle": 6705
+      },
+      "rank": 1,
+      "score": 96000000,
+      "ratingScore": 8310
+    },
+    {
+      "userIdx": "1_531QoPR6_67Z",
+      "nickName": "Besabe",
+      "thumbnail": {
+        "thumbnailFrame": 5631,
+        "useCustom": true,
+        "thumbnail": "MywyMzE4LDIwLjAwMDAzLC0xMy4xMjQ5NCwwLjM3OTk2ODksMC4zNzk5Njg5LDM1OC4yNzY2",
+        "firstTitle": 6806,
+        "secondTitle": 6167
+      },
+      "rank": 2,
+      "score": 95763578,
+      "ratingScore": 7916
+    },
+    {
+      "userIdx": "2_211SRtAA_g0N",
+      "nickName": "ll",
+      "thumbnail": {
+        "thumbnailFrame": 5701,
+        "useCustom": true,
+        "thumbnail": "MSwyMDkwNyw4My4xODM2MiwtOS43NjEzNDUsMC4yNTg3NjU1LDAuMjU4NzY1NSwzNTkuNTkzMQ=="
+      },
+      "rank": 3,
+      "score": 93749560,
+      "ratingScore": 7819
+    },
+    {
+      "userIdx": "2_b41PdeSE_uOX",
+      "nickName": "烏鴉",
+      "thumbnail": {
+        "thumbnailFrame": 5719,
+        "useCustom": true,
+        "thumbnail": "MiwzMDkwNiwtMTQ1LjIwMjYsLTMyNC41MzYxLDAuOTU0NzQ2NCwwLjk1NDc0NjQsMzU4LjgzNQ=="
+      },
+      "rank": 4,
+      "score": 92483000,
+      "ratingScore": 7751
+    },
+    {
+      "userIdx": "1_621PdeSx_M6",
+      "nickName": "TjsjQuit",
+      "thumbnail": {
+        "thumbnailFrame": 5695,
+        "useCustom": true,
+        "thumbnail": "MSw0MDUwNCwtMjY3LjcyMSwtMTMzLjA2MjYsMC41NSwwLjU1LDA=",
+        "firstTitle": 541201,
+        "secondTitle": 541001
+      },
+      "rank": 5,
+      "score": 95090775,
+      "ratingScore": 7572
+    },
+    {
+      "userIdx": "2_f21PdeSF_4sF",
+      "nickName": "藍色鳳蝶o活到最後",
+      "thumbnail": {
+        "thumbnailFrame": 5656,
+        "useCustom": true,
+        "thumbnail": "MSwxMDEwNCwtMzQ2LjA5MzgsLTMzOS45MTYsMC43MTY1ODk4LDAuNzE2NTg5OCwzMC4yMzAxMQ==",
+        "firstTitle": 6701,
+        "secondTitle": 6705
+      },
+      "rank": 6,
+      "score": 94740570,
+      "ratingScore": 7326
+    },
+    {
+      "userIdx": "2_621Tgss1_P3Z",
+      "nickName": "fajerio",
+      "thumbnail": {
+        "thumbnailFrame": 5701,
+        "useCustom": true,
+        "thumbnail": "MiwxMDEwNCwtNjU3LjQ5OTksLTE3MCwxLDEsMA==",
+        "firstTitle": 6705,
+        "secondTitle": 6804
+      },
+      "rank": 7,
+      "score": 92351773,
+      "ratingScore": 6547
+    },
+    {
+      "userIdx": "2_611SZ7AI_2iA",
+      "nickName": "Zellin",
+      "thumbnail": {
+        "thumbnailFrame": 5504,
+        "thumbnailImage": 34020
+      },
+      "rank": 8,
+      "score": 83016510,
+      "ratingScore": 6331
+    },
+    {
+      "userIdx": "0_d21PdILw_vLU",
+      "nickName": "blazar",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "thumbnailImage": 30001,
+        "firstTitle": 6701,
+        "secondTitle": 6706
+      },
+      "rank": 9,
+      "score": 82449064,
+      "ratingScore": 6104
+    },
+    {
+      "userIdx": "0_031PdeSx_12lZ",
+      "nickName": "Bethrezen",
+      "thumbnail": {
+        "thumbnailFrame": 5701,
+        "useCustom": true,
+        "thumbnail": "MSw1MTEsMTk3LjA0MDksLTEzMi4yODYxLDAuNTUsMC41NSww",
+        "firstTitle": 6705,
+        "secondTitle": 6822
+      },
+      "rank": 10,
+      "score": 61155970,
+      "ratingScore": 5646
+    },
+    {
+      "userIdx": "2_541Roagi_lw",
+      "nickName": "紫羽",
+      "thumbnail": {
+        "thumbnailFrame": 5700,
+        "useCustom": true,
+        "thumbnail": "MSwyMDkwMiwyMjEuNTc0MywtMTY4LjA3NCwwLjU1LDAuNTUsMA==",
+        "firstTitle": 6137,
+        "secondTitle": 6147
+      },
+      "rank": 11,
+      "score": 46194404,
+      "ratingScore": 5421
+    },
+    {
+      "userIdx": "0_e31PdILv_8zJ5",
+      "nickName": "Ayaka",
+      "thumbnail": {
+        "thumbnailFrame": 5631,
+        "useCustom": true,
+        "thumbnail": "MiwyMTMwMywzMDUuNDkzNiwtMjM1Ljk1OTIsMC43NTQ1NDE2LDAuNzU0NTQxNiwzNTIuODU4MQ==",
+        "firstTitle": 6803,
+        "secondTitle": 6705
+      },
+      "rank": 12,
+      "score": 83094213,
+      "ratingScore": 5375
+    },
+    {
+      "userIdx": "1_341PfYyH_4gzv",
+      "nickName": "DaiT0",
+      "thumbnail": {
+        "thumbnailFrame": 5633,
+        "useCustom": true,
+        "thumbnail": "MSw0MDYwMSwtNjA1LjgzMzQsLTIyNC4xNjY3LDAuNjUzMjk0MSwwLjY1MzI5NDEsMC4zMjY4NDcx"
+      },
+      "rank": 13,
+      "score": 83680407,
+      "ratingScore": 5346
+    },
+    {
+      "userIdx": "1_221Spj8n_sjb",
+      "nickName": "咲木缘",
+      "thumbnail": {
+        "thumbnailFrame": 5623,
+        "useCustom": true,
+        "thumbnail": "MSw1MDEwNCwyNS43ODEyNSwtMTE3Ljk2ODgsMC40NjQ5Mjc3LDAuNDY0OTI3NywwLjYwNTQwOTM="
+      },
+      "rank": 14,
+      "score": 74622467,
+      "ratingScore": 5249
+    },
+    {
+      "userIdx": "1_411QyY0l_2BJ",
+      "nickName": "Johnny",
+      "thumbnail": {
+        "thumbnailFrame": 5501,
+        "useCustom": true,
+        "thumbnail": "MSw2MDYwMiwxOS45OTA5NywtMjY1LjgzMzMsMC43NTYxMzgzLDAuNzU2MTM4Myw3OC4wNjQzNQ=="
+      },
+      "rank": 15,
+      "score": 85848272,
+      "ratingScore": 4764
+    },
+    {
+      "userIdx": "1_f41PdeSF_Ngc",
+      "nickName": "Evinex",
+      "thumbnail": {
+        "thumbnailFrame": 5701,
+        "useCustom": true,
+        "thumbnail": "MSw5MTcwMiwzMzAuNjk1NSwtNTkuMTExOTIsMC41NSwwLjU1LDA=",
+        "firstTitle": 6803,
+        "secondTitle": 6705
+      },
+      "rank": 16,
+      "score": 39178717,
+      "ratingScore": 4666
+    },
+    {
+      "userIdx": "2_141TInoB_bd6",
+      "nickName": "xoxo",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MiwxMTQwMiw1NC44MTQ4LC00OS42Mjk1OSwwLjM0MzYzNDcsMC4zNDM2MzQ3LDEuMjA0NDUy",
+        "firstTitle": 6831,
+        "secondTitle": 6830
+      },
+      "rank": 17,
+      "score": 88768006,
+      "ratingScore": 4609
+    },
+    {
+      "userIdx": "2_611PdILo_5I96",
+      "nickName": "phazeless",
+      "thumbnail": {
+        "thumbnailFrame": 5700,
+        "thumbnailImage": 31010
+      },
+      "rank": 18,
+      "score": 35137656,
+      "ratingScore": 4296
+    },
+    {
+      "userIdx": "0_841Ri25S_3E",
+      "nickName": "風巻残雲",
+      "thumbnail": {
+        "thumbnailFrame": 5723,
+        "thumbnailImage": 32010,
+        "firstTitle": 6701,
+        "secondTitle": 6807
+      },
+      "rank": 19,
+      "score": 56094520,
+      "ratingScore": 4246
+    },
+    {
+      "userIdx": "0_731PkYkT_Xk",
+      "nickName": "VIS",
+      "thumbnail": {
+        "thumbnailFrame": 5501,
+        "useCustom": true,
+        "thumbnail": "MSwxMDEwMSwyMTIuNjY4OCwxMjIuODAzLDAuNTUsMC41NSww",
+        "firstTitle": 560201
+      },
+      "rank": 20,
+      "score": 32335556,
+      "ratingScore": 4185
+    },
+    {
+      "userIdx": "1_e21PfYMc_3KOr",
+      "nickName": "ArataKaiba",
+      "thumbnail": {
+        "thumbnailFrame": 5686,
+        "useCustom": true,
+        "thumbnail": "MSwzMTEwNCw0ODcuNDU3NiwtNjQzLjI3NTYsMS4yODkyNjEsMS4yODkyNjEsMzQ5LjAxOTc=",
+        "firstTitle": 520101,
+        "secondTitle": 521601
+      },
+      "rank": 21,
+      "score": 36110104,
+      "ratingScore": 4179
+    },
+    {
+      "userIdx": "2_221SrHHq_nvO",
+      "nickName": "抹貘",
+      "thumbnail": {
+        "thumbnailFrame": 5656,
+        "useCustom": true,
+        "thumbnail": "MSw0MTIwMSwtMjYyLjIyNTIsLTIwMCwwLjU1LDAuNTUsMA==",
+        "firstTitle": 6705,
+        "secondTitle": 60004
+      },
+      "rank": 22,
+      "score": 73305600,
+      "ratingScore": 3732
+    },
+    {
+      "userIdx": "0_k31PtzPt_6ro",
+      "nickName": "Draciky",
+      "thumbnail": {
+        "thumbnailFrame": 5622,
+        "thumbnailImage": 32170
+      },
+      "rank": 23,
+      "score": 34196801,
+      "ratingScore": 3714
+    },
+    {
+      "userIdx": "2_621TvLui_14T2",
+      "nickName": "kurumi04",
+      "thumbnail": {
+        "thumbnailFrame": 5701,
+        "useCustom": true,
+        "thumbnail": "MSw2ODEsMTQzLjAyOTIsLTM1LjE4MzYxLDAuNTUsMC41NSww",
+        "firstTitle": 6705,
+        "secondTitle": 6171
+      },
+      "rank": 24,
+      "score": 69139985,
+      "ratingScore": 3541
+    },
+    {
+      "userIdx": "2_431PfYyH_3uFd",
+      "nickName": "地上精靈",
+      "thumbnail": {
+        "thumbnailFrame": 5612,
+        "useCustom": true,
+        "thumbnail": "MywyMjcwLDQ0LjM3Nzg0LC0zNzAuOCwwLjY3MTY3NjgsMC42NzE2NzY4LDIuNzYxNjU2"
+      },
+      "rank": 25,
+      "score": 32923696,
+      "ratingScore": 3443
+    },
+    {
+      "userIdx": "1_621STCqW_kxa",
+      "nickName": "TFeeee",
+      "thumbnail": {
+        "thumbnailFrame": 5623,
+        "useCustom": true,
+        "thumbnail": "MSwxMDEwNSwtNjcuNDY1MDcsLTE2NC4wMTQ1LDAuNTUsMC41NSww"
+      },
+      "rank": 26,
+      "score": 26263307,
+      "ratingScore": 3362
+    },
+    {
+      "userIdx": "0_631QJfBi_5nq",
+      "nickName": "澟灂澤汝",
+      "thumbnail": {
+        "thumbnailFrame": 5701,
+        "thumbnailImage": 36510
+      },
+      "rank": 27,
+      "score": 30423761,
+      "ratingScore": 3271
+    },
+    {
+      "userIdx": "0_d21PkUVY_i3",
+      "nickName": "Notep",
+      "thumbnail": {
+        "thumbnailFrame": 5623,
+        "useCustom": true,
+        "thumbnail": "MSw0MTQwOCwtMzkuMTgwOTcsLTE2NC42MDYxLDAuNTUsMC41NSww",
+        "firstTitle": 6705
+      },
+      "rank": 28,
+      "score": 37675309,
+      "ratingScore": 3257
+    },
+    {
+      "userIdx": "0_911PdeSE_bjx",
+      "nickName": "oQvQo",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MCw2MDUwLDg5LjExNTQ4LC0xMzIuNjA4NywwLjk5NTU1OTQsMC45OTU1NTk0LDIuMDc1NzIy",
+        "firstTitle": 6706,
+        "secondTitle": 60005
+      },
+      "rank": 29,
+      "score": 80736411,
+      "ratingScore": 3043
+    },
+    {
+      "userIdx": "0_b41PdeSE_185N",
+      "nickName": "ttle",
+      "thumbnail": {
+        "thumbnailFrame": 5700,
+        "useCustom": true,
+        "thumbnail": "MSw5MDYwNSwtMzA3LjMzOTgsLTE4OC45OTE2LDAuNTksMC41OSww"
+      },
+      "rank": 30,
+      "score": 32353096,
+      "ratingScore": 2970
+    },
+    {
+      "userIdx": "2_041PdeSx_Rs",
+      "nickName": "LittleMoon",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MSwxMTcwMiwtMTk0LjA2NTgsLTEzOC4yMDQ4LDAuNTUsMC41NSww",
+        "firstTitle": 6816,
+        "secondTitle": 6812
+      },
+      "rank": 31,
+      "score": 30211282,
+      "ratingScore": 2886
+    },
+    {
+      "userIdx": "1_131SZ7AI_fch",
+      "nickName": "Noir",
+      "thumbnail": {
+        "thumbnailFrame": 5501,
+        "thumbnailImage": 30001
+      },
+      "rank": 32,
+      "score": 32985710,
+      "ratingScore": 2801
+    },
+    {
+      "userIdx": "2_611TvLui_1aeW",
+      "nickName": "Humanu",
+      "thumbnail": {
+        "thumbnailFrame": 5701,
+        "useCustom": true,
+        "thumbnail": "MSw0MDUwNSwyNjguMzMzMywtNzMuMzMzMzUsMC41ODQ1NzUyLDAuNTg0NTc1MiwzNTkuODgx"
+      },
+      "rank": 33,
+      "score": 27102637,
+      "ratingScore": 2729
+    },
+    {
+      "userIdx": "1_141PZzYI_30X",
+      "nickName": "jeongsu24END",
+      "thumbnail": {
+        "thumbnailFrame": 5656,
+        "useCustom": true,
+        "thumbnail": "MCw2NTQwLDE5Ljc3MDU0LC0zLjUyODI4MiwwLjI3Njg5ODcsMC4yNzY4OTg3LDM0OC41NDE=",
+        "firstTitle": 6831,
+        "secondTitle": 6830
+      },
+      "rank": 34,
+      "score": 39240898,
+      "ratingScore": 2704
+    },
+    {
+      "userIdx": "0_131UmZr6_7jU",
+      "nickName": "Senjin",
+      "thumbnail": {
+        "thumbnailFrame": 5621,
+        "useCustom": true,
+        "thumbnail": "MSw2NTEsMTQuMTY5NDMsLTQ4Ljk5ODcsMC40MjYzMjEzLDAuNDI2MzIxMywzNTguNjY4Ng=="
+      },
+      "rank": 35,
+      "score": 31656042,
+      "ratingScore": 2590
+    },
+    {
+      "userIdx": "1_631PfYyI_2U5z",
+      "nickName": "FaQNovaFront",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MSw5MTcwMiwyODIuMzUyNywtMC41MTAyMjkxLDAuNTEwMDAwMSwwLjUxMDAwMDEsMA==",
+        "firstTitle": 569901,
+        "secondTitle": 569801
+      },
+      "rank": 36,
+      "score": 69768291,
+      "ratingScore": 2588
+    },
+    {
+      "userIdx": "2_731SrHHq_d8o",
+      "nickName": "Amagiri",
+      "thumbnail": {
+        "thumbnailFrame": 5701,
+        "thumbnailImage": 36980,
+        "firstTitle": 6107,
+        "secondTitle": 6117
+      },
+      "rank": 37,
+      "score": 17369706,
+      "ratingScore": 2588
+    },
+    {
+      "userIdx": "1_241Pnnp3_VUR",
+      "nickName": "Geesan",
+      "thumbnail": {
+        "thumbnailFrame": 5711,
+        "useCustom": true,
+        "thumbnail": "Miw2MDIwNywtNjIuODU4MzQsLTE3MC44NjUsMC42MzQzMjg4LDAuNjM0MzI4OCw4LjgxODI0Mg==",
+        "firstTitle": 6117,
+        "secondTitle": 6137
+      },
+      "rank": 38,
+      "score": 36388449,
+      "ratingScore": 2413
+    },
+    {
+      "userIdx": "0_241U7Kt3_hXU",
+      "nickName": "IttipolxQUIT",
+      "thumbnail": {
+        "thumbnailFrame": 5688,
+        "thumbnailImage": 30001
+      },
+      "rank": 39,
+      "score": 59596582,
+      "ratingScore": 2408
+    },
+    {
+      "userIdx": "0_221Si1bf_5Gc",
+      "nickName": "ミズキ",
+      "thumbnail": {
+        "thumbnailFrame": 5704,
+        "useCustom": true,
+        "thumbnail": "Miw0MTAwMiwyNTAuNzQ0NSwtNDUuMzg0NjQsMC4zNDQ0MTUxLDAuMzQ0NDE1MSwzNTguODE4OA=="
+      },
+      "rank": 40,
+      "score": 70750126,
+      "ratingScore": 2394
+    },
+    {
+      "userIdx": "0_721SmHDF_3Gx",
+      "nickName": "belladonna",
+      "thumbnail": {
+        "thumbnailFrame": 5503,
+        "useCustom": true,
+        "thumbnail": "MSw5MjAwMSwzNDcuOTU5LC0xNTAuNzE4NiwwLjU1LDAuNTUsMA=="
+      },
+      "rank": 41,
+      "score": 19318735,
+      "ratingScore": 2334
+    },
+    {
+      "userIdx": "2_621Qmhyt_29H",
+      "nickName": "下北澤菸鬼",
+      "thumbnail": {
+        "thumbnailFrame": 5653,
+        "useCustom": true,
+        "thumbnail": "MSw5MTIwMSwtMzc4LjMzNjIsMTY3LjA1NiwwLjU1LDAuNTUsMA==",
+        "firstTitle": 511301,
+        "secondTitle": 541501
+      },
+      "rank": 42,
+      "score": 31786770,
+      "ratingScore": 2326
+    },
+    {
+      "userIdx": "1_741PdeSx_WOV",
+      "nickName": "殘雪櫻",
+      "thumbnail": {
+        "thumbnailFrame": 5643,
+        "thumbnailImage": 34160,
+        "thumbnail": "MCw0MTAwLDk3LjY0MzE5LC0xNDMuNDg4MSwwLjU0NTc3MTcsMC41NDU3NzE3LDMyLjg4NDc0",
+        "firstTitle": 6815,
+        "secondTitle": 6813
+      },
+      "rank": 43,
+      "score": 15908524,
+      "ratingScore": 2247
+    },
+    {
+      "userIdx": "0_241PdILo_4ARt",
+      "nickName": "隨興就好",
+      "thumbnail": {
+        "thumbnailFrame": 5611,
+        "thumbnailImage": 31040,
+        "firstTitle": 6705,
+        "secondTitle": 6701
+      },
+      "rank": 44,
+      "score": 80348967,
+      "ratingScore": 2244
+    },
+    {
+      "userIdx": "2_721Te5rT_QSE",
+      "nickName": "Emg1234",
+      "thumbnail": {
+        "thumbnailFrame": 5701,
+        "thumbnailImage": 36010,
+        "firstTitle": 6705
+      },
+      "rank": 45,
+      "score": 16474810,
+      "ratingScore": 2236
+    },
+    {
+      "userIdx": "0_221Pnnp3_PIi",
+      "nickName": "Veronica",
+      "thumbnail": {
+        "thumbnailFrame": 5672,
+        "useCustom": true,
+        "thumbnail": "MSw2MTIsMTAuMjUzODEsLTE0MS45NDM0LDAuNTUsMC41NSww",
+        "firstTitle": 6701,
+        "secondTitle": 6705
+      },
+      "rank": 46,
+      "score": 35367357,
+      "ratingScore": 2211
+    },
+    {
+      "userIdx": "2_941PdeSE_jz1",
+      "nickName": "sleeping",
+      "thumbnail": {
+        "thumbnailFrame": 5653,
+        "useCustom": true,
+        "thumbnail": "MSwyNzEsNTYwLjg0MjUsLTI2Ny4yOTc0LDAuNzYzMTY4MywwLjc2MzE2ODMsMzU5LjAzOTU="
+      },
+      "rank": 47,
+      "score": 16726958,
+      "ratingScore": 2176
+    },
+    {
+      "userIdx": "2_611SuE9P_1R2",
+      "nickName": "野獣先輩",
+      "thumbnail": {
+        "thumbnailFrame": 5701,
+        "useCustom": true,
+        "thumbnail": "MSw0MTAwNiwxODMuMjMzNSwyMTcuMTExMSwwLjQ4NDU5NDEsMC40ODQ1OTQxLDY4LjA0MjI4"
+      },
+      "rank": 48,
+      "score": 32606303,
+      "ratingScore": 2176
+    },
+    {
+      "userIdx": "2_131UksHr_6QN",
+      "nickName": "Rikaii",
+      "thumbnail": {
+        "thumbnailFrame": 5612,
+        "useCustom": true,
+        "thumbnail": "MSw2NTMwMSwtMzYuOTgyNCwtMTE0LjE3MzYsMC40Njc4ODA1LDAuNDY3ODgwNSw2LjU5NzQ2Mw==",
+        "firstTitle": 6171
+      },
+      "rank": 49,
+      "score": 32434597,
+      "ratingScore": 2145
+    },
+    {
+      "userIdx": "2_821Rldj4_iik",
+      "nickName": "Jasver",
+      "thumbnail": {
+        "thumbnailFrame": 5700,
+        "useCustom": true,
+        "thumbnail": "MSwyMTQwMywxMTEuMjA3MiwtMTI2Ljc5NSwwLjU1LDAuNTUsMA=="
+      },
+      "rank": 50,
+      "score": 11647090,
+      "ratingScore": 2076
+    }
+  ],
+  "friendRank": [
+    {
+      "userIdx": "2_141TInoB_bd6",
+      "nickName": "xoxo",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MiwxMTQwMiw1NC44MTQ4LC00OS42Mjk1OSwwLjM0MzYzNDcsMC4zNDM2MzQ3LDEuMjA0NDUy",
+        "firstTitle": 6831,
+        "secondTitle": 6830
+      },
+      "rank": 1,
+      "score": 88768006,
+      "ratingScore": 4609
+    },
+    {
+      "userIdx": "0_431PdeSx_b0",
+      "nickName": "哎吓呀想在台中生活",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MSw4OTQsNS44MzMzMTMsLTk0LjE2NjYxLDAuNTM3Mzc4MiwwLjUzNzM3ODIsNi42NjE2ODQ=",
+        "firstTitle": 6705,
+        "secondTitle": 6706
+      },
+      "rank": 2,
+      "score": 40271532,
+      "ratingScore": 1479
+    },
+    {
+      "userIdx": "0_221PdeSx_dMk",
+      "nickName": "shiraichii",
+      "thumbnail": {
+        "thumbnailFrame": 5504,
+        "useCustom": true,
+        "thumbnail": "MSw2MDIwMywyMjIuODc3OCwxNC44MTA5NywwLjQyMTYyMzQsMC40MjE2MjM0LDAuMTExMjg3MQ=="
+      },
+      "rank": 3,
+      "score": 34360092,
+      "ratingScore": 1360
+    },
+    {
+      "userIdx": "0_341Q9GK3_2n7",
+      "nickName": "Henry",
+      "thumbnail": {
+        "thumbnailFrame": 5701,
+        "useCustom": true,
+        "thumbnail": "MSw1MDMwMywyMS41MzYzMiwtMTY0LjYxNTQsMC41NSwwLjU1LDM1OS45ODIz",
+        "firstTitle": 6830,
+        "secondTitle": 6706
+      },
+      "rank": 4,
+      "score": 31698097,
+      "ratingScore": 1108
+    },
+    {
+      "userIdx": "0_d21PdeSF_WpF",
+      "nickName": "NoMercy",
+      "thumbnail": {
+        "thumbnailFrame": 5711,
+        "useCustom": true,
+        "thumbnail": "MiwxMDkwMiwtMTE0LjcwODYsLTgxLjk1ODAxLDAuMzg5NTU1MSwwLjM4OTU1NTEsMzU5Ljc3OTQ=",
+        "firstTitle": 6439,
+        "secondTitle": 6803
+      },
+      "rank": 5,
+      "score": 7244951,
+      "ratingScore": 353
+    },
+    {
+      "userIdx": "2_e21PMpdN_mcP",
+      "nickName": "旅游的sensei",
+      "thumbnail": {
+        "thumbnailFrame": 5692,
+        "useCustom": true,
+        "thumbnail": "MSwxMTYsNTQ5LjcxMzYsLTc0LjA5ODAzLDAuNTUsMC41NSww",
+        "firstTitle": 6602,
+        "secondTitle": 6612
+      },
+      "rank": 6,
+      "score": 4141965,
+      "ratingScore": 271
+    },
+    {
+      "userIdx": "2_731PdeSx_5dB",
+      "nickName": "RonanBYE",
+      "thumbnail": {
+        "thumbnailFrame": 5623,
+        "useCustom": true,
+        "thumbnail": "MywyMjgxLC0yLjEwMTgyMiwtMTMxLjA3NDcsMC4yNzU2NTYsMC4yNzU2NTYsMzUyLjkxMzI=",
+        "firstTitle": 6807,
+        "secondTitle": 6812
+      },
+      "rank": 7,
+      "score": 3284047,
+      "ratingScore": 110
+    },
+    {
+      "userIdx": "0_131RD2pP_boa",
+      "nickName": "Arnold",
+      "thumbnail": {
+        "thumbnailFrame": 5633,
+        "thumbnailImage": 30001,
+        "firstTitle": 565401,
+        "secondTitle": 565301
+      },
+      "rank": 8,
+      "score": 12205470,
+      "ratingScore": 110
+    },
+    {
+      "userIdx": "2_731PdeSx_Fwm",
+      "nickName": "NA09",
+      "thumbnail": {
+        "thumbnailFrame": 5701,
+        "useCustom": true,
+        "thumbnail": "MSw5MjgwMywwLjAwMDE4MzEwNTUsMjkuNDM5MDcsMC41NDY0NDU0LDAuNTQ2NDQ1NCwxLjgwNDU2OQ==",
+        "firstTitle": 6705,
+        "secondTitle": 6701
+      },
+      "rank": 9,
+      "score": 4819521,
+      "ratingScore": 87
+    },
+    {
+      "userIdx": "0_a41PdeSF_ajM",
+      "nickName": "Regina",
+      "thumbnail": {
+        "thumbnailFrame": 5723,
+        "useCustom": true,
+        "thumbnail": "Miw5MDgwMSwxLjg4NDg0MiwtNDAuMjA5OTYsMC4zMjkyOTIsMC4zMjkyOTIsMzU5Ljk3MDM=",
+        "firstTitle": 60002,
+        "secondTitle": 60003
+      },
+      "rank": 10,
+      "score": 20985441,
+      "ratingScore": 72
+    },
+    {
+      "userIdx": "2_031T7Phm_aX8",
+      "nickName": "REDIUS",
+      "thumbnail": {
+        "thumbnailFrame": 5612,
+        "useCustom": true,
+        "thumbnail": "Miw2MDYwNiwtMTU2LjY4MjksLTU0Ljk0Nzg4LDAuMzQwMDAwNiwwLjM0MDAwMDYsMA==",
+        "firstTitle": 6807,
+        "secondTitle": 6171
+      },
+      "rank": 11,
+      "score": 4378527,
+      "ratingScore": 61
+    },
+    {
+      "userIdx": "1_b41PdILw_3WGu",
+      "nickName": "Aquila",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MSw5MzUsLTU0Ljk0OTI1LDEyLjA1MTY0LDAuMzIwMjE0MiwwLjMyMDIxNDIsMzU5Ljg5OTk=",
+        "firstTitle": 6706,
+        "secondTitle": 6830
+      },
+      "rank": 12,
+      "score": 6185031,
+      "ratingScore": 43
+    },
+    {
+      "userIdx": "2_531PdeSx_1GE",
+      "nickName": "夜星河",
+      "thumbnail": {
+        "thumbnailFrame": 5697,
+        "useCustom": true,
+        "thumbnail": "MSw2MDEwNywzMTQuNTM4NSwtMTkxLjg2MDYsMC42MTMwNjEzLDAuNjEzMDYxMywwLjg3ODAyNzk=",
+        "firstTitle": 6608,
+        "secondTitle": 6603
+      },
+      "rank": 13,
+      "score": 2446276,
+      "ratingScore": 35
+    },
+    {
+      "userIdx": "1_031VD4Sv_lif",
+      "nickName": "채수빈",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MCw0MTcwLC02Ni42OTEwMSwtMzM1LjE5MjgsMS4yMzY1MTYsMS4yMzY1MTYsMC40ODc4MDAz",
+        "firstTitle": 6706
+      },
+      "rank": 14,
+      "score": 2661151,
+      "ratingScore": 30
+    },
+    {
+      "userIdx": "0_861PeSX6_3bCo",
+      "nickName": "花月一刹",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MSw2NTQwMSwxMTEuMTUxMywtMTA4LjIwMzEsMC40NTY0OTExLDAuNDU2NDkxMSwzNTkuMzczOA==",
+        "firstTitle": 6822,
+        "secondTitle": 6830
+      },
+      "rank": 15,
+      "score": 1535680,
+      "ratingScore": 14
+    },
+    {
+      "userIdx": "1_431TvLui_uPm",
+      "nickName": "古月",
+      "thumbnail": {
+        "thumbnailFrame": 5723,
+        "useCustom": true,
+        "thumbnail": "MywyMzkyLC0zNC4xMjkxOCwtMzU2Ljk1ODksMC41ODA0OTA5LDAuNTgwNDkwOSwzNTUuNjA2NA==",
+        "firstTitle": 6171,
+        "secondTitle": 60002
+      },
+      "rank": 16,
+      "score": 1363259,
+      "ratingScore": 7
+    },
+    {
+      "userIdx": "0_541QBxmy_3kj",
+      "nickName": "喬喬",
+      "thumbnail": {
+        "thumbnailFrame": 5660,
+        "useCustom": true,
+        "thumbnail": "MSw5MTMwMiwtMTA2LjUyMTcsMTc3LjUzNjEsMC41NSwwLjU1LDA=",
+        "firstTitle": 6701,
+        "secondTitle": 6171
+      },
+      "rank": 17,
+      "score": 1122435,
+      "ratingScore": 7
+    },
+    {
+      "userIdx": "2_811QyY0s_2ZF",
+      "nickName": "wenAmin",
+      "thumbnail": {
+        "thumbnailFrame": 5704,
+        "thumbnailImage": 30001,
+        "firstTitle": 6804,
+        "secondTitle": 6807
+      },
+      "rank": 18,
+      "score": 1786149,
+      "ratingScore": 5
+    },
+    {
+      "userIdx": "1_711Ri21T_3gu",
+      "nickName": "有情人終成未亡人",
+      "thumbnail": {
+        "thumbnailFrame": 5653,
+        "useCustom": true,
+        "thumbnail": "MSw5MDYwMSwyMTkuOTQ0NSwtNTcuNDQ2ODYsMC40OTk5MTAxLDAuNDk5OTEwMSwzNTkuMjgxMw==",
+        "firstTitle": 6807,
+        "secondTitle": 6804
+      },
+      "rank": 19,
+      "score": 581851
+    },
+    {
+      "userIdx": "1_a31PdeSF_u0x",
+      "nickName": "雨曝亭Tako",
+      "thumbnail": {
+        "thumbnailFrame": 5701,
+        "useCustom": true,
+        "thumbnail": "MSw0MTUwMSwtMTYwLjQzMDUsLTI2MS40OTQ2LDAuNzIwMzY5NCwwLjcyMDM2OTQsMC42NTc4Njc2",
+        "firstTitle": 6805,
+        "secondTitle": 541501
+      },
+      "rank": 20,
+      "score": 345420
+    },
+    {
+      "userIdx": "2_411Sftwd_4HY",
+      "nickName": "无败之龍",
+      "thumbnail": {
+        "thumbnailFrame": 5705,
+        "useCustom": true,
+        "thumbnail": "MSwxMDEyLDYzLjUxMTQsLTExNi45NDM1LDAuNTUsMC41NSww",
+        "firstTitle": 6822,
+        "secondTitle": 6830
+      },
+      "rank": 21
+    },
+    {
+      "userIdx": "1_a31PdeSF_Lhi",
+      "nickName": "Lunaria",
+      "thumbnail": {
+        "thumbnailFrame": 5507,
+        "useCustom": true,
+        "thumbnail": "MSwxMDkwMSwtMzYuOTU2MjQsLTEuMTIyNzc2LDAuMjQwNTc5NiwwLjI0MDU3OTYsMzU5Ljg4MjU=",
+        "firstTitle": 560201,
+        "secondTitle": 560601
+      },
+      "rank": 22
+    },
+    {
+      "userIdx": "1_631PdeSx_pzv",
+      "nickName": "Krunox",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MSwxMDUwNCwtOTkuNzcwNzIsLTk0LjI5MjkxLDAuNDIwMjQ5MywwLjQyMDI0OTMsMC4yNjcxODI2",
+        "firstTitle": 6830,
+        "secondTitle": 6822
+      },
+      "rank": 23,
+      "score": 716421
+    },
+    {
+      "userIdx": "0_911PdeSE_1c",
+      "nickName": "拉斐爾",
+      "thumbnail": {
+        "thumbnailFrame": 5631,
+        "useCustom": true,
+        "thumbnail": "MiwzMTUwMywtNjYuNjY2NjksMC44MzMzMzQsMC4yMzgwMDYyLDAuMjM4MDA2MiwzNTkuNzI3",
+        "firstTitle": 560201,
+        "secondTitle": 531501
+      },
+      "rank": 24
+    },
+    {
+      "userIdx": "0_021QDpLY_17V",
+      "nickName": "偵探熊BiuBiu",
+      "thumbnail": {
+        "thumbnailFrame": 5723,
+        "useCustom": true,
+        "thumbnail": "MSwzMDQwMSwtNjEzLjAxNjQsNzE2LjE1MzksMS4xMjE1NjgsMS4xMjE1NjgsMzM1LjgwNTM="
+      },
+      "rank": 25
+    },
+    {
+      "userIdx": "1_a21PdeSF_kA9",
+      "nickName": "跳过仙人",
+      "thumbnail": {
+        "thumbnailFrame": 5613,
+        "useCustom": true,
+        "thumbnail": "MSw1MDMwMSwxODAuMzM2NywtMTY0Ljg0NDUsMC41OTI4OTU0LDAuNTkyODk1NCwzNTEuOTIxOA==",
+        "firstTitle": 560101,
+        "secondTitle": 531401
+      },
+      "rank": 26,
+      "score": 1272620
+    },
+    {
+      "userIdx": "2_711T3LvA_7CE",
+      "nickName": "六月華",
+      "thumbnail": {
+        "thumbnailFrame": 5507,
+        "useCustom": true,
+        "thumbnail": "MSwxMjIsLTc0LjEyOTEsMC4zMzYwNTAzLDAuMjUwMDAwMywwLjI1MDAwMDMsMzU4Ljk5OTk=",
+        "firstTitle": 6822,
+        "secondTitle": 6830
+      },
+      "rank": 27,
+      "score": 310236
+    },
+    {
+      "userIdx": "2_531R6mBd_19t",
+      "nickName": "Boss",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "Miw5MjgwMywtMjIwLjU3MDQsMjM4LjE2ODIsMC43MjM2NzAxLDAuNzIzNjcwMSwzNTkuODg0OQ==",
+        "firstTitle": 6830,
+        "secondTitle": 6822
+      },
+      "rank": 28
+    },
+    {
+      "userIdx": "2_521PdeSx_8IJ",
+      "nickName": "gigachad",
+      "thumbnail": {
+        "thumbnailFrame": 5701,
+        "useCustom": true,
+        "thumbnail": "MSwyMDkwNiwtNDUzLjY5MTcsLTEyMy45MTE4LDAuNTUsMC41NSwzNTYuMTA1NQ==",
+        "firstTitle": 510401,
+        "secondTitle": 6807
+      },
+      "rank": 29,
+      "score": 1477024
+    },
+    {
+      "userIdx": "1_211SZ7DR_n38",
+      "nickName": "Synchro",
+      "thumbnail": {
+        "thumbnailFrame": 5701,
+        "thumbnailImage": 34050
+      },
+      "rank": 30,
+      "score": 487944
+    },
+    {
+      "userIdx": "2_531QYlvG_adW",
+      "nickName": "米垛",
+      "thumbnail": {
+        "thumbnailFrame": 5700,
+        "thumbnailImage": 36050,
+        "firstTitle": 60006,
+        "secondTitle": 60007
+      },
+      "rank": 31,
+      "score": 314081
+    },
+    {
+      "userIdx": "0_d11PdeSF_5Lo",
+      "nickName": "LuLuMi",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "thumbnailImage": 32160,
+        "thumbnail": "MywyMzYyLDE2Ljk0OTA5LC00MjIuMjk3OCwwLjY2OTk2MzcsMC42Njk5NjM3LDM1OS44NDU4",
+        "firstTitle": 6701,
+        "secondTitle": 6705
+      },
+      "rank": 32,
+      "score": 455503
+    },
+    {
+      "userIdx": "0_d41PvqPw_9yt",
+      "nickName": "顾学文",
+      "thumbnail": {
+        "thumbnailFrame": 5700,
+        "useCustom": true,
+        "thumbnail": "MSw2MDIwNywwLDAsMC4yNDIxNDkyLDAuMjQyMTQ5MiwwLjA0MzA1Nzk5",
+        "firstTitle": 560201,
+        "secondTitle": 560501
+      },
+      "rank": 33
+    },
+    {
+      "userIdx": "0_331PAymE_euH",
+      "nickName": "細水長流",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "thumbnailImage": 31010,
+        "firstTitle": 6705,
+        "secondTitle": 6706
+      },
+      "rank": 34,
+      "score": 204189
+    },
+    {
+      "userIdx": "2_021Vtzcm_8Yj",
+      "nickName": "LOrz",
+      "thumbnail": {
+        "thumbnailFrame": 5502,
+        "useCustom": true,
+        "thumbnail": "MywyMjIxLC0wLjE4MDY2NDEsMTAyLjk0NjUsMC4yNzU4MTAxLDAuMjc1ODEwMSwzNDcuODY3NA==",
+        "firstTitle": 6822,
+        "secondTitle": 6831
+      },
+      "rank": 35
+    },
+    {
+      "userIdx": "0_011TY1Sz_wlg",
+      "nickName": "少姜",
+      "thumbnail": {
+        "thumbnailFrame": 5621,
+        "thumbnailImage": 35060,
+        "firstTitle": 6816,
+        "secondTitle": 60004
+      },
+      "rank": 36
+    },
+    {
+      "userIdx": "1_811PdILv_4dQa",
+      "nickName": "星之碎片",
+      "thumbnail": {
+        "thumbnailFrame": 5653,
+        "useCustom": true,
+        "thumbnail": "MSwyNzEsMjcuMzIzMTUsLTE2OC4yMjQzLDAuNTUsMC41NSww",
+        "firstTitle": 6804,
+        "secondTitle": 565201
+      },
+      "rank": 37
+    },
+    {
+      "userIdx": "0_711PdeSx_9JZ",
+      "nickName": "混沌龍騎",
+      "thumbnail": {
+        "thumbnailFrame": 5653,
+        "thumbnailImage": 36030,
+        "thumbnail": "MCwxMDQwLC0yMjEuNjk0MywtNDQ5LjMyMjksMi4xMDE0OTMsMi4xMDE0OTMsMS4wNDQ1MTI="
+      },
+      "rank": 38
+    },
+    {
+      "userIdx": "0_c11PdILv_4KJQ",
+      "nickName": "JOHN316",
+      "thumbnail": {
+        "thumbnailFrame": 5501,
+        "thumbnailImage": 30001,
+        "thumbnail": "Miw5MjQwMSwtMjc4LjY1MzUsMTIyLjkyMjYsMSwxLDA=",
+        "firstTitle": 6706,
+        "secondTitle": 6830
+      },
+      "rank": 39
+    },
+    {
+      "userIdx": "0_411V76fa_h58",
+      "nickName": "nails",
+      "thumbnail": {
+        "thumbnailFrame": 5622,
+        "thumbnailImage": 31150,
+        "firstTitle": 6817,
+        "secondTitle": 6830
+      },
+      "rank": 40
+    },
+    {
+      "userIdx": "0_111TDJA5_cVa",
+      "nickName": "諾亞",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "thumbnailImage": 34160,
+        "firstTitle": 6815,
+        "secondTitle": 6822
+      },
+      "rank": 41
+    },
+    {
+      "userIdx": "2_711VemiN_h19",
+      "nickName": "千夏",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MSw1MDMwOCwzNDEuNjE2LC00NS40NzU3NCwwLjU1LDAuNTUsNy43MzQ2MDY=",
+        "firstTitle": 6706
+      },
+      "rank": 42
+    },
+    {
+      "userIdx": "0_011VyXg5_gnY",
+      "nickName": "小雪啾",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "thumbnailImage": 32140,
+        "thumbnail": "MCwyMTQwLDMwLjE0Mzg5LC00MjQuOTkyMSwwLjYyNDQwMTQsMC42MjQ0MDE0LDIuNjY2ODg="
+      },
+      "rank": 43
+    },
+    {
+      "userIdx": "2_731W312v_5SP",
+      "nickName": "PentilHunter",
+      "thumbnail": {
+        "thumbnailFrame": 5653,
+        "useCustom": true,
+        "thumbnail": "MSw2MDcwMSw3OS4zMDA0OSwtMTEuOTU2NTMsMC4yNTcyOTcsMC4yNTcyOTcsMzU5LjI3ODY="
+      },
+      "rank": 44
+    },
+    {
+      "userIdx": "1_221UCdEU_pek",
+      "nickName": "prabhat",
+      "thumbnail": {
+        "thumbnailFrame": 5653,
+        "useCustom": true,
+        "thumbnail": "MSw4OTUsMTUuMDE1NSwtNS4wMDI0MjYsMC4yNTYzMDA4LDAuMjU2MzAwOCwwLjEzNDQ4Nw=="
+      },
+      "rank": 45
+    },
+    {
+      "userIdx": "0_l21Pnnph_Gc8",
+      "nickName": "TCT",
+      "thumbnail": {
+        "thumbnailFrame": 5623,
+        "thumbnailImage": 36540,
+        "thumbnail": "MSw5MDYwMSw4Ni45MDA5OSwtMS4xMDczMzQsMC4yNDI1MzUzLDAuMjQyNTM1MywwLjE3MTEyMjk=",
+        "firstTitle": 565401,
+        "secondTitle": 550301
+      },
+      "rank": 46
+    },
+    {
+      "userIdx": "2_131W311a_qDw",
+      "nickName": "蘇Kyokou",
+      "thumbnail": {
+        "thumbnailFrame": 5612,
+        "useCustom": true,
+        "thumbnail": "MywyMjAxLDExOS45MDY0LC0xNTAuNjQ2MiwxLDEsMA=="
+      },
+      "rank": 47
+    },
+    {
+      "userIdx": "1_711W312v_kRR",
+      "nickName": "Yzsbel",
+      "thumbnail": {
+        "thumbnailFrame": 5501,
+        "useCustom": true,
+        "thumbnail": "MSwzMDYwNywxOTkuMjExLC0xMTMuODQ2MiwwLjUwNDgwNzQsMC41MDQ4MDc0LDM1OS44NjIy"
+      },
+      "rank": 48
+    },
+    {
+      "userIdx": "1_741VIL75_ewp",
+      "nickName": "丈八蛇喵",
+      "thumbnail": {
+        "thumbnailFrame": 5501,
+        "thumbnailImage": 30001
+      },
+      "rank": 49
+    },
+    {
+      "userIdx": "0_621STCqW_cWj",
+      "nickName": "PetchZ",
+      "thumbnail": {
+        "thumbnailFrame": 5701,
+        "thumbnailImage": 36520,
+        "firstTitle": 565201,
+        "secondTitle": 510801
+      },
+      "rank": 50
+    }
+  ],
+  "myFriendRank": 6,
+  "myTotalRank": 593,
+  "myScore": 4141965,
+  "myRatingScore": 271,
+  "__format__": "proto"
+}

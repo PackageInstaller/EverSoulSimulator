@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message EverLiveClear {
+  int32 groupNo = 1;
+  int32 stageNo = 2;
+  bool isPerfect = 3;
+  bool isSignatureDance = 4;
+}
+

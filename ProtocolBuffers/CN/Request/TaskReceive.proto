@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message TaskReceive {
+  int32 type = 1;
+  int32 rewardNo = 2;
+}
+

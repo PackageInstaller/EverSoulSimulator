@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package ReqPb;
+
+enum eContentClearType {
+  Stage = 0;
+  FreedomGateClear = 1;
+  HumanGateClear = 2;
+  FurryGateClear = 3;
+  ElfGateClear = 4;
+  UndeadGateClear = 5;
+}
+
+message ContentClearDeckSave {
+  eContentClearType contentType = 1;
+  int32 contentNo = 2;
+  repeated sContentClearDeckInfo contentClearDeck = 3;
+  int32 isCopy = 4;
+}
+
+message sContentClearDeckInfo {
+  int32 formationType = 1;
+  int32 sumPower = 2;
+  int32 deckOrderNo = 3;
+  repeated sContentClearHeroInfo clearHero = 4;
+}
+
+message sContentClearHeroInfo {
+  int32 heroNo = 1;
+  int32 gradeSno = 2;
+  int32 level = 3;
+  string heroIdx = 4;
+  int32 isFriend = 5;
+}
+

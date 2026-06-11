@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message SingleRaidBattleResult {
+  int64 hp = 1;
+  int64 groggy = 2;
+  int64 remainBattleTime = 3;
+  int32 useTicket = 4;
+}
+

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message EdenOperationBattleStart {
+  repeated int32 constraintNo = 1;
+  int32 isDaily = 2;
+}
+

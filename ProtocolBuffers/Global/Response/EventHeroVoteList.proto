@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package EsPb;
+
+message EventHeroVoteList {
+  repeated sEventHeroVoteInfo voteList = 1;
+}
+
+message sEventHeroVoteInfo {
+  int32 heroNo = 1;
+  int32 voteCount = 2;
+}
+

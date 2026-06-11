@@ -1,0 +1,90 @@
+{
+ "root": "LabyrinthTempMonsterReward",
+ "messages": {
+  "LabyrinthTempMonsterReward": {
+   "fields": [
+    {
+     "name": "labyrinthTempReward",
+     "number": 1,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sLabyrinthTempReward",
+     "packed": false
+    }
+   ]
+  },
+  "sLabyrinthTempReward": {
+   "fields": [
+    {
+     "name": "dungeonReward",
+     "number": 1,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sDungeonReward",
+     "packed": false
+    },
+    {
+     "name": "dungeonNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "labyrinthItem",
+     "number": 3,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sLabyrinthItem",
+     "packed": false
+    }
+   ]
+  },
+  "sDungeonReward": {
+   "fields": [
+    {
+     "name": "type",
+     "number": 1,
+     "repeated": false,
+     "type": "enum",
+     "type_name": "eDungeonRewardType",
+     "packed": false
+    },
+    {
+     "name": "rewardNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sLabyrinthItem": {
+   "fields": [
+    {
+     "name": "itemNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "cnt",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {
+  "eDungeonRewardType": {
+   "NoneDungeonReward": 0,
+   "Mission": 1,
+   "Object": 2,
+   "Monster": 3,
+   "Chest": 4
+  }
+ }
+}

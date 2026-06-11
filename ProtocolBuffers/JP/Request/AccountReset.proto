@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package ReqPb;
+
+enum eLoginType {
+  Dev = 0;
+  Kakao = 1;
+  Facebook = 2;
+  Google = 3;
+  Apple = 4;
+  Guest = 5;
+}
+
+message AccountReset {
+  string playerId = 1;
+  eLoginType type = 2;
+}
+

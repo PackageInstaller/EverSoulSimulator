@@ -1,0 +1,24 @@
+{
+ "root": "DungeonOpenCheck",
+ "messages": {
+  "DungeonOpenCheck": {
+   "fields": [
+    {
+     "name": "isLabyrinthOpen",
+     "number": 1,
+     "repeated": false,
+     "type": "bool",
+     "packed": false
+    },
+    {
+     "name": "isRotationDungeonOpen",
+     "number": 2,
+     "repeated": false,
+     "type": "bool",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

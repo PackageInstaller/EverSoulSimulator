@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package EsPb;
+
+message ShopRandomList {
+  int32 shopNo = 1;
+  int32 shopDrawBoxStep = 2;
+  int32 shopDrawBoxRepeatStep = 3;
+  repeated sShopRandomItem boughtItem = 4;
+}
+
+message sShopRandomItem {
+  int32 itemNo = 1;
+  int32 drewCount = 2;
+}
+

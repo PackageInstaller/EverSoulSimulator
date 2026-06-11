@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package ReqPb;
+
+enum eDeviceType {
+  Ios = 0;
+  Aos = 1;
+  Pc = 2;
+  Emul = 3;
+  Etc = 4;
+}
+
+message BattleStart {
+  repeated int32 heroNoList = 1;
+  string hashCode = 2;
+  repeated sHeroLevel hero = 4;
+  eDeviceType deviceType = 5;
+  sAceData aceData = 6;
+}
+
+message sHeroLevel {
+  string heroIdx = 1;
+  int32 level = 2;
+}
+
+message sAceData {
+  bytes data1 = 1;
+  string data2 = 2;
+  bytes data4 = 3;
+}
+

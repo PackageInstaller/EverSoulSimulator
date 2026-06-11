@@ -1,0 +1,113 @@
+syntax = "proto3";
+
+package EsPb;
+
+enum E_CURRENCY {
+  None = 0;
+  Gold = 1;
+  FreeDia = 2;
+  ManaDust = 3;
+  ManaCrystal = 4;
+  Exp = 5;
+  Heart = 6;
+  LifeEssence = 8;
+  ArenaTicket = 9;
+  Dungeon = 10;
+  Guild = 11;
+  Release = 12;
+  Arena = 13;
+  Relics = 14;
+  Silver = 16;
+  SingleRaidCoin = 18;
+  PickupGachaTicket = 19;
+  Sign1 = 20;
+  Sign2 = 21;
+  SignHuman = 22;
+  SignFurry = 23;
+  SignElf = 24;
+  SignUndead = 25;
+  SignAngel = 26;
+  SignDemon = 27;
+  NormalTicket = 28;
+  RaceTicket = 29;
+  RareSoulstone = 30;
+  EpicSoulstone = 31;
+  EquipExp = 32;
+  CollaborationSummonTicket = 33;
+  PayDia = 42;
+  TeamarenaTicket = 44;
+  SignatureGachaTicket = 45;
+  PremiumGachaTicket = 46;
+  MonthlyHeroResetTicket = 47;
+  EquipExpMiddle = 48;
+  EquipExpHigh = 49;
+  ZodiacExp = 50;
+  LabyrinthTicket = 51;
+  TranscendentStone = 52;
+  SingleRaidTicket = 53;
+  SetItemEngrave = 54;
+  RotationDungeonTicket = 55;
+  EdenCoin = 57;
+  TypeBarrierGateTicket = 58;
+  OriginTowerTicket = 59;
+  DoubleGateNormalTicket = 60;
+  DoubleGateNormalTicketCharge = 62;
+  SignatureEnhanceStone = 64;
+  HeroOptionChangeStone = 65;
+  WishGachaTicket = 66;
+  TotalDia = 100;
+}
+
+message TownTodayEnter {
+  sCurrencyAll currency = 1;
+  int32 getTownCoin = 2;
+  repeated sTownInteractionResult townInteractionResult = 3;
+  repeated sHeroReputation heroReputation = 4;
+  sTownInfo townInfo = 5;
+  repeated sTownEnemy townEnemy = 6;
+  int32 townEnemyDefeatCount = 7;
+}
+
+message sCurrencyAll {
+  repeated sCurrency allCurrency = 1;
+}
+
+message sCurrency {
+  E_CURRENCY type = 1;
+  int64 value = 2;
+}
+
+message sTownInteractionResult {
+  int32 no = 1;
+  int32 id = 2;
+}
+
+message sHeroReputation {
+  int32 heroNo = 1;
+  int32 reputation = 2;
+  int32 state = 3;
+  int32 stress = 4;
+  int64 lastUpdateDt = 5;
+  int64 giftDt = 6;
+  int32 costumeItemNo = 7;
+  int32 storyReward = 8;
+  int32 maxGradeSno = 9;
+  int32 objetUid = 10;
+  int64 maxLevelDt = 11;
+  int32 arbeitExp = 12;
+  int32 priority = 13;
+  int64 restFinishDt = 14;
+}
+
+message sTownInfo {
+  int32 townLevel = 1;
+  int64 currentDevelopPoint = 2;
+}
+
+message sTownEnemy {
+  int32 no = 1;
+  int32 count = 2;
+  int32 type = 3;
+  int32 section = 4;
+}
+

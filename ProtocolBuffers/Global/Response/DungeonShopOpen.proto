@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package EsPb;
+
+message DungeonShopOpen {
+  repeated sDungeonShopItem dungeonShopItem = 1;
+}
+
+message sDungeonShopItem {
+  int32 no = 1;
+  int32 slotNo = 2;
+  int32 itemNo = 3;
+  int32 sellCnt = 4;
+  int32 payItemNo = 5;
+  int32 payAmount = 6;
+  int32 saleRate = 7;
+  int32 soldOut = 8;
+}
+

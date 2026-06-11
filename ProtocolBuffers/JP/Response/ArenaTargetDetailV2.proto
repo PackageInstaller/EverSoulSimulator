@@ -1,0 +1,76 @@
+syntax = "proto3";
+
+package EsPb;
+
+message ArenaTargetDetailV2 {
+  int32 arenaType = 1;
+  repeated sArenaFormation arenaFormation = 2;
+  repeated sContentBuff buff = 3;
+  repeated sArenaFormationHeroInfo arenaFormationHeroInfo = 4;
+  int32 myBeforeRank = 5;
+  int32 myAfterRank = 6;
+  int32 targetUserBeforeRank = 7;
+  int32 targetUserAfterRank = 8;
+  int32 rankShiftCheckCode = 9;
+}
+
+message sArenaFormation {
+  int32 formationOrder = 1;
+  int32 formationType = 2;
+  int32 relicNo = 3;
+  repeated sArenaFormationHero formationHero = 4;
+}
+
+message sArenaFormationHero {
+  string heroIdx = 1;
+  int32 heroOrder = 2;
+}
+
+message sContentBuff {
+  int32 contentType = 1;
+  int32 buffType = 2;
+  int32 buffNo = 3;
+  int32 value = 4;
+}
+
+message sArenaFormationHeroInfo {
+  string heroIdx = 1;
+  string originalHeroIdx = 2;
+  int32 heroNo = 3;
+  int32 level = 4;
+  int32 gradeSno = 5;
+  int32 power = 6;
+  int32 raceSno = 7;
+  repeated sSlotAndEquipItem slotAndEquipItem = 8;
+  sItemSignature signature = 9;
+  int32 costumeItemNo = 10;
+  repeated sHeroOption heroOption = 11;
+}
+
+message sSlotAndEquipItem {
+  int32 slot = 1;
+  sItemEquip itemEquip = 2;
+}
+
+message sItemEquip {
+  int64 id = 1;
+  int32 itemNo = 2;
+  int32 exp = 3;
+}
+
+message sItemSignature {
+  int32 itemNo = 1;
+  int32 grade = 2;
+  int32 level = 3;
+}
+
+message sHeroOption {
+  int32 heroNo = 1;
+  int32 groupNo = 2;
+  int32 optionSlot = 3;
+  int32 optionNo = 4;
+  int32 optionValue = 5;
+  int32 optionType = 6;
+  int32 optionLock = 7;
+}
+

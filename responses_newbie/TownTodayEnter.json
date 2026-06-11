@@ -1,0 +1,244 @@
+{
+  "currency": {
+    "allCurrency": [
+      {
+        "type": "Gold",
+        "value": "22025"
+      },
+      {
+        "type": "FreeDia",
+        "value": "380"
+      },
+      {
+        "type": "ManaDust",
+        "value": "177670"
+      },
+      {
+        "type": "ManaCrystal",
+        "value": "724"
+      },
+      {
+        "type": "Exp",
+        "value": "5503"
+      },
+      {
+        "type": "Heart"
+      },
+      {
+        "type": "LifeEssence"
+      },
+      {
+        "type": "ArenaTicket",
+        "value": "1"
+      },
+      {
+        "type": "Dungeon"
+      },
+      {
+        "type": "Guild"
+      },
+      {
+        "type": "Release",
+        "value": "11500"
+      },
+      {
+        "type": "Arena"
+      },
+      {
+        "type": "Relics"
+      },
+      {
+        "type": "Silver",
+        "value": "100"
+      },
+      {
+        "type": "SingleRaidCoin"
+      },
+      {
+        "type": "PickupGachaTicket"
+      },
+      {
+        "type": "Sign1"
+      },
+      {
+        "type": "Sign2"
+      },
+      {
+        "type": "SignHuman"
+      },
+      {
+        "type": "SignFurry"
+      },
+      {
+        "type": "SignElf"
+      },
+      {
+        "type": "SignUndead"
+      },
+      {
+        "type": "SignAngel"
+      },
+      {
+        "type": "SignDemon"
+      },
+      {
+        "type": "NormalTicket",
+        "value": "6"
+      },
+      {
+        "type": "RaceTicket",
+        "value": "2"
+      },
+      {
+        "type": "RareSoulstone",
+        "value": "35"
+      },
+      {
+        "type": "EpicSoulstone",
+        "value": "10"
+      },
+      {
+        "type": "EquipExp"
+      },
+      {
+        "type": "CollaborationSummonTicket"
+      },
+      {
+        "type": "PayDia"
+      },
+      {
+        "type": "TeamarenaTicket"
+      },
+      {
+        "type": "SignatureGachaTicket",
+        "value": "5"
+      },
+      {
+        "type": "PremiumGachaTicket"
+      },
+      {
+        "type": "MonthlyHeroResetTicket"
+      },
+      {
+        "type": "EquipExpMiddle"
+      },
+      {
+        "type": "EquipExpHigh"
+      },
+      {
+        "type": "ZodiacExp"
+      },
+      {
+        "type": "LabyrinthTicket"
+      },
+      {
+        "type": "TranscendentStone"
+      },
+      {
+        "type": "SingleRaidTicket"
+      },
+      {
+        "type": "SetItemEngrave"
+      },
+      {
+        "type": "RotationDungeonTicket"
+      },
+      {
+        "type": "EdenCoin"
+      },
+      {
+        "type": "TypeBarrierGateTicket"
+      },
+      {
+        "type": "OriginTowerTicket"
+      },
+      {
+        "type": "DoubleGateNormalTicket",
+        "value": "3"
+      },
+      {
+        "type": "DoubleGateNormalTicketCharge"
+      },
+      {
+        "type": "SignatureEnhanceStone"
+      },
+      {
+        "type": "HeroOptionChangeStone"
+      },
+      {
+        "type": "WishGachaTicket"
+      },
+      {
+        "type": "TotalDia",
+        "value": "380"
+      }
+    ]
+  },
+  "getTownCoin": 100,
+  "townInfo": {
+    "townLevel": 1
+  },
+  "townEnemy": [
+    {
+      "no": 2,
+      "count": 6,
+      "type": 1,
+      "section": 1
+    },
+    {
+      "no": 3,
+      "count": 4,
+      "type": 1,
+      "section": 1
+    },
+    {
+      "no": 4,
+      "count": 7,
+      "type": 2,
+      "section": 1
+    },
+    {
+      "no": 5,
+      "count": 3,
+      "type": 2,
+      "section": 1
+    },
+    {
+      "no": 6,
+      "count": 3,
+      "type": 1,
+      "section": 2
+    },
+    {
+      "no": 7,
+      "count": 3,
+      "type": 1,
+      "section": 2
+    },
+    {
+      "no": 8,
+      "count": 4,
+      "type": 1,
+      "section": 2
+    },
+    {
+      "no": 9,
+      "count": 3,
+      "type": 2,
+      "section": 2
+    },
+    {
+      "no": 10,
+      "count": 4,
+      "type": 2,
+      "section": 2
+    },
+    {
+      "no": 11,
+      "count": 3,
+      "type": 2,
+      "section": 2
+    }
+  ],
+  "__format__": "proto"
+}

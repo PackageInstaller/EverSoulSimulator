@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package EsPb;
+
+message EventDiceRollDice {
+  int32 usedDiceCount = 1;
+  int32 round = 2;
+  int32 slotNo = 3;
+  int32 point = 4;
+  bool isGoal = 5;
+  bool isDoubleGoal = 6;
+  bool isGoodLuck = 7;
+  repeated sEventDiceSlot slot = 8;
+  repeated sEventDicePlay eventDicePlay = 9;
+  repeated sEventDiceRandomEvent randomEvent = 10;
+  int32 eventPassPoint = 11;
+  int32 usedDiceRepeatCount = 12;
+}
+
+message sEventDiceSlot {
+  int32 slotNo = 1;
+  int32 rewardPointNo = 2;
+  int32 rewardPoint = 3;
+  bool isVisited = 4;
+}
+
+message sEventDicePlay {
+  int32 rollCount = 1;
+  int32 dice = 2;
+  int32 oldSlotNo = 3;
+  int32 newSlotNo = 4;
+  repeated sEventDiceRandomEvent randomEvent = 5;
+}
+
+message sEventDiceRandomEvent {
+  int32 eventType = 1;
+  int32 eventState = 2;
+}
+

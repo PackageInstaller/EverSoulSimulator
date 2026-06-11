@@ -1,0 +1,9 @@
+{
+  "missionPass": {
+    "missionPassNo": 900,
+    "point": 200,
+    "rewardNo": 902,
+    "expiredDt": "1783693939000"
+  },
+  "__format__": "proto"
+}

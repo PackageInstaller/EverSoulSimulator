@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message ChallengeModeClear {
+  int32 clearStageNo = 1;
+  int32 aliveCount = 2;
+  repeated sHeroIdxAndKillCount heroIdxKillCount = 3;
+  int32 useUltimateCount = 4;
+  int32 useActiveSkillCount = 5;
+  repeated int32 formationType = 6;
+  repeated stageLog stageLog = 7;
+}
+
+message sHeroIdxAndKillCount {
+  string heroIdx = 1;
+  int32 killCount = 2;
+}
+
+message stageLog {
+  int32 attack = 1;
+  int32 damage = 2;
+  int32 recovery = 3;
+  repeated sSkill skill = 4;
+  int32 heroNo = 5;
+  string heroIdx = 6;
+  int32 formationIndex = 7;
+}
+
+message sSkill {
+  int32 type = 1;
+  int32 no = 2;
+  int32 cnt = 3;
+}
+

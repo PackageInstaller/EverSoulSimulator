@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package EsPb;
+
+message DungeonPerfectClear {
+  sDungeon dungeon = 1;
+}
+
+message sDungeon {
+  int32 id = 1;
+  int32 dungeonNo = 2;
+  int32 dungeonLevel = 3;
+  float x = 4;
+  float z = 5;
+  bytes mapInfo = 6;
+  bytes conditionInfo = 7;
+  bytes heroInfo = 8;
+  bytes additionalInfo = 9;
+  bytes relicInfo = 10;
+  int32 isEnter = 11;
+  int32 isClear = 12;
+  int32 isFirstClear = 13;
+  int32 missionNo = 14;
+  int32 missionCnt = 15;
+  int32 seed = 16;
+  bytes dungeonItem = 17;
+  int32 difficulty = 18;
+  int32 ultimatePoint = 19;
+  int32 playerObjectId = 20;
+  bool useTicket = 21;
+  int32 maxClearLevel = 22;
+  int32 isSweep = 23;
+  int32 isPerfectClear = 24;
+  int32 isHiddenKeyNotAvailable = 25;
+  int32 randomGimmickSeed = 26;
+}
+

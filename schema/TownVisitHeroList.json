@@ -1,0 +1,36 @@
+{
+ "root": "TownVisitHeroList",
+ "messages": {
+  "TownVisitHeroList": {
+   "fields": [
+    {
+     "name": "townVisitHero",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sTownVisitHero",
+     "packed": false
+    }
+   ]
+  },
+  "sTownVisitHero": {
+   "fields": [
+    {
+     "name": "heroNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "pickUpFlag",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

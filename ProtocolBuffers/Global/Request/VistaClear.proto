@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message VistaClear {
+  int32 vistaNo = 1;
+  repeated string heroIdx = 2;
+  int32 clearBossLevel = 3;
+}
+

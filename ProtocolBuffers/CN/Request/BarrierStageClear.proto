@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package ReqPb;
+
+enum eDeviceType {
+  Ios = 0;
+  Aos = 1;
+  Pc = 2;
+  Emul = 3;
+  Etc = 4;
+}
+
+message BarrierStageClear {
+  int32 stageNo = 1;
+  int32 stageType = 2;
+  repeated sStageClearDeck heroIdx = 3;
+  sStageClearDeck friendHeroIdx = 4;
+  repeated stagePower stagePower = 5;
+  int32 skipFlag = 6;
+  eDeviceType deviceType = 7;
+  sAceData aceData = 8;
+}
+
+message sStageClearDeck {
+  repeated string heroIdx = 1;
+  int32 formationIndex = 2;
+}
+
+message stagePower {
+  string heroIdx = 1;
+  int32 power = 2;
+}
+
+message sAceData {
+  bytes data1 = 1;
+  string data2 = 2;
+  bytes data4 = 3;
+}
+

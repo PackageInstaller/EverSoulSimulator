@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package EsPb;
+
+message TownManagerHeroChange {
+  int32 heroNo = 1;
+}
+

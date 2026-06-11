@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message RankingAchievementAllReward {
+  int32 rankNo = 1;
+}
+

@@ -1,0 +1,17 @@
+{
+ "root": "FriendRequest",
+ "messages": {
+  "FriendRequest": {
+   "fields": [
+    {
+     "name": "friendRequest_",
+     "number": 1,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

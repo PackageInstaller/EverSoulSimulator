@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message EventRankRaidClear {
+  int32 eventGroup = 1;
+  int32 eventNumber = 2;
+  int64 damage = 3;
+  int32 aliveCount = 4;
+  repeated sHeroIdxAndKillCount heroIdxKillCount = 5;
+  int32 useUltimateCount = 6;
+  int32 useActiveSkillCount = 7;
+  int32 formationType = 8;
+}
+
+message sHeroIdxAndKillCount {
+  string heroIdx = 1;
+  int32 killCount = 2;
+}
+

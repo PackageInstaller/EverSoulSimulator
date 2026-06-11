@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package EsPb;
+
+message ItemUseAbleItems {
+  sItemUseAbleGachaGrade itemUseAbleGachaGrade = 1;
+  sItemUseAbleGachaTribe itemUseAbleGachaTribe = 2;
+  int32 signatureAbleCnt = 3;
+}
+
+message sItemUseAbleGachaGrade {
+  int32 epic = 1;
+  int32 rare = 2;
+}
+
+message sItemUseAbleGachaTribe {
+  int32 human = 1;
+  int32 furry = 2;
+  int32 elf = 3;
+  int32 undead = 4;
+  int32 angel = 5;
+  int32 devil = 6;
+}
+

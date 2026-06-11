@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package EsPb;
+
+message TownInfoData {
+  sTownInfo townInfo = 1;
+  int32 castleMaxFloorNo = 2;
+  int32 additionalRestSlotCount = 3;
+  sVector3 playerPosition = 4;
+  repeated int32 missionClearNo = 5;
+  int32 visitBattleCount = 6;
+  int32 visitBattleMaxCount = 7;
+}
+
+message sTownInfo {
+  int32 townLevel = 1;
+  int64 currentDevelopPoint = 2;
+}
+
+message sVector3 {
+  float x = 1;
+  float y = 2;
+  float z = 3;
+}
+

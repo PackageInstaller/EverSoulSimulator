@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message EventDoubleStageRoundClear {
+  int32 eventGroup = 1;
+  int32 eventNumber = 2;
+  int64 id = 3;
+  int32 stageId = 4;
+  int64 stageUniqueKey = 5;
+  int64 maxDemage = 6;
+  repeated string heroIdx = 7;
+}
+

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package EsPb;
+
+message DJSoulInfoList {
+  repeated sDJSoulInfo info = 1;
+  repeated int32 receiveRewardNo = 2;
+}
+
+message sDJSoulInfo {
+  int32 stageNo = 1;
+  int32 level = 2;
+  int32 maxScore = 3;
+}
+

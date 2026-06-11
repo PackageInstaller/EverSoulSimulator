@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message EdenUnionMissionReward {
+  int32 isSelect = 1;
+  int32 missionNo = 2;
+}
+

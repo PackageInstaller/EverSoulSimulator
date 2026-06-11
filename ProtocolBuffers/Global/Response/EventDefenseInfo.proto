@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package EsPb;
+
+message EventDefenseInfo {
+  int32 eventGroup = 1;
+  int32 eventNumber = 2;
+  int32 enterCnt = 3;
+  int64 maxScore = 4;
+  int64 accumScore = 5;
+  int64 accumScoreLastReward = 6;
+  int32 canRankReward = 7;
+  int32 diaUseCount = 8;
+}
+

@@ -1,0 +1,108 @@
+{
+ "root": "EdenUnionInfo",
+ "messages": {
+  "EdenUnionInfo": {
+   "fields": [
+    {
+     "name": "unionGroup",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "mission",
+     "number": 2,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sEdenUnionMission",
+     "packed": false
+    },
+    {
+     "name": "lastSelectConstraintNo",
+     "number": 3,
+     "repeated": true,
+     "type": "int32",
+     "packed": true
+    },
+    {
+     "name": "day",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "maxLevel",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "tierNo",
+     "number": 6,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "rewardState",
+     "number": 7,
+     "repeated": false,
+     "type": "enum",
+     "type_name": "eRankRewardState",
+     "packed": false
+    },
+    {
+     "name": "isNormalOpen",
+     "number": 8,
+     "repeated": false,
+     "type": "bool",
+     "packed": false
+    },
+    {
+     "name": "isRankOpen",
+     "number": 9,
+     "repeated": false,
+     "type": "bool",
+     "packed": false
+    },
+    {
+     "name": "isDailyRewarded",
+     "number": 10,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sEdenUnionMission": {
+   "fields": [
+    {
+     "name": "missionNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "isRewarded",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {
+  "eRankRewardState": {
+   "Rewarded": 0,
+   "Available": 1,
+   "Empty": 2,
+   "RankCalculating": 3,
+   "Progressing": 4
+  }
+ }
+}

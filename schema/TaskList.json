@@ -1,0 +1,102 @@
+{
+ "root": "TaskList",
+ "messages": {
+  "TaskList": {
+   "fields": [
+    {
+     "name": "taskDaily",
+     "number": 1,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sTaskDaily",
+     "packed": false
+    },
+    {
+     "name": "taskWeekly",
+     "number": 2,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sTaskWeekly",
+     "packed": false
+    }
+   ]
+  },
+  "sTaskDaily": {
+   "fields": [
+    {
+     "name": "days",
+     "number": 1,
+     "repeated": false,
+     "type": "uint32",
+     "packed": false
+    },
+    {
+     "name": "taskValue",
+     "number": 2,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sTaskValue",
+     "packed": false
+    },
+    {
+     "name": "taskReceive",
+     "number": 3,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sTaskReceive",
+     "packed": false
+    }
+   ]
+  },
+  "sTaskValue": {
+   "fields": [
+    {
+     "name": "val",
+     "number": 1,
+     "repeated": false,
+     "type": "uint32",
+     "packed": false
+    }
+   ]
+  },
+  "sTaskReceive": {
+   "fields": [
+    {
+     "name": "val",
+     "number": 1,
+     "repeated": false,
+     "type": "uint32",
+     "packed": false
+    }
+   ]
+  },
+  "sTaskWeekly": {
+   "fields": [
+    {
+     "name": "weeks",
+     "number": 1,
+     "repeated": false,
+     "type": "uint32",
+     "packed": false
+    },
+    {
+     "name": "taskValue",
+     "number": 2,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sTaskValue",
+     "packed": false
+    },
+    {
+     "name": "taskReceive",
+     "number": 3,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sTaskReceive",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

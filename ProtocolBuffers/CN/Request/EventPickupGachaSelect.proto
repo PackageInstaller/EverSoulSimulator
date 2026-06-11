@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message EventPickupGachaSelect {
+  int32 eventGroup = 1;
+  int32 gachaNo = 2;
+}
+

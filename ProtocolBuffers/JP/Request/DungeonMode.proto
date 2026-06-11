@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message DungeonMode {
+  int32 dungeonId = 1;
+  int32 difficulty = 2;
+  int32 dungeonLevel = 3;
+}
+

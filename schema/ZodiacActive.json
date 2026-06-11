@@ -1,0 +1,29 @@
+{
+ "root": "ZodiacActive",
+ "messages": {
+  "ZodiacActive": {
+   "fields": [
+    {
+     "name": "zodiac",
+     "number": 1,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sZodiac",
+     "packed": false
+    }
+   ]
+  },
+  "sZodiac": {
+   "fields": [
+    {
+     "name": "zodiacNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

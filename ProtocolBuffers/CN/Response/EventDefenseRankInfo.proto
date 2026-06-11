@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package EsPb;
+
+message EventDefenseRankInfo {
+  int32 eventGroup = 1;
+  int32 eventNumber = 2;
+  int32 myRank = 3;
+  int64 myScore = 4;
+  int32 canRankReward = 5;
+  repeated sEventDefenseRank eventDefenseRank = 6;
+}
+
+message sEventDefenseRank {
+  int32 rank = 1;
+  string userIdx = 2;
+  int64 score = 3;
+  string nickName = 4;
+  sThumbnail thumbnail = 5;
+}
+
+message sThumbnail {
+  int32 thumbnailFrame = 1;
+  int32 thumbnailImage = 2;
+  bool useCustom = 3;
+  bytes thumbnail = 4;
+}
+

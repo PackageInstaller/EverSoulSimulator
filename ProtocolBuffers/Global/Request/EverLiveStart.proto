@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message EverLiveStart {
+  int32 groupNo = 1;
+  int32 stageNo = 2;
+}
+

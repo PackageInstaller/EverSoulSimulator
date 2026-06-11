@@ -1,0 +1,17 @@
+{
+ "root": "UserNicknameChange",
+ "messages": {
+  "UserNicknameChange": {
+   "fields": [
+    {
+     "name": "nickName",
+     "number": 1,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

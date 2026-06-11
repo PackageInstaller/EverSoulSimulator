@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message CashGrowReward {
+  int32 packageNo = 1;
+  int32 level = 2;
+}
+

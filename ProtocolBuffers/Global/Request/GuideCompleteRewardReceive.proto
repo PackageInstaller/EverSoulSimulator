@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message GuideCompleteRewardReceive {
+  int32 guideQuestNo = 1;
+}
+

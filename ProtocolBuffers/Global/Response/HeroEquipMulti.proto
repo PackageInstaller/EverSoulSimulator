@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package EsPb;
+
+message HeroEquipMulti {
+  sHeroEquipAll heroEquipList = 1;
+}
+
+message sHeroEquipAll {
+  string heroIdx = 1;
+  repeated sSlotAndEquipId equip = 2;
+}
+
+message sSlotAndEquipId {
+  int32 slot = 1;
+  int32 itemEquipId = 2;
+}
+

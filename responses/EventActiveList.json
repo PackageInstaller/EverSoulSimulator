@@ -1,0 +1,14 @@
+{
+  "eventActive": [
+    {
+      "eventType": 2,
+      "userType": 3,
+      "group": 3,
+      "eventNumber": 1,
+      "startTs": "1779926400000",
+      "endTs": "1781136000000",
+      "delayOffTs": "1781136000000"
+    }
+  ],
+  "__format__": "proto"
+}
