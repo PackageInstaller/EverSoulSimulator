@@ -3,6 +3,7 @@
 本项目提供了针对《永恒灵魂》(Eversoul) 客户端的本地 Kakao SDK / Infodesk 模拟服务，以及用于拦截和解析 Unity 网络请求的 C++ 注入包装器与离线数据服务端。
 
 - [English Documentation](README_en.md) | **中文文档**
+- Discord 社群: [加入我们的 Discord](https://discord.gg/ZptEmqfuv)
 
 ---
 
