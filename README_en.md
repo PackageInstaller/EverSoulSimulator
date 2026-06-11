@@ -2,7 +2,7 @@
 
 This project provides a local Kakao SDK / Infodesk mock server for the game Eversoul, alongside C++ injection wrappers and an offline game server to intercept and handle Unity web requests offline.
 
-- **English Documentation** | [中文文档](README.md)
+- **English Documentation** | [中文文档](README.md) | [한국어 문서](README_kr.md)
 
 ---
 
