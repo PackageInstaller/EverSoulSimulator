@@ -126,6 +126,18 @@ foreach ($d in @("web", "wss", "responses", "responses_newbie", "schema")) {
     }
 }
 
+New-Item -ItemType Directory -Force -Path "build\web" | Out-Null
+if (Test-Path "src\assets\logo.png") {
+    Copy-Item -Force "src\assets\logo.png" "build\web\logo.png"
+    Write-Host "Copied: build/web/logo.png"
+}
+
+New-Item -ItemType Directory -Force -Path "build\offline_data" | Out-Null
+if (Test-Path "tools\frida\frida-server-android-x86_64") {
+    Copy-Item -Force "tools\frida\frida-server-android-x86_64" "build\offline_data\frida-server-android-x86_64"
+    Write-Host "Copied: build/offline_data/frida-server-android-x86_64"
+}
+
 Write-Host "== Build injector (MSVC) =="
 $VSWHERE = $null
 foreach ($p in @(

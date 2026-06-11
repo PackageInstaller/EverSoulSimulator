@@ -119,6 +119,14 @@ static const Table kTable = {
     { "admin.adb_save",          { {"ko","저장"},                           {"en","Save"},                            {"zh","保存"} }},
     { "admin.adb_saved",         { {"ko","저장됨"},                         {"en","Saved"},                           {"zh","已保存"} }},
     { "admin.adb_clear",         { {"ko","초기화"},                         {"en","Clear"},                           {"zh","清除"} }},
+
+    // ---- injector --------------------------------------------------------
+    { "admin.injector",          { {"ko","인젝터"},                         {"en","Injector"},                        {"zh","注入器"} }},
+    { "admin.injector_devices",  { {"ko","연결된 기기"},                    {"en","Connected Devices"},               {"zh","已连接设备"} }},
+    { "admin.injector_run",      { {"ko","인젝터 실행"},                    {"en","Run Injector"},                    {"zh","运行注入器"} }},
+    { "admin.injector_stop",     { {"ko","중지"},                           {"en","Stop"},                            {"zh","停止"} }},
+    { "admin.injector_log",      { {"ko","인젝터 로그"},                    {"en","Injector Log"},                    {"zh","注入器日志"} }},
+    { "admin.adb_exec",          { {"ko","실행"},                           {"en","Run"},                             {"zh","执行"} }},
 };
 
 static Lang g_lang = Lang::Korean;

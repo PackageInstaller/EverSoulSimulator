@@ -45,7 +45,28 @@ std::string resolve_adb_path(const std::string& data_dir)
         if (*env) return env;
 
     std::string saved = load_saved_adb_path(data_dir);
-    if (!saved.empty()) return saved;
+    if (!saved.empty()) {
+        std::ifstream direct(saved);
+        if (direct.good()) return saved;
+
+#ifdef _WIN32
+        char sep = '\\';
+#else
+        char sep = '/';
+#endif
+        std::string candidate = saved;
+        if (!candidate.empty() && candidate.back() != '\\' && candidate.back() != '/')
+            candidate += sep;
+#ifdef _WIN32
+        candidate += "adb.exe";
+#else
+        candidate += "adb";
+#endif
+        std::ifstream probe(candidate);
+        if (probe.good()) return candidate;
+
+        return saved;
+    }
 
     return "adb";
 }

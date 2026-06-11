@@ -7,6 +7,7 @@
 #include "fixture_store.hpp"
 #include "http.hpp"
 #include "i18n.hpp"
+#include "log.hpp"
 #include "offline_data.hpp"
 #include "orm/storage.hpp"
 #include "platform.hpp"
@@ -14,12 +15,15 @@
 
 #include "sqlite3.h"
 
+#include <algorithm>
 #include <atomic>
 #include <chrono>
 #include <condition_variable>
+#include <cstdio>
 #include <memory>
 #include <mutex>
 #include <queue>
+#include <sstream>
 #include <string>
 #include <thread>
 #include <vector>
@@ -47,6 +51,14 @@ socket_fd_t       g_listen_fd{kInvalidSocket};
 std::mutex        g_start_mu;
 std::int64_t      g_started_at{0};
 int               g_current_port{kDefaultAdminPort};
+
+// ── Injector process state ────────────────────────────────────────────────────
+
+std::atomic<bool> g_injector_running{false};
+std::mutex        g_injector_mu;
+#ifdef _WIN32
+HANDLE g_injector_proc = INVALID_HANDLE_VALUE;
+#endif
 
 // ── Low-level send returning success/failure ─────────────────────────────────
 
@@ -114,6 +126,20 @@ bool path_exists(const std::string& p)
 #else
     struct stat st{};
     return ::stat(p.c_str(), &st) == 0;
+#endif
+}
+
+static std::string exe_dir()
+{
+#ifdef _WIN32
+    char buf[MAX_PATH];
+    DWORD len = GetModuleFileNameA(nullptr, buf, MAX_PATH);
+    if (len == 0) return ".";
+    std::string path(buf, len);
+    auto sep = path.find_last_of("\\/");
+    return sep == std::string::npos ? "." : path.substr(0, sep);
+#else
+    return ".";
 #endif
 }
 
@@ -407,6 +433,26 @@ void handle_health(socket_fd_t fd)
     bool data_ok = path_exists(cfg.data_dir);
     add("Data Dir", data_ok, cfg.data_dir);
 
+    std::string adb_resolved = resolve_adb_path(cfg.data_dir);
+    bool adb_file_ok = (adb_resolved != "adb") && path_exists(adb_resolved);
+    add("ADB Path", adb_file_ok, adb_resolved);
+
+    std::string edir = exe_dir();
+#ifdef _WIN32
+    std::string injector_path  = edir + "\\eversoul_injector.exe";
+    std::string frida_srv_path = edir + "\\offline_data\\frida-server-android-x86_64";
+#else
+    std::string injector_path  = edir + "/eversoul_injector";
+    std::string frida_srv_path = edir + "/offline_data/frida-server-android-x86_64";
+#endif
+    bool injector_ok  = path_exists(injector_path);
+    add("Injector Exe",      injector_ok,  injector_path);
+    bool frida_bin_ok = path_exists(frida_srv_path);
+    add("Frida Server Bin",  frida_bin_ok, frida_srv_path);
+
+    bool inj_up = g_injector_running.load();
+    checks.push_back({"Injector Process", inj_up ? "ok" : "ok", inj_up ? "running" : "idle"});
+
     std::string body = "[";
     for (std::size_t i = 0; i < checks.size(); ++i) {
         if (i) body += ',';
@@ -649,6 +695,339 @@ void handle_adb_set(socket_fd_t fd, const HttpRequest& req)
     send_response(fd, json_200("{\"ok\":true}"));
 }
 
+// ── /admin/api/logo (GET) — serve logo.png ───────────────────────────────────
+
+void handle_logo(socket_fd_t fd)
+{
+    std::string logo_path = exe_dir() + "/web/logo.png";
+    FILE* f = fopen(logo_path.c_str(), "rb");
+    if (!f) {
+        send_response(fd, not_found());
+        return;
+    }
+    fseek(f, 0, SEEK_END);
+    long size = ftell(f);
+    fseek(f, 0, SEEK_SET);
+    std::string data;
+    if (size > 0) {
+        data.resize(static_cast<std::size_t>(size));
+        fread(data.data(), 1, static_cast<std::size_t>(size), f);
+    }
+    fclose(f);
+
+    HttpResponse res;
+    res.status = 200;
+    res.headers["Content-Type"]                = "image/png";
+    res.headers["Access-Control-Allow-Origin"] = "*";
+    res.headers["Cache-Control"]               = "max-age=3600";
+    res.body = std::move(data);
+    send_response(fd, res);
+}
+
+// ── Injector process runner (background thread) ───────────────────────────────
+
+static void run_injector_bg(const std::string& serial)
+{
+    std::string dir = exe_dir();
+#ifdef _WIN32
+    std::string injector  = dir + "\\eversoul_injector.exe";
+    std::string so_path   = dir + "\\android\\libswappywrapper.so";
+    std::string srv_exe   = dir + "\\eversoul_offline_server.exe";
+    std::string frida_srv = dir + "\\offline_data\\frida-server-android-x86_64";
+#else
+    std::string injector  = dir + "/eversoul_injector";
+    std::string so_path   = dir + "/android/libswappywrapper.so";
+    std::string srv_exe   = dir + "/eversoul_offline_server";
+    std::string frida_srv = dir + "/offline_data/frida-server-android-x86_64";
+#endif
+
+    for (const std::string& f : {injector, so_path, frida_srv}) {
+        if (!path_exists(f)) {
+            log_line(0, "INJECTOR", "missing: " + f);
+            g_injector_running.store(false);
+            return;
+        }
+    }
+
+    std::string adb_path = resolve_adb_path(config().data_dir);
+
+    std::string cmd = "\"" + injector + "\" \"" + so_path + "\" \"" +
+                      srv_exe + "\" \"" + frida_srv + "\" --no-wait";
+    if (!serial.empty())    cmd += " --serial \"" + serial   + "\"";
+    if (!adb_path.empty())  cmd += " --adb \""    + adb_path + "\"";
+
+#ifdef _WIN32
+    SECURITY_ATTRIBUTES sa{};
+    sa.nLength              = sizeof(SECURITY_ATTRIBUTES);
+    sa.bInheritHandle       = TRUE;
+    HANDLE hRead = INVALID_HANDLE_VALUE, hWrite = INVALID_HANDLE_VALUE;
+    if (!CreatePipe(&hRead, &hWrite, &sa, 0)) {
+        log_line(0, "INJECTOR", "CreatePipe failed");
+        g_injector_running.store(false);
+        return;
+    }
+    SetHandleInformation(hRead, HANDLE_FLAG_INHERIT, 0);
+
+    STARTUPINFOA si{};
+    si.cb        = sizeof(si);
+    si.dwFlags   = STARTF_USESTDHANDLES;
+    si.hStdOutput = hWrite;
+    si.hStdError  = hWrite;
+    si.hStdInput  = INVALID_HANDLE_VALUE;
+
+    PROCESS_INFORMATION pi{};
+    std::vector<char> cmd_buf(cmd.begin(), cmd.end());
+    cmd_buf.push_back('\0');
+
+    if (!CreateProcessA(nullptr, cmd_buf.data(), nullptr, nullptr,
+                        TRUE, 0, nullptr, nullptr, &si, &pi)) {
+        CloseHandle(hRead);
+        CloseHandle(hWrite);
+        log_line(0, "INJECTOR", "CreateProcess failed: " + std::to_string(GetLastError()));
+        g_injector_running.store(false);
+        return;
+    }
+    CloseHandle(hWrite);
+    {
+        std::lock_guard<std::mutex> lk(g_injector_mu);
+        if (g_injector_proc != INVALID_HANDLE_VALUE) CloseHandle(g_injector_proc);
+        g_injector_proc = pi.hProcess;
+    }
+    CloseHandle(pi.hThread);
+
+    char buf[1024];
+    DWORD nread;
+    std::string line_buf;
+    while (ReadFile(hRead, buf, sizeof(buf) - 1, &nread, nullptr) && nread > 0) {
+        buf[nread] = '\0';
+        line_buf += buf;
+        std::size_t pos;
+        while ((pos = line_buf.find('\n')) != std::string::npos) {
+            std::string line = line_buf.substr(0, pos);
+            if (!line.empty() && line.back() == '\r') line.pop_back();
+            if (!line.empty()) log_line(0, "INJECTOR", line);
+            line_buf.erase(0, pos + 1);
+        }
+    }
+    if (!line_buf.empty()) log_line(0, "INJECTOR", line_buf);
+    CloseHandle(hRead);
+    {
+        std::lock_guard<std::mutex> lk(g_injector_mu);
+        CloseHandle(g_injector_proc);
+        g_injector_proc = INVALID_HANDLE_VALUE;
+    }
+#else
+    FILE* pipe = popen(cmd.c_str(), "r");
+    if (!pipe) {
+        log_line(0, "INJECTOR", "popen failed");
+        g_injector_running.store(false);
+        return;
+    }
+    char buf[1024];
+    std::string line_buf;
+    while (fgets(buf, sizeof(buf), pipe)) {
+        line_buf += buf;
+        std::size_t pos;
+        while ((pos = line_buf.find('\n')) != std::string::npos) {
+            std::string line = line_buf.substr(0, pos);
+            if (!line.empty() && line.back() == '\r') line.pop_back();
+            if (!line.empty()) log_line(0, "INJECTOR", line);
+            line_buf.erase(0, pos + 1);
+        }
+    }
+    pclose(pipe);
+#endif
+
+    log_line(0, "INJECTOR", "process exited");
+    g_injector_running.store(false);
+}
+
+// ── /admin/api/injector/run (POST) ────────────────────────────────────────────
+
+void handle_injector_run(socket_fd_t fd, const HttpRequest& req)
+{
+    if (g_injector_running.load()) {
+        send_response(fd, json_200("{\"ok\":false,\"reason\":\"already running\"}"));
+        return;
+    }
+    std::string serial = body_json_string(req.body, "serial");
+    g_injector_running.store(true);
+    std::thread([serial]() { run_injector_bg(serial); }).detach();
+    send_response(fd, json_200("{\"ok\":true}"));
+}
+
+// ── /admin/api/injector/stop (POST) ──────────────────────────────────────────
+
+void handle_injector_stop(socket_fd_t fd)
+{
+#ifdef _WIN32
+    std::lock_guard<std::mutex> lk(g_injector_mu);
+    if (g_injector_proc != INVALID_HANDLE_VALUE) {
+        TerminateProcess(g_injector_proc, 0);
+    }
+#endif
+    send_response(fd, json_200("{\"ok\":true}"));
+}
+
+// ── /admin/api/injector/status (GET) ─────────────────────────────────────────
+
+void handle_injector_status(socket_fd_t fd)
+{
+    bool r = g_injector_running.load();
+    send_response(fd, json_200(std::string("{\"running\":") + (r ? "true" : "false") + "}"));
+}
+
+// ── /admin/api/injector/devices (GET) ────────────────────────────────────────
+
+void handle_injector_devices(socket_fd_t fd)
+{
+    std::string adb = resolve_adb_path(config().data_dir);
+    std::string raw;
+#ifdef _WIN32
+    FILE* pipe = _popen(("\"" + adb + "\" devices 2>&1").c_str(), "r");
+#else
+    FILE* pipe = popen((adb + " devices 2>&1").c_str(), "r");
+#endif
+    if (pipe) {
+        char buf[512];
+        while (fgets(buf, sizeof(buf), pipe)) raw += buf;
+#ifdef _WIN32
+        _pclose(pipe);
+#else
+        pclose(pipe);
+#endif
+    }
+
+    std::string body = "{\"raw\":\"" + json_escape(raw) + "\",\"devices\":[";
+    bool first = true;
+    std::istringstream ss(raw);
+    std::string line;
+    while (std::getline(ss, line)) {
+        if (line.find("List of") != std::string::npos) continue;
+        if (line.find("offline")  != std::string::npos) continue;
+        auto tab = line.find('\t');
+        if (tab == std::string::npos) continue;
+        if (line.find("device") == std::string::npos) continue;
+        std::string serial = line.substr(0, tab);
+        if (!first) body += ',';
+        first = false;
+        body += '"'; body += json_escape(serial); body += '"';
+    }
+    body += "]}";
+    send_response(fd, json_200(body));
+}
+
+// ── /admin/api/injector/check (GET) ──────────────────────────────────────────
+
+void handle_injector_check(socket_fd_t fd, const std::string& qs)
+{
+    std::string serial = url_decode(query_param(qs, "serial"));
+    std::string adb    = resolve_adb_path(config().data_dir);
+
+    bool adb_ok = path_exists(adb);
+
+    if (serial.empty()) {
+        std::string raw;
+#ifdef _WIN32
+        FILE* pipe = _popen(("\"" + adb + "\" devices 2>&1").c_str(), "r");
+#else
+        FILE* pipe = popen((adb + " devices 2>&1").c_str(), "r");
+#endif
+        if (pipe) {
+            char buf[512];
+            while (fgets(buf, sizeof(buf), pipe)) raw += buf;
+#ifdef _WIN32
+            _pclose(pipe);
+#else
+            pclose(pipe);
+#endif
+        }
+        std::istringstream ss(raw);
+        std::string line;
+        while (std::getline(ss, line)) {
+            if (line.find("List of") != std::string::npos) continue;
+            if (line.find("offline")  != std::string::npos) continue;
+            auto tab = line.find('\t');
+            if (tab == std::string::npos) continue;
+            if (line.find("device") == std::string::npos) continue;
+            serial = line.substr(0, tab);
+            break;
+        }
+    }
+
+    bool has_eversoul  = false;
+    bool frida_up      = false;
+
+    if (!serial.empty() && adb_ok) {
+        auto run = [&](const std::string& args) -> std::string {
+            std::string cmd = "\"" + adb + "\" " + args + " 2>&1";
+            std::string out;
+#ifdef _WIN32
+            FILE* pipe = _popen(cmd.c_str(), "r");
+#else
+            FILE* pipe = popen(cmd.c_str(), "r");
+#endif
+            if (!pipe) return {};
+            char buf[512];
+            while (fgets(buf, sizeof(buf), pipe)) out += buf;
+#ifdef _WIN32
+            _pclose(pipe);
+#else
+            pclose(pipe);
+#endif
+            return out;
+        };
+        std::string pm = run("-s " + serial + " shell pm list packages com.kakaogames.eversoul");
+        has_eversoul = pm.find("com.kakaogames.eversoul") != std::string::npos;
+        std::string pg = run("-s " + serial + " shell pgrep -x frida-server");
+        pg.erase(std::remove_if(pg.begin(), pg.end(), ::isspace), pg.end());
+        frida_up = !pg.empty();
+    }
+
+    std::string body = "{";
+    body += "\"adb\":\"";         body += json_escape(adb);    body += "\"";
+    body += ",\"adb_ok\":";       body += (adb_ok       ? "true" : "false");
+    body += ",\"serial\":\"";     body += json_escape(serial); body += "\"";
+    body += ",\"eversoul\":";     body += (has_eversoul ? "true" : "false");
+    body += ",\"frida_server\":"; body += (frida_up     ? "true" : "false");
+    body += "}";
+    send_response(fd, json_200(body));
+}
+
+// ── /admin/api/injector/adb (POST) — direct adb command ──────────────────────
+
+void handle_injector_adb(socket_fd_t fd, const HttpRequest& req)
+{
+    std::string cmd_arg = body_json_string(req.body, "cmd");
+    if (cmd_arg.empty()) { send_response(fd, bad_request("missing cmd")); return; }
+
+    std::string adb = resolve_adb_path(config().data_dir);
+    std::string full = "\"" + adb + "\" " + cmd_arg + " 2>&1";
+    std::string out;
+#ifdef _WIN32
+    FILE* pipe = _popen(full.c_str(), "r");
+#else
+    FILE* pipe = popen(full.c_str(), "r");
+#endif
+    if (pipe) {
+        char buf[1024];
+        while (fgets(buf, sizeof(buf), pipe)) out += buf;
+#ifdef _WIN32
+        _pclose(pipe);
+#else
+        pclose(pipe);
+#endif
+    }
+    log_line(0, "ADB", "> " + cmd_arg);
+    std::istringstream ss(out);
+    std::string line;
+    while (std::getline(ss, line)) {
+        if (!line.empty() && line.back() == '\r') line.pop_back();
+        if (!line.empty()) log_line(0, "ADB", line);
+    }
+    send_response(fd, json_200("{\"ok\":true,\"output\":\"" + json_escape(out) + "\"}"));
+}
+
 // ── Connection dispatcher ─────────────────────────────────────────────────────
 
 void handle_connection(socket_fd_t fd)
@@ -703,6 +1082,20 @@ void handle_connection(socket_fd_t fd)
         handle_adb_current(fd);
     } else if (path == "/admin/api/adb/set" && req.method == "POST") {
         handle_adb_set(fd, req);
+    } else if (path == "/admin/api/injector/run" && req.method == "POST") {
+        handle_injector_run(fd, req);
+    } else if (path == "/admin/api/injector/stop" && req.method == "POST") {
+        handle_injector_stop(fd);
+    } else if (path == "/admin/api/injector/status" && req.method == "GET") {
+        handle_injector_status(fd);
+    } else if (path == "/admin/api/injector/devices" && req.method == "GET") {
+        handle_injector_devices(fd);
+    } else if (path == "/admin/api/injector/check" && req.method == "GET") {
+        handle_injector_check(fd, qs);
+    } else if (path == "/admin/api/injector/adb" && req.method == "POST") {
+        handle_injector_adb(fd, req);
+    } else if (path == "/admin/api/logo" && req.method == "GET") {
+        handle_logo(fd);
     } else {
         send_response(fd, not_found());
     }

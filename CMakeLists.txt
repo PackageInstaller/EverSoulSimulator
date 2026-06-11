@@ -121,6 +121,18 @@ else()
   target_include_directories(eversoul_offline_server PRIVATE ${EVERSOUL_INCLUDE_DIRS})
   target_compile_options(eversoul_offline_server PRIVATE -O2 -Wall -Wextra)
   target_link_libraries(eversoul_offline_server PRIVATE CURL::libcurl Threads::Threads ${CMAKE_DL_LIBS})
+
+  add_custom_command(TARGET eversoul_offline_server POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E make_directory
+      "$<TARGET_FILE_DIR:eversoul_offline_server>/web"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+      "${CMAKE_SOURCE_DIR}/src/assets/logo.png"
+      "$<TARGET_FILE_DIR:eversoul_offline_server>/web/logo.png"
+    COMMAND ${CMAKE_COMMAND} -E make_directory
+      "$<TARGET_FILE_DIR:eversoul_offline_server>/offline_data"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+      "${CMAKE_SOURCE_DIR}/tools/frida/frida-server-android-x86_64"
+      "$<TARGET_FILE_DIR:eversoul_offline_server>/offline_data/frida-server-android-x86_64")
   if(WIN32)
     target_link_libraries(eversoul_offline_server PRIVATE ws2_32)
 

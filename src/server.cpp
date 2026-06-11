@@ -111,7 +111,10 @@ namespace eversoul
 
         fixture_store().load(config().data_dir);
         ws_load_fixtures(config().data_dir);
-        orm::ensure_ready(config().data_dir);
+        if (!orm::ensure_ready(config().data_dir)) {
+            log_line(0, "ERROR", "orm init failed: data_dir=" + config().data_dir);
+            return 1;
+        }
 
         socket_fd_t server_fd = socket(AF_INET, SOCK_STREAM, 0);
         if (server_fd == kInvalidSocket)

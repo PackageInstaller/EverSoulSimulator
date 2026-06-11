@@ -85,8 +85,9 @@ static bool path_exists(const std::string& p)
 #endif
 }
 
-static std::string find_adb()
+static std::string find_adb(const std::string& hint = {})
 {
+    if (!hint.empty()) return hint;
     return eversoul::resolve_adb_path(".");
 }
 
@@ -205,11 +206,16 @@ static void ensure_frida_server(const std::string& adb,
             " shell chmod 755 /data/local/tmp/frida-server");
     }
 
-    // Start in daemon mode via root shell.
-    // TODO(platform): adb shell works identically on macOS/Linux.
     printf("[frida-server] starting...\n");
-    run_adb(adb, "-s " + serial +
-        " shell \"su -c '/data/local/tmp/frida-server -D'\"");
+    std::string who = run_adb(adb, "-s " + serial + " shell whoami 2>&1");
+    bool shell_is_root = who.find("root") != std::string::npos;
+    if (shell_is_root) {
+        run_adb(adb, "-s " + serial +
+            " shell \"/data/local/tmp/frida-server -D &\"");
+    } else {
+        run_adb(adb, "-s " + serial +
+            " shell \"su -c '/data/local/tmp/frida-server -D'\"");
+    }
 
     for (int i = 0; i < 12; ++i) {
 #ifdef _WIN32
@@ -269,18 +275,65 @@ static void on_frida_message(FridaScript*, const gchar* message,
 
 int main(int argc, char* argv[])
 {
-    if (argc < 4) {
+#ifdef _WIN32
+    SetConsoleOutputCP(CP_UTF8);
+    SetConsoleCP(CP_UTF8);
+#endif
+    std::string so_path;
+    std::string server_exe;
+    std::string frida_srv_bin;
+    std::string opt_serial;
+    std::string opt_adb;
+    bool opt_no_wait      = false;
+    bool opt_list_devices = false;
+    bool opt_check        = false;
+
+    for (int i = 1; i < argc; ++i) {
+        std::string a = argv[i];
+        if      (a == "--no-wait")           { opt_no_wait = true; }
+        else if (a == "--list-devices")       { opt_list_devices = true; }
+        else if (a == "--check")              { opt_check = true; }
+        else if (a == "--serial" && i+1<argc) { opt_serial = argv[++i]; }
+        else if (a == "--adb"    && i+1<argc) { opt_adb    = argv[++i]; }
+        else if (so_path.empty())             { so_path = a; }
+        else if (server_exe.empty())          { server_exe = a; }
+        else if (frida_srv_bin.empty())       { frida_srv_bin = a; }
+    }
+
+    if (opt_list_devices) {
+        std::string adb = find_adb(opt_adb);
+        printf("%s", run_adb(adb, "devices -l").c_str());
+        return 0;
+    }
+
+    if (opt_check) {
+        std::string adb    = find_adb(opt_adb);
+        std::string serial = opt_serial.empty() ? find_device(adb) : opt_serial;
+        bool has_device    = !serial.empty();
+        bool has_eversoul  = false;
+        bool frida_up      = false;
+        if (has_device) {
+            std::string pm = run_adb(adb,
+                "-s " + serial + " shell pm list packages com.kakaogames.eversoul 2>&1");
+            has_eversoul = pm.find("com.kakaogames.eversoul") != std::string::npos;
+            frida_up     = frida_server_running(adb, serial);
+        }
+        printf("{\"adb\":\"%s\",\"serial\":\"%s\",\"eversoul\":%s,\"frida_server\":%s}\n",
+            adb.c_str(), serial.c_str(),
+            has_eversoul ? "true" : "false",
+            frida_up     ? "true" : "false");
+        return 0;
+    }
+
+    if (so_path.empty() || server_exe.empty() || frida_srv_bin.empty()) {
         fprintf(stderr,
             "usage: eversoul_injector"
             " <libswappywrapper.so>"
             " <eversoul_offline_server>"
-            " <frida-server-android-x86_64>\n");
+            " <frida-server-android-x86_64>"
+            " [--serial <serial>] [--no-wait] [--list-devices] [--check]\n");
         return 1;
     }
-
-    const std::string so_path       = argv[1];
-    const std::string server_exe    = argv[2];
-    const std::string frida_srv_bin = argv[3];
 
     // --- 1. offline server ---------------------------------------------------
     printf("[1/5] offline server\n");
@@ -288,10 +341,10 @@ int main(int argc, char* argv[])
 
     // --- 2. adb + device -----------------------------------------------------
     printf("[2/5] adb / device\n");
-    std::string adb = find_adb();
+    std::string adb = find_adb(opt_adb);
     printf("  adb: %s\n", adb.c_str());
 
-    std::string serial = find_device(adb);
+    std::string serial = opt_serial.empty() ? find_device(adb) : opt_serial;
     if (serial.empty()) {
         printf("  no device found.\n"
                "  enter host:port (e.g. 127.0.0.1:5555): ");
@@ -355,24 +408,28 @@ int main(int argc, char* argv[])
     }
     if (err) { g_error_free(err); err = nullptr; }
 
-    bool spawned = false;
-    FridaSession* session = nullptr;
-
     if (target_pid != 0) {
-        printf("  game already running (pid=%u) — attaching\n", target_pid);
-        session = frida_device_attach_sync(device, target_pid, nullptr, nullptr, &err);
-    } else {
-        printf("  game not running — spawning\n");
-        target_pid = frida_device_spawn_sync(
-            device, "com.kakaogames.eversoul", nullptr, nullptr, &err);
-        if (err) {
-            fprintf(stderr, "  spawn: %s\n", err->message);
-            g_error_free(err);
-            return 1;
-        }
-        spawned = true;
-        session = frida_device_attach_sync(device, target_pid, nullptr, nullptr, &err);
+        printf("  game running (pid=%u) — force-stopping before spawn\n", target_pid);
+        run_adb(adb, "-s " + serial +
+            " shell am force-stop com.kakaogames.eversoul");
+#ifdef _WIN32
+        Sleep(1500);
+#else
+        usleep(1500000);
+#endif
     }
+
+    printf("  spawning com.kakaogames.eversoul\n");
+    target_pid = frida_device_spawn_sync(
+        device, "com.kakaogames.eversoul", nullptr, nullptr, &err);
+    if (err) {
+        fprintf(stderr, "  spawn: %s\n", err->message);
+        g_error_free(err);
+        return 1;
+    }
+
+    FridaSession* session = nullptr;
+    session = frida_device_attach_sync(device, target_pid, nullptr, nullptr, &err);
 
     if (err || !session) {
         fprintf(stderr, "  attach: %s\n", err ? err->message : "(null)");
@@ -409,14 +466,25 @@ int main(int argc, char* argv[])
     }
     printf("  script loaded\n");
 
-    if (spawned)
-        frida_device_resume_sync(device, target_pid, nullptr, nullptr);
+    frida_device_resume_sync(device, target_pid, nullptr, nullptr);
 
     std::thread logcat_thr([&]() { stream_logcat(adb, serial); });
     logcat_thr.detach();
 
-    printf("\n[OK] injected. press Enter to detach...\n");
-    std::cin.get();
+    if (opt_no_wait) {
+        printf("\n[OK] injected (--no-wait).\n");
+        fflush(stdout);
+        for (;;) {
+#ifdef _WIN32
+            Sleep(2000);
+#else
+            sleep(2);
+#endif
+        }
+    } else {
+        printf("\n[OK] injected. press Enter to detach...\n");
+        std::cin.get();
+    }
 
     frida_script_unload_sync(script, nullptr, nullptr);
     frida_unref(script);

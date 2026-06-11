@@ -20,43 +20,50 @@ inline constexpr const char* kAdminHtml = R"HTMLEOF(<!DOCTYPE html>
   --purple:#aa66ff;--purple2:#7744cc;
   --text:#e0e8ff;--text2:#8899bb;--text3:#445566;
   --font:'Consolas','SF Mono','Fira Mono',monospace;
+  --fs-base:clamp(16px,1.2vw,20px);
+  --fs-sm:clamp(14px,1vw,18px);
+  --fs-xs:clamp(13px,0.9vw,16px);
+  --fs-lg:clamp(18px,1.5vw,24px);
+  --fs-xl:clamp(22px,2vw,32px);
+  --fs-2xl:clamp(28px,3vw,48px);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--font);font-size:13px;overflow:hidden}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:var(--font);font-size:var(--fs-base);overflow:hidden}
 
 /* ── LAYOUT ── */
 #app{display:flex;height:100vh}
-#sidebar{width:220px;min-width:220px;background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;user-select:none}
+#sidebar{width:clamp(180px,16vw,260px);min-width:180px;background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;user-select:none}
 #main{flex:1;display:flex;flex-direction:column;overflow:hidden}
 
 /* ── SIDEBAR ── */
-#logo{padding:20px 16px 12px;border-bottom:1px solid var(--border)}
-#logo .brand{font-size:16px;font-weight:700;color:var(--cyan);letter-spacing:2px;text-transform:uppercase}
-#logo .sub{font-size:10px;color:var(--text2);margin-top:3px;letter-spacing:1px}
-#logo .badge{display:inline-block;margin-top:6px;padding:2px 8px;background:var(--cyan3);color:var(--cyan);border-radius:3px;font-size:10px;letter-spacing:1px}
+#logo{padding:clamp(12px,1.5vw,20px) clamp(10px,1.2vw,16px) clamp(8px,1vw,12px);border-bottom:1px solid var(--border);display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+#logo .logo-img{width:clamp(36px,3vw,52px);height:clamp(36px,3vw,52px);object-fit:contain}
+#logo .brand{font-size:var(--fs-lg);font-weight:700;color:var(--cyan);letter-spacing:2px;text-transform:uppercase}
+#logo .sub{font-size:var(--fs-xs);color:var(--text2);letter-spacing:1px}
+#logo .badge{display:inline-block;padding:2px 8px;background:var(--cyan3);color:var(--cyan);border-radius:3px;font-size:var(--fs-xs);letter-spacing:1px}
 
-nav{flex:1;padding:8px 0;overflow-y:auto}
-.nav-section{padding:8px 14px 4px;font-size:10px;color:var(--text3);letter-spacing:2px;text-transform:uppercase}
-.nav-item{display:flex;align-items:center;gap:10px;padding:9px 16px;cursor:pointer;color:var(--text2);border-left:3px solid transparent;transition:all .15s}
+nav{flex:1;padding:6px 0;overflow-y:auto}
+.nav-section{padding:8px 14px 4px;font-size:var(--fs-xs);color:var(--text3);letter-spacing:2px;text-transform:uppercase}
+.nav-item{display:flex;align-items:center;gap:10px;padding:clamp(7px,0.8vh,11px) 16px;cursor:pointer;color:var(--text2);border-left:3px solid transparent;transition:all .15s;font-size:var(--fs-base)}
 .nav-item:hover{background:var(--bg3);color:var(--text)}
 .nav-item.active{background:var(--bg3);color:var(--cyan);border-left-color:var(--cyan)}
-.nav-icon{font-size:15px;width:18px;text-align:center}
+.nav-icon{font-size:var(--fs-base);width:20px;text-align:center}
 
-#sidebar-footer{padding:12px 16px;border-top:1px solid var(--border);font-size:11px;color:var(--text3)}
+#sidebar-footer{padding:clamp(8px,1vw,14px) 16px;border-top:1px solid var(--border);font-size:var(--fs-xs);color:var(--text3)}
 #lang-selector{display:flex;gap:6px;margin-top:8px}
-.lang-btn{padding:3px 10px;background:var(--bg3);border:1px solid var(--border2);color:var(--text2);border-radius:3px;cursor:pointer;font-family:var(--font);font-size:11px;transition:all .15s}
+.lang-btn{padding:3px 10px;background:var(--bg3);border:1px solid var(--border2);color:var(--text2);border-radius:3px;cursor:pointer;font-family:var(--font);font-size:var(--fs-xs);transition:all .15s}
 .lang-btn:hover{border-color:var(--cyan2);color:var(--cyan)}
 .lang-btn.active{background:var(--cyan3);border-color:var(--cyan);color:var(--cyan)}
 
 /* ── TOPBAR ── */
-#topbar{height:44px;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;gap:16px;flex-shrink:0}
-#topbar .page-title{font-size:14px;color:var(--text);font-weight:600;flex:1}
-#status-indicator{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text2)}
-.dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green);animation:pulse 2s infinite}
+#topbar{height:clamp(40px,5vh,56px);background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 clamp(12px,1.5vw,24px);gap:16px;flex-shrink:0}
+#topbar .page-title{font-size:var(--fs-lg);color:var(--text);font-weight:600;flex:1}
+#status-indicator{display:flex;align-items:center;gap:6px;font-size:var(--fs-xs);color:var(--text2)}
+.dot{width:clamp(7px,0.7vw,10px);height:clamp(7px,0.7vw,10px);border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
 .dot.warn{background:var(--yellow);box-shadow:0 0 6px var(--yellow)}
 .dot.fail{background:var(--red);box-shadow:0 0 6px var(--red);animation:none}
-#uptime-display{font-size:11px;color:var(--text2)}
+#uptime-display{font-size:var(--fs-xs);color:var(--text2)}
 
 /* ── CONTENT ── */
 #content{flex:1;overflow-y:auto;padding:20px}
@@ -70,44 +77,44 @@ nav{flex:1;padding:8px 0;overflow-y:auto}
 .card-body{padding:16px}
 
 /* ── STAT GRID ── */
-.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:16px}
-.stat-card{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:16px;position:relative;overflow:hidden}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(clamp(140px,14vw,200px),1fr));gap:clamp(8px,1vw,14px);margin-bottom:clamp(10px,1.2vh,18px)}
+.stat-card{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:clamp(12px,1.4vw,20px);position:relative;overflow:hidden}
 .stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
 .stat-card.cyan::before{background:linear-gradient(90deg,var(--cyan),transparent)}
 .stat-card.green::before{background:linear-gradient(90deg,var(--green),transparent)}
 .stat-card.yellow::before{background:linear-gradient(90deg,var(--yellow),transparent)}
 .stat-card.purple::before{background:linear-gradient(90deg,var(--purple),transparent)}
 .stat-card.red::before{background:linear-gradient(90deg,var(--red),transparent)}
-.stat-label{font-size:10px;color:var(--text3);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px}
-.stat-value{font-size:22px;font-weight:700;color:var(--text)}
-.stat-sub{font-size:10px;color:var(--text2);margin-top:4px}
+.stat-label{font-size:var(--fs-xs);color:var(--text3);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px}
+.stat-value{font-size:var(--fs-2xl);font-weight:700;color:var(--text)}
+.stat-sub{font-size:var(--fs-xs);color:var(--text2);margin-top:4px}
 
 /* ── HEALTH ── */
-.health-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
-.health-item{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:5px}
-.health-label{font-size:12px;color:var(--text)}
-.health-badge{padding:3px 10px;border-radius:3px;font-size:11px;font-weight:600;letter-spacing:1px}
+.health-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(clamp(220px,22vw,320px),1fr));gap:clamp(7px,0.8vw,12px)}
+.health-item{display:flex;align-items:center;justify-content:space-between;padding:clamp(8px,0.9vw,12px) 14px;background:var(--bg3);border:1px solid var(--border);border-radius:5px}
+.health-label{font-size:var(--fs-base);color:var(--text)}
+.health-badge{padding:3px 10px;border-radius:3px;font-size:var(--fs-xs);font-weight:600;letter-spacing:1px}
 .badge-ok{background:rgba(0,255,136,.15);color:var(--green);border:1px solid rgba(0,255,136,.3)}
 .badge-fail{background:rgba(255,68,102,.15);color:var(--red);border:1px solid rgba(255,68,102,.3)}
 .badge-warn{background:rgba(255,215,0,.15);color:var(--yellow);border:1px solid rgba(255,215,0,.3)}
 .badge-loading{background:rgba(136,153,187,.1);color:var(--text2);border:1px solid var(--border)}
 
 /* ── LOG PANEL ── */
-#log-controls{display:flex;gap:8px;margin-bottom:10px;align-items:center}
-#log-filter{flex:1;background:var(--bg3);border:1px solid var(--border2);color:var(--text);padding:6px 10px;border-radius:4px;font-family:var(--font);font-size:12px;outline:none}
+#log-controls{display:flex;gap:8px;margin-bottom:10px;align-items:center;flex-wrap:wrap}
+#log-filter{flex:1;min-width:120px;background:var(--bg3);border:1px solid var(--border2);color:var(--text);padding:clamp(4px,0.5vh,8px) 10px;border-radius:4px;font-family:var(--font);font-size:var(--fs-base);outline:none}
 #log-filter:focus{border-color:var(--cyan2)}
-.btn{padding:5px 14px;background:var(--bg3);border:1px solid var(--border2);color:var(--text2);border-radius:4px;cursor:pointer;font-family:var(--font);font-size:11px;letter-spacing:.5px;transition:all .15s}
+.btn{padding:clamp(4px,0.5vh,7px) clamp(10px,1vw,16px);background:var(--bg3);border:1px solid var(--border2);color:var(--text2);border-radius:4px;cursor:pointer;font-family:var(--font);font-size:var(--fs-xs);letter-spacing:.5px;transition:all .15s}
 .btn:hover{border-color:var(--cyan2);color:var(--cyan)}
 .btn.danger:hover{border-color:var(--red2);color:var(--red)}
-#log-panel{height:calc(100vh - 240px);overflow-y:auto;background:var(--bg);border:1px solid var(--border);border-radius:5px;padding:8px;font-size:12px;line-height:1.6}
+#log-panel{height:calc(100vh - 240px);overflow-y:auto;background:var(--bg);border:1px solid var(--border);border-radius:5px;padding:8px;font-size:var(--fs-sm);line-height:1.6}
 #log-panel::-webkit-scrollbar{width:6px}
 #log-panel::-webkit-scrollbar-track{background:transparent}
 #log-panel::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
 .log-line{display:flex;gap:8px;padding:2px 0;border-bottom:1px solid rgba(42,47,69,.5)}
 .log-line:hover{background:var(--bg2)}
-.log-ts{color:var(--text3);white-space:nowrap;min-width:75px}
-.log-id{color:var(--purple2);min-width:42px}
-.log-tag{min-width:90px;font-weight:600}
+.log-ts{color:var(--text3);white-space:nowrap;min-width:clamp(60px,6vw,80px)}
+.log-id{color:var(--purple2);min-width:38px}
+.log-tag{min-width:clamp(70px,7vw,100px);font-weight:600}
 .log-text{color:var(--text);word-break:break-all}
 .tag-START,.tag-STOP{color:var(--green)}
 .tag-REQUEST{color:var(--cyan)}
@@ -115,6 +122,7 @@ nav{flex:1;padding:8px 0;overflow-y:auto}
 .tag-ERROR{color:var(--red)}
 .tag-FIXTURE,.tag-OFFLINE_DATA{color:var(--yellow)}
 .tag-WS{color:var(--purple)}
+.tag-INJECTOR,.tag-ADB{color:var(--yellow)}
 .log-line.filtered{display:none}
 
 /* ── DB VIEWER ── */
@@ -141,19 +149,26 @@ td.null{color:var(--text3);font-style:italic}
 #fixture-content{background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:12px;max-height:400px;overflow-y:auto;white-space:pre;font-size:11px;color:var(--text2);line-height:1.6}
 
 /* ── SETTINGS ── */
-.setting-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border)}
-.setting-label{font-size:12px;color:var(--text)}
-.setting-desc{font-size:10px;color:var(--text3);margin-top:2px}
-.toggle{position:relative;display:inline-block;width:40px;height:22px}
+.setting-row{display:flex;align-items:center;justify-content:space-between;padding:clamp(8px,1vh,14px) 0;border-bottom:1px solid var(--border)}
+.setting-label{font-size:var(--fs-base);color:var(--text)}
+.setting-desc{font-size:var(--fs-xs);color:var(--text3);margin-top:2px}
+.toggle{position:relative;display:inline-block;width:clamp(36px,3vw,44px);height:clamp(20px,2vh,24px)}
 .toggle input{opacity:0;width:0;height:0}
 .slider{position:absolute;inset:0;background:var(--bg4);border-radius:22px;cursor:pointer;transition:.3s;border:1px solid var(--border2)}
 .toggle input:checked+.slider{background:var(--cyan3);border-color:var(--cyan)}
-.slider:before{content:'';position:absolute;width:16px;height:16px;left:2px;top:2px;background:var(--text2);border-radius:50%;transition:.3s}
-.toggle input:checked+.slider:before{transform:translateX(18px);background:var(--cyan)}
-input[type=text],input[type=number]{background:var(--bg3);border:1px solid var(--border2);color:var(--text);padding:5px 10px;border-radius:4px;font-family:var(--font);font-size:12px;outline:none;width:220px}
+.slider:before{content:'';position:absolute;width:clamp(14px,1.3vw,18px);height:clamp(14px,1.3vw,18px);left:2px;top:2px;background:var(--text2);border-radius:50%;transition:.3s}
+.toggle input:checked+.slider:before{transform:translateX(clamp(14px,1.3vw,18px));background:var(--cyan)}
+input[type=text],input[type=number]{background:var(--bg3);border:1px solid var(--border2);color:var(--text);padding:clamp(4px,0.5vh,7px) 10px;border-radius:4px;font-family:var(--font);font-size:var(--fs-base);outline:none;width:clamp(180px,18vw,280px)}
 input:focus{border-color:var(--cyan2)}
-.btn-primary{background:var(--cyan3);border-color:var(--cyan2);color:var(--cyan);padding:6px 18px}
+.btn-primary{background:var(--cyan3);border-color:var(--cyan2);color:var(--cyan);padding:clamp(5px,0.6vh,8px) clamp(14px,1.5vw,22px)}
 .btn-primary:hover{background:rgba(0,212,255,.2)}
+/* ── INJECTOR ── */
+.device-chip{padding:clamp(5px,0.6vh,8px) clamp(10px,1vw,14px);background:var(--bg3);border:1px solid var(--border2);color:var(--text2);border-radius:4px;cursor:pointer;font-size:var(--fs-sm);margin-bottom:5px;transition:all .15s;display:flex;align-items:center;justify-content:space-between}
+.device-chip:hover{border-color:var(--cyan2);color:var(--text)}
+.device-chip.selected{background:var(--cyan3);border-color:var(--cyan);color:var(--cyan)}
+#adb-cmd-input{flex:1;background:var(--bg);border:1px solid var(--border2);color:var(--text);padding:clamp(5px,0.6vh,8px) 10px;border-radius:4px;font-family:var(--font);font-size:var(--fs-sm);outline:none}
+#adb-cmd-input:focus{border-color:var(--cyan2)}
+#injector-log{height:clamp(160px,25vh,380px);overflow-y:auto;background:var(--bg);border:1px solid var(--border);border-radius:5px;padding:8px;font-size:var(--fs-sm);line-height:1.6}
 
 /* ── SCROLLBAR GLOBAL ── */
 ::-webkit-scrollbar{width:6px;height:6px}
@@ -189,6 +204,7 @@ input:focus{border-color:var(--cyan2)}
 <!-- SIDEBAR -->
 <div id="sidebar">
   <div id="logo">
+    <img class="logo-img" src="/admin/api/logo" alt="logo" onerror="this.style.display='none'"/>
     <div class="brand glow-cyan">EverSoul</div>
     <div class="sub" data-i18n="server.title">Offline Server</div>
     <div class="badge">ADMIN v1</div>
@@ -212,6 +228,9 @@ input:focus{border-color:var(--cyan2)}
     </div>
     <div class="nav-item" data-page="settings">
       <span class="nav-icon">⚙</span><span data-i18n="admin.settings">Settings</span>
+    </div>
+    <div class="nav-item" data-page="injector">
+      <span class="nav-icon">▶</span><span data-i18n="admin.injector">Injector</span>
     </div>
   </nav>
   <div id="sidebar-footer">
@@ -385,6 +404,42 @@ input:focus{border-color:var(--cyan2)}
       </div>
     </div>
 
+    <!-- INJECTOR -->
+    <div class="page" id="page-injector">
+      <div class="card">
+        <div class="card-header"><span class="nav-icon">▶</span><span class="card-title" data-i18n="admin.injector">Injector</span></div>
+        <div class="card-body">
+          <!-- 기기 목록 -->
+          <div style="margin-bottom:14px">
+            <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px">
+              <span class="setting-label" data-i18n="admin.injector_devices">Connected Devices</span>
+              <button class="btn" onclick="loadInjectorDevices()">↻</button>
+            </div>
+            <div id="injector-device-list" style="font-size:var(--fs-sm);color:var(--text2)">–</div>
+          </div>
+          <!-- 에버소울/frida 체크 -->
+          <div id="injector-check-result" style="font-size:var(--fs-sm);color:var(--text2);margin-bottom:14px;line-height:2"></div>
+          <!-- 실행/중지 -->
+          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+            <button class="btn btn-primary" onclick="runInjector()" id="btn-inject" data-i18n="admin.injector_run">Run Injector</button>
+            <button class="btn danger" onclick="stopInjector()" data-i18n="admin.injector_stop">Stop</button>
+            <span id="injector-status-text" style="font-size:var(--fs-sm);color:var(--text2)"></span>
+          </div>
+        </div>
+      </div>
+      <!-- ADB 직접 명령 + 로그 -->
+      <div class="card" style="margin-top:14px">
+        <div class="card-header"><span class="nav-icon">▤</span><span class="card-title" data-i18n="admin.injector_log">ADB Log</span></div>
+        <div class="card-body">
+          <div style="display:flex;gap:8px;margin-bottom:10px">
+            <input id="adb-cmd-input" placeholder="adb command (e.g. devices, -s serial shell getprop ro.product.model)" onkeydown="if(event.key==='Enter')sendAdbCmd()"/>
+            <button class="btn btn-primary" onclick="sendAdbCmd()" data-i18n="admin.adb_exec">Run</button>
+          </div>
+          <div id="injector-log" class="injector-log"></div>
+        </div>
+      </div>
+    </div>
+
   </div><!-- /content -->
 </div><!-- /main -->
 </div><!-- /app -->
@@ -441,6 +496,7 @@ document.querySelectorAll('.nav-item').forEach(item=>{
     if(item.getAttribute('data-page')==='fixtures') loadFixtures();
     if(item.getAttribute('data-page')==='health') loadHealth();
     if(item.getAttribute('data-page')==='settings') { loadSettings(); loadAdbCurrent(); }
+    if(item.getAttribute('data-page')==='injector') { loadInjectorDevices(); pollInjectorStatus(); }
   });
 });
 
@@ -523,12 +579,17 @@ function initSSE(){
   src.onmessage = e=>{
     const entry = JSON.parse(e.data);
     if(!logPaused){
-      const el = appendLogLine(entry, logPanel);
+      appendLogLine(entry, logPanel);
       logPanel.scrollTop = logPanel.scrollHeight;
     }
-    const el2 = appendLogLine(entry, dashLog);
+    appendLogLine(entry, dashLog);
     dashLog.scrollTop = dashLog.scrollHeight;
     while(dashLog.children.length > 80) dashLog.removeChild(dashLog.firstChild);
+    if(entry.tag==='INJECTOR'||entry.tag==='ADB'){
+      const inj = document.getElementById('injector-log');
+      if(inj){ appendLogLine(entry, inj); inj.scrollTop = inj.scrollHeight;
+        while(inj.children.length > 500) inj.removeChild(inj.firstChild); }
+    }
   };
   src.onerror = ()=>{ setTimeout(initSSE, 3000); src.close(); };
 }
@@ -716,6 +777,93 @@ async function clearAdbPath(){
   document.getElementById('adb-current-display').textContent = t('admin.adb_not_set');
   msg.textContent = t('admin.adb_saved');
   setTimeout(()=>{ msg.textContent=''; }, 2000);
+}
+
+// ── INJECTOR ─────────────────────────────────────────────────────────────
+let selectedSerial = '';
+
+async function loadInjectorDevices(){
+  const el = document.getElementById('injector-device-list');
+  el.innerHTML = '<span style="color:var(--text3)">'+t('admin.loading')+'</span>';
+  try{
+    const r = await fetch('/admin/api/injector/devices');
+    const d = await r.json();
+    if(!d.devices||d.devices.length===0){
+      el.innerHTML='<span style="color:var(--text3)">'+t('admin.no_data')+'</span>';
+      return;
+    }
+    el.innerHTML = d.devices.map(s=>{
+      const sel = s===selectedSerial;
+      return `<div class="device-chip${sel?' selected':''}" onclick="selectSerial('${escHtml(s)}')">`+
+        `<span>${escHtml(s)}</span>`+
+        `<span style="font-size:var(--fs-xs);color:${sel?'var(--cyan)':'var(--text3)'}">◈</span></div>`;
+    }).join('');
+    await loadInjectorCheck();
+  }catch(e){ el.innerHTML='<span style="color:var(--red)">Error</span>'; }
+}
+
+function selectSerial(s){
+  selectedSerial = selectedSerial===s ? '' : s;
+  loadInjectorDevices();
+}
+
+async function loadInjectorCheck(){
+  const el = document.getElementById('injector-check-result');
+  try{
+    const url='/admin/api/injector/check'+(selectedSerial?'?serial='+encodeURIComponent(selectedSerial):'');
+    const r = await fetch(url);
+    const d = await r.json();
+    const ok = v=>`<span style="color:${v?'var(--green)':'var(--red)'}">${v?'✓':'✗'}</span>`;
+    el.innerHTML=
+      `${ok(d.adb_ok)} ADB: <span style="color:var(--text3);font-size:var(--fs-xs)">${escHtml(d.adb)}</span><br>`+
+      `${ok(!!d.serial)} Device: <span style="color:var(--cyan)">${escHtml(d.serial||'none')}</span><br>`+
+      `${ok(d.eversoul)} com.kakaogames.eversoul<br>`+
+      `${ok(d.frida_server)} frida-server`;
+  }catch(e){ el.innerHTML=''; }
+}
+
+async function runInjector(){
+  const btn=document.getElementById('btn-inject');
+  btn.disabled=true;
+  document.getElementById('injector-status-text').textContent=t('admin.loading');
+  try{
+    const body=selectedSerial?{serial:selectedSerial}:{};
+    const r=await fetch('/admin/api/injector/run',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    const d=await r.json();
+    document.getElementById('injector-status-text').textContent=d.ok?'Running…':(d.reason||'Error');
+    if(d.ok) setTimeout(pollInjectorStatus,2000);
+  }catch(e){ document.getElementById('injector-status-text').textContent='Error'; }
+  btn.disabled=false;
+}
+
+async function stopInjector(){
+  await fetch('/admin/api/injector/stop',{method:'POST'}).catch(()=>{});
+  document.getElementById('injector-status-text').textContent='Stopped';
+}
+
+async function pollInjectorStatus(){
+  try{
+    const r=await fetch('/admin/api/injector/status');
+    const d=await r.json();
+    const el=document.getElementById('injector-status-text');
+    if(el) el.textContent=d.running?'Running…':'Idle';
+    if(d.running) setTimeout(pollInjectorStatus,2000);
+  }catch(e){}
+}
+
+async function sendAdbCmd(){
+  const input=document.getElementById('adb-cmd-input');
+  const cmd=input.value.trim();
+  if(!cmd) return;
+  const inj=document.getElementById('injector-log');
+  try{
+    const r=await fetch('/admin/api/injector/adb',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({cmd})});
+    const d=await r.json();
+    if(inj){ inj.scrollTop=inj.scrollHeight; }
+  }catch(e){
+    if(inj){ const div=document.createElement('div'); div.style.color='var(--red)'; div.textContent='Error'; inj.appendChild(div); }
+  }
+  input.value='';
 }
 
 // ── ABOUT MODAL ──────────────────────────────────────────────────────────
