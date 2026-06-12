@@ -1,18 +1,15 @@
-// injector_main.cpp — EverSoul offline injector (Windows-first implementation).
+// injector_main.cpp — EverSoul offline injector (Windows / macOS / Linux).
 //
 // Pipeline:
 //   1. Start eversoul_offline_server in the background (if not already up).
-//   2. Locate adb.exe and find the connected emulator/device.
+//   2. Locate adb and find the connected emulator/device.
 //      If none found, prompt the user for a host:port and adb-connect to it.
-//   3. Push libswappywrapper.so to /data/local/tmp/ on the device.
+//   3. Push libswappywrapper.so + libofflinedata.so + monitor script to /data/local/tmp/.
 //   4. Ensure frida-server is running on the device (push + start if needed).
 //      Forward tcp:27042 to the host.
 //   5. Use the Frida C API to spawn (or attach to) com.kakaogames.eversoul,
 //      load a tiny JS snippet that calls Module.load() on our .so, then resume.
 //   6. Stream adb logcat filtered to the libswappywrapper tag.
-//
-// TODO(platform): Windows-only sections are guarded with #ifdef _WIN32.
-//   macOS/Linux equivalents are noted inline where the POSIX path differs.
 
 #ifdef _WIN32
 #  define WIN32_LEAN_AND_MEAN
@@ -20,6 +17,12 @@
 #  include <ws2tcpip.h>
 #  include <windows.h>
 #  pragma comment(lib, "ws2_32")
+#else
+#  include <arpa/inet.h>
+#  include <netinet/in.h>
+#  include <sys/socket.h>
+#  include <sys/wait.h>
+#  include <unistd.h>
 #endif
 
 #include "frida-core.h"
@@ -44,31 +47,16 @@ namespace {
 // Platform helpers
 // ---------------------------------------------------------------------------
 
-static std::string exec(const std::string& cmd)
+static std::string run_adb(const std::string& adb, const std::string& args)
 {
-    // TODO(platform): on POSIX use popen() — same call, different flush/wait
-    //                 semantics on some shells; replace _pclose with pclose.
-#ifdef _WIN32
-    FILE* pipe = _popen(cmd.c_str(), "r");
-#else
-    FILE* pipe = popen(cmd.c_str(), "r");
-#endif
+    FILE* pipe = eversoul::adb_popen(adb, args);
     if (!pipe) return {};
     std::string out;
     char buf[512];
     while (fgets(buf, sizeof(buf), pipe))
         out += buf;
-#ifdef _WIN32
-    _pclose(pipe);
-#else
-    pclose(pipe);
-#endif
+    eversoul::adb_pclose(pipe);
     return out;
-}
-
-static std::string run_adb(const std::string& adb, const std::string& args)
-{
-    return exec("\"" + adb + "\" " + args + " 2>&1");
 }
 
 // ---------------------------------------------------------------------------
@@ -80,8 +68,7 @@ static bool path_exists(const std::string& p)
 #ifdef _WIN32
     return GetFileAttributesA(p.c_str()) != INVALID_FILE_ATTRIBUTES;
 #else
-    // TODO(platform): use access(p.c_str(), F_OK)
-    return false;
+    return access(p.c_str(), F_OK) == 0;
 #endif
 }
 
@@ -89,6 +76,26 @@ static std::string find_adb(const std::string& hint = {})
 {
     if (!hint.empty()) return hint;
     return eversoul::resolve_adb_path(".");
+}
+
+static std::string read_file(const std::string& path)
+{
+    FILE* f = fopen(path.c_str(), "rb");
+    if (!f) return {};
+    fseek(f, 0, SEEK_END);
+    long sz = ftell(f);
+    rewind(f);
+    if (sz <= 0) { fclose(f); return {}; }
+    std::string buf(static_cast<std::size_t>(sz), '\0');
+    fread(buf.data(), 1, static_cast<std::size_t>(sz), f);
+    fclose(f);
+    return buf;
+}
+
+static std::string dir_of(const std::string& path)
+{
+    auto sep = path.find_last_of("/\\");
+    return sep == std::string::npos ? "." : path.substr(0, sep);
 }
 
 // ---------------------------------------------------------------------------
@@ -124,8 +131,6 @@ static std::string find_device(const std::string& adb)
 
 static bool probe_port(int port)
 {
-    // Try a quick TCP connect to decide whether the server is already up.
-    // TODO(platform): on POSIX use a raw POSIX socket instead of winsock.
 #ifdef _WIN32
     WSADATA wsa;
     WSAStartup(MAKEWORD(2, 2), &wsa);
@@ -139,7 +144,15 @@ static bool probe_port(int port)
     WSACleanup();
     return ok;
 #else
-    return false;
+    int s = ::socket(AF_INET, SOCK_STREAM, 0);
+    if (s < 0) return false;
+    sockaddr_in addr{};
+    addr.sin_family      = AF_INET;
+    addr.sin_port        = htons(static_cast<uint16_t>(port));
+    addr.sin_addr.s_addr = inet_addr("127.0.0.1");
+    bool ok = (::connect(s, reinterpret_cast<sockaddr*>(&addr), sizeof(addr)) == 0);
+    ::close(s);
+    return ok;
 #endif
 }
 
@@ -171,8 +184,17 @@ static void start_offline_server(const std::string& exe_path)
         fprintf(stderr, "[server] CreateProcess failed (err=%lu)\n", GetLastError());
     }
 #else
-    // TODO(platform): posix_spawn() or fork()+exec() + setsid()
-    (void)exe_path;
+    pid_t pid = fork();
+    if (pid == 0) {
+        setsid();
+        execl(exe_path.c_str(), exe_path.c_str(), nullptr);
+        _exit(1);
+    } else if (pid > 0) {
+        printf("[server] started (pid=%d)\n", static_cast<int>(pid));
+        usleep(600000);
+    } else {
+        fprintf(stderr, "[server] fork failed\n");
+    }
 #endif
 }
 
@@ -237,24 +259,13 @@ static void ensure_frida_server(const std::string& adb,
 
 static void stream_logcat(const std::string& adb, const std::string& serial)
 {
-    // Runs on a detached thread; exits when the pipe closes (emulator stopped).
-    // TODO(platform): identical on macOS/Linux.
-    std::string cmd = "\"" + adb + "\" -s " + serial +
-                      " logcat -s libswappywrapper:V *:S";
-#ifdef _WIN32
-    FILE* pipe = _popen(cmd.c_str(), "r");
-#else
-    FILE* pipe = popen(cmd.c_str(), "r");
-#endif
+    FILE* pipe = eversoul::adb_popen(adb,
+        "-s " + serial + " logcat -s libswappywrapper:V *:S");
     if (!pipe) return;
     char buf[512];
     while (fgets(buf, sizeof(buf), pipe))
         printf("[logcat] %s", buf);
-#ifdef _WIN32
-    _pclose(pipe);
-#else
-    pclose(pipe);
-#endif
+    eversoul::adb_pclose(pipe);
 }
 
 // ---------------------------------------------------------------------------
@@ -330,7 +341,7 @@ int main(int argc, char* argv[])
             "usage: eversoul_injector"
             " <libswappywrapper.so>"
             " <eversoul_offline_server>"
-            " <frida-server-android-x86_64>"
+            " <frida-server-android-arm64>"
             " [--serial <serial>] [--no-wait] [--list-devices] [--check]\n");
         return 1;
     }
@@ -363,19 +374,47 @@ int main(int argc, char* argv[])
     }
     printf("  device: %s\n", serial.c_str());
 
-    // --- 3. push .so ---------------------------------------------------------
-    printf("[3/5] push libswappywrapper.so\n");
+    // --- 3. push .so + offline data blob + monitor script --------------------
+    printf("[3/5] push libswappywrapper.so + offline data\n");
     run_adb(adb, "-s " + serial +
         " push \"" + so_path + "\" /data/local/tmp/libswappywrapper.so");
     run_adb(adb, "-s " + serial +
         " shell chmod 755 /data/local/tmp/libswappywrapper.so");
-    printf("  pushed\n");
+    printf("  pushed libswappywrapper.so\n");
 
-    // --- 4. frida-server + port forward --------------------------------------
-    printf("[4/5] frida-server\n");
+    // libofflinedata.so must land in the same /data/local/tmp/ dir because
+    // guess_blob_path() resolves the blob relative to the loaded .so path.
+    std::string offline_blob_host = dir_of(frida_srv_bin) + "/libofflinedata.so";
+    if (path_exists(offline_blob_host)) {
+        run_adb(adb, "-s " + serial +
+            " push \"" + offline_blob_host + "\" /data/local/tmp/libofflinedata.so");
+        run_adb(adb, "-s " + serial +
+            " shell chmod 755 /data/local/tmp/libofflinedata.so");
+        printf("  pushed libofflinedata.so\n");
+    } else {
+        fprintf(stderr, "  WARNING: libofflinedata.so not found at %s — run build.ps1 first\n",
+            offline_blob_host.c_str());
+    }
+
+    std::string monitor_js_host = dir_of(frida_srv_bin) + "/monitor_unity_web_request.js";
+    std::string monitor_js_src;
+    if (path_exists(monitor_js_host)) {
+        run_adb(adb, "-s " + serial +
+            " push \"" + monitor_js_host + "\" /data/local/tmp/monitor_unity_web_request.js");
+        monitor_js_src = read_file(monitor_js_host);
+        printf("  pushed monitor_unity_web_request.js\n");
+    } else {
+        fprintf(stderr, "  WARNING: monitor_unity_web_request.js not found at %s\n",
+            monitor_js_host.c_str());
+    }
+
+    // --- 4. frida-server + port forwarding ------------------------------------
+    printf("[4/5] frida-server + port forwarding\n");
     ensure_frida_server(adb, serial, frida_srv_bin);
     run_adb(adb, "-s " + serial + " forward tcp:27042 tcp:27042");
-    printf("  port 27042 forwarded\n");
+    printf("  forward tcp:27042 -> device:27042 (frida-server)\n");
+    run_adb(adb, "-s " + serial + " reverse tcp:9999 tcp:9999");
+    printf("  reverse tcp:9999 -> host:9999 (offline server)\n");
 
     // --- 5. inject -----------------------------------------------------------
     printf("[5/5] inject\n");
@@ -466,6 +505,32 @@ int main(int argc, char* argv[])
     }
     printf("  script loaded\n");
 
+    FridaScript* monitor_script = nullptr;
+    if (!monitor_js_src.empty()) {
+        FridaScriptOptions* mopts = frida_script_options_new();
+        frida_script_options_set_name(mopts, "eversoul_monitor");
+        frida_script_options_set_runtime(mopts, FRIDA_SCRIPT_RUNTIME_QJS);
+        monitor_script = frida_session_create_script_sync(
+            session, monitor_js_src.c_str(), mopts, nullptr, &err);
+        g_clear_object(&mopts);
+        if (err) {
+            fprintf(stderr, "  monitor create_script: %s\n", err->message);
+            g_error_free(err); err = nullptr;
+            monitor_script = nullptr;
+        } else {
+            g_signal_connect(monitor_script, "message", G_CALLBACK(on_frida_message), nullptr);
+            frida_script_load_sync(monitor_script, nullptr, &err);
+            if (err) {
+                fprintf(stderr, "  monitor script_load: %s\n", err->message);
+                g_error_free(err); err = nullptr;
+                frida_unref(monitor_script);
+                monitor_script = nullptr;
+            } else {
+                printf("  monitor script loaded\n");
+            }
+        }
+    }
+
     frida_device_resume_sync(device, target_pid, nullptr, nullptr);
 
     std::thread logcat_thr([&]() { stream_logcat(adb, serial); });
@@ -488,6 +553,10 @@ int main(int argc, char* argv[])
 
     frida_script_unload_sync(script, nullptr, nullptr);
     frida_unref(script);
+    if (monitor_script) {
+        frida_script_unload_sync(monitor_script, nullptr, nullptr);
+        frida_unref(monitor_script);
+    }
     frida_session_detach_sync(session, nullptr, nullptr);
     frida_unref(session);
     frida_unref(device);

@@ -133,9 +133,13 @@ if (Test-Path "src\assets\logo.png") {
 }
 
 New-Item -ItemType Directory -Force -Path "build\offline_data" | Out-Null
-if (Test-Path "tools\frida\frida-server-android-x86_64") {
-    Copy-Item -Force "tools\frida\frida-server-android-x86_64" "build\offline_data\frida-server-android-x86_64"
-    Write-Host "Copied: build/offline_data/frida-server-android-x86_64"
+if (Test-Path "tools\frida\frida-server-android-arm64") {
+    Copy-Item -Force "tools\frida\frida-server-android-arm64" "build\offline_data\frida-server-android-arm64"
+    Write-Host "Copied: build/offline_data/frida-server-android-arm64"
+}
+if (Test-Path "monitor_unity_web_request.js") {
+    Copy-Item -Force "monitor_unity_web_request.js" "build\offline_data\monitor_unity_web_request.js"
+    Write-Host "Copied: build/offline_data/monitor_unity_web_request.js"
 }
 
 Write-Host "== Build injector (MSVC) =="
@@ -202,7 +206,7 @@ if ($NDK_ROOT -and (Test-Path $NDK_ROOT)) {
     Write-Host "Built: $ANDROID_BUILD_DIR/libswappywrapper.so"
 
     Write-Host "== Output hashes =="
-    foreach ($f in @("build\eversoul_offline_server.exe", "$ANDROID_BUILD_DIR\libswappywrapper.so", "build\offline_data\libofflinedata.so")) {
+    foreach ($f in @("build\eversoul_offline_server.exe", "$ANDROID_BUILD_DIR\libswappywrapper.so", "build\offline_data\libofflinedata.so", "build\offline_data\frida-server-android-arm64")) {
         $h = (Get-FileHash $f -Algorithm SHA256).Hash.ToLower()
         Write-Host "$h  $f"
     }

@@ -92,7 +92,7 @@ if(ANDROID)
       "${CMAKE_SOURCE_DIR}/build/eversoul_offline_server${CMAKE_EXECUTABLE_SUFFIX}")
   endif()
   set(EVERSOUL_FRIDA_SERVER
-    "${CMAKE_SOURCE_DIR}/tools/frida/frida-server-android-x86_64")
+    "${CMAKE_SOURCE_DIR}/tools/frida/frida-server-android-arm64")
 
   add_custom_command(TARGET swappywrapper POST_BUILD
     COMMAND ${CMAKE_COMMAND}
@@ -131,8 +131,11 @@ else()
     COMMAND ${CMAKE_COMMAND} -E make_directory
       "$<TARGET_FILE_DIR:eversoul_offline_server>/offline_data"
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
-      "${CMAKE_SOURCE_DIR}/tools/frida/frida-server-android-x86_64"
-      "$<TARGET_FILE_DIR:eversoul_offline_server>/offline_data/frida-server-android-x86_64")
+      "${CMAKE_SOURCE_DIR}/tools/frida/frida-server-android-arm64"
+      "$<TARGET_FILE_DIR:eversoul_offline_server>/offline_data/frida-server-android-arm64"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+      "${CMAKE_SOURCE_DIR}/monitor_unity_web_request.js"
+      "$<TARGET_FILE_DIR:eversoul_offline_server>/offline_data/monitor_unity_web_request.js")
   if(WIN32)
     target_link_libraries(eversoul_offline_server PRIVATE ws2_32)
 

@@ -1,5 +1,6 @@
 #include "adb_finder.hpp"
 
+#include <cstdio>
 #include <cstdlib>
 #include <fstream>
 #include <string>
@@ -69,6 +70,26 @@ std::string resolve_adb_path(const std::string& data_dir)
     }
 
     return "adb";
+}
+
+FILE* adb_popen(const std::string& adb_path, const std::string& args)
+{
+#ifdef _WIN32
+    std::string cmd = "chcp 65001 > nul 2>&1 && \"" + adb_path + "\" " + args + " 2>&1";
+    return _popen(cmd.c_str(), "r");
+#else
+    std::string cmd = "\"" + adb_path + "\" " + args + " 2>&1";
+    return popen(cmd.c_str(), "r");
+#endif
+}
+
+void adb_pclose(FILE* pipe)
+{
+#ifdef _WIN32
+    _pclose(pipe);
+#else
+    pclose(pipe);
+#endif
 }
 
 } // namespace eversoul

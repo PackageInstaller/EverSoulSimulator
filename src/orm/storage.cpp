@@ -112,7 +112,15 @@ auto make_account_storage(const std::string& path) {
         make_table("dungeon",
                    make_column("dungeonNo", &Dungeon::dungeonNo, primary_key()),
                    make_column("updateDt", &Dungeon::updateDt),
-                   make_column("isFirstClear", &Dungeon::isFirstClear)));
+                   make_column("isFirstClear", &Dungeon::isFirstClear)),
+        make_table("accounts",
+                   make_column("id", &Account::id, primary_key()),
+                   make_column("nickname", &Account::nickname),
+                   make_column("player_id", &Account::player_id),
+                   make_column("idp_code", &Account::idp_code),
+                   make_column("idp_id", &Account::idp_id),
+                   make_column("created_at", &Account::created_at),
+                   make_column("last_login", &Account::last_login)));
 }
 
 using Storage = decltype(make_account_storage(""));
@@ -727,6 +735,74 @@ void add_currency(int type, std::int64_t delta) {
     row.value += delta;
     if (row.value < 0) row.value = 0;
     g_storage->replace(row);
+}
+
+std::vector<Account> accounts() {
+    std::lock_guard<std::mutex> lock(g_mu);
+    if (!ensure_ready_locked(".", "")) return {};
+    return g_storage->get_all<Account>();
+}
+
+std::optional<Account> account_by_id(const std::string& id) {
+    std::lock_guard<std::mutex> lock(g_mu);
+    if (!ensure_ready_locked(".", "")) return std::nullopt;
+    return g_storage->get_optional<Account>(id);
+}
+
+std::optional<Account> active_account() {
+    std::lock_guard<std::mutex> lock(g_mu);
+    if (!ensure_ready_locked(".", "")) return std::nullopt;
+    auto kv = g_storage->get_optional<Kv>("active_account_id");
+    if (!kv || kv->v.empty()) return std::nullopt;
+    return g_storage->get_optional<Account>(kv->v);
+}
+
+std::string create_account(const std::string& nickname,
+                           const std::string& idp_code,
+                           const std::string& idp_id,
+                           const std::string& data_dir) {
+    const std::int64_t now = unix_ms();
+    const std::string id = "acct_" + std::to_string(now);
+    const std::string player_id = std::to_string(9000000000LL + (now % 1000000000LL));
+    {
+        std::lock_guard<std::mutex> lock(g_mu);
+        if (!ensure_ready_locked(data_dir, "")) return {};
+        Account acct{id, nickname, player_id,
+                     idp_code.empty() ? "zd3" : idp_code,
+                     idp_id.empty() ? id : idp_id,
+                     now, now};
+        g_storage->replace(acct);
+        g_storage->replace(Kv{"active_account_id", id});
+        log_line(0, "ORM", "account created id=" + id + " nickname=" + nickname + " playerId=" + player_id);
+    }
+    if (!reseed_from_profile(data_dir, "responses_newbie"))
+        log_line(0, "ORM", "account " + id + ": newbie reseed failed — responses_newbie/UserInfo.json not found");
+    return id;
+}
+
+bool select_account(const std::string& id, const std::string& data_dir) {
+    std::lock_guard<std::mutex> lock(g_mu);
+    if (!ensure_ready_locked(data_dir, "")) return false;
+    auto acct = g_storage->get_optional<Account>(id);
+    if (!acct) return false;
+    acct->last_login = unix_ms();
+    g_storage->replace(*acct);
+    g_storage->replace(Kv{"active_account_id", id});
+    log_line(0, "ORM", "account selected id=" + id + " nickname=" + acct->nickname);
+    return true;
+}
+
+bool delete_account(const std::string& id) {
+    std::lock_guard<std::mutex> lock(g_mu);
+    if (!ensure_ready_locked(".", "")) return false;
+    auto acct = g_storage->get_optional<Account>(id);
+    if (!acct) return false;
+    g_storage->remove<Account>(id);
+    auto active = g_storage->get_optional<Kv>("active_account_id");
+    if (active && active->v == id)
+        g_storage->remove<Kv>("active_account_id");
+    log_line(0, "ORM", "account deleted id=" + id);
+    return true;
 }
 
 }  // namespace eversoul::orm

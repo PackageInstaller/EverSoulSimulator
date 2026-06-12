@@ -440,10 +440,10 @@ void handle_health(socket_fd_t fd)
     std::string edir = exe_dir();
 #ifdef _WIN32
     std::string injector_path  = edir + "\\eversoul_injector.exe";
-    std::string frida_srv_path = edir + "\\offline_data\\frida-server-android-x86_64";
+    std::string frida_srv_path = edir + "\\offline_data\\frida-server-android-arm64";
 #else
     std::string injector_path  = edir + "/eversoul_injector";
-    std::string frida_srv_path = edir + "/offline_data/frida-server-android-x86_64";
+    std::string frida_srv_path = edir + "/offline_data/frida-server-android-arm64";
 #endif
     bool injector_ok  = path_exists(injector_path);
     add("Injector Exe",      injector_ok,  injector_path);
@@ -733,12 +733,12 @@ static void run_injector_bg(const std::string& serial)
     std::string injector  = dir + "\\eversoul_injector.exe";
     std::string so_path   = dir + "\\android\\libswappywrapper.so";
     std::string srv_exe   = dir + "\\eversoul_offline_server.exe";
-    std::string frida_srv = dir + "\\offline_data\\frida-server-android-x86_64";
+    std::string frida_srv = dir + "\\offline_data\\frida-server-android-arm64";
 #else
     std::string injector  = dir + "/eversoul_injector";
     std::string so_path   = dir + "/android/libswappywrapper.so";
     std::string srv_exe   = dir + "/eversoul_offline_server";
-    std::string frida_srv = dir + "/offline_data/frida-server-android-x86_64";
+    std::string frida_srv = dir + "/offline_data/frida-server-android-arm64";
 #endif
 
     for (const std::string& f : {injector, so_path, frida_srv}) {
@@ -861,11 +861,14 @@ void handle_injector_run(socket_fd_t fd, const HttpRequest& req)
 void handle_injector_stop(socket_fd_t fd)
 {
 #ifdef _WIN32
-    std::lock_guard<std::mutex> lk(g_injector_mu);
-    if (g_injector_proc != INVALID_HANDLE_VALUE) {
-        TerminateProcess(g_injector_proc, 0);
+    {
+        std::lock_guard<std::mutex> lk(g_injector_mu);
+        if (g_injector_proc != INVALID_HANDLE_VALUE) {
+            TerminateProcess(g_injector_proc, 0);
+        }
     }
 #endif
+    g_injector_running.store(false);
     send_response(fd, json_200("{\"ok\":true}"));
 }
 
@@ -883,19 +886,10 @@ void handle_injector_devices(socket_fd_t fd)
 {
     std::string adb = resolve_adb_path(config().data_dir);
     std::string raw;
-#ifdef _WIN32
-    FILE* pipe = _popen(("\"" + adb + "\" devices 2>&1").c_str(), "r");
-#else
-    FILE* pipe = popen((adb + " devices 2>&1").c_str(), "r");
-#endif
-    if (pipe) {
+    if (FILE* pipe = adb_popen(adb, "devices")) {
         char buf[512];
         while (fgets(buf, sizeof(buf), pipe)) raw += buf;
-#ifdef _WIN32
-        _pclose(pipe);
-#else
-        pclose(pipe);
-#endif
+        adb_pclose(pipe);
     }
 
     std::string body = "{\"raw\":\"" + json_escape(raw) + "\",\"devices\":[";
@@ -928,19 +922,10 @@ void handle_injector_check(socket_fd_t fd, const std::string& qs)
 
     if (serial.empty()) {
         std::string raw;
-#ifdef _WIN32
-        FILE* pipe = _popen(("\"" + adb + "\" devices 2>&1").c_str(), "r");
-#else
-        FILE* pipe = popen((adb + " devices 2>&1").c_str(), "r");
-#endif
-        if (pipe) {
+        if (FILE* pipe = adb_popen(adb, "devices")) {
             char buf[512];
             while (fgets(buf, sizeof(buf), pipe)) raw += buf;
-#ifdef _WIN32
-            _pclose(pipe);
-#else
-            pclose(pipe);
-#endif
+            adb_pclose(pipe);
         }
         std::istringstream ss(raw);
         std::string line;
@@ -960,21 +945,12 @@ void handle_injector_check(socket_fd_t fd, const std::string& qs)
 
     if (!serial.empty() && adb_ok) {
         auto run = [&](const std::string& args) -> std::string {
-            std::string cmd = "\"" + adb + "\" " + args + " 2>&1";
             std::string out;
-#ifdef _WIN32
-            FILE* pipe = _popen(cmd.c_str(), "r");
-#else
-            FILE* pipe = popen(cmd.c_str(), "r");
-#endif
+            FILE* pipe = adb_popen(adb, args);
             if (!pipe) return {};
             char buf[512];
             while (fgets(buf, sizeof(buf), pipe)) out += buf;
-#ifdef _WIN32
-            _pclose(pipe);
-#else
-            pclose(pipe);
-#endif
+            adb_pclose(pipe);
             return out;
         };
         std::string pm = run("-s " + serial + " shell pm list packages com.kakaogames.eversoul");
@@ -1002,21 +978,11 @@ void handle_injector_adb(socket_fd_t fd, const HttpRequest& req)
     if (cmd_arg.empty()) { send_response(fd, bad_request("missing cmd")); return; }
 
     std::string adb = resolve_adb_path(config().data_dir);
-    std::string full = "\"" + adb + "\" " + cmd_arg + " 2>&1";
     std::string out;
-#ifdef _WIN32
-    FILE* pipe = _popen(full.c_str(), "r");
-#else
-    FILE* pipe = popen(full.c_str(), "r");
-#endif
-    if (pipe) {
+    if (FILE* pipe = adb_popen(adb, cmd_arg)) {
         char buf[1024];
         while (fgets(buf, sizeof(buf), pipe)) out += buf;
-#ifdef _WIN32
-        _pclose(pipe);
-#else
-        pclose(pipe);
-#endif
+        adb_pclose(pipe);
     }
     log_line(0, "ADB", "> " + cmd_arg);
     std::istringstream ss(out);

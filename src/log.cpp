@@ -4,6 +4,7 @@
 #include <sys/stat.h>
 #ifdef _WIN32
 #include <direct.h>
+#include <windows.h>
 #endif
 
 #include <fstream>
@@ -56,6 +57,10 @@ namespace eversoul
 
     void open_log_file()
     {
+#ifdef _WIN32
+        SetConsoleOutputCP(CP_UTF8);
+        SetConsoleCP(CP_UTF8);
+#endif
 #ifdef __ANDROID__
         mkdir("/data/data/com.kakaogames.eversoul/files", 0700);
         const std::string path = "/data/data/com.kakaogames.eversoul/files/offline_server.log";

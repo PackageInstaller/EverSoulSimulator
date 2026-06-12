@@ -7,7 +7,7 @@
 #include <atomic>
 #include <cstring>
 
-#ifdef __aarch64__
+#if defined(__aarch64__) || defined(__x86_64__)
 #include <array>
 #include <cerrno>
 #include <cstdint>
