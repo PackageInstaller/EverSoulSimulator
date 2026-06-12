@@ -297,15 +297,33 @@ std::string log_entry_json(const LogEntry& e)
     return s;
 }
 
-// ── /admin/ → embedded HTML ───────────────────────────────────────────────────
+// ── /admin/ → serve web/index.html (fallback: embedded) ─────────────────────
 
 void handle_root(socket_fd_t fd)
 {
+    std::string html_path = exe_dir() + "/web/index.html";
+    FILE* f = fopen(html_path.c_str(), "rb");
+    if (f) {
+        fseek(f, 0, SEEK_END);
+        long sz = ftell(f);
+        fseek(f, 0, SEEK_SET);
+        std::string data;
+        if (sz > 0) { data.resize(static_cast<std::size_t>(sz)); fread(data.data(), 1, static_cast<std::size_t>(sz), f); }
+        fclose(f);
+        HttpResponse res;
+        res.status = 200;
+        res.headers["Content-Type"]                = "text/html;charset=UTF-8";
+        res.headers["Access-Control-Allow-Origin"] = "*";
+        res.headers["Cache-Control"]               = "no-cache";
+        res.body = std::move(data);
+        send_response(fd, res);
+        return;
+    }
     HttpResponse res;
     res.status = 200;
-    res.headers["Content-Type"] = "text/html;charset=UTF-8";
+    res.headers["Content-Type"]                = "text/html;charset=UTF-8";
     res.headers["Access-Control-Allow-Origin"] = "*";
-    res.headers["Cache-Control"] = "no-cache";
+    res.headers["Cache-Control"]               = "no-cache";
     res.body = kAdminHtml;
     send_response(fd, res);
 }
@@ -439,16 +457,16 @@ void handle_health(socket_fd_t fd)
 
     std::string edir = exe_dir();
 #ifdef _WIN32
-    std::string injector_path  = edir + "\\eversoul_injector.exe";
-    std::string frida_srv_path = edir + "\\offline_data\\frida-server-android-arm64";
+    std::string injector_path = edir + "\\eversoul_injector.exe";
+    std::string so_path_check  = edir + "\\android\\libswappywrapper.so";
 #else
-    std::string injector_path  = edir + "/eversoul_injector";
-    std::string frida_srv_path = edir + "/offline_data/frida-server-android-arm64";
+    std::string injector_path = edir + "/eversoul_injector";
+    std::string so_path_check  = edir + "/android/libswappywrapper.so";
 #endif
-    bool injector_ok  = path_exists(injector_path);
-    add("Injector Exe",      injector_ok,  injector_path);
-    bool frida_bin_ok = path_exists(frida_srv_path);
-    add("Frida Server Bin",  frida_bin_ok, frida_srv_path);
+    bool injector_ok = path_exists(injector_path);
+    bool so_ok       = path_exists(so_path_check);
+    add("Injector Exe", injector_ok, injector_path);
+    add("SO (arm64)",   so_ok,       so_path_check);
 
     bool inj_up = g_injector_running.load();
     checks.push_back({"Injector Process", inj_up ? "ok" : "ok", inj_up ? "running" : "idle"});
@@ -589,9 +607,9 @@ void handle_db_tables(socket_fd_t fd)
     send_response(fd, json_200(body));
 }
 
-// ── /admin/api/db/table/<name> ────────────────────────────────────────────────
+// ── /admin/api/db/schema/<name> ──────────────────────────────────────────────
 
-void handle_db_table(socket_fd_t fd, const std::string& raw_name)
+void handle_db_schema(socket_fd_t fd, const std::string& raw_name)
 {
     std::string dbpath = orm::opened_path();
     if (dbpath.empty()) { send_response(fd, bad_request("db not ready")); return; }
@@ -601,7 +619,62 @@ void handle_db_table(socket_fd_t fd, const std::string& raw_name)
 
     auto valid_r = db_query(rodb.db,
         "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'");
+    bool found = false;
+    for (std::size_t ri = 0; ri < valid_r.rows.size(); ++ri) {
+        if (!valid_r.nulls[ri][0] && valid_r.rows[ri][0] == raw_name) { found = true; break; }
+    }
+    if (!found) { send_response(fd, not_found()); return; }
 
+    auto r = db_query(rodb.db,
+        "SELECT sql FROM sqlite_master WHERE type='table' AND name='" + raw_name + "'", 1);
+
+    std::string ddl;
+    if (!r.rows.empty() && !r.nulls[0][0]) ddl = r.rows[0][0];
+
+    auto idx_r = db_query(rodb.db,
+        "SELECT sql FROM sqlite_master WHERE type='index' AND tbl_name='" + raw_name + "' AND sql IS NOT NULL");
+    for (std::size_t ri = 0; ri < idx_r.rows.size(); ++ri) {
+        if (!idx_r.nulls[ri][0]) { ddl += "\n" + idx_r.rows[ri][0] + ";"; }
+    }
+
+    auto col_r = db_query(rodb.db, "PRAGMA table_info(\"" + raw_name + "\")");
+    std::string cols = "[";
+    for (std::size_t ri = 0; ri < col_r.rows.size(); ++ri) {
+        if (ri) cols += ",";
+        cols += "{";
+        for (std::size_t ci = 0; ci < col_r.columns.size(); ++ci) {
+            if (ci) cols += ",";
+            cols += "\"" + json_escape(col_r.columns[ci]) + "\":";
+            if (col_r.nulls[ri][ci]) cols += "null";
+            else cols += "\"" + json_escape(col_r.rows[ri][ci]) + "\"";
+        }
+        cols += "}";
+    }
+    cols += "]";
+
+    int row_cnt = orm::row_count(raw_name);
+    std::string body = "{";
+    body += "\"ddl\":\"";     body += json_escape(ddl);   body += "\"";
+    body += ",\"columns\":";  body += cols;
+    body += ",\"row_count\":"; body += std::to_string(row_cnt);
+    body += "}";
+    send_response(fd, json_200(body));
+}
+
+// ── /admin/api/db/table/<name>[?limit=N&offset=M] ────────────────────────────
+
+void handle_db_table(socket_fd_t fd, const std::string& encoded_name, const std::string& qs)
+{
+    std::string raw_name = url_decode(encoded_name);
+
+    std::string dbpath = orm::opened_path();
+    if (dbpath.empty()) { send_response(fd, bad_request("db not ready")); return; }
+
+    RoDb rodb(dbpath);
+    if (!rodb.ok()) { send_response(fd, bad_request("db open failed")); return; }
+
+    auto valid_r = db_query(rodb.db,
+        "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'");
     bool found = false;
     for (std::size_t ri = 0; ri < valid_r.rows.size(); ++ri) {
         if (!valid_r.nulls[ri][0] && valid_r.rows[ri][0] == raw_name) {
@@ -610,7 +683,22 @@ void handle_db_table(socket_fd_t fd, const std::string& raw_name)
     }
     if (!found) { send_response(fd, not_found()); return; }
 
-    auto r = db_query(rodb.db, "SELECT * FROM \"" + raw_name + "\" LIMIT 500");
+    auto qs_get = [&](const std::string& key) -> std::string {
+        std::string needle = key + "=";
+        auto pos = qs.find(needle);
+        if (pos == std::string::npos) return {};
+        pos += needle.size();
+        auto end = qs.find('&', pos);
+        return qs.substr(pos, end == std::string::npos ? std::string::npos : end - pos);
+    };
+    std::string lim_s    = qs_get("limit");
+    std::string offset_s = qs_get("offset");
+    int limit  = lim_s.empty()    ? 500  : std::clamp(std::stoi(lim_s),    1, 10000);
+    int offset = offset_s.empty() ? 0    : std::max(std::stoi(offset_s), 0);
+
+    auto r = db_query(rodb.db,
+        "SELECT * FROM \"" + raw_name + "\" LIMIT " + std::to_string(limit) +
+        " OFFSET " + std::to_string(offset));
     send_response(fd, json_200(result_to_json(r)));
 }
 
@@ -724,35 +812,292 @@ void handle_logo(socket_fd_t fd)
     send_response(fd, res);
 }
 
+// ── /admin/api/gamedata/<section> (GET / POST) ───────────────────────────────
+
+void handle_gamedata_get(socket_fd_t fd, const std::string& section)
+{
+    std::ostringstream j;
+    if (section == "currencies") {
+        auto currencies = orm::currencies();
+        j << "[";
+        bool first = true;
+        for (const auto& c : currencies) {
+            if (!first) j << ",";
+            j << "{\"type\":" << c.type << ",\"value\":" << c.value << "}";
+            first = false;
+        }
+        j << "]";
+        send_response(fd, json_200(j.str()));
+        return;
+    } else if (section == "heroes") {
+        auto heroes = orm::heroes();
+        j << "[";
+        bool first = true;
+        for (const auto& h : heroes) {
+            if (!first) j << ",";
+            j << "{\"idx\":\"" << json_escape(h.idx) << "\""
+              << ",\"heroNo\":" << h.heroNo
+              << ",\"level\":" << h.level
+              << ",\"gradeSno\":" << h.gradeSno
+              << ",\"raceSno\":" << h.raceSno
+              << ",\"isLock\":" << h.isLock << "}";
+            first = false;
+        }
+        j << "]";
+        send_response(fd, json_200(j.str()));
+        return;
+    } else if (section == "items") {
+        auto items = orm::item_etcs();
+        j << "[";
+        bool first = true;
+        for (const auto& it : items) {
+            if (!first) j << ",";
+            j << "{\"itemNo\":" << it.itemNo << ",\"cnt\":" << it.cnt << "}";
+            first = false;
+        }
+        j << "]";
+        send_response(fd, json_200(j.str()));
+        return;
+    } else if (section == "summary") {
+        auto currencies = orm::currencies();
+        auto heroes     = orm::heroes();
+        int64_t gold = 0, crystal = 0, stamina = 0;
+        for (const auto& c : currencies) {
+            if      (c.type ==  1) gold    = c.value;
+            else if (c.type ==  2) crystal = c.value;
+            else if (c.type == 11) stamina = c.value;
+        }
+        j << "{\"hero_count\":" << heroes.size()
+          << ",\"gold\":"       << gold
+          << ",\"crystal\":"    << crystal
+          << ",\"stamina\":"    << stamina << "}";
+        send_response(fd, json_200(j.str()));
+        return;
+    } else if (section == "userinfo") {
+        std::string nickname = orm::kv_get("nickname");
+        std::string level    = orm::kv_get("tree_level", "1");
+        auto currencies      = orm::currencies();
+        int64_t gold = 0, crystal = 0, stamina = 0, arena = 0;
+        for (const auto& c : currencies) {
+            if      (c.type ==  1) gold    = c.value;
+            else if (c.type ==  2) crystal = c.value;
+            else if (c.type == 11) stamina = c.value;
+            else if (c.type == 14) arena   = c.value;
+        }
+        j << "{\"nickname\":\"" << json_escape(nickname) << "\""
+          << ",\"level\":"    << level
+          << ",\"gold\":"     << gold
+          << ",\"crystal\":"  << crystal
+          << ",\"stamina\":"  << stamina
+          << ",\"arena_tickets\":" << arena << "}";
+    } else if (section == "settings") {
+        std::string proxy = orm::kv_get("proxy_enabled", "false");
+        std::string url   = orm::kv_get("game_server_url");
+        j << "{\"proxy_enabled\":" << proxy
+          << ",\"game_server_url\":\"" << json_escape(url) << "\"}";
+    } else {
+        send_response(fd, json_200("{\"error\":\"unknown section\"}"));
+        return;
+    }
+    send_response(fd, json_200(j.str()));
+}
+
+void handle_gamedata_post(socket_fd_t fd, const std::string& section, const HttpRequest& req)
+{
+    if (section == "userinfo") {
+        auto get_int64 = [&](const std::string& key) -> std::optional<int64_t> {
+            auto pos = req.body.find("\"" + key + "\":");
+            if (pos == std::string::npos) return std::nullopt;
+            pos += key.size() + 3;
+            while (pos < req.body.size() && req.body[pos] == ' ') ++pos;
+            size_t end = pos;
+            while (end < req.body.size() && (std::isdigit(req.body[end]) || req.body[end] == '-')) ++end;
+            if (end == pos) return std::nullopt;
+            return std::stoll(req.body.substr(pos, end - pos));
+        };
+        std::string nick = body_json_string(req.body, "nickname");
+        if (!nick.empty()) orm::kv_set("nickname", nick);
+        auto level = get_int64("level");
+        if (level) orm::kv_set("tree_level", std::to_string(*level));
+        auto currencies = orm::currencies();
+        auto cur_val = [&](int type) -> int64_t {
+            for (const auto& c : currencies) if (c.type == type) return c.value;
+            return 0;
+        };
+        static const struct { const char* key; int type; } kMap[] = {
+            {"gold", 1}, {"crystal", 2}, {"stamina", 11}, {"arena_tickets", 14}
+        };
+        for (const auto& m : kMap) {
+            auto nv = get_int64(m.key);
+            if (nv) {
+                int64_t delta = *nv - cur_val(m.type);
+                if (delta != 0) orm::add_currency(m.type, delta);
+            }
+        }
+        send_response(fd, json_200("{\"ok\":true}"));
+    } else if (section == "settings") {
+        std::string url = body_json_string(req.body, "game_server_url");
+        if (!url.empty()) orm::kv_set("game_server_url", url);
+        send_response(fd, json_200("{\"ok\":true}"));
+    } else {
+        send_response(fd, json_200("{\"ok\":false,\"reason\":\"unknown section\"}"));
+    }
+}
+
+// ── /admin/api/setup/status (GET) ────────────────────────────────────────────
+
+void handle_setup_status(socket_fd_t fd)
+{
+    std::string flag = exe_dir() + "/setup_complete";
+    bool complete = path_exists(flag);
+    send_response(fd, json_200(std::string("{\"complete\":") + (complete ? "true" : "false") + "}"));
+}
+
+// ── /admin/api/setup/complete (POST) ─────────────────────────────────────────
+
+void handle_setup_complete(socket_fd_t fd)
+{
+    std::string flag = exe_dir() + "/setup_complete";
+    FILE* f = fopen(flag.c_str(), "wb");
+    if (f) fclose(f);
+    send_response(fd, json_200("{\"ok\":true}"));
+}
+
+// ── /admin/api/adb/validate (POST) ───────────────────────────────────────────
+
+void handle_adb_validate(socket_fd_t fd, const HttpRequest& req)
+{
+    std::string input = body_json_string(req.body, "path");
+    if (input.empty()) {
+        send_response(fd, json_200("{\"ok\":false,\"resolved\":\"\",\"reason\":\"empty path\"}"));
+        return;
+    }
+
+    auto try_path = [](const std::string& p) -> bool {
+#ifdef _WIN32
+        struct _stat st{};
+        if (_stat(p.c_str(), &st) != 0) return false;
+        return (st.st_mode & _S_IFREG) != 0;
+#else
+        struct stat st{};
+        if (::stat(p.c_str(), &st) != 0) return false;
+        return S_ISREG(st.st_mode);
+#endif
+    };
+
+    auto is_dir = [](const std::string& p) -> bool {
+#ifdef _WIN32
+        struct _stat st{};
+        if (_stat(p.c_str(), &st) != 0) return false;
+        return (st.st_mode & _S_IFDIR) != 0;
+#else
+        struct stat st{};
+        if (::stat(p.c_str(), &st) != 0) return false;
+        return S_ISDIR(st.st_mode);
+#endif
+    };
+
+    std::string resolved;
+
+    if (try_path(input)) {
+        resolved = input;
+    } else if (is_dir(input)) {
+#ifdef _WIN32
+        std::string candidate = input + "\\adb.exe";
+        if (!try_path(candidate)) candidate = input + "/adb.exe";
+#else
+        std::string candidate = input + "/adb";
+#endif
+        if (try_path(candidate)) resolved = candidate;
+    }
+
+    if (resolved.empty()) {
+        send_response(fd, json_200(
+            "{\"ok\":false,\"resolved\":\"\",\"reason\":\"adb.exe not found at path\"}"));
+        return;
+    }
+    send_response(fd, json_200(
+        "{\"ok\":true,\"resolved\":\"" + json_escape(resolved) + "\"}"));
+}
+
+// ── Serve static web file from web/ dir ──────────────────────────────────────
+
+void serve_static_web_file(socket_fd_t fd, const std::string& filename)
+{
+    if (filename.empty() || filename.find("..") != std::string::npos ||
+        filename.find('/') != std::string::npos || filename.find('\\') != std::string::npos) {
+        send_response(fd, not_found());
+        return;
+    }
+
+    std::string file_path = exe_dir() + "/web/" + filename;
+    FILE* f = fopen(file_path.c_str(), "rb");
+    if (!f) { send_response(fd, not_found()); return; }
+
+    fseek(f, 0, SEEK_END);
+    long sz = ftell(f);
+    fseek(f, 0, SEEK_SET);
+    std::string data;
+    if (sz > 0) {
+        data.resize(static_cast<std::size_t>(sz));
+        fread(data.data(), 1, static_cast<std::size_t>(sz), f);
+    }
+    fclose(f);
+
+    const char* ct = "application/octet-stream";
+    auto ext_pos = filename.rfind('.');
+    if (ext_pos != std::string::npos) {
+        std::string ext = filename.substr(ext_pos + 1);
+        if      (ext == "css")  ct = "text/css;charset=UTF-8";
+        else if (ext == "js")   ct = "application/javascript;charset=UTF-8";
+        else if (ext == "html") ct = "text/html;charset=UTF-8";
+        else if (ext == "png")  ct = "image/png";
+        else if (ext == "jpg" || ext == "jpeg") ct = "image/jpeg";
+        else if (ext == "svg")  ct = "image/svg+xml";
+        else if (ext == "ico")  ct = "image/x-icon";
+        else if (ext == "json") ct = "application/json;charset=UTF-8";
+        else if (ext == "woff2") ct = "font/woff2";
+    }
+
+    HttpResponse res;
+    res.status = 200;
+    res.headers["Content-Type"]                = ct;
+    res.headers["Access-Control-Allow-Origin"] = "*";
+    res.headers["Cache-Control"]               = "max-age=60";
+    res.body = std::move(data);
+    send_response(fd, res);
+}
+
 // ── Injector process runner (background thread) ───────────────────────────────
 
 static void run_injector_bg(const std::string& serial)
 {
     std::string dir = exe_dir();
 #ifdef _WIN32
-    std::string injector  = dir + "\\eversoul_injector.exe";
-    std::string so_path   = dir + "\\android\\libswappywrapper.so";
-    std::string srv_exe   = dir + "\\eversoul_offline_server.exe";
-    std::string frida_srv = dir + "\\offline_data\\frida-server-android-arm64";
+    std::string injector = dir + "\\eversoul_injector.exe";
+    std::string so_path  = dir + "\\android\\libswappywrapper.so";
+    std::string srv_exe  = dir + "\\eversoul_offline_server.exe";
 #else
-    std::string injector  = dir + "/eversoul_injector";
-    std::string so_path   = dir + "/android/libswappywrapper.so";
-    std::string srv_exe   = dir + "/eversoul_offline_server";
-    std::string frida_srv = dir + "/offline_data/frida-server-android-arm64";
+    std::string injector = dir + "/eversoul_injector";
+    std::string so_path  = dir + "/android/libswappywrapper.so";
+    std::string srv_exe  = dir + "/eversoul_offline_server";
 #endif
 
-    for (const std::string& f : {injector, so_path, frida_srv}) {
-        if (!path_exists(f)) {
-            log_line(0, "INJECTOR", "missing: " + f);
-            g_injector_running.store(false);
-            return;
-        }
+    if (!path_exists(injector)) {
+        log_line(0, "INJECTOR", "missing injector: " + injector);
+        g_injector_running.store(false);
+        return;
+    }
+    if (!path_exists(so_path)) {
+        log_line(0, "INJECTOR", "missing SO: " + so_path);
+        g_injector_running.store(false);
+        return;
     }
 
     std::string adb_path = resolve_adb_path(config().data_dir);
 
     std::string cmd = "\"" + injector + "\" \"" + so_path + "\" \"" +
-                      srv_exe + "\" \"" + frida_srv + "\" --no-wait";
+                      srv_exe + "\" --no-wait";
     if (!serial.empty())    cmd += " --serial \"" + serial   + "\"";
     if (!adb_path.empty())  cmd += " --adb \""    + adb_path + "\"";
 
@@ -940,8 +1285,7 @@ void handle_injector_check(socket_fd_t fd, const std::string& qs)
         }
     }
 
-    bool has_eversoul  = false;
-    bool frida_up      = false;
+    bool has_eversoul = false;
 
     if (!serial.empty() && adb_ok) {
         auto run = [&](const std::string& args) -> std::string {
@@ -955,17 +1299,13 @@ void handle_injector_check(socket_fd_t fd, const std::string& qs)
         };
         std::string pm = run("-s " + serial + " shell pm list packages com.kakaogames.eversoul");
         has_eversoul = pm.find("com.kakaogames.eversoul") != std::string::npos;
-        std::string pg = run("-s " + serial + " shell pgrep -x frida-server");
-        pg.erase(std::remove_if(pg.begin(), pg.end(), ::isspace), pg.end());
-        frida_up = !pg.empty();
     }
 
     std::string body = "{";
     body += "\"adb\":\"";         body += json_escape(adb);    body += "\"";
     body += ",\"adb_ok\":";       body += (adb_ok       ? "true" : "false");
-    body += ",\"serial\":\"";     body += json_escape(serial); body += "\"";
-    body += ",\"eversoul\":";     body += (has_eversoul ? "true" : "false");
-    body += ",\"frida_server\":"; body += (frida_up     ? "true" : "false");
+    body += ",\"serial\":\"";  body += json_escape(serial); body += "\"";
+    body += ",\"eversoul\":"; body += (has_eversoul ? "true" : "false");
     body += "}";
     send_response(fd, json_200(body));
 }
@@ -1036,8 +1376,10 @@ void handle_connection(socket_fd_t fd)
         handle_logs_clear(fd);
     } else if (path == "/admin/api/db/tables" && req.method == "GET") {
         handle_db_tables(fd);
+    } else if (path.rfind("/admin/api/db/schema/", 0) == 0 && req.method == "GET") {
+        handle_db_schema(fd, url_decode(path.substr(std::string("/admin/api/db/schema/").size())));
     } else if (path.rfind("/admin/api/db/table/", 0) == 0 && req.method == "GET") {
-        handle_db_table(fd, path.substr(std::string("/admin/api/db/table/").size()));
+        handle_db_table(fd, path.substr(std::string("/admin/api/db/table/").size()), qs);
     } else if (path == "/admin/api/fixtures" && req.method == "GET") {
         handle_fixtures(fd);
     } else if (path.rfind("/admin/api/fixtures/", 0) == 0 && req.method == "GET") {
@@ -1062,6 +1404,23 @@ void handle_connection(socket_fd_t fd)
         handle_injector_adb(fd, req);
     } else if (path == "/admin/api/logo" && req.method == "GET") {
         handle_logo(fd);
+    } else if (path == "/admin/api/setup/status" && req.method == "GET") {
+        handle_setup_status(fd);
+    } else if (path == "/admin/api/setup/complete" && req.method == "POST") {
+        handle_setup_complete(fd);
+    } else if (path == "/admin/api/adb/validate" && req.method == "POST") {
+        handle_adb_validate(fd, req);
+    } else if (path.rfind("/admin/api/gamedata/", 0) == 0) {
+        std::string section = path.substr(std::string("/admin/api/gamedata/").size());
+        if (req.method == "GET")       handle_gamedata_get(fd, section);
+        else if (req.method == "POST") handle_gamedata_post(fd, section, req);
+        else                           send_response(fd, not_found());
+    } else if (path.rfind("/admin/", 0) == 0) {
+        std::string fname = path.substr(std::string("/admin/").size());
+        if (!fname.empty() && fname.find('/') == std::string::npos)
+            serve_static_web_file(fd, fname);
+        else
+            send_response(fd, not_found());
     } else {
         send_response(fd, not_found());
     }

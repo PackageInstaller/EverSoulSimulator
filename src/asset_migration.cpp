@@ -19,7 +19,7 @@ namespace eversoul::asset_migration
     namespace
     {
         constexpr const char *kTag = "libswappywrapper";
-        constexpr const char *kDstPkg = "offline.eversoul";
+        constexpr const char *kDstPkg = "com.kakaogames.eversoul";
 
         void logi(const char *fmt, ...) __attribute__((format(printf, 1, 2)));
         void logi(const char *fmt, ...)

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>EverSoul — Offline Server</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════ INTRO ══ -->
+<div id="intro">
+  <div id="intro-bg"></div>
+  <div id="intro-overlay"></div>
+  <div id="intro-scanline"></div>
+
+  <button id="btn-skip" onclick="skipIntro()">SKIP ▶▶</button>
+
+  <div id="intro-content">
+    <!-- logo -->
+    <div id="intro-logo">
+      <div class="game-title">EverSoul</div>
+      <div class="game-sub">Offline Simulator</div>
+      <div class="game-badge">ADMIN CONTROL PANEL</div>
+    </div>
+
+    <!-- terminal box -->
+    <div id="terminal-box">
+      <div id="terminal-titlebar">
+        <div class="dots">
+          <span class="dot-r"></span>
+          <span class="dot-y"></span>
+          <span class="dot-g"></span>
+        </div>
+        <span class="title-text">[ SYSTEM INITIALIZATION ]</span>
+      </div>
+
+      <div id="terminal-output"></div>
+
+      <div id="adb-input-section">
+        <div class="adb-input-label">▶ ADB EXECUTABLE PATH</div>
+        <div class="adb-input-row">
+          <input id="adb-path-input" type="text"
+            placeholder="e.g.  D:\MuMuPlayer\nx_device\12.0\shell\adb.exe"/>
+          <button class="btn-term" id="btn-adb-validate" onclick="validateAdbPath()">VALIDATE</button>
+          <button class="btn-term" id="btn-adb-save" onclick="saveAdbFromIntro()" style="display:none">SAVE ▶</button>
+        </div>
+        <div id="adb-validate-msg"></div>
+      </div>
+
+      <div id="terminal-footer">
+        <div id="overall-bar-track"><div id="overall-bar-fill"></div></div>
+        <div id="terminal-status-text">Waiting…</div>
+      </div>
+    </div>
+
+    <button id="btn-enter" onclick="enterMain()">▶ ENTER DUNGEON</button>
+  </div>
+
+  <div id="intro-credits">
+    <span class="credit-orig">少姜</span>
+    <span class="credit-sep">×</span>
+    <span class="credit-dev">Nekoi</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ MAIN APP ══ -->
+<div id="app">
+  <div id="app-bg"></div>
+  <div id="app-overlay"></div>
+
+  <!-- SIDEBAR -->
+  <div id="sidebar">
+    <div id="sidebar-logo">
+      <img src="/admin/api/logo" alt="" onerror="this.style.display='none'"/>
+      <div class="brand">EverSoul</div>
+      <div class="sub">Offline Server</div>
+      <span class="ver">ADMIN v2</span>
+    </div>
+    <nav>
+      <div class="nav-section">MENU</div>
+      <div class="nav-item active" data-page="dashboard">
+        <span class="nav-icon">⬡</span><span data-i18n="admin.dashboard">Dashboard</span>
+      </div>
+      <div class="nav-item" data-page="health">
+        <span class="nav-icon">♥</span><span data-i18n="admin.health">Health</span>
+      </div>
+      <div class="nav-item" data-page="logs">
+        <span class="nav-icon">▤</span><span data-i18n="admin.logs">Request Log</span>
+      </div>
+      <div class="nav-item" data-page="db">
+        <span class="nav-icon">◉</span><span data-i18n="admin.db">Database</span>
+      </div>
+      <div class="nav-item" data-page="fixtures">
+        <span class="nav-icon">◧</span><span data-i18n="admin.fixtures">Fixtures</span>
+      </div>
+      <div class="nav-item" data-page="settings">
+        <span class="nav-icon">⚙</span><span data-i18n="admin.settings">Settings</span>
+      </div>
+      <div class="nav-item" data-page="injector">
+        <span class="nav-icon">▶</span><span data-i18n="admin.injector">Injector</span>
+      </div>
+      <div class="nav-item" data-page="gamedata">
+        <span class="nav-icon">✦</span><span data-i18n="admin.gamedata">Game Data</span>
+      </div>
+    </nav>
+    <div id="sidebar-footer">
+      <div class="lang-row">
+        <button class="lang-btn active" onclick="setLang('ko')">한국어</button>
+        <button class="lang-btn" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('zh')">中文</button>
+      </div>
+      <button class="about-btn" onclick="openAbout()">ⓘ About</button>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div id="main">
+    <div id="topbar">
+      <span class="page-title" id="topbar-title">Dashboard</span>
+      <span class="srv-indicator">
+        <span class="srv-dot" id="srv-dot"></span>
+        <span id="srv-label">Connecting…</span>
+      </span>
+      <span id="uptime-display"></span>
+    </div>
+
+    <div id="content">
+
+      <!-- DASHBOARD -->
+      <div class="page active" id="page-dashboard">
+        <div class="card" style="margin-bottom:14px">
+          <div class="card-header">
+            <span class="nav-icon">▶</span>
+            <span class="card-title">게임 시작</span>
+          </div>
+          <div class="card-body">
+            <button id="btn-game-start" onclick="startGame()">▶ 게임 시작</button>
+            <div id="game-start-status"></div>
+          </div>
+        </div>
+
+        <div class="stat-grid" id="stat-grid">
+          <div class="stat-card cyan">
+            <div class="stat-label" data-i18n="server.port">Port</div>
+            <div class="stat-value" id="s-port">–</div>
+            <div class="stat-sub" id="s-mode">–</div>
+          </div>
+          <div class="stat-card green">
+            <div class="stat-label" data-i18n="admin.requests">Requests</div>
+            <div class="stat-value" id="s-reqs">0</div>
+            <div class="stat-sub" id="s-reqs-sub"></div>
+          </div>
+          <div class="stat-card yellow">
+            <div class="stat-label" data-i18n="admin.uptime">Uptime</div>
+            <div class="stat-value" id="s-uptime">0s</div>
+            <div class="stat-sub" id="s-started">–</div>
+          </div>
+          <div class="stat-card purple">
+            <div class="stat-label" data-i18n="admin.fixtures">Fixtures</div>
+            <div class="stat-value" id="s-fix">–</div>
+            <div class="stat-sub" id="s-fix-err"></div>
+          </div>
+          <div class="stat-card cyan">
+            <div class="stat-label">DB</div>
+            <div class="stat-value" id="s-db">–</div>
+            <div class="stat-sub" id="s-db-path" style="font-size:9px;word-break:break-all"></div>
+          </div>
+          <div class="stat-card green">
+            <div class="stat-label">Lang</div>
+            <div class="stat-value" id="s-lang">–</div>
+          </div>
+          <div class="stat-card yellow">
+            <div class="stat-label">Gold</div>
+            <div class="stat-value" id="s-gold">–</div>
+          </div>
+          <div class="stat-card purple">
+            <div class="stat-label">Crystal</div>
+            <div class="stat-value" id="s-crystal">–</div>
+          </div>
+          <div class="stat-card cyan">
+            <div class="stat-label">Heroes</div>
+            <div class="stat-value" id="s-heroes">–</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="nav-icon">▸</span><span class="card-title">Request Chart</span></div>
+          <div class="card-body">
+            <div class="dash-chart-wrap">
+              <svg id="req-chart" viewBox="0 0 400 48" preserveAspectRatio="none"></svg>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><span class="nav-icon">▤</span><span class="card-title">Recent Log</span></div>
+          <div class="card-body">
+            <div id="dash-log"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HEALTH -->
+      <div class="page flow" id="page-health">
+        <div class="card">
+          <div class="card-header">
+            <span class="nav-icon">♥</span>
+            <span class="card-title" data-i18n="admin.health">Health Check</span>
+            <button class="btn" style="margin-left:auto;font-size:11px" onclick="loadHealth()">↻ Refresh</button>
+          </div>
+          <div class="card-body">
+            <div class="health-cards" id="health-grid"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LOGS -->
+      <div class="page" id="page-logs">
+        <div id="log-controls">
+          <input id="log-filter" placeholder="Filter…" oninput="filterLog(this.value)"/>
+          <button class="btn" onclick="toggleLogPause()" id="btn-pause">Pause</button>
+          <button class="btn danger" onclick="clearLog()">Clear</button>
+        </div>
+        <div id="log-panel"></div>
+      </div>
+
+      <!-- DB -->
+      <div class="page" id="page-db">
+        <div class="db-manager">
+          <div class="db-panel-left">
+            <div class="db-panel-hdr">
+              <span>TABLES</span>
+              <button class="btn" onclick="loadDbTables()" title="Refresh">↻</button>
+            </div>
+            <div class="db-table-list" id="table-list"></div>
+          </div>
+          <div class="db-panel-right">
+            <div class="db-tabs">
+              <button class="db-tab active" id="db-tab-data"   onclick="switchDbTab('data')">DATA</button>
+              <button class="db-tab"         id="db-tab-schema" onclick="switchDbTab('schema')">SCHEMA</button>
+            </div>
+            <div class="db-toolbar">
+              <input class="db-search" id="db-search" placeholder="Search rows…" oninput="dbSearch(this.value)"/>
+              <button class="btn" onclick="dbPrevPage()">‹</button>
+              <span class="db-page-info" id="db-page-info">–</span>
+              <button class="btn" onclick="dbNextPage()">›</button>
+              <span class="db-row-total" id="db-row-total"></span>
+            </div>
+            <div id="db-table-wrap" style="display:flex;flex-direction:column;flex:1;overflow:auto"><div class="db-empty-msg">테이블을 선택하세요.</div></div>
+            <div id="db-schema-wrap" style="display:none;flex-direction:column;flex:1;overflow:auto;padding:14px">
+              <div class="db-schema-cols" id="db-schema-cols"></div>
+              <pre id="db-ddl"></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FIXTURES -->
+      <div class="page" id="page-fixtures">
+        <div class="card">
+          <div class="card-header"><span class="nav-icon">◧</span><span class="card-title" data-i18n="admin.fixtures">Fixtures</span></div>
+          <div class="card-body">
+            <div id="fixture-list"></div>
+            <div class="fixture-detail" id="fixture-detail">
+              <div id="fixture-detail-title" style="color:var(--color-accent);margin-bottom:6px;font-size:11px"></div>
+              <pre id="fixture-content"></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SETTINGS -->
+      <div class="page" id="page-settings">
+        <div class="card">
+          <div class="card-header"><span class="nav-icon">⚙</span><span class="card-title" data-i18n="admin.settings">Settings</span></div>
+          <div class="card-body">
+            <div class="setting-row">
+              <div>
+                <div class="setting-label" data-i18n="admin.proxy_on">Proxy</div>
+              </div>
+              <label class="toggle"><input type="checkbox" id="toggle-proxy" onchange="applyProxy(this.checked)"><span class="slider"></span></label>
+            </div>
+            <div class="setting-row">
+              <div><div class="setting-label">Game Server URL</div></div>
+              <input type="text" id="set-game-url"/>
+            </div>
+            <div class="setting-row">
+              <div><div class="setting-label">Data Dir</div></div>
+              <input type="text" id="set-data-dir"/>
+            </div>
+            <div style="margin-top:12px;display:flex;gap:8px">
+              <button class="btn btn-primary" onclick="applySettings()">Apply</button>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="margin-top:14px">
+          <div class="card-header"><span class="nav-icon">◈</span><span class="card-title">ADB Path</span></div>
+          <div class="card-body">
+            <div class="setting-row" style="margin-bottom:10px">
+              <div>
+                <div class="setting-label">Current Path</div>
+                <div id="adb-current-display" style="color:var(--color-accent);font-size:11px;margin-top:4px;word-break:break-all"></div>
+              </div>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center">
+              <input type="text" id="input-adb-path" style="flex:1;width:auto" placeholder="ADB executable path"/>
+              <button class="btn btn-primary" onclick="saveAdbPath()">Save</button>
+              <button class="btn" onclick="clearAdbPath()">Clear</button>
+            </div>
+            <div id="adb-save-msg" style="font-size:10px;color:var(--color-green);margin-top:5px;min-height:14px"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INJECTOR -->
+      <div class="page" id="page-injector">
+        <div class="card">
+          <div class="card-header"><span class="nav-icon">▶</span><span class="card-title" data-i18n="admin.injector">Injector</span></div>
+          <div class="card-body">
+            <div style="margin-bottom:12px">
+              <div style="display:flex;gap:8px;align-items:center;margin-bottom:7px">
+                <span class="setting-label">Connected Devices</span>
+                <button class="btn" onclick="loadInjectorDevices()">↻</button>
+              </div>
+              <div id="injector-device-list" style="font-size:12px;color:var(--color-text-dim)">–</div>
+            </div>
+            <div id="injector-check-result" style="font-size:12px;color:var(--color-text-dim);margin-bottom:12px;line-height:2"></div>
+            <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+              <button class="btn btn-primary" onclick="runInjector()" id="btn-inject">Run Injector</button>
+              <button class="btn danger" onclick="stopInjector()">Stop</button>
+              <span id="injector-status-text" style="font-size:11px;color:var(--color-text-dim)"></span>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="margin-top:12px">
+          <div class="card-header"><span class="nav-icon">▤</span><span class="card-title">ADB Command</span></div>
+          <div class="card-body">
+            <div style="display:flex;gap:8px;margin-bottom:9px">
+              <input id="adb-cmd-input" placeholder="adb command (e.g. devices)" onkeydown="if(event.key==='Enter')sendAdbCmd()"/>
+              <button class="btn btn-primary" onclick="sendAdbCmd()">Run</button>
+            </div>
+            <div id="injector-log"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GAME DATA -->
+      <div class="page flow" id="page-gamedata">
+        <div class="card">
+          <div class="card-header">
+            <span class="nav-icon">✦</span>
+            <span class="card-title" data-i18n="admin.gamedata">Game Data</span>
+            <button class="btn" style="margin-left:auto;font-size:11px" onclick="loadGameData()">↻ Refresh</button>
+          </div>
+          <div class="card-body">
+            <div class="gamedata-layout">
+              <nav class="gamedata-nav" id="gamedata-nav">
+                <div class="gamedata-nav-item active" onclick="switchGameData('userinfo')">UserInfo</div>
+                <div class="gamedata-nav-item" onclick="switchGameData('currencies')">Currencies</div>
+                <div class="gamedata-nav-item" onclick="switchGameData('heroes')">Heroes</div>
+                <div class="gamedata-nav-item" onclick="switchGameData('settings')">Settings</div>
+              </nav>
+              <div>
+                <div class="gamedata-form" id="gamedata-form"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /content -->
+  </div><!-- /main -->
+</div><!-- /app -->
+
+<!-- ABOUT DIALOG (HTML5 <dialog>) -->
+<dialog id="modal-about">
+  <div class="modal-hdr">
+    <span class="modal-hdr-title">About</span>
+    <button class="modal-close" onclick="closeAbout()">✕</button>
+  </div>
+  <div class="modal-body">
+    <div class="about-brand">EverSoul</div>
+    <div class="about-sub">Offline Admin Panel</div>
+    <div class="about-row">
+      <span class="about-lbl">원제작자</span>
+      <span class="about-val lead">少姜</span>
+    </div>
+    <div class="about-row">
+      <span class="about-lbl">보조 개발</span>
+      <span class="about-val">Nekoi</span>
+    </div>
+    <div class="about-row">
+      <span class="about-lbl">기술</span>
+      <span class="about-val" style="font-size:11px;color:var(--color-text-dim)">HTML5 · C++23 · SQLite · ADB</span>
+    </div>
+  </div>
+</dialog>
+
+<script src="app.js"></script>
+</body>
+</html>

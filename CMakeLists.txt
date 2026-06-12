@@ -8,8 +8,20 @@ if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Release)
 endif()
 
-# Core sources shared by both the Android library and the desktop server.
-set(EVERSOUL_CORE_SOURCES
+# Android hook-only sources.
+# No server, no ORM, no fixture — pure patch/redirect code.
+# Game HTTP is redirected to 127.0.0.1:9999 by il2cpp_redirect;
+# adb reverse tcp:9999 tcp:9999 bridges the device to the desktop server.
+set(EVERSOUL_ANDROID_SOURCES
+  src/anticheat_patch.cpp
+  src/liapp_bypass.cpp
+  src/il2cpp_redirect.cpp
+  src/jni_bypass.cpp
+  src/asset_migration.cpp
+  src/entry.cpp)
+
+# Desktop server sources (offline mock + admin UI + ORM + proxy).
+set(EVERSOUL_SERVER_SOURCES
   src/util.cpp
   src/crypto.cpp
   src/protobuf.cpp
@@ -67,18 +79,24 @@ if(ANDROID)
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
     VERBATIM)
 
-  # Merged single library: anti-cheat hook + offline server + entry. Must be named
-  # libswappywrapper.so so the game auto-loads it.
+  # Merged hook library: LIAPP bypass + anti-cheat + il2cpp redirect + JNI bypass.
+  # Must be named libswappywrapper.so so the game auto-loads it.
+  # No server runs inside the device process; game traffic reaches the desktop server
+  # via il2cpp_redirect (127.0.0.1:9999) + adb reverse tcp:9999 tcp:9999.
   add_library(swappywrapper SHARED
-    ${EVERSOUL_CORE_SOURCES}
-    src/anticheat_patch.cpp
-    src/asset_migration.cpp
-    src/entry.cpp
+    ${EVERSOUL_ANDROID_SOURCES}
     ${PROTO_OBJ})
   target_include_directories(swappywrapper PRIVATE ${EVERSOUL_INCLUDE_DIRS})
   target_compile_options(swappywrapper PRIVATE -O2 -fvisibility=hidden)
   target_link_libraries(swappywrapper PRIVATE log dl m)
   target_link_options(swappywrapper PRIVATE -static-libstdc++ -s)
+
+  # On-device ARM64 ptrace injector — pushed to the device as root, polls for
+  # the game process and injects libswappywrapper.so via ptrace + dlopen.
+  add_executable(inject_helper src/inject_helper.c)
+  target_compile_options(inject_helper PRIVATE -O2 -fPIE)
+  target_link_options(inject_helper PRIVATE -fPIE -pie)
+  target_link_libraries(inject_helper PRIVATE dl)
 
   # After building libswappywrapper.so, run eversoul_injector if it is present
   # in the desktop build directory.  EVERSOUL_INJECTOR can be overridden on the
@@ -91,15 +109,12 @@ if(ANDROID)
     set(EVERSOUL_SERVER
       "${CMAKE_SOURCE_DIR}/build/eversoul_offline_server${CMAKE_EXECUTABLE_SUFFIX}")
   endif()
-  set(EVERSOUL_FRIDA_SERVER
-    "${CMAKE_SOURCE_DIR}/tools/frida/frida-server-android-arm64")
 
   add_custom_command(TARGET swappywrapper POST_BUILD
     COMMAND ${CMAKE_COMMAND}
       -DINJECTOR=${EVERSOUL_INJECTOR}
       -DSO=$<TARGET_FILE:swappywrapper>
       -DSERVER=${EVERSOUL_SERVER}
-      -DFRIDA_SRV=${EVERSOUL_FRIDA_SERVER}
       -P ${CMAKE_SOURCE_DIR}/cmake/run_injector.cmake
     COMMENT "Injecting libswappywrapper.so into emulator via eversoul_injector")
 else()
@@ -128,14 +143,28 @@ else()
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
       "${CMAKE_SOURCE_DIR}/src/assets/logo.png"
       "$<TARGET_FILE_DIR:eversoul_offline_server>/web/logo.png"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+      "${CMAKE_SOURCE_DIR}/src/assets/main_bg.png"
+      "$<TARGET_FILE_DIR:eversoul_offline_server>/web/main_bg.png"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+      "${CMAKE_SOURCE_DIR}/src/assets/loading.png"
+      "$<TARGET_FILE_DIR:eversoul_offline_server>/web/loading.png"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+      "${CMAKE_SOURCE_DIR}/src/web/index.html"
+      "$<TARGET_FILE_DIR:eversoul_offline_server>/web/index.html"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+      "${CMAKE_SOURCE_DIR}/src/web/app.js"
+      "$<TARGET_FILE_DIR:eversoul_offline_server>/web/app.js"
     COMMAND ${CMAKE_COMMAND} -E make_directory
-      "$<TARGET_FILE_DIR:eversoul_offline_server>/offline_data"
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different
-      "${CMAKE_SOURCE_DIR}/tools/frida/frida-server-android-arm64"
-      "$<TARGET_FILE_DIR:eversoul_offline_server>/offline_data/frida-server-android-arm64"
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different
-      "${CMAKE_SOURCE_DIR}/monitor_unity_web_request.js"
-      "$<TARGET_FILE_DIR:eversoul_offline_server>/offline_data/monitor_unity_web_request.js")
+      "$<TARGET_FILE_DIR:eversoul_offline_server>/offline_data")
+  if(EXISTS "${CMAKE_SOURCE_DIR}/tools/tailwindcss.exe")
+    add_custom_command(TARGET eversoul_offline_server POST_BUILD
+      COMMAND "${CMAKE_SOURCE_DIR}/tools/tailwindcss.exe"
+        -i "${CMAKE_SOURCE_DIR}/src/web/input.css"
+        -o "$<TARGET_FILE_DIR:eversoul_offline_server>/web/style.css"
+        --minify
+      COMMENT "Building Tailwind CSS → web/style.css")
+  endif()
   if(WIN32)
     target_link_libraries(eversoul_offline_server PRIVATE ws2_32)
 

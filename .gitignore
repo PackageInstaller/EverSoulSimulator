@@ -78,3 +78,5 @@ apk/
 tools/__pycache__/*
 tools/frida/
 sample/
+sample2/
+SDK/

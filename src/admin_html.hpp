@@ -417,9 +417,7 @@ input:focus{border-color:var(--cyan2)}
             </div>
             <div id="injector-device-list" style="font-size:var(--fs-sm);color:var(--text2)">–</div>
           </div>
-          <!-- 에버소울/frida 체크 -->
           <div id="injector-check-result" style="font-size:var(--fs-sm);color:var(--text2);margin-bottom:14px;line-height:2"></div>
-          <!-- 실행/중지 -->
           <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
             <button class="btn btn-primary" onclick="runInjector()" id="btn-inject" data-i18n="admin.injector_run">Run Injector</button>
             <button class="btn danger" onclick="stopInjector()" data-i18n="admin.injector_stop">Stop</button>
@@ -817,8 +815,7 @@ async function loadInjectorCheck(){
     el.innerHTML=
       `${ok(d.adb_ok)} ADB: <span style="color:var(--text3);font-size:var(--fs-xs)">${escHtml(d.adb)}</span><br>`+
       `${ok(!!d.serial)} Device: <span style="color:var(--cyan)">${escHtml(d.serial||'none')}</span><br>`+
-      `${ok(d.eversoul)} com.kakaogames.eversoul<br>`+
-      `${ok(d.frida_server)} frida-server`;
+      `${ok(d.eversoul)} com.kakaogames.eversoul`;
   }catch(e){ el.innerHTML=''; }
 }
 

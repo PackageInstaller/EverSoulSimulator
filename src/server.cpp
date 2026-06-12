@@ -112,8 +112,7 @@ namespace eversoul
         fixture_store().load(config().data_dir);
         ws_load_fixtures(config().data_dir);
         if (!orm::ensure_ready(config().data_dir)) {
-            log_line(0, "ERROR", "orm init failed: data_dir=" + config().data_dir);
-            return 1;
+            log_line(0, "WARN", "orm init failed: data_dir=" + config().data_dir + " — serving fixture-only mode");
         }
 
         socket_fd_t server_fd = socket(AF_INET, SOCK_STREAM, 0);
