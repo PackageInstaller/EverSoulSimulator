@@ -5,16 +5,19 @@
 #include "inline_hook.hpp"
 
 #include <android/log.h>
+#include <arpa/inet.h>
 #include <dlfcn.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <link.h>
+#include <netinet/in.h>
 #include <pthread.h>
 #include <signal.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <string.h>
 #include <sys/mman.h>
+#include <sys/socket.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
@@ -57,6 +60,7 @@ using openat_t   = int  (*)(int, const char *, int, ...);
 using openat64_t = int  (*)(int, const char *, int, ...);
 using read_t     = ssize_t (*)(int, void *, size_t);
 using kill_t     = int (*)(pid_t, int);
+using connect_t  = int (*)(int, const struct sockaddr *, socklen_t);
 
 static fopen_t    g_orig_fopen    = nullptr;
 static fopen64_t  g_orig_fopen64  = nullptr;
@@ -64,6 +68,7 @@ static openat_t   g_orig_openat   = nullptr;
 static openat64_t g_orig_openat64 = nullptr;
 static read_t     g_orig_read     = nullptr;
 static kill_t     g_orig_kill     = nullptr;
+static connect_t  g_orig_connect  = nullptr;
 
 // ---------------------------------------------------------------------------
 // Path helpers
@@ -289,6 +294,29 @@ static int hook_kill(pid_t pid, int sig)
     return g_orig_kill(pid, sig);
 }
 
+static int hook_connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen)
+{
+    if (addr && addr->sa_family == AF_INET &&
+        addrlen >= static_cast<socklen_t>(sizeof(struct sockaddr_in))) {
+        const auto *in4 = reinterpret_cast<const struct sockaddr_in *>(addr);
+        const uint32_t host = ntohl(in4->sin_addr.s_addr);
+        const uint16_t port = ntohs(in4->sin_port);
+        if (host != INADDR_LOOPBACK && (port == 80 || port == 8080)) {
+            char ip_str[INET_ADDRSTRLEN] = {};
+            inet_ntop(AF_INET, &in4->sin_addr, ip_str, sizeof(ip_str));
+            logi("liapp_bypass: connect redirect %s:%d -> 127.0.0.1:9999", ip_str, (int)port);
+            struct sockaddr_in local{};
+            local.sin_family      = AF_INET;
+            local.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
+            local.sin_port        = htons(9999);
+            return g_orig_connect(sockfd,
+                                  reinterpret_cast<const struct sockaddr *>(&local),
+                                  static_cast<socklen_t>(sizeof(local)));
+        }
+    }
+    return g_orig_connect(sockfd, addr, addrlen);
+}
+
 // ---------------------------------------------------------------------------
 // libc inline hooks
 // ---------------------------------------------------------------------------
@@ -305,6 +333,7 @@ static void install_libc_hooks()
         { "openat64", reinterpret_cast<void *>(hook_openat64), reinterpret_cast<void **>(&g_orig_openat64) },
         { "read",     reinterpret_cast<void *>(hook_read),     reinterpret_cast<void **>(&g_orig_read)     },
         { "kill",     reinterpret_cast<void *>(hook_kill),     reinterpret_cast<void **>(&g_orig_kill)     },
+        { "connect",  reinterpret_cast<void *>(hook_connect),  reinterpret_cast<void **>(&g_orig_connect)  },
     };
 
     for (auto &e : entries) {

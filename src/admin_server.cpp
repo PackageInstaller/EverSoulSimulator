@@ -20,6 +20,8 @@
 #include <chrono>
 #include <condition_variable>
 #include <cstdio>
+#include <filesystem>
+#include <fstream>
 #include <memory>
 #include <mutex>
 #include <queue>
@@ -948,8 +950,8 @@ void handle_gamedata_post(socket_fd_t fd, const std::string& section, const Http
 
 void handle_setup_status(socket_fd_t fd)
 {
-    std::string flag = exe_dir() + "/setup_complete";
-    bool complete = path_exists(flag);
+    std::string adb = load_saved_adb_path(config().data_dir);
+    bool complete = !adb.empty() && adb != "adb" && path_exists(adb);
     send_response(fd, json_200(std::string("{\"complete\":") + (complete ? "true" : "false") + "}"));
 }
 
@@ -957,9 +959,6 @@ void handle_setup_status(socket_fd_t fd)
 
 void handle_setup_complete(socket_fd_t fd)
 {
-    std::string flag = exe_dir() + "/setup_complete";
-    FILE* f = fopen(flag.c_str(), "wb");
-    if (f) fclose(f);
     send_response(fd, json_200("{\"ok\":true}"));
 }
 
@@ -1018,6 +1017,278 @@ void handle_adb_validate(socket_fd_t fd, const HttpRequest& req)
     }
     send_response(fd, json_200(
         "{\"ok\":true,\"resolved\":\"" + json_escape(resolved) + "\"}"));
+}
+
+// ── /admin/api/accounts (GET, POST) ──────────────────────────────────────────
+
+void handle_accounts_list(socket_fd_t fd)
+{
+    namespace fs = std::filesystem;
+    const std::string dir = config().data_dir;
+    auto list   = orm::accounts(dir);
+    auto active = orm::active_account();
+    std::string active_id = active ? active->id : "";
+
+    std::string body = "[";
+    for (std::size_t i = 0; i < list.size(); ++i) {
+        if (i) body += ',';
+        const auto& a = list[i];
+        body += "{\"id\":\""        + json_escape(a.id)        + "\"";
+        body += ",\"nickname\":\""  + json_escape(a.nickname)  + "\"";
+        body += ",\"player_id\":\"" + json_escape(a.player_id) + "\"";
+        body += ",\"idp_code\":\""  + json_escape(a.idp_code)  + "\"";
+        body += ",\"idp_id\":\""    + json_escape(a.idp_id)    + "\"";
+        body += ",\"created_at\":"  + std::to_string(a.created_at);
+        body += ",\"last_login\":"  + std::to_string(a.last_login);
+        body += ",\"active\":"      + std::string(a.id == active_id ? "true" : "false");
+
+        std::string gpath = orm::account_game_db_path(dir, a.id);
+        int hero_count = 0;
+        {
+            RoDb rodb(gpath);
+            if (rodb.ok()) {
+                auto r = db_query(rodb.db, "SELECT COUNT(*) FROM hero", 1);
+                if (!r.rows.empty() && !r.nulls[0][0]) hero_count = std::stoi(r.rows[0][0]);
+            }
+        }
+        body += ",\"hero_count\":" + std::to_string(hero_count);
+        body += '}';
+    }
+    body += ']';
+    send_response(fd, json_200(body));
+}
+
+void handle_accounts_create(socket_fd_t fd, const HttpRequest& req)
+{
+    std::string nickname = body_json_string(req.body, "nickname");
+    std::string idp_code = body_json_string(req.body, "idpCode");
+    std::string idp_id   = body_json_string(req.body, "idpId");
+    if (nickname.empty()) { send_response(fd, bad_request("missing nickname")); return; }
+    std::string id = orm::create_account(nickname, idp_code, idp_id, config().data_dir);
+    if (id.empty()) { send_response(fd, bad_request("account creation failed")); return; }
+    log_line(0, "ADMIN", "account created id=" + id);
+    send_response(fd, json_200("{\"ok\":true,\"id\":\"" + json_escape(id) + "\"}"));
+}
+
+// ── /admin/api/accounts/{id} (GET, PATCH, DELETE) ────────────────────────────
+
+void handle_account_get(socket_fd_t fd, const std::string& acct_id)
+{
+    const std::string dir = config().data_dir;
+    auto acct = orm::account_by_id(acct_id, dir);
+    if (!acct) { send_response(fd, not_found()); return; }
+    auto active = orm::active_account();
+    bool is_active = active && active->id == acct_id;
+    std::string body;
+    body += "{\"id\":\""        + json_escape(acct->id)        + "\"";
+    body += ",\"nickname\":\""  + json_escape(acct->nickname)  + "\"";
+    body += ",\"player_id\":\"" + json_escape(acct->player_id) + "\"";
+    body += ",\"idp_code\":\""  + json_escape(acct->idp_code)  + "\"";
+    body += ",\"idp_id\":\""    + json_escape(acct->idp_id)    + "\"";
+    body += ",\"created_at\":"  + std::to_string(acct->created_at);
+    body += ",\"last_login\":"  + std::to_string(acct->last_login);
+    body += ",\"active\":"      + std::string(is_active ? "true" : "false");
+    body += '}';
+    send_response(fd, json_200(body));
+}
+
+void handle_account_update(socket_fd_t fd, const std::string& acct_id, const HttpRequest& req)
+{
+    std::string nickname  = body_json_string(req.body, "nickname");
+    std::string player_id = body_json_string(req.body, "player_id");
+    std::string idp_code  = body_json_string(req.body, "idp_code");
+    if (!orm::update_account(acct_id, nickname, player_id, idp_code, config().data_dir)) {
+        send_response(fd, not_found()); return;
+    }
+    log_line(0, "ADMIN", "account updated id=" + acct_id);
+    send_response(fd, json_200("{\"ok\":true}"));
+}
+
+void handle_account_delete(socket_fd_t fd, const std::string& acct_id)
+{
+    if (!orm::delete_account(acct_id, config().data_dir)) {
+        send_response(fd, not_found()); return;
+    }
+    log_line(0, "ADMIN", "account deleted id=" + acct_id);
+    send_response(fd, json_200("{\"ok\":true}"));
+}
+
+// ── /admin/api/accounts/{id}/select (POST) ───────────────────────────────────
+
+void handle_account_select(socket_fd_t fd, const std::string& acct_id)
+{
+    if (!orm::select_account(acct_id, config().data_dir)) {
+        send_response(fd, not_found()); return;
+    }
+    log_line(0, "ADMIN", "account selected id=" + acct_id);
+    send_response(fd, json_200("{\"ok\":true}"));
+}
+
+// ── /admin/api/accounts/{id}/import (POST) ───────────────────────────────────
+
+void handle_account_import(socket_fd_t fd, const std::string& acct_id, const HttpRequest& req)
+{
+    if (req.body.empty()) { send_response(fd, bad_request("empty body")); return; }
+    if (!orm::import_userinfo_for(acct_id, req.body, config().data_dir)) {
+        send_response(fd, bad_request("import failed")); return;
+    }
+    log_line(0, "ADMIN", "userinfo imported for account id=" + acct_id);
+    send_response(fd, json_200("{\"ok\":true}"));
+}
+
+// ── /admin/api/accounts/{id}/gamedata/{section} (GET, POST) ──────────────────
+
+void handle_account_gamedata_get(socket_fd_t fd, const std::string& acct_id, const std::string& section)
+{
+    std::string gpath = orm::account_game_db_path(config().data_dir, acct_id);
+    RoDb rodb(gpath);
+    if (!rodb.ok()) { send_response(fd, bad_request("game db not found")); return; }
+
+    std::ostringstream j;
+    if (section == "currencies") {
+        auto r = db_query(rodb.db, "SELECT type, value FROM currency");
+        j << "[";
+        for (std::size_t ri = 0; ri < r.rows.size(); ++ri) {
+            if (ri) j << ",";
+            j << "{\"type\":" << r.rows[ri][0] << ",\"value\":" << r.rows[ri][1] << "}";
+        }
+        j << "]";
+    } else if (section == "heroes") {
+        auto r = db_query(rodb.db, "SELECT idx,heroNo,level,gradeSno,raceSno,isLock FROM hero");
+        j << "[";
+        for (std::size_t ri = 0; ri < r.rows.size(); ++ri) {
+            if (ri) j << ",";
+            j << "{\"idx\":\""  << json_escape(r.rows[ri][0]) << "\""
+              << ",\"heroNo\":" << r.rows[ri][1]
+              << ",\"level\":"  << r.rows[ri][2]
+              << ",\"gradeSno\":"<< r.rows[ri][3]
+              << ",\"raceSno\":" << r.rows[ri][4]
+              << ",\"isLock\":"  << r.rows[ri][5] << "}";
+        }
+        j << "]";
+    } else if (section == "userinfo") {
+        auto kv_r = db_query(rodb.db, "SELECT k,v FROM kv");
+        std::string nickname, gold_s = "0", crystal_s = "0", stamina_s = "0";
+        for (const auto& row : kv_r.rows) {
+            if (row[0] == "nickname") nickname = row[1];
+        }
+        auto cur_r = db_query(rodb.db, "SELECT type,value FROM currency");
+        for (const auto& row : cur_r.rows) {
+            int type = std::stoi(row[0]);
+            if      (type ==  1) gold_s    = row[1];
+            else if (type ==  2) crystal_s = row[1];
+            else if (type == 11) stamina_s = row[1];
+        }
+        j << "{\"nickname\":\"" << json_escape(nickname) << "\""
+          << ",\"gold\":"     << gold_s
+          << ",\"crystal\":"  << crystal_s
+          << ",\"stamina\":"  << stamina_s << "}";
+    } else {
+        send_response(fd, json_200("{\"error\":\"unknown section\"}"));
+        return;
+    }
+    send_response(fd, json_200(j.str()));
+}
+
+void handle_account_gamedata_post(socket_fd_t fd, const std::string& acct_id,
+                                   const std::string& section, const HttpRequest& req)
+{
+    auto active = orm::active_account();
+    bool is_active = active && active->id == acct_id;
+    if (!is_active) {
+        if (!orm::select_account(acct_id, config().data_dir)) {
+            send_response(fd, not_found()); return;
+        }
+    }
+    handle_gamedata_post(fd, section, req);
+    if (!is_active && active) {
+        orm::select_account(active->id, config().data_dir);
+    }
+}
+
+// ── /admin/api/files/list?prefix=... ─────────────────────────────────────────
+
+void handle_files_list(socket_fd_t fd, const std::string& qs)
+{
+    namespace fs = std::filesystem;
+    std::string prefix = url_decode(query_param(qs, "prefix"));
+    std::vector<std::string> paths = offline_data().list(prefix);
+
+    const std::string& data_dir = config().data_dir;
+    if (!data_dir.empty() && !prefix.empty()) {
+        fs::path dir = fs::path(data_dir) / prefix;
+        if (fs::is_directory(dir)) {
+            for (const auto& entry : fs::directory_iterator(dir)) {
+                if (!entry.is_regular_file()) continue;
+                std::string rel = prefix + entry.path().filename().string();
+                bool dup = false;
+                for (const auto& p : paths) if (p == rel) { dup = true; break; }
+                if (!dup) paths.push_back(rel);
+            }
+        }
+    }
+
+    std::string body = "[";
+    for (std::size_t i = 0; i < paths.size(); ++i) {
+        if (i) body += ',';
+        body += "{\"path\":\""; body += json_escape(paths[i]); body += "\"}";
+    }
+    body += "]";
+    send_response(fd, json_200(body));
+}
+
+// ── /admin/api/files?path=... (GET) ──────────────────────────────────────────
+
+void handle_file_read(socket_fd_t fd, const std::string& qs)
+{
+    std::string rel = url_decode(query_param(qs, "path"));
+    if (rel.empty() || rel.find("..") != std::string::npos) {
+        send_response(fd, bad_request("invalid path")); return;
+    }
+
+    if (auto content = offline_data().read(rel)) {
+        send_response(fd, text_200(*content, "application/json;charset=UTF-8")); return;
+    }
+
+    const std::string& data_dir = config().data_dir;
+    if (!data_dir.empty()) {
+        namespace fs = std::filesystem;
+        fs::path fpath = fs::path(data_dir) / rel;
+        std::ifstream f(fpath, std::ios::binary);
+        if (f) {
+            std::ostringstream ss;
+            ss << f.rdbuf();
+            send_response(fd, text_200(ss.str(), "application/json;charset=UTF-8")); return;
+        }
+    }
+    send_response(fd, not_found());
+}
+
+// ── /admin/api/files?path=... (POST) ─────────────────────────────────────────
+
+void handle_file_write(socket_fd_t fd, const std::string& qs, const HttpRequest& req)
+{
+    std::string rel = url_decode(query_param(qs, "path"));
+    if (rel.empty() || rel.find("..") != std::string::npos) {
+        send_response(fd, bad_request("invalid path")); return;
+    }
+
+    const std::string& data_dir = config().data_dir;
+    if (data_dir.empty()) { send_response(fd, bad_request("data_dir not set")); return; }
+
+    namespace fs = std::filesystem;
+    fs::path fpath = fs::path(data_dir) / rel;
+    std::error_code ec;
+    fs::create_directories(fpath.parent_path(), ec);
+    if (ec) { send_response(fd, bad_request("cannot create directory")); return; }
+
+    std::ofstream f(fpath, std::ios::binary);
+    if (!f) { send_response(fd, bad_request("cannot write file")); return; }
+    f << req.body;
+    f.close();
+
+    log_line(0, "ADMIN", "file written: " + rel + " (" + std::to_string(req.body.size()) + " bytes)");
+    send_response(fd, json_200("{\"ok\":true,\"path\":\"" + json_escape(rel) + "\"}"));
 }
 
 // ── Serve static web file from web/ dir ──────────────────────────────────────
@@ -1353,8 +1624,16 @@ void handle_connection(socket_fd_t fd)
     std::string path = req.path;
     std::string qs   = split_query(path);
 
-    // Root HTML
-    if (path == "/" || path == "/admin" || path == "/admin/") {
+    // Root HTML — redirect trailing-slash-less URLs so relative paths resolve correctly
+    if (path == "/" || path == "/admin") {
+        HttpResponse redir;
+        redir.status = 301;
+        redir.headers["Location"] = "/admin/";
+        send_response(fd, redir);
+        socket_close(fd);
+        return;
+    }
+    if (path == "/admin/") {
         handle_root(fd);
         socket_close(fd);
         return;
@@ -1415,6 +1694,41 @@ void handle_connection(socket_fd_t fd)
         if (req.method == "GET")       handle_gamedata_get(fd, section);
         else if (req.method == "POST") handle_gamedata_post(fd, section, req);
         else                           send_response(fd, not_found());
+    } else if (path == "/admin/api/accounts" && req.method == "GET") {
+        handle_accounts_list(fd);
+    } else if (path == "/admin/api/accounts" && req.method == "POST") {
+        handle_accounts_create(fd, req);
+    } else if (path.rfind("/admin/api/accounts/", 0) == 0) {
+        std::string rest = path.substr(std::string("/admin/api/accounts/").size());
+        auto slash = rest.find('/');
+        std::string acct_id = slash == std::string::npos ? rest : rest.substr(0, slash);
+        std::string sub     = slash == std::string::npos ? "" : rest.substr(slash + 1);
+        if (acct_id.empty()) {
+            send_response(fd, bad_request("missing account id"));
+        } else if (sub.empty()) {
+            if      (req.method == "GET")                    handle_account_get(fd, acct_id);
+            else if (req.method == "PATCH" ||
+                     req.method == "PUT")                    handle_account_update(fd, acct_id, req);
+            else if (req.method == "DELETE")                 handle_account_delete(fd, acct_id);
+            else                                             send_response(fd, not_found());
+        } else if (sub == "select" && req.method == "POST") {
+            handle_account_select(fd, acct_id);
+        } else if (sub == "import" && req.method == "POST") {
+            handle_account_import(fd, acct_id, req);
+        } else if (sub.rfind("gamedata/", 0) == 0) {
+            std::string section = sub.substr(std::string("gamedata/").size());
+            if      (req.method == "GET")  handle_account_gamedata_get(fd, acct_id, section);
+            else if (req.method == "POST") handle_account_gamedata_post(fd, acct_id, section, req);
+            else                           send_response(fd, not_found());
+        } else {
+            send_response(fd, not_found());
+        }
+    } else if (path == "/admin/api/files/list" && req.method == "GET") {
+        handle_files_list(fd, qs);
+    } else if (path == "/admin/api/files" && req.method == "GET") {
+        handle_file_read(fd, qs);
+    } else if (path == "/admin/api/files" && req.method == "POST") {
+        handle_file_write(fd, qs, req);
     } else if (path.rfind("/admin/", 0) == 0) {
         std::string fname = path.substr(std::string("/admin/").size());
         if (!fname.empty() && fname.find('/') == std::string::npos)

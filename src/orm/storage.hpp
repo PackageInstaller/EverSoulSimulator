@@ -9,17 +9,28 @@
 
 namespace eversoul::orm {
 
-// Minimal compile/runtime check used while the ORM layer is being wired in.
 [[nodiscard]] bool smoke_test();
 
-// Opens the account database, synchronizes schema, and seeds it from
-// responses/UserInfo.json when the database is new.
+// Opens the meta DB (accounts list) and, if an active account is set, the
+// per-account game DB.  Must be called before any game-data access.
 [[nodiscard]] bool ensure_ready(const std::string& data_dir = ".",
                                 const std::string& db_path_override = "");
+
+// Re-seed the active account's game DB from a HAR responses directory.
 [[nodiscard]] bool reseed_from_profile(const std::string& data_dir,
                                        const std::string& responses_dir);
 
+// Import a UserInfo JSON body into the active account's game DB (active) or
+// into a specific account's DB (by_id variant, uses a temporary storage).
+[[nodiscard]] bool import_userinfo(const std::string& json_text);
+[[nodiscard]] bool import_userinfo_for(const std::string& account_id,
+                                       const std::string& json_text,
+                                       const std::string& data_dir);
+
 [[nodiscard]] std::string opened_path();
+[[nodiscard]] std::string active_account_db_path();
+[[nodiscard]] std::string account_game_db_path(const std::string& data_dir,
+                                                const std::string& account_id);
 [[nodiscard]] int row_count(const std::string& table);
 
 [[nodiscard]] std::string kv_get(const std::string& key, const std::string& fallback = "");
@@ -49,17 +60,22 @@ void kv_set(const std::string& key, const std::string& value);
 [[nodiscard]] int item_etc_count(int item_no);
 [[nodiscard]] bool has_dungeon(int dungeon_no);
 
-// Account management — multi-account support backed by the `accounts` table.
-// active_account_id KV tracks the currently selected account.
-[[nodiscard]] std::vector<Account> accounts();
-[[nodiscard]] std::optional<Account> account_by_id(const std::string& id);
+// Account management.
+// Meta DB: eversoul_accounts.db (accounts table + global_kv).
+// Game DB: accounts/{id}/eversoul.db (per-account hero/currency/stage/...).
+[[nodiscard]] std::vector<Account> accounts(const std::string& data_dir = ".");
+[[nodiscard]] std::optional<Account> account_by_id(const std::string& id,
+                                                    const std::string& data_dir = ".");
 [[nodiscard]] std::optional<Account> active_account();
 [[nodiscard]] std::string create_account(const std::string& nickname,
                                          const std::string& idp_code,
                                          const std::string& idp_id,
                                          const std::string& data_dir);
 bool select_account(const std::string& id, const std::string& data_dir);
-bool delete_account(const std::string& id);
+bool update_account(const std::string& id, const std::string& nickname,
+                    const std::string& player_id, const std::string& idp_code,
+                    const std::string& data_dir);
+bool delete_account(const std::string& id, const std::string& data_dir);
 
 // Backfill story/dungeon rows when tutorial progress implies they should exist.
 void heal_progress();

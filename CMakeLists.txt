@@ -17,6 +17,7 @@ set(EVERSOUL_ANDROID_SOURCES
   src/liapp_bypass.cpp
   src/il2cpp_redirect.cpp
   src/jni_bypass.cpp
+  src/java_hook.cpp
   src/asset_migration.cpp
   src/entry.cpp)
 
@@ -102,12 +103,18 @@ if(ANDROID)
   # in the desktop build directory.  EVERSOUL_INJECTOR can be overridden on the
   # cmake command line; defaults to build/eversoul_injector[.exe].
   if(NOT DEFINED EVERSOUL_INJECTOR)
-    set(EVERSOUL_INJECTOR
-      "${CMAKE_SOURCE_DIR}/build/eversoul_injector${CMAKE_EXECUTABLE_SUFFIX}")
+    if(CMAKE_HOST_WIN32)
+      set(EVERSOUL_INJECTOR "${CMAKE_SOURCE_DIR}/build/eversoul_injector.exe")
+    else()
+      set(EVERSOUL_INJECTOR "${CMAKE_SOURCE_DIR}/build/eversoul_injector")
+    endif()
   endif()
   if(NOT DEFINED EVERSOUL_SERVER)
-    set(EVERSOUL_SERVER
-      "${CMAKE_SOURCE_DIR}/build/eversoul_offline_server${CMAKE_EXECUTABLE_SUFFIX}")
+    if(CMAKE_HOST_WIN32)
+      set(EVERSOUL_SERVER "${CMAKE_SOURCE_DIR}/build/eversoul_offline_server.exe")
+    else()
+      set(EVERSOUL_SERVER "${CMAKE_SOURCE_DIR}/build/eversoul_offline_server")
+    endif()
   endif()
 
   add_custom_command(TARGET swappywrapper POST_BUILD
@@ -132,7 +139,7 @@ else()
 
   # Desktop capture/proxy/mock server.
   find_package(CURL REQUIRED)
-  add_executable(eversoul_offline_server ${EVERSOUL_CORE_SOURCES} src/main.cpp)
+  add_executable(eversoul_offline_server ${EVERSOUL_SERVER_SOURCES} src/main.cpp)
   target_include_directories(eversoul_offline_server PRIVATE ${EVERSOUL_INCLUDE_DIRS})
   target_compile_options(eversoul_offline_server PRIVATE -O2 -Wall -Wextra)
   target_link_libraries(eversoul_offline_server PRIVATE CURL::libcurl Threads::Threads ${CMAKE_DL_LIBS})
@@ -155,6 +162,12 @@ else()
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
       "${CMAKE_SOURCE_DIR}/src/web/app.js"
       "$<TARGET_FILE_DIR:eversoul_offline_server>/web/app.js"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+      "${CMAKE_SOURCE_DIR}/src/web/account_select.html"
+      "$<TARGET_FILE_DIR:eversoul_offline_server>/web/account_select.html"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+      "${CMAKE_SOURCE_DIR}/src/web/account_select.js"
+      "$<TARGET_FILE_DIR:eversoul_offline_server>/web/account_select.js"
     COMMAND ${CMAKE_COMMAND} -E make_directory
       "$<TARGET_FILE_DIR:eversoul_offline_server>/offline_data")
   if(EXISTS "${CMAKE_SOURCE_DIR}/tools/tailwindcss.exe")

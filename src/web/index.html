@@ -103,6 +103,12 @@
       <div class="nav-item" data-page="gamedata">
         <span class="nav-icon">✦</span><span data-i18n="admin.gamedata">Game Data</span>
       </div>
+      <div class="nav-item" data-page="accounts">
+        <span class="nav-icon">◈</span><span data-i18n="admin.accounts">Accounts</span>
+      </div>
+      <div class="nav-item" data-page="files">
+        <span class="nav-icon">◧</span><span data-i18n="admin.files">Files</span>
+      </div>
     </nav>
     <div id="sidebar-footer">
       <div class="lang-row">
@@ -367,6 +373,76 @@
         </div>
       </div>
 
+      <!-- ACCOUNTS -->
+      <div class="page" id="page-accounts">
+        <div class="card">
+          <div class="card-header">
+            <span class="nav-icon">◈</span>
+            <span class="card-title" data-i18n="admin.accounts">Accounts</span>
+            <button class="btn" style="margin-left:auto" onclick="loadAdminAccounts()">↻</button>
+          </div>
+          <div class="card-body" id="admin-acct-list" style="min-height:48px"></div>
+        </div>
+        <div class="card" style="margin-top:12px">
+          <div class="card-header">
+            <span class="nav-icon">+</span>
+            <span class="card-title">신규 계정</span>
+          </div>
+          <div class="card-body">
+            <div class="setting-row"><label>닉네임</label><input type="text" id="admin-acct-nick" placeholder="닉네임" maxlength="20"/></div>
+            <div class="setting-row"><label>로그인</label>
+              <select id="admin-acct-idp" style="background:var(--glass-bg);border:1px solid var(--glass-border-lo);color:var(--color-text);border-radius:6px;padding:5px 8px">
+                <option value="zd3">게스트</option>
+                <option value="kakaocapri">카카오</option>
+                <option value="google">Google</option>
+              </select>
+            </div>
+            <button class="btn btn-primary" style="margin-top:8px" onclick="adminCreateAccount()">생성</button>
+            <div id="admin-acct-create-status" style="font-size:11px;margin-top:6px;min-height:14px"></div>
+          </div>
+        </div>
+        <div class="card" id="admin-acct-edit-card" style="margin-top:12px;display:none">
+          <div class="card-header">
+            <span class="nav-icon">✎</span>
+            <span class="card-title">계정 편집</span>
+            <button class="btn" style="margin-left:auto;font-size:11px" onclick="closeAdminAccountEdit()">✕</button>
+          </div>
+          <div class="card-body" id="admin-acct-edit-body"></div>
+        </div>
+      </div>
+
+      <!-- FILES -->
+      <div class="page" id="page-files">
+        <div class="card">
+          <div class="card-header">
+            <span class="nav-icon">◧</span>
+            <span class="card-title" data-i18n="admin.files">Files</span>
+          </div>
+          <div class="card-body">
+            <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap">
+              <button class="btn" onclick="listFiles('responses/')">responses/</button>
+              <button class="btn" onclick="listFiles('responses_newbie/')">responses_newbie/</button>
+              <button class="btn" onclick="listFiles('schema/')">schema/</button>
+            </div>
+            <div id="file-list" style="margin-bottom:12px;font-size:12px;color:var(--color-text-dim)">디렉토리를 선택하세요.</div>
+          </div>
+        </div>
+        <div class="card" id="file-edit-card" style="margin-top:12px;display:none">
+          <div class="card-header">
+            <span class="nav-icon">✎</span>
+            <span class="card-title" id="file-edit-title">파일 편집</span>
+            <button class="btn" style="margin-left:auto;font-size:11px" onclick="closeFileEdit()">✕</button>
+          </div>
+          <div class="card-body">
+            <textarea id="file-editor" rows="16" style="width:100%;font-size:11px;font-family:monospace;background:rgba(0,0,0,.4);color:var(--color-text);border:1px solid var(--glass-border-lo);border-radius:6px;padding:8px;resize:vertical"></textarea>
+            <div style="margin-top:8px;display:flex;gap:8px;align-items:center">
+              <button class="btn btn-primary" onclick="saveFileEdit()">저장</button>
+              <span id="file-save-status" style="font-size:11px;color:var(--color-text-dim)"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div><!-- /content -->
   </div><!-- /main -->
 </div><!-- /app -->
@@ -391,6 +467,27 @@
     <div class="about-row">
       <span class="about-lbl">기술</span>
       <span class="about-val" style="font-size:11px;color:var(--color-text-dim)">HTML5 · C++23 · SQLite · ADB</span>
+    </div>
+  </div>
+</dialog>
+
+<!-- IMPORT DIALOG -->
+<dialog id="modal-import">
+  <div class="modal-hdr">
+    <span class="modal-hdr-title">UserInfo 가져오기</span>
+    <button class="modal-close" onclick="closeImportModal()">✕</button>
+  </div>
+  <div class="modal-body">
+    <p style="font-size:11px;color:var(--color-text-dim);margin-bottom:14px;line-height:1.6">
+      HAR에서 캡처한 UserInfo.json 파일을 선택하면<br>해당 계정 DB에 데이터를 가져옵니다.
+    </p>
+    <div style="margin-bottom:12px">
+      <input type="file" id="import-file" accept=".json" style="font-size:12px;color:var(--color-text)">
+    </div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <button class="btn btn-primary" onclick="doImport()">가져오기</button>
+      <button class="btn" onclick="closeImportModal()">취소</button>
+      <span id="import-status" style="font-size:11px;color:var(--color-text-dim);margin-left:4px"></span>
     </div>
   </div>
 </dialog>

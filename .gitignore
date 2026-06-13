@@ -80,3 +80,4 @@ tools/frida/
 sample/
 sample2/
 SDK/
+.vscode/

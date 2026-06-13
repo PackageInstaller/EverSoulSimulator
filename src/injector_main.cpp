@@ -4,11 +4,15 @@
 //   1. Start eversoul_offline_server in the background (if not already up).
 //   2. Locate adb and find the connected emulator/device.
 //      If none found, prompt the user for a host:port and adb-connect to it.
-//   3. Push libswappywrapper.so to /data/local/tmp/.
-//   4. su -c cp -> replace SO in /data/app/<pkg>/lib/arm64/ directly (root).
-//   5. setenforce 0 + adb reverse tcp:9999 tcp:9999.
+//   3. adb install-multiple <exe_dir>/apk/change_only/base_patched.apk
+//                           <exe_dir>/apk/origin/split_config.arm64_v8a.apk
+//   4. Push <exe_dir>/apk/change_only/libcawwyayy_orig.so -> /data/local/tmp/
+//   5. adb reverse tcp:9999 tcp:9999.
 //   6. force-stop the game, then am start.
 //   7. Stream adb logcat filtered to the libswappywrapper tag.
+//
+// All APK/SO paths resolve relative to the injector executable.
+// Pre-patched APKs must already exist in apk/ — the injector never patches.
 
 #ifdef _WIN32
 #  define WIN32_LEAN_AND_MEAN
@@ -25,6 +29,7 @@
 #endif
 
 #include "adb_finder.hpp"
+#include "i18n.hpp"
 
 #include <algorithm>
 #include <array>
@@ -57,7 +62,7 @@ static std::string run_adb(const std::string& adb, const std::string& args)
 }
 
 // ---------------------------------------------------------------------------
-// ADB discovery
+// Path helpers
 // ---------------------------------------------------------------------------
 
 static bool path_exists(const std::string& p)
@@ -69,57 +74,115 @@ static bool path_exists(const std::string& p)
 #endif
 }
 
-static std::string find_adb(const std::string& hint = {})
-{
-    if (!hint.empty()) return hint;
-    return eversoul::resolve_adb_path(".");
-}
-
-static std::string read_file(const std::string& path)
-{
-    FILE* f = fopen(path.c_str(), "rb");
-    if (!f) return {};
-    fseek(f, 0, SEEK_END);
-    long sz = ftell(f);
-    rewind(f);
-    if (sz <= 0) { fclose(f); return {}; }
-    std::string buf(static_cast<std::size_t>(sz), '\0');
-    fread(buf.data(), 1, static_cast<std::size_t>(sz), f);
-    fclose(f);
-    return buf;
-}
-
 static std::string dir_of(const std::string& path)
 {
     auto sep = path.find_last_of("/\\");
     return sep == std::string::npos ? "." : path.substr(0, sep);
 }
 
+static std::string exe_dir()
+{
+#ifdef _WIN32
+    char buf[MAX_PATH] = {};
+    GetModuleFileNameA(nullptr, buf, MAX_PATH);
+    return dir_of(std::string(buf));
+#else
+    char buf[4096] = {};
+    ssize_t n = readlink("/proc/self/exe", buf, sizeof(buf) - 1);
+    if (n <= 0) return ".";
+    return dir_of(std::string(buf, static_cast<std::size_t>(n)));
+#endif
+}
+
 // ---------------------------------------------------------------------------
-// Device discovery
+// System locale detection
 // ---------------------------------------------------------------------------
 
-static std::string find_device(const std::string& adb)
+static std::string detect_system_lang()
 {
-    std::string out = run_adb(adb, "devices");
-    std::istringstream ss(out);
-    std::string line;
-    std::vector<std::string> all, emulators;
-    while (std::getline(ss, line)) {
-        if (line.find("List of") != std::string::npos) continue;
-        if (line.find("offline")  != std::string::npos) continue;
-        auto tab = line.find('\t');
-        if (tab == std::string::npos) continue;
-        if (line.find("device") == std::string::npos) continue;
-        std::string serial = line.substr(0, tab);
-        all.push_back(serial);
-        if (serial.rfind("127.0.0.1", 0) == 0 ||
-            serial.rfind("emulator",  0) == 0)
-            emulators.push_back(serial);
+#ifdef _WIN32
+    LANGID lid     = GetUserDefaultUILanguage();
+    WORD   primary = PRIMARYLANGID(lid);
+    if (primary == LANG_KOREAN) return "ko";
+    if (primary == LANG_CHINESE) return "zh";
+    return "en";
+#else
+    const char* lc = getenv("LANG");
+    if (!lc) return "en";
+    std::string s(lc);
+    if (s.rfind("ko", 0) == 0) return "ko";
+    if (s.rfind("zh", 0) == 0) return "zh";
+    return "en";
+#endif
+}
+
+// ---------------------------------------------------------------------------
+// Injector config  (injector.cfg, exe 옆에 저장)
+// ---------------------------------------------------------------------------
+
+struct InjectorConfig {
+    std::string adb_path;
+    std::string adb_port;
+    std::string lang;
+};
+
+static InjectorConfig load_config(const std::string& cfg_path)
+{
+    InjectorConfig cfg;
+    FILE* f = fopen(cfg_path.c_str(), "r");
+    if (!f) return cfg;
+    char line[2048];
+    while (fgets(line, sizeof(line), f)) {
+        std::string s = line;
+        while (!s.empty() && (s.back() == '\n' || s.back() == '\r' || s.back() == ' '))
+            s.pop_back();
+        auto eq = s.find('=');
+        if (eq == std::string::npos) continue;
+        std::string key = s.substr(0, eq);
+        std::string val = s.substr(eq + 1);
+        if      (key == "adb_path") cfg.adb_path = val;
+        else if (key == "adb_port") cfg.adb_port = val;
+        else if (key == "lang")     cfg.lang      = val;
     }
-    if (!emulators.empty()) return emulators[0];
-    if (!all.empty())       return all[0];
-    return {};
+    fclose(f);
+    return cfg;
+}
+
+static void save_config(const std::string& cfg_path, const InjectorConfig& cfg)
+{
+    FILE* f = fopen(cfg_path.c_str(), "w");
+    if (!f) {
+        printf("%s\n", eversoul::i18n::T("injector.warn_cfg_write", "path", cfg_path).c_str());
+        return;
+    }
+    fprintf(f, "adb_path=%s\n", cfg.adb_path.c_str());
+    fprintf(f, "adb_port=%s\n", cfg.adb_port.c_str());
+    fprintf(f, "lang=%s\n",     cfg.lang.c_str());
+    fclose(f);
+}
+
+static InjectorConfig prompt_config()
+{
+    using namespace eversoul::i18n;
+    InjectorConfig cfg;
+    cfg.lang = detect_system_lang();
+    set_lang(cfg.lang);
+
+    printf("[config] %s\n", T("injector.config_needed").c_str());
+
+    printf("  %s\n  %s\n  > ", T("injector.adb_path_prompt").c_str(),
+                                T("injector.adb_path_example").c_str());
+    std::getline(std::cin, cfg.adb_path);
+    while (!cfg.adb_path.empty() && cfg.adb_path.back() == ' ')
+        cfg.adb_path.pop_back();
+
+    printf("  %s\n  %s\n  > ", T("injector.adb_port_prompt").c_str(),
+                                T("injector.adb_port_example").c_str());
+    std::getline(std::cin, cfg.adb_port);
+    while (!cfg.adb_port.empty() && cfg.adb_port.back() == ' ')
+        cfg.adb_port.pop_back();
+
+    return cfg;
 }
 
 // ---------------------------------------------------------------------------
@@ -155,8 +218,9 @@ static bool probe_port(int port)
 
 static void start_offline_server(const std::string& exe_path)
 {
+    using namespace eversoul::i18n;
     if (probe_port(9999)) {
-        printf("[server] already running on :9999\n");
+        printf("%s\n", T("injector.server_running").c_str());
         return;
     }
 #ifdef _WIN32
@@ -176,10 +240,11 @@ static void start_offline_server(const std::string& exe_path)
             nullptr, wdir.empty() ? nullptr : wdir.c_str(), &si, &pi)) {
         CloseHandle(pi.hProcess);
         CloseHandle(pi.hThread);
-        printf("[server] started\n");
+        printf("%s\n", T("injector.server_started").c_str());
         Sleep(600);
     } else {
-        fprintf(stderr, "[server] CreateProcess failed (err=%lu)\n", GetLastError());
+        fprintf(stderr, "%s\n",
+            T("injector.server_fail", "err", std::to_string(GetLastError())).c_str());
     }
 #else
     pid_t pid = fork();
@@ -188,10 +253,10 @@ static void start_offline_server(const std::string& exe_path)
         execl(exe_path.c_str(), exe_path.c_str(), "--mock-only", nullptr);
         _exit(1);
     } else if (pid > 0) {
-        printf("[server] started (pid=%d)\n", static_cast<int>(pid));
+        printf("%s\n", T("injector.server_started").c_str());
         usleep(600000);
     } else {
-        fprintf(stderr, "[server] fork failed\n");
+        fprintf(stderr, "%s\n", T("injector.server_fail", "err", "fork").c_str());
     }
 #endif
 }
@@ -199,22 +264,6 @@ static void start_offline_server(const std::string& exe_path)
 // ---------------------------------------------------------------------------
 // Logcat stream
 // ---------------------------------------------------------------------------
-
-static std::string find_app_lib_dir(const std::string& adb, const std::string& serial)
-{
-    std::string pm = run_adb(adb,
-        "-s " + serial + " shell pm path com.kakaogames.eversoul 2>&1");
-    // "package:/data/app/~~.../com.kakaogames.eversoul-.../base.apk"
-    auto prefix = pm.find("/data/app/");
-    if (prefix == std::string::npos) return {};
-    std::string path = pm.substr(prefix);
-    while (!path.empty() && (path.back() == '\n' || path.back() == '\r' || path.back() == ' '))
-        path.pop_back();
-    // strip /base.apk -> get package dir
-    auto slash = path.rfind('/');
-    if (slash == std::string::npos) return {};
-    return path.substr(0, slash) + "/lib/arm64";
-}
 
 static void stream_logcat(const std::string& adb, const std::string& serial)
 {
@@ -239,140 +288,189 @@ int main(int argc, char* argv[])
     SetConsoleOutputCP(CP_UTF8);
     SetConsoleCP(CP_UTF8);
 #endif
-    std::string so_path;
     std::string server_exe;
-    std::string opt_serial;
-    std::string opt_adb;
     bool opt_no_wait      = false;
-    bool opt_list_devices = false;
+    bool opt_reset_config = false;
     bool opt_check        = false;
 
     for (int i = 1; i < argc; ++i) {
         std::string a = argv[i];
-        if      (a == "--no-wait")           { opt_no_wait = true; }
-        else if (a == "--list-devices")       { opt_list_devices = true; }
-        else if (a == "--check")              { opt_check = true; }
-        else if (a == "--serial" && i+1<argc) { opt_serial = argv[++i]; }
-        else if (a == "--adb"    && i+1<argc) { opt_adb    = argv[++i]; }
-        else if (so_path.empty())             { so_path = a; }
-        else if (server_exe.empty())          { server_exe = a; }
+        if      (a == "--no-wait")      { opt_no_wait = true; }
+        else if (a == "--reset-config") { opt_reset_config = true; }
+        else if (a == "--check")        { opt_check = true; }
+        else if (server_exe.empty())    { server_exe = a; }
     }
 
-    if (opt_list_devices) {
-        std::string adb = find_adb(opt_adb);
-        printf("%s", run_adb(adb, "devices -l").c_str());
-        return 0;
+    const std::string base_dir    = exe_dir();
+    const std::string cfg_path    = base_dir + "/injector.cfg";
+    const std::string patched_apk = base_dir + "/apk/change_only/base_patched.apk";
+    const std::string split_apk   = base_dir + "/apk/origin/split_config.arm64_v8a.apk";
+    const std::string cawwyayy_so = base_dir + "/apk/change_only/libcawwyayy_orig.so";
+
+    // --- config: load / prompt -----------------------------------------------
+    bool first_run = false;
+    InjectorConfig cfg = {};
+    if (!opt_reset_config) cfg = load_config(cfg_path);
+    if (cfg.lang.empty()) cfg.lang = detect_system_lang();
+    eversoul::i18n::set_lang(cfg.lang);
+
+    if (cfg.adb_path.empty() || cfg.adb_port.empty()) {
+        cfg = prompt_config();
+        save_config(cfg_path, cfg);
+        printf("%s\n", eversoul::i18n::T("injector.config_saved", "path", cfg_path).c_str());
+        first_run = true;
     }
+
+    const std::string& adb    = cfg.adb_path;
+    const std::string  serial = "127.0.0.1:" + cfg.adb_port;
 
     if (opt_check) {
-        std::string adb    = find_adb(opt_adb);
-        std::string serial = opt_serial.empty() ? find_device(adb) : opt_serial;
-        bool has_device    = !serial.empty();
-        bool has_eversoul  = false;
-        if (has_device) {
-            std::string pm = run_adb(adb,
-                "-s " + serial + " shell pm list packages com.kakaogames.eversoul 2>&1");
-            has_eversoul = pm.find("com.kakaogames.eversoul") != std::string::npos;
-        }
-        printf("{\"adb\":\"%s\",\"serial\":\"%s\",\"eversoul\":%s}\n",
+        std::string pm = run_adb(adb,
+            "-s " + serial + " shell pm list packages com.kakaogames.eversoul 2>&1");
+        bool has_eversoul = pm.find("com.kakaogames.eversoul") != std::string::npos;
+        printf("{\"adb\":\"%s\",\"serial\":\"%s\",\"eversoul\":%s,"
+               "\"patched_apk\":%s,\"split_apk\":%s,\"cawwyayy_so\":%s}\n",
             adb.c_str(), serial.c_str(),
-            has_eversoul ? "true" : "false");
+            has_eversoul ? "true" : "false",
+            path_exists(patched_apk) ? "true" : "false",
+            path_exists(split_apk)   ? "true" : "false",
+            path_exists(cawwyayy_so) ? "true" : "false");
         return 0;
     }
 
-    if (so_path.empty()) {
-        fprintf(stderr,
-            "usage: eversoul_injector"
-            " <libswappywrapper.so>"
-            " [<eversoul_offline_server>]"
-            " [--serial <serial>] [--adb <adb>] [--no-wait] [--list-devices] [--check]\n");
+    if (!path_exists(patched_apk)) {
+        fprintf(stderr, "%s\n", eversoul::i18n::T("injector.err_patched_apk", "path", patched_apk).c_str());
+        return 1;
+    }
+    if (!path_exists(split_apk)) {
+        fprintf(stderr, "%s\n", eversoul::i18n::T("injector.err_split_apk", "path", split_apk).c_str());
+        return 1;
+    }
+    if (!path_exists(cawwyayy_so)) {
+        fprintf(stderr, "%s\n", eversoul::i18n::T("injector.err_so", "path", cawwyayy_so).c_str());
         return 1;
     }
 
     if (server_exe.empty()) {
-        std::string dir = dir_of(so_path);
 #ifdef _WIN32
-        server_exe = dir + "\\..\\eversoul_offline_server.exe";
+        server_exe = base_dir + "\\eversoul_offline_server.exe";
 #else
-        server_exe = dir + "/../eversoul_offline_server";
+        server_exe = base_dir + "/eversoul_offline_server";
 #endif
         if (!path_exists(server_exe)) server_exe.clear();
     }
 
+    // --- 결정: SO가 기기에 있으면 간소 모드, 없으면 전체 설치 ---------------
+    // (최초 설정이면 무조건 전체 설치)
+    auto check_so_on_device = [&]() -> bool {
+        std::string out = run_adb(adb,
+            "-s " + serial +
+            " shell ls /data/local/tmp/libcawwyayy_orig.so 2>&1");
+        return out.find("No such file") == std::string::npos &&
+               out.find("not found")    == std::string::npos &&
+               !out.empty();
+    };
+
+    auto do_adb_connect = [&]() -> bool {
+        printf("%s\n", eversoul::i18n::T("injector.step_connect", "serial", serial).c_str());
+        std::string out = run_adb(adb, "connect " + serial);
+        printf("  %s", out.c_str());
+        return out.find("connected") != std::string::npos ||
+               out.find("already")   != std::string::npos;
+    };
+
+    auto do_install = [&]() -> bool {
+        printf("%s\n", eversoul::i18n::T("injector.step_install").c_str());
+        printf("%s\n", eversoul::i18n::T("injector.apk_base",  "path", patched_apk).c_str());
+        printf("%s\n", eversoul::i18n::T("injector.apk_split", "path", split_apk).c_str());
+        std::string result = run_adb(adb,
+            "-s " + serial +
+            " install-multiple -r"
+            " \"" + patched_apk + "\""
+            " \"" + split_apk   + "\"");
+        printf("  %s", result.c_str());
+        if (result.find("Success") == std::string::npos) {
+            fprintf(stderr, "%s\n", eversoul::i18n::T("injector.err_install").c_str());
+            return false;
+        }
+        printf("%s\n", eversoul::i18n::T("injector.install_ok").c_str());
+        return true;
+    };
+
+    auto do_verify = [&]() -> bool {
+        printf("%s\n", eversoul::i18n::T("injector.step_verify").c_str());
+        std::string pm = run_adb(adb,
+            "-s " + serial + " shell pm list packages com.kakaogames.eversoul 2>&1");
+        if (pm.find("com.kakaogames.eversoul") == std::string::npos) {
+            fprintf(stderr, "%s\n", eversoul::i18n::T("injector.err_verify").c_str());
+            return false;
+        }
+        printf("%s\n", eversoul::i18n::T("injector.verify_ok").c_str());
+        return true;
+    };
+
+    auto do_push_reverse = [&](const std::string& step_key) {
+        printf("%s\n", eversoul::i18n::T(step_key).c_str());
+        run_adb(adb, "-s " + serial +
+            " push \"" + cawwyayy_so + "\" /data/local/tmp/libcawwyayy_orig.so");
+        printf("%s\n", eversoul::i18n::T("injector.push_ok").c_str());
+        run_adb(adb, "-s " + serial + " reverse tcp:9999 tcp:9999");
+        printf("%s\n", eversoul::i18n::T("injector.reverse_ok").c_str());
+    };
+
+    auto do_launch = [&](const std::string& step_key) {
+        printf("%s\n", eversoul::i18n::T(step_key).c_str());
+        run_adb(adb, "-s " + serial + " shell am force-stop com.kakaogames.eversoul");
+#ifdef _WIN32
+        Sleep(800);
+#else
+        usleep(800000);
+#endif
+        run_adb(adb, "-s " + serial +
+            " shell am start -n com.kakaogames.eversoul/com.kakaogame.KGUnityPlayerActivity"
+            " -a android.intent.action.MAIN -c android.intent.category.LAUNCHER");
+        printf("%s\n", eversoul::i18n::T("injector.launch_ok").c_str());
+    };
+
     // --- 1. offline server ---------------------------------------------------
-    printf("[1/5] offline server\n");
+    printf("%s\n", eversoul::i18n::T("injector.step_server").c_str());
     start_offline_server(server_exe);
 
-    // --- 2. adb + device -----------------------------------------------------
-    printf("[2/5] adb / device\n");
-    std::string adb = find_adb(opt_adb);
-    printf("  adb: %s\n", adb.c_str());
-
-    std::string serial = opt_serial.empty() ? find_device(adb) : opt_serial;
-    if (serial.empty()) {
-        printf("  no device found.\n"
-               "  enter host:port (e.g. 127.0.0.1:5555): ");
-        std::getline(std::cin, serial);
-        run_adb(adb, "connect " + serial);
-#ifdef _WIN32
-        Sleep(1000);
-#else
-        sleep(1);
-#endif
-        serial = find_device(adb);
-        if (serial.empty()) {
-            fprintf(stderr, "  ERROR: no device after connect\n");
-            return 1;
-        }
-    }
-    printf("  device: %s\n", serial.c_str());
-
-    // --- 3. push SO to /data/local/tmp/ -------------------------------------
-    printf("[3/5] push libswappywrapper.so\n");
-    run_adb(adb, "-s " + serial +
-        " push \"" + so_path + "\" /data/local/tmp/libswappywrapper.so");
-    run_adb(adb, "-s " + serial +
-        " shell chmod 755 /data/local/tmp/libswappywrapper.so");
-    printf("  pushed libswappywrapper.so\n");
-
-    // --- 4. resolve /data/app lib dir + su cp + SELinux + reverse -----------
-    printf("[4/5] resolve app lib dir, su cp, setenforce 0, reverse tcp:9999\n");
-    std::string lib_dir = find_app_lib_dir(adb, serial);
-    if (lib_dir.empty()) {
-        fprintf(stderr, "  ERROR: cannot resolve /data/app lib dir for com.kakaogames.eversoul\n"
-                        "         is the game installed?\n");
+    // --- 2. adb connect ------------------------------------------------------
+    if (!do_adb_connect()) {
+        fprintf(stderr, "%s\n", eversoul::i18n::T("injector.err_connect").c_str());
         return 1;
     }
-    printf("  lib dir: %s\n", lib_dir.c_str());
+    printf("%s\n", eversoul::i18n::T("injector.connect_ok", "serial", serial).c_str());
 
-    std::string dst = lib_dir + "/libswappywrapper.so";
-    run_adb(adb, "-s " + serial +
-        " shell \"su -c 'cp /data/local/tmp/libswappywrapper.so " + dst +
-        " && chmod 755 " + dst + "'\"");
-    printf("  su cp done -> %s\n", dst.c_str());
-
-    run_adb(adb, "-s " + serial + " shell su -c setenforce 0");
-    run_adb(adb, "-s " + serial + " reverse tcp:9999 tcp:9999");
-    printf("  SELinux permissive, reverse tcp:9999\n");
-
-    // --- 5. force-stop + launch game ----------------------------------------
-    printf("[5/5] launch game\n");
-    run_adb(adb, "-s " + serial + " shell am force-stop com.kakaogames.eversoul");
-#ifdef _WIN32
-    Sleep(800);
-#else
-    usleep(800000);
-#endif
-    run_adb(adb, "-s " + serial +
-        " shell am start -n com.kakaogames.eversoul/com.kakaogame.KGUnityPlayerActivity"
-        " -a android.intent.action.MAIN -c android.intent.category.LAUNCHER");
-    printf("  game started\n");
+    if (first_run) {
+        // 전체 파이프라인: install → verify → push SO → reverse → launch
+        if (!do_install())  return 1;
+        if (!do_verify())   return 1;
+        do_push_reverse("injector.step_push_rev");
+        do_launch("injector.step_launch");
+    } else {
+        // SO 존재 확인 → 있으면 간소, 없으면 전체
+        printf("%s\n", eversoul::i18n::T("injector.step_check_so").c_str());
+        if (check_so_on_device()) {
+            printf("%s\n", eversoul::i18n::T("injector.so_ok", "path",
+                "/data/local/tmp/libcawwyayy_orig.so").c_str());
+            do_push_reverse("injector.step_push_rev2");
+            do_launch("injector.step_launch2");
+        } else {
+            printf("%s\n", eversoul::i18n::T("injector.so_missing_fallback").c_str());
+            if (!do_install())  return 1;
+            if (!do_verify())   return 1;
+            do_push_reverse("injector.step_push_rev");
+            do_launch("injector.step_launch");
+        }
+    }
 
     std::thread logcat_thr([&]() { stream_logcat(adb, serial); });
     logcat_thr.detach();
 
     if (opt_no_wait) {
-        printf("\n[OK] running (--no-wait).\n");
+        printf("\n%s\n", eversoul::i18n::T("injector.running_nowait").c_str());
         fflush(stdout);
         for (;;) {
 #ifdef _WIN32
@@ -382,7 +480,7 @@ int main(int argc, char* argv[])
 #endif
         }
     } else {
-        printf("\n[OK] running. press Enter to exit...\n");
+        printf("\n%s\n", eversoul::i18n::T("injector.running_wait").c_str());
         std::cin.get();
     }
 

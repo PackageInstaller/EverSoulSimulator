@@ -177,7 +177,7 @@ if (-not $VSWHERE) {
             "rc.exe /nologo /fo `"$OUT_DIR\injector.res`" src\injector_resources.rc && " +
             "cl.exe /nologo /O2 /MT /EHsc /std:c++17 /utf-8 " +
             "/I`"src`" " +
-            "src\injector_main.cpp src\adb_finder.cpp " +
+            "src\injector_main.cpp src\adb_finder.cpp src\i18n.cpp " +
             "`"$OUT_DIR\injector.res`" " +
             "/link /OUT:`"$OUT_DIR\eversoul_injector.exe`" /SUBSYSTEM:CONSOLE " +
             "ws2_32.lib"
@@ -229,8 +229,25 @@ if ($NDK_ROOT -and (Test-Path $NDK_ROOT)) {
     Copy-Item -Force "$ANDROID_X86_BUILD_DIR\inject_helper" "$ANDROID_BUILD_DIR\inject_helper"
     Write-Host "Built: $ANDROID_BUILD_DIR/inject_helper (x86_64)"
 
+    Write-Host "== Copy APK artifacts =="
+    New-Item -ItemType Directory -Force -Path "build\apk\change_only" | Out-Null
+    New-Item -ItemType Directory -Force -Path "build\apk\origin"      | Out-Null
+    Get-ChildItem "apk\change_only\*" -ErrorAction SilentlyContinue | ForEach-Object {
+        Copy-Item -Force $_.FullName "build\apk\change_only\"
+        Write-Host "Copied: build/apk/change_only/$($_.Name)"
+    }
+    Copy-Item -Force "apk\origin\split_config.arm64_v8a.apk" "build\apk\origin\split_config.arm64_v8a.apk"
+    Write-Host "Copied: build/apk/origin/split_config.arm64_v8a.apk"
+
     Write-Host "== Output hashes =="
-    foreach ($f in @("build\eversoul_offline_server.exe", "$ANDROID_BUILD_DIR\libswappywrapper.so", "$ANDROID_BUILD_DIR\inject_helper", "build\offline_data\libofflinedata.so")) {
+    foreach ($f in @(
+        "build\eversoul_offline_server.exe",
+        "$ANDROID_BUILD_DIR\libswappywrapper.so",
+        "$ANDROID_BUILD_DIR\inject_helper",
+        "build\offline_data\libofflinedata.so",
+        "build\apk\change_only\base_patched.apk",
+        "build\apk\change_only\libcawwyayy_orig.so"
+    )) {
         if (Test-Path $f) {
             $h = (Get-FileHash $f -Algorithm SHA256).Hash.ToLower()
             Write-Host "$h  $f"

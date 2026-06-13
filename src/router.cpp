@@ -68,108 +68,7 @@ namespace eversoul
         {
             if (auto html = offline_data().read("web/account_select.html"))
                 return *html;
-            return R"html(<!doctype html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Eversoul Offline — 계정 선택</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:sans-serif;background:#0d0d1a;color:#e0e0f0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:16px}
-.card{background:#1a1a2e;border-radius:12px;padding:24px;width:100%;max-width:400px;box-shadow:0 4px 24px #0008}
-h1{font-size:1.2rem;margin-bottom:4px;color:#a0c4ff}
-.sub{font-size:.75rem;color:#666;margin-bottom:20px}
-.account-item{display:flex;align-items:center;background:#22223b;border-radius:8px;padding:12px 14px;margin-bottom:10px;gap:10px}
-.account-info{flex:1;min-width:0}
-.account-name{font-weight:700;font-size:.95rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.account-meta{font-size:.72rem;color:#888;margin-top:2px}
-.btn{border:none;border-radius:6px;padding:6px 12px;cursor:pointer;font-size:.8rem;font-weight:600}
-.btn-select{background:#4361ee;color:#fff}
-.btn-delete{background:#333;color:#f44}
-.btn-create{width:100%;background:#2d6a4f;color:#fff;padding:12px;border-radius:8px;font-size:.95rem;margin-top:6px;border:none;cursor:pointer;font-weight:700}
-.form-section{margin-top:16px;background:#22223b;border-radius:8px;padding:14px;display:none}
-.form-section.visible{display:block}
-.form-row{margin-bottom:10px}
-label{display:block;font-size:.78rem;color:#aaa;margin-bottom:4px}
-input,select{width:100%;background:#111;border:1px solid #333;border-radius:6px;padding:8px 10px;color:#e0e0f0;font-size:.9rem}
-.btn-submit{width:100%;background:#4361ee;color:#fff;padding:10px;border-radius:6px;font-size:.9rem;margin-top:8px;border:none;cursor:pointer;font-weight:700}
-.empty{text-align:center;color:#555;padding:20px 0;font-size:.9rem}
-.error{color:#f44;font-size:.8rem;margin-top:6px}
-</style>
-</head>
-<body>
-<div class="card">
-  <h1>Eversoul Offline</h1>
-  <p class="sub">계정을 선택하거나 새로 만드세요.</p>
-  <div id="list"></div>
-  <button class="btn-create" onclick="toggleForm()">+ 새 계정 만들기</button>
-  <div class="form-section" id="form">
-    <div class="form-row">
-      <label>닉네임</label>
-      <input id="nickname" type="text" placeholder="닉네임 입력" maxlength="20">
-    </div>
-    <div class="form-row">
-      <label>로그인 방식</label>
-      <select id="idpCode">
-        <option value="zd3">게스트 (ZinnyDevice)</option>
-        <option value="kakaocapri">카카오</option>
-      </select>
-    </div>
-    <div id="form-error" class="error"></div>
-    <button class="btn-submit" onclick="createAccount()">생성 후 시작</button>
-  </div>
-</div>
-<script>
-const AGREE='zinny://AgreementOk?E001=y&E002=y&E006=y&AN001=y&AN002=y&N002=y&N003=y&joinMemberShip=n&setAdAgreement=n';
-function fmt(ts){if(!ts)return'';var d=new Date(ts);return d.getFullYear()+'.'+(d.getMonth()+1).toString().padStart(2,'0')+'.'+d.getDate().toString().padStart(2,'0');}
-function idpLabel(c){return c==='kakaocapri'?'카카오':'게스트';}
-async function load(){
-  var res=await fetch('/api/accounts');
-  var list=await res.json();
-  var el=document.getElementById('list');
-  if(!list||list.length===0){el.innerHTML='<div class="empty">등록된 계정이 없습니다.</div>';return;}
-  el.innerHTML=list.map(function(a){
-    return '<div class="account-item">'
-      +'<div class="account-info">'
-      +'<div class="account-name">'+esc(a.nickname)+'</div>'
-      +'<div class="account-meta">'+idpLabel(a.idp_code)+' · '+a.player_id+(a.last_login?' · '+fmt(a.last_login):'')+'</div>'
-      +'</div>'
-      +'<button class="btn btn-select" onclick="selectAccount(\''+a.id+'\')">선택</button>'
-      +'<button class="btn btn-delete" onclick="delAccount(\''+a.id+'\')">삭제</button>'
-      +'</div>';
-  }).join('');
-}
-function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-function toggleForm(){
-  var f=document.getElementById('form');
-  f.classList.toggle('visible');
-}
-async function selectAccount(id){
-  await fetch('/api/accounts/select',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:id})});
-  location.replace(AGREE);
-}
-async function delAccount(id){
-  if(!confirm('이 계정을 삭제하시겠습니까?'))return;
-  await fetch('/api/accounts/'+id,{method:'DELETE'});
-  load();
-}
-async function createAccount(){
-  var nick=document.getElementById('nickname').value.trim();
-  var idp=document.getElementById('idpCode').value;
-  var err=document.getElementById('form-error');
-  if(!nick){err.textContent='닉네임을 입력하세요.';return;}
-  err.textContent='';
-  var res=await fetch('/api/accounts/create',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({nickname:nick,idpCode:idp})});
-  if(!res.ok){err.textContent='생성 실패 ('+res.status+')';return;}
-  var data=await res.json();
-  await fetch('/api/accounts/select',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:data.id})});
-  location.replace(AGREE);
-}
-load();
-</script>
-</body>
-</html>)html";
+            return {};
         }
 
         HttpResponse html_response(const std::string &body)
@@ -339,7 +238,7 @@ load();
         if (req.path == "/api/accounts" && req.method == "GET")
         {
             (void)orm::ensure_ready(config().data_dir);
-            auto list = orm::accounts();
+            auto list = orm::accounts(config().data_dir);
             std::string body = "[";
             for (std::size_t i = 0; i < list.size(); ++i) {
                 if (i) body += ",";
@@ -382,7 +281,7 @@ load();
         if (req.path.rfind("/api/accounts/", 0) == 0 && req.method == "DELETE")
         {
             std::string acct_id = req.path.substr(std::string("/api/accounts/").size());
-            if (acct_id.empty() || !orm::delete_account(acct_id))
+            if (acct_id.empty() || !orm::delete_account(acct_id, config().data_dir))
                 return HttpResponse{404, {{"Content-Type", "application/json;charset=UTF-8"}},
                                     R"({"error":"account not found"})"};
             log_line(id, "ACCOUNT", "deleted id=" + acct_id);
@@ -398,15 +297,34 @@ load();
         if (req.path == "/sbaa479o" || req.body.find("f39ad58") != std::string::npos)
         {
             log_line(id, "MOCK", "LIAPP lockincomp device-auth (static replay)");
-            return HttpResponse{200, {{"Content-Type", "application/json"}}, R"({"fdbd8507":"c6c4389e","fdbd8508":"77254158","fdbd8509":"5c6e481f27d101a560ea8d507c9c4dd0a3cddcaefabaf1f986dd93f38c749664137d29245aed0cf1ec8130b7cd9dac6f395d8efc84e3e51a7d1fa9e2e91c789cb2f9ddc14bf10d94a6cacad62decc3b8952f89b18c2105377dff98fa4c2a9f15389da042a63312e6fe92f3395f63f20db03b112bb3db4b10","fdbd850f":"77254158"})"};
+            return HttpResponse{200, {{"Content-Type", "application/json"}}, R"({"fdbd8507":"c6c4389e","fdbd8508":"208276372","fdbd8509":"5c6e481f27d101a560ea8d507c9c4dd0a3cddcaefabaf1f986dd93f38c749664137d29245aed0cf1ec8130b7cd9dac6f395d8efc84e3e51a7d1fa9e2e91c789cb2f9ddc14bf10d94a6cacad62decc3b8952f89b18c2105377dff98fa4c2a9f15389da042a63312e6fe92f3395f63f20db03b112bb3db4b10","fdbd850f":"208276372"})"};
+        }
+
+        if (req.path.rfind("/web/", 0) == 0)
+        {
+            std::string rel = req.path.substr(1);
+            std::string mime = "text/plain";
+            if (rel.size() >= 4 && rel.compare(rel.size()-4,4,".css")==0)
+                mime = "text/css; charset=UTF-8";
+            else if (rel.size() >= 3 && rel.compare(rel.size()-3,3,".js")==0)
+                mime = "application/javascript; charset=UTF-8";
+            else if (rel.size() >= 5 && rel.compare(rel.size()-5,5,".html")==0)
+                mime = "text/html; charset=UTF-8";
+            else if (rel.size() >= 4 && rel.compare(rel.size()-4,4,".png")==0)
+                mime = "image/png";
+            if (auto data = offline_data().read(rel))
+                return HttpResponse{200, {{"Content-Type", mime}}, *data};
+            return HttpResponse{404, {{"Content-Type","text/plain"}}, "not found: " + rel};
         }
 
         if (req.path.rfind("/account-select", 0) == 0 ||
-            req.path.rfind("/account_select.html", 0) == 0 ||
-            req.path.rfind("/web/account_select.html", 0) == 0)
+            req.path.rfind("/account_select.html", 0) == 0)
         {
             log_line(id, "MOCK", "account select page");
-            return html_response(account_select_html());
+            std::string html = account_select_html();
+            if (html.empty())
+                return HttpResponse{503, {{"Content-Type", "text/plain"}}, "account_select.html not found in offline_data"};
+            return html_response(html);
         }
 
         if (req.path == "/favicon.ico")
@@ -418,17 +336,8 @@ load();
         {
             const bool newbie = req.path.find("mode=newbie") != std::string::npos;
             set_account_mode(newbie ? AccountMode::Newbie : AccountMode::Full);
-            const char *label = newbie ? "Newbie account" : "Full account";
-            log_line(id, "MOCK", std::string("account mode selected ") + (newbie ? "newbie" : "full"));
-            const std::string ok = agreement_ok_url();
-            std::string body = std::string(R"(<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><title>Account selected</title></head><body><main><h1>)") +
-                               label +
-                               R"(</h1><p>Returning to game...</p><p><a href=")" +
-                               ok +
-                               R"(">Continue</a></p></main><script>setTimeout(function(){location.replace(')" +
-                               ok +
-                               R"(');},150);</script></body></html>)";
-            return html_response(body);
+            log_line(id, "MOCK", std::string("account mode ") + (newbie ? "newbie" : "full"));
+            return HttpResponse{302, {{"Location", agreement_ok_url()}}, {}};
         }
 
         // socket.io (live-sea-chat) long-poll bootstrap over plain HTTP, before the
@@ -503,6 +412,43 @@ load();
                                 body};
         }
 
+        if (req.path.find("/service/v3/auth/getGoogleIdpId") != std::string::npos)
+        {
+            std::string idp_id;
+            const std::string id_token = body_json_string(req.body, "idToken", "");
+            if (!id_token.empty())
+            {
+                auto p1 = id_token.find('.');
+                if (p1 != std::string::npos)
+                {
+                    auto p2 = id_token.find('.', p1 + 1);
+                    if (p2 != std::string::npos)
+                    {
+                        std::string payload_b64 = id_token.substr(p1 + 1, p2 - p1 - 1);
+                        for (char &c : payload_b64)
+                        {
+                            if (c == '-') c = '+';
+                            else if (c == '_') c = '/';
+                        }
+                        while (payload_b64.size() % 4 != 0)
+                            payload_b64 += '=';
+                        const std::string payload = base64_decode(payload_b64);
+                        idp_id = body_json_string(payload, "sub", "");
+                    }
+                }
+            }
+            if (idp_id.empty())
+            {
+                auto acct = orm::active_account();
+                idp_id = acct ? acct->idp_id : "";
+            }
+            if (idp_id.empty())
+                idp_id = "102305402181706331695";
+            log_line(id, "MOCK", "getGoogleIdpId -> " + idp_id);
+            return HttpResponse{200, {{"Content-Type", "application/json;charset=UTF-8"}},
+                                std::string(R"({"idpId":")") + json_escape(idp_id) + R"("})"};
+        }
+
         if (req.path.find("/service/v4/device/accessToken/create") != std::string::npos)
         {
             log_line(id, "MOCK", "device access token");
@@ -513,6 +459,13 @@ load();
                                std::to_string(unix_ms() + 3600000) +
                                R"(,"accessToken":")" + json_escape(token) + R"("})";
             return HttpResponse{200, {{"Content-Type", "application/json;charset=UTF-8"}}, body};
+        }
+
+        if (req.path.find("/service/v3/agreement/getForConnect") != std::string::npos)
+        {
+            log_line(id, "MOCK", "agreement getForConnect");
+            return HttpResponse{200, {{"Content-Type", "application/json;charset=UTF-8"}},
+                                R"({"agreementPopup":"n","context":"connect","kakaoGameSdkVer":"3.0"})"};
         }
 
         if (req.path.find("/service/v3/agreement/getForLogin") != std::string::npos)
@@ -547,7 +500,16 @@ load();
         if (req.path.find("/service/v3/log/writeSdkBasicLog") != std::string::npos)
         {
             log_line(id, "MOCK", "sdk log accepted");
-            std::string body = std::string(R"({"logId":)") + std::to_string(unix_ms()) + R"(})";
+            const int64_t ts = unix_ms();
+            char uuid_buf[48];
+            std::snprintf(uuid_buf, sizeof(uuid_buf),
+                          "%08x-%04x-4%03x-%04x-%012llx",
+                          static_cast<unsigned>(ts & 0xFFFFFFFFU),
+                          static_cast<unsigned>((ts >> 32) & 0xFFFFU),
+                          static_cast<unsigned>((ts >> 20) & 0xFFFU),
+                          static_cast<unsigned>(0x8000U | ((ts >> 16) & 0x3FFFU)),
+                          static_cast<unsigned long long>(ts));
+            std::string body = std::string(R"({"logId":")") + uuid_buf + R"("})";
             return HttpResponse{200, {{"Content-Type", "application/json;charset=UTF-8"}}, body};
         }
 

@@ -907,6 +907,54 @@ dialog::backdrop { background: rgba(0,0,0,.55); backdrop-filter: blur(3px); }
   font-family: var(--font-mono);
 }
 
+/* ── Account Select page ──────────────────────────────── */
+
+body.acct-body {
+  overflow-y: auto; height: auto;
+  display: block; padding: 20px 16px 40px;
+}
+
+.acct-list { display: flex; flex-direction: column; gap: 8px; min-height: 48px; }
+
+.acct-row {
+  display: flex; align-items: center;
+  background: var(--glass-bg-deep);
+  border: 1px solid var(--glass-border-lo);
+  border-radius: 6px; padding: 10px 12px; gap: 10px;
+  transition: border-color .15s;
+}
+.acct-row.active {
+  border-color: var(--color-accent-dim);
+  background: rgba(0,80,130,.2);
+}
+
+.acct-info { flex: 1; min-width: 0; }
+.acct-name { font-weight: 700; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--color-text); }
+.acct-meta { font-size: 11px; color: var(--color-text-dim); margin-top: 2px; }
+.acct-actions { display: flex; gap: 6px; flex-shrink: 0; }
+
+.acct-empty { text-align: center; color: var(--color-text-dim); padding: 24px 0; font-size: 13px; letter-spacing: .5px; }
+
+.acct-status { font-size: 11px; margin-top: 8px; min-height: 14px; color: var(--color-text-dim); }
+.acct-status.err { color: var(--color-red); }
+
+.acct-select {
+  background: rgba(3,8,18,.82); border: 1px solid var(--glass-border);
+  color: var(--color-text); padding: 6px 10px;
+  font-family: var(--font-mono); font-size: 13px;
+  border-radius: 3px; outline: none; width: 220px;
+}
+.acct-select:focus { border-color: var(--color-accent); }
+.acct-select option { background: var(--color-bg-card); }
+
+.btn-danger {
+  background: rgba(255,51,85,.08); border: 1px solid rgba(255,51,85,.2);
+  color: var(--color-red);
+  padding: 5px 12px; font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: .5px; border-radius: 3px; cursor: pointer; transition: all .15s;
+}
+.btn-danger:hover { background: rgba(255,51,85,.18); border-color: rgba(255,51,85,.4); }
+
 /* ── JSON Tree viewer ──────────────────────────────────── */
 
 .json-tree { font-size: 13px; line-height: 1.7; }

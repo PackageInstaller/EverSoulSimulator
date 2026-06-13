@@ -16,6 +16,7 @@
 #include "anticheat_patch.hpp"
 #include "asset_migration.hpp"
 #include "il2cpp_redirect.hpp"
+#include "java_hook.hpp"
 #include "jni_bypass.hpp"
 #include "liapp_bypass.hpp"
 
@@ -38,8 +39,9 @@ extern "C"
     JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved)
     {
         (void)reserved;
-        __android_log_print(ANDROID_LOG_INFO, kLogTag, "JNI_OnLoad (merged anti-cheat + offline server)");
+        __android_log_print(ANDROID_LOG_INFO, kLogTag, "JNI_OnLoad (hook+redirect layer active)");
         eversoul::jni_bypass::init(vm);
+        eversoul::java_hook::init(vm);
         return JNI_VERSION_1_6;
     }
 

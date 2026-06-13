@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Eversoul Offline — 계정 선택</title>
+<link rel="stylesheet" href="/web/style.css">
+</head>
+<body class="acct-body">
+
+<div style="max-width:440px;margin:0 auto">
+  <div class="card">
+    <div class="card-header">
+      <span class="nav-icon">◈</span>
+      <span class="card-title">계정 선택</span>
+    </div>
+    <div class="card-body">
+      <p style="font-size:11px;color:var(--color-text-dim);margin-bottom:12px;letter-spacing:.5px">
+        계정을 선택하거나 새로 만드세요.
+      </p>
+      <div id="acct-list" class="acct-list">
+        <div class="acct-empty"><span class="t-spinner"></span> 로딩 중…</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:10px">
+    <div class="card-header">
+      <span class="nav-icon">+</span>
+      <span class="card-title">새 계정</span>
+    </div>
+    <div class="card-body">
+      <div class="setting-row">
+        <label style="font-size:12px;color:var(--color-text-dim)">닉네임</label>
+        <input id="new-nick" type="text" placeholder="닉네임" maxlength="20" autocomplete="off" style="width:220px">
+      </div>
+      <div class="setting-row">
+        <label style="font-size:12px;color:var(--color-text-dim)">로그인</label>
+        <select id="new-idp" class="acct-select">
+          <option value="zd3">게스트</option>
+          <option value="kakaocapri">카카오</option>
+          <option value="google">Google</option>
+        </select>
+      </div>
+      <button class="btn btn-primary" onclick="createAccount()"
+        style="width:100%;margin-top:12px;padding:9px 0;font-size:13px;letter-spacing:1px">
+        + 새 계정 만들기
+      </button>
+      <div class="acct-status" id="create-status"></div>
+    </div>
+  </div>
+</div>
+
+<script src="/web/account_select.js"></script>
+</body>
+</html>

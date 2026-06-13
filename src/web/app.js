@@ -39,6 +39,8 @@ const _I = {
   'admin.settings':          { ko:'설정', en:'Settings', zh:'设置' },
   'admin.injector':          { ko:'인젝터', en:'Injector', zh:'注入器' },
   'admin.gamedata':          { ko:'게임 데이터', en:'Game Data', zh:'游戏数据' },
+  'admin.accounts':          { ko:'계정 관리',   en:'Accounts',  zh:'账户管理' },
+  'admin.files':             { ko:'파일',         en:'Files',     zh:'文件' },
   'admin.uptime':            { ko:'업타임', en:'Uptime', zh:'运行时间' },
   'admin.requests':          { ko:'처리 요청', en:'Requests', zh:'已处理请求' },
   'admin.proxy_on':          { ko:'프록시 활성화', en:'Enable Proxy', zh:'启用代理' },
@@ -310,6 +312,8 @@ document.querySelectorAll('.nav-item').forEach(item => {
     if (page === 'settings') { loadSettings(); loadAdbCurrent(); }
     if (page === 'injector') { loadInjectorDevices(); pollInjectorStatus(); }
     if (page === 'gamedata') loadGameData();
+    if (page === 'accounts') loadAdminAccounts();
+    if (page === 'files')    listFiles('responses/');
   });
 });
 
@@ -985,6 +989,227 @@ async function saveGameData() {
     statusEl.textContent = '✗ Server error';
   }
   setTimeout(() => { statusEl.textContent = ''; statusEl.className = 'gamedata-status'; }, 3000);
+}
+
+// ── MAIN: accounts ───────────────────────────────────────────────────────────
+
+let _acctEditId = null;
+
+async function loadAdminAccounts() {
+  const el = document.getElementById('admin-acct-list');
+  el.innerHTML = '<div style="color:var(--color-text-dim);font-size:12px;padding:8px">로딩 중…</div>';
+  try {
+    const r    = await fetch('/admin/api/accounts');
+    const list = await r.json();
+    if (!Array.isArray(list) || list.length === 0) {
+      el.innerHTML = '<div style="color:var(--color-text-dim);font-size:12px;padding:8px">등록된 계정 없음</div>';
+      return;
+    }
+    el.innerHTML = list.map(a => {
+      const isActive = a.active;
+      return `<div class="acct-row${isActive ? ' active' : ''}" style="margin-bottom:6px">` +
+        `<div class="acct-info">` +
+          `<div class="acct-name">${escHtml(a.nickname)}` +
+            (isActive ? `<span class="badge badge-ok" style="margin-left:6px;font-size:9px">현재</span>` : '') +
+          `</div>` +
+          `<div class="acct-meta">${escHtml(a.idp_label || a.idp_code)} · ${escHtml(a.player_id)}` +
+            (a.hero_count !== undefined ? ` · 영웅 ${a.hero_count}명` : '') +
+          `</div>` +
+        `</div>` +
+        `<div class="acct-actions">` +
+          (isActive ? '' : `<button class="btn btn-primary" onclick="adminSelectAccount('${escHtml(a.id)}')">선택</button>`) +
+          `<button class="btn" onclick="openAdminAccountEdit('${escHtml(a.id)}')">편집</button>` +
+          `<button class="btn btn-danger" onclick="adminDeleteAccount('${escHtml(a.id)}')">삭제</button>` +
+        `</div>` +
+      `</div>`;
+    }).join('');
+  } catch(_) {
+    el.innerHTML = '<div style="color:var(--color-red);font-size:12px;padding:8px">로드 실패</div>';
+  }
+}
+
+async function adminSelectAccount(id) {
+  await fetch(`/admin/api/accounts/${id}/select`, { method: 'POST' }).catch(() => {});
+  loadAdminAccounts();
+  pollStatus();
+}
+
+async function adminDeleteAccount(id) {
+  if (!confirm('이 계정을 삭제하시겠습니까?')) return;
+  await fetch(`/admin/api/accounts/${id}`, { method: 'DELETE' }).catch(() => {});
+  closeAdminAccountEdit();
+  loadAdminAccounts();
+}
+
+async function adminCreateAccount() {
+  const nick = document.getElementById('admin-acct-nick').value.trim();
+  const idp  = document.getElementById('admin-acct-idp').value;
+  const sts  = document.getElementById('admin-acct-create-status');
+  if (!nick) { sts.style.color = 'var(--color-red)'; sts.textContent = '닉네임을 입력하세요.'; return; }
+  sts.style.color = 'var(--color-text-dim)'; sts.textContent = '생성 중…';
+  try {
+    const r = await fetch('/admin/api/accounts', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nickname: nick, idpCode: idp }),
+    });
+    const d = await r.json();
+    if (!r.ok || !d.id) { sts.style.color = 'var(--color-red)'; sts.textContent = '생성 실패 (' + r.status + ')'; return; }
+    sts.style.color = 'var(--color-green)'; sts.textContent = '생성 완료';
+    document.getElementById('admin-acct-nick').value = '';
+    setTimeout(() => { sts.textContent = ''; }, 2000);
+    loadAdminAccounts();
+  } catch(_) {
+    sts.style.color = 'var(--color-red)'; sts.textContent = '서버 오류';
+  }
+}
+
+async function openAdminAccountEdit(id) {
+  _acctEditId = id;
+  const card = document.getElementById('admin-acct-edit-card');
+  const body = document.getElementById('admin-acct-edit-body');
+  card.style.display = '';
+  body.innerHTML = '<div style="color:var(--color-text-dim);font-size:12px;padding:4px">로딩 중…</div>';
+  try {
+    const r = await fetch(`/admin/api/accounts/${id}`);
+    const a = await r.json();
+    body.innerHTML =
+      `<div class="setting-row"><label style="font-size:12px;color:var(--color-text-dim)">닉네임</label>` +
+      `<input type="text" id="edit-acct-nick" value="${escHtml(a.nickname)}" style="width:200px"/></div>` +
+      `<div class="setting-row"><label style="font-size:12px;color:var(--color-text-dim)">Player ID</label>` +
+      `<input type="text" id="edit-acct-pid" value="${escHtml(a.player_id)}" style="width:200px"/></div>` +
+      `<div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">` +
+        `<button class="btn btn-primary" onclick="saveAdminAccountEdit()">저장</button>` +
+        `<button class="btn" onclick="openImportModal('${escHtml(id)}')">UserInfo 가져오기</button>` +
+        `<span id="edit-acct-status" style="font-size:11px;color:var(--color-text-dim);margin-top:5px"></span>` +
+      `</div>`;
+  } catch(_) {
+    body.innerHTML = '<div style="color:var(--color-red);font-size:12px">로드 실패</div>';
+  }
+}
+
+function closeAdminAccountEdit() {
+  document.getElementById('admin-acct-edit-card').style.display = 'none';
+  _acctEditId = null;
+}
+
+async function saveAdminAccountEdit() {
+  if (!_acctEditId) return;
+  const nick = document.getElementById('edit-acct-nick')?.value.trim() || '';
+  const pid  = document.getElementById('edit-acct-pid')?.value.trim()  || '';
+  const sts  = document.getElementById('edit-acct-status');
+  try {
+    const r = await fetch(`/admin/api/accounts/${_acctEditId}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nickname: nick, player_id: pid }),
+    });
+    const d = await r.json();
+    if (sts) { sts.style.color = d.ok ? 'var(--color-green)' : 'var(--color-red)'; sts.textContent = d.ok ? '✓ 저장됨' : '✗ 저장 실패'; }
+    if (d.ok) { loadAdminAccounts(); setTimeout(() => { if(sts) sts.textContent=''; }, 2000); }
+  } catch(_) {
+    if (sts) { sts.style.color = 'var(--color-red)'; sts.textContent = '✗ 서버 오류'; }
+  }
+}
+
+function openImportModal(id) {
+  const dlg = document.getElementById('modal-import');
+  if (!dlg) return;
+  dlg.dataset.acctId = id;
+  document.getElementById('import-status').textContent = '';
+  document.getElementById('import-file').value = '';
+  dlg.showModal();
+}
+
+function closeImportModal() {
+  const dlg = document.getElementById('modal-import');
+  if (dlg) dlg.close();
+}
+
+async function doImport() {
+  const dlg  = document.getElementById('modal-import');
+  const id   = dlg?.dataset.acctId;
+  const file = document.getElementById('import-file')?.files?.[0];
+  const sts  = document.getElementById('import-status');
+  if (!id || !file) { if(sts) { sts.style.color='var(--color-red)'; sts.textContent='파일을 선택하세요.'; } return; }
+  if(sts) { sts.style.color='var(--color-text-dim)'; sts.textContent='가져오는 중…'; }
+  try {
+    const text = await file.text();
+    const r = await fetch(`/admin/api/accounts/${id}/import`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: text,
+    });
+    const d = await r.json();
+    if(sts) { sts.style.color = d.ok ? 'var(--color-green)' : 'var(--color-red)'; sts.textContent = d.ok ? '✓ 가져오기 완료' : '✗ ' + (d.reason || '실패'); }
+    if (d.ok) { setTimeout(closeImportModal, 1500); loadAdminAccounts(); }
+  } catch(_) {
+    if(sts) { sts.style.color='var(--color-red)'; sts.textContent='서버 오류'; }
+  }
+}
+
+// ── MAIN: files ───────────────────────────────────────────────────────────────
+
+let _filePath = '';
+
+async function listFiles(prefix) {
+  const el = document.getElementById('file-list');
+  el.textContent = '로딩 중…';
+  try {
+    const r    = await fetch('/admin/api/files/list?prefix=' + encodeURIComponent(prefix));
+    const list = await r.json();
+    if (!Array.isArray(list) || list.length === 0) {
+      el.innerHTML = '<span style="color:var(--color-text-muted)">파일 없음</span>'; return;
+    }
+    el.innerHTML = list.map(f =>
+      `<div class="fixture-item" onclick="openFileEdit('${escHtml(f.path)}')">` +
+        `<div class="fixture-path">${escHtml(f.path)}</div>` +
+        `<div class="fixture-size">${f.bytes} bytes</div>` +
+      `</div>`
+    ).join('');
+  } catch(_) {
+    el.innerHTML = '<span style="color:var(--color-red)">로드 실패</span>';
+  }
+}
+
+async function openFileEdit(path) {
+  _filePath = path;
+  document.getElementById('file-edit-card').style.display = '';
+  document.getElementById('file-edit-title').textContent = path;
+  document.getElementById('file-save-status').textContent = '';
+  const ta = document.getElementById('file-editor');
+  ta.value = '로딩 중…';
+  try {
+    const r = await fetch('/admin/api/files?path=' + encodeURIComponent(path));
+    ta.value = await r.text();
+  } catch(_) {
+    ta.value = '로드 실패';
+  }
+}
+
+function closeFileEdit() {
+  document.getElementById('file-edit-card').style.display = 'none';
+  _filePath = '';
+}
+
+async function saveFileEdit() {
+  if (!_filePath) return;
+  const content = document.getElementById('file-editor').value;
+  const sts     = document.getElementById('file-save-status');
+  sts.style.color = 'var(--color-text-dim)'; sts.textContent = '저장 중…';
+  try {
+    const r = await fetch('/admin/api/files?path=' + encodeURIComponent(_filePath), {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain; charset=UTF-8' },
+      body: content,
+    });
+    const d = await r.json();
+    sts.style.color = d.ok ? 'var(--color-green)' : 'var(--color-red)';
+    sts.textContent = d.ok ? '✓ 저장됨' : '✗ ' + (d.reason || '실패');
+    if (d.ok) setTimeout(() => { sts.textContent = ''; }, 2500);
+  } catch(_) {
+    sts.style.color = 'var(--color-red)'; sts.textContent = '✗ 서버 오류';
+  }
 }
 
 // ── MAIN: about modal ─────────────────────────────────────────────────────────

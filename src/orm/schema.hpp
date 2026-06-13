@@ -11,6 +11,11 @@ struct Kv {
     std::string v;
 };
 
+struct GlobalKv {
+    std::string k;
+    std::string v;
+};
+
 struct Hero {
     std::string idx;
     int heroNo = 0;
