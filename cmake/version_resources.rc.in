@@ -3,8 +3,8 @@
 IDI_APP ICON "@EVERSOUL_ICON_PATH@"
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,0,0,0
- PRODUCTVERSION 1,0,0,0
+ FILEVERSION @EVERSOUL_VERSION_COMMA@,0
+ PRODUCTVERSION @EVERSOUL_VERSION_COMMA@,0
  FILEFLAGSMASK 0x3fL
  FILEFLAGS 0x0L
  FILEOS 0x40004L
@@ -17,12 +17,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "EverSoul Simulator Team"
             VALUE "FileDescription", "@EVERSOUL_FILE_DESC@"
-            VALUE "FileVersion", "1.0.0.0"
+            VALUE "FileVersion", "@EVERSOUL_VERSION@.0"
             VALUE "InternalName", "@EVERSOUL_INTERNAL_NAME@"
-            VALUE "LegalCopyright", "Original author: Shao Jiang. Windows port: Nekoi."
+            VALUE "LegalCopyright", "author: Shao Jiang.Fork: Nekoi."
             VALUE "OriginalFilename", "@EVERSOUL_ORIG_FILENAME@"
             VALUE "ProductName", "EverSoul Offline Simulator"
-            VALUE "ProductVersion", "1.0.0.0"
+            VALUE "ProductVersion", "@EVERSOUL_VERSION@.0"
         END
     END
     BLOCK "VarFileInfo"

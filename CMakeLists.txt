@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.21)
 project(eversoul_offline C CXX)
 
+file(READ "${CMAKE_SOURCE_DIR}/package.json" _PKG_JSON)
+string(JSON EVERSOUL_VERSION GET "${_PKG_JSON}" version)
+string(REPLACE "." "," EVERSOUL_VERSION_COMMA "${EVERSOUL_VERSION}")
+
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -85,9 +89,7 @@ if(ANDROID)
   # No server runs inside the device process; game traffic reaches the desktop server
   # via il2cpp_redirect (127.0.0.1:9999) + adb reverse tcp:9999 tcp:9999.
   add_library(swappywrapper SHARED
-    ${EVERSOUL_ANDROID_SOURCES}
-    ${EVERSOUL_SERVER_SOURCES}
-    ${PROTO_OBJ})
+    ${EVERSOUL_ANDROID_SOURCES})
   target_include_directories(swappywrapper PRIVATE ${EVERSOUL_INCLUDE_DIRS})
   target_compile_options(swappywrapper PRIVATE -O2 -fvisibility=hidden -Wno-format-security)
   target_link_libraries(swappywrapper PRIVATE log dl m)

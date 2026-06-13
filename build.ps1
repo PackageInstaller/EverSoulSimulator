@@ -4,6 +4,8 @@ $ErrorActionPreference = "Stop"
 $ROOT = Split-Path -Parent $MyInvocation.MyCommand.Definition
 Push-Location $ROOT
 
+git config core.hooksPath .githooks
+
 try {
 
 $PYTHON = $null
@@ -228,82 +230,39 @@ if ($NDK_ROOT -and (Test-Path $NDK_ROOT)) {
     New-Item -ItemType Directory -Force -Path "build\apk" | Out-Null
 
     $APKTOOL    = Join-Path $ROOT "tools\apktool_3.0.2.jar"
-    $PATCH_SMALI = Join-Path $ROOT "tools\patch_smali.py"
-    $PATCHED_SO  = Join-Path $ROOT "$ANDROID_BUILD_DIR\libswappywrapper.so"
+    $SMALI_WORK = Join-Path $ROOT "sample2\smali_work"
+    $PATCHED_SO = Join-Path $ROOT "$ANDROID_BUILD_DIR\libswappywrapper.so"
 
-    $SDK_BUILD_TOOLS = Join-Path $env:LOCALAPPDATA "Android\Sdk\build-tools"
-    $APKSIGNER = $null
-    if (Test-Path $SDK_BUILD_TOOLS) {
-        $APKSIGNER = Get-ChildItem $SDK_BUILD_TOOLS -Directory |
-            Sort-Object Name -Descending | Select-Object -First 1 |
-            ForEach-Object { Join-Path $_.FullName "apksigner.bat" } |
-            Where-Object { Test-Path $_ }
-    }
+    if (-not (Test-Path $APKTOOL))    { Write-Error "apktool not found: $APKTOOL"; exit 1 }
+    if (-not (Test-Path $SMALI_WORK)) { Write-Error "smali_work not found: $SMALI_WORK"; exit 1 }
 
-    $KEYSTORE      = if ($env:KEYSTORE_PATH) { $env:KEYSTORE_PATH } else { Join-Path $ROOT "sample2\sign.keystore" }
-    $KEYSTORE_PASS = if ($env:KEYSTORE_PASS) { $env:KEYSTORE_PASS } else { "android" }
-
-    if (-not (Test-Path $APKTOOL))   { Write-Error "apktool not found: $APKTOOL"; exit 1 }
-    if (-not $APKSIGNER)             { Write-Error "apksigner not found in Android SDK build-tools"; exit 1 }
-    if (-not (Test-Path $KEYSTORE))  { Write-Error "keystore not found: $KEYSTORE"; exit 1 }
-
-    $ORIGIN_BASE  = Join-Path $ROOT "apk\origin\base.apk"
-    $ORIGIN_SPLIT = Join-Path $ROOT "apk\origin\split_config.arm64_v8a.apk"
-    if (-not (Test-Path $ORIGIN_BASE))  { Write-Error "origin base.apk not found: $ORIGIN_BASE"; exit 1 }
-    if (-not (Test-Path $ORIGIN_SPLIT)) { Write-Error "origin split APK not found: $ORIGIN_SPLIT"; exit 1 }
-
-    $MAKE_DIR     = Join-Path $ROOT "apk\make"
-    $MAKE_BASE    = Join-Path $MAKE_DIR "base.apk"
-    $DECODED_DIR  = Join-Path $MAKE_DIR "base_decoded"
-    $UNSIGNED_APK = Join-Path $MAKE_DIR "base_patched_unsigned.apk"
-
-    Remove-Item -Recurse -Force $MAKE_DIR -ErrorAction SilentlyContinue
-    New-Item -ItemType Directory -Force -Path $MAKE_DIR | Out-Null
-
-    Write-Host "  cp origin -> apk/make/"
-    Copy-Item -Force $ORIGIN_BASE  $MAKE_BASE
-    Copy-Item -Force $ORIGIN_SPLIT (Join-Path $MAKE_DIR "split_config.arm64_v8a.apk")
-
-    Write-Host "  apktool decode..."
-    & java -jar $APKTOOL d $MAKE_BASE -o $DECODED_DIR -f --no-res
-    if ($LASTEXITCODE -ne 0) { Write-Error "apktool decode failed"; exit 1 }
-
-    Write-Host "  smali patch (loadLibrary)..."
-    & $PYTHON $PATCH_SMALI $DECODED_DIR
-    if ($LASTEXITCODE -ne 0) { Write-Error "smali patch failed"; exit 1 }
-
-    $LIB_DIR = Join-Path $DECODED_DIR "lib\arm64-v8a"
+    $LIB_DIR = Join-Path $SMALI_WORK "lib\arm64-v8a"
     New-Item -ItemType Directory -Force -Path $LIB_DIR | Out-Null
     Copy-Item -Force $PATCHED_SO (Join-Path $LIB_DIR "libswappywrapper.so")
-    Write-Host "  libswappywrapper.so injected"
-
-    Write-Host "  apktool build..."
-    & java -jar $APKTOOL b $DECODED_DIR -o $UNSIGNED_APK
-    if ($LASTEXITCODE -ne 0) { Write-Error "apktool build failed"; exit 1 }
+    Write-Host "  libswappywrapper.so -> smali_work/lib/arm64-v8a/"
 
     $PATCHED_APK_OUT = Join-Path $ROOT "build\apk\base_patched.apk"
-    Write-Host "  apksigner v2..."
-    & $APKSIGNER sign --ks $KEYSTORE --ks-pass "pass:$KEYSTORE_PASS" --out $PATCHED_APK_OUT $UNSIGNED_APK
-    if ($LASTEXITCODE -ne 0) { Write-Error "apksigner failed"; exit 1 }
-    Write-Host "Patched: build/apk/base_patched.apk"
+    Write-Host "  apktool build (smali_work)..."
+    & java -jar $APKTOOL b $SMALI_WORK -o $PATCHED_APK_OUT
+    if ($LASTEXITCODE -ne 0) { Write-Error "apktool build failed"; exit 1 }
+    Write-Host "Patched: build/apk/base_patched.apk (unsigned — root replace)"
 
-    Add-Type -AssemblyName System.IO.Compression.FileSystem
-    $CAWWYAYY_OUT = Join-Path $ROOT "build\apk\libcawwyayy_patched.so"
-    $zip = [System.IO.Compression.ZipFile]::OpenRead((Join-Path $MAKE_DIR "split_config.arm64_v8a.apk"))
-    $entry = $zip.Entries | Where-Object { $_.FullName -eq "lib/arm64-v8a/libcawwyayy.so" } | Select-Object -First 1
-    if ($entry) {
-        [System.IO.Compression.ZipFileExtensions]::ExtractToFile($entry, $CAWWYAYY_OUT, $true)
-        Write-Host "Extracted: build/apk/libcawwyayy_patched.so"
-    } else {
-        Write-Warning "libcawwyayy.so not found in make/split_config.arm64_v8a.apk — injector push step will fail"
+    $ORIGIN_SPLIT = Join-Path $ROOT "apk\origin\split_config.arm64_v8a.apk"
+    if (Test-Path $ORIGIN_SPLIT) {
+        Add-Type -AssemblyName System.IO.Compression.FileSystem
+        $CAWWYAYY_OUT = Join-Path $ROOT "build\apk\libcawwyayy_patched.so"
+        $zip = [System.IO.Compression.ZipFile]::OpenRead($ORIGIN_SPLIT)
+        $entry = $zip.Entries | Where-Object { $_.FullName -eq "lib/arm64-v8a/libcawwyayy.so" } | Select-Object -First 1
+        if ($entry) {
+            [System.IO.Compression.ZipFileExtensions]::ExtractToFile($entry, $CAWWYAYY_OUT, $true)
+            Write-Host "Extracted: build/apk/libcawwyayy_patched.so"
+        } else {
+            Write-Warning "libcawwyayy.so not found in origin split APK"
+        }
+        $zip.Dispose()
+        Copy-Item -Force $ORIGIN_SPLIT "build\apk\split_config.arm64_v8a.apk"
+        Write-Host "Copied: build/apk/split_config.arm64_v8a.apk"
     }
-    $zip.Dispose()
-
-    Copy-Item -Force (Join-Path $MAKE_DIR "split_config.arm64_v8a.apk") "build\apk\split_config.arm64_v8a.apk"
-    Write-Host "Copied: build/apk/split_config.arm64_v8a.apk"
-
-    Remove-Item -Recurse -Force $MAKE_DIR -ErrorAction SilentlyContinue
-    Write-Host "Cleaned: apk/make/"
 
     Write-Host "== Output hashes =="
     foreach ($f in @(

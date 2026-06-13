@@ -326,7 +326,7 @@ static void start_offline_server(const std::string& exe_path)
 static void stream_logcat(const std::string& adb, const std::string& serial)
 {
     FILE* pipe = eversoul::adb_popen(adb,
-        "-s " + serial + " logcat -s libswappywrapper:V *:S");
+        "-s " + serial + " logcat -s libswappywrapper:V eversoul_offline:V *:S");
     if (!pipe) return;
     char buf[512];
     while (fgets(buf, sizeof(buf), pipe))

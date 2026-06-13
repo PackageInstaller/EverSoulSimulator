@@ -19,6 +19,8 @@
   <img src="https://img.shields.io/badge/NDK-r27%2B-brightgreen?style=for-the-badge" alt="NDK r27+" />
   &nbsp;
   <img src="https://img.shields.io/badge/C%2B%2B-17-00599C?style=for-the-badge&logo=cplusplus&logoColor=white" alt="C++17" />
+  &nbsp;
+  <img src="https://img.shields.io/badge/version-0.0.2-blue?style=for-the-badge" alt="v0.0.1" />
 </p>
 
 <p align="center">

@@ -32,7 +32,7 @@ static void open_browser(int port)
 int main(int argc, char **argv)
 {
     using namespace eversoul;
-    int port       = kDefaultPort;
+    int port       = kPcForwardPort;
     int admin_port = admin::kDefaultAdminPort;
 
     for (int i = 1; i < argc; ++i)

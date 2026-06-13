@@ -9,7 +9,8 @@
 namespace eversoul
 {
 
-    inline constexpr int kDefaultPort = 9999;
+    inline constexpr int kDefaultPort      = 19999;
+    inline constexpr int kPcForwardPort    = 9999;
     inline constexpr std::size_t kMaxHeaderBytes = 1024 * 1024;
     inline constexpr std::size_t kMaxLogBody = 1024 * 1024;
     inline constexpr const char *kDefaultPlayerId = "431921183232";
@@ -37,7 +38,7 @@ namespace eversoul
     {
 #ifdef __ANDROID__
         bool proxy_enabled = false;
-        std::string game_server_url = "http://127.0.0.1:9999";
+        std::string game_server_url = "http://127.0.0.1:19999";
         std::string data_dir = "/data/data/com.kakaogames.eversoul/files/offline_data";
         bool prefer_fixtures = true;
 #else

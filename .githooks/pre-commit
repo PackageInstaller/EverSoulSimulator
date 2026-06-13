@@ -1,0 +1,2 @@
+#!/bin/sh
+python tools/bump_version.py

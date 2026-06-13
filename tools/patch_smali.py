@@ -25,8 +25,18 @@ def patch(smali_path):
         print(f"already patched: {smali_path}")
         return
 
-    pattern = r"(\.method [^\n]*attachBaseContext[^\n]*\n[ \t]*\.locals [^\n]*\n)"
-    new_content, count = re.subn(pattern, r"\1" + INJECT, content)
+    def fix_locals_and_inject(m):
+        method_decl = m.group(1)
+        locals_line = m.group(2)
+        m2 = re.search(r'(\.locals\s+)(\d+)', locals_line)
+        n = int(m2.group(2))
+        new_locals_line = locals_line.replace(
+            m2.group(0), m2.group(1) + str(n + 1)
+        )
+        return method_decl + new_locals_line + INJECT
+
+    pattern = r"(\.method [^\n]*attachBaseContext[^\n]*\n)([ \t]*\.locals [^\n]*\n)"
+    new_content, count = re.subn(pattern, fix_locals_and_inject, content)
 
     if count == 0:
         print(

@@ -1,0 +1,10 @@
+{
+  "name": "eversoul-offline-simulator",
+  "version": "0.0.2",
+  "description": "EverSoul Offline Simulator",
+  "authors": [
+    "Shao Jiang",
+    "Nekoi"
+  ],
+  "license": "SEE LICENSE IN LICENSE"
+}

@@ -304,11 +304,11 @@ static int hook_connect(int sockfd, const struct sockaddr *addr, socklen_t addrl
         if (host != INADDR_LOOPBACK && (port == 80 || port == 443 || port == 8080)) {
             char ip_str[INET_ADDRSTRLEN] = {};
             inet_ntop(AF_INET, &in4->sin_addr, ip_str, sizeof(ip_str));
-            logi("liapp_bypass: connect redirect %s:%d -> 127.0.0.1:9999", ip_str, (int)port);
+            logi("liapp_bypass: connect redirect %s:%d -> 127.0.0.1:19999", ip_str, (int)port);
             struct sockaddr_in local{};
             local.sin_family      = AF_INET;
             local.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
-            local.sin_port        = htons(9999);
+            local.sin_port        = htons(19999);
             return g_orig_connect(sockfd,
                                   reinterpret_cast<const struct sockaddr *>(&local),
                                   static_cast<socklen_t>(sizeof(local)));

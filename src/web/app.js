@@ -1424,14 +1424,8 @@ async function saveFileEdit() {
 
 // ── MAIN: about modal ─────────────────────────────────────────────────────────
 
-function openAbout()  {
-  const dlg = document.getElementById('modal-about');
-  if (dlg && dlg.showModal) dlg.showModal();
-}
-function closeAbout() {
-  const dlg = document.getElementById('modal-about');
-  if (dlg && dlg.close) dlg.close();
-}
+function openAbout()  { document.getElementById('modal-about').showModal(); }
+function closeAbout() { document.getElementById('modal-about').close(); }
 document.getElementById('modal-about').addEventListener('click', e => {
   const dlg = e.currentTarget;
   const rect = dlg.getBoundingClientRect();

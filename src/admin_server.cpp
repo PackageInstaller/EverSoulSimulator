@@ -356,7 +356,7 @@ void handle_status(socket_fd_t fd)
     }
 
     std::string body = "{";
-    body += "\"port\":"         + std::to_string(kDefaultPort);
+    body += "\"port\":"         + std::to_string(kPcForwardPort);
     body += ",\"admin_port\":"  + std::to_string(g_current_port);
     body += ",\"request_count\":" + std::to_string(request_id().load());
     body += ",\"fixture_count\":" + std::to_string(fixture_store().size());
@@ -393,7 +393,7 @@ void handle_health(socket_fd_t fd)
 
     add("Game Server",
         running().load(),
-        running().load() ? "port " + std::to_string(kDefaultPort) + " active" : "stopped");
+        running().load() ? "port " + std::to_string(kPcForwardPort) + " active" : "stopped");
 
     std::string dbpath = orm::opened_path();
     bool db_ok = !dbpath.empty();
@@ -1928,6 +1928,41 @@ void accept_loop(int port)
 
 // ── Public API ────────────────────────────────────────────────────────────────
 
+static void logcat_to_sink_thread()
+{
+    std::this_thread::sleep_for(std::chrono::seconds(3));
+    while (g_running.load())
+    {
+        std::string adb  = resolve_adb_path(config().data_dir);
+        std::string port = load_adb_port(config().data_dir);
+        if (adb.empty() || port.empty())
+        {
+            std::this_thread::sleep_for(std::chrono::seconds(5));
+            continue;
+        }
+        std::string args = "-s 127.0.0.1:" + port +
+            " logcat -s libswappywrapper:V eversoul_offline:V *:S";
+        FILE *pipe = adb_popen(adb, args);
+        if (!pipe)
+        {
+            std::this_thread::sleep_for(std::chrono::seconds(5));
+            continue;
+        }
+        char buf[1024];
+        while (g_running.load() && fgets(buf, sizeof(buf), pipe))
+        {
+            std::string line = buf;
+            while (!line.empty() && (line.back() == '\n' || line.back() == '\r'))
+                line.pop_back();
+            if (!line.empty())
+                log_sink_push(LogEntry{0, now_string(), "logcat", line});
+        }
+        adb_pclose(pipe);
+        if (g_running.load())
+            std::this_thread::sleep_for(std::chrono::seconds(2));
+    }
+}
+
 void start_admin(int port)
 {
     std::lock_guard<std::mutex> lk(g_start_mu);
@@ -1938,6 +1973,7 @@ void start_admin(int port)
     g_running.store(true);
     g_thread = std::thread([port]() { accept_loop(port); });
     g_thread.detach();
+    std::thread([]() { logcat_to_sink_thread(); }).detach();
 }
 
 void stop_admin()

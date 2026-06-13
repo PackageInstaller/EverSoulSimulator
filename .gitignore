@@ -1,50 +1,38 @@
-# Prerequisites
+# ── C++ compile output ───────────────────────────────────────────────────────
 *.d
-
-# Compiled Object files
-*.slo
-*.lo
 *.o
 *.obj
-
-# Precompiled Headers
+*.slo
+*.lo
 *.gch
 *.pch
+*.dwo
 
-# Linker files
+# ── Linker / debugger artifacts ──────────────────────────────────────────────
 *.ilk
-
-# Debugger Files
 *.pdb
 
-# Compiled Dynamic libraries
+# ── Libraries ────────────────────────────────────────────────────────────────
+*.a
+*.la
+*.lai
+*.lib
 *.so
+*.so.*
 *.dylib
 *.dll
-*.so.*
 
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
+# ── Executables ──────────────────────────────────────────────────────────────
 *.exe
 *.out
 *.app
 
-# Build directories
+# ── Build directories ────────────────────────────────────────────────────────
 build/
 Build/
 build-*/
 
-# CMake generated files
+# ── CMake generated files ────────────────────────────────────────────────────
 CMakeFiles/
 CMakeCache.txt
 cmake_install.cmake
@@ -52,32 +40,34 @@ Makefile
 install_manifest.txt
 compile_commands.json
 
-# Temporary files
+# ── Third-party downloads (not committed) ────────────────────────────────────
+vcpkg_installed/
+tools/frida/
+SDK/
+
+# ── Python bytecode cache ────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+
+# ── Editor and temp files ────────────────────────────────────────────────────
+.vscode/
 *.tmp
-*.log
 *.bak
 *.swp
 
-# vcpkg
-vcpkg_installed/
+# ── Logs ─────────────────────────────────────────────────────────────────────
+*.log
 
-# debug information files
-*.dwo
-
-# test output & cache
+# ── Test / debug output ──────────────────────────────────────────────────────
 Testing/
 .cache/
 *.pcap
 
-# Eversoul Offline ignores
+# ── Project-specific ─────────────────────────────────────────────────────────
 *.har
 *.db
-.claude/
-tutorial_decode_out/
 apk/
-tools/__pycache__/*
-tools/frida/
+tutorial_decode_out/
 sample/
 sample2/
-SDK/
-.vscode/
+.claude/

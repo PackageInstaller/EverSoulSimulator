@@ -1152,11 +1152,6 @@ namespace eversoul
             return game_binary_response(req, {});
         }
 
-        if (!config().proxy_enabled)
-        {
-            return HttpResponse{404, {{"Content-Type", "application/json;charset=UTF-8"}}, R"({"error":"no mock route","hint":"run with --proxy to forward unknown routes"})"};
-        }
-
         return proxy_request(id, req);
     }
 } // namespace eversoul
