@@ -12,6 +12,8 @@
 <p align="center">
   <a href="README_en.md">English</a> &nbsp;|&nbsp; <a href="README_cn.md">中文</a> &nbsp;|&nbsp; <strong>한국어</strong>
 </p>
+- [English Documentation](README_en.md) | **中文文档**
+- Discord 社群: [加入我们的 Discord](https://discord.gg/ZptEmqfuv)
 
 ---
 
