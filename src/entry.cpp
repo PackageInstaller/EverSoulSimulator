@@ -15,10 +15,12 @@
 
 #include "anticheat_patch.hpp"
 #include "asset_migration.hpp"
+#include "common.hpp"
 #include "il2cpp_redirect.hpp"
 #include "java_hook.hpp"
 #include "jni_bypass.hpp"
 #include "liapp_bypass.hpp"
+#include "server.hpp"
 
 namespace
 {
@@ -34,6 +36,7 @@ extern "C"
         eversoul::liapp_bypass::install();
         eversoul::anticheat::install();
         eversoul::il2cpp_redirect::install();
+        eversoul::start_async(eversoul::kDefaultPort);
     }
 
     JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved)

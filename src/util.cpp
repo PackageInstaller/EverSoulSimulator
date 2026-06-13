@@ -137,7 +137,26 @@ namespace eversoul
                 }
                 else if (c == '"')
                 {
-                    return body.substr(quote + 1, end - quote - 1);
+                    std::string raw = body.substr(quote + 1, end - quote - 1);
+                    std::string result;
+                    result.reserve(raw.size());
+                    for (std::size_t i = 0; i < raw.size(); ++i) {
+                        if (raw[i] == '\\' && i + 1 < raw.size()) {
+                            ++i;
+                            switch (raw[i]) {
+                                case '\\': result += '\\'; break;
+                                case '"':  result += '"';  break;
+                                case '/':  result += '/';  break;
+                                case 'n':  result += '\n'; break;
+                                case 'r':  result += '\r'; break;
+                                case 't':  result += '\t'; break;
+                                default:   result += raw[i]; break;
+                            }
+                        } else {
+                            result += raw[i];
+                        }
+                    }
+                    return result;
                 }
                 ++end;
             }

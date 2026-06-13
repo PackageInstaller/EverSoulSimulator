@@ -49,7 +49,7 @@ static void loge(const char *fmt, A... a)
 // ---------------------------------------------------------------------------
 // Orig SO path — original (unpatched) libcawwyayy.so for integrity redirect
 // ---------------------------------------------------------------------------
-static constexpr const char *kOrigSoPath = "/data/local/tmp/libcawwyayy_orig.so";
+static constexpr const char *kPatchedSoPath = "/data/local/tmp/libcawwyayy_patched.so";
 
 // ---------------------------------------------------------------------------
 // Original function pointers (saved by libc inline hooks)
@@ -189,7 +189,7 @@ static FILE *hook_fopen(const char *path, const char *mode)
 {
     if (is_liapp_so_path(path)) {
         logi("liapp_bypass: fopen redirect cawwyayy -> orig: %s", path);
-        return g_orig_fopen(kOrigSoPath, mode);
+        return g_orig_fopen(kPatchedSoPath, mode);
     }
     if (is_blocked_path(path)) {
         logi("liapp_bypass: fopen blocked: %s", path);
@@ -203,7 +203,7 @@ static FILE *hook_fopen64(const char *path, const char *mode)
 {
     if (is_liapp_so_path(path)) {
         logi("liapp_bypass: fopen64 redirect cawwyayy -> orig: %s", path);
-        return g_orig_fopen64(kOrigSoPath, mode);
+        return g_orig_fopen64(kPatchedSoPath, mode);
     }
     if (is_blocked_path(path)) {
         logi("liapp_bypass: fopen64 blocked: %s", path);
@@ -224,8 +224,8 @@ static int hook_openat(int dirfd, const char *path, int flags, ...)
     if (is_liapp_so_path(path)) {
         logi("liapp_bypass: openat redirect cawwyayy -> orig: %s", path);
         return (flags & O_CREAT)
-               ? g_orig_openat(dirfd, kOrigSoPath, flags, mode)
-               : g_orig_openat(dirfd, kOrigSoPath, flags);
+               ? g_orig_openat(dirfd, kPatchedSoPath, flags, mode)
+               : g_orig_openat(dirfd, kPatchedSoPath, flags);
     }
     if (is_blocked_path(path)) {
         logi("liapp_bypass: openat blocked: %s", path);
@@ -253,8 +253,8 @@ static int hook_openat64(int dirfd, const char *path, int flags, ...)
     if (is_liapp_so_path(path)) {
         logi("liapp_bypass: openat64 redirect cawwyayy -> orig: %s", path);
         return (flags & O_CREAT)
-               ? g_orig_openat64(dirfd, kOrigSoPath, flags, mode)
-               : g_orig_openat64(dirfd, kOrigSoPath, flags);
+               ? g_orig_openat64(dirfd, kPatchedSoPath, flags, mode)
+               : g_orig_openat64(dirfd, kPatchedSoPath, flags);
     }
     if (is_blocked_path(path)) {
         logi("liapp_bypass: openat64 blocked: %s", path);
@@ -301,7 +301,7 @@ static int hook_connect(int sockfd, const struct sockaddr *addr, socklen_t addrl
         const auto *in4 = reinterpret_cast<const struct sockaddr_in *>(addr);
         const uint32_t host = ntohl(in4->sin_addr.s_addr);
         const uint16_t port = ntohs(in4->sin_port);
-        if (host != INADDR_LOOPBACK && (port == 80 || port == 8080)) {
+        if (host != INADDR_LOOPBACK && (port == 80 || port == 443 || port == 8080)) {
             char ip_str[INET_ADDRSTRLEN] = {};
             inet_ntop(AF_INET, &in4->sin_addr, ip_str, sizeof(ip_str));
             logi("liapp_bypass: connect redirect %s:%d -> 127.0.0.1:9999", ip_str, (int)port);
@@ -370,7 +370,7 @@ static void patch_got_entry(std::uintptr_t base, std::uintptr_t offset,
     }
     void *orig = *slot;
     *slot = hook_fn;
-    mprotect(page, 4096, PROT_READ | PROT_WRITE);
+    mprotect(page, 4096, PROT_READ);
     logi("liapp_bypass: GOT %s patched 0x%lx -> hook (was %p)",
          name, static_cast<unsigned long>(base + offset), orig);
 }

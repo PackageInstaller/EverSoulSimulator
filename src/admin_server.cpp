@@ -473,6 +473,30 @@ void handle_health(socket_fd_t fd)
     bool inj_up = g_injector_running.load();
     checks.push_back({"Injector Process", inj_up ? "ok" : "ok", inj_up ? "running" : "idle"});
 
+    {
+        using namespace eversoul::admin;
+        auto entries = log_sink_recent(1000);
+        bool liapp_ok     = false;
+        bool jni_ok       = false;
+        bool java_ok      = false;
+        bool il2cpp_ok    = false;
+        bool anticheat_ok = false;
+        for (auto it = entries.rbegin(); it != entries.rend(); ++it) {
+            if (it->tag != "INJECTOR" && it->tag != "logcat") continue;
+            const auto& txt = it->text;
+            if (!liapp_ok     && txt.find("GOT fopen") != std::string::npos)         liapp_ok     = true;
+            if (!jni_ok       && txt.find("jni_bypass") != std::string::npos)        jni_ok       = true;
+            if (!java_ok      && txt.find("java_hook") != std::string::npos)         java_ok      = true;
+            if (!il2cpp_ok    && txt.find("il2cpp_redirect") != std::string::npos)   il2cpp_ok    = true;
+            if (!anticheat_ok && txt.find("anticheat") != std::string::npos)         anticheat_ok = true;
+        }
+        add_warn("Hook: liapp_bypass",    !liapp_ok,     liapp_ok     ? "GOT patched"  : "not seen in log");
+        add_warn("Hook: jni_bypass",      !jni_ok,       jni_ok       ? "init OK"      : "not seen in log");
+        add_warn("Hook: java_hook",       !java_ok,      java_ok      ? "init OK"      : "not seen in log");
+        add_warn("Hook: il2cpp_redirect", !il2cpp_ok,    il2cpp_ok    ? "installed"    : "not seen in log");
+        add_warn("Hook: anticheat",       !anticheat_ok, anticheat_ok ? "applied"      : "not seen in log");
+    }
+
     std::string body = "[";
     for (std::size_t i = 0; i < checks.size(); ++i) {
         if (i) body += ',';
@@ -782,6 +806,22 @@ void handle_adb_set(socket_fd_t fd, const HttpRequest& req)
     std::string path = body_json_string(req.body, "path");
     if (path.empty()) { send_response(fd, bad_request("missing path")); return; }
     save_adb_path(config().data_dir, path);
+    send_response(fd, json_200("{\"ok\":true}"));
+}
+
+// ── /admin/api/adb/port (GET / POST) ─────────────────────────────────────────
+
+void handle_adb_port_get(socket_fd_t fd)
+{
+    std::string port = load_adb_port(config().data_dir);
+    send_response(fd, json_200("{\"port\":\"" + json_escape(port) + "\"}"));
+}
+
+void handle_adb_port_set(socket_fd_t fd, const HttpRequest& req)
+{
+    std::string port = body_json_string(req.body, "port");
+    if (port.empty()) { send_response(fd, bad_request("missing port")); return; }
+    save_adb_port(config().data_dir, port);
     send_response(fd, json_200("{\"ok\":true}"));
 }
 
@@ -1367,10 +1407,16 @@ static void run_injector_bg(const std::string& serial)
 
     std::string adb_path = resolve_adb_path(config().data_dir);
 
+    std::string effective_serial = serial;
+    if (effective_serial.empty()) {
+        std::string port = load_adb_port(config().data_dir);
+        if (!port.empty()) effective_serial = "127.0.0.1:" + port;
+    }
+
     std::string cmd = "\"" + injector + "\" \"" + so_path + "\" \"" +
                       srv_exe + "\" --no-wait";
-    if (!serial.empty())    cmd += " --serial \"" + serial   + "\"";
-    if (!adb_path.empty())  cmd += " --adb \""    + adb_path + "\"";
+    if (!effective_serial.empty()) cmd += " --serial \"" + effective_serial + "\"";
+    if (!adb_path.empty())         cmd += " --adb \""    + adb_path         + "\"";
 
 #ifdef _WIN32
     SECURITY_ATTRIBUTES sa{};
@@ -1605,6 +1651,76 @@ void handle_injector_adb(socket_fd_t fd, const HttpRequest& req)
     send_response(fd, json_200("{\"ok\":true,\"output\":\"" + json_escape(out) + "\"}"));
 }
 
+// ── /admin/api/adb/probe (POST) — connect + check eversoul/root/adb-root ──────
+
+void handle_adb_probe(socket_fd_t fd, const HttpRequest& req)
+{
+    std::string target = body_json_string(req.body, "target");
+    if (target.empty()) { send_response(fd, bad_request("missing target")); return; }
+
+    std::string adb = resolve_adb_path(config().data_dir);
+
+    auto run = [&](const std::string& args) -> std::string {
+        std::string out;
+        FILE* pipe = adb_popen(adb, args);
+        if (!pipe) return {};
+        char buf[512];
+        while (fgets(buf, sizeof(buf), pipe)) out += buf;
+        adb_pclose(pipe);
+        return out;
+    };
+
+    std::string conn_out = run("connect " + target);
+    bool connected = conn_out.find("connected") != std::string::npos ||
+                     conn_out.find("already")   != std::string::npos;
+
+    bool has_eversoul = false;
+    bool has_root     = false;
+    bool adb_root_ok  = false;
+
+    if (connected) {
+        std::string pm = run("-s " + target + " shell pm list packages com.kakaogames.eversoul");
+        has_eversoul = pm.find("com.kakaogames.eversoul") != std::string::npos;
+
+        std::string su_out = run("-s " + target + " shell su -c id");
+        has_root = su_out.find("uid=0") != std::string::npos;
+
+        std::string root_out = run("-s " + target + " root");
+        adb_root_ok = root_out.find("already running") != std::string::npos ||
+                      root_out.find("restarting") != std::string::npos;
+    }
+
+    std::string body = "{";
+    body += "\"connected\":"   + std::string(connected     ? "true" : "false");
+    body += ",\"eversoul\":"   + std::string(has_eversoul  ? "true" : "false");
+    body += ",\"rooted\":"     + std::string(has_root      ? "true" : "false");
+    body += ",\"adb_root\":"   + std::string(adb_root_ok   ? "true" : "false");
+    body += ",\"output\":\""   + json_escape(conn_out) + "\"";
+    body += "}";
+    send_response(fd, json_200(body));
+}
+
+// ── /admin/api/injector/connect (POST) ───────────────────────────────────────
+
+void handle_injector_connect(socket_fd_t fd, const HttpRequest& req)
+{
+    std::string target = body_json_string(req.body, "target");
+    if (target.empty()) { send_response(fd, bad_request("missing target")); return; }
+
+    std::string adb = resolve_adb_path(config().data_dir);
+    std::string out;
+    if (FILE* pipe = adb_popen(adb, "connect " + target)) {
+        char buf[512];
+        while (fgets(buf, sizeof(buf), pipe)) out += buf;
+        adb_pclose(pipe);
+    }
+    bool ok = out.find("connected") != std::string::npos ||
+              out.find("already")   != std::string::npos;
+    send_response(fd, json_200(
+        "{\"ok\":" + std::string(ok ? "true" : "false") +
+        ",\"output\":\"" + json_escape(out) + "\"}"));
+}
+
 // ── Connection dispatcher ─────────────────────────────────────────────────────
 
 void handle_connection(socket_fd_t fd)
@@ -1669,6 +1785,12 @@ void handle_connection(socket_fd_t fd)
         handle_adb_current(fd);
     } else if (path == "/admin/api/adb/set" && req.method == "POST") {
         handle_adb_set(fd, req);
+    } else if (path == "/admin/api/adb/port" && req.method == "GET") {
+        handle_adb_port_get(fd);
+    } else if (path == "/admin/api/adb/port" && req.method == "POST") {
+        handle_adb_port_set(fd, req);
+    } else if (path == "/admin/api/adb/probe" && req.method == "POST") {
+        handle_adb_probe(fd, req);
     } else if (path == "/admin/api/injector/run" && req.method == "POST") {
         handle_injector_run(fd, req);
     } else if (path == "/admin/api/injector/stop" && req.method == "POST") {
@@ -1681,6 +1803,8 @@ void handle_connection(socket_fd_t fd)
         handle_injector_check(fd, qs);
     } else if (path == "/admin/api/injector/adb" && req.method == "POST") {
         handle_injector_adb(fd, req);
+    } else if (path == "/admin/api/injector/connect" && req.method == "POST") {
+        handle_injector_connect(fd, req);
     } else if (path == "/admin/api/logo" && req.method == "GET") {
         handle_logo(fd);
     } else if (path == "/admin/api/setup/status" && req.method == "GET") {

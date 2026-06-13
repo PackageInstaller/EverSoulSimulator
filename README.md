@@ -1,269 +1,533 @@
 <p align="center">
-  <img src="src/assets/logo.png" width="140" alt="EverSoul Offline" />
+  <img src="src/assets/logo.png" width="160" alt="EverSoul Offline" />
 </p>
 
 <h1 align="center">Eversoul Offline</h1>
-<h3 align="center">오프라인 서버 및 인젝션 툴</h3>
+<h3 align="center">오프라인 서버 &amp; ARM64 인젝션 툴킷</h3>
 
 <p align="center">
-  본 프로젝트는 《에버소울》(Eversoul) 클라이언트를 위한 로컬 Kakao SDK / Infodesk 모의 서버와, Unity 네트워크 요청을 가로채고 파싱하기 위한 C++ 인젝션 래퍼 및 오프라인 데이터 서버를 제공합니다.
+  《에버소울》(Eversoul) 클라이언트를 위한 로컬 Kakao SDK / Infodesk 모의 서버,<br>
+  Unity / Java 네트워크 요청을 가로채는 ARM64 C++ 인젝션 래퍼,<br>
+  adb 자동 인젝터를 제공합니다.
 </p>
 
 <p align="center">
-  <a href="README_en.md">English</a> &nbsp;|&nbsp; <a href="README_cn.md">中文</a> &nbsp;|&nbsp; <strong>한국어</strong>
+  <a href="https://discord.gg/ZptEmqfuv"><img src="https://img.shields.io/badge/Discord-Join%20Server-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord" /></a>
+  &nbsp;
+  <img src="https://img.shields.io/badge/Platform-Android%20ARM64-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Android ARM64" />
+  &nbsp;
+  <img src="https://img.shields.io/badge/NDK-r27%2B-brightgreen?style=for-the-badge" alt="NDK r27+" />
+  &nbsp;
+  <img src="https://img.shields.io/badge/C%2B%2B-17-00599C?style=for-the-badge&logo=cplusplus&logoColor=white" alt="C++17" />
+</p>
+
+<p align="center">
+  <a href="README_en.md"><img src="https://img.shields.io/badge/English-EN-0078D4?style=flat-square" alt="English" /></a>
+  &nbsp;
+  <a href="README_cn.md"><img src="https://img.shields.io/badge/%E4%B8%AD%E6%96%87-CN-DE2910?style=flat-square" alt="中文" /></a>
+  &nbsp;
+  <img src="https://img.shields.io/badge/%ED%95%9C%EA%B5%AD%EC%96%B4-KR-003478?style=flat-square" alt="한국어" />
+  &nbsp;
+  <a href="https://discord.gg/ZptEmqfuv"><img src="https://img.shields.io/badge/Discord-Join%20Server-5865F2?style=flat-square&logo=discord&logoColor=white" alt="Discord" /></a>
 </p>
 
 ---
 
-## 빠른 시작 가이드
+## 빠른 시작
 
-### 1. 데스크톱 및 Android 라이브러리 빌드
+### 사전 준비 (Windows)
 
-#### 사전 준비 (Windows)
+| 도구 | 버전 |
+|------|------|
+| CMake | 3.21+ |
+| GCC (MinGW-W64 POSIX UCRT) | 15.x |
+| Python | 3.x |
+| Java | 11+ |
+| apktool | 최신 |
+| apksigner | Android SDK Build-Tools |
+| Android NDK | r27+ |
 
-| 도구 | 버전 | 설치 방법 |
-|------|------|----------|
-| CMake | 3.21+ | `winget install Kitware.CMake` |
-| GCC (MinGW-W64 POSIX UCRT) | 15.x | `winget install BrechtSanders.WinLibs.POSIX.UCRT` |
-| Python | 3.x | `winget install Python.Python.3` |
-| protoc | 35.x | `winget install Google.Protobuf` |
-| protobuf (Python) | 4.21+ | `pip install protobuf` |
-| libcurl (MinGW) | 8.x | `winget install cURL.cURL` |
-| Android NDK | r27+ | `winget install Google.AndroidCLI` 후 `sdkmanager "ndk;27.2.12479018"` |
+### 빌드
 
-프로젝트 루트 디렉토리에서 통합 빌드 스크립트를 실행합니다 (Windows는 Git Bash 사용):
-
-```bash
-./build.sh
+```powershell
+./build.ps1
 ```
 
-Python 도구 출력 언어를 선택할 수 있습니다:
+빌드 후 생성되는 산출물:
 
-```bash
-EVERSOUL_LANG=en ./build.sh   # 영어 (기본값)
-EVERSOUL_LANG=ko ./build.sh   # 한국어
-EVERSOUL_LANG=zh ./build.sh   # 중국어
- ./build.ps1 -NoExit #windwos only
+| 경로 | 설명 |
+|------|------|
+| `build/eversoul_offline_server.exe` | 로컬 Mock/Proxy 서버 (포트 9999) |
+| `build/eversoul_injector.exe` | adb 자동 인젝터 |
+| `build/android/libswappywrapper.so` | ARM64 인젝션 래퍼 |
+| `build/apk/base_patched.apk` | smali 패치 + 서명 완료 APK |
+| `build/apk/split_config.arm64_v8a.apk` | ARM64 split APK |
+| `build/apk/libcawwyayy_patched.so` | LIAPP 무결성 검증 우회용 SO |
+
+### 실행
+
+```powershell
+./build/eversoul_injector.exe
 ```
 
-현재 디렉토리에 .har 패킷 캡처 파일이 없는 경우, 빌드 스크립트는 HAR 병합 추출 단계를 자동으로 건너뛰고 `responses/` 및 `responses_newbie/` 디렉토리의 데이터를 읽어 컴파일합니다. 따라서 프로젝트 클론 이후 정상적인 빌드에 영향을 주지 않습니다.
-
-빌드 후 생성되는 주요 산출물:
-
-- build/eversoul_offline_server (로컬 프록시 및 오프라인 데이터 Mock 서버)
-- build/android/libswappywrapper.so (Android 클라이언트용 인터셉트 인젝션 래퍼 라이브러리)
-- build/offline_data/libofflinedata.so (오프라인 정적 JSON 데이터가 패키징된 Android 동적 라이브러리)
+최초 실행 시 adb 경로와 에뮬레이터 포트를 입력합니다. 이후 `injector.cfg`에 저장됩니다.
 
 ---
 
-### 2. Android 기기에 오프라인 데이터 및 인젝션 라이브러리 배포
+## 전체 파이프라인
 
-Android 기기의 ADB 디버깅이 활성화되어 있고 연결된 상태인지 확인한 후, 다음을 실행합니다:
+### 1단계 — 빌드 (build.ps1)
 
-```bash
-./deploy_offline_data.sh
+```
+HAR 패킷 파일 병합
+  → responses/         API 픽스처 JSON
+  → wss/               WebSocket 픽스처 JSON
+  → web/               계정 선택 SPA (HTML/CSS/JS)
+
+pack_offline_data.py
+  → responses/ + wss/ + web/ 전체를 libofflinedata.so로 패킹
+    포맷: [8B 매직 "ESOFLN D1"][4B count]
+          [[4B path_len][path][4B data_len][data] ...]
+
+cmake (Windows)
+  → build/eversoul_offline_server.exe
+  → build/eversoul_injector.exe
+
+cmake (Android NDK, ARM64)
+  → build/android/libswappywrapper.so
+
+APK 패치:
+  apk/origin/base.apk → apk/make/base.apk          (원본 복사, origin 불변)
+  apktool d apk/make/base.apk → apk/make/base_decoded/
+  patch_smali.py apk/make/base_decoded/
+    com.liapp.x.attachBaseContext 진입점에 삽입:
+      const-string v0, "swappywrapper"
+      invoke-static {v0}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V
+  build/android/libswappywrapper.so → lib/arm64-v8a/libswappywrapper.so
+  apktool b apk/make/base_decoded/ → apk/make/base_patched_unsigned.apk
+  apksigner sign (v2) → build/apk/base_patched.apk
+
+libcawwyayy.so 추출:
+  apk/make/base.apk (zip) lib/arm64-v8a/libcawwyayy.so
+  → build/apk/libcawwyayy_patched.so
+
+split APK 복사:
+  apk/origin/split_config.arm64_v8a.apk → build/apk/
+
+apk/make/ 전체 삭제 (작업 디렉토리 정리)
 ```
 
-이 스크립트는 다음 작업을 자동으로 수행합니다:
-1. `libswappywrapper.so`와 `libofflinedata.so`를 게임 APK의 Native 동적 라이브러리 디렉토리에 푸시합니다.
-2. 배포가 올바르게 이루어졌는지 확인하기 위해 기기 내 파일의 해시 값을 검증합니다.
-
 ---
 
-## 핵심 기술 구현 세부 사항
+### 2단계 — 인젝터 실행 (eversoul_injector.exe)
 
-### 1. 인젝션 및 패치 로드 방식 (안티치트 우회)
-
-게임이 LIAPP 안티치트 보호를 사용하기 때문에, 전체 패키지 언패킹은 번거롭고 유지보수가 어렵습니다. 현재의 우회 및 로드 방식은 다음과 같습니다:
-
-안티치트 핵심 진입 클래스 `com.liapp.x`의 `attachBaseContext` 메서드에 다음 Smali 코드를 주입하여, 컴파일된 인젝션 래퍼 라이브러리를 조기에 로드합니다:
-
-```smali
-const-string v0, "swappywrapper"
-invoke-static {v0}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V
 ```
+start_offline_server():
+  probe_port(9999) → 이미 응답하면 건너뜀
+  없으면 CreateProcessW("server.exe --mock-only") → DETACHED_PROCESS
+  600ms 대기 (서버 바인딩 완료 대기)
 
-이 위치에서 래퍼 라이브러리를 조기에 로드함으로써, 안티치트 환경이 보안 탐지 스레드 생성을 시작하기 전에 이를 일시 중단하거나 차단할 수 있습니다. 이를 통해 셸 보호를 유지한 채로 게임이 오프라인 데이터 인터셉트 라이브러리를 정상적으로 로드하고 실행할 수 있습니다.
+adb connect 127.0.0.1:{port}
+  출력에 "connected" 또는 "already" 포함 확인
 
-### 2. 네트워크 요청 리다이렉션 방식
+adb shell pm path com.kakaogames.eversoul
+  → "package:/data/app/.../base.apk" 형태 경로 파싱
+  → %TEMP%/previous/ 생성
+  → 각 APK: adb pull {device_path} %TEMP%/previous/{filename}
+  → exe_dir/apk/backup/{filename} 복사 (기기 원본 백업)
 
-현재 요청 리다이렉션은 두 단계로 나뉩니다:
+adb install-multiple -r base_patched.apk split_config.arm64_v8a.apk
+  → 출력에 "Success" 포함 확인
 
-- **개발 및 테스트 단계**: 현재 Frida 스크립트(monitor_unity_web_request.js)를 사용하여 Unity의 네트워크 및 WebSocket 연결을 가로채고 리다이렉션합니다.
-- **이후 오픈소스/루트 불필요 단계**: 이후에는 Frida Gadget 실행을 통합하거나, 클라이언트의 APK 크기 및 SHA-256 해시 이중 검증을 우회하여 Root 환경 없이 스크립트 없이 직접 리다이렉션하는 실행 방식을 구현할 예정입니다.
+adb push exe_dir/apk/libcawwyayy_patched.so
+       → /data/local/tmp/libcawwyayy_patched.so
 
----
-
-## 오프라인 백엔드 런타임 구체적 흐름
-
-오프라인 백엔드의 실행은 저수준 Hook과 비동기 서비스의 협력을 통해 이루어지며, 구체적인 실행 과정은 다음과 같습니다:
-
-1. **동적 라이브러리 진입 로드 및 Hook 설치**
-   게임 엔진이 Java 레이어의 `loadLibrary`를 통해 래퍼 라이브러리 `libswappywrapper.so`를 로드할 때, [entry.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/entry.cpp)의 `__attribute__((constructor))` 초기화 함수 `eversoul_entry`가 즉시 실행됩니다.
-   이 진입 함수는 먼저 [anticheat_patch.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/anticheat_patch.cpp)의 설치 인터페이스를 호출하여, ARM64 어셈블리 수준에서 `libc.so`의 `pthread_create`에 Inline Hook을 적용합니다(16바이트 절대 점프 명령으로 함수 시작 부분을 교체).
-   인터셉트 콜백 함수는 새 스레드 생성 요청을 감지할 때, `dladdr`을 사용하여 스레드를 시작하는 함수가 LIAPP 안티치트 모듈 `libcawwyayy.so`에 속하는지 확인합니다. 안티치트 스캔 스레드로 판단되면 빈 함수를 호출하여 종료시켜 안티치트 엔진을 일시 중단하고, 나머지 게임 자체 스레드는 정상적으로 통과시킵니다.
-
-2. **데이터 초기화 및 비동기 서비스 시작**
-   안티치트 인터셉트 훅 설치가 완료된 후, [entry.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/entry.cpp)는 백그라운드 독립 스레드에서 오프라인 Mock 서버([server.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/server.cpp) 구현)를 시작합니다.
-   비동기 서버 시작 시, [offline_data.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/offline_data.cpp)는 현재 디렉토리의 `libofflinedata.so`(동적 라이브러리로 위장한 오프라인 아카이브 패키지)를 자동으로 찾아 파싱합니다. 위치 파악에 실패하면 자동으로 로컬 파일 디렉토리의 정적 리소스를 읽도록 폴백합니다.
-   이어서 [fixture_store.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/fixture_store.cpp)는 C++ 네이티브 변환 모듈과 함께 `schema/` 디렉토리의 Protobuf 구조 선언을 파싱하고, `responses/`의 JSON 정적 데이터를 메모리에서 일괄적으로 바이너리 Protobuf 데이터로 역직렬화하여 효율적인 캐시 맵을 구축하는 동시에 WebSocket 정적 데이터를 미리 로드합니다.
-
-3. **라우팅 매칭 및 동적 인터셉션**
-   클라이언트의 HTTP/WebSocket 요청은 로컬 포트 9999로 리다이렉션됩니다. 서버는 연결 수신 후 detached 스레드를 생성하여 처리합니다.
-   요청은 라우터 [router.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/router.cpp)에 디스패치됩니다. Kakao SDK 등 플랫폼 설정 인터페이스에 해당하는 경우, 로컬 Mock JSON을 즉시 반환하고 `gameServerAddr`을 통해 이후 게임 비즈니스 Protobuf 요청을 로컬 서비스로 안내합니다. 비즈니스 인터페이스의 경우:
-   - **성숙 계정 모드(Full Account)**: 서버는 요청 경로에 따라 `FixtureStore` 캐시 테이블에서 해당 정적 Protobuf 데이터 스트림을 직접 검색하여 응답하며, 기존 고레벨 계정 데이터의 빠른 재생을 지원합니다.
-   - **신규 계정 모드(Newbie Account)**: 정적 재생으로 인한 신규 튜토리얼 상태 교착을 방지하기 위해, [router.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/router.cpp)는 튜토리얼 핵심 인터페이스(`/UserInfo`, `/TutorialActive`, `/StageClear`, `/FormationSave` 등)를 접수합니다. 이 인터페이스들은 하위 레벨 SQLite 데이터베이스 [src/orm](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/orm)에 바인딩됩니다. 플레이어가 스테이지를 클리어하거나, 닉네임을 변경하거나, 편성을 저장할 때 서버는 데이터베이스를 동적으로 수정하고 최신 에코 구조를 동기적으로 생성하여, 일관된 신규 게임 튜토리얼 진행과 진행 상황 저장을 실현합니다.
-
----
-
-## 실행 모드 설명
-
-### A. 캡처 및 프록시 모드 (Capture / Proxy Mode)
-
-이 모드에서 PC 데스크톱 서버는 투명 프록시로 동작하여 플랫폼 로그인/인증 요청을 가로채고, 다른 비즈니스 요청은 공식 서버로 전달하며 캡처된 데이터를 자동으로 내보냅니다.
-
-프록시 서버가 PC에서 실행되므로 adb 포트 리다이렉션이 필요합니다:
-
-```bash
-# 1. 기기 포트 리다이렉션 (PC 디버깅/프록시 패킷 캡처 모드에서만 필요)
 adb reverse tcp:9999 tcp:9999
+  → 기기 127.0.0.1:9999 → Windows localhost:9999 TCP 터널
 
-# 2. PC에서 프록시 서버 시작
-./build/eversoul_offline_server --proxy --port 9999
+adb shell am force-stop com.kakaogames.eversoul
+800ms 대기
+adb shell am start -n com.kakaogames.eversoul/com.kakaogame.KGUnityPlayerActivity
+                   -a android.intent.action.MAIN -c android.intent.category.LAUNCHER
 
-# 3. Frida 인젝션 스크립트로 게임 실행
-frida -H 127.0.0.1:27042 -f com.kakaogames.eversoul -l monitor_unity_web_request.js
-```
-
-### B. 완전 오프라인 Mock 모드 (Offline Mock Mode)
-
-이 모드에서 모든 인터페이스의 데이터는 로컬 Mock 서버(또는 클라이언트에 인젝션된 오프라인 데이터 패키지)가 오프라인으로 응답합니다.
-
-완전 오프라인 상태(즉, 기기에서 직접 독립적으로 게임 실행)에서, 오프라인 서버는 이미 `libswappywrapper.so` 내에서 독립적인 백그라운드 스레드로 비동기적으로 시작되었습니다. 따라서 **기기와 오프라인 서버가 모두 스마트폰 로컬 환경에 있어 포트 포워딩이 필요하지 않습니다**. Frida 스크립트를 직접 실행하여 주소를 인터셉션하면 됩니다. PC 데스크톱을 Mock 서버로 사용할 때만 `adb reverse` 포트 포워딩이 필요합니다.
-
-```bash
-# 1. Frida 인젝션 스크립트로 게임 직접 실행 (포트 포워딩 불필요)
-frida -H 127.0.0.1:27042 -f com.kakaogames.eversoul -l monitor_unity_web_request.js
+별도 스레드: adb logcat -s libswappywrapper:V *:S  (종료까지 스트리밍)
 ```
 
 ---
 
-## 재화 및 치트 설정
+### 3단계 — 게임 실행 후 Hook 동작
 
-오프라인 서버는 재화(골드, 다이아 등) 시스템을 자체 SQLite DB(`currency` 테이블)로 관리한다.  
-게임이 요청하는 모든 재화 타입이 서버 초기화 시 자동 생성되며, 초기값은 아래 표를 기준으로 한다.
+#### 진입점 실행 순서
+
+```
+APK 로드 → smali 패치 → System.loadLibrary("swappywrapper")
+  → libswappywrapper.so __attribute__((constructor))
+
+  [1] asset_migration::migrate()
+      /sdcard/Android/data/com.kakaogames.eversoul 경로 확인/이동
+
+  [2] liapp_bypass::install()
+      install_libc_hooks() — dlsym(RTLD_DEFAULT) 기반 inline hook 7개:
+        fopen    → hook_fopen
+        fopen64  → hook_fopen64
+        openat   → hook_openat
+        openat64 → hook_openat64
+        read     → hook_read
+        kill     → hook_kill
+        connect  → hook_connect
+      poller 스레드 시작 (250ms 간격, 최대 30초):
+        dl_iterate_phdr → libcawwyayy.so base 주소 탐색
+        발견 시 GOT 직접 패치 (ARM64):
+          base + 0xa3ec8 = hook_fopen   (GOT[fopen])
+          base + 0xa3dc8 = hook_openat  (GOT[openat])
+          base + 0xa3e38 = hook_kill    (GOT[kill])
+          (패치 후 mprotect PROT_READ 복원)
+
+  [3] anticheat::install()
+      dlsym("pthread_create") → inline hook → hook_pthread_create
+      hook: dladdr(start_routine) → "cawwyayy" 포함이면
+            g_orig_pthread_create(thread, attr, dummy_thread, arg)
+            dummy_thread: return nullptr (즉시 종료)
+
+  [4] il2cpp_redirect::install()
+      poller 스레드 시작 (500ms 간격, 최대 60초):
+        dlsym("il2cpp_string_new") → dladdr → libil2cpp.so base
+        발견 시 RVA 기반 inline hook 10개:
+          base + 0x097887a4  UWR::ctor(string)
+          base + 0x097889e4  UWR::ctor(string, method)
+          base + 0x09788c5c  UWR::ctor(full)
+          base + 0x09789be8  UWR::SetUrl
+          base + 0x0978ac50  UWR::Get
+          base + 0x0978b040  UWR::Put(bytes)
+          base + 0x0978b27c  UWR::Put(string)
+          base + 0x0978b488  UWR::PostWwwForm
+          base + 0x0978b700  UWR::Post(contentType)
+          base + 0x04c72530  KakaoSDKAdapter::ShowMsgBox (차단)
+        redirect_url():
+          kakaogames.com 계열  → http://127.0.0.1:9999
+          live-sea-chat 계열   → ws://127.0.0.1:9999
+          *.lockincomp.com     → http://127.0.0.1:9999
+          rttcheck-*.kakaogames.io → http://127.0.0.1:9999
+
+JNI_OnLoad():
+  [5] jni_bypass::init(vm)
+      JNIEnv vtable 256개 → mmap 복사본
+      vtable[215] = hook_register_natives
+      hook: __builtin_return_address(0) → dladdr → "cawwyayy" 출처이면
+            JNI_OK 반환 (LIAPP native method 등록 무시)
+
+  [6] java_hook::init(vm)
+      installer_thread 시작 → vm->AttachCurrentThread
+      init_trampoline: Object.hashCode ArtMethod+0x20(EP) → g_jni_trampoline
+
+      즉시 설치 (java.* / android.*):
+        java/net/URL.<init>(String)          → redirect_url
+        java/net/URL.<init>(URL, String)     → redirect_url
+        android/os/Process.killProcess       → self pid이면 차단
+        android/app/Activity.finishAffinity  → 차단
+        android/app/Activity.startActivityForResult
+          → kauth.kakao.com / accounts.kakao.com URL이면
+            fake onActivityResult(RESULT_OK,
+                                  kakao743487://oauth?code=offline-kakao-code-0)
+
+      200ms retry, 최대 60초 (app DEX 복호화 대기):
+        okhttp3/Request$Builder.url           → redirect_url
+        CustomTabsIntent.launchUrl            → kauth이면 차단
+        ServerService.useSessionConnection    → useHttpConnection() 강제 호출
+        ConnectionManager.setConnectionType   → boolean 인자 true 강제
+        HmacSHA256Util.verifySignature        → JNI_TRUE 반환
+
+      ArtMethod 직접 패치:
+        ArtMethod + 0x04 (flags) |= kAccNative (0x0100)
+        ArtMethod + 0x18 (data)   = hook_fn
+        ArtMethod + 0x20 (ep)     = g_jni_trampoline
+        호출 시: mutex lock → restore_orig → 원본 호출 → reapply_hook → unlock
+```
+
+#### inline_hook 구조 (ARM64)
+
+```
+install_inline_hook(target, hook_fn, &trampoline):
+
+trampoline 슬롯 (static pool 24개, 각 32바이트):
+  [0~15]  = target 원본 16바이트 (displaced instructions)
+  [16]    = LDR X16, #8   (0x58000050)
+  [20]    = BR X16        (0xD61F0200)
+  [24~31] = target+16 절대 주소 (resume)
+
+target 패치:
+  [0]    = LDR X16, #8   (0x58000050)
+  [4]    = BR X16        (0xD61F0200)
+  [8~15] = hook_fn 절대 주소
+
+write_memory:
+  mprotect RWX → memcpy → __builtin___clear_cache → PROT_READ|EXEC 복원
+  실패 시 /proc/self/mem write 폴백
+
+실행 흐름:
+  target 호출 → LDR+BR hook_fn → hook_fn 진입
+  g_orig_*(trampoline) 호출 시 → displaced 16바이트 실행
+                               → LDR+BR target+16 → 원본 코드 복귀
+```
+
+#### Hook 동작 요약
+
+| Hook | 조건 | 동작 |
+|------|------|------|
+| `hook_fopen/64` | path에 "cawwyayy" | `/data/local/tmp/libcawwyayy_patched.so`로 redirect |
+| `hook_fopen/64` | path에 magisk/zygisk 등 | `ENOENT` 반환 (파일 없는 척) |
+| `hook_openat/64` | path에 "cawwyayy" | `kPatchedSoPath`로 redirect |
+| `hook_openat/64` | `/proc/*/maps` | `track_fd` 등록 |
+| `hook_read` | tracked fd | "libswappywrapper"/"magisk"/"zygisk" 행 제거 후 반환 |
+| `hook_kill` | `pid == getpid()` + SIGKILL/SIGTERM | `return 0` (자기 종료 차단) |
+| `hook_connect` | AF_INET, host != loopback, port 80/443/8080 | `connect(127.0.0.1:9999)` |
+| GOT fopen/openat/kill | libcawwyayy.so GOT | hook_fn으로 교체 + PROT_READ 복원 |
+| `hook_pthread_create` | start_routine dladdr → "cawwyayy" | `dummy_thread`(즉시 종료)로 교체 |
+| UWR hook 10종 | 모든 UnityWebRequest 생성/설정 | `redirect_url` → `http://127.0.0.1:9999` |
+| `hook_register_natives` | JNIEnv vtable[215] | "cawwyayy" 출처이면 JNI_OK (등록 무시) |
+
+---
+
+### 4단계 — 서버 수신/응답 흐름
+
+#### 양방향 통신 경로
+
+```
+게임 connect(127.0.0.1:9999)      ← hook_connect 또는 redirect_url 적용
+  → adb reverse tcp:9999 TCP 터널
+  → Windows server.exe 0.0.0.0:9999 accept(fd)
+  → std::thread(handle_client, fd).detach()
+
+요청 수신 (클라이언트 → 서버):
+  recv_until_headers → \r\n\r\n 탐색
+  headers map 파싱 → Content-Length 추출
+  body = extra + 추가 recv → body.resize(content_length)
+  게임 protobuf 요청 바디: [4B sequence][protobuf payload]
+
+응답 전송 (서버 → 클라이언트):
+  game_binary_response(req, proto):
+    body = [4B 0x00][4B payload_size LE][protobuf payload]
+    Content-Type: application/octet-stream
+  send_response:
+    HTTP/1.1 {status} + Content-Length: body.size() + Connection: close
+  send_all: while(left > 0) platform_send 루프 → flush 보장
+  → adb reverse 역방향 터널 → 게임 recv()
+```
+
+#### 라우팅 분기 (router.cpp)
+
+```
+/sbaa479o  또는 body에 "f39ad58"
+  → LIAPP lockincomp device-auth 정적 응답 (fdbd8509 signature)
+
+/service/v3/util/country/get     → {"country":"kr"}
+/v2/app                          → infodesk (agreementUrl, gameServerAddr=http://127.0.0.1:9999)
+/v2/appGroup                     → appGroup esoul_service
+/v2/app/server/maintenance       → maintenance null (서버 정상)
+/service/v3/auth/loginKakao      → mock_login_data_response (zat + player JSON)
+/service/v4/auth/loginDevice     → mock_login_data_response
+/service/v3/auth/loginZinnyDevice→ mock_login_data_response
+/service/v3/zat/refresh          → mock_zat_refresh_response
+/service/v3/zat/issueToken       → mock_zat_refresh_response
+/oauth/token                     → fake Kakao access_token
+/service/v3/player/getLocal      → mock_local_player_response
+/service/v3/player/getUUID       → zinnyUuid 고정값
+/service/v3/agreement/getForLogin→ agreementPopup 여부 응답
+/service/v3/log/writeSdkBasicLog → logId UUID 응답
+/service/...                     → {} (SDK housekeeping generic OK)
+/socket.io                       → engine.io HTTP polling (OPEN / ack)
+/account-select                  → offline_data "web/account_select.html"
+/api/accounts GET                → orm 계정 목록 JSON
+/api/accounts/create POST        → orm 계정 생성
+/api/accounts/select POST        → orm 계정 선택
+/api/accounts/{id} DELETE        → orm 계정 삭제
+
+/Login        → fixture_store 우선, 없으면 login_payload(protobuf)
+/ServerTime   → server_time_payload() (항상 현재 시각 동적 생성)
+/UserInfo     → newbie 모드: db::build_user_info() (SQLite)
+               full 모드: fixture_store (HAR 캡처 protobuf)
+/StageClear   → db::stage_clear(stageNo) → stage 테이블 저장 + stageNo echo
+/StoryClear   → db::story_clear(storyNo)
+/GachaHero    → db::gacha_hero → hero INSERT + currency 차감
+/TutorialActive → db::tutorial_active (newbie)
+그 외 game API → fixture_store → session_harvested → harvested_payload → inline 핸들러
+알 수 없는 끝점 → is_empty_game_endpoint이면 빈 proto, 아니면 404
+```
+
+#### offline_data 로드
+
+```
+OfflineData::init():
+  1순위: libofflinedata.so (blob)
+    kMagic "ESOFLN D1" 검증
+    [8B magic][4B count][[4B plen][path][4B dlen][data]...] 파싱
+    → blob_entries_ map (rel → data) 전체 로드
+
+  2순위: 디렉토리 직접 (debug fallback)
+    data_dir/responses/*.json, /wss/*.json, /web/*
+
+read("responses/UserInfo.json")    → blob_entries_["responses/UserInfo.json"]
+read("wss/session_replies.json")   → blob_entries_["wss/session_replies.json"]
+read("web/account_select.html")    → blob_entries_["web/account_select.html"]
+```
+
+#### fixture_store 로드
+
+```
+FixtureStore::load():
+  data.list("responses/") → blob 내 JSON 파일 목록
+  각 파일 → JSON 파싱 → __format__ 확인:
+    "empty" → payload = ""
+    "raw"   → fixture["hex"] 디코딩 → 원시 바이트
+    "proto" → json_encoder → protobuf 인코딩
+  payload_map["/EndpointName"] = bytes
+
+fixture_store().payload("/UserInfo", newbie_mode)
+  → payloads_ 또는 newbie_payloads_
+```
+
+---
+
+### 5단계 — WebSocket 양방향 흐름
+
+```
+게임 WS 연결 → il2cpp redirect → ws://127.0.0.1:9999/session
+  → adb reverse 터널
+  → handle_websocket(id, fd, req, pre)
+
+핸드셰이크:
+  Sec-WebSocket-Key → HMAC-SHA1(key + "258EAFA5-...") → base64
+  HTTP/1.1 101 Switching Protocols 전송
+
+gc-session (Kakao JSON-RPC):
+  handle_session_ws:
+    ws_session_initial_push() 즉시 서버 → 클라이언트 push:
+      blob["wss/session_replies.json"]["initial_push"]
+      [topic, {meta publishTime=now}, body] → JSON dump
+      ws_encode_frame(Text, push) → send_all
+
+    ws_loop:
+      클라이언트 → 서버:
+        ws_parse_frame → FIN + opcode + mask 해제
+        Ping  → Pong (같은 payload)
+        Close → Close 에코 → 루프 종료
+        Text  → parse_rpc → topic 추출
+               → ws_session_reply:
+                   session["replies"][topic] 있으면 meta_template + body 조합
+                   없으면 generic {"status":200,"desc":"OK","content":{}}
+      서버 → 클라이언트:
+        ws_encode_frame(Text, reply) unmasked → send_all
+
+socket.io chat:
+  handle_chat_ws:
+    ws_loop:
+      "2probe" → "3probe"  (engine.io upgrade probe)
+      "2"      → "3"       (ping → pong)
+      "40..."  → namespace_connect_ack
+
+WS 프레임 인코딩 (서버→클라이언트):
+  [FIN|opcode 1B][length 1~9B][payload]  — unmasked (RFC 6455)
+
+WS 프레임 디코딩 (클라이언트→서버):
+  [FIN|opcode 1B][MASK|length 1~9B][mask 4B][masked payload] → XOR 해제
+```
+
+---
+
+## 재화 및 계정
+
+오프라인 서버는 SQLite DB로 계정별 게임 상태를 독립적으로 관리합니다.
+
+Admin 패널: `http://localhost:9998/admin`
 
 | 재화 타입 | 설명 | 기본값 |
 |-----------|------|--------|
-| 1 | 골드 | 99,999,999 |
-| 3 | 다이아(무과금) | 99,999,999 |
-| 42 | 다이아(유료) | 99,999,999 |
-| 4 | 마나 크리스탈 | 99,999,999 |
-| 그 외 | 가차 티켓, 우편, 재화 등 전 타입 | 각 타입별 기본값 |
-
-### Admin 패널에서 직접 조회
-
-서버 실행 후 `http://localhost:9998/admin` 접속 → **데이터베이스** 탭 → `currency` 테이블에서 현재 재화 수치를 확인할 수 있다.
-
-### 재화 수치 수동 변경
-
-Admin 패널의 데이터베이스 탭에서 `currency` 테이블을 직접 조회·확인할 수 있으며, 서버가 빌드된 `account_db.cpp`의 초기값을 수정한 뒤 재빌드하면 원하는 초기 재화로 시작할 수 있다.
-
-가차 비용은 실제로 차감되지만 초기 재화가 충분히 크게 설정되어 있어 사실상 무제한으로 동작한다.
+| 1 | 골드 | 1,000,000 |
+| 2 | 다이아 | 30,000 |
+| 3 | 무과금 다이아 | 1,000,000 |
 
 ---
 
-## 인터페이스 구현 상태 및 로드맵
+## 구현된 인터페이스 목록
 
-현재 구현된 인터페이스 응답은 **순수 정적 JSON Mock 데이터**이며, 목적은 먼저 전체 응답 프로토콜 커버리지를 완성하여 게임이 오프라인 상태에서 시작, 로그인, 신규 튜토리얼, 주요 화면 데이터 로딩 흐름을 원활하게 진행할 수 있도록 하는 것입니다. 이후 개발 계획에서는 동적 비즈니스 로직(가차 뽑기, 캐릭터 레벨업, 스테이지 클리어 결산 등 상태 업데이트 동적 처리)을 점진적으로 도입할 예정입니다.
+### Kakao SDK / Infodesk
 
-### 1. 구현된 플랫폼/인증 인터페이스 Mock (Kakao / Infodesk)
+- /service/v3/util/country/get
+- /service/v4/device/accessToken/create
+- /service/v3/agreement/getForLogin, getForConnect
+- /service/v3/auth/loginKakao, loginZinnyDevice3
+- /service/v4/auth/loginDevice
+- /service/v3/zat/refresh, login, issueToken
+- /service/v4/zat/issueToken
+- /service/v3/player/getLocal, getUUID
+- /service/v3/log/writeSdkBasicLog
+- /service/v3/tracer/sdk
+- /service/v3/promotion/checkUrlPromotion
+- /service/v3/auth/getGoogleIdpId
+- /oauth/token
+- /v2/app, /v2/appGroup, /v2/app/server/maintenance
+- /v2/client/getList, /v2/client/end
+- /sbaa479o (LIAPP lockincomp device-auth)
+- /socket.io (engine.io HTTP polling)
+- /account-select (계정 선택 SPA)
+- /api/accounts (CRUD)
 
-- /service/v3/util/country/get (국가/지역 코드 조회)
-- /service/v4/device/accessToken/create (기기 AccessToken 생성)
-- /service/v3/agreement/getForLogin (로그인 약관 상태 조회)
-- /service/v3/log/writeSdkBasicLog (SDK 기본 로그 인터페이스)
-- /v2/appGroup (앱 패키지 그룹 설정)
-- /v2/app (앱 기본 설정 파라미터)
-- /v2/app/server/maintenance (게임 서버 유지보수 상태)
+### 게임 비즈니스 API (protobuf)
 
-### 2. 구현된 Protobuf 게임 비즈니스 인터페이스 Mock
-
-- /Login
-- /ServerTime
-- /UserInfo
-- /LobbyRefresh
-- /TutorialActive
-- /BattleStart
+- /Login, /ServerTime, /Logout
+- /UserInfo, /LobbyRefresh
+- /TutorialActive, /TutorialList, /TutorialStoryClear
+- /GachaHeroTutorial, /GachaHeroTutorialFix
 - /UserNicknameChange
-- /StageClear
-- /StoryClear
-- /HeroLevelUp
-- /DungeonEnter
-- /DungeonInfoUpdate
-- /DungeonBattle
-- /DungeonClear
+- /BattleStart
+- /StageClear, /StoryClear
+- /HeroLevelUp, /HeroUpgrade, /HeroGift
+- /HeroEquip, /HeroUnequip, /HeroEquipMulti
+- /EquipItemUpgrade, /EquipItemTranscendence
+- /SpiritTreeSlotEquip, /SpiritTreeSlotUnEquip
 - /FormationSave
-- /HeroUpgrade
-- /HeroGift
-- /HeroEquip
-- /HeroUnequip
-- /EquipItemUpgrade
-- /EquipItemTranscendence
-- /SpiritTreeSlotEquip
-- /SpiritTreeSlotUnEquip
-- /GachaHero
-- /GachaPremium
-- /GachaSignature
-- /ShopItemBuy
+- /GachaHero, /GachaPremium, /GachaSignature, /GachaInfo, /GachaMileageDelete
+- /ShopItemBuy, /CashShopList, /CashShopUserAbleCashItemIdAllList
 - /ItemUse
-- /TaskReceive
-- /AchievementAllReceive
+- /DungeonEnter, /DungeonInfoUpdate, /DungeonBattle, /DungeonClear
+- /TaskList, /TaskReceive
+- /AchievementList, /AchievementAllReceive
 - /MailItemAllReceive
 - /ReceiveAttendance
 - /FriendHeartReceiveAll
 - /GetContentClearDeck
-- /AutoHuntReceive
-- /HeroEquipMulti
-- /GachaHeroTutorial
-- /GachaHeroTutorialFix
-- /GachaMileageDelete
-- /CashShopList
-- /CashShopUserAbleCashItemIdAllList
-- /AchievementList
-- /GuideQuestList
-- /TaskList
-- /AutoHuntOpen
-- /NewMailCnt
-- /GachaInfo
-- /IllustList
-- 이 외에도 캡처된 미분류 초기화/리스트 조회 인터페이스에 대해, 서버는 기본적으로 8바이트 응답 헤더를 가진 빈 Payload로 응답합니다.
-
-자세한 트래픽 및 튜토리얼 상태 분석은 다음을 참고하세요:
-- captured_requests.md (일반 요청 분석)
-- captured_new_user_registration.md (신규 플레이어 등록 및 신규 튜토리얼 흐름)
+- /AutoHuntOpen, /AutoHuntReceive
+- /NewMailCnt, /IllustList
+- /GuideQuestList (빈 proto, `is_empty_game_endpoint`)
+- 위 목록에 없는 알 수 없는 끝점 → `is_empty_game_endpoint` 등록 여부에 따라 빈 proto 또는 404
 
 ---
 
-## 기여 가이드
+## 디렉토리 구조
 
-Eversoul Offline 오픈소스 공동 개발에 개발자분들의 참여를 환영합니다. 주로 다음 방향으로 기여할 수 있습니다:
-
-- **인터페이스 동적화 리팩토링**
-  현재 대부분의 비즈니스 응답은 정적 Mock입니다. [router.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/router.cpp)의 정적 라우트에 동적 처리 로직을 작성하고, [src/orm](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/orm)의 SQLite 데이터베이스에 바인딩하여 가차 토큰 차감, 캐릭터 레벨업 골드 소비, 장비 착용 속성 변경 등 완전한 인터랙션 흐름을 구현할 수 있습니다.
-
-- **테이블 구조 및 퍼시스턴스 필드 보충**
-  더 복잡한 게임 플레이(예: 길드 시스템, 정령의 나무 등)를 도입해야 할 경우, [orm/schema.hpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/orm/schema.hpp)와 [orm/storage.hpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/orm/storage.hpp)를 직접 수정하여 해당 데이터 테이블과 ORM 작업 인터페이스를 추가할 수 있습니다.
-
-- **패킷 캡처 커버리지 향상**
-  프록시 모드로 새로운 네트워크 라우팅 패킷을 캡처하여 JSON 형식으로 변환하고 Schema 설명을 추출한 후, `responses/` 및 `schema/` 디렉토리에 제출하여 서버가 인식하는 API 범위를 확장할 수 있습니다.
-
-- **인젝션 및 리다이렉션 최적화**
-  Root 불필요 리다이렉션 탐지 우회 관련 Smali 코드를 제출하거나, [anticheat_patch.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/anticheat_patch.cpp)의 inline hook 안정성 최적화 및 수정을 제공할 수 있습니다.
+```
+EverSoulSimulator/
+  apk/
+    origin/       순수 원본 APK (절대 수정 없음)
+    backup/       인젝터가 기기에서 pull한 APK 백업
+  build/
+    apk/          빌드 결과물 (base_patched.apk, split, libcawwyayy_patched.so)
+    android/      libswappywrapper.so
+    eversoul_offline_server.exe
+    eversoul_injector.exe
+    offline_data/ libofflinedata.so
+  responses/      HAR에서 추출한 API 픽스처 JSON
+  responses_newbie/ 신규 계정 튜토리얼 픽스처
+  wss/            WebSocket 픽스처 JSON
+  web/            계정 선택 SPA
+  src/            C++ 소스
+  tools/          Python 빌드 도구
+```
 
 ---
 
-## 디렉토리 및 파이프라인 구조
+## 커뮤니티 & 기여
 
-오프라인 데이터 복원 파이프라인(JSON과 Protobuf 상호 변환 형식), 데이터 디렉토리 정의 및 빌드 검증 흐름에 대한 자세한 내용은 다음 문서를 참고하세요:
-- OFFLINE_PIPELINE.md
+의견, 버그 제보, 기능 요청 등 자유롭게 **[GitHub Issues](https://github.com/everlib/EverSoulSimulator/issues)** 에 남겨 주세요.
+
+자세한 사용 방법과 설정 가이드는 **[Wiki](https://github.com/everlib/EverSoulSimulator/wiki)** 를 참고해 주세요.

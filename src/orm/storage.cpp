@@ -451,7 +451,8 @@ bool ensure_meta_ready_locked(const std::string& data_dir) {
     if (g_meta_storage) return true;
     std::string path = accounts_db_path(data_dir);
     try {
-        fs::create_directories(fs::path(path).parent_path());
+        auto parent = fs::path(path).parent_path();
+        if (!parent.empty()) fs::create_directories(parent);
         auto st = std::make_unique<MetaStorage>(make_meta_storage(path));
         st->pragma.journal_mode(sqlite_orm::journal_mode::WAL);
         st->pragma.synchronous(1);
@@ -472,7 +473,8 @@ bool ensure_meta_ready_locked(const std::string& data_dir) {
 bool open_game_storage_locked(const std::string& data_dir, const std::string& account_id) {
     std::string gpath = account_db_path_for(data_dir, account_id);
     try {
-        fs::create_directories(fs::path(gpath).parent_path());
+        auto gparent = fs::path(gpath).parent_path();
+        if (!gparent.empty()) fs::create_directories(gparent);
         auto st = std::make_unique<GameStorage>(make_game_storage(gpath));
         st->pragma.journal_mode(sqlite_orm::journal_mode::WAL);
         st->pragma.synchronous(1);
@@ -820,7 +822,8 @@ std::string create_account(const std::string& nickname,
     {
         std::string gpath = account_db_path_for(dir, id);
         try {
-            fs::create_directories(fs::path(gpath).parent_path());
+            auto cp = fs::path(gpath).parent_path();
+            if (!cp.empty()) fs::create_directories(cp);
             auto st = make_game_storage(gpath);
             st.pragma.journal_mode(sqlite_orm::journal_mode::WAL);
             st.sync_schema();

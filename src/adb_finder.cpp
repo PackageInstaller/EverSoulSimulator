@@ -21,6 +21,16 @@ static std::string adb_txt_path(const std::string& data_dir)
 #endif
 }
 
+static std::string adb_port_txt_path(const std::string& data_dir)
+{
+    if (data_dir.empty()) return "adb_port.txt";
+#ifdef _WIN32
+    return data_dir + "\\adb_port.txt";
+#else
+    return data_dir + "/adb_port.txt";
+#endif
+}
+
 } // namespace
 
 std::string load_saved_adb_path(const std::string& data_dir)
@@ -70,6 +80,23 @@ std::string resolve_adb_path(const std::string& data_dir)
     }
 
     return "adb";
+}
+
+std::string load_adb_port(const std::string& data_dir)
+{
+    std::ifstream f(adb_port_txt_path(data_dir));
+    if (!f.is_open()) return {};
+    std::string line;
+    if (!std::getline(f, line)) return {};
+    while (!line.empty() && (line.back() == '\r' || line.back() == '\n' || line.back() == ' '))
+        line.pop_back();
+    return line;
+}
+
+void save_adb_port(const std::string& data_dir, const std::string& port)
+{
+    std::ofstream f(adb_port_txt_path(data_dir), std::ios::trunc);
+    if (f.is_open()) f << port << "\n";
 }
 
 FILE* adb_popen(const std::string& adb_path, const std::string& args)

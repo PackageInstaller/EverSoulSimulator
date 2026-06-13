@@ -5,6 +5,16 @@
 let LANG = 'ko';
 
 const _I = {
+  'intro.adb_path_placeholder': {
+    ko: '예: D:\\MuMuPlayer\\nx_device\\12.0\\shell  (또는 adb.exe 전체 경로)',
+    en: 'e.g. D:\\MuMuPlayer\\nx_device\\12.0\\shell  (or full path to adb.exe)',
+    zh: '例：D:\\MuMuPlayer\\nx_device\\12.0\\shell  （或 adb.exe 完整路径）',
+  },
+  'intro.port_placeholder': {
+    ko: '예: 16384  (MuMu 설정 → 멀티 인스턴스 → ADB 포트)',
+    en: 'e.g. 16384  (MuMu Settings → Multi-Instance → ADB Port)',
+    zh: '例：16384  （MuMu 设置 → 多开 → ADB 端口）',
+  },
   'intro.status_init':       { ko:'시스템 초기화 중…',            en:'Initializing system…',              zh:'系统初始化中…' },
   'intro.status_server':     { ko:'게임 서버 연결 확인 중…',      en:'Checking game server connection…',  zh:'检查游戏服务器连接中…' },
   'intro.status_adb':        { ko:'ADB 설정 로드 중…',            en:'Loading ADB configuration…',       zh:'加载 ADB 配置中…' },
@@ -27,10 +37,27 @@ const _I = {
   'intro.enter_hint':        { ko:'ENTER DUNGEON 클릭 또는 3초 후 자동 진입', en:'Click ENTER DUNGEON or auto-entering in 3s', zh:'点击 ENTER DUNGEON 或 3 秒后自动进入' },
   'intro.proxy_mode':        { ko:'프록시', en:'proxy', zh:'代理' },
   'intro.offline_mode':      { ko:'오프라인', en:'offline', zh:'离线' },
-  'intro.adb_empty_err':     { ko:'경로를 입력하세요', en:'Please enter a path', zh:'请输入路径' },
-  'intro.adb_validating':    { ko:'검증 중…', en:'Validating…', zh:'验证中…' },
-  'intro.adb_not_found':     { ko:'adb.exe를 찾을 수 없습니다', en:'adb.exe not found at path', zh:'找不到 adb.exe' },
-  'intro.server_conn_fail':  { ko:'서버 연결 실패', en:'Server connection failed', zh:'服务器连接失败' },
+  'intro.adb_empty_err':        { ko:'경로를 입력하세요', en:'Please enter a path', zh:'请输入路径' },
+  'intro.adb_validating':       { ko:'검증 중…', en:'Validating…', zh:'验证中…' },
+  'intro.adb_not_found':        { ko:'adb.exe를 찾을 수 없습니다', en:'adb.exe not found at path', zh:'找不到 adb.exe' },
+  'intro.server_conn_fail':     { ko:'서버 연결 실패', en:'Server connection failed', zh:'服务器连接失败' },
+  'intro.loading_port':         { ko:'저장된 ADB 포트 로드 중…', en:'Loading saved ADB port…', zh:'加载已保存的 ADB 端口中…' },
+  'intro.port_need':            { ko:'ADB 포트 미설정 — 입력 필요', en:'ADB port not set — input required', zh:'ADB 端口未设置 — 需要输入' },
+  'intro.port_loaded':          { ko:'저장된 포트: {port}', en:'Saved port: {port}', zh:'已保存端口：{port}' },
+  'intro.port_saved':           { ko:'포트 저장됨: {port}', en:'Port saved: {port}', zh:'端口已保存：{port}' },
+  'intro.status_port':          { ko:'기기 포트 확인 중…', en:'Checking device port…', zh:'检查设备端口中…' },
+  'intro.status_port_input':    { ko:'기기 ADB 포트를 입력하세요…', en:'Enter device ADB port…', zh:'请输入设备 ADB 端口…' },
+  'intro.status_probe':         { ko:'기기 상태 조사 중…', en:'Probing device status…', zh:'探测设备状态中…' },
+  'intro.probe_connecting':     { ko:'기기 연결 시도: {target}', en:'Connecting to device: {target}', zh:'正在连接设备：{target}' },
+  'intro.probe_fail':           { ko:'기기 연결 실패 — 포트를 확인하세요', en:'Device connection failed — check port', zh:'设备连接失败 — 请检查端口' },
+  'intro.probe_eversoul_ok':    { ko:'EverSoul 패키지 확인됨', en:'EverSoul package found', zh:'EverSoul 包已确认' },
+  'intro.probe_eversoul_fail':  { ko:'EverSoul 미설치', en:'EverSoul not installed', zh:'EverSoul 未安装' },
+  'intro.probe_rooted':         { ko:'루팅 확인됨 (su OK)', en:'Root verified (su OK)', zh:'已确认 Root (su OK)' },
+  'intro.probe_not_rooted':     { ko:'루팅 미확인 (su root 없음)', en:'Root not available (no su)', zh:'未确认 Root（无 su）' },
+  'intro.probe_adb_root':       { ko:'adb root 사용 가능', en:'adb root available', zh:'adb root 可用' },
+  'intro.probe_no_adb_root':    { ko:'adb root 불가 (su root 사용)', en:'adb root unavailable (using su)', zh:'adb root 不可用（使用 su）' },
+  'intro.port_empty_err':       { ko:'포트 번호를 입력하세요', en:'Please enter a port number', zh:'请输入端口号' },
+  'intro.port_probing':         { ko:'연결 확인 중…', en:'Probing…', zh:'探测中…' },
   'admin.dashboard':         { ko:'대시보드', en:'Dashboard', zh:'仪表板' },
   'admin.health':            { ko:'헬스체크', en:'Health', zh:'健康检查' },
   'admin.logs':              { ko:'요청 로그', en:'Request Log', zh:'请求日志' },
@@ -45,6 +72,30 @@ const _I = {
   'admin.requests':          { ko:'처리 요청', en:'Requests', zh:'已处理请求' },
   'admin.proxy_on':          { ko:'프록시 활성화', en:'Enable Proxy', zh:'启用代理' },
   'server.port':             { ko:'포트', en:'Port', zh:'端口' },
+  'admin.game_start_title':  { ko:'게임 시작', en:'Start Game', zh:'开始游戏' },
+  'admin.game_start_btn':    { ko:'▶ 게임 시작', en:'▶ START GAME', zh:'▶ 开始游戏' },
+  'admin.db_select_table':   { ko:'테이블을 선택하세요.', en:'Select a table.', zh:'请选择表。' },
+  'admin.acct_new':          { ko:'신규 계정', en:'New Account', zh:'新建账户' },
+  'admin.acct_nick':         { ko:'닉네임', en:'Nickname', zh:'昵称' },
+  'admin.acct_nick_placeholder': { ko:'닉네임', en:'Nickname', zh:'昵称' },
+  'admin.acct_login':        { ko:'로그인', en:'Login Type', zh:'登录类型' },
+  'admin.acct_idp_guest':    { ko:'게스트', en:'Guest', zh:'游客' },
+  'admin.acct_idp_kakao':    { ko:'카카오', en:'Kakao', zh:'Kakao' },
+  'admin.acct_create':       { ko:'생성', en:'Create', zh:'创建' },
+  'admin.acct_edit':         { ko:'계정 편집', en:'Edit Account', zh:'编辑账户' },
+  'admin.files_select_dir':  { ko:'디렉토리를 선택하세요.', en:'Select a directory.', zh:'请选择目录。' },
+  'admin.save':              { ko:'저장', en:'Save', zh:'保存' },
+  'admin.cancel':            { ko:'취소', en:'Cancel', zh:'取消' },
+  'about.orig_author':       { ko:'원제작자', en:'Original Author', zh:'原制作者' },
+  'about.co_dev':            { ko:'보조 개발', en:'Co-Developer', zh:'协同开发' },
+  'about.tech':              { ko:'기술', en:'Technology', zh:'技术' },
+  'admin.import_title':      { ko:'UserInfo 가져오기', en:'Import UserInfo', zh:'导入 UserInfo' },
+  'admin.import_desc1':      { ko:'HAR에서 캡처한 UserInfo.json 파일을 선택하면', en:'Select a UserInfo.json captured from HAR,', zh:'选择从 HAR 捕获的 UserInfo.json，' },
+  'admin.import_desc2':      { ko:'해당 계정 DB에 데이터를 가져옵니다.', en:'and import data into the account DB.', zh:'将数据导入对应账户数据库。' },
+  'admin.import_btn':        { ko:'가져오기', en:'Import', zh:'导入' },
+  'admin.injector_connect':  { ko:'ADB 연결', en:'ADB Connect', zh:'ADB 连接' },
+  'admin.injector_connect_btn': { ko:'연결', en:'Connect', zh:'连接' },
+  'admin.injector_devices':  { ko:'연결된 기기', en:'Connected Devices', zh:'已连接设备' },
 };
 
 let _SERVER_STRINGS = {};
@@ -70,6 +121,10 @@ function applyI18n() {
     const k = el.getAttribute('data-i18n');
     if (k) el.textContent = t(k);
   });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const k = el.getAttribute('data-i18n-placeholder');
+    if (k) el.placeholder = t(k);
+  });
   document.querySelectorAll('.lang-btn').forEach(b => {
     const map = { ko: '한국어', en: 'EN', zh: '中文' };
     b.classList.toggle('active', b.textContent.trim() === map[LANG]);
@@ -85,6 +140,22 @@ function setLang(l) {
   }).catch(() => {});
   applyI18n();
 }
+
+function selectLangAndStart(lang) {
+  LANG = lang;
+  localStorage.setItem('eversoul_lang', lang);
+  fetch('/admin/api/config', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ lang }),
+  }).catch(() => {});
+  applyI18n();
+  const dlg = document.getElementById('lang-select-overlay');
+  if (dlg) dlg.close();
+  _bootAfterLang();
+}
+
+let _bootAfterLang = () => {};
 
 // ── helpers ───────────────────────────────────────────────────────────────────
 
@@ -194,9 +265,82 @@ async function saveAdbFromIntro() {
 
 let _adbSetDone = () => {};
 
+// ── INTRO: port input section ────────────────────────────────────────────────
+
+let _portSetDone = () => {};
+
+function showPortInput() {
+  document.getElementById('adb-port-input-section').classList.add('visible');
+  document.getElementById('adb-port-input').focus();
+}
+
+function _printProbeResults(d) {
+  if (!d || !d.connected) {
+    termPrintResult(t('intro.probe_fail'), 0, 'badge-err', 'FAIL');
+    return;
+  }
+  termPrintResult(
+    d.eversoul ? t('intro.probe_eversoul_ok') : t('intro.probe_eversoul_fail'),
+    d.eversoul ? 100 : 30, d.eversoul ? 'badge-ok' : 'badge-warn', d.eversoul ? 'OK' : 'WARN'
+  );
+  termPrintResult(
+    d.rooted ? t('intro.probe_rooted') : t('intro.probe_not_rooted'),
+    d.rooted ? 100 : 30, d.rooted ? 'badge-ok' : 'badge-warn', d.rooted ? 'OK' : 'WARN'
+  );
+  termPrintResult(
+    d.adb_root ? t('intro.probe_adb_root') : t('intro.probe_no_adb_root'),
+    d.adb_root ? 100 : 50, d.adb_root ? 'badge-ok' : 'badge-warn', d.adb_root ? 'OK' : 'WARN'
+  );
+}
+
+async function probeDevice() {
+  const portEl = document.getElementById('adb-port-input');
+  const msg    = document.getElementById('adb-port-msg');
+  const btn    = document.getElementById('btn-port-probe');
+  const port   = portEl.value.trim();
+
+  if (!port) { msg.textContent = t('intro.port_empty_err'); msg.className = 'err'; return; }
+
+  btn.disabled = true;
+  msg.textContent = t('intro.port_probing');
+  msg.className = '';
+
+  const target = '127.0.0.1:' + port;
+
+  try {
+    await fetch('/admin/api/adb/port', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ port }),
+    }).catch(() => {});
+
+    const r = await fetch('/admin/api/adb/probe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ target }),
+    });
+    const d = await r.json();
+
+    if (d.connected) {
+      msg.textContent = '✓ ' + target;
+      msg.className = 'ok';
+      document.getElementById('adb-port-input-section').classList.remove('visible');
+      _portSetDone(d);
+    } else {
+      msg.textContent = '✗ ' + t('intro.probe_fail');
+      msg.className = 'err';
+    }
+  } catch (_) {
+    msg.textContent = t('intro.server_conn_fail');
+    msg.className = 'err';
+  }
+  btn.disabled = false;
+}
+
 // ── INTRO: pipeline ───────────────────────────────────────────────────────────
 
 async function runIntro() {
+  document.getElementById('intro').classList.remove('hidden');
   termSetProgress(0);
   termSetStatus(t('intro.status_init'));
 
@@ -250,9 +394,50 @@ async function runIntro() {
     termSetProgress(55);
   }
 
+  termSetStatus(t('intro.status_port'));
+  termPrint(t('intro.loading_port'), 'dim');
+  termSetProgress(58);
+
+  let savedPort = '';
+  try {
+    const rp = await fetch('/admin/api/adb/port');
+    const dp = await rp.json();
+    savedPort = dp.port || '';
+  } catch (_) {}
+
+  let probeResult = null;
+
+  if (!savedPort) {
+    termPrintResult(t('intro.port_need'), 0, 'badge-warn', 'NEED');
+    termSetProgress(62);
+    termSetStatus(t('intro.status_port_input'));
+    probeResult = await new Promise(resolve => {
+      _portSetDone = resolve;
+      showPortInput();
+    });
+    _portSetDone = () => {};
+    termPrintResult(t('intro.port_saved').replace('{port}', document.getElementById('adb-port-input').value.trim()), 100, 'badge-ok', 'OK');
+  } else {
+    termPrintResult(t('intro.port_loaded').replace('{port}', savedPort), 100, 'badge-ok', 'OK');
+    termSetProgress(62);
+    termSetStatus(t('intro.status_probe'));
+    termPrint(t('intro.probe_connecting').replace('{target}', '127.0.0.1:' + savedPort), 'dim');
+    try {
+      const rr = await fetch('/admin/api/adb/probe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ target: '127.0.0.1:' + savedPort }),
+      });
+      probeResult = await rr.json();
+    } catch (_) {}
+  }
+
+  _printProbeResults(probeResult);
+  termSetProgress(72);
+
   termSetStatus(t('intro.status_device'));
   termPrint(t('intro.scanning_devices'), 'dim');
-  termSetProgress(65);
+  termSetProgress(78);
   try {
     const r = await fetch('/admin/api/injector/devices');
     const d = await r.json();
@@ -264,7 +449,7 @@ async function runIntro() {
   } catch (_) {
     termPrintResult(t('intro.device_fail'), 0, 'badge-err', 'FAIL');
   }
-  termSetProgress(80);
+  termSetProgress(88);
 
   await sleep(300);
   termSetProgress(100);
@@ -762,6 +947,31 @@ async function startGame() {
 
 let selectedSerial = '';
 
+async function connectAdbDevice() {
+  const input  = document.getElementById('adb-connect-input');
+  const status = document.getElementById('adb-connect-status');
+  const btn    = document.getElementById('btn-adb-connect');
+  const target = input.value.trim();
+  if (!target) return;
+  btn.disabled = true;
+  status.textContent = 'Connecting…';
+  status.style.color = 'var(--color-text-dim)';
+  try {
+    const r = await fetch('/admin/api/injector/connect', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ target }),
+    });
+    const d = await r.json();
+    status.textContent = d.output ? d.output.trim() : (d.ok ? 'Connected' : 'Failed');
+    status.style.color = d.ok ? 'var(--color-green)' : 'var(--color-red)';
+    if (d.ok) await loadInjectorDevices();
+  } catch (_) {
+    status.textContent = 'Error';
+    status.style.color = 'var(--color-red)';
+  }
+  btn.disabled = false;
+}
+
 async function loadInjectorDevices() {
   const el = document.getElementById('injector-device-list');
   el.innerHTML = '<span style="color:var(--color-text-dim)">Scanning…</span>';
@@ -1247,16 +1457,36 @@ function initMain() {
 // ── BOOT ──────────────────────────────────────────────────────────────────────
 
 (async () => {
+  const savedLang = localStorage.getItem('eversoul_lang');
+  if (savedLang) {
+    LANG = savedLang;
+  }
+
   await loadStrings();
 
-  try {
-    const r = await fetch('/admin/api/setup/status');
-    const d = await r.json();
-    if (d.complete) {
-      enterMain();
-      return;
-    }
-  } catch (_) {}
+  const proceedBoot = async () => {
+    try {
+      const r = await fetch('/admin/api/setup/status');
+      const d = await r.json();
+      if (d.complete) {
+        enterMain();
+        return;
+      }
+    } catch (_) {}
+    runIntro();
+  };
 
-  runIntro();
+  if (savedLang) {
+    await proceedBoot();
+  } else {
+    const dlg = document.getElementById('lang-select-overlay');
+    if (dlg && dlg.showModal) {
+      dlg.showModal();
+    }
+    await new Promise(resolve => {
+      _bootAfterLang = resolve;
+    });
+    _bootAfterLang = () => {};
+    await proceedBoot();
+  }
 })();

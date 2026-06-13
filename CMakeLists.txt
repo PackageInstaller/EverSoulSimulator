@@ -86,9 +86,10 @@ if(ANDROID)
   # via il2cpp_redirect (127.0.0.1:9999) + adb reverse tcp:9999 tcp:9999.
   add_library(swappywrapper SHARED
     ${EVERSOUL_ANDROID_SOURCES}
+    ${EVERSOUL_SERVER_SOURCES}
     ${PROTO_OBJ})
   target_include_directories(swappywrapper PRIVATE ${EVERSOUL_INCLUDE_DIRS})
-  target_compile_options(swappywrapper PRIVATE -O2 -fvisibility=hidden)
+  target_compile_options(swappywrapper PRIVATE -O2 -fvisibility=hidden -Wno-format-security)
   target_link_libraries(swappywrapper PRIVATE log dl m)
   target_link_options(swappywrapper PRIVATE -static-libstdc++ -s)
 
@@ -157,6 +158,9 @@ else()
       "${CMAKE_SOURCE_DIR}/src/assets/loading.png"
       "$<TARGET_FILE_DIR:eversoul_offline_server>/web/loading.png"
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
+      "${CMAKE_SOURCE_DIR}/src/assets/lang.png"
+      "$<TARGET_FILE_DIR:eversoul_offline_server>/web/lang.png"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
       "${CMAKE_SOURCE_DIR}/src/web/index.html"
       "$<TARGET_FILE_DIR:eversoul_offline_server>/web/index.html"
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
@@ -170,14 +174,12 @@ else()
       "$<TARGET_FILE_DIR:eversoul_offline_server>/web/account_select.js"
     COMMAND ${CMAKE_COMMAND} -E make_directory
       "$<TARGET_FILE_DIR:eversoul_offline_server>/offline_data")
-  if(EXISTS "${CMAKE_SOURCE_DIR}/tools/tailwindcss.exe")
-    add_custom_command(TARGET eversoul_offline_server POST_BUILD
-      COMMAND "${CMAKE_SOURCE_DIR}/tools/tailwindcss.exe"
-        -i "${CMAKE_SOURCE_DIR}/src/web/input.css"
-        -o "$<TARGET_FILE_DIR:eversoul_offline_server>/web/style.css"
-        --minify
-      COMMENT "Building Tailwind CSS → web/style.css")
-  endif()
+  add_custom_command(TARGET eversoul_offline_server POST_BUILD
+    COMMAND "${CMAKE_SOURCE_DIR}/tools/tailwindcss.exe"
+      -i "${CMAKE_SOURCE_DIR}/src/web/input.css"
+      -o "$<TARGET_FILE_DIR:eversoul_offline_server>/web/style.css"
+      --minify
+    COMMENT "Building Tailwind CSS → web/style.css")
   if(WIN32)
     target_link_libraries(eversoul_offline_server PRIVATE ws2_32)
 

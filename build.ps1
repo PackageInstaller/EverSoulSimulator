@@ -128,16 +128,11 @@ foreach ($d in @("web", "wss", "responses", "responses_newbie", "schema")) {
 
 New-Item -ItemType Directory -Force -Path "build\web" | Out-Null
 
-$TAILWIND = Join-Path $ROOT "tools\tailwindcss.exe"
-if (Test-Path $TAILWIND) {
-    Write-Host "== Build Tailwind CSS =="
-    & $TAILWIND -i "src\web\input.css" -o "src\web\style.css" --minify
-    if ($LASTEXITCODE -ne 0) { Write-Warning "Tailwind build failed (non-fatal)" }
-} else {
-    Write-Warning "tools\tailwindcss.exe not found — skipping Tailwind build"
-}
+Write-Host "== Build Tailwind CSS =="
+& (Join-Path $ROOT "tools\tailwindcss.exe") -i "src\web\input.css" -o "src\web\style.css" --minify
+if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-foreach ($f in @("index.html", "app.js", "style.css")) {
+foreach ($f in @("index.html", "app.js", "style.css", "account_select.html", "account_select.js")) {
     $src = Join-Path $ROOT "src\web\$f"
     if (Test-Path $src) {
         Copy-Item -Force $src "build\web\$f"
@@ -145,7 +140,7 @@ foreach ($f in @("index.html", "app.js", "style.css")) {
     }
 }
 
-foreach ($f in @("logo.png", "main_bg.png", "loading.png")) {
+foreach ($f in @("logo.png", "main_bg.png", "loading.png", "lang.png")) {
     $src = Join-Path $ROOT "src\assets\$f"
     if (Test-Path $src) {
         Copy-Item -Force $src "build\web\$f"
@@ -229,15 +224,86 @@ if ($NDK_ROOT -and (Test-Path $NDK_ROOT)) {
     Copy-Item -Force "$ANDROID_X86_BUILD_DIR\inject_helper" "$ANDROID_BUILD_DIR\inject_helper"
     Write-Host "Built: $ANDROID_BUILD_DIR/inject_helper (x86_64)"
 
-    Write-Host "== Copy APK artifacts =="
-    New-Item -ItemType Directory -Force -Path "build\apk\change_only" | Out-Null
-    New-Item -ItemType Directory -Force -Path "build\apk\origin"      | Out-Null
-    Get-ChildItem "apk\change_only\*" -ErrorAction SilentlyContinue | ForEach-Object {
-        Copy-Item -Force $_.FullName "build\apk\change_only\"
-        Write-Host "Copied: build/apk/change_only/$($_.Name)"
+    Write-Host "== Patch APK =="
+    New-Item -ItemType Directory -Force -Path "build\apk" | Out-Null
+
+    $APKTOOL    = Join-Path $ROOT "tools\apktool_3.0.2.jar"
+    $PATCH_SMALI = Join-Path $ROOT "tools\patch_smali.py"
+    $PATCHED_SO  = Join-Path $ROOT "$ANDROID_BUILD_DIR\libswappywrapper.so"
+
+    $SDK_BUILD_TOOLS = Join-Path $env:LOCALAPPDATA "Android\Sdk\build-tools"
+    $APKSIGNER = $null
+    if (Test-Path $SDK_BUILD_TOOLS) {
+        $APKSIGNER = Get-ChildItem $SDK_BUILD_TOOLS -Directory |
+            Sort-Object Name -Descending | Select-Object -First 1 |
+            ForEach-Object { Join-Path $_.FullName "apksigner.bat" } |
+            Where-Object { Test-Path $_ }
     }
-    Copy-Item -Force "apk\origin\split_config.arm64_v8a.apk" "build\apk\origin\split_config.arm64_v8a.apk"
-    Write-Host "Copied: build/apk/origin/split_config.arm64_v8a.apk"
+
+    $KEYSTORE      = if ($env:KEYSTORE_PATH) { $env:KEYSTORE_PATH } else { Join-Path $ROOT "sample2\sign.keystore" }
+    $KEYSTORE_PASS = if ($env:KEYSTORE_PASS) { $env:KEYSTORE_PASS } else { "android" }
+
+    if (-not (Test-Path $APKTOOL))   { Write-Error "apktool not found: $APKTOOL"; exit 1 }
+    if (-not $APKSIGNER)             { Write-Error "apksigner not found in Android SDK build-tools"; exit 1 }
+    if (-not (Test-Path $KEYSTORE))  { Write-Error "keystore not found: $KEYSTORE"; exit 1 }
+
+    $ORIGIN_BASE  = Join-Path $ROOT "apk\origin\base.apk"
+    $ORIGIN_SPLIT = Join-Path $ROOT "apk\origin\split_config.arm64_v8a.apk"
+    if (-not (Test-Path $ORIGIN_BASE))  { Write-Error "origin base.apk not found: $ORIGIN_BASE"; exit 1 }
+    if (-not (Test-Path $ORIGIN_SPLIT)) { Write-Error "origin split APK not found: $ORIGIN_SPLIT"; exit 1 }
+
+    $MAKE_DIR     = Join-Path $ROOT "apk\make"
+    $MAKE_BASE    = Join-Path $MAKE_DIR "base.apk"
+    $DECODED_DIR  = Join-Path $MAKE_DIR "base_decoded"
+    $UNSIGNED_APK = Join-Path $MAKE_DIR "base_patched_unsigned.apk"
+
+    Remove-Item -Recurse -Force $MAKE_DIR -ErrorAction SilentlyContinue
+    New-Item -ItemType Directory -Force -Path $MAKE_DIR | Out-Null
+
+    Write-Host "  cp origin -> apk/make/"
+    Copy-Item -Force $ORIGIN_BASE  $MAKE_BASE
+    Copy-Item -Force $ORIGIN_SPLIT (Join-Path $MAKE_DIR "split_config.arm64_v8a.apk")
+
+    Write-Host "  apktool decode..."
+    & java -jar $APKTOOL d $MAKE_BASE -o $DECODED_DIR -f --no-res
+    if ($LASTEXITCODE -ne 0) { Write-Error "apktool decode failed"; exit 1 }
+
+    Write-Host "  smali patch (loadLibrary)..."
+    & $PYTHON $PATCH_SMALI $DECODED_DIR
+    if ($LASTEXITCODE -ne 0) { Write-Error "smali patch failed"; exit 1 }
+
+    $LIB_DIR = Join-Path $DECODED_DIR "lib\arm64-v8a"
+    New-Item -ItemType Directory -Force -Path $LIB_DIR | Out-Null
+    Copy-Item -Force $PATCHED_SO (Join-Path $LIB_DIR "libswappywrapper.so")
+    Write-Host "  libswappywrapper.so injected"
+
+    Write-Host "  apktool build..."
+    & java -jar $APKTOOL b $DECODED_DIR -o $UNSIGNED_APK
+    if ($LASTEXITCODE -ne 0) { Write-Error "apktool build failed"; exit 1 }
+
+    $PATCHED_APK_OUT = Join-Path $ROOT "build\apk\base_patched.apk"
+    Write-Host "  apksigner v2..."
+    & $APKSIGNER sign --ks $KEYSTORE --ks-pass "pass:$KEYSTORE_PASS" --out $PATCHED_APK_OUT $UNSIGNED_APK
+    if ($LASTEXITCODE -ne 0) { Write-Error "apksigner failed"; exit 1 }
+    Write-Host "Patched: build/apk/base_patched.apk"
+
+    Add-Type -AssemblyName System.IO.Compression.FileSystem
+    $CAWWYAYY_OUT = Join-Path $ROOT "build\apk\libcawwyayy_patched.so"
+    $zip = [System.IO.Compression.ZipFile]::OpenRead((Join-Path $MAKE_DIR "split_config.arm64_v8a.apk"))
+    $entry = $zip.Entries | Where-Object { $_.FullName -eq "lib/arm64-v8a/libcawwyayy.so" } | Select-Object -First 1
+    if ($entry) {
+        [System.IO.Compression.ZipFileExtensions]::ExtractToFile($entry, $CAWWYAYY_OUT, $true)
+        Write-Host "Extracted: build/apk/libcawwyayy_patched.so"
+    } else {
+        Write-Warning "libcawwyayy.so not found in make/split_config.arm64_v8a.apk — injector push step will fail"
+    }
+    $zip.Dispose()
+
+    Copy-Item -Force (Join-Path $MAKE_DIR "split_config.arm64_v8a.apk") "build\apk\split_config.arm64_v8a.apk"
+    Write-Host "Copied: build/apk/split_config.arm64_v8a.apk"
+
+    Remove-Item -Recurse -Force $MAKE_DIR -ErrorAction SilentlyContinue
+    Write-Host "Cleaned: apk/make/"
 
     Write-Host "== Output hashes =="
     foreach ($f in @(
@@ -245,8 +311,8 @@ if ($NDK_ROOT -and (Test-Path $NDK_ROOT)) {
         "$ANDROID_BUILD_DIR\libswappywrapper.so",
         "$ANDROID_BUILD_DIR\inject_helper",
         "build\offline_data\libofflinedata.so",
-        "build\apk\change_only\base_patched.apk",
-        "build\apk\change_only\libcawwyayy_orig.so"
+        "build\apk\base_patched.apk",
+        "build\apk\libcawwyayy_patched.so"
     )) {
         if (Test-Path $f) {
             $h = (Get-FileHash $f -Algorithm SHA256).Hash.ToLower()
