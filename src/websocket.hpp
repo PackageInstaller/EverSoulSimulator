@@ -6,6 +6,7 @@
 #include <string>
 
 #include "common.hpp"
+#include "platform.hpp"
 
 namespace eversoul
 {
@@ -17,7 +18,7 @@ namespace eversoul
     // handshake (using the captured request) and runs the per-protocol frame loop
     // until the peer disconnects. `pre` holds any bytes already read past the
     // request headers. Picks the protocol from the request path/host.
-    void handle_websocket(std::uint64_t id, int fd, const HttpRequest &req,
+    void handle_websocket(std::uint64_t id, socket_fd_t fd, const HttpRequest &req,
                           const std::string &pre);
 
     // --- frame codec (exposed for tests) ---

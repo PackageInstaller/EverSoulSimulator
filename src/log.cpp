@@ -2,11 +2,16 @@
 #include "log.hpp"
 
 #include <sys/stat.h>
+#ifdef _WIN32
+#include <direct.h>
+#include <windows.h>
+#endif
 
 #include <fstream>
 #include <mutex>
 #include <string>
 
+#include "admin_log_sink.hpp"
 #include "common.hpp"
 #include "util.hpp"
 
@@ -34,7 +39,8 @@ namespace eversoul
     void log_line(std::uint64_t id, const std::string &tag, const std::string &text)
     {
         std::lock_guard<std::mutex> lock(g_log_mutex);
-        std::string line = "[" + now_string() + "][#" + std::to_string(id) + "][" + tag + "] " + text + "\n";
+        std::string ts   = now_string();
+        std::string line = "[" + ts + "][#" + std::to_string(id) + "][" + tag + "] " + text + "\n";
 #ifdef __ANDROID__
         __android_log_print(ANDROID_LOG_INFO, "eversoul_offline", "%s", line.c_str());
 #else
@@ -46,15 +52,24 @@ namespace eversoul
             g_log_file << line;
             g_log_file.flush();
         }
+        admin::log_sink_push(admin::LogEntry{id, ts, tag, text});
     }
 
     void open_log_file()
     {
+#ifdef _WIN32
+        SetConsoleOutputCP(CP_UTF8);
+        SetConsoleCP(CP_UTF8);
+#endif
 #ifdef __ANDROID__
         mkdir("/data/data/com.kakaogames.eversoul/files", 0700);
         const std::string path = "/data/data/com.kakaogames.eversoul/files/offline_server.log";
 #else
+#ifdef _WIN32
+        _mkdir("logs");
+#else
         mkdir("logs", 0755);
+#endif
         const std::string path = "logs/offline_server.log";
 #endif
         // 每次 server 启动清空旧日志，重新开始记录（不与上次会话混在一起）。

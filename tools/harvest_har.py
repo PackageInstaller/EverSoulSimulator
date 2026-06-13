@@ -35,7 +35,7 @@ def main():
     if len(sys.argv) < 2:
         print("usage: harvest_har.py <session.har>", file=sys.stderr)
         return 1
-    har = json.load(open(sys.argv[1]))
+    har = json.load(open(sys.argv[1], encoding="utf-8"))
     entries = har["log"]["entries"]
 
     # path -> payload (last occurrence wins)
@@ -65,7 +65,7 @@ def main():
         out.append(f'    {{"{path}", "{payload.hex()}"}},')
     out.append("}")
 
-    open("src/harvested_session.inc", "w").write("\n".join(out) + "\n")
+    open("src/harvested_session.inc", "w", encoding="utf-8").write("\n".join(out) + "\n")
     print(f"wrote src/harvested_session.inc: {len(harvested)} endpoints")
     for path in sorted(harvested):
         print(f"  {path:32s} {len(harvested[path])} bytes")

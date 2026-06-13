@@ -45,7 +45,7 @@ def build_response(endpoint, fixture, reg, seq=0):
 
 
 def load_fixture(endpoint):
-    with open(os.path.join(RESPONSES, endpoint + ".json")) as f:
+    with open(os.path.join(RESPONSES, endpoint + ".json"), encoding="utf-8") as f:
         return json.load(f)
 
 

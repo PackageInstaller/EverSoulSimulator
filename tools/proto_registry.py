@@ -17,9 +17,12 @@ Public API:
 The dict form uses proto field names (preserving_proto_field_name=True) and is
 what we serialise to responses/<Endpoint>.json — the human-editable fixture.
 """
+import glob
 import json
 import os
+import shutil
 import subprocess
+import sys
 import tempfile
 from functools import lru_cache
 
@@ -29,6 +32,33 @@ from google.protobuf import json_format
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 PROTO_ROOT = os.path.join(ROOT, "ProtocolBuffers", "Global")
+
+
+def _find_protoc():
+    p = shutil.which("protoc")
+    if p:
+        return p
+    if sys.platform == "win32":
+        winget_base = os.path.expandvars(
+            r"%LOCALAPPDATA%\Microsoft\WinGet\Packages"
+        )
+        for match in glob.glob(
+            os.path.join(winget_base, "Google.Protobuf*", "**", "protoc.exe"),
+            recursive=True,
+        ):
+            return match
+        user_path = os.environ.get("PATH", "")
+        for segment in user_path.split(os.pathsep):
+            candidate = os.path.join(segment, "protoc.exe")
+            if os.path.isfile(candidate):
+                return candidate
+    raise FileNotFoundError(
+        "protoc not found. Install with: winget install Google.Protobuf  "
+        "then open a new terminal."
+    )
+
+
+_PROTOC = _find_protoc()
 
 # il2cpp-dump artifact: several Response messages declare a `string` field whose
 # name ends in `_` (arbeitList_, friendTotalList_, vistaInfo_, newMailCnt_, ...).
@@ -76,7 +106,7 @@ class ProtoRegistry:
         with tempfile.TemporaryDirectory() as td:
             out = os.path.join(td, "fds.pb")
             subprocess.run(
-                ["protoc", "--proto_path", proto_dir,
+                [_PROTOC, "--proto_path", proto_dir,
                  "--descriptor_set_out", out,
                  "--include_imports", endpoint + ".proto"],
                 check=True, capture_output=True)

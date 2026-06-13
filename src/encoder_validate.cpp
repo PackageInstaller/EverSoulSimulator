@@ -53,7 +53,7 @@ int main(int argc, char **argv)
 
     if (!fs::is_directory(schema_dir))
     {
-        std::fprintf(stderr, "no schema dir at %s\n", schema_dir.c_str());
+        std::fprintf(stderr, "no schema dir at %s\n", schema_dir.string().c_str());
         return 2;
     }
 

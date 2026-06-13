@@ -49,6 +49,18 @@ void kv_set(const std::string& key, const std::string& value);
 [[nodiscard]] int item_etc_count(int item_no);
 [[nodiscard]] bool has_dungeon(int dungeon_no);
 
+// Account management — multi-account support backed by the `accounts` table.
+// active_account_id KV tracks the currently selected account.
+[[nodiscard]] std::vector<Account> accounts();
+[[nodiscard]] std::optional<Account> account_by_id(const std::string& id);
+[[nodiscard]] std::optional<Account> active_account();
+[[nodiscard]] std::string create_account(const std::string& nickname,
+                                         const std::string& idp_code,
+                                         const std::string& idp_id,
+                                         const std::string& data_dir);
+bool select_account(const std::string& id, const std::string& data_dir);
+bool delete_account(const std::string& id);
+
 // Backfill story/dungeon rows when tutorial progress implies they should exist.
 void heal_progress();
 

@@ -1,139 +1,195 @@
-# Eversoul Offline (永恒灵魂离线服务端与注入工具)
+<p align="center">
+  <img src="src/assets/logo.png" width="140" alt="EverSoul Offline" />
+</p>
 
-本项目提供了针对《永恒灵魂》(Eversoul) 客户端的本地 Kakao SDK / Infodesk 模拟服务，以及用于拦截和解析 Unity 网络请求的 C++ 注入包装器与离线数据服务端。
+<h1 align="center">Eversoul Offline</h1>
+<h3 align="center">오프라인 서버 및 인젝션 툴</h3>
 
+<p align="center">
+  본 프로젝트는 《에버소울》(Eversoul) 클라이언트를 위한 로컬 Kakao SDK / Infodesk 모의 서버와, Unity 네트워크 요청을 가로채고 파싱하기 위한 C++ 인젝션 래퍼 및 오프라인 데이터 서버를 제공합니다.
+</p>
+
+<p align="center">
+  <a href="README_en.md">English</a> &nbsp;|&nbsp; <a href="README_cn.md">中文</a> &nbsp;|&nbsp; <strong>한국어</strong>
+</p>
 - [English Documentation](README_en.md) | **中文文档**
 - Discord 社群: [加入我们的 Discord](https://discord.gg/ZptEmqfuv)
 
 ---
 
-## 快速启动指南
+## 빠른 시작 가이드
 
-### 1. 构建桌面端与 Android 动态库
+### 1. 데스크톱 및 Android 라이브러리 빌드
 
-在项目根目录下运行统一构建脚本：
+#### 사전 준비 (Windows)
+
+| 도구 | 버전 | 설치 방법 |
+|------|------|----------|
+| CMake | 3.21+ | `winget install Kitware.CMake` |
+| GCC (MinGW-W64 POSIX UCRT) | 15.x | `winget install BrechtSanders.WinLibs.POSIX.UCRT` |
+| Python | 3.x | `winget install Python.Python.3` |
+| protoc | 35.x | `winget install Google.Protobuf` |
+| protobuf (Python) | 4.21+ | `pip install protobuf` |
+| libcurl (MinGW) | 8.x | `winget install cURL.cURL` |
+| Android NDK | r27+ | `winget install Google.AndroidCLI` 후 `sdkmanager "ndk;27.2.12479018"` |
+
+프로젝트 루트 디렉토리에서 통합 빌드 스크립트를 실행합니다 (Windows는 Git Bash 사용):
 
 ```bash
 ./build.sh
 ```
 
-如果当前目录下没有 .har 抓包文件，构建脚本会自动跳过 HAR 合并提取步骤，直接读取 responses/ 和 responses_newbie/ 目录中的数据进行编译，从而不影响克隆项目后的正常编译。
+Python 도구 출력 언어를 선택할 수 있습니다:
 
-编译生成的主要产物包括：
+```bash
+EVERSOUL_LANG=en ./build.sh   # 영어 (기본값)
+EVERSOUL_LANG=ko ./build.sh   # 한국어
+EVERSOUL_LANG=zh ./build.sh   # 중국어
+ ./build.ps1 -NoExit #windwos only
+```
 
-- build/eversoul_offline_server (本地代理与离线数据 Mock 服务端)
-- build/android/libswappywrapper.so (用于 Android 端的拦截注入包装库)
-- build/offline_data/libofflinedata.so (打包了离线静态 JSON 数据的 Android 动态库)
+현재 디렉토리에 .har 패킷 캡처 파일이 없는 경우, 빌드 스크립트는 HAR 병합 추출 단계를 자동으로 건너뛰고 `responses/` 및 `responses_newbie/` 디렉토리의 데이터를 읽어 컴파일합니다. 따라서 프로젝트 클론 이후 정상적인 빌드에 영향을 주지 않습니다.
+
+빌드 후 생성되는 주요 산출물:
+
+- build/eversoul_offline_server (로컬 프록시 및 오프라인 데이터 Mock 서버)
+- build/android/libswappywrapper.so (Android 클라이언트용 인터셉트 인젝션 래퍼 라이브러리)
+- build/offline_data/libofflinedata.so (오프라인 정적 JSON 데이터가 패키징된 Android 동적 라이브러리)
 
 ---
 
-### 2. 部署离线数据与注入库到 Android 设备
+### 2. Android 기기에 오프라인 데이터 및 인젝션 라이브러리 배포
 
-确保您的 Android 设备已开启 ADB 调试并连接，然后运行：
+Android 기기의 ADB 디버깅이 활성화되어 있고 연결된 상태인지 확인한 후, 다음을 실행합니다:
 
 ```bash
 ./deploy_offline_data.sh
 ```
 
-该脚本将自动执行以下操作：
-1. 将 libswappywrapper.so 和 libofflinedata.so 推送至游戏安装包的 Native 动态库目录中。
-2. 校验设备中的文件哈希值以确保部署正确。
+이 스크립트는 다음 작업을 자동으로 수행합니다:
+1. `libswappywrapper.so`와 `libofflinedata.so`를 게임 APK의 Native 동적 라이브러리 디렉토리에 푸시합니다.
+2. 배포가 올바르게 이루어졌는지 확인하기 위해 기기 내 파일의 해시 값을 검증합니다.
 
 ---
 
-## 核心技术实现细节
+## 핵심 기술 구현 세부 사항
 
-### 1. 注入与 Patch 加载方式 (反作弊绕过)
+### 1. 인젝션 및 패치 로드 방식 (안티치트 우회)
 
-由于游戏使用了 LIAPP 反作弊保护，进行整包脱壳不仅过程繁琐且难以维护。目前的绕过与加载方案如下：
+게임이 LIAPP 안티치트 보호를 사용하기 때문에, 전체 패키지 언패킹은 번거롭고 유지보수가 어렵습니다. 현재의 우회 및 로드 방식은 다음과 같습니다:
 
-在反作弊核心入口类 `com.liapp.x` 的 `attachBaseContext` 方法中，注入以下 Smali 代码以提前加载我们编译的注入包装库：
+안티치트 핵심 진입 클래스 `com.liapp.x`의 `attachBaseContext` 메서드에 다음 Smali 코드를 주입하여, 컴파일된 인젝션 래퍼 라이브러리를 조기에 로드합니다:
 
 ```smali
 const-string v0, "swappywrapper"
 invoke-static {v0}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V
 ```
 
-通过在此处提早加载包装库，可以在反作弊环境开始创建安全检测线程之前将其挂起或阻止创建，从而在保留外壳保护的状态下，顺利让游戏带壳加载并运行我们的离线数据拦截库。
+이 위치에서 래퍼 라이브러리를 조기에 로드함으로써, 안티치트 환경이 보안 탐지 스레드 생성을 시작하기 전에 이를 일시 중단하거나 차단할 수 있습니다. 이를 통해 셸 보호를 유지한 채로 게임이 오프라인 데이터 인터셉트 라이브러리를 정상적으로 로드하고 실행할 수 있습니다.
 
-### 2. 网络请求重定向方案
+### 2. 네트워크 요청 리다이렉션 방식
 
-目前的请求重定向分为两个阶段：
+현재 요청 리다이렉션은 두 단계로 나뉩니다:
 
-- 开发与测试阶段：目前使用 Frida 脚本（如 monitor_unity_web_request.js）对 Unity 的网络 and WebSocket 连接进行拦截与重定向。
-- 后续开源/免 Root 阶段：后续将集成 Frida Gadget 运行，或通过拦截并绕过客户端对安装包大小和 SHA-256 哈希值的双重校验，来实现无 Root 环境下的免脚本直接重定向运行。
-
----
-
-## 离线后端运行时具体流程
-
-离线后端的运行主要依托于底层 Hook 与异步服务的配合，具体执行过程如下：
-
-1. **动态库入口加载与 Hook 安装**
-   当游戏引擎通过 Java 层 `loadLibrary` 加载包装库 `libswappywrapper.so` 时，[entry.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/entry.cpp) 中的 `__attribute__((constructor))` 初始化函数 `eversoul_entry` 将立即被执行。
-   该入口函数首先调用 [anticheat_patch.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/anticheat_patch.cpp) 的安装接口，在 ARM64 汇编层级对 libc.so 中的 `pthread_create` 进行 Inline Hook（使用 16 字节绝对跳转指令替换函数开头）。
-   拦截回调函数在监听到新线程创建请求时，利用 `dladdr` 检测发起线程的起始函数是否属于 LIAPP 反作弊模块 `libcawwyayy.so`。若判断为反作弊扫描线程，则强制其调用空函数退出，从而挂起反作弊引擎；其余游戏自身线程正常放行。
-
-2. **数据初始化与异步服务拉起**
-   完成反作弊拦截挂接后，[entry.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/entry.cpp) 将在后台独立线程拉起离线 Mock 服务端（对应 [server.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/server.cpp)）。
-   异步服务端启动时，[offline_data.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/offline_data.cpp) 会自动定位并解析当前目录下的 `libofflinedata.so`（伪装成动态库的离线归档包）。如果定位失败，则自动降级读取本地散文件目录中的静态资源。
-   随后，[fixture_store.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/fixture_store.cpp) 结合 C++ 原生转换模块解析 `schema/` 目录下的 Protobuf 结构声明，将 `responses/` 中的可编辑 JSON 静态数据在内存中统一反序列化为二进制 Protobuf 数据，建立高效缓存映射表，同时预载 WebSocket 静态数据。
-
-3. **路由匹配与动态拦截**
-   客户端的 HTTP/WebSocket 请求被重定向到本机的 9999 监听端口。服务端收到连接后创建 detached 线程处理。
-   请求被分发给路由分发器 [router.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/router.cpp)。如果属于 Kakao SDK 等平台配置接口，直接下发本地 Mock 的 JSON，并通过下发 `gameServerAddr` 引导后续的游戏业务 Protobuf 请求访问本地服务。对于业务接口：
-   - 成品账号模式（Full Account）：服务端根据请求路径直接从 `FixtureStore` 缓存表中检索对应的静态 Protobuf 数据流并回复，支持快速回放已有的高等级账号数据。
-   - 新手账号模式（Newbie Account）：为了避免静态回放造成的新手引导状态卡死，[router.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/router.cpp) 会接管教程关键接口（如 `/UserInfo`, `/TutorialActive`, `/StageClear`, `/FormationSave` 等）。这些接口与底层的 SQLite 数据库 [src/orm](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/orm) 绑定。玩家在清关、改名、保存编队时，服务端会动态改写数据库并同步生成最新的回显结构，从而实现连贯的新手游戏引导和进度存档。
+- **개발 및 테스트 단계**: 현재 Frida 스크립트(monitor_unity_web_request.js)를 사용하여 Unity의 네트워크 및 WebSocket 연결을 가로채고 리다이렉션합니다.
+- **이후 오픈소스/루트 불필요 단계**: 이후에는 Frida Gadget 실행을 통합하거나, 클라이언트의 APK 크기 및 SHA-256 해시 이중 검증을 우회하여 Root 환경 없이 스크립트 없이 직접 리다이렉션하는 실행 방식을 구현할 예정입니다.
 
 ---
 
-## 运行模式说明
+## 오프라인 백엔드 런타임 구체적 흐름
 
-### A. 捕获与代理模式 (Capture / Proxy Mode)
+오프라인 백엔드의 실행은 저수준 Hook과 비동기 서비스의 협력을 통해 이루어지며, 구체적인 실행 과정은 다음과 같습니다:
 
-在此模式下，PC 桌面端服务端作为透明代理，拦截平台登录/验证请求，其他业务请求转发给官方服务器，并自动导出捕获数据。
+1. **동적 라이브러리 진입 로드 및 Hook 설치**
+   게임 엔진이 Java 레이어의 `loadLibrary`를 통해 래퍼 라이브러리 `libswappywrapper.so`를 로드할 때, [entry.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/entry.cpp)의 `__attribute__((constructor))` 초기화 함수 `eversoul_entry`가 즉시 실행됩니다.
+   이 진입 함수는 먼저 [anticheat_patch.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/anticheat_patch.cpp)의 설치 인터페이스를 호출하여, ARM64 어셈블리 수준에서 `libc.so`의 `pthread_create`에 Inline Hook을 적용합니다(16바이트 절대 점프 명령으로 함수 시작 부분을 교체).
+   인터셉트 콜백 함수는 새 스레드 생성 요청을 감지할 때, `dladdr`을 사용하여 스레드를 시작하는 함수가 LIAPP 안티치트 모듈 `libcawwyayy.so`에 속하는지 확인합니다. 안티치트 스캔 스레드로 판단되면 빈 함수를 호출하여 종료시켜 안티치트 엔진을 일시 중단하고, 나머지 게임 자체 스레드는 정상적으로 통과시킵니다.
 
-由于代理服务端运行在电脑端，需要进行 adb 端口重定向：
+2. **데이터 초기화 및 비동기 서비스 시작**
+   안티치트 인터셉트 훅 설치가 완료된 후, [entry.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/entry.cpp)는 백그라운드 독립 스레드에서 오프라인 Mock 서버([server.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/server.cpp) 구현)를 시작합니다.
+   비동기 서버 시작 시, [offline_data.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/offline_data.cpp)는 현재 디렉토리의 `libofflinedata.so`(동적 라이브러리로 위장한 오프라인 아카이브 패키지)를 자동으로 찾아 파싱합니다. 위치 파악에 실패하면 자동으로 로컬 파일 디렉토리의 정적 리소스를 읽도록 폴백합니다.
+   이어서 [fixture_store.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/fixture_store.cpp)는 C++ 네이티브 변환 모듈과 함께 `schema/` 디렉토리의 Protobuf 구조 선언을 파싱하고, `responses/`의 JSON 정적 데이터를 메모리에서 일괄적으로 바이너리 Protobuf 데이터로 역직렬화하여 효율적인 캐시 맵을 구축하는 동시에 WebSocket 정적 데이터를 미리 로드합니다.
+
+3. **라우팅 매칭 및 동적 인터셉션**
+   클라이언트의 HTTP/WebSocket 요청은 로컬 포트 9999로 리다이렉션됩니다. 서버는 연결 수신 후 detached 스레드를 생성하여 처리합니다.
+   요청은 라우터 [router.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/router.cpp)에 디스패치됩니다. Kakao SDK 등 플랫폼 설정 인터페이스에 해당하는 경우, 로컬 Mock JSON을 즉시 반환하고 `gameServerAddr`을 통해 이후 게임 비즈니스 Protobuf 요청을 로컬 서비스로 안내합니다. 비즈니스 인터페이스의 경우:
+   - **성숙 계정 모드(Full Account)**: 서버는 요청 경로에 따라 `FixtureStore` 캐시 테이블에서 해당 정적 Protobuf 데이터 스트림을 직접 검색하여 응답하며, 기존 고레벨 계정 데이터의 빠른 재생을 지원합니다.
+   - **신규 계정 모드(Newbie Account)**: 정적 재생으로 인한 신규 튜토리얼 상태 교착을 방지하기 위해, [router.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/router.cpp)는 튜토리얼 핵심 인터페이스(`/UserInfo`, `/TutorialActive`, `/StageClear`, `/FormationSave` 등)를 접수합니다. 이 인터페이스들은 하위 레벨 SQLite 데이터베이스 [src/orm](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/orm)에 바인딩됩니다. 플레이어가 스테이지를 클리어하거나, 닉네임을 변경하거나, 편성을 저장할 때 서버는 데이터베이스를 동적으로 수정하고 최신 에코 구조를 동기적으로 생성하여, 일관된 신규 게임 튜토리얼 진행과 진행 상황 저장을 실현합니다.
+
+---
+
+## 실행 모드 설명
+
+### A. 캡처 및 프록시 모드 (Capture / Proxy Mode)
+
+이 모드에서 PC 데스크톱 서버는 투명 프록시로 동작하여 플랫폼 로그인/인증 요청을 가로채고, 다른 비즈니스 요청은 공식 서버로 전달하며 캡처된 데이터를 자동으로 내보냅니다.
+
+프록시 서버가 PC에서 실행되므로 adb 포트 리다이렉션이 필요합니다:
 
 ```bash
-# 1. 重定向设备端口（仅在 PC 调试/代理抓包模式下需要）
+# 1. 기기 포트 리다이렉션 (PC 디버깅/프록시 패킷 캡처 모드에서만 필요)
 adb reverse tcp:9999 tcp:9999
 
-# 2. 在 PC 端启动代理服务端
+# 2. PC에서 프록시 서버 시작
 ./build/eversoul_offline_server --proxy --port 9999
 
-# 3. 使用 Frida 注入脚本启动游戏
+# 3. Frida 인젝션 스크립트로 게임 실행
 frida -H 127.0.0.1:27042 -f com.kakaogames.eversoul -l monitor_unity_web_request.js
 ```
 
-### B. 完全离线 Mock 模式 (Offline Mock Mode)
+### B. 완전 오프라인 Mock 모드 (Offline Mock Mode)
 
-在此模式下，所有接口的数据都由本地 Mock 服务端（或客户端注入的离线数据包）进行离线响应。
+이 모드에서 모든 인터페이스의 데이터는 로컬 Mock 서버(또는 클라이언트에 인젝션된 오프라인 데이터 패키지)가 오프라인으로 응답합니다.
 
-在完全离线状态下（即直接在设备上独立运行游戏），由于我们的离线服务端已经在 `libswappywrapper.so` 中以独立后台线程异步启动，因此**设备和离线服务端同处于手机本地环境中，不需要进行端口转发**。您只需要直接运行 Frida 脚本拦截地址即可。只有在使用 PC 桌面端作为 Mock 服务端时，才需要使用 `adb reverse` 端口转发。
+완전 오프라인 상태(즉, 기기에서 직접 독립적으로 게임 실행)에서, 오프라인 서버는 이미 `libswappywrapper.so` 내에서 독립적인 백그라운드 스레드로 비동기적으로 시작되었습니다. 따라서 **기기와 오프라인 서버가 모두 스마트폰 로컬 환경에 있어 포트 포워딩이 필요하지 않습니다**. Frida 스크립트를 직접 실행하여 주소를 인터셉션하면 됩니다. PC 데스크톱을 Mock 서버로 사용할 때만 `adb reverse` 포트 포워딩이 필요합니다.
 
 ```bash
-# 1. 直接使用 Frida 注入脚本启动游戏（无需端口转发）
+# 1. Frida 인젝션 스크립트로 게임 직접 실행 (포트 포워딩 불필요)
 frida -H 127.0.0.1:27042 -f com.kakaogames.eversoul -l monitor_unity_web_request.js
 ```
 
 ---
 
-## 接口实现状态与规划
+## 재화 및 치트 설정
 
-目前实现的接口响应**纯粹为静态 JSON Mock 数据**，其目的是为了首先完善整个响应的协议覆盖率，确保游戏在离线状态下能够顺利走完启动、登录、新手引导和主要界面的数据加载流程。后续开发计划中，将逐步引入动态业务逻辑（如动态处理抽卡、角色升级、关卡结算等状态更新）。
+오프라인 서버는 재화(골드, 다이아 등) 시스템을 자체 SQLite DB(`currency` 테이블)로 관리한다.  
+게임이 요청하는 모든 재화 타입이 서버 초기화 시 자동 생성되며, 초기값은 아래 표를 기준으로 한다.
 
-### 1. 已 Mock 的平台/验证接口 (Kakao / Infodesk)
+| 재화 타입 | 설명 | 기본값 |
+|-----------|------|--------|
+| 1 | 골드 | 99,999,999 |
+| 3 | 다이아(무과금) | 99,999,999 |
+| 42 | 다이아(유료) | 99,999,999 |
+| 4 | 마나 크리스탈 | 99,999,999 |
+| 그 외 | 가차 티켓, 우편, 재화 등 전 타입 | 각 타입별 기본값 |
 
-- /service/v3/util/country/get (获取国家地区代码)
-- /service/v4/device/accessToken/create (创建设备 AccessToken)
-- /service/v3/agreement/getForLogin (获取登录协议状态)
-- /service/v3/log/writeSdkBasicLog (SDK 基础日志接口)
-- /v2/appGroup (应用包组配置)
-- /v2/app (应用基础配置参数)
-- /v2/app/server/maintenance (游戏服务器维护状态)
+### Admin 패널에서 직접 조회
 
-### 2. 已 Mock 的 Protobuf 游戏业务接口
+서버 실행 후 `http://localhost:9998/admin` 접속 → **데이터베이스** 탭 → `currency` 테이블에서 현재 재화 수치를 확인할 수 있다.
+
+### 재화 수치 수동 변경
+
+Admin 패널의 데이터베이스 탭에서 `currency` 테이블을 직접 조회·확인할 수 있으며, 서버가 빌드된 `account_db.cpp`의 초기값을 수정한 뒤 재빌드하면 원하는 초기 재화로 시작할 수 있다.
+
+가차 비용은 실제로 차감되지만 초기 재화가 충분히 크게 설정되어 있어 사실상 무제한으로 동작한다.
+
+---
+
+## 인터페이스 구현 상태 및 로드맵
+
+현재 구현된 인터페이스 응답은 **순수 정적 JSON Mock 데이터**이며, 목적은 먼저 전체 응답 프로토콜 커버리지를 완성하여 게임이 오프라인 상태에서 시작, 로그인, 신규 튜토리얼, 주요 화면 데이터 로딩 흐름을 원활하게 진행할 수 있도록 하는 것입니다. 이후 개발 계획에서는 동적 비즈니스 로직(가차 뽑기, 캐릭터 레벨업, 스테이지 클리어 결산 등 상태 업데이트 동적 처리)을 점진적으로 도입할 예정입니다.
+
+### 1. 구현된 플랫폼/인증 인터페이스 Mock (Kakao / Infodesk)
+
+- /service/v3/util/country/get (국가/지역 코드 조회)
+- /service/v4/device/accessToken/create (기기 AccessToken 생성)
+- /service/v3/agreement/getForLogin (로그인 약관 상태 조회)
+- /service/v3/log/writeSdkBasicLog (SDK 기본 로그 인터페이스)
+- /v2/appGroup (앱 패키지 그룹 설정)
+- /v2/app (앱 기본 설정 파라미터)
+- /v2/app/server/maintenance (게임 서버 유지보수 상태)
+
+### 2. 구현된 Protobuf 게임 비즈니스 인터페이스 Mock
 
 - /Login
 - /ServerTime
@@ -183,33 +239,33 @@ frida -H 127.0.0.1:27042 -f com.kakaogames.eversoul -l monitor_unity_web_request
 - /NewMailCnt
 - /GachaInfo
 - /IllustList
-- 此外，对抓包到的未分类初始化/列表查询接口，服务端会默认响应带 8 字节响应头的空 Payload。
+- 이 외에도 캡처된 미분류 초기화/리스트 조회 인터페이스에 대해, 서버는 기본적으로 8바이트 응답 헤더를 가진 빈 Payload로 응답합니다.
 
-详细流量及引导状态分析参见：
-- captured_requests.md (常规请求分析)
-- captured_new_user_registration.md (新玩家注册及新手引导流程)
-
----
-
-## 贡献指南
-
-我们非常欢迎开发者参与 Eversoul Offline 的开源共建，主要可以通过以下方向进行贡献：
-
-- **接口动态化重构**
-  目前大多数业务响应为静态 Mock。您可以为 [router.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/router.cpp) 中的静态路由编写动态处理逻辑，并与 [src/orm](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/orm) 的 SQLite 数据库进行绑定，以实现抽卡扣除代币、角色升级消耗金币、装备穿戴属性变动等完整的交互流程。
-  
-- **表结构及持久化字段补充**
-  如果需要引入更复杂的游戏玩法（如公会系统、心领神会树等），可直接修改 [orm/schema.hpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/orm/schema.hpp) 与 [orm/storage.hpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/orm/storage.hpp)，添加相应的数据表和 ORM 操作接口。
-
-- **提升抓包覆盖率**
-  通过代理模式抓取新的网络路由包，将其转换为 JSON 格式并提取 Schema 描述，提交至 `responses/` 以及 `schema/` 目录中，从而扩充服务端可识别的 API 范围。
-
-- **注入与重定向优化**
-  提交免 Root 重定向绕过检测的相关 Smali 代码，或对 [anticheat_patch.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/anticheat_patch.cpp) 的 inline hook 稳定性提供优化 and 修复。
+자세한 트래픽 및 튜토리얼 상태 분석은 다음을 참고하세요:
+- captured_requests.md (일반 요청 분석)
+- captured_new_user_registration.md (신규 플레이어 등록 및 신규 튜토리얼 흐름)
 
 ---
 
-## 目录与流水线结构
+## 기여 가이드
 
-关于离线数据还原流水线（JSON 与 Protobuf 互转格式）、数据目录定义以及构建验证流程，请参考文档：
+Eversoul Offline 오픈소스 공동 개발에 개발자분들의 참여를 환영합니다. 주로 다음 방향으로 기여할 수 있습니다:
+
+- **인터페이스 동적화 리팩토링**
+  현재 대부분의 비즈니스 응답은 정적 Mock입니다. [router.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/router.cpp)의 정적 라우트에 동적 처리 로직을 작성하고, [src/orm](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/orm)의 SQLite 데이터베이스에 바인딩하여 가차 토큰 차감, 캐릭터 레벨업 골드 소비, 장비 착용 속성 변경 등 완전한 인터랙션 흐름을 구현할 수 있습니다.
+
+- **테이블 구조 및 퍼시스턴스 필드 보충**
+  더 복잡한 게임 플레이(예: 길드 시스템, 정령의 나무 등)를 도입해야 할 경우, [orm/schema.hpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/orm/schema.hpp)와 [orm/storage.hpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/orm/storage.hpp)를 직접 수정하여 해당 데이터 테이블과 ORM 작업 인터페이스를 추가할 수 있습니다.
+
+- **패킷 캡처 커버리지 향상**
+  프록시 모드로 새로운 네트워크 라우팅 패킷을 캡처하여 JSON 형식으로 변환하고 Schema 설명을 추출한 후, `responses/` 및 `schema/` 디렉토리에 제출하여 서버가 인식하는 API 범위를 확장할 수 있습니다.
+
+- **인젝션 및 리다이렉션 최적화**
+  Root 불필요 리다이렉션 탐지 우회 관련 Smali 코드를 제출하거나, [anticheat_patch.cpp](file:///home/rikka/Downloads/Test/%E6%B0%B8%E6%81%92%E7%81%B5%E9%AD%82/Global/eversoul_offline/src/anticheat_patch.cpp)의 inline hook 안정성 최적화 및 수정을 제공할 수 있습니다.
+
+---
+
+## 디렉토리 및 파이프라인 구조
+
+오프라인 데이터 복원 파이프라인(JSON과 Protobuf 상호 변환 형식), 데이터 디렉토리 정의 및 빌드 검증 흐름에 대한 자세한 내용은 다음 문서를 참고하세요:
 - OFFLINE_PIPELINE.md

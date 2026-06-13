@@ -13,7 +13,11 @@ namespace eversoul
         using namespace std::chrono;
         auto t = system_clock::to_time_t(system_clock::now());
         std::tm tm{};
+#ifdef _WIN32
+        localtime_s(&tm, &t);
+#else
         localtime_r(&t, &tm);
+#endif
         char buf[64];
         std::strftime(buf, sizeof(buf), "%Y-%m-%d %H:%M:%S", &tm);
         return buf;
