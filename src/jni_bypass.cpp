@@ -1,4 +1,3 @@
-// Contributor: MadlyMoe (working MuMu ARM64 bypass, EverSoul 1.34.101)
 #include "jni_bypass.hpp"
 
 #ifdef __aarch64__
@@ -28,10 +27,14 @@ void logi(const char *fmt, A... a)
 }
 #pragma clang diagnostic pop
 
+// Original RegisterNatives pointer saved from JNIEnv vtable[215].
 using RegisterNatives_t = jint (*)(JNIEnv *, jclass, const JNINativeMethod *, jint);
 static RegisterNatives_t g_orig_register_natives = nullptr;
 static std::atomic<bool> g_installed{false};
 
+// Hook: observe RegisterNatives calls originating from libcawwyayy.so.
+// LIAPP's bootstrap depends on some of these registrations, so dropping all
+// of them breaks attachBaseContext before Unity can start.
 static jint hook_register_natives(JNIEnv *env, jclass cls,
                                    const JNINativeMethod *methods, jint n_methods)
 {

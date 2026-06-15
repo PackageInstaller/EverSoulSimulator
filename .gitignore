@@ -73,3 +73,4 @@ sample2/
 .claude/
 third_party/ghidra_12.1.2_PUBLIC/
 third_party/Il2CppDumper-net7-win-v6.7.46/
+copy/

@@ -226,47 +226,15 @@ if ($NDK_ROOT -and (Test-Path $NDK_ROOT)) {
     Copy-Item -Force "$ANDROID_X86_BUILD_DIR\inject_helper" "$ANDROID_BUILD_DIR\inject_helper"
     Write-Host "Built: $ANDROID_BUILD_DIR/inject_helper (x86_64)"
 
-    Write-Host "== Patch APK =="
+    Write-Host "== Copy APK =="
     New-Item -ItemType Directory -Force -Path "build\apk" | Out-Null
 
-    $APKTOOL    = Join-Path $ROOT "tools\apktool_3.0.2.jar"
-    $SMALI_WORK = Join-Path $ROOT "sample2\smali_work"
-    $PATCHED_SO = Join-Path $ROOT "$ANDROID_BUILD_DIR\libswappywrapper.so"
-
-    if (-not (Test-Path $APKTOOL))    { Write-Error "apktool not found: $APKTOOL"; exit 1 }
-    if (-not (Test-Path $SMALI_WORK)) { Write-Error "smali_work not found: $SMALI_WORK"; exit 1 }
-
-    $LIB_DIR = Join-Path $SMALI_WORK "lib\arm64-v8a"
-    New-Item -ItemType Directory -Force -Path $LIB_DIR | Out-Null
-    Copy-Item -Force $PATCHED_SO (Join-Path $LIB_DIR "libswappywrapper.so")
-    Write-Host "  libswappywrapper.so -> smali_work/lib/arm64-v8a/"
-
-    $LIAPP_JAR_SRC = Join-Path $ROOT "sample\test\origin\liapp_jar_extracted.jar"
-    if (-not (Test-Path $LIAPP_JAR_SRC)) { Write-Error "liapp_jar_extracted.jar not found: $LIAPP_JAR_SRC"; exit 1 }
-    Copy-Item -Force $LIAPP_JAR_SRC (Join-Path $SMALI_WORK "assets\liapp.jar")
-    Write-Host "  liapp.jar -> smali_work/assets/"
-
-    $PATCHED_APK_OUT = Join-Path $ROOT "build\apk\base_patched.apk"
-    Write-Host "  apktool build (smali_work)..."
-    & java -jar $APKTOOL b $SMALI_WORK -o $PATCHED_APK_OUT
-    if ($LASTEXITCODE -ne 0) { Write-Error "apktool build failed"; exit 1 }
-    Write-Host "Patched: build/apk/base_patched.apk (unsigned — root replace)"
-
-    $ORIGIN_SPLIT = Join-Path $ROOT "apk\origin\split_config.arm64_v8a.apk"
-    if (Test-Path $ORIGIN_SPLIT) {
-        Add-Type -AssemblyName System.IO.Compression.FileSystem
-        $CAWWYAYY_OUT = Join-Path $ROOT "build\apk\libcawwyayy_patched.so"
-        $zip = [System.IO.Compression.ZipFile]::OpenRead($ORIGIN_SPLIT)
-        $entry = $zip.Entries | Where-Object { $_.FullName -eq "lib/arm64-v8a/libcawwyayy.so" } | Select-Object -First 1
-        if ($entry) {
-            [System.IO.Compression.ZipFileExtensions]::ExtractToFile($entry, $CAWWYAYY_OUT, $true)
-            Write-Host "Extracted: build/apk/libcawwyayy_patched.so"
-        } else {
-            Write-Warning "libcawwyayy.so not found in origin split APK"
+    foreach ($f in @("base.apk", "libswappywrapper.so", "libcawwyayy.so")) {
+        $src = Join-Path $ROOT "copy\$f"
+        if (Test-Path $src) {
+            Copy-Item -Force $src "build\apk\$f"
+            Write-Host "Copied: build/apk/$f"
         }
-        $zip.Dispose()
-        Copy-Item -Force $ORIGIN_SPLIT "build\apk\split_config.arm64_v8a.apk"
-        Write-Host "Copied: build/apk/split_config.arm64_v8a.apk"
     }
 
     Write-Host "== Output hashes =="
@@ -275,8 +243,7 @@ if ($NDK_ROOT -and (Test-Path $NDK_ROOT)) {
         "$ANDROID_BUILD_DIR\libswappywrapper.so",
         "$ANDROID_BUILD_DIR\inject_helper",
         "build\offline_data\libofflinedata.so",
-        "build\apk\base_patched.apk",
-        "build\apk\libcawwyayy_patched.so"
+        "build\apk\base.apk"
     )) {
         if (Test-Path $f) {
             $h = (Get-FileHash $f -Algorithm SHA256).Hash.ToLower()

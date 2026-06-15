@@ -1,4 +1,3 @@
-// Contributor: MadlyMoe (working MuMu ARM64 bypass, EverSoul 1.34.101)
 #include "asset_migration.hpp"
 
 #include <android/log.h>
