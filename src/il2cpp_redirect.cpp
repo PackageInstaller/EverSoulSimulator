@@ -80,8 +80,8 @@ static const char *kWsDomains[] = {
     nullptr,
 };
 
-static constexpr const char *kLocalHttp = "http://127.0.0.1:19999";
-static constexpr const char *kLocalWs   = "ws://127.0.0.1:19999";
+static constexpr const char *kLocalHttp = "http://127.0.0.1:9999";
+static constexpr const char *kLocalWs   = "ws://127.0.0.1:9999";
 
 // ---------------------------------------------------------------------------
 // il2cpp_string_new

@@ -21,7 +21,6 @@ set(EVERSOUL_ANDROID_SOURCES
   src/liapp_bypass.cpp
   src/il2cpp_redirect.cpp
   src/jni_bypass.cpp
-  src/java_hook.cpp
   src/asset_migration.cpp
   src/entry.cpp)
 
@@ -92,7 +91,7 @@ if(ANDROID)
     ${EVERSOUL_ANDROID_SOURCES})
   target_include_directories(swappywrapper PRIVATE ${EVERSOUL_INCLUDE_DIRS})
   target_compile_options(swappywrapper PRIVATE -O2 -fvisibility=hidden -Wno-format-security)
-  target_link_libraries(swappywrapper PRIVATE log dl m)
+  target_link_libraries(swappywrapper PRIVATE log dl m android z)
   target_link_options(swappywrapper PRIVATE -static-libstdc++ -s)
 
   # On-device ARM64 ptrace injector — pushed to the device as root, polls for

@@ -1,15 +1,14 @@
+// Contributor: MadlyMoe (working MuMu ARM64 bypass, EverSoul 1.34.101)
 #include "liapp_bypass.hpp"
 
 #if defined(__aarch64__) || defined(__x86_64__)
 
-#include "inline_hook.hpp"
-
 #include <android/log.h>
 #include <arpa/inet.h>
 #include <dlfcn.h>
+#include <elf.h>
 #include <errno.h>
 #include <fcntl.h>
-#include <link.h>
 #include <netinet/in.h>
 #include <pthread.h>
 #include <signal.h>
@@ -19,6 +18,7 @@
 #include <sys/mman.h>
 #include <sys/socket.h>
 #include <sys/stat.h>
+#include <sys/system_properties.h>
 #include <sys/types.h>
 #include <unistd.h>
 
@@ -54,21 +54,25 @@ static constexpr const char *kPatchedSoPath = "/data/local/tmp/libcawwyayy_patch
 // ---------------------------------------------------------------------------
 // Original function pointers (saved by libc inline hooks)
 // ---------------------------------------------------------------------------
-using fopen_t    = FILE *(*)(const char *, const char *);
-using fopen64_t  = FILE *(*)(const char *, const char *);
-using openat_t   = int  (*)(int, const char *, int, ...);
-using openat64_t = int  (*)(int, const char *, int, ...);
-using read_t     = ssize_t (*)(int, void *, size_t);
-using kill_t     = int (*)(pid_t, int);
-using connect_t  = int (*)(int, const struct sockaddr *, socklen_t);
+using fopen_t       = FILE *(*)(const char *, const char *);
+using fopen64_t     = FILE *(*)(const char *, const char *);
+using openat_t      = int  (*)(int, const char *, int, ...);
+using openat64_t    = int  (*)(int, const char *, int, ...);
+using read_t        = ssize_t (*)(int, void *, size_t);
+using kill_t        = int (*)(pid_t, int);
+using connect_t         = int (*)(int, const struct sockaddr *, socklen_t);
+using sysprop_get_t     = int (*)(const char *, char *);
+using pthread_create_t  = int (*)(pthread_t *, const pthread_attr_t *, void *(*)(void *), void *);
 
-static fopen_t    g_orig_fopen    = nullptr;
-static fopen64_t  g_orig_fopen64  = nullptr;
-static openat_t   g_orig_openat   = nullptr;
-static openat64_t g_orig_openat64 = nullptr;
-static read_t     g_orig_read     = nullptr;
-static kill_t     g_orig_kill     = nullptr;
-static connect_t  g_orig_connect  = nullptr;
+static fopen_t          g_orig_fopen          = nullptr;
+static fopen64_t        g_orig_fopen64        = nullptr;
+static openat_t         g_orig_openat         = nullptr;
+static openat64_t       g_orig_openat64       = nullptr;
+static read_t           g_orig_read           = nullptr;
+static kill_t           g_orig_kill           = nullptr;
+static connect_t        g_orig_connect        = nullptr;
+static sysprop_get_t    g_orig_sysprop_get    = nullptr;
+static pthread_create_t g_orig_pthread_create = nullptr;
 
 // ---------------------------------------------------------------------------
 // Path helpers
@@ -93,6 +97,9 @@ static bool is_blocked_path(const char *path)
         "/data/adb/apd",
         "zygisk",
         "magiskd",
+        "ksud",
+        "kernelsu",
+        "apatch",
         nullptr,
     };
     for (int i = 0; kPatterns[i]; ++i) {
@@ -147,6 +154,9 @@ static std::size_t filter_maps_buf(char *buf, std::size_t len)
         "xposed",
         "edxposed",
         "lsplant",
+        "ksud",
+        "kernelsu",
+        "apatch",
         nullptr,
     };
     std::size_t out = 0;
@@ -317,69 +327,186 @@ static int hook_connect(int sockfd, const struct sockaddr *addr, socklen_t addrl
     return g_orig_connect(sockfd, addr, addrlen);
 }
 
+static int hook_sys_prop_get(const char *name, char *value)
+{
+    if (!name) return g_orig_sysprop_get(name, value);
+    if (std::strcmp(name, "ro.boot.verifiedbootstate") == 0) {
+        std::strcpy(value, "green");
+        logi("liapp_bypass: sysprop %s -> green", name);
+        return 5;
+    }
+    if (std::strcmp(name, "ro.boot.vbmeta.device_state") == 0) {
+        std::strcpy(value, "locked");
+        logi("liapp_bypass: sysprop %s -> locked", name);
+        return 6;
+    }
+    if (std::strcmp(name, "sys.oem_unlock_allowed") == 0 ||
+        std::strcmp(name, "ro.boot.warranty_bit") == 0) {
+        std::strcpy(value, "0");
+        logi("liapp_bypass: sysprop %s -> 0", name);
+        return 1;
+    }
+    return g_orig_sysprop_get(name, value);
+}
+
+static void *dummy_thread(void *) { return nullptr; }
+
+static int hook_pthread_create(pthread_t *thread, const pthread_attr_t *attr,
+                               void *(*start_routine)(void *), void *arg)
+{
+    if (start_routine) {
+        Dl_info info{};
+        if (dladdr(reinterpret_cast<void *>(start_routine), &info) &&
+            info.dli_fname && std::strstr(info.dli_fname, "cawwyayy")) {
+            uintptr_t off = reinterpret_cast<uintptr_t>(start_routine) -
+                            reinterpret_cast<uintptr_t>(info.dli_fbase);
+            logi("liapp_bypass: pthread_create from cawwyayy offset=0x%lx -> dummy",
+                 static_cast<unsigned long>(off));
+            return g_orig_pthread_create(thread, attr, dummy_thread, arg);
+        }
+    }
+    return g_orig_pthread_create(thread, attr, start_routine, arg);
+}
+
 // ---------------------------------------------------------------------------
-// libc inline hooks
+// ELF RELA 동적 재배치 테이블 스캔 — swappywrapper.c 방식 이식
+// GOT에 심볼이 있을 경우 직접 교체한다 (libc inline hook과 이중 보험).
+// ---------------------------------------------------------------------------
+#ifdef __aarch64__
+static int elf_got_patch_symbol(std::uintptr_t base, const char *sym_name, void *new_val)
+{
+    if (!base) return 0;
+    auto *ehdr = reinterpret_cast<Elf64_Ehdr *>(base);
+    if (std::memcmp(ehdr->e_ident, ELFMAG, SELFMAG) != 0) return 0;
+
+    auto *phdr = reinterpret_cast<Elf64_Phdr *>(base + ehdr->e_phoff);
+    Elf64_Dyn *dyn = nullptr;
+    for (int i = 0; i < ehdr->e_phnum; ++i) {
+        if (phdr[i].p_type == PT_DYNAMIC) {
+            dyn = reinterpret_cast<Elf64_Dyn *>(base + phdr[i].p_vaddr);
+            break;
+        }
+    }
+    if (!dyn) return 0;
+
+    Elf64_Rela *rela    = nullptr; std::size_t relasz   = 0;
+    Elf64_Rela *pltrel  = nullptr; std::size_t pltrelsz = 0;
+    Elf64_Sym  *symtab  = nullptr;
+    const char *strtab  = nullptr;
+
+    for (auto *d = dyn; d->d_tag != DT_NULL; ++d) {
+        auto ptr = [&](Elf64_Xword v) -> std::uintptr_t {
+            return v < base ? base + v : static_cast<std::uintptr_t>(v);
+        };
+        switch (d->d_tag) {
+        case DT_RELA:    rela    = reinterpret_cast<Elf64_Rela *>(ptr(d->d_un.d_ptr)); break;
+        case DT_RELASZ:  relasz  = d->d_un.d_val;                                       break;
+        case DT_JMPREL:  pltrel  = reinterpret_cast<Elf64_Rela *>(ptr(d->d_un.d_ptr)); break;
+        case DT_PLTRELSZ:pltrelsz= d->d_un.d_val;                                       break;
+        case DT_SYMTAB:  symtab  = reinterpret_cast<Elf64_Sym  *>(ptr(d->d_un.d_ptr)); break;
+        case DT_STRTAB:  strtab  = reinterpret_cast<const char *>(ptr(d->d_un.d_ptr)); break;
+        default: break;
+        }
+    }
+    if (!symtab || !strtab) return 0;
+
+    int count = 0;
+    auto patch_table = [&](Elf64_Rela *tbl, std::size_t sz) {
+        if (!tbl || !sz) return;
+        for (std::size_t i = 0; i < sz / sizeof(Elf64_Rela); ++i) {
+            unsigned sym_idx = static_cast<unsigned>(ELF64_R_SYM(tbl[i].r_info));
+            if (!sym_idx) continue;
+            if (std::strcmp(strtab + symtab[sym_idx].st_name, sym_name) != 0) continue;
+            auto *slot = reinterpret_cast<std::uintptr_t *>(base + tbl[i].r_offset);
+            void *page = reinterpret_cast<void *>(
+                reinterpret_cast<std::uintptr_t>(slot) & ~(static_cast<std::uintptr_t>(4095)));
+            mprotect(page, 4096, PROT_READ | PROT_WRITE);
+            *slot = reinterpret_cast<std::uintptr_t>(new_val);
+            mprotect(page, 4096, PROT_READ);
+            logi("liapp_bypass: ELF GOT [%s] slot=%p -> %p", sym_name, slot, new_val);
+            ++count;
+        }
+    };
+    patch_table(rela,   relasz);
+    patch_table(pltrel, pltrelsz);
+    return count;
+}
+
+static int scan_and_hook_active_modules()
+{
+    FILE *fp = ::fopen("/proc/self/maps", "r");
+    if (!fp) return 0;
+    char line[512];
+    int  count = 0;
+    while (fgets(line, static_cast<int>(sizeof(line)), fp)) {
+        if (!std::strstr(line, "/data/app/") ||
+             std::strstr(line, "libswappywrapper.so")) continue;
+        std::uintptr_t base   = 0;
+        unsigned long  offset = 0;
+        char perm[16] = {};
+        char name[256] = {};
+        int  n = sscanf(line, "%lx-%*lx %15s %lx %*s %*s %255s",
+                              reinterpret_cast<unsigned long *>(&base),
+                              perm, &offset, name);
+        if (n < 3 || !std::strchr(perm, 'r') || offset != 0) continue;
+        count += elf_got_patch_symbol(base, "pthread_create",
+                                       reinterpret_cast<void *>(hook_pthread_create));
+    }
+    fclose(fp);
+    return count;
+}
+#endif
+
+// ---------------------------------------------------------------------------
+// libc original pointer resolution (no inline hook — Houdini PLT stubs must
+// not be code-patched; GOT patch on libcawwyayy.so is the sole intercept path)
 // ---------------------------------------------------------------------------
 static void install_libc_hooks()
 {
     struct {
         const char *sym;
-        void       *hook;
         void      **orig;
     } entries[] = {
-        { "fopen",    reinterpret_cast<void *>(hook_fopen),    reinterpret_cast<void **>(&g_orig_fopen)    },
-        { "fopen64",  reinterpret_cast<void *>(hook_fopen64),  reinterpret_cast<void **>(&g_orig_fopen64)  },
-        { "openat",   reinterpret_cast<void *>(hook_openat),   reinterpret_cast<void **>(&g_orig_openat)   },
-        { "openat64", reinterpret_cast<void *>(hook_openat64), reinterpret_cast<void **>(&g_orig_openat64) },
-        { "read",     reinterpret_cast<void *>(hook_read),     reinterpret_cast<void **>(&g_orig_read)     },
-        { "kill",     reinterpret_cast<void *>(hook_kill),     reinterpret_cast<void **>(&g_orig_kill)     },
-        { "connect",  reinterpret_cast<void *>(hook_connect),  reinterpret_cast<void **>(&g_orig_connect)  },
+        { "fopen",                 reinterpret_cast<void **>(&g_orig_fopen)          },
+        { "fopen64",               reinterpret_cast<void **>(&g_orig_fopen64)        },
+        { "openat",                reinterpret_cast<void **>(&g_orig_openat)         },
+        { "openat64",              reinterpret_cast<void **>(&g_orig_openat64)       },
+        { "read",                  reinterpret_cast<void **>(&g_orig_read)           },
+        { "kill",                  reinterpret_cast<void **>(&g_orig_kill)           },
+        { "connect",               reinterpret_cast<void **>(&g_orig_connect)        },
+        { "__system_property_get", reinterpret_cast<void **>(&g_orig_sysprop_get)    },
+        { "pthread_create",        reinterpret_cast<void **>(&g_orig_pthread_create) },
     };
 
     for (auto &e : entries) {
         void *sym = dlsym(RTLD_DEFAULT, e.sym);
         if (!sym) { loge("liapp_bypass: %s not found", e.sym); continue; }
-        void *tramp = nullptr;
-        if (eversoul::hook::install_inline_hook(sym, e.hook, &tramp)) {
-            *e.orig = tramp;
-            logi("liapp_bypass: %s libc hook active", e.sym);
-        } else {
-            loge("liapp_bypass: %s libc hook FAILED", e.sym);
-        }
+        *e.orig = sym;
+        logi("liapp_bypass: %s resolved @ %p", e.sym, sym);
     }
 }
 
 // ---------------------------------------------------------------------------
-// GOT patch — patches libcawwyayy.so's own GOT (ARM64 only).
-// Offsets from dump analysis of cawwyayy_dump.so.
+// GOT patch — libcawwyayy.so RELA 파싱으로 모든 대상 심볼 교체 (ARM64 only).
+// 원본 SO는 암호화 상태로 고정 오프셋이 없으므로 elf_got_patch_symbol로 동적 탐색.
 // ---------------------------------------------------------------------------
 #ifdef __aarch64__
-static constexpr std::uintptr_t kGotFopen   = 0xa3ec8;
-static constexpr std::uintptr_t kGotOpenat  = 0xa3dc8;
-static constexpr std::uintptr_t kGotKill    = 0xa3e38;
-
-static void patch_got_entry(std::uintptr_t base, std::uintptr_t offset,
-                             void *hook_fn, const char *name)
-{
-    void **slot = reinterpret_cast<void **>(base + offset);
-    void *page  = reinterpret_cast<void *>(
-        reinterpret_cast<std::uintptr_t>(slot) & ~(static_cast<std::uintptr_t>(4095)));
-    if (mprotect(page, 4096, PROT_READ | PROT_WRITE) != 0) {
-        loge("liapp_bypass: mprotect failed for GOT %s", name);
-        return;
-    }
-    void *orig = *slot;
-    *slot = hook_fn;
-    mprotect(page, 4096, PROT_READ);
-    logi("liapp_bypass: GOT %s patched 0x%lx -> hook (was %p)",
-         name, static_cast<unsigned long>(base + offset), orig);
-}
-
 static void patch_cawwyayy_got(std::uintptr_t base)
 {
-    patch_got_entry(base, kGotFopen,  reinterpret_cast<void *>(hook_fopen),  "fopen");
-    patch_got_entry(base, kGotOpenat, reinterpret_cast<void *>(hook_openat), "openat");
-    patch_got_entry(base, kGotKill,   reinterpret_cast<void *>(hook_kill),   "kill");
+    static const struct { const char *sym; void *fn; } kTargets[] = {
+        { "fopen",                  reinterpret_cast<void *>(hook_fopen)          },
+        { "fopen64",                reinterpret_cast<void *>(hook_fopen64)        },
+        { "openat",                 reinterpret_cast<void *>(hook_openat)         },
+        { "openat64",               reinterpret_cast<void *>(hook_openat64)       },
+        { "read",                   reinterpret_cast<void *>(hook_read)           },
+        { "kill",                   reinterpret_cast<void *>(hook_kill)           },
+        { "connect",                reinterpret_cast<void *>(hook_connect)        },
+        { "__system_property_get",  reinterpret_cast<void *>(hook_sys_prop_get)   },
+        { "pthread_create",         reinterpret_cast<void *>(hook_pthread_create) },
+        { nullptr, nullptr },
+    };
+    for (int i = 0; kTargets[i].sym; ++i)
+        elf_got_patch_symbol(base, kTargets[i].sym, kTargets[i].fn);
 }
 #endif
 
@@ -388,38 +515,53 @@ static void patch_cawwyayy_got(std::uintptr_t base)
 // ---------------------------------------------------------------------------
 static std::atomic<bool> g_done{false};
 
-struct FindLibResult { std::uintptr_t base; };
-
-static int find_cawwyayy_callback(struct dl_phdr_info *info, size_t, void *data)
+static void *monitor_thread_fn(void *)
 {
-    if (!info->dlpi_name || !std::strstr(info->dlpi_name, "cawwyayy")) return 0;
-    static_cast<FindLibResult *>(data)->base =
-        static_cast<std::uintptr_t>(info->dlpi_addr);
-    return 1;
-}
+    logi("liapp_bypass: monitor thread started (5ms x 3000)");
+    for (int i = 0; i < 3000 && !g_done.load(std::memory_order_relaxed); ++i) {
+        std::uintptr_t target_base = 0;
+        char           target_name[256] = {};
 
-static void *poller_thread(void *)
-{
-    for (int attempt = 0; attempt < 120 && !g_done.load(); ++attempt) {
-        usleep(250000);
+        FILE *fp = ::fopen("/proc/self/maps", "r");
+        if (fp) {
+            char line[512];
+            while (fgets(line, static_cast<int>(sizeof(line)), fp)) {
+                if (!std::strstr(line, "libcawwyayy.so")) continue;
+                std::uintptr_t base   = 0;
+                unsigned long  offset = 0;
+                char perm[16] = {};
+                char name[256] = {};
+                int  n = sscanf(line, "%lx-%*lx %15s %lx %*s %*s %255s",
+                                      reinterpret_cast<unsigned long *>(&base),
+                                      perm, &offset, name);
+                if (n < 3) continue;
+                if (std::strchr(perm, 'r') && offset == 0) {
+                    target_base = base;
+                    std::strncpy(target_name,
+                                 (name[0] ? name : "libcawwyayy.so"),
+                                 sizeof(target_name) - 1);
+                    break;
+                }
+            }
+            fclose(fp);
+        }
 
-        FindLibResult result{0};
-        dl_iterate_phdr(find_cawwyayy_callback, &result);
-        if (!result.base) continue;
-
-        bool expected = false;
-        if (!g_done.compare_exchange_strong(expected, true)) break;
-
-        logi("liapp_bypass: libcawwyayy.so mapped @ base=0x%lx",
-             static_cast<unsigned long>(result.base));
+        if (target_base) {
 #ifdef __aarch64__
-        patch_cawwyayy_got(result.base);
+            patch_cawwyayy_got(target_base);
 #endif
-        break;
+            logi("liapp_bypass: monitor hooked %s @ base=0x%lx",
+                 target_name, static_cast<unsigned long>(target_base));
+            g_done.store(true, std::memory_order_relaxed);
+            break;
+        }
+        usleep(5000);
     }
 
-    if (!g_done.load())
-        loge("liapp_bypass: libcawwyayy.so not found within 30s");
+    if (!g_done.load(std::memory_order_relaxed))
+        loge("liapp_bypass: monitor timeout: libcawwyayy.so not found in 15s");
+    else
+        logi("liapp_bypass: monitor thread done");
     return nullptr;
 }
 
@@ -429,9 +571,21 @@ void install()
 {
     install_libc_hooks();
 
-    pthread_t thr;
-    pthread_create(&thr, nullptr, poller_thread, nullptr);
-    pthread_detach(thr);
+#ifdef __aarch64__
+    int cnt = scan_and_hook_active_modules();
+    if (cnt > 0) {
+        logi("liapp_bypass: static scan hooked %d GOT slots", cnt);
+        g_done.store(true, std::memory_order_relaxed);
+    }
+#endif
+
+    if (g_orig_pthread_create) {
+        pthread_t thr;
+        g_orig_pthread_create(&thr, nullptr, monitor_thread_fn, nullptr);
+        pthread_detach(thr);
+    } else {
+        loge("liapp_bypass: pthread_create unavailable, monitor thread not started");
+    }
 }
 
 } // namespace eversoul::liapp_bypass

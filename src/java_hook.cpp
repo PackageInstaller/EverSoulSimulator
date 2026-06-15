@@ -3,6 +3,7 @@
 #ifdef __aarch64__
 
 #include <android/log.h>
+#include <android/looper.h>
 #include <dlfcn.h>
 #include <jni.h>
 #include <pthread.h>
@@ -36,8 +37,8 @@ namespace eversoul::java_hook
         // -------------------------------------------------------------------------
         // URL redirect — mirrors JS redirectUrl() exactly.
         // -------------------------------------------------------------------------
-        static const char *kLocalBase = "http://127.0.0.1:19999";
-        static const char *kLocalWsBase = "ws://127.0.0.1:19999";
+        static const char *kLocalBase = "http://127.0.0.1:9999";
+        static const char *kLocalWsBase = "ws://127.0.0.1:9999";
 
         static const char *kRedirectDomains[] = {
             "gc-openapi-zinny3.kakaogames.com",
@@ -206,6 +207,8 @@ namespace eversoul::java_hook
         static bool install_native_hook(NativeHook *h, jmethodID mid,
                                         void *hook_fn, void *jni_tramp)
         {
+            if (!jni_tramp)
+                return false;
             auto *m = reinterpret_cast<uint8_t *>(mid);
             auto *flags = reinterpret_cast<uint32_t *>(m + kOffFlags);
             auto *data = reinterpret_cast<void **>(m + kOffData);
@@ -241,7 +244,6 @@ namespace eversoul::java_hook
             *data = h->orig_data;
             *ep = h->orig_ep;
             flush_icache(m);
-            page_ro(m);
         }
 
         static void reapply_hook(NativeHook *h)
@@ -255,7 +257,6 @@ namespace eversoul::java_hook
             *data = h->hook_fn;
             *ep = h->hook_ep;
             flush_icache(m);
-            page_ro(m);
         }
 
         // -------------------------------------------------------------------------
@@ -279,9 +280,102 @@ namespace eversoul::java_hook
         }
 
         // -------------------------------------------------------------------------
-        // Global state.
+        // Global VM handle — declared early so dispatch callbacks can use it.
         // -------------------------------------------------------------------------
         static JavaVM *g_vm = nullptr;
+
+        // -------------------------------------------------------------------------
+        // Main-thread dispatch via ALooper + pipe.
+        // -------------------------------------------------------------------------
+        struct MainThreadWork
+        {
+            jint  request_code;
+            jweak activity_ref;
+        };
+
+        static int g_pipe_read_fd  = -1;
+        static int g_pipe_write_fd = -1;
+
+        static int main_looper_callback(int fd, int /*events*/, void * /*data*/)
+        {
+            MainThreadWork *work = nullptr;
+            if (read(fd, &work, sizeof(work)) != static_cast<ssize_t>(sizeof(work)) || !work)
+                return 1;
+
+            const jint req = work->request_code;
+            JNIEnv *env    = nullptr;
+            g_vm->GetEnv(reinterpret_cast<void **>(&env), JNI_VERSION_1_6);
+            if (!env)
+            {
+                delete work;
+                return 1;
+            }
+
+            jobject activity = env->NewLocalRef(work->activity_ref);
+            env->DeleteWeakGlobalRef(work->activity_ref);
+            delete work;
+
+            if (!activity || env->IsSameObject(activity, nullptr))
+                return 1;
+
+            jclass    intent_cls  = env->FindClass("android/content/Intent");
+            jclass    uri_cls     = env->FindClass("android/net/Uri");
+            jmethodID uri_parse   = env->GetStaticMethodID(uri_cls, "parse",
+                                       "(Ljava/lang/String;)Landroid/net/Uri;");
+            jmethodID intent_init = env->GetMethodID(intent_cls, "<init>", "()V");
+            jmethodID set_data    = env->GetMethodID(intent_cls, "setData",
+                                       "(Landroid/net/Uri;)Landroid/content/Intent;");
+            jclass    act_cls     = env->GetObjectClass(activity);
+            jmethodID on_result   = env->GetMethodID(act_cls, "onActivityResult",
+                                       "(IILandroid/content/Intent;)V");
+
+            if (uri_parse && intent_init && set_data && on_result)
+            {
+                jstring uri_str  = env->NewStringUTF("kakao743487://oauth?code=offline-kakao-code-0");
+                jobject uri_obj  = env->CallStaticObjectMethod(uri_cls, uri_parse, uri_str);
+                jobject fake_int = env->NewObject(intent_cls, intent_init);
+                env->CallObjectMethod(fake_int, set_data, uri_obj);
+                env->CallVoidMethod(activity, on_result, req, (jint)-1, fake_int);
+                env->DeleteLocalRef(uri_str);
+                env->DeleteLocalRef(uri_obj);
+                env->DeleteLocalRef(fake_int);
+            }
+            env->DeleteLocalRef(intent_cls);
+            env->DeleteLocalRef(uri_cls);
+            env->DeleteLocalRef(act_cls);
+            env->DeleteLocalRef(activity);
+            return 1;
+        }
+
+        static void dispatch_on_main(JNIEnv *env, jobject activity, jint request_code)
+        {
+            if (g_pipe_write_fd < 0) return;
+            auto *work          = new MainThreadWork{};
+            work->request_code  = request_code;
+            work->activity_ref  = env->NewWeakGlobalRef(activity);
+            if (write(g_pipe_write_fd, &work, sizeof(work)) != static_cast<ssize_t>(sizeof(work)))
+            {
+                env->DeleteWeakGlobalRef(work->activity_ref);
+                delete work;
+            }
+        }
+
+        static void init_main_dispatch()
+        {
+            int fds[2];
+            if (pipe(fds) != 0) return;
+            g_pipe_read_fd  = fds[0];
+            g_pipe_write_fd = fds[1];
+            ALooper *looper = ALooper_forThread();
+            if (!looper) return;
+            ALooper_acquire(looper);
+            ALooper_addFd(looper, g_pipe_read_fd, ALOOPER_POLL_CALLBACK,
+                          ALOOPER_EVENT_INPUT, main_looper_callback, nullptr);
+        }
+
+        // -------------------------------------------------------------------------
+        // Global state.
+        // -------------------------------------------------------------------------
         static void *g_jni_trampoline = nullptr;
 
         static NativeHook g_hook_url_init_str;
@@ -294,6 +388,8 @@ namespace eversoul::java_hook
         static NativeHook g_hook_use_session;
         static NativeHook g_hook_set_conn_type;
         static NativeHook g_hook_verify_sig;
+        static NativeHook g_hook_system_exit;
+        static NativeHook g_hook_runtime_exit;
 
         // -------------------------------------------------------------------------
         // Hook implementations.
@@ -371,47 +467,97 @@ namespace eversoul::java_hook
             logi("java_hook: Activity.finishAffinity blocked");
         }
 
+        // java.lang.System.exit(int) — block (LIAPP y.m1 탐지 종료 경로)
+        static void JNICALL hook_system_exit(JNIEnv *, jclass, jint status)
+        {
+            logi("java_hook: System.exit(%d) blocked", static_cast<int>(status));
+        }
+
+        // java.lang.Runtime.exit(int) — block (System.exit 내부 실행 경로)
+        static void JNICALL hook_runtime_exit(JNIEnv *, jobject, jint status)
+        {
+            logi("java_hook: Runtime.exit(%d) blocked", static_cast<int>(status));
+        }
+
         // android.app.Activity.startActivityForResult(Intent, int)
-        // 무조건 fake onActivityResult(requestCode, RESULT_OK, kakao oauth fake URI) inject.
-        // 원본 호출 없음 — restore/reapply 패턴 제거로 Binder SIGSEGV 해소.
+        // 원본 호출 없음. account 페이지를 ACTION_VIEW로 열고,
+        // fake OAuth callback은 메인 스레드 디스패치로 주입한다.
         static void JNICALL hook_start_activity(JNIEnv *env, jobject thiz,
                                                 jobject /*intent*/, jint request_code)
         {
-            logi("java_hook: startActivityForResult intercepted reqCode=%d → fake result",
+            logi("java_hook: startActivityForResult reqCode=%d → account page + fake OAuth dispatch",
                  static_cast<int>(request_code));
 
-            jclass intent_cls = env->FindClass("android/content/Intent");
-            jclass uri_cls = env->FindClass("android/net/Uri");
-            jmethodID uri_parse = env->GetStaticMethodID(uri_cls, "parse",
-                                                         "(Ljava/lang/String;)Landroid/net/Uri;");
-            jmethodID intent_init = env->GetMethodID(intent_cls, "<init>", "()V");
-            jmethodID set_data = env->GetMethodID(intent_cls, "setData",
-                                                  "(Landroid/net/Uri;)Landroid/content/Intent;");
-            jclass act_cls = env->GetObjectClass(thiz);
-            jmethodID on_result = env->GetMethodID(act_cls, "onActivityResult",
-                                                   "(IILandroid/content/Intent;)V");
+            jclass    intent_cls       = env->FindClass("android/content/Intent");
+            jclass    uri_cls          = env->FindClass("android/net/Uri");
+            jmethodID uri_parse        = env->GetStaticMethodID(uri_cls, "parse",
+                                            "(Ljava/lang/String;)Landroid/net/Uri;");
+            jfieldID  action_view_fid  = env->GetStaticFieldID(intent_cls, "ACTION_VIEW",
+                                            "Ljava/lang/String;");
+            jstring   action_view      = static_cast<jstring>(
+                                            env->GetStaticObjectField(intent_cls, action_view_fid));
+            jmethodID intent_uri_init  = env->GetMethodID(intent_cls, "<init>",
+                                            "(Ljava/lang/String;Landroid/net/Uri;)V");
+            jclass    act_cls          = env->GetObjectClass(thiz);
+            jmethodID start_activity   = env->GetMethodID(act_cls, "startActivity",
+                                            "(Landroid/content/Intent;)V");
 
-            if (uri_parse && intent_init && set_data && on_result)
+            if (uri_parse && action_view && intent_uri_init && start_activity)
             {
-                jstring uri_str = env->NewStringUTF("kakao743487://oauth?code=offline-kakao-code-0");
-                jobject uri_obj = env->CallStaticObjectMethod(uri_cls, uri_parse, uri_str);
-                jobject fake_int = env->NewObject(intent_cls, intent_init);
-                env->CallObjectMethod(fake_int, set_data, uri_obj);
-                env->CallVoidMethod(thiz, on_result, request_code, (jint)-1, fake_int);
-                env->DeleteLocalRef(uri_str);
-                env->DeleteLocalRef(uri_obj);
-                env->DeleteLocalRef(fake_int);
+                jstring  acct_uri_str = env->NewStringUTF("http://127.0.0.1:9999/account");
+                jobject  acct_uri     = env->CallStaticObjectMethod(uri_cls, uri_parse, acct_uri_str);
+                jobject  acct_intent  = env->NewObject(intent_cls, intent_uri_init,
+                                                       action_view, acct_uri);
+                env->CallVoidMethod(thiz, start_activity, acct_intent);
+                env->DeleteLocalRef(acct_uri_str);
+                env->DeleteLocalRef(acct_uri);
+                env->DeleteLocalRef(acct_intent);
             }
+            env->DeleteLocalRef(action_view);
+
+            dispatch_on_main(env, thiz, request_code);
+
             env->DeleteLocalRef(intent_cls);
             env->DeleteLocalRef(uri_cls);
             env->DeleteLocalRef(act_cls);
         }
 
-        // androidx.browser.customtabs.CustomTabsIntent.launchUrl(Context, Uri) — 무조건 차단.
-        static void JNICALL hook_custom_tab(JNIEnv * /*env*/, jobject /*thiz*/,
-                                            jobject /*context*/, jobject /*uri*/)
+        // androidx.browser.customtabs.CustomTabsIntent.launchUrl(Context, Uri)
+        // 원본 호출 없음. account 페이지를 ACTION_VIEW로 연다.
+        static void JNICALL hook_custom_tab(JNIEnv *env, jobject /*thiz*/,
+                                            jobject context, jobject /*uri*/)
         {
-            logi("java_hook: CustomTabsIntent.launchUrl blocked");
+            logi("java_hook: CustomTabsIntent.launchUrl → account page");
+
+            jclass    intent_cls      = env->FindClass("android/content/Intent");
+            jclass    uri_cls         = env->FindClass("android/net/Uri");
+            jmethodID uri_parse       = env->GetStaticMethodID(uri_cls, "parse",
+                                           "(Ljava/lang/String;)Landroid/net/Uri;");
+            jfieldID  action_view_fid = env->GetStaticFieldID(intent_cls, "ACTION_VIEW",
+                                           "Ljava/lang/String;");
+            jstring   action_view     = static_cast<jstring>(
+                                           env->GetStaticObjectField(intent_cls, action_view_fid));
+            jmethodID intent_uri_init = env->GetMethodID(intent_cls, "<init>",
+                                           "(Ljava/lang/String;Landroid/net/Uri;)V");
+            jclass    ctx_cls         = env->GetObjectClass(context);
+            jmethodID start_activity  = env->GetMethodID(ctx_cls, "startActivity",
+                                           "(Landroid/content/Intent;)V");
+
+            if (uri_parse && action_view && intent_uri_init && start_activity)
+            {
+                jstring  acct_uri_str = env->NewStringUTF("http://127.0.0.1:9999/account");
+                jobject  acct_uri     = env->CallStaticObjectMethod(uri_cls, uri_parse, acct_uri_str);
+                jobject  acct_intent  = env->NewObject(intent_cls, intent_uri_init,
+                                                       action_view, acct_uri);
+                env->CallVoidMethod(context, start_activity, acct_intent);
+                env->DeleteLocalRef(acct_uri_str);
+                env->DeleteLocalRef(acct_uri);
+                env->DeleteLocalRef(acct_intent);
+            }
+            env->DeleteLocalRef(action_view);
+            env->DeleteLocalRef(intent_cls);
+            env->DeleteLocalRef(uri_cls);
+            env->DeleteLocalRef(ctx_cls);
         }
 
         // com.kakaogame.server.ServerService.useSessionConnection() → useHttpConnection()
@@ -450,15 +596,18 @@ namespace eversoul::java_hook
         // -------------------------------------------------------------------------
         static bool init_trampoline(JNIEnv *env)
         {
-            jclass obj_cls = env->FindClass("java/lang/Object");
-            if (!obj_cls)
+            jclass proc_cls = env->FindClass("android/os/Process");
+            if (!proc_cls)
                 return false;
-            jmethodID hc = env->GetMethodID(obj_cls, "hashCode", "()I");
-            env->DeleteLocalRef(obj_cls);
-            if (!hc)
+            jmethodID kill_mid = env->GetStaticMethodID(proc_cls, "killProcess", "(I)V");
+            env->DeleteLocalRef(proc_cls);
+            if (!kill_mid)
                 return false;
-            g_jni_trampoline = *reinterpret_cast<void **>(
-                reinterpret_cast<uint8_t *>(hc) + kOffEp);
+            auto *m = reinterpret_cast<uint8_t *>(kill_mid);
+            auto flags = *reinterpret_cast<uint32_t *>(m + kOffFlags);
+            if (!(flags & kAccNative))
+                return false;
+            g_jni_trampoline = *reinterpret_cast<void **>(m + kOffEp);
             logi("java_hook: jni_trampoline @ %p", g_jni_trampoline);
             return g_jni_trampoline != nullptr;
         }
@@ -511,35 +660,11 @@ namespace eversoul::java_hook
             JNIEnv *env = nullptr;
             g_vm->AttachCurrentThread(&env, nullptr);
 
-            if (!init_trampoline(env))
+            if (!g_jni_trampoline)
             {
-                logi("java_hook: trampoline init failed");
                 g_vm->DetachCurrentThread();
                 return nullptr;
             }
-
-            // java.* / android.* — always available immediately.
-            do_install(&g_hook_url_init_str, env,
-                       "java/net/URL", "<init>", "(Ljava/lang/String;)V",
-                       reinterpret_cast<void *>(hook_url_init_str), false);
-
-            do_install(&g_hook_url_init_ctx, env,
-                       "java/net/URL", "<init>",
-                       "(Ljava/net/URL;Ljava/lang/String;)V",
-                       reinterpret_cast<void *>(hook_url_init_ctx), false);
-
-            do_install(&g_hook_kill_process, env,
-                       "android/os/Process", "killProcess", "(I)V",
-                       reinterpret_cast<void *>(hook_kill_process), true);
-
-            do_install(&g_hook_finish_affinity, env,
-                       "android/app/Activity", "finishAffinity", "()V",
-                       reinterpret_cast<void *>(hook_finish_affinity), false);
-
-            do_install(&g_hook_start_activity, env,
-                       "android/app/Activity", "startActivityForResult",
-                       "(Landroid/content/Intent;I)V",
-                       reinterpret_cast<void *>(hook_start_activity), false);
 
             // App/SDK classes — retry until the DEX is loaded (up to 60 s).
             bool ok_okhttp = false;
@@ -599,6 +724,47 @@ namespace eversoul::java_hook
     void init(JavaVM *vm)
     {
         g_vm = vm;
+        init_main_dispatch();
+
+        JNIEnv *env = nullptr;
+        if (vm->GetEnv(reinterpret_cast<void **>(&env), JNI_VERSION_1_6) == JNI_OK && env)
+        {
+            if (!init_trampoline(env))
+            {
+                logi("java_hook: trampoline init failed");
+            }
+
+            do_install(&g_hook_url_init_str, env,
+                       "java/net/URL", "<init>", "(Ljava/lang/String;)V",
+                       reinterpret_cast<void *>(hook_url_init_str), false);
+
+            do_install(&g_hook_url_init_ctx, env,
+                       "java/net/URL", "<init>",
+                       "(Ljava/net/URL;Ljava/lang/String;)V",
+                       reinterpret_cast<void *>(hook_url_init_ctx), false);
+
+            do_install(&g_hook_kill_process, env,
+                       "android/os/Process", "killProcess", "(I)V",
+                       reinterpret_cast<void *>(hook_kill_process), true);
+
+            do_install(&g_hook_finish_affinity, env,
+                       "android/app/Activity", "finishAffinity", "()V",
+                       reinterpret_cast<void *>(hook_finish_affinity), false);
+
+            do_install(&g_hook_system_exit, env,
+                       "java/lang/System", "exit", "(I)V",
+                       reinterpret_cast<void *>(hook_system_exit), true);
+
+            do_install(&g_hook_runtime_exit, env,
+                       "java/lang/Runtime", "exit", "(I)V",
+                       reinterpret_cast<void *>(hook_runtime_exit), false);
+
+            do_install(&g_hook_start_activity, env,
+                       "android/app/Activity", "startActivityForResult",
+                       "(Landroid/content/Intent;I)V",
+                       reinterpret_cast<void *>(hook_start_activity), false);
+        }
+
         pthread_t t;
         pthread_create(&t, nullptr, installer_thread, nullptr);
         pthread_detach(t);

@@ -241,6 +241,11 @@ if ($NDK_ROOT -and (Test-Path $NDK_ROOT)) {
     Copy-Item -Force $PATCHED_SO (Join-Path $LIB_DIR "libswappywrapper.so")
     Write-Host "  libswappywrapper.so -> smali_work/lib/arm64-v8a/"
 
+    $LIAPP_JAR_SRC = Join-Path $ROOT "sample\test\origin\liapp_jar_extracted.jar"
+    if (-not (Test-Path $LIAPP_JAR_SRC)) { Write-Error "liapp_jar_extracted.jar not found: $LIAPP_JAR_SRC"; exit 1 }
+    Copy-Item -Force $LIAPP_JAR_SRC (Join-Path $SMALI_WORK "assets\liapp.jar")
+    Write-Host "  liapp.jar -> smali_work/assets/"
+
     $PATCHED_APK_OUT = Join-Path $ROOT "build\apk\base_patched.apk"
     Write-Host "  apktool build (smali_work)..."
     & java -jar $APKTOOL b $SMALI_WORK -o $PATCHED_APK_OUT

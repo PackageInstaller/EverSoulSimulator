@@ -1,3 +1,4 @@
+// Contributor: MadlyMoe (working MuMu ARM64 bypass, EverSoul 1.34.101)
 #include "jni_bypass.hpp"
 
 #ifdef __aarch64__
@@ -9,6 +10,7 @@
 #include <jni.h>
 #include <sys/mman.h>
 
+#include <atomic>
 #include <cstring>
 
 namespace eversoul::jni_bypass {
@@ -26,11 +28,10 @@ void logi(const char *fmt, A... a)
 }
 #pragma clang diagnostic pop
 
-// Original RegisterNatives pointer saved from JNIEnv vtable[215].
 using RegisterNatives_t = jint (*)(JNIEnv *, jclass, const JNINativeMethod *, jint);
 static RegisterNatives_t g_orig_register_natives = nullptr;
+static std::atomic<bool> g_installed{false};
 
-// Hook: drop every RegisterNatives call originating from libcawwyayy.so.
 static jint hook_register_natives(JNIEnv *env, jclass cls,
                                    const JNINativeMethod *methods, jint n_methods)
 {
@@ -38,8 +39,13 @@ static jint hook_register_natives(JNIEnv *env, jclass cls,
     Dl_info info{};
     if (ret && dladdr(ret, &info) && info.dli_fname &&
         std::strstr(info.dli_fname, "cawwyayy")) {
-        logi("jni_bypass: RegisterNatives from libcawwyayy.so blocked (%d methods)", n_methods);
-        return JNI_OK;
+        logi("jni_bypass: RegisterNatives from libcawwyayy.so allowed (%d methods)", n_methods);
+        for (jint i = 0; methods && i < n_methods && i < 8; ++i) {
+            logi("jni_bypass: native[%d]=%s %s",
+                 i,
+                 methods[i].name ? methods[i].name : "<null>",
+                 methods[i].signature ? methods[i].signature : "<null>");
+        }
     }
     return g_orig_register_natives(env, cls, methods, n_methods);
 }
@@ -49,6 +55,9 @@ static jint hook_register_natives(JNIEnv *env, jclass cls,
 void init(JavaVM *vm)
 {
     if (!vm) return;
+    bool expected = false;
+    if (!g_installed.compare_exchange_strong(expected, true))
+        return;
 
     JNIEnv *env = nullptr;
     jint rc = vm->GetEnv(reinterpret_cast<void **>(&env), JNI_VERSION_1_6);
@@ -61,23 +70,17 @@ void init(JavaVM *vm)
     }
 
     void **orig_vtable = *reinterpret_cast<void ***>(env);
-    g_orig_register_natives = reinterpret_cast<RegisterNatives_t>(orig_vtable[215]);
-
-    constexpr size_t kVtableCount = 256;
-    constexpr size_t kVtableBytes = kVtableCount * sizeof(void *);
-    void **new_vtable = static_cast<void **>(
-        mmap(nullptr, kVtableBytes, PROT_READ | PROT_WRITE,
-             MAP_PRIVATE | MAP_ANONYMOUS, -1, 0));
-    if (new_vtable == MAP_FAILED) {
-        __android_log_print(ANDROID_LOG_ERROR, kTag, "jni_bypass: mmap failed");
+    void *target = orig_vtable[215];
+    void *trampoline = nullptr;
+    if (!eversoul::hook::install_inline_hook(target,
+                                             reinterpret_cast<void *>(hook_register_natives),
+                                             &trampoline)) {
+        __android_log_print(ANDROID_LOG_ERROR, kTag, "jni_bypass: RegisterNatives inline hook failed");
+        g_installed = false;
         return;
     }
-    memcpy(new_vtable, orig_vtable, kVtableBytes);
-    new_vtable[215] = reinterpret_cast<void *>(hook_register_natives);
-    mprotect(new_vtable, kVtableBytes, PROT_READ);
-
-    *reinterpret_cast<void ***>(env) = new_vtable;
-    logi("jni_bypass: RegisterNatives hooked (vtable replaced)");
+    g_orig_register_natives = reinterpret_cast<RegisterNatives_t>(trampoline);
+    logi("jni_bypass: RegisterNatives inline hook active");
 }
 
 } // namespace eversoul::jni_bypass

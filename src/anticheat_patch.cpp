@@ -1,3 +1,4 @@
+// Contributor: MadlyMoe (working MuMu ARM64 bypass, EverSoul 1.34.101)
 #include "anticheat_patch.hpp"
 
 #include "inline_hook.hpp"
