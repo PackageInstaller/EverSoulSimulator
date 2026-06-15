@@ -8,6 +8,7 @@
 #include <dlfcn.h>
 #include <jni.h>
 #include <sys/mman.h>
+#include <unistd.h>
 
 #include <atomic>
 #include <cstring>
@@ -73,17 +74,14 @@ void init(JavaVM *vm)
     }
 
     void **orig_vtable = *reinterpret_cast<void ***>(env);
-    void *target = orig_vtable[215];
-    void *trampoline = nullptr;
-    if (!eversoul::hook::install_inline_hook(target,
-                                             reinterpret_cast<void *>(hook_register_natives),
-                                             &trampoline)) {
-        __android_log_print(ANDROID_LOG_ERROR, kTag, "jni_bypass: RegisterNatives inline hook failed");
-        g_installed = false;
+    g_orig_register_natives = reinterpret_cast<RegisterNatives_t>(orig_vtable[215]);
+
+    void *hook_ptr = reinterpret_cast<void *>(hook_register_natives);
+    if (!eversoul::hook::write_memory(&orig_vtable[215], &hook_ptr, sizeof(hook_ptr))) {
+        __android_log_print(ANDROID_LOG_ERROR, kTag, "jni_bypass: vtable patch failed");
         return;
     }
-    g_orig_register_natives = reinterpret_cast<RegisterNatives_t>(trampoline);
-    logi("jni_bypass: RegisterNatives inline hook active");
+    logi("jni_bypass: RegisterNatives vtable slot patched");
 }
 
 } // namespace eversoul::jni_bypass

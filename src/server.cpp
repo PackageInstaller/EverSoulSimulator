@@ -59,6 +59,16 @@ namespace eversoul
                 return;
             }
 
+            {
+                std::size_t s = req.path.find('/', 1);
+                if (s != std::string::npos)
+                {
+                    const std::string seg = req.path.substr(1, s - 1);
+                    if (seg.find('.') != std::string::npos || seg.find(':') != std::string::npos)
+                        req.path = req.path.substr(s);
+                }
+            }
+
             // WebSocket upgrade: hand off to the persistent frame loop (Kakao session
             // JSON-RPC or socket.io chat). For an upgrade there is no Content-Length
             // body, so any bytes parse_request captured past the headers (req.body) are
@@ -148,7 +158,7 @@ namespace eversoul
             return 1;
         }
 
-        log_line(0, "START", "listening on 0.0.0.0:" + std::to_string(port) + (config().proxy_enabled ? " proxy=on" : " proxy=off") + " gameServerUrl=" + config().game_server_url);
+        log_line(0, "START", "listening on 0.0.0.0:" + std::to_string(port) + (config().proxy_enabled ? " proxy=on" : " proxy=off") + " gameServerUrl=" + config().game_server_url + " wsServerUrl=" + config().ws_server_url);
 
         while (running())
         {

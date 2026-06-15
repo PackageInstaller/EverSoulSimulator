@@ -16,11 +16,9 @@
   &nbsp;
   <img src="https://img.shields.io/badge/Platform-Android%20ARM64-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Android ARM64" />
   &nbsp;
-  <img src="https://img.shields.io/badge/NDK-r27%2B-brightgreen?style=for-the-badge" alt="NDK r27+" />
-  &nbsp;
   <img src="https://img.shields.io/badge/C%2B%2B-17-00599C?style=for-the-badge&logo=cplusplus&logoColor=white" alt="C++17" />
   &nbsp;
-  <img src="https://img.shields.io/badge/version-0.0.5-blue?style=for-the-badge" alt="v0.0.1" />
+  <img src="https://img.shields.io/badge/version-0.0.6-blue?style=for-the-badge" alt="v0.0.1" />
 </p>
 
 <p align="center">
@@ -44,10 +42,8 @@
 | CMake | 3.21+ |
 | GCC (MinGW-W64 POSIX UCRT) | 15.x |
 | Python | 3.x |
-| Java | 11+ |
-| apktool | 최신 |
-| apksigner | Android SDK Build-Tools |
-| Android NDK | r27+ |
+| MSVC | Visual Studio 2019+ |
+| Android NDK | r27+ (libswappywrapper.so 별도 빌드 시) |
 
 ### 빌드
 
@@ -61,10 +57,9 @@
 |------|------|
 | `build/eversoul_offline_server.exe` | 로컬 Mock/Proxy 서버 (포트 9999) |
 | `build/eversoul_injector.exe` | adb 자동 인젝터 |
-| `build/android/libswappywrapper.so` | ARM64 인젝션 래퍼 |
-| `build/apk/base_patched.apk` | smali 패치 + 서명 완료 APK |
-| `build/apk/split_config.arm64_v8a.apk` | ARM64 split APK |
-| `build/apk/libcawwyayy_patched.so` | LIAPP 무결성 검증 우회용 SO |
+| `build/android/libswappywrapper.so` | ARM64 인젝션 래퍼 (별도 Android NDK CMake 빌드) |
+| `build/apk/base.apk` | copy/base.apk에서 복사 (패치 완료 APK를 copy/에 준비) |
+| `build/apk/libcawwyayy.so` | (옵셔널) 존재 시 인젝터가 자동 교체 |
 
 ### 실행
 
@@ -82,41 +77,47 @@
 
 ```
 HAR 패킷 파일 병합
-  → responses/         API 픽스처 JSON
-  → wss/               WebSocket 픽스처 JSON
-  → web/               계정 선택 SPA (HTML/CSS/JS)
+  → responses/          API 픽스처 JSON
+  → responses_newbie/   신규 계정 튜토리얼 픽스처 JSON
+
+export_schema.py  → schema/ 재생성
+dump_expected.py  → expected/ 재생성
 
 pack_offline_data.py
-  → responses/ + wss/ + web/ 전체를 libofflinedata.so로 패킹
+  → responses/ + wss/ 전체를 libofflinedata.so로 패킹
     포맷: [8B 매직 "ESOFLN D1"][4B count]
           [[4B path_len][path][4B data_len][data] ...]
 
-cmake (Windows)
+cmake (Windows, Ninja)
   → build/eversoul_offline_server.exe
+  → encoder_validate.exe, offline_data_test.exe (검증용)
+
+[별도] cmake (Android NDK, ARM64)
+  → build/android/libswappywrapper.so
+  (build.ps1 외부에서 별도 빌드 필요)
+
+Tailwind CSS 빌드
+  tools/tailwindcss.exe -i src/web/input.css -o src/web/style.css --minify
+
+src/web/ → build/web/ 복사
+  index.html, app.js, style.css, account_select.html, account_select.js
+src/assets/ → build/web/ 복사
+  logo.png, main_bg.png, loading.png, lang.png
+
+injector MSVC 빌드 (vcvars64.bat)
   → build/eversoul_injector.exe
 
-cmake (Android NDK, ARM64)
-  → build/android/libswappywrapper.so
+검증
+  encoder_validate.exe
+  offline_data_test.exe build/offline_data/libofflinedata.so "UserInfo"
+  offline_data_test.exe build/offline_data/libofflinedata.so "UserInfo" responses_newbie
 
-APK 패치:
-  apk/origin/base.apk → apk/make/base.apk          (원본 복사, origin 불변)
-  apktool d apk/make/base.apk → apk/make/base_decoded/
-  patch_smali.py apk/make/base_decoded/
-    com.liapp.x.attachBaseContext 진입점에 삽입:
-      const-string v0, "swappywrapper"
-      invoke-static {v0}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V
-  build/android/libswappywrapper.so → lib/arm64-v8a/libswappywrapper.so
-  apktool b apk/make/base_decoded/ → apk/make/base_patched_unsigned.apk
-  apksigner sign (v2) → build/apk/base_patched.apk
+copy/base.apk → build/apk/base.apk 복사
 
-libcawwyayy.so 추출:
-  apk/make/base.apk (zip) lib/arm64-v8a/libcawwyayy.so
-  → build/apk/libcawwyayy_patched.so
-
-split APK 복사:
-  apk/origin/split_config.arm64_v8a.apk → build/apk/
-
-apk/make/ 전체 삭제 (작업 디렉토리 정리)
+해시 출력 (SHA256)
+  build/eversoul_offline_server.exe
+  build/offline_data/libofflinedata.so
+  build/apk/base.apk
 ```
 
 ---
@@ -132,17 +133,22 @@ start_offline_server():
 adb connect 127.0.0.1:{port}
   출력에 "connected" 또는 "already" 포함 확인
 
+adb -s {serial} root
+  1초 대기
+
 adb shell pm path com.kakaogames.eversoul
   → "package:/data/app/.../base.apk" 형태 경로 파싱
-  → %TEMP%/previous/ 생성
-  → 각 APK: adb pull {device_path} %TEMP%/previous/{filename}
-  → exe_dir/apk/backup/{filename} 복사 (기기 원본 백업)
+  → device_base_apk, device_app_dir 확정
 
-adb install-multiple -r base_patched.apk split_config.arm64_v8a.apk
-  → 출력에 "Success" 포함 확인
+adb push exe_dir/apk/base.apk /data/local/tmp/base.apk
+  su -c "cp /data/local/tmp/base.apk {device_base_apk} && chmod 644 {device_base_apk}"
 
-adb push exe_dir/apk/libcawwyayy_patched.so
-       → /data/local/tmp/libcawwyayy_patched.so
+adb push exe_dir/android/libswappywrapper.so /data/local/tmp/libswappywrapper.so
+  su -c "cp ... {device_app_dir}lib/arm64/libswappywrapper.so && chmod 644 ..."
+
+(선택) exe_dir/apk/libcawwyayy.so 존재 시:
+  adb push .../libcawwyayy.so /data/local/tmp/libcawwyayy.so
+  su -c "cp .../libcawwyayy.so {device_app_dir}lib/arm64/libcawwyayy.so && chmod 644 ..."
 
 adb reverse tcp:9999 tcp:9999
   → 기기 127.0.0.1:9999 → Windows localhost:9999 TCP 터널
@@ -152,7 +158,7 @@ adb shell am force-stop com.kakaogames.eversoul
 adb shell am start -n com.kakaogames.eversoul/com.kakaogame.KGUnityPlayerActivity
                    -a android.intent.action.MAIN -c android.intent.category.LAUNCHER
 
-별도 스레드: adb logcat -s libswappywrapper:V *:S  (종료까지 스트리밍)
+별도 스레드: adb logcat -s libswappywrapper:V eversoul_offline:V *:S  (종료까지 스트리밍)
 ```
 
 ---
@@ -509,20 +515,20 @@ Admin 패널: `http://localhost:9998/admin`
 
 ```
 EverSoulSimulator/
-  apk/
-    origin/       순수 원본 APK (절대 수정 없음)
-    backup/       인젝터가 기기에서 pull한 APK 백업
+  copy/
+    base.apk      패치 완료 APK (build.ps1이 build/apk/base.apk로 복사)
   build/
-    apk/          빌드 결과물 (base_patched.apk, split, libcawwyayy_patched.so)
-    android/      libswappywrapper.so
+    apk/          base.apk (copy/에서), libcawwyayy.so (옵셔널)
+    android/      libswappywrapper.so (별도 Android NDK CMake 빌드)
+    web/          index.html, app.js, style.css, account_select.html/js
+    offline_data/ libofflinedata.so
     eversoul_offline_server.exe
     eversoul_injector.exe
-    offline_data/ libofflinedata.so
   responses/      HAR에서 추출한 API 픽스처 JSON
   responses_newbie/ 신규 계정 튜토리얼 픽스처
   wss/            WebSocket 픽스처 JSON
-  web/            계정 선택 SPA
-  src/            C++ 소스
+  src/
+    web/          관리자 웹 UI 소스 (index.html, app.js, account_select.*)
   tools/          Python 빌드 도구
 ```
 

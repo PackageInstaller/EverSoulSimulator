@@ -3,7 +3,7 @@
 namespace eversoul::admin
 {
 
-static constexpr int kDefaultAdminPort = 9998;
+static constexpr int kDefaultAdminPort = 9997;
 
 // Starts the admin HTTP server on a detached background thread (idempotent).
 // Must be called after orm::ensure_ready() and fixture_store().load().

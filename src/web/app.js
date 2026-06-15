@@ -852,6 +852,7 @@ async function loadSettings() {
     const d = await r.json();
     document.getElementById('toggle-proxy').checked = !!d.proxy_enabled;
     document.getElementById('set-game-url').value   = d.game_server_url || '';
+    document.getElementById('set-ws-url').value     = d.ws_server_url   || '';
     document.getElementById('set-data-dir').value   = d.data_dir || '';
   } catch (_) {}
 }
@@ -869,6 +870,7 @@ async function applySettings() {
     method: 'POST', headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       game_server_url: document.getElementById('set-game-url').value,
+      ws_server_url:   document.getElementById('set-ws-url').value,
       data_dir:        document.getElementById('set-data-dir').value,
     }),
   }).catch(() => {});
@@ -1090,6 +1092,7 @@ const _GD_SCHEMA = {
   settings: [
     { key: 'proxy_enabled', label: 'Proxy Enabled',  type: 'checkbox' },
     { key: 'game_server_url', label: 'Game Server URL', type: 'text' },
+    { key: 'ws_server_url',   label: 'WebSocket Server URL', type: 'text' },
   ],
 };
 

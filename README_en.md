@@ -16,11 +16,9 @@
   &nbsp;
   <img src="https://img.shields.io/badge/Platform-Android%20ARM64-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Android ARM64" />
   &nbsp;
-  <img src="https://img.shields.io/badge/NDK-r27%2B-brightgreen?style=for-the-badge" alt="NDK r27+" />
-  &nbsp;
   <img src="https://img.shields.io/badge/C%2B%2B-17-00599C?style=for-the-badge&logo=cplusplus&logoColor=white" alt="C++17" />
   &nbsp;
-  <img src="https://img.shields.io/badge/version-0.0.5-blue?style=for-the-badge" alt="v0.0.1" />
+  <img src="https://img.shields.io/badge/version-0.0.6-blue?style=for-the-badge" alt="v0.0.1" />
 </p>
 
 <p align="center">
@@ -44,10 +42,8 @@
 | CMake | 3.21+ |
 | GCC (MinGW-W64 POSIX UCRT) | 15.x |
 | Python | 3.x |
-| Java | 11+ |
-| apktool | latest |
-| apksigner | Android SDK Build-Tools |
-| Android NDK | r27+ |
+| MSVC | Visual Studio 2019+ |
+| Android NDK | r27+ (for libswappywrapper.so separate build) |
 
 ### Build
 
@@ -61,10 +57,9 @@ Build artifacts:
 |------|-------------|
 | `build/eversoul_offline_server.exe` | Local Mock/Proxy server (port 9999) |
 | `build/eversoul_injector.exe` | adb auto-injector |
-| `build/android/libswappywrapper.so` | ARM64 injection wrapper |
-| `build/apk/base_patched.apk` | smali-patched + signed APK |
-| `build/apk/split_config.arm64_v8a.apk` | ARM64 split APK |
-| `build/apk/libcawwyayy_patched.so` | LIAPP integrity bypass SO |
+| `build/android/libswappywrapper.so` | ARM64 injection wrapper (separate Android NDK CMake build) |
+| `build/apk/base.apk` | Copied from copy/base.apk (place patched APK in copy/) |
+| `build/apk/libcawwyayy.so` | (Optional) auto-replaced by injector if present |
 
 ### Run
 
@@ -82,41 +77,47 @@ On first run, enter the adb path and emulator port. These are saved to `injector
 
 ```
 HAR packet file merge
-  → responses/         API fixture JSON
-  → wss/               WebSocket fixture JSON
-  → web/               account selection SPA (HTML/CSS/JS)
+  → responses/          API fixture JSON
+  → responses_newbie/   new account tutorial fixture JSON
+
+export_schema.py  → regenerate schema/
+dump_expected.py  → regenerate expected/
 
 pack_offline_data.py
-  → responses/ + wss/ + web/ packed into libofflinedata.so
+  → responses/ + wss/ packed into libofflinedata.so
     format: [8B magic "ESOFLN D1"][4B count]
             [[4B path_len][path][4B data_len][data] ...]
 
-cmake (Windows)
+cmake (Windows, Ninja)
   → build/eversoul_offline_server.exe
+  → encoder_validate.exe, offline_data_test.exe (validation)
+
+[separate] cmake (Android NDK, ARM64)
+  → build/android/libswappywrapper.so
+  (built outside build.ps1)
+
+Tailwind CSS build
+  tools/tailwindcss.exe -i src/web/input.css -o src/web/style.css --minify
+
+src/web/ → build/web/ copy
+  index.html, app.js, style.css, account_select.html, account_select.js
+src/assets/ → build/web/ copy
+  logo.png, main_bg.png, loading.png, lang.png
+
+injector MSVC build (vcvars64.bat)
   → build/eversoul_injector.exe
 
-cmake (Android NDK, ARM64)
-  → build/android/libswappywrapper.so
+validation
+  encoder_validate.exe
+  offline_data_test.exe build/offline_data/libofflinedata.so "UserInfo"
+  offline_data_test.exe build/offline_data/libofflinedata.so "UserInfo" responses_newbie
 
-APK patch:
-  apk/origin/base.apk → apk/make/base.apk          (copy origin, origin immutable)
-  apktool d apk/make/base.apk → apk/make/base_decoded/
-  patch_smali.py apk/make/base_decoded/
-    inject at com.liapp.x.attachBaseContext entry point:
-      const-string v0, "swappywrapper"
-      invoke-static {v0}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V
-  build/android/libswappywrapper.so → lib/arm64-v8a/libswappywrapper.so
-  apktool b apk/make/base_decoded/ → apk/make/base_patched_unsigned.apk
-  apksigner sign (v2) → build/apk/base_patched.apk
+copy/base.apk → build/apk/base.apk
 
-libcawwyayy.so extraction:
-  apk/make/base.apk (zip) lib/arm64-v8a/libcawwyayy.so
-  → build/apk/libcawwyayy_patched.so
-
-split APK copy:
-  apk/origin/split_config.arm64_v8a.apk → build/apk/
-
-apk/make/ full cleanup
+SHA256 hash output
+  build/eversoul_offline_server.exe
+  build/offline_data/libofflinedata.so
+  build/apk/base.apk
 ```
 
 ---
@@ -132,17 +133,22 @@ start_offline_server():
 adb connect 127.0.0.1:{port}
   verify output contains "connected" or "already"
 
+adb -s {serial} root
+  1s wait
+
 adb shell pm path com.kakaogames.eversoul
   → parse "package:/data/app/.../base.apk"
-  → create %TEMP%/previous/
-  → each APK: adb pull {device_path} %TEMP%/previous/{filename}
-  → copy to exe_dir/apk/backup/{filename} (device backup)
+  → resolve device_base_apk, device_app_dir
 
-adb install-multiple -r base_patched.apk split_config.arm64_v8a.apk
-  → verify output contains "Success"
+adb push exe_dir/apk/base.apk /data/local/tmp/base.apk
+  su -c "cp /data/local/tmp/base.apk {device_base_apk} && chmod 644 {device_base_apk}"
 
-adb push exe_dir/apk/libcawwyayy_patched.so
-       → /data/local/tmp/libcawwyayy_patched.so
+adb push exe_dir/android/libswappywrapper.so /data/local/tmp/libswappywrapper.so
+  su -c "cp ... {device_app_dir}lib/arm64/libswappywrapper.so && chmod 644 ..."
+
+(optional) if exe_dir/apk/libcawwyayy.so exists:
+  adb push .../libcawwyayy.so /data/local/tmp/libcawwyayy.so
+  su -c "cp .../libcawwyayy.so {device_app_dir}lib/arm64/libcawwyayy.so && chmod 644 ..."
 
 adb reverse tcp:9999 tcp:9999
   → device 127.0.0.1:9999 → Windows localhost:9999 TCP tunnel
@@ -152,7 +158,7 @@ adb shell am force-stop com.kakaogames.eversoul
 adb shell am start -n com.kakaogames.eversoul/com.kakaogame.KGUnityPlayerActivity
                    -a android.intent.action.MAIN -c android.intent.category.LAUNCHER
 
-separate thread: adb logcat -s libswappywrapper:V *:S  (stream until exit)
+separate thread: adb logcat -s libswappywrapper:V eversoul_offline:V *:S  (stream until exit)
 ```
 
 ---
@@ -509,20 +515,20 @@ Admin panel: `http://localhost:9998/admin`
 
 ```
 EverSoulSimulator/
-  apk/
-    origin/       pristine original APK (never modified)
-    backup/       APK pulled from device by injector
+  copy/
+    base.apk      patched APK (build.ps1 copies to build/apk/base.apk)
   build/
-    apk/          build artifacts (base_patched.apk, split, libcawwyayy_patched.so)
-    android/      libswappywrapper.so
+    apk/          base.apk (from copy/), libcawwyayy.so (optional)
+    android/      libswappywrapper.so (separate Android NDK CMake build)
+    web/          index.html, app.js, style.css, account_select.html/js
+    offline_data/ libofflinedata.so
     eversoul_offline_server.exe
     eversoul_injector.exe
-    offline_data/ libofflinedata.so
   responses/      API fixture JSON extracted from HAR
   responses_newbie/ new account tutorial fixtures
   wss/            WebSocket fixture JSON
-  web/            account selection SPA
-  src/            C++ source
+  src/
+    web/          admin web UI source (index.html, app.js, account_select.*)
   tools/          Python build tools
 ```
 

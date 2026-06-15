@@ -58,6 +58,10 @@ int main(int argc, char **argv)
         {
             config().game_server_url = argv[++i];
         }
+        else if (arg == "--ws-server-url" && i + 1 < argc)
+        {
+            config().ws_server_url = argv[++i];
+        }
         else if (arg == "--data-dir" && i + 1 < argc)
         {
             config().data_dir = argv[++i];
@@ -73,6 +77,7 @@ int main(int argc, char **argv)
 
     admin::start_admin(admin_port);
     open_browser(admin_port);
+    start_async(kWsPort);
     int rc = run_server(port);
     admin::stop_admin();
     return rc;

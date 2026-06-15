@@ -9,8 +9,10 @@
 namespace eversoul
 {
 
-    inline constexpr int kDefaultPort      = 19999;
+    inline constexpr int kDefaultPort      = 9999;
     inline constexpr int kPcForwardPort    = 9999;
+    inline constexpr int kWsPort           = 9998;
+    inline constexpr int kAdminPort        = 9997;
     inline constexpr std::size_t kMaxHeaderBytes = 1024 * 1024;
     inline constexpr std::size_t kMaxLogBody = 1024 * 1024;
     inline constexpr const char *kDefaultPlayerId = "431921183232";
@@ -36,17 +38,15 @@ namespace eversoul
     // client at the in-process server; on desktop it can proxy to the live upstream.
     struct Config
     {
-#ifdef __ANDROID__
-        bool proxy_enabled = false;
-        std::string game_server_url = "http://127.0.0.1:19999";
-        std::string data_dir = "/data/data/com.kakaogames.eversoul/files/offline_data";
-        bool prefer_fixtures = true;
-#else
         bool proxy_enabled = false;
         std::string game_server_url = "http://127.0.0.1:9999";
+        std::string ws_server_url   = "ws://127.0.0.1:9998";
+#ifdef __ANDROID__
+        std::string data_dir = "/data/data/com.kakaogames.eversoul/files/offline_data";
+#else
         std::string data_dir = ".";
-        bool prefer_fixtures = true;
 #endif
+        bool prefer_fixtures = true;
     };
 
     // Process-wide state. Defined in server.cpp.

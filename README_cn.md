@@ -16,11 +16,9 @@
   &nbsp;
   <img src="https://img.shields.io/badge/Platform-Android%20ARM64-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Android ARM64" />
   &nbsp;
-  <img src="https://img.shields.io/badge/NDK-r27%2B-brightgreen?style=for-the-badge" alt="NDK r27+" />
-  &nbsp;
   <img src="https://img.shields.io/badge/C%2B%2B-17-00599C?style=for-the-badge&logo=cplusplus&logoColor=white" alt="C++17" />
   &nbsp;
-  <img src="https://img.shields.io/badge/version-0.0.5-blue?style=for-the-badge" alt="v0.0.1" />
+  <img src="https://img.shields.io/badge/version-0.0.6-blue?style=for-the-badge" alt="v0.0.1" />
 </p>
 
 <p align="center">
@@ -44,10 +42,8 @@
 | CMake | 3.21+ |
 | GCC (MinGW-W64 POSIX UCRT) | 15.x |
 | Python | 3.x |
-| Java | 11+ |
-| apktool | 最新版 |
-| apksigner | Android SDK Build-Tools |
-| Android NDK | r27+ |
+| MSVC | Visual Studio 2019+ |
+| Android NDK | r27+（libswappywrapper.so 独立构建时需要）|
 
 ### 构建
 
@@ -61,10 +57,9 @@
 |------|------|
 | `build/eversoul_offline_server.exe` | 本地 Mock/Proxy 服务端（端口 9999）|
 | `build/eversoul_injector.exe` | adb 自动注入器 |
-| `build/android/libswappywrapper.so` | ARM64 注入包装库 |
-| `build/apk/base_patched.apk` | smali 补丁 + 已签名 APK |
-| `build/apk/split_config.arm64_v8a.apk` | ARM64 split APK |
-| `build/apk/libcawwyayy_patched.so` | LIAPP 完整性绕过 SO |
+| `build/android/libswappywrapper.so` | ARM64 注入包装库（独立 Android NDK CMake 构建）|
+| `build/apk/base.apk` | 从 copy/base.apk 复制（将已补丁的 APK 放入 copy/）|
+| `build/apk/libcawwyayy.so` | （可选）存在时注入器自动替换 |
 
 ### 运行
 
@@ -82,41 +77,47 @@
 
 ```
 HAR 数据包文件合并
-  → responses/         API Fixture JSON
-  → wss/               WebSocket Fixture JSON
-  → web/               账号选择 SPA（HTML/CSS/JS）
+  → responses/          API Fixture JSON
+  → responses_newbie/   新账号教程 Fixture JSON
+
+export_schema.py  → 重新生成 schema/
+dump_expected.py  → 重新生成 expected/
 
 pack_offline_data.py
-  → responses/ + wss/ + web/ 全部打包至 libofflinedata.so
+  → responses/ + wss/ 全部打包至 libofflinedata.so
     格式：[8B 魔数 "ESOFLN D1"][4B count]
           [[4B path_len][path][4B data_len][data] ...]
 
-cmake (Windows)
+cmake（Windows，Ninja）
   → build/eversoul_offline_server.exe
+  → encoder_validate.exe、offline_data_test.exe（验证用）
+
+【独立】cmake（Android NDK，ARM64）
+  → build/android/libswappywrapper.so
+  （需在 build.ps1 之外单独构建）
+
+Tailwind CSS 构建
+  tools/tailwindcss.exe -i src/web/input.css -o src/web/style.css --minify
+
+src/web/ → build/web/ 复制
+  index.html、app.js、style.css、account_select.html、account_select.js
+src/assets/ → build/web/ 复制
+  logo.png、main_bg.png、loading.png、lang.png
+
+injector MSVC 构建（vcvars64.bat）
   → build/eversoul_injector.exe
 
-cmake (Android NDK, ARM64)
-  → build/android/libswappywrapper.so
+验证
+  encoder_validate.exe
+  offline_data_test.exe build/offline_data/libofflinedata.so "UserInfo"
+  offline_data_test.exe build/offline_data/libofflinedata.so "UserInfo" responses_newbie
 
-APK 补丁：
-  apk/origin/base.apk → apk/make/base.apk          （复制原始，origin 不可变）
-  apktool d apk/make/base.apk → apk/make/base_decoded/
-  patch_smali.py apk/make/base_decoded/
-    在 com.liapp.x.attachBaseContext 入口处注入：
-      const-string v0, "swappywrapper"
-      invoke-static {v0}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V
-  build/android/libswappywrapper.so → lib/arm64-v8a/libswappywrapper.so
-  apktool b apk/make/base_decoded/ → apk/make/base_patched_unsigned.apk
-  apksigner sign (v2) → build/apk/base_patched.apk
+copy/base.apk → build/apk/base.apk
 
-libcawwyayy.so 提取：
-  apk/make/base.apk (zip) lib/arm64-v8a/libcawwyayy.so
-  → build/apk/libcawwyayy_patched.so
-
-split APK 复制：
-  apk/origin/split_config.arm64_v8a.apk → build/apk/
-
-清理 apk/make/ 工作目录
+SHA256 哈希输出
+  build/eversoul_offline_server.exe
+  build/offline_data/libofflinedata.so
+  build/apk/base.apk
 ```
 
 ---
@@ -132,17 +133,22 @@ start_offline_server()：
 adb connect 127.0.0.1:{port}
   确认输出包含 "connected" 或 "already"
 
+adb -s {serial} root
+  等待 1s
+
 adb shell pm path com.kakaogames.eversoul
   → 解析 "package:/data/app/.../base.apk"
-  → 创建 %TEMP%/previous/
-  → 每个 APK：adb pull {device_path} %TEMP%/previous/{filename}
-  → 复制至 exe_dir/apk/backup/{filename}（设备原始备份）
+  → 确定 device_base_apk、device_app_dir
 
-adb install-multiple -r base_patched.apk split_config.arm64_v8a.apk
-  → 确认输出包含 "Success"
+adb push exe_dir/apk/base.apk /data/local/tmp/base.apk
+  su -c "cp /data/local/tmp/base.apk {device_base_apk} && chmod 644 {device_base_apk}"
 
-adb push exe_dir/apk/libcawwyayy_patched.so
-       → /data/local/tmp/libcawwyayy_patched.so
+adb push exe_dir/android/libswappywrapper.so /data/local/tmp/libswappywrapper.so
+  su -c "cp ... {device_app_dir}lib/arm64/libswappywrapper.so && chmod 644 ..."
+
+（可选）若 exe_dir/apk/libcawwyayy.so 存在：
+  adb push .../libcawwyayy.so /data/local/tmp/libcawwyayy.so
+  su -c "cp .../libcawwyayy.so {device_app_dir}lib/arm64/libcawwyayy.so && chmod 644 ..."
 
 adb reverse tcp:9999 tcp:9999
   → 设备 127.0.0.1:9999 → Windows localhost:9999 TCP 隧道
@@ -152,7 +158,7 @@ adb shell am force-stop com.kakaogames.eversoul
 adb shell am start -n com.kakaogames.eversoul/com.kakaogame.KGUnityPlayerActivity
                    -a android.intent.action.MAIN -c android.intent.category.LAUNCHER
 
-独立线程：adb logcat -s libswappywrapper:V *:S（持续流输出至退出）
+独立线程：adb logcat -s libswappywrapper:V eversoul_offline:V *:S（持续流输出至退出）
 ```
 
 ---
@@ -509,20 +515,20 @@ WS 帧解码（客户端→服务端）：
 
 ```
 EverSoulSimulator/
-  apk/
-    origin/       纯净原始 APK（绝对不可修改）
-    backup/       注入器从设备 pull 的 APK 备份
+  copy/
+    base.apk      已补丁 APK（build.ps1 复制至 build/apk/base.apk）
   build/
-    apk/          构建产物（base_patched.apk、split、libcawwyayy_patched.so）
-    android/      libswappywrapper.so
+    apk/          base.apk（来自 copy/）、libcawwyayy.so（可选）
+    android/      libswappywrapper.so（独立 Android NDK CMake 构建）
+    web/          index.html、app.js、style.css、account_select.html/js
+    offline_data/ libofflinedata.so
     eversoul_offline_server.exe
     eversoul_injector.exe
-    offline_data/ libofflinedata.so
   responses/      从 HAR 提取的 API Fixture JSON
   responses_newbie/ 新账号教程 Fixture
   wss/            WebSocket Fixture JSON
-  web/            账号选择 SPA
-  src/            C++ 源码
+  src/
+    web/          管理后台 Web UI 源码（index.html、app.js、account_select.*）
   tools/          Python 构建工具
 ```
 

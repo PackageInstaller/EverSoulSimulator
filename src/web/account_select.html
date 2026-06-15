@@ -1,56 +1,72 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Eversoul Offline — 계정 선택</title>
-<link rel="stylesheet" href="/web/style.css">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>EverSoul — Account Select</title>
+<link rel="stylesheet" href="/admin/style.css"/>
 </head>
 <body class="acct-body">
 
-<div style="max-width:440px;margin:0 auto">
-  <div class="card">
-    <div class="card-header">
-      <span class="nav-icon">◈</span>
-      <span class="card-title">계정 선택</span>
-    </div>
-    <div class="card-body">
-      <p style="font-size:11px;color:var(--color-text-dim);margin-bottom:12px;letter-spacing:.5px">
-        계정을 선택하거나 새로 만드세요.
-      </p>
-      <div id="acct-list" class="acct-list">
-        <div class="acct-empty"><span class="t-spinner"></span> 로딩 중…</div>
-      </div>
-    </div>
-  </div>
+<dialog id="lang-overlay">
+  <article id="lang-select-box">
+    <h1 class="lang-select-logo">EverSoul</h1>
+    <p class="lang-select-sub">Offline Simulator</p>
+    <h2 class="lang-select-title">Select Language / 언어 선택 / 选择语言</h2>
+    <nav class="lang-select-row">
+      <button class="lang-select-btn" onclick="initLang('ko')">한국어</button>
+      <button class="lang-select-btn" onclick="initLang('en')">English</button>
+      <button class="lang-select-btn" onclick="initLang('zh')">中文</button>
+    </nav>
+  </article>
+</dialog>
 
-  <div class="card" style="margin-top:10px">
-    <div class="card-header">
-      <span class="nav-icon">+</span>
-      <span class="card-title">새 계정</span>
+<div id="acct-root" style="max-width:480px;margin:0 auto;padding:16px 0">
+  <header style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;padding:0 4px">
+    <div>
+      <h1 style="font-size:16px;letter-spacing:2px;color:var(--color-accent);margin:0">EverSoul</h1>
+      <p style="font-size:10px;color:var(--color-text-dim);margin:0;letter-spacing:1px">OFFLINE SIMULATOR</p>
     </div>
+    <div class="lang-row">
+      <button class="lang-btn" id="lbtn-ko" onclick="setLang('ko')">한국어</button>
+      <button class="lang-btn" id="lbtn-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="lbtn-zh" onclick="setLang('zh')">中文</button>
+    </div>
+  </header>
+
+  <article class="card">
+    <header class="card-header">
+      <span class="nav-icon">◈</span>
+      <h2 class="card-title" data-i18n="page.title">계정 선택</h2>
+    </header>
+    <div class="card-body">
+      <p style="font-size:11px;color:var(--color-text-dim);margin-bottom:12px;letter-spacing:.5px"
+         data-i18n="acct.subtitle">계정을 선택하거나 새로 만드세요.</p>
+      <div id="acct-list" class="acct-list">
+        <div class="acct-empty"><span class="t-spinner"></span> <span data-i18n="acct.loading">로딩 중…</span></div>
+      </div>
+    </div>
+  </article>
+
+  <article class="card" style="margin-top:10px">
+    <header class="card-header">
+      <span class="nav-icon">+</span>
+      <h2 class="card-title" data-i18n="new_acct.title">새 계정</h2>
+    </header>
     <div class="card-body">
       <div class="setting-row">
-        <label style="font-size:12px;color:var(--color-text-dim)">닉네임</label>
-        <input id="new-nick" type="text" placeholder="닉네임" maxlength="20" autocomplete="off" style="width:220px">
-      </div>
-      <div class="setting-row">
-        <label style="font-size:12px;color:var(--color-text-dim)">로그인</label>
-        <select id="new-idp" class="acct-select">
-          <option value="zd3">게스트</option>
-          <option value="kakaocapri">카카오</option>
-          <option value="google">Google</option>
-        </select>
+        <label class="setting-label" for="new-nick" data-i18n="new_acct.nick_label">닉네임</label>
+        <input id="new-nick" type="text" data-i18n-placeholder="new_acct.nick_placeholder"
+               placeholder="닉네임" maxlength="20" autocomplete="off" style="width:200px"/>
       </div>
       <button class="btn btn-primary" onclick="createAccount()"
-        style="width:100%;margin-top:12px;padding:9px 0;font-size:13px;letter-spacing:1px">
-        + 새 계정 만들기
-      </button>
-      <div class="acct-status" id="create-status"></div>
+        style="width:100%;margin-top:12px;padding:9px 0;font-size:13px;letter-spacing:1px"
+        data-i18n="new_acct.create_btn">+ 새 계정 만들기</button>
+      <output class="acct-status" id="create-status"></output>
     </div>
-  </div>
+  </article>
 </div>
 
-<script src="/web/account_select.js"></script>
+<script src="/admin/account_select.js"></script>
 </body>
 </html>

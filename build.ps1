@@ -121,7 +121,7 @@ Get-ChildItem "$DESKTOP_BUILD_DIR\*.dll" -ErrorAction SilentlyContinue | ForEach
     Write-Host "Copied DLL: $($_.Name)"
 }
 
-foreach ($d in @("web", "wss", "responses", "responses_newbie", "schema")) {
+foreach ($d in @("wss", "responses", "responses_newbie", "schema")) {
     if (Test-Path $d) {
         Copy-Item -Force -Recurse $d "build\$d"
         Write-Host "Synced: build/$d"
@@ -229,12 +229,16 @@ if ($NDK_ROOT -and (Test-Path $NDK_ROOT)) {
     Write-Host "== Copy APK =="
     New-Item -ItemType Directory -Force -Path "build\apk" | Out-Null
 
-    foreach ($f in @("base.apk", "libswappywrapper.so", "libcawwyayy.so")) {
-        $src = Join-Path $ROOT "copy\$f"
-        if (Test-Path $src) {
-            Copy-Item -Force $src "build\apk\$f"
-            Write-Host "Copied: build/apk/$f"
-        }
+    $src = Join-Path $ROOT "copy\base.apk"
+    if (Test-Path $src) {
+        Copy-Item -Force $src "build\apk\base.apk"
+        Write-Host "Copied: build/apk/base.apk"
+    }
+
+    $srcSo = Join-Path $ROOT "copy\libcawwyayy.so"
+    if (Test-Path $srcSo) {
+        Copy-Item -Force $srcSo "build\apk\libcawwyayy.so"
+        Write-Host "Copied: build/apk/libcawwyayy.so"
     }
 
     Write-Host "== Output hashes =="
@@ -243,7 +247,8 @@ if ($NDK_ROOT -and (Test-Path $NDK_ROOT)) {
         "$ANDROID_BUILD_DIR\libswappywrapper.so",
         "$ANDROID_BUILD_DIR\inject_helper",
         "build\offline_data\libofflinedata.so",
-        "build\apk\base.apk"
+        "build\apk\base.apk",
+        "build\apk\libcawwyayy.so"
     )) {
         if (Test-Path $f) {
             $h = (Get-FileHash $f -Algorithm SHA256).Hash.ToLower()

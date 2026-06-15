@@ -11,6 +11,21 @@ namespace eversoul::hook {
 
 inline bool write_memory(void *dest, const void *src, std::size_t len)
 {
+    int fd = open("/proc/self/mem", O_RDWR);
+    if (fd >= 0) {
+        bool ok = false;
+        if (lseek(fd, static_cast<off_t>(reinterpret_cast<std::uintptr_t>(dest)),
+                  SEEK_SET) != static_cast<off_t>(-1)) {
+            ok = (write(fd, src, len) == static_cast<ssize_t>(len));
+#if defined(__aarch64__)
+            if (ok)
+                __builtin___clear_cache(static_cast<char *>(dest),
+                                        static_cast<char *>(dest) + len);
+#endif
+        }
+        close(fd);
+        if (ok) return true;
+    }
     long ps = sysconf(_SC_PAGESIZE);
     auto page = reinterpret_cast<std::uintptr_t>(dest) &
                 ~(static_cast<std::uintptr_t>(ps) - 1);
@@ -18,29 +33,15 @@ inline bool write_memory(void *dest, const void *src, std::size_t len)
         (reinterpret_cast<std::uintptr_t>(dest) + len - page +
          static_cast<std::size_t>(ps) - 1) &
         ~(static_cast<std::size_t>(ps) - 1);
-    if (mprotect(reinterpret_cast<void *>(page), sz, PROT_READ | PROT_WRITE | PROT_EXEC) == 0) {
-        std::memcpy(dest, src, len);
+    if (mprotect(reinterpret_cast<void *>(page), sz, PROT_READ | PROT_WRITE | PROT_EXEC) != 0)
+        return false;
+    std::memcpy(dest, src, len);
 #if defined(__aarch64__)
-        __builtin___clear_cache(static_cast<char *>(dest),
-                                static_cast<char *>(dest) + len);
+    __builtin___clear_cache(static_cast<char *>(dest),
+                            static_cast<char *>(dest) + len);
 #endif
-        mprotect(reinterpret_cast<void *>(page), sz, PROT_READ | PROT_EXEC);
-        return true;
-    }
-    int fd = open("/proc/self/mem", O_RDWR);
-    if (fd < 0) return false;
-    bool ok = false;
-    if (lseek(fd, static_cast<off_t>(reinterpret_cast<std::uintptr_t>(dest)),
-              SEEK_SET) != static_cast<off_t>(-1)) {
-        ok = (write(fd, src, len) == static_cast<ssize_t>(len));
-#if defined(__aarch64__)
-        if (ok)
-            __builtin___clear_cache(static_cast<char *>(dest),
-                                    static_cast<char *>(dest) + len);
-#endif
-    }
-    close(fd);
-    return ok;
+    mprotect(reinterpret_cast<void *>(page), sz, PROT_READ | PROT_EXEC);
+    return true;
 }
 
 #if defined(__aarch64__)

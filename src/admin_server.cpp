@@ -1,7 +1,6 @@
 #include "admin_server.hpp"
 
 #include "adb_finder.hpp"
-#include "admin_html.hpp"
 #include "admin_log_sink.hpp"
 #include "common.hpp"
 #include "fixture_store.hpp"
@@ -299,34 +298,29 @@ std::string log_entry_json(const LogEntry& e)
     return s;
 }
 
-// ── /admin/ → serve web/index.html (fallback: embedded) ─────────────────────
+// ── /admin/ → serve web/index.html ───────────────────────────────────────────
 
 void handle_root(socket_fd_t fd)
 {
     std::string html_path = exe_dir() + "/web/index.html";
     FILE* f = fopen(html_path.c_str(), "rb");
-    if (f) {
-        fseek(f, 0, SEEK_END);
-        long sz = ftell(f);
-        fseek(f, 0, SEEK_SET);
-        std::string data;
-        if (sz > 0) { data.resize(static_cast<std::size_t>(sz)); fread(data.data(), 1, static_cast<std::size_t>(sz), f); }
-        fclose(f);
-        HttpResponse res;
-        res.status = 200;
-        res.headers["Content-Type"]                = "text/html;charset=UTF-8";
-        res.headers["Access-Control-Allow-Origin"] = "*";
-        res.headers["Cache-Control"]               = "no-cache";
-        res.body = std::move(data);
-        send_response(fd, res);
+    if (!f) {
+        send_response(fd, {503, {{"Content-Type", "text/plain;charset=UTF-8"}},
+                           "Admin UI not found: " + html_path});
         return;
     }
+    fseek(f, 0, SEEK_END);
+    long sz = ftell(f);
+    fseek(f, 0, SEEK_SET);
+    std::string data;
+    if (sz > 0) { data.resize(static_cast<std::size_t>(sz)); fread(data.data(), 1, static_cast<std::size_t>(sz), f); }
+    fclose(f);
     HttpResponse res;
     res.status = 200;
     res.headers["Content-Type"]                = "text/html;charset=UTF-8";
     res.headers["Access-Control-Allow-Origin"] = "*";
     res.headers["Cache-Control"]               = "no-cache";
-    res.body = kAdminHtml;
+    res.body = std::move(data);
     send_response(fd, res);
 }
 
@@ -366,6 +360,7 @@ void handle_status(socket_fd_t fd)
     body += ",\"lang\":\"";     body += json_escape(i18n::lang_code()); body += '"';
     body += ",\"proxy_enabled\":"; body += (cfg.proxy_enabled ? "true" : "false");
     body += ",\"game_server_url\":\""; body += json_escape(cfg.game_server_url); body += '"';
+    body += ",\"ws_server_url\":\"";   body += json_escape(cfg.ws_server_url);   body += '"';
     body += ",\"data_dir\":\""; body += json_escape(cfg.data_dir); body += '"';
     body += ",\"started_at\":"; body += std::to_string(g_started_at);
     body += '}';
@@ -780,6 +775,10 @@ void handle_config(socket_fd_t fd, const HttpRequest& req)
         if (!v.empty()) cfg.game_server_url = v;
     }
     {
+        std::string v = body_json_string(body, "ws_server_url");
+        if (!v.empty()) cfg.ws_server_url = v;
+    }
+    {
         std::string v = body_json_string(body, "data_dir");
         if (!v.empty()) cfg.data_dir = v;
     }
@@ -933,10 +932,12 @@ void handle_gamedata_get(socket_fd_t fd, const std::string& section)
           << ",\"stamina\":"  << stamina
           << ",\"arena_tickets\":" << arena << "}";
     } else if (section == "settings") {
-        std::string proxy = orm::kv_get("proxy_enabled", "false");
-        std::string url   = orm::kv_get("game_server_url");
+        std::string proxy  = orm::kv_get("proxy_enabled", "false");
+        std::string url    = orm::kv_get("game_server_url");
+        std::string ws_url = orm::kv_get("ws_server_url");
         j << "{\"proxy_enabled\":" << proxy
-          << ",\"game_server_url\":\"" << json_escape(url) << "\"}";
+          << ",\"game_server_url\":\"" << json_escape(url)    << "\""
+          << ",\"ws_server_url\":\""   << json_escape(ws_url) << "\"}";
     } else {
         send_response(fd, json_200("{\"error\":\"unknown section\"}"));
         return;
@@ -980,6 +981,8 @@ void handle_gamedata_post(socket_fd_t fd, const std::string& section, const Http
     } else if (section == "settings") {
         std::string url = body_json_string(req.body, "game_server_url");
         if (!url.empty()) orm::kv_set("game_server_url", url);
+        std::string ws_url = body_json_string(req.body, "ws_server_url");
+        if (!ws_url.empty()) orm::kv_set("ws_server_url", ws_url);
         send_response(fd, json_200("{\"ok\":true}"));
     } else {
         send_response(fd, json_200("{\"ok\":false,\"reason\":\"unknown section\"}"));

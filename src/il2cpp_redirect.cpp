@@ -2,366 +2,303 @@
 
 #ifdef __aarch64__
 
-#include "inline_hook.hpp"
-
 #include <android/log.h>
+#include <arpa/inet.h>
 #include <dlfcn.h>
-#include <link.h>
+#include <elf.h>
+#include <netdb.h>
 #include <pthread.h>
+#include <string.h>
+#include <sys/mman.h>
+#include <sys/socket.h>
 #include <unistd.h>
 
 #include <atomic>
 #include <cstdint>
-#include <cstring>
-#include <string>
 
-namespace eversoul::il2cpp_redirect {
+namespace eversoul::il2cpp_redirect
+{
 
-namespace {
+    namespace
+    {
 
-constexpr const char *kTag = "libswappywrapper";
+        constexpr const char *kTag = "libswappywrapper";
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wformat-security"
-template <class... A>
-void logi(const char *fmt, A... a)
-{
-    __android_log_print(ANDROID_LOG_INFO, kTag, fmt, a...);
-}
-template <class... A>
-void loge(const char *fmt, A... a)
-{
-    __android_log_print(ANDROID_LOG_ERROR, kTag, fmt, a...);
-}
+        template <class... A>
+        void logi(const char *fmt, A... a)
+        {
+            __android_log_print(ANDROID_LOG_INFO, kTag, fmt, a...);
+        }
+        template <class... A>
+        void loge(const char *fmt, A... a)
+        {
+            __android_log_print(ANDROID_LOG_ERROR, kTag, fmt, a...);
+        }
 #pragma clang diagnostic pop
 
-// ---------------------------------------------------------------------------
-// il2cpp offsets (libil2cpp.so RVA — version-fixed)
-// ---------------------------------------------------------------------------
-static constexpr std::uintptr_t kUWR_ctor_string        = 0x097887a4;
-static constexpr std::uintptr_t kUWR_ctor_string_method = 0x097889e4;
-static constexpr std::uintptr_t kUWR_ctor_full          = 0x09788c5c;
-static constexpr std::uintptr_t kUWR_SetUrl             = 0x09789be8;
-static constexpr std::uintptr_t kUWR_Get                = 0x0978ac50;
-static constexpr std::uintptr_t kUWR_Put_bytes          = 0x0978b040;
-static constexpr std::uintptr_t kUWR_Put_string         = 0x0978b27c;
-static constexpr std::uintptr_t kUWR_PostWwwForm        = 0x0978b488;
-static constexpr std::uintptr_t kUWR_Post_contentType   = 0x0978b700;
-static constexpr std::uintptr_t kKakao_ShowMsgBox       = 0x04c72530;
+        // ---------------------------------------------------------------------------
+        // Target domains
+        // ---------------------------------------------------------------------------
+        static const char *kTargetDomains[] = {
+            "gc-openapi-zinny3.kakaogames.com",
+            "gc-infodesk-zinny3.kakaogames.com",
+            "gc-session-zinny3.kakaogames.com",
+            "session-zinny3.game.kakao.com",
+            "qa-gc-openapi-zinny3.kakaogames.com",
+            "qa-gc-infodesk-zinny3.kakaogames.com",
+            "infodesk-zinny3.game.kakao.com",
+            "openapi-zinny3.game.kakao.com",
+            "game.kakao.com",
+            "kakaogames.com",
+            "patch.esoul.kakaogames.com",
+            "replaydn-esoul.kakaogames.com",
+            "kauth.kakao.com",
+            "accounts.kakao.com",
+            "live-sea-chat.esoul.kakaogames.com",
+            "live-sea.esoul.kakaogames.com",
+            "live-kr.esoul.kakaogames.com",
+            "live-kr-chat.esoul.kakaogames.com",
+            nullptr,
+        };
 
-// ---------------------------------------------------------------------------
-// URL redirect tables — all external domains redirected to local server
-// ---------------------------------------------------------------------------
-static const char *kDomains[] = {
-    "gc-openapi-zinny3.kakaogames.com",
-    "gc-infodesk-zinny3.kakaogames.com",
-    "gc-session-zinny3.kakaogames.com",
-    "session-zinny3.game.kakao.com",
-    "qa-gc-openapi-zinny3.kakaogames.com",
-    "qa-gc-infodesk-zinny3.kakaogames.com",
-    "infodesk-zinny3.game.kakao.com",
-    "openapi-zinny3.game.kakao.com",
-    "game.kakao.com",
-    "kakaogames.com",
-    "patch.esoul.kakaogames.com",
-    "replaydn-esoul.kakaogames.com",
-    "kauth.kakao.com",
-    "accounts.kakao.com",
-    nullptr,
-};
+        static constexpr uint16_t kLocalPort = 9999;
 
-static const char *kWsDomains[] = {
-    "live-sea-chat.esoul.kakaogames.com",
-    "live-sea.esoul.kakaogames.com",
-    "live-kr.esoul.kakaogames.com",
-    "live-kr-chat.esoul.kakaogames.com",
-    "gc-session-zinny3.kakaogames.com",
-    "session-zinny3.game.kakao.com",
-    nullptr,
-};
-
-static constexpr const char *kLocalHttp = "http://127.0.0.1:9999";
-static constexpr const char *kLocalWs   = "ws://127.0.0.1:9999";
-
-// ---------------------------------------------------------------------------
-// il2cpp_string_new
-// ---------------------------------------------------------------------------
-using Il2CppStringNew_t = void *(*)(const char *);
-static Il2CppStringNew_t g_string_new = nullptr;
-
-// ---------------------------------------------------------------------------
-// String helpers
-// ---------------------------------------------------------------------------
-static void str_replace_prefix(std::string &out,
-                                const char *scheme, const char *domain,
-                                const char *replacement)
-{
-    std::string needle = std::string(scheme) + domain;
-    std::size_t pos = out.find(needle);
-    if (pos == std::string::npos) return;
-    std::size_t end = pos + needle.size();
-    // strip optional :port after domain
-    if (end < out.size() && out[end] == ':') {
-        while (end < out.size() && out[end] != '/') ++end;
-    }
-    out.replace(pos, end - pos, replacement);
-}
-
-static std::string read_il2cpp_string(const void *ptr)
-{
-    if (!ptr) return {};
-    const auto *p = static_cast<const std::uint8_t *>(ptr);
-    std::int32_t len = 0;
-    std::memcpy(&len, p + 0x10, 4);
-    if (len <= 0 || len > 65536) return {};
-    const auto *chars = reinterpret_cast<const std::uint16_t *>(p + 0x14);
-    std::string out;
-    out.reserve(static_cast<std::size_t>(len));
-    for (std::int32_t i = 0; i < len; ++i) {
-        std::uint16_t c = chars[i];
-        if (c < 0x80) {
-            out += static_cast<char>(c);
-        } else if (c < 0x800) {
-            out += static_cast<char>(0xC0 | (c >> 6));
-            out += static_cast<char>(0x80 | (c & 0x3F));
-        } else {
-            out += static_cast<char>(0xE0 | (c >> 12));
-            out += static_cast<char>(0x80 | ((c >> 6) & 0x3F));
-            out += static_cast<char>(0x80 | (c & 0x3F));
-        }
-    }
-    return out;
-}
-
-static std::string redirect_url(const std::string &url)
-{
-    if (url.empty()) return url;
-    std::string out = url;
-
-    for (int i = 0; kDomains[i]; ++i) {
-        str_replace_prefix(out, "https://", kDomains[i], kLocalHttp);
-        str_replace_prefix(out, "http://",  kDomains[i], kLocalHttp);
-    }
-    for (int i = 0; kWsDomains[i]; ++i) {
-        str_replace_prefix(out, "wss://",  kWsDomains[i], kLocalWs);
-        str_replace_prefix(out, "ws://",   kWsDomains[i], kLocalWs);
-        str_replace_prefix(out, "https://",kWsDomains[i], kLocalHttp);
-        str_replace_prefix(out, "http://", kWsDomains[i], kLocalHttp);
-    }
-
-    // *.lockincomp.com
-    {
-        const char *marker = ".lockincomp.com";
-        std::size_t pos = out.find(marker);
-        while (pos != std::string::npos) {
-            std::size_t scheme = out.rfind("://", pos);
-            if (scheme != std::string::npos) {
-                std::size_t host_start = scheme + 3;
-                std::size_t host_end   = pos + std::strlen(marker);
-                if (host_end < out.size() && out[host_end] == ':') {
-                    while (host_end < out.size() && out[host_end] != '/') ++host_end;
-                }
-                std::size_t repl_start = (scheme >= 4 && out.substr(scheme - 4, 4) == "http")
-                                         ? scheme - 4
-                                         : (scheme >= 3 && out.substr(scheme - 2, 2) == "ws")
-                                           ? scheme - 2 : scheme;
-                out.replace(repl_start, host_end - repl_start, kLocalHttp);
-                pos = out.find(marker);
-            } else {
-                break;
+        static bool is_target_domain(const char *node)
+        {
+            if (!node)
+                return false;
+            for (int i = 0; kTargetDomains[i]; ++i)
+            {
+                if (strcmp(node, kTargetDomains[i]) == 0)
+                    return true;
             }
+            if (strstr(node, ".kakaogames.io"))
+                return true;
+            if (strstr(node, ".lockincomp.com"))
+                return true;
+            return false;
         }
-    }
 
-    // (ga-)rttcheck-*.kakaogames.io
-    {
-        const char *marker = ".kakaogames.io";
-        std::size_t pos = out.find("rttcheck-");
-        if (pos != std::string::npos && out.find(marker, pos) != std::string::npos) {
-            std::size_t scheme = out.rfind("://", pos);
-            if (scheme != std::string::npos) {
-                std::size_t dot_pos = out.find(marker, pos);
-                std::size_t host_end = dot_pos + std::strlen(marker);
-                if (host_end < out.size() && out[host_end] == ':') {
-                    while (host_end < out.size() && out[host_end] != '/') ++host_end;
+        // ---------------------------------------------------------------------------
+        // Original function pointers (filled from GOT slots at hook time)
+        // ---------------------------------------------------------------------------
+        using getaddrinfo_t = int (*)(const char *, const char *,
+                                      const struct addrinfo *, struct addrinfo **);
+        using connect_t = int (*)(int, const struct sockaddr *, socklen_t);
+
+        static getaddrinfo_t g_orig_getaddrinfo = nullptr;
+        static connect_t g_orig_connect = nullptr;
+        static std::atomic<bool> g_installed{false};
+
+        // ---------------------------------------------------------------------------
+        // Hook: getaddrinfo — DNS 결과를 127.0.0.1:kLocalPort로 교체
+        // ---------------------------------------------------------------------------
+        static int hook_getaddrinfo(const char *node, const char *service,
+                                    const struct addrinfo *hints,
+                                    struct addrinfo **res)
+        {
+            int rc = g_orig_getaddrinfo(node, service, hints, res);
+            if (rc != 0 || !res || !*res || !is_target_domain(node))
+                return rc;
+
+            logi("il2cpp_redirect: getaddrinfo %s -> 127.0.0.1:%u", node ? node : "", kLocalPort);
+            for (struct addrinfo *ai = *res; ai; ai = ai->ai_next)
+            {
+                if (ai->ai_family == AF_INET && ai->ai_addr)
+                {
+                    auto *sin = reinterpret_cast<struct sockaddr_in *>(ai->ai_addr);
+                    sin->sin_addr.s_addr = htonl(INADDR_LOOPBACK);
+                    sin->sin_port = htons(kLocalPort);
                 }
-                std::size_t repl_start = (scheme >= 4) ? scheme - 4 : scheme;
-                out.replace(repl_start, host_end - repl_start, kLocalHttp);
             }
+            return 0;
         }
-    }
 
-    return out;
-}
-
-static void *maybe_redirect(void *str_ptr)
-{
-    if (!str_ptr || !g_string_new) return nullptr;
-    std::string orig = read_il2cpp_string(str_ptr);
-    std::string redir = redirect_url(orig);
-    if (redir == orig) return nullptr;
-    logi("redirect: %s -> %s", orig.c_str(), redir.c_str());
-    return g_string_new(redir.c_str());
-}
-
-// ---------------------------------------------------------------------------
-// Hook trampolines
-// ---------------------------------------------------------------------------
-using UWR3_t = void (*)(void *, void *, void *);
-using UWR4_t = void (*)(void *, void *, void *, void *);
-using UWR5_t = void (*)(void *, void *, void *, void *, void *);
-using UWR6_t = void (*)(void *, void *, void *, void *, void *, void *);
-using StaticStr1_t = void *(*)(void *, void *);
-using StaticStr2_t = void *(*)(void *, void *, void *);
-using VoidVoid2_t  = void (*)(void *, void *);
-
-static UWR3_t    g_orig_ctor_string        = nullptr;
-static UWR4_t    g_orig_ctor_string_method = nullptr;
-static UWR6_t    g_orig_ctor_full          = nullptr;
-static UWR3_t    g_orig_set_url            = nullptr;
-static StaticStr1_t g_orig_get            = nullptr;
-static StaticStr2_t g_orig_put_bytes      = nullptr;
-static StaticStr2_t g_orig_put_string     = nullptr;
-static StaticStr2_t g_orig_post_wwwform   = nullptr;
-static StaticStr2_t g_orig_post_ctype     = nullptr;
-static VoidVoid2_t  g_orig_show_msg_box   = nullptr;
-
-static void hook_ctor_string(void *self, void *url, void *mi)
-{
-    void *r = maybe_redirect(url);
-    g_orig_ctor_string(self, r ? r : url, mi);
-}
-
-static void hook_ctor_string_method(void *self, void *url, void *method, void *mi)
-{
-    void *r = maybe_redirect(url);
-    g_orig_ctor_string_method(self, r ? r : url, method, mi);
-}
-
-static void hook_ctor_full(void *self, void *url, void *method, void *dh, void *uh, void *mi)
-{
-    void *r = maybe_redirect(url);
-    g_orig_ctor_full(self, r ? r : url, method, dh, uh, mi);
-}
-
-static void hook_set_url(void *self, void *url, void *mi)
-{
-    void *r = maybe_redirect(url);
-    g_orig_set_url(self, r ? r : url, mi);
-}
-
-static void *hook_get(void *url, void *mi)
-{
-    void *r = maybe_redirect(url);
-    return g_orig_get(r ? r : url, mi);
-}
-
-static void *hook_put_bytes(void *url, void *data, void *mi)
-{
-    void *r = maybe_redirect(url);
-    return g_orig_put_bytes(r ? r : url, data, mi);
-}
-
-static void *hook_put_string(void *url, void *data, void *mi)
-{
-    void *r = maybe_redirect(url);
-    return g_orig_put_string(r ? r : url, data, mi);
-}
-
-static void *hook_post_wwwform(void *url, void *form, void *mi)
-{
-    void *r = maybe_redirect(url);
-    return g_orig_post_wwwform(r ? r : url, form, mi);
-}
-
-static void *hook_post_ctype(void *url, void *body, void *mi)
-{
-    void *r = maybe_redirect(url);
-    return g_orig_post_ctype(r ? r : url, body, mi);
-}
-
-static void hook_show_msg_box(void *self, void *mi)
-{
-    logi("Kakao ShowMsgBox blocked");
-}
-
-// ---------------------------------------------------------------------------
-// Hook installation
-// ---------------------------------------------------------------------------
-struct HookEntry {
-    std::uintptr_t  rva;
-    void           *hook_fn;
-    void          **orig;
-    const char     *name;
-};
-
-static void do_install(std::uintptr_t base)
-{
-    const HookEntry kHooks[] = {
-        { kUWR_ctor_string,        (void*)hook_ctor_string,        (void**)&g_orig_ctor_string,        "UWR::ctor(string)" },
-        { kUWR_ctor_string_method, (void*)hook_ctor_string_method, (void**)&g_orig_ctor_string_method, "UWR::ctor(string,string)" },
-        { kUWR_ctor_full,          (void*)hook_ctor_full,          (void**)&g_orig_ctor_full,          "UWR::ctor(full)" },
-        { kUWR_SetUrl,             (void*)hook_set_url,            (void**)&g_orig_set_url,            "UWR::SetUrl" },
-        { kUWR_Get,                (void*)hook_get,                (void**)&g_orig_get,                "UWR::Get" },
-        { kUWR_Put_bytes,          (void*)hook_put_bytes,          (void**)&g_orig_put_bytes,          "UWR::Put(bytes)" },
-        { kUWR_Put_string,         (void*)hook_put_string,         (void**)&g_orig_put_string,         "UWR::Put(string)" },
-        { kUWR_PostWwwForm,        (void*)hook_post_wwwform,       (void**)&g_orig_post_wwwform,       "UWR::PostWwwForm" },
-        { kUWR_Post_contentType,   (void*)hook_post_ctype,         (void**)&g_orig_post_ctype,         "UWR::Post(contentType)" },
-        { kKakao_ShowMsgBox,       (void*)hook_show_msg_box,       (void**)&g_orig_show_msg_box,       "KakaoSDKAdapter::ShowMsgBox" },
-    };
-
-    for (const auto &h : kHooks) {
-        void *target = reinterpret_cast<void *>(base + h.rva);
-        void *tramp  = nullptr;
-        if (eversoul::hook::install_inline_hook(target, h.hook_fn, &tramp)) {
-            *h.orig = tramp;
-            logi("il2cpp_redirect: hooked %s @ %p", h.name, target);
-        } else {
-            loge("il2cpp_redirect: failed %s @ %p", h.name, target);
+        // ---------------------------------------------------------------------------
+        // Hook: connect — 외부 IP 연결을 127.0.0.1:kLocalPort로 교체
+        // ---------------------------------------------------------------------------
+        static int hook_connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen)
+        {
+            if (addr && addr->sa_family == AF_INET)
+            {
+                const auto *sin = reinterpret_cast<const struct sockaddr_in *>(addr);
+                uint32_t ip = ntohl(sin->sin_addr.s_addr);
+                if ((ip >> 24) != 127)
+                {
+                    struct sockaddr_in local{};
+                    local.sin_family = AF_INET;
+                    local.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
+                    local.sin_port = htons(kLocalPort);
+                    logi("il2cpp_redirect: connect %u.%u.%u.%u:%u -> 127.0.0.1:%u",
+                         (ip >> 24) & 0xFF, (ip >> 16) & 0xFF,
+                         (ip >> 8) & 0xFF, ip & 0xFF,
+                         ntohs(sin->sin_port), kLocalPort);
+                    return g_orig_connect(sockfd,
+                                          reinterpret_cast<const struct sockaddr *>(&local),
+                                          static_cast<socklen_t>(sizeof(local)));
+                }
+            }
+            return g_orig_connect(sockfd, addr, addrlen);
         }
+
+        // ---------------------------------------------------------------------------
+        // GOT hook — anticheat_patch.cpp와 동일한 ELF PT_DYNAMIC 파싱 방식
+        // ---------------------------------------------------------------------------
+        static int got_hook_network(uintptr_t base, const char *map_name)
+        {
+            if (!base)
+                return 0;
+            const auto *ehdr = reinterpret_cast<const Elf64_Ehdr *>(base);
+            if (memcmp(ehdr->e_ident, ELFMAG, SELFMAG) != 0)
+                return 0;
+
+            const auto *phdr = reinterpret_cast<const Elf64_Phdr *>(base + ehdr->e_phoff);
+            const Elf64_Dyn *dyn = nullptr;
+            for (int i = 0; i < ehdr->e_phnum; ++i)
+            {
+                if (phdr[i].p_type == PT_DYNAMIC)
+                {
+                    dyn = reinterpret_cast<const Elf64_Dyn *>(base + phdr[i].p_vaddr);
+                    break;
+                }
+            }
+            if (!dyn)
+                return 0;
+
+            const Elf64_Rela *rela = nullptr;
+            size_t relasz = 0;
+            const Elf64_Rela *plt = nullptr;
+            size_t pltsz = 0;
+            const Elf64_Sym *sym = nullptr;
+            const char *str = nullptr;
+
+            for (const Elf64_Dyn *d = dyn; d->d_tag != DT_NULL; ++d)
+            {
+                uintptr_t v = d->d_un.d_ptr;
+                uintptr_t abs = (v < base) ? base + v : v;
+                switch (d->d_tag)
+                {
+                case DT_RELA:
+                    rela = reinterpret_cast<const Elf64_Rela *>(abs);
+                    break;
+                case DT_RELASZ:
+                    relasz = d->d_un.d_val;
+                    break;
+                case DT_JMPREL:
+                    plt = reinterpret_cast<const Elf64_Rela *>(abs);
+                    break;
+                case DT_PLTRELSZ:
+                    pltsz = d->d_un.d_val;
+                    break;
+                case DT_SYMTAB:
+                    sym = reinterpret_cast<const Elf64_Sym *>(abs);
+                    break;
+                case DT_STRTAB:
+                    str = reinterpret_cast<const char *>(abs);
+                    break;
+                default:
+                    break;
+                }
+            }
+            if (!sym || !str)
+                return 0;
+
+            int count = 0;
+            auto patch_slot = [&](const Elf64_Rela *table, size_t sz)
+            {
+                if (!table || !sz)
+                    return;
+                size_t n = sz / sizeof(Elf64_Rela);
+                for (size_t i = 0; i < n; ++i)
+                {
+                    unsigned idx = ELF64_R_SYM(table[i].r_info);
+                    if (!idx)
+                        continue;
+                    const char *name = str + sym[idx].st_name;
+
+                    void *hook = nullptr;
+                    void **orig_pp = nullptr;
+                    if (strcmp(name, "getaddrinfo") == 0 && !g_orig_getaddrinfo)
+                    {
+                        hook = reinterpret_cast<void *>(hook_getaddrinfo);
+                        orig_pp = reinterpret_cast<void **>(&g_orig_getaddrinfo);
+                    }
+                    else if (strcmp(name, "connect") == 0 && !g_orig_connect)
+                    {
+                        hook = reinterpret_cast<void *>(hook_connect);
+                        orig_pp = reinterpret_cast<void **>(&g_orig_connect);
+                    }
+                    if (!hook)
+                        continue;
+
+                    auto *slot = reinterpret_cast<uintptr_t *>(base + table[i].r_offset);
+                    *orig_pp = reinterpret_cast<void *>(*slot);
+
+                    long ps = sysconf(_SC_PAGESIZE);
+                    auto page = reinterpret_cast<uintptr_t>(slot) &
+                                ~(static_cast<uintptr_t>(ps) - 1);
+                    mprotect(reinterpret_cast<void *>(page), static_cast<size_t>(ps),
+                             PROT_READ | PROT_WRITE);
+                    *slot = reinterpret_cast<uintptr_t>(hook);
+                    mprotect(reinterpret_cast<void *>(page), static_cast<size_t>(ps),
+                             PROT_READ);
+                    ++count;
+                    logi("il2cpp_redirect: GOT hook %s in %s slot=%p", name, map_name, slot);
+                }
+            };
+            patch_slot(rela, relasz);
+            patch_slot(plt, pltsz);
+            return count;
+        }
+
+        // ---------------------------------------------------------------------------
+        // Poller — libil2cpp.so 로드 대기 후 GOT hook 설치
+        // ---------------------------------------------------------------------------
+        static void *poller_thread(void *)
+        {
+            for (int i = 0; i < 120 && !g_installed.load(); ++i)
+            {
+                usleep(500000);
+
+                void *sym = dlsym(RTLD_DEFAULT, "il2cpp_string_new");
+                if (!sym)
+                    continue;
+
+                Dl_info info{};
+                if (!dladdr(sym, &info) || !info.dli_fbase)
+                    continue;
+
+                bool expected = false;
+                if (!g_installed.compare_exchange_strong(expected, true))
+                    return nullptr;
+
+                uintptr_t base = reinterpret_cast<uintptr_t>(info.dli_fbase);
+                int n = got_hook_network(base, "libil2cpp.so");
+                if (n > 0)
+                    logi("il2cpp_redirect: GOT hook done (%d slots patched)", n);
+                else
+                    loge("il2cpp_redirect: GOT hook failed (0 slots)");
+            }
+            if (!g_installed.load())
+                loge("il2cpp_redirect: libil2cpp.so not found within 60s");
+            return nullptr;
+        }
+
+    } // namespace
+
+    void install()
+    {
+        pthread_t thr;
+        pthread_create(&thr, nullptr, poller_thread, nullptr);
+        pthread_detach(thr);
     }
-}
-
-// ---------------------------------------------------------------------------
-// Background poller — waits for libil2cpp.so to appear, then installs hooks
-// ---------------------------------------------------------------------------
-static std::atomic<bool> g_installed{false};
-
-static void *poller_thread(void *)
-{
-    for (int i = 0; i < 120 && !g_installed.load(); ++i) {
-        usleep(500000);
-
-        void *sym = dlsym(RTLD_DEFAULT, "il2cpp_string_new");
-        if (!sym) continue;
-
-        Dl_info info{};
-        if (!dladdr(sym, &info) || !info.dli_fbase) continue;
-
-        g_string_new = reinterpret_cast<Il2CppStringNew_t>(sym);
-
-        bool expected = false;
-        if (!g_installed.compare_exchange_strong(expected, true)) return nullptr;
-
-        do_install(reinterpret_cast<std::uintptr_t>(info.dli_fbase));
-    }
-    if (!g_installed.load())
-        loge("il2cpp_redirect: libil2cpp.so not found within 60s");
-    return nullptr;
-}
-
-} // namespace
-
-void install()
-{
-    pthread_t thr;
-    pthread_create(&thr, nullptr, poller_thread, nullptr);
-    pthread_detach(thr);
-}
 
 } // namespace eversoul::il2cpp_redirect
 #else
-namespace eversoul::il2cpp_redirect {
+namespace eversoul::il2cpp_redirect
+{
     void install() {}
 } // namespace eversoul::il2cpp_redirect
 #endif // __aarch64__
