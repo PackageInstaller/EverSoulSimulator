@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package EsPb;
+
+message BuffList {
+  repeated sContentBuff buff = 1;
+}
+
+message sContentBuff {
+  int32 contentType = 1;
+  int32 buffType = 2;
+  int32 buffNo = 3;
+  int32 value = 4;
+}
+

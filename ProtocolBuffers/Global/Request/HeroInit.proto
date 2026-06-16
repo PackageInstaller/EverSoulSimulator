@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message HeroInit {
+  repeated string heroIdx = 1;
+  int32 equipFlag = 2;
+}
+

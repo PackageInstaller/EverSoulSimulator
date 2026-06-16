@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message GachaChangeTribe {
+  int32 raceSno = 1;
+}
+

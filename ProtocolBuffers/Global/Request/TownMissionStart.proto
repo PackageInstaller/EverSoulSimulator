@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message TownMissionStart {
+  int32 no = 1;
+}
+

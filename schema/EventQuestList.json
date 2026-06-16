@@ -1,0 +1,118 @@
+{
+ "root": "EventQuestList",
+ "messages": {
+  "EventQuestList": {
+   "fields": [
+    {
+     "name": "event",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sEvent",
+     "packed": false
+    },
+    {
+     "name": "eventResult",
+     "number": 2,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sEventResult",
+     "packed": false
+    }
+   ]
+  },
+  "sEvent": {
+   "fields": [
+    {
+     "name": "eventType",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "group",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "eventNumber",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "behavior",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "value",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "no",
+     "number": 6,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sEventResult": {
+   "fields": [
+    {
+     "name": "eventType",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "group",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "eventNumber",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "subNo",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "isReceive",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "dt",
+     "number": 6,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

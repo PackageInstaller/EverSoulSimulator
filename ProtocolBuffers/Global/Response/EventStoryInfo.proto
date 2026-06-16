@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package EsPb;
+
+message EventStoryInfo {
+  repeated sEventStory story = 1;
+}
+
+message sEventStory {
+  int32 eventType = 1;
+  int32 eventGroup = 2;
+  int32 eventNumber = 3;
+  int32 lastStoryNo = 4;
+}
+

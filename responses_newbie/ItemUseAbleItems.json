@@ -1,0 +1,12 @@
+{
+  "itemUseAbleGachaGrade": {
+    "rare": 1
+  },
+  "itemUseAbleGachaTribe": {
+    "human": 1,
+    "furry": 1,
+    "elf": 1,
+    "undead": 1
+  },
+  "__format__": "proto"
+}

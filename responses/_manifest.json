@@ -1,0 +1,2202 @@
+{
+  "AchievementAllReceive": {
+    "hits": 3,
+    "resp_bytes": 1823,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "AchievementList": {
+    "hits": 17,
+    "resp_bytes": 1096,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "ArbeitFinish": {
+    "hits": 1,
+    "resp_bytes": 6622,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "no": [
+        272203,
+        272204,
+        272209,
+        272210,
+        272211,
+        272212,
+        272215,
+        272216,
+        272221,
+        272226,
+        272227,
+        272232,
+        272248
+      ]
+    }
+  },
+  "ArbeitList": {
+    "hits": 6,
+    "resp_bytes": 833,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "ArbeitOption": {
+    "hits": 1,
+    "resp_bytes": 4,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "option1": 1,
+      "option2": 1
+    }
+  },
+  "ArbeitStart": {
+    "hits": 1,
+    "resp_bytes": 3046,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "arbeit": [
+        {
+          "arbeitNo": 272322,
+          "heroNo": [
+            1130,
+            1010,
+            2010
+          ]
+        },
+        {
+          "arbeitNo": 272321,
+          "heroNo": [
+            1110,
+            3030,
+            2030
+          ]
+        },
+        {
+          "arbeitNo": 272320,
+          "heroNo": [
+            4030,
+            1050,
+            3140
+          ]
+        },
+        {
+          "arbeitNo": 272319,
+          "heroNo": [
+            2050,
+            5010,
+            1040
+          ]
+        },
+        {
+          "arbeitNo": 272318,
+          "heroNo": [
+            4040,
+            3010,
+            2090
+          ]
+        },
+        {
+          "arbeitNo": 272317,
+          "heroNo": [
+            2020,
+            5030,
+            1070
+          ]
+        },
+        {
+          "arbeitNo": 272316,
+          "heroNo": [
+            1090,
+            2070,
+            3070
+          ]
+        },
+        {
+          "arbeitNo": 272315,
+          "heroNo": [
+            2110,
+            2140,
+            3080
+          ]
+        },
+        {
+          "arbeitNo": 272314,
+          "heroNo": [
+            1030,
+            1100,
+            2040
+          ]
+        },
+        {
+          "arbeitNo": 272313,
+          "heroNo": [
+            4090,
+            6010,
+            3110
+          ]
+        },
+        {
+          "arbeitNo": 272312,
+          "heroNo": [
+            4060,
+            4100,
+            4070
+          ]
+        },
+        {
+          "arbeitNo": 272311,
+          "heroNo": [
+            2120,
+            3090,
+            4080
+          ]
+        },
+        {
+          "arbeitNo": 272310,
+          "heroNo": [
+            6030,
+            3120,
+            4050
+          ]
+        },
+        {
+          "arbeitNo": 272294,
+          "heroNo": [
+            4130
+          ]
+        }
+      ]
+    }
+  },
+  "ArenaEnter": {
+    "hits": 5,
+    "resp_bytes": 11,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "tUserIdx": "0_e41PdILv_5oB2"
+    }
+  },
+  "ArenaFormationInfo": {
+    "hits": 1,
+    "resp_bytes": 14619,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "ArenaMatchingList": {
+    "hits": 5,
+    "resp_bytes": 200,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "ArenaMyRank": {
+    "hits": 7,
+    "resp_bytes": 31,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "ArenaRankList": {
+    "hits": 6,
+    "resp_bytes": 3415,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "ArenaResultSave": {
+    "hits": 5,
+    "resp_bytes": 693,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "isWin": 1,
+      "nickName": "旅游的sensei",
+      "battleType": 110,
+      "winUserIdx": "2_e21PMpdN_mcP",
+      "tUserIdx": "0_e41PdILv_5oB2",
+      "tNickName": "STI",
+      "battleStatus": 1,
+      "clientVersion": "4725",
+      "replayFile": "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"
+    }
+  },
+  "ArenaTargetDetail": {
+    "hits": 5,
+    "resp_bytes": 11934,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "targetUserIdx": "0_e41PdILv_5oB2"
+    }
+  },
+  "ArenaWeeklyRankReward": {
+    "hits": 1,
+    "resp_bytes": 0,
+    "empty": true,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "empty",
+    "roundtrip": true
+  },
+  "AutoHuntOpen": {
+    "hits": 36,
+    "resp_bytes": 377,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "AutoHuntQuickReceive": {
+    "hits": 2,
+    "resp_bytes": 338,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "AutoHuntReceive": {
+    "hits": 1,
+    "resp_bytes": 683,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "BattleConfigSave": {
+    "hits": 2,
+    "resp_bytes": 8,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "speed": 2,
+      "actionActive": true,
+      "actionUltimate": true,
+      "battleAutoUltimate": true
+    }
+  },
+  "BattleStart": {
+    "hits": 10,
+    "resp_bytes": 2,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "heroNoList": [
+        4160,
+        4030,
+        4140,
+        6530,
+        4070,
+        2080,
+        3130,
+        5020,
+        3060,
+        3050,
+        6030,
+        6060
+      ],
+      "hashCode": "L+W4hMrprL0ULuogJvP7MH0tATHzFbciYucLFzEqeUY=",
+      "hero": [
+        {
+          "heroIdx": "2_711UTXNO_w0",
+          "level": 785
+        },
+        {
+          "heroIdx": "2_421PMp77_t8Y",
+          "level": 785
+        },
+        {
+          "heroIdx": "2_411SCkHp_2yR",
+          "level": 785
+        },
+        {
+          "heroIdx": "2_741Tt99O_9Lt",
+          "level": 785
+        },
+        {
+          "heroIdx": "2_121PUvsc_hK",
+          "level": 785
+        },
+        {
+          "heroIdx": "2_711RApP2_h3w",
+          "level": 785
+        },
+        {
+          "heroIdx": "2_341QtYTi_cc",
+          "level": 785
+        },
+        {
+          "heroIdx": "2_a21QfsMt_9V1",
+          "level": 785
+        },
+        {
+          "heroIdx": "2_a31R8uY0_263",
+          "level": 785
+        },
+        {
+          "heroIdx": "2_441RKz2Z_1XO",
+          "level": 785
+        },
+        {
+          "heroIdx": "2_611Qhg9h_52p",
+          "level": 785
+        },
+        {
+          "heroIdx": "2_441UzHTF_4Hq",
+          "level": 785
+        }
+      ]
+    }
+  },
+  "BestScore": {
+    "hits": 1,
+    "resp_bytes": 27,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "BuffList": {
+    "hits": 1,
+    "resp_bytes": 13016,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "CashGrowInfo": {
+    "hits": 1,
+    "resp_bytes": 47,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "CashShopList": {
+    "hits": 5,
+    "resp_bytes": 0,
+    "empty": true,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "empty",
+    "roundtrip": true,
+    "request_decoded": {
+      "no": 170
+    }
+  },
+  "CashShopUserAbleCashItemIdAllList": {
+    "hits": 1,
+    "resp_bytes": 0,
+    "empty": true,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "empty",
+    "roundtrip": true,
+    "request_decoded": {
+      "tabId": [
+        163,
+        165,
+        166,
+        167,
+        168,
+        169
+      ]
+    }
+  },
+  "CategoryMail": {
+    "hits": 1,
+    "resp_bytes": 1561,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "categoryFlag": 2,
+      "languageCode": "zh_tw"
+    }
+  },
+  "ChangeLobbyBackground": {
+    "hits": 2,
+    "resp_bytes": 0,
+    "empty": true,
+    "has_response_proto": false,
+    "has_request_proto": true,
+    "format": "empty",
+    "roundtrip": true,
+    "request_decoded": {
+      "type": 1,
+      "heroNo1": 6010,
+      "heroNo2": 4160,
+      "heroNo3": 4100,
+      "heroNo4": 6540,
+      "backgroundImgItemNo": 5402,
+      "illustId": 65403
+    }
+  },
+  "DJSoulInfoList": {
+    "hits": 2,
+    "resp_bytes": 134,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "DJSoulTotalRanking": {
+    "hits": 1,
+    "resp_bytes": 8824,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "DailyResetList": {
+    "hits": 1,
+    "resp_bytes": 2767,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "DestinyInfoList": {
+    "hits": 2,
+    "resp_bytes": 21503,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "DestinyPickUpList": {
+    "hits": 2,
+    "resp_bytes": 0,
+    "empty": true,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "empty",
+    "roundtrip": true
+  },
+  "DoubleGateSweep": {
+    "hits": 1,
+    "resp_bytes": 338,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "stageType": "DoubleGateNormalManaCrystal",
+      "ticketId": "DoubleGateTicketNormal",
+      "sweepCount": 3
+    }
+  },
+  "DungeonOpenCheck": {
+    "hits": 7,
+    "resp_bytes": 4,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "EdenUnionInfo": {
+    "hits": 2,
+    "resp_bytes": 58,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "EdenUnionRankList": {
+    "hits": 1,
+    "resp_bytes": 8771,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "EventActiveList": {
+    "hits": 1,
+    "resp_bytes": 31,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "EventStoryInfo": {
+    "hits": 1,
+    "resp_bytes": 321,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "EverTalkList": {
+    "hits": 1,
+    "resp_bytes": 9687,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "heroNo": [
+        0,
+        1010,
+        1020,
+        1030,
+        1040,
+        1050,
+        1060,
+        1070,
+        1080,
+        1090,
+        1100,
+        1110,
+        1120,
+        1130,
+        1140,
+        1150,
+        1160,
+        1170,
+        2010,
+        2020,
+        2030,
+        2040,
+        2050,
+        2060,
+        2070,
+        2080,
+        2090,
+        2100,
+        2110,
+        2120,
+        2130,
+        2140,
+        2150,
+        2160,
+        2170,
+        3010,
+        3020,
+        3030,
+        3040,
+        3050,
+        3060,
+        3070,
+        3080,
+        3090,
+        3100,
+        3110,
+        3120,
+        3130,
+        3140,
+        3150,
+        3160,
+        3170,
+        3180,
+        4010,
+        4020,
+        4030,
+        4040,
+        4050,
+        4060,
+        4070,
+        4080,
+        4090,
+        4100,
+        4110,
+        4120,
+        4130,
+        4140,
+        4150,
+        4160,
+        4170,
+        5010,
+        5020,
+        5030,
+        5040,
+        5060,
+        5080,
+        6010,
+        6020,
+        6030,
+        6050,
+        6060,
+        6070,
+        6510,
+        6520,
+        6530,
+        6540,
+        6980,
+        6990
+      ]
+    }
+  },
+  "FormationSave": {
+    "hits": 18,
+    "resp_bytes": 87,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "no": 1,
+      "kind": 804,
+      "heroIdx": [
+        "2_711UTXNO_w0",
+        "2_421PMp77_t8Y",
+        "2_411SCkHp_2yR",
+        "2_741Tt99O_9Lt",
+        "2_121PUvsc_hK"
+      ],
+      "formationType": 2
+    }
+  },
+  "FriendTotalList": {
+    "hits": 1,
+    "resp_bytes": 77825,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "GachaChangeTribe": {
+    "hits": 1,
+    "resp_bytes": 338,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "raceSno": 203
+    }
+  },
+  "GachaHero": {
+    "hits": 1,
+    "resp_bytes": 390,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "count": 1,
+      "gachaNo": 902,
+      "autoRelease": 1
+    }
+  },
+  "GachaInfo": {
+    "hits": 2,
+    "resp_bytes": 243,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "GachaMileageDelete": {
+    "hits": 2,
+    "resp_bytes": 0,
+    "empty": true,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "empty",
+    "roundtrip": true
+  },
+  "GachaPremiumHeroList": {
+    "hits": 3,
+    "resp_bytes": 171,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "GachaWishRegister": {
+    "hits": 6,
+    "resp_bytes": 7,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "gachaNo": 20001,
+      "gachaWish": [
+        {
+          "gachaType": 3,
+          "wishId": 5020
+        }
+      ]
+    }
+  },
+  "GuideQuestList": {
+    "hits": 14,
+    "resp_bytes": 1046,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "GuildMemberList": {
+    "hits": 1,
+    "resp_bytes": 3335,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "guildIdx": "0_631PdeSx_vf4"
+    }
+  },
+  "GuildRaidBattleResult": {
+    "hits": 1,
+    "resp_bytes": 19,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "scheduleId": 58,
+      "score": [
+        "3304429356",
+        "1457102155",
+        "4299379750"
+      ],
+      "heroIdxes": [
+        "2_231SmHGM_1N5",
+        "2_421PMp77_t8Y",
+        "2_411SJtzz_kt",
+        "2_441RKz2Z_1XO",
+        "2_611TAReC_3sZ",
+        "2_411QTgRr_3wn",
+        "2_421Q2Kf4_4sZ",
+        "2_011TPZ8C_xr",
+        "2_731T6j99_2Fl",
+        "2_a31R8uY0_263",
+        "2_731PMp77_m0L",
+        "2_741SYJ9T_175",
+        "2_121RCYKs_1vE",
+        "2_441PUvsc_JS",
+        "2_741Tt99O_9Lt"
+      ],
+      "relicNo": [
+        4301,
+        4405,
+        4103
+      ]
+    }
+  },
+  "GuildRaidInfo": {
+    "hits": 4,
+    "resp_bytes": 46,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "GuildRaidMemberHistoryList": {
+    "hits": 5,
+    "resp_bytes": 486,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "guildIdx": "0_631PdeSx_vf4"
+    }
+  },
+  "GuildRaidRanking": {
+    "hits": 2,
+    "resp_bytes": 8829,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "HeroGift": {
+    "hits": 1,
+    "resp_bytes": 26,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "giftNo": 7037,
+      "heroNo": 3090,
+      "giftCount": 1
+    }
+  },
+  "HeroPowerUpdate": {
+    "hits": 2,
+    "resp_bytes": 0,
+    "empty": true,
+    "has_response_proto": false,
+    "has_request_proto": true,
+    "format": "empty",
+    "roundtrip": true,
+    "request_decoded": {
+      "heroPower": [
+        {
+          "heroIdx": "2_141WhSEa_10CI",
+          "power": 13958
+        },
+        {
+          "heroIdx": "2_141WhSEa_13fB",
+          "power": 13958
+        },
+        {
+          "heroIdx": "2_141WhSEa_13fG",
+          "power": 13958
+        },
+        {
+          "heroIdx": "2_621WhSES_18g9",
+          "power": 13958
+        },
+        {
+          "heroIdx": "2_621WhSES_18gc",
+          "power": 13958
+        },
+        {
+          "heroIdx": "2_621WhSES_STN",
+          "power": 13958
+        },
+        {
+          "heroIdx": "2_621WhSES_STO",
+          "power": 13958
+        },
+        {
+          "heroIdx": "2_631WhSES_Gqk",
+          "power": 13958
+        },
+        {
+          "heroIdx": "2_641WhSES_14Rs",
+          "power": 13958
+        },
+        {
+          "heroIdx": "2_111WhSEa_131I",
+          "power": 14009
+        },
+        {
+          "heroIdx": "2_111WhSEa_NY3",
+          "power": 14009
+        },
+        {
+          "heroIdx": "2_131WhSEa_XDb",
+          "power": 14009
+        },
+        {
+          "heroIdx": "2_141WhSEa_13fC",
+          "power": 13959
+        },
+        {
+          "heroIdx": "2_111WhSEa_AL1",
+          "power": 14122
+        },
+        {
+          "heroIdx": "2_121VyXd8_1Xg",
+          "power": 14285
+        },
+        {
+          "heroIdx": "2_121WhSEa_8Je",
+          "power": 14276
+        },
+        {
+          "heroIdx": "2_131WhSEa_CrL",
+          "power": 13297
+        },
+        {
+          "heroIdx": "2_411V4d1g_bXj",
+          "power": 14404
+        },
+        {
+          "heroIdx": "2_421VSUe8_1AV",
+          "power": 14349
+        },
+        {
+          "heroIdx": "2_421VSUe8_1tg",
+          "power": 14202
+        },
+        {
+          "heroIdx": "2_621WhSES_18gg",
+          "power": 14310
+        },
+        {
+          "heroIdx": "2_631WhSES_125b",
+          "power": 14059
+        },
+        {
+          "heroIdx": "2_641WhSES_574",
+          "power": 14321
+        },
+        {
+          "heroIdx": "2_641WhSES_qsF",
+          "power": 14030
+        },
+        {
+          "heroIdx": "2_721UzKgO_zPn",
+          "power": 14547
+        },
+        {
+          "heroIdx": "2_721VyXdm_bMH",
+          "power": 14449
+        },
+        {
+          "heroIdx": "2_741WhSFB_5oT",
+          "power": 14204
+        },
+        {
+          "heroIdx": "2_741WhSFB_5oZ",
+          "power": 14302
+        },
+        {
+          "heroIdx": "2_031Voq1J_d2",
+          "power": 14335
+        },
+        {
+          "heroIdx": "2_111TY1Pq_vZS",
+          "power": 14400
+        },
+        {
+          "heroIdx": "2_111WhSEa_4HX",
+          "power": 14134
+        },
+        {
+          "heroIdx": "2_121WhSEa_8KF",
+          "power": 14425
+        },
+        {
+          "heroIdx": "2_121WhSEa_8L6",
+          "power": 14335
+        },
+        {
+          "heroIdx": "2_141WhSEa_3gS",
+          "power": 14534
+        },
+        {
+          "heroIdx": "2_141WhSEa_3h3",
+          "power": 14534
+        },
+        {
+          "heroIdx": "2_141WhSEa_3hs",
+          "power": 14534
+        },
+        {
+          "heroIdx": "2_141WhSEa_3hw",
+          "power": 14534
+        },
+        {
+          "heroIdx": "2_141WhSEa_3ki",
+          "power": 14337
+        },
+        {
+          "heroIdx": "2_141WhSEa_3mo",
+          "power": 14360
+        },
+        {
+          "heroIdx": "2_141WhSEa_3pD",
+          "power": 14337
+        },
+        {
+          "heroIdx": "2_141WhSEa_M0Q",
+          "power": 14337
+        },
+        {
+          "heroIdx": "2_211TPZ8C_x6",
+          "power": 14400
+        },
+        {
+          "heroIdx": "2_211VNN5A_6zV",
+          "power": 14230
+        },
+        {
+          "heroIdx": "2_231Tgss1_10iz",
+          "power": 14335
+        },
+        {
+          "heroIdx": "2_411VyzHy_43u",
+          "power": 14230
+        },
+        {
+          "heroIdx": "2_421U7Kt3_u6T",
+          "power": 14335
+        },
+        {
+          "heroIdx": "2_611UTXMJ_nw",
+          "power": 14399
+        },
+        {
+          "heroIdx": "2_611WhSES_4hQ",
+          "power": 14337
+        },
+        {
+          "heroIdx": "2_611WhSES_4lA",
+          "power": 14243
+        },
+        {
+          "heroIdx": "2_611WhSES_4lB",
+          "power": 14352
+        },
+        {
+          "heroIdx": "2_611WhSES_4lC",
+          "power": 14252
+        },
+        {
+          "heroIdx": "2_611WhSES_4lq",
+          "power": 14337
+        },
+        {
+          "heroIdx": "2_611WhSES_4lr",
+          "power": 14213
+        },
+        {
+          "heroIdx": "2_611WhSES_4ls",
+          "power": 14380
+        },
+        {
+          "heroIdx": "2_611WhSES_4lt",
+          "power": 14299
+        },
+        {
+          "heroIdx": "2_621WhSES_7YK",
+          "power": 14326
+        },
+        {
+          "heroIdx": "2_621WhSES_7Yw",
+          "power": 14297
+        },
+        {
+          "heroIdx": "2_621WhSES_81Z",
+          "power": 14352
+        },
+        {
+          "heroIdx": "2_621WhSES_82b",
+          "power": 14326
+        },
+        {
+          "heroIdx": "2_621WhSES_82k",
+          "power": 14352
+        },
+        {
+          "heroIdx": "2_621WhSES_835",
+          "power": 14337
+        },
+        {
+          "heroIdx": "2_621WhSES_83x",
+          "power": 14230
+        },
+        {
+          "heroIdx": "2_641WhSES_578",
+          "power": 14433
+        },
+        {
+          "heroIdx": "2_641WhSES_57A",
+          "power": 14337
+        },
+        {
+          "heroIdx": "2_641WhSES_5ao",
+          "power": 14534
+        },
+        {
+          "heroIdx": "2_721WhSFB_4ZH",
+          "power": 14534
+        },
+        {
+          "heroIdx": "2_731WhSFB_4se",
+          "power": 14534
+        },
+        {
+          "heroIdx": "2_741WhSFB_5ap",
+          "power": 14352
+        },
+        {
+          "heroIdx": "2_741WhSFB_5bg",
+          "power": 14337
+        },
+        {
+          "heroIdx": "2_741WhSFB_5ec",
+          "power": 14352
+        },
+        {
+          "heroIdx": "2_441Te5v3_2wu",
+          "power": 379753
+        },
+        {
+          "heroIdx": "2_011TPZ8C_xr",
+          "power": 549816
+        },
+        {
+          "heroIdx": "2_021PMp77_yT9",
+          "power": 461609
+        },
+        {
+          "heroIdx": "2_021PVUUJ_9cc",
+          "power": 489063
+        },
+        {
+          "heroIdx": "2_021RZOmG_1iT",
+          "power": 464743
+        },
+        {
+          "heroIdx": "2_021SOA49_rtZ",
+          "power": 580297
+        },
+        {
+          "heroIdx": "2_031PRPPA_xD",
+          "power": 430902
+        },
+        {
+          "heroIdx": "2_031PUvsc_3dJ",
+          "power": 468032
+        },
+        {
+          "heroIdx": "2_031QeH7I_47R",
+          "power": 487357
+        },
+        {
+          "heroIdx": "2_031UcX1q_34G",
+          "power": 458596
+        },
+        {
+          "heroIdx": "2_111R0UCf_cg",
+          "power": 449811
+        },
+        {
+          "heroIdx": "2_111UksHr_5nr",
+          "power": 433771
+        },
+        {
+          "heroIdx": "2_121PUvsc_hK",
+          "power": 519309
+        },
+        {
+          "heroIdx": "2_121Q9GCD_5mQ",
+          "power": 510778
+        },
+        {
+          "heroIdx": "2_121QTgRr_8rJ",
+          "power": 490751
+        },
+        {
+          "heroIdx": "2_121RCYKs_1vE",
+          "power": 463451
+        },
+        {
+          "heroIdx": "2_121TInoB_1tY",
+          "power": 508360
+        },
+        {
+          "heroIdx": "2_121VegOB_11R",
+          "power": 570143
+        },
+        {
+          "heroIdx": "2_131U5eAt_4ka",
+          "power": 588149
+        },
+        {
+          "heroIdx": "2_131UJQ9a_1sR",
+          "power": 559142
+        },
+        {
+          "heroIdx": "2_131VIL74_2Tk",
+          "power": 526087
+        },
+        {
+          "heroIdx": "2_131VyzEF_4T4",
+          "power": 615896
+        },
+        {
+          "heroIdx": "2_141QeH7I_bPH",
+          "power": 472875
+        },
+        {
+          "heroIdx": "2_141RUNYX_6aT",
+          "power": 457535
+        },
+        {
+          "heroIdx": "2_141Us8dW_d1",
+          "power": 537149
+        },
+        {
+          "heroIdx": "2_211PMp77_n0v",
+          "power": 486843
+        },
+        {
+          "heroIdx": "2_211PMp77_oXG",
+          "power": 447985
+        },
+        {
+          "heroIdx": "2_211Re4R4_2W",
+          "power": 469502
+        },
+        {
+          "heroIdx": "2_221Q2Kf4_33a",
+          "power": 475762
+        },
+        {
+          "heroIdx": "2_221Q2z4e_i4",
+          "power": 438987
+        },
+        {
+          "heroIdx": "2_221QE2Ux_2Dw",
+          "power": 464482
+        },
+        {
+          "heroIdx": "2_221Voq10_p1",
+          "power": 525194
+        },
+        {
+          "heroIdx": "2_231QOcgc_4Ii",
+          "power": 458284
+        },
+        {
+          "heroIdx": "2_231SmHGM_1N5",
+          "power": 512670
+        },
+        {
+          "heroIdx": "2_241Qhg9i_acP",
+          "power": 505189
+        },
+        {
+          "heroIdx": "2_241SuncQ_4vo",
+          "power": 543608
+        },
+        {
+          "heroIdx": "2_311PMpdN_kYf",
+          "power": 464808
+        },
+        {
+          "heroIdx": "2_311PMpdN_sse",
+          "power": 530223
+        },
+        {
+          "heroIdx": "2_311PUvzd_3bW",
+          "power": 460374
+        },
+        {
+          "heroIdx": "2_311QeH7I_3S0",
+          "power": 611817
+        },
+        {
+          "heroIdx": "2_311QoPR6_8oE",
+          "power": 478743
+        },
+        {
+          "heroIdx": "2_341PMpdN_nsD",
+          "power": 451246
+        },
+        {
+          "heroIdx": "2_341PUvzd_1bh",
+          "power": 461417
+        },
+        {
+          "heroIdx": "2_341QtYTi_cc",
+          "power": 503636
+        },
+        {
+          "heroIdx": "2_411QTgRr_3wn",
+          "power": 499172
+        },
+        {
+          "heroIdx": "2_411SCkHp_2yR",
+          "power": 508540
+        },
+        {
+          "heroIdx": "2_411SJtzz_kt",
+          "power": 511617
+        },
+        {
+          "heroIdx": "2_421PMp77_t8Y",
+          "power": 489403
+        },
+        {
+          "heroIdx": "2_421Q2Kf4_4sZ",
+          "power": 472371
+        },
+        {
+          "heroIdx": "2_421SkzkE_bEz",
+          "power": 514910
+        },
+        {
+          "heroIdx": "2_421VSUe8_1vA",
+          "power": 478079
+        },
+        {
+          "heroIdx": "2_431QE2Ux_Ob",
+          "power": 474389
+        },
+        {
+          "heroIdx": "2_431Te5v3_2an",
+          "power": 469163
+        },
+        {
+          "heroIdx": "2_441PUvsc_JS",
+          "power": 497801
+        },
+        {
+          "heroIdx": "2_441RKz2Z_1XO",
+          "power": 499680
+        },
+        {
+          "heroIdx": "2_441UzHTF_4Hq",
+          "power": 510203
+        },
+        {
+          "heroIdx": "2_441V472N_32S",
+          "power": 553163
+        },
+        {
+          "heroIdx": "2_521PRPPz_2rn",
+          "power": 536744
+        },
+        {
+          "heroIdx": "2_521RldiW_eja",
+          "power": 524892
+        },
+        {
+          "heroIdx": "2_611Qhg9h_52p",
+          "power": 550582
+        },
+        {
+          "heroIdx": "2_611R0UCf_8Hr",
+          "power": 534392
+        },
+        {
+          "heroIdx": "2_611TAReC_3sZ",
+          "power": 480926
+        },
+        {
+          "heroIdx": "2_611TXDkd_xJ",
+          "power": 578358
+        },
+        {
+          "heroIdx": "2_631RnJ4x_32M",
+          "power": 515720
+        },
+        {
+          "heroIdx": "2_631S7r7H_6ZT",
+          "power": 532542
+        },
+        {
+          "heroIdx": "2_631Tlx76_J5",
+          "power": 498905
+        },
+        {
+          "heroIdx": "2_641PMp77_ptu",
+          "power": 458922
+        },
+        {
+          "heroIdx": "2_711RApP2_h3w",
+          "power": 508172
+        },
+        {
+          "heroIdx": "2_711UTXNO_w0",
+          "power": 492474
+        },
+        {
+          "heroIdx": "2_721QjSA6_2Qc",
+          "power": 455419
+        },
+        {
+          "heroIdx": "2_731PMp77_m0L",
+          "power": 520547
+        },
+        {
+          "heroIdx": "2_731PRPPA_6QD",
+          "power": 453202
+        },
+        {
+          "heroIdx": "2_731T6j99_2Fl",
+          "power": 502228
+        },
+        {
+          "heroIdx": "2_741SYJ9T_175",
+          "power": 546864
+        },
+        {
+          "heroIdx": "2_741Tt99O_9Lt",
+          "power": 623692
+        },
+        {
+          "heroIdx": "2_821PMpdN_lTE",
+          "power": 457896
+        },
+        {
+          "heroIdx": "2_841PRPPH_3xM",
+          "power": 472632
+        },
+        {
+          "heroIdx": "2_911PMpdN_lEl",
+          "power": 511112
+        },
+        {
+          "heroIdx": "2_931PMpdN_meX",
+          "power": 508789
+        },
+        {
+          "heroIdx": "2_931Q73Dg_V4",
+          "power": 453510
+        },
+        {
+          "heroIdx": "2_a21QfsMt_9V1",
+          "power": 492887
+        },
+        {
+          "heroIdx": "2_a31R8uY0_263",
+          "power": 521090
+        },
+        {
+          "heroIdx": "2_e11PMpdN_mrI",
+          "power": 512191
+        },
+        {
+          "heroIdx": "2_e21PRPPH_81P",
+          "power": 511553
+        },
+        {
+          "heroIdx": "2_e41PUvzd_68M",
+          "power": 491555
+        }
+      ]
+    }
+  },
+  "HeroReputationInfoAll": {
+    "hits": 1,
+    "resp_bytes": 5367,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "IllustList": {
+    "hits": 1,
+    "resp_bytes": 114,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "ItemUseAbleItems": {
+    "hits": 6,
+    "resp_bytes": 8,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "itemNo": 4205
+    }
+  },
+  "LabyrinthInfo": {
+    "hits": 1,
+    "resp_bytes": 7,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "LabyrinthSkip": {
+    "hits": 1,
+    "resp_bytes": 406,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "LikeOtherUserAll": {
+    "hits": 1,
+    "resp_bytes": 4693,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "otherUserIdx": [
+        "0_011TY1Sz_wlg",
+        "0_011VyXg5_gnY",
+        "0_021QDpLY_17V",
+        "0_111TDJA5_cVa",
+        "0_131RD2pP_boa",
+        "0_221PdeSx_dMk",
+        "0_331PAymE_euH",
+        "0_341Q9GK3_2n7",
+        "0_411V76fa_h58",
+        "0_431PdeSx_b0",
+        "0_541QBxmy_3kj",
+        "0_621STCqW_cWj",
+        "0_711PdeSx_9JZ",
+        "0_861PeSX6_3bCo",
+        "0_911PdeSE_1c",
+        "0_a41PdeSF_ajM",
+        "0_c11PdILv_4KJQ",
+        "0_d11PdeSF_5Lo",
+        "0_d21PdeSF_WpF",
+        "0_d41PvqPw_9yt",
+        "0_l21Pnnph_Gc8",
+        "1_031VD4Sv_lif",
+        "1_211SZ7DR_n38",
+        "1_221UCdEU_pek",
+        "1_431TvLui_uPm",
+        "1_631PdeSx_pzv",
+        "1_711Ri21T_3gu",
+        "1_711W312v_kRR",
+        "1_741VIL75_ewp",
+        "1_811PdILv_4dQa",
+        "1_a21PdeSF_kA9",
+        "1_a31PdeSF_Lhi",
+        "1_a31PdeSF_u0x",
+        "1_b41PdILw_3WGu",
+        "2_021Vtzcm_8Yj",
+        "2_031T7Phm_aX8",
+        "2_131W311a_qDw",
+        "2_141TInoB_bd6",
+        "2_411Sftwd_4HY",
+        "2_521PdeSx_8IJ",
+        "2_531PdeSx_1GE",
+        "2_531QYlvG_adW",
+        "2_531R6mBd_19t",
+        "2_711T3LvA_7CE",
+        "2_711VemiN_h19",
+        "2_731PdeSx_5dB",
+        "2_731PdeSx_Fwm",
+        "2_731W312v_5SP",
+        "2_811QyY0s_2ZF"
+      ]
+    }
+  },
+  "LobbyRefresh": {
+    "hits": 29,
+    "resp_bytes": 320,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "Log": {
+    "hits": 1,
+    "resp_bytes": 0,
+    "empty": true,
+    "has_response_proto": false,
+    "has_request_proto": true,
+    "format": "empty",
+    "roundtrip": true,
+    "request_decoded": {
+      "logType": 3
+    }
+  },
+  "Login": {
+    "hits": 1,
+    "resp_bytes": 16,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "playerId": "431921183232",
+      "accessToken": "fwPla7fQ8ty9+DZT/lD//i2lukp15qLVmGhmh3tk0ppyrfAnP9wqBfV+j4n5P6MVulH8ZUsNCtoccKJ3VhzTi+CiaNNMIA3q4HBg3C7axjT7vKU1knjz3zJLTu+A5K0o8xSk/DRjUQSiA3+oavop2h8ijo4o23gxO+VZvEwCROIa7Cnz0s8St/GmLOzbg8ShULO5cIUrrwUHTS2bVwcpH15pmmL4FEfmLLNboEnPv2U=",
+      "type": "KakaoGoogle",
+      "appId": 743491,
+      "deviceType": "Aos",
+      "deviceModel": "Pixel 5",
+      "country": "hk",
+      "market": "0"
+    }
+  },
+  "MailItemAllReceive": {
+    "hits": 1,
+    "resp_bytes": 592,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "categoryFlag": 2
+    }
+  },
+  "MailRedDot": {
+    "hits": 1,
+    "resp_bytes": 2,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "NewMailCnt": {
+    "hits": 29,
+    "resp_bytes": 0,
+    "empty": true,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "empty",
+    "roundtrip": true
+  },
+  "OriginTowerList": {
+    "hits": 12,
+    "resp_bytes": 2222,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "OriginTowerStageClear": {
+    "hits": 1,
+    "resp_bytes": 10,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "towerNo": 401,
+      "stageNo": 4401004,
+      "heroIdx": [
+        "2_211PMp77_oXG",
+        "2_741Tt99O_9Lt",
+        "2_131VyzEF_4T4",
+        "2_311QeH7I_3S0",
+        "2_131U5eAt_4ka"
+      ]
+    }
+  },
+  "OriginTowerStoryClear": {
+    "hits": 4,
+    "resp_bytes": 0,
+    "empty": true,
+    "has_response_proto": false,
+    "has_request_proto": true,
+    "format": "empty",
+    "roundtrip": true,
+    "request_decoded": {
+      "towerNo": 401,
+      "stageNo": 4401000
+    }
+  },
+  "OtherUserTownEnemyDestroySkip": {
+    "hits": 3,
+    "resp_bytes": 359,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "otherUserIdx": "0_131RD2pP_boa"
+    }
+  },
+  "PrevChat": {
+    "hits": 1,
+    "resp_bytes": 34321,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "chatType": 1,
+      "targetInfoStr": "0_631PdeSx_vf4"
+    }
+  },
+  "ProfileCustomList": {
+    "hits": 1,
+    "resp_bytes": 4534,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "ProfileCustomSave": {
+    "hits": 1,
+    "resp_bytes": 4,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "saveType": 2,
+      "uid": 46259,
+      "profile": "ZW1wdHksMCwxMiw0MTAwMywwLDAsMCwxLDEsMSwwLDEsMSwxLDAuOCwxLDUsMCwtMTMuMzIsLTExLjY2LDAsMS4xNiwxLjU2LDAsMCwxLDEsMSwxLDIsMTcsNjExMCwtMzMwLjI0LDIwOS44LDAsMC42MSwwLjU4LDAsMCwxLDEsMSwxLDMsMTcsNjEyMCwyOTUuNjgsMjEwLjIyLDAsMC43MSwwLjY0LDAsMCwxLDEsMSwxLDQsMTcsNjEzMCwtMTkyLjQsMjE1LjIyLDAsMC42MywwLjU3LDAsMCwxLDEsMSwxLDUsMTcsNjE1MCwxMzUuMzQsMjE4LjU0LDAsMC42MiwwLjUyLDAsMCwxLDEsMSwxLDYsMTcsNjE0MCwtMzEuNjUsMjEyLjcyLDAsMC42NSwwLjYyLDAsMCwxLDEsMSwxLDcsMTcsNjE2MCwtMzI4LjU4LDYyLjg2LDAsMC42MywwLjY1LDAsMCwxLDEsMSwxLDgsMTcsNjE3MCwyOTkuMDEsNjIuMDMsMCwwLjY2LDAuNTcsMCwwLDEsMSwxLDEsOSwxNyw2MTc0LC0zMjMuOTksLTc5LjA5LDAsMC42MSwwLjU1LDAsMCwxLDEsMSwxLDEwLDE3LDY0MDEsMjk2LjUyLC03Mi4wMSwwLDAuNjYsMC42MiwwLDAsMSwxLDEsMSwxMSwxNyw2NDExLC0zMTYuMDgsLTIyMi43MSwwLDAuNiwwLjU1LDAsMCwxLDEsMSwxLDEyLDE3LDY0MTYsMzAwLjI2LC0yMjAuNjMsMCwwLjcyLDAuNjYsMCwwLDEsMSwxLDEsMTMsMTcsNjQyMSwtMTcwLjMzLC0yMTguNTUsMCwwLjYzLDAuNTUsMCwwLDEsMSwxLDEsMTQsMTcsNjQyNiwtNy45MSwtMjE2LjA1LDAsMC42NiwwLjU3LDAsMCwxLDEsMSwxLDE1LDE3LDY0NDEsMTQzLjI2LC0yMTUuNjMsMCwwLjY5LDAuNiwwLDAsMSwxLDEsMSwxNiwxNyw2NjAyLC00NjMuOTIsMjA3LjczLDAsMC41OCwwLjU3LDAsMCwxLDEsMSwxLDE3LDE3LDY2MDcsNDY1LjU5LC0yMDguOTgsMCwwLjY2LDAuNTYsMCwwLDEsMSwxLDEsMTgsMTcsNjYxMiwtNDYyLjI2LC0yMjQuMzgsMCwwLjYyLDAuNDgsMCwwLDEsMSwxLDEsMTksMTcsNjkxOSwtNDY3LjI2LDU4LjI4LDAsMC42MywwLjU3LDAsMCwxLDEsMSwxLDIwLDE3LDcxMDAsNDYxLjg0LDY3LjAyLDAsMC42NSwwLjU3LDAsMCwxLDEsMSwxLDIxLDE3LDcxMTgsLTQ1OC41MSwtODQuOTIsMCwwLjY0LDAuNTksMCwwLDEsMSwxLDEsMjIsMTcsNjkyOCw0NTMuMSwyMDAuMjMsMCwwLjY4LDAuNTUsMCwwLDEsMSwxLDEsMjMsMTcsNjQwNiw0NjEuODQsLTY1Ljc3LDAsMC42MiwwLjY0LDAsMCwxLDEsMSwx"
+    }
+  },
+  "ProfileInfos": {
+    "hits": 15,
+    "resp_bytes": 55143,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "targetUserIdxs": "0_011TY1Sz_wlg,0_011VyXg5_gnY,0_021QDpLY_17V,0_111TDJA5_cVa,0_131RD2pP_boa,0_221PdeSx_dMk,0_331PAymE_euH,0_341Q9GK3_2n7,0_411V76fa_h58,0_431PdeSx_b0,0_541QBxmy_3kj,0_621STCqW_cWj,0_711PdeSx_9JZ,0_861PeSX6_3bCo,0_911PdeSE_1c,0_a41PdeSF_ajM,0_c11PdILv_4KJQ,0_d11PdeSF_5Lo,0_d21PdeSF_WpF,0_d41PvqPw_9yt,0_l21Pnnph_Gc8,1_031VD4Sv_lif,1_211SZ7DR_n38,1_221UCdEU_pek,1_431TvLui_uPm,1_631PdeSx_pzv,1_711Ri21T_3gu,1_711W312v_kRR,1_741VIL75_ewp,1_811PdILv_4dQa,1_a21PdeSF_kA9,1_a31PdeSF_Lhi,1_a31PdeSF_u0x,1_b41PdILw_3WGu,2_021Vtzcm_8Yj,2_031T7Phm_aX8,2_131W311a_qDw,2_141TInoB_bd6,2_411Sftwd_4HY,2_521PdeSx_8IJ,2_531PdeSx_1GE,2_531QYlvG_adW,2_531R6mBd_19t,2_711T3LvA_7CE,2_711VemiN_h19,2_731PdeSx_5dB,2_731PdeSx_Fwm,2_731W312v_5SP,2_811QyY0s_2ZF"
+    }
+  },
+  "RankingAchievementPopup": {
+    "hits": 18,
+    "resp_bytes": 3842,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "rankNo": 1000
+    }
+  },
+  "RankingList": {
+    "hits": 1,
+    "resp_bytes": 13420,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "ReceiveAttendance": {
+    "hits": 2,
+    "resp_bytes": 11,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "RecordList": {
+    "hits": 6,
+    "resp_bytes": 40039,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "battleType": 110,
+      "clientVersion": "4725"
+    }
+  },
+  "RelationList": {
+    "hits": 6,
+    "resp_bytes": 8098,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "RestIn": {
+    "hits": 1,
+    "resp_bytes": 1190,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "heroNo": [
+        1120,
+        4110,
+        4010,
+        1060,
+        2100,
+        5020,
+        3130,
+        6020,
+        3100,
+        2080,
+        4020,
+        3060,
+        4120,
+        6050,
+        3040,
+        1020,
+        1140,
+        3050,
+        2130,
+        6510
+      ]
+    }
+  },
+  "RestOut": {
+    "hits": 1,
+    "resp_bytes": 1063,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "heroNo": [
+        1040,
+        1070,
+        1090,
+        2030,
+        2070,
+        2090,
+        2120,
+        3030,
+        3070,
+        3080,
+        3090,
+        3110,
+        3120,
+        4030,
+        4060,
+        4070,
+        4080,
+        4090,
+        4100,
+        6030
+      ]
+    }
+  },
+  "SaveBGM": {
+    "hits": 2,
+    "resp_bytes": 383,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "bgmData": "WzEwMSwxMDIsMTAzLDEwNCwxMDcsMTA5XQ==",
+      "bgmType": 1
+    }
+  },
+  "Sequence": {
+    "hits": 1,
+    "resp_bytes": 8,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "ServerTime": {
+    "hits": 6,
+    "resp_bytes": 7,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "SetPlayerPosition": {
+    "hits": 1,
+    "resp_bytes": 17,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "x": 35.55873,
+      "y": -0.89676553,
+      "z": 18.471022
+    }
+  },
+  "SetTripKeywordList": {
+    "hits": 2,
+    "resp_bytes": 90,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "tripKeyword": [
+        {
+          "keywordNo": 1,
+          "heroNo": 3090
+        },
+        {
+          "keywordNo": 2,
+          "heroNo": 3090
+        },
+        {
+          "keywordNo": 3,
+          "heroNo": 3090
+        },
+        {
+          "keywordNo": 4,
+          "heroNo": 3090
+        },
+        {
+          "keywordNo": 5,
+          "heroNo": 3090
+        },
+        {
+          "keywordNo": 6,
+          "heroNo": 3090
+        },
+        {
+          "keywordNo": 7,
+          "heroNo": 3090
+        },
+        {
+          "keywordNo": 8,
+          "heroNo": 3090
+        },
+        {
+          "keywordNo": 9,
+          "heroNo": 3090
+        },
+        {
+          "keywordNo": 10,
+          "heroNo": 3090
+        }
+      ]
+    }
+  },
+  "ShopList": {
+    "hits": 12,
+    "resp_bytes": 292,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "shopNo": 10100
+    }
+  },
+  "SignatureList": {
+    "hits": 1,
+    "resp_bytes": 935,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "SingleRaidInfo": {
+    "hits": 2,
+    "resp_bytes": 9304,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "SpiritTreeList": {
+    "hits": 1,
+    "resp_bytes": 0,
+    "empty": true,
+    "has_response_proto": false,
+    "has_request_proto": true,
+    "format": "empty",
+    "roundtrip": true,
+    "request_decoded": {
+      "beforeHeroIdx": [
+        "2_741Tt99O_9Lt",
+        "2_131VyzEF_4T4",
+        "2_021SOA49_rtZ",
+        "2_141Us8dW_d1",
+        "2_611R0UCf_8Hr"
+      ],
+      "afterHeroIdx": [
+        "2_741Tt99O_9Lt",
+        "2_131VyzEF_4T4",
+        "2_021SOA49_rtZ",
+        "2_141Us8dW_d1",
+        "2_611R0UCf_8Hr"
+      ]
+    }
+  },
+  "TaskList": {
+    "hits": 17,
+    "resp_bytes": 136,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "TownEnemyList": {
+    "hits": 1,
+    "resp_bytes": 100,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "TownInfoData": {
+    "hits": 3,
+    "resp_bytes": 34,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "loggingNumber": 4
+    }
+  },
+  "TownLocationList": {
+    "hits": 10,
+    "resp_bytes": 83652,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "TownTodayEnter": {
+    "hits": 1,
+    "resp_bytes": 435,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "TripEnd": {
+    "hits": 1,
+    "resp_bytes": 44,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "heroNo": 3090,
+      "keywords": [
+        13,
+        14,
+        8
+      ],
+      "uid": 6352351,
+      "bonusLovePoint": 20
+    }
+  },
+  "TripStart": {
+    "hits": 1,
+    "resp_bytes": 10,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "heroNo": 3090
+    }
+  },
+  "UserInfo": {
+    "hits": 1,
+    "resp_bytes": 94229,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "VistaInfo": {
+    "hits": 2,
+    "resp_bytes": 41,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "VistaTreasure": {
+    "hits": 1,
+    "resp_bytes": 721,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "vistaNo": 93,
+      "count": 22
+    }
+  },
+  "WorldRaidInfo": {
+    "hits": 2,
+    "resp_bytes": 161,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  }
+}

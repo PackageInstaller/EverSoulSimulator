@@ -1,0 +1,38 @@
+{
+  "gachaWish": [
+    {
+      "gachaType": 1,
+      "wishId": 5080
+    },
+    {
+      "gachaType": 1,
+      "slotNum": 1,
+      "wishId": 2140
+    },
+    {
+      "gachaType": 1,
+      "slotNum": 2,
+      "wishId": 2160
+    },
+    {
+      "gachaType": 1,
+      "slotNum": 3,
+      "wishId": 3150
+    },
+    {
+      "gachaType": 1,
+      "slotNum": 4,
+      "wishId": 3130
+    },
+    {
+      "gachaType": 1,
+      "slotNum": 5,
+      "wishId": 4170
+    },
+    {
+      "gachaType": 1,
+      "slotNum": 6
+    }
+  ],
+  "__format__": "proto"
+}

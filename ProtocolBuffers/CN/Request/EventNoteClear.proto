@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message EventNoteClear {
+  int32 score = 1;
+  int32 clearTime = 2;
+}
+

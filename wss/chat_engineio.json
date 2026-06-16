@@ -1,0 +1,14 @@
+{
+  "host": "live-sea-chat.esoul.kakaogames.com:1739",
+  "note": "socket.io v4 / engine.io v4. Only transport handshake + heartbeat in this capture (no chat events). The C++ server answers OPEN/probe/ping so the client's chat socket stays up.",
+  "engineio_open": {
+    "sid": "cVgThk0uxS82b6h3YVHy",
+    "upgrades": [
+      "websocket"
+    ],
+    "pingInterval": 25000,
+    "pingTimeout": 20000,
+    "maxPayload": 1000000
+  },
+  "namespace_connect_ack": "40{\"sid\":\"wWl7wuCl4q7uPW41YVHz\"}"
+}

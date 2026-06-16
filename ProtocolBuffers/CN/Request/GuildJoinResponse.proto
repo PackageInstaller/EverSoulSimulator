@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message GuildJoinResponse {
+  string tUserIdx = 1;
+  string guildIdx = 2;
+  int32 decition = 3;
+}
+

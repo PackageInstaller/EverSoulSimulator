@@ -1,0 +1,17 @@
+{
+ "root": "IllustList",
+ "messages": {
+  "IllustList": {
+   "fields": [
+    {
+     "name": "illusts",
+     "number": 1,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

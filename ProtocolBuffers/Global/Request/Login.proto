@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package ReqPb;
+
+enum eLoginType {
+  Dev = 0;
+  Kakao = 1;
+  KakaoFacebook = 2;
+  KakaoGoogle = 3;
+  KakaoApple = 4;
+  KakaoGuest = 5;
+  Zilong = 11;
+  ZilongWechat = 12;
+  ZilongWeibo = 13;
+  ZilongQq = 14;
+  ZilongGuest = 15;
+}
+
+enum eDeviceType {
+  Ios = 0;
+  Aos = 1;
+  Pc = 2;
+  Emul = 3;
+  Etc = 4;
+}
+
+message Login {
+  string playerId = 1;
+  string accessToken = 2;
+  eLoginType type = 3;
+  int32 appId = 4;
+  eDeviceType deviceType = 5;
+  string deviceModel = 6;
+  string country = 7;
+  string market = 8;
+  string region = 9;
+}
+

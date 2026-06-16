@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message SetTownLocation {
+  sTownObjet townObjet = 1;
+}
+
+message sTownObjet {
+  int32 objetNo = 1;
+  int32 uid = 2;
+  string position = 3;
+  string rotation = 4;
+  int32 objetGroupNo = 5;
+}
+

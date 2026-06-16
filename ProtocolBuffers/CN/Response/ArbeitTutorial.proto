@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package EsPb;
+
+message ArbeitTutorial {
+  repeated sArbeitList arbeitList = 1;
+}
+
+message sArbeitList {
+  int32 no = 1;
+  int32 date = 2;
+  int32 arbeitChoiceNo = 3;
+  int32 arbeitNo = 4;
+  int32 objetNo = 5;
+  int64 arbeitStartTimestamp = 6;
+  int64 arbeitEndTimestamp = 7;
+  int32 state = 8;
+  repeated int32 heroNo = 9;
+  string kind = 10;
+  int32 ingameDay = 11;
+}
+

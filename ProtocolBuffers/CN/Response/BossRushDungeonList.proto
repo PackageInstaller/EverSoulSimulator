@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package EsPb;
+
+message BossRushDungeonList {
+  repeated sBossRushDungeon bossRushDungeon = 1;
+}
+
+message sBossRushDungeon {
+  int32 eventGroup = 1;
+  int32 eventNumber = 2;
+  int32 clearCnt = 3;
+  int32 diaUseCount = 4;
+  int32 maxLevel = 5;
+  int32 sumTrainingPoint = 6;
+  int32 currentLevel = 7;
+  repeated sBossRushBattleBuff battleBuff = 8;
+}
+
+message sBossRushBattleBuff {
+  int32 group = 1;
+  int32 level = 2;
+}
+

@@ -1,0 +1,12 @@
+{
+  "itemSignature": {
+    "itemNo": 5081,
+    "grade": 110015,
+    "level": 1
+  },
+  "itemEtc": {
+    "itemNo": 10083,
+    "cnt": 20
+  },
+  "__format__": "proto"
+}

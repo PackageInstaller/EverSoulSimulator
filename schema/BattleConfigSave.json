@@ -1,0 +1,71 @@
+{
+ "root": "BattleConfigSave",
+ "messages": {
+  "BattleConfigSave": {
+   "fields": [
+    {
+     "name": "heroActionPriority",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sHeroActionPriority",
+     "packed": false
+    },
+    {
+     "name": "speed",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "battleAutoActive",
+     "number": 3,
+     "repeated": false,
+     "type": "bool",
+     "packed": false
+    },
+    {
+     "name": "actionActive",
+     "number": 4,
+     "repeated": false,
+     "type": "bool",
+     "packed": false
+    },
+    {
+     "name": "actionUltimate",
+     "number": 6,
+     "repeated": false,
+     "type": "bool",
+     "packed": false
+    },
+    {
+     "name": "battleAutoUltimate",
+     "number": 7,
+     "repeated": false,
+     "type": "bool",
+     "packed": false
+    }
+   ]
+  },
+  "sHeroActionPriority": {
+   "fields": [
+    {
+     "name": "heroNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "priority",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

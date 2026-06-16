@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message HeroCostumeEquip {
+  int32 heroNo = 1;
+  int32 itemNo = 2;
+  int32 flag = 3;
+}
+

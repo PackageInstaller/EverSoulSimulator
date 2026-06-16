@@ -1,0 +1,141 @@
+{
+ "root": "GuildList",
+ "messages": {
+  "GuildList": {
+   "fields": [
+    {
+     "name": "guild",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sGuild",
+     "packed": false
+    }
+   ]
+  },
+  "sGuild": {
+   "fields": [
+    {
+     "name": "idx",
+     "number": 1,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "emblemNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "name",
+     "number": 3,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "exp",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "cnt",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "joinType",
+     "number": 6,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "limitLv",
+     "number": 7,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "notice",
+     "number": 8,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "dt",
+     "number": 9,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "regularRaidNo",
+     "number": 10,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "irregularRaidNo",
+     "number": 11,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "raidPoint",
+     "number": 12,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "useSkillPoint",
+     "number": 13,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "skillLevel",
+     "number": 14,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "customEmblem",
+     "number": 15,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    },
+    {
+     "name": "skillResetDt",
+     "number": 16,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "introduction",
+     "number": 17,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

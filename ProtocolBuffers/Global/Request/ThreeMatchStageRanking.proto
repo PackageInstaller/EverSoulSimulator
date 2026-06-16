@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message ThreeMatchStageRanking {
+  int32 groupNo = 1;
+  int32 stageNo = 2;
+  int32 rankPaging = 3;
+}
+

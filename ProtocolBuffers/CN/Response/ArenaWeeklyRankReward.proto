@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package EsPb;
+
+message ArenaWeeklyRankReward {
+  int32 myRank = 1;
+  int32 no = 2;
+  int32 score = 3;
+}
+

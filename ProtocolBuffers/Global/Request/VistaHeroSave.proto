@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message VistaHeroSave {
+  int32 vistaNo = 1;
+  repeated int32 heroNo = 2;
+}
+

@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package EsPb;
+
+message EventSelectStageInfo {
+  repeated sEventSelectStage eventSelectStage = 1;
+  repeated sEventSelectStageBuff buff = 2;
+}
+
+message sEventSelectStage {
+  int32 eventGroup = 1;
+  int32 useCount = 2;
+  int32 buyCount = 3;
+  int64 enterDt = 4;
+  repeated sEventSelectStageDetail eventSelectStageDetail = 5;
+  int32 eventNumber = 6;
+  repeated int32 challengeClearPhase = 7;
+}
+
+message sEventSelectStageDetail {
+  int32 eventStageGroup = 1;
+  int32 maxClearPhase = 2;
+}
+
+message sEventSelectStageBuff {
+  int32 eventGroup = 1;
+  int32 eventNumber = 2;
+  int32 buffNo1 = 3;
+  int32 buffNo2 = 4;
+}
+

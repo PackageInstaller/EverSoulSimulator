@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message WorldRaidBattleStart {
+  int32 scheduleNo = 1;
+  int32 formationType = 2;
+  repeated sWorldRaidFormation worldRaidFormation = 3;
+}
+
+message sWorldRaidFormation {
+  int32 formationOrder = 1;
+  string heroIdx = 2;
+  string mainSupportHeroIdx = 3;
+  string subSupportHeroIdx = 4;
+}
+

@@ -1,0 +1,172 @@
+{
+	"archive" : {},
+	"artifacts" : 
+	[
+		{
+			"path" : "dobby/builtin-plugin/SymbolResolver/libdobby_symbol_resolver.a"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"include_directories"
+		],
+		"files" : 
+		[
+			"dobby/builtin-plugin/SymbolResolver/CMakeLists.txt",
+			"dobby/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 49,
+				"parent" : 0
+			},
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 81,
+				"parent" : 2
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 98,
+				"parent" : 2
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 281,
+				"parent" : 2
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 54,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -fno-rtti -fno-exceptions -fomit-frame-pointer -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -std=c++17 -Wall -O3 -fno-limit-debug-info  -fPIC"
+				},
+				{
+					"fragment" : "-std=gnu++11"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 3,
+					"path" : "/home/rikka/Games/\u6c38\u6052\u7075\u9b42/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/."
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/rikka/Games/\u6c38\u6052\u7075\u9b42/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/./include"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/rikka/Games/\u6c38\u6052\u7075\u9b42/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/./source"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/rikka/Games/\u6c38\u6052\u7075\u9b42/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/source/dobby"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/rikka/Games/\u6c38\u6052\u7075\u9b42/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/./external"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/rikka/Games/\u6c38\u6052\u7075\u9b42/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/./external/logging"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/rikka/Games/\u6c38\u6052\u7075\u9b42/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/./builtin-plugin"
+				},
+				{
+					"backtrace" : 4,
+					"path" : "/home/rikka/Games/\u6c38\u6052\u7075\u9b42/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/source/Backend/UserMode"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "/home/rikka/Games/\u6c38\u6052\u7075\u9b42/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/builtin-plugin/SymbolResolver"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "/home/rikka/Games/\u6c38\u6052\u7075\u9b42/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/builtin-plugin/SymbolResolver/."
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					1
+				],
+				"standard" : "11"
+			},
+			"sourceIndexes" : 
+			[
+				0,
+				1
+			],
+			"sysroot" : 
+			{
+				"path" : "/home/rikka/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/linux-x86_64/sysroot"
+			}
+		}
+	],
+	"id" : "dobby_symbol_resolver::@ae8170e007b0dbbeb132",
+	"name" : "dobby_symbol_resolver",
+	"nameOnDisk" : "libdobby_symbol_resolver.a",
+	"paths" : 
+	{
+		"build" : "dobby/builtin-plugin/SymbolResolver",
+		"source" : "dobby/builtin-plugin/SymbolResolver"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "dobby/builtin-plugin/SymbolResolver/elf/dobby_symbol_resolver.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "dobby/source/Backend/UserMode/PlatformUtil/Linux/ProcessRuntimeUtility.cc",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "STATIC_LIBRARY"
+}

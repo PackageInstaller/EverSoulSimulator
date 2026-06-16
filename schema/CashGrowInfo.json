@@ -1,0 +1,50 @@
+{
+ "root": "CashGrowInfo",
+ "messages": {
+  "CashGrowInfo": {
+   "fields": [
+    {
+     "name": "cashGrow",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sCashGrow",
+     "packed": false
+    }
+   ]
+  },
+  "sCashGrow": {
+   "fields": [
+    {
+     "name": "shopItemNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "lastReceiveNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "firstPaidReceived",
+     "number": 3,
+     "repeated": false,
+     "type": "bool",
+     "packed": false
+    },
+    {
+     "name": "bought",
+     "number": 4,
+     "repeated": false,
+     "type": "bool",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

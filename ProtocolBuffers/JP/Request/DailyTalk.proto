@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message DailyTalk {
+  int32 talkNo = 1;
+  int32 heroNo = 2;
+}
+

@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package EsPb;
+
+message FriendResponse {
+  string friendResponse_ = 1;
+}
+

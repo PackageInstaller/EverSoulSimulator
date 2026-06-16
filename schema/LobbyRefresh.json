@@ -1,0 +1,165 @@
+{
+ "root": "LobbyRefresh",
+ "messages": {
+  "LobbyRefresh": {
+   "fields": [
+    {
+     "name": "dot",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sLobbyDot",
+     "packed": false
+    },
+    {
+     "name": "dt",
+     "number": 2,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "rankRewardRedDot",
+     "number": 3,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sRankRewardRedDot",
+     "packed": false
+    },
+    {
+     "name": "achievementFeatured",
+     "number": 4,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sAchievementFeatured",
+     "packed": false
+    },
+    {
+     "name": "releasedHeroList",
+     "number": 5,
+     "repeated": true,
+     "type": "int32",
+     "packed": true
+    },
+    {
+     "name": "isUserKick",
+     "number": 6,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "topGuildInfo",
+     "number": 7,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sGuildRaidBanner",
+     "packed": false
+    }
+   ]
+  },
+  "sLobbyDot": {
+   "fields": [
+    {
+     "name": "dot",
+     "number": 1,
+     "repeated": false,
+     "type": "enum",
+     "type_name": "E_LOBBY_DOT",
+     "packed": false
+    },
+    {
+     "name": "seq",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sRankRewardRedDot": {
+   "fields": [
+    {
+     "name": "rankNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sAchievementFeatured": {
+   "fields": [
+    {
+     "name": "gid",
+     "number": 1,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "behavior",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "value",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sGuildRaidBanner": {
+   "fields": [
+    {
+     "name": "name",
+     "number": 1,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "emblemNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "customEmblem",
+     "number": 3,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    },
+    {
+     "name": "isDelete",
+     "number": 4,
+     "repeated": false,
+     "type": "bool",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {
+  "E_LOBBY_DOT": {
+   "DotNone": 0,
+   "Event": 1,
+   "Achievement": 2,
+   "Cash": 3,
+   "GuideQuest": 4,
+   "Mail": 5,
+   "MissionPassTask": 6,
+   "GuildChat": 7,
+   "ChampionsArenaWaitReward": 8,
+   "EventPass": 9,
+   "MissionPassOld": 10,
+   "WorldRaidBanner": 11
+  }
+ }
+}

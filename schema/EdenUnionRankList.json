@@ -1,0 +1,119 @@
+{
+ "root": "EdenUnionRankList",
+ "messages": {
+  "EdenUnionRankList": {
+   "fields": [
+    {
+     "name": "myRank",
+     "number": 1,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sEdenUnionRank",
+     "packed": false
+    },
+    {
+     "name": "rankList",
+     "number": 2,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sEdenUnionRank",
+     "packed": false
+    }
+   ]
+  },
+  "sEdenUnionRank": {
+   "fields": [
+    {
+     "name": "userIdx",
+     "number": 1,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "nickName",
+     "number": 2,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "thumbnail",
+     "number": 3,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sThumbnail",
+     "packed": false
+    },
+    {
+     "name": "rank",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "maxLevel",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "totalBattleTime",
+     "number": 7,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    }
+   ]
+  },
+  "sThumbnail": {
+   "fields": [
+    {
+     "name": "thumbnailFrame",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "thumbnailImage",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "useCustom",
+     "number": 3,
+     "repeated": false,
+     "type": "bool",
+     "packed": false
+    },
+    {
+     "name": "thumbnail",
+     "number": 4,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    },
+    {
+     "name": "firstTitle",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "secondTitle",
+     "number": 6,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

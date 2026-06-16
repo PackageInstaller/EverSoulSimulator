@@ -1,0 +1,125 @@
+{
+ "root": "FriendRecommendList",
+ "messages": {
+  "FriendRecommendList": {
+   "fields": [
+    {
+     "name": "friendRecommend",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sFriendRecommendInfo",
+     "packed": false
+    }
+   ]
+  },
+  "sFriendRecommendInfo": {
+   "fields": [
+    {
+     "name": "userIdx",
+     "number": 1,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "id",
+     "number": 2,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "thumbnail",
+     "number": 3,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sThumbnail",
+     "packed": false
+    },
+    {
+     "name": "nickName",
+     "number": 4,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "level",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "lastLoginDt",
+     "number": 6,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "power",
+     "number": 7,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "logoutDt",
+     "number": 8,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    }
+   ]
+  },
+  "sThumbnail": {
+   "fields": [
+    {
+     "name": "thumbnailFrame",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "thumbnailImage",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "useCustom",
+     "number": 3,
+     "repeated": false,
+     "type": "bool",
+     "packed": false
+    },
+    {
+     "name": "thumbnail",
+     "number": 4,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    },
+    {
+     "name": "firstTitle",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "secondTitle",
+     "number": 6,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

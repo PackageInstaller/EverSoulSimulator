@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message DungeonShopOpen {
+  int32 stageNo = 1;
+  int32 dungeonType = 2;
+  int32 uid = 3;
+  int32 dungeonNo = 4;
+}
+

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message EdenOperationMissionReward {
+  int32 isSelect = 1;
+  int32 missionNo = 2;
+  int32 isDaily = 3;
+}
+

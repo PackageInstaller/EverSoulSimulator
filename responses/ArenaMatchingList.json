@@ -1,0 +1,43 @@
+{
+  "rankList": [
+    {
+      "userIdx": "0_e41PdILv_5oB2",
+      "rank": 6,
+      "score": 2005,
+      "power": "1147616",
+      "thumbnail": {
+        "thumbnailFrame": 5613,
+        "thumbnailImage": 30001,
+        "firstTitle": 510601,
+        "secondTitle": 565201
+      },
+      "nickName": "STI"
+    },
+    {
+      "userIdx": "0_721Pq43i_5og",
+      "rank": 12,
+      "score": 1738,
+      "power": "1340966",
+      "thumbnail": {
+        "thumbnailFrame": 5653,
+        "thumbnailImage": 31010,
+        "firstTitle": 6701,
+        "secondTitle": 6705
+      },
+      "nickName": "MyLady"
+    },
+    {
+      "userIdx": "1_211Tgss1_USd",
+      "rank": 26,
+      "score": 1109,
+      "power": "493869",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MSw5MTYwMiwxMC44Mjg0MSwtMjEzLjEzNTYsMC43ODk5OTk4LDAuNzg5OTk5OCwwLjAwNjg2NzQ2OA=="
+      },
+      "nickName": "Hiro"
+    }
+  ],
+  "__format__": "proto"
+}

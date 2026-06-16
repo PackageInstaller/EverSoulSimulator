@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message OriginTowerStageClear {
+  int32 towerNo = 1;
+  int32 stageNo = 2;
+  repeated string heroIdx = 3;
+  int32 useRentalHero = 4;
+}
+

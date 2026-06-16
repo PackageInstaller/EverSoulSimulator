@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package EsPb;
+
+message DestinyEndingChange {
+  sDestinyStoryAffinityPoint affinityPoint = 1;
+}
+
+message sDestinyStoryAffinityPoint {
+  int32 heroNo = 1;
+  int32 affinityPoint = 2;
+}
+

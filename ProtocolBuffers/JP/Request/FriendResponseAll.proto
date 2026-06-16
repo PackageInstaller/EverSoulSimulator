@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message FriendResponseAll {
+  int32 decision = 1;
+}
+

@@ -1,0 +1,231 @@
+{
+  "myRank": 1,
+  "myScore": 2459,
+  "currency": {
+    "allCurrency": [
+      {
+        "type": "Gold",
+        "value": "2685656918"
+      },
+      {
+        "type": "FreeDia",
+        "value": "805"
+      },
+      {
+        "type": "ManaDust",
+        "value": "6029769765"
+      },
+      {
+        "type": "ManaCrystal",
+        "value": "48453"
+      },
+      {
+        "type": "Exp",
+        "value": "33693965"
+      },
+      {
+        "type": "Heart",
+        "value": "3666"
+      },
+      {
+        "type": "LifeEssence",
+        "value": "94329"
+      },
+      {
+        "type": "ArenaTicket",
+        "value": "42"
+      },
+      {
+        "type": "Dungeon",
+        "value": "17229"
+      },
+      {
+        "type": "Guild",
+        "value": "84640"
+      },
+      {
+        "type": "Release",
+        "value": "374350"
+      },
+      {
+        "type": "Arena",
+        "value": "872980"
+      },
+      {
+        "type": "Relics",
+        "value": "261870"
+      },
+      {
+        "type": "Silver",
+        "value": "27030"
+      },
+      {
+        "type": "SingleRaidCoin",
+        "value": "220635"
+      },
+      {
+        "type": "PickupGachaTicket"
+      },
+      {
+        "type": "Sign1",
+        "value": "19193"
+      },
+      {
+        "type": "Sign2",
+        "value": "4997"
+      },
+      {
+        "type": "SignHuman"
+      },
+      {
+        "type": "SignFurry"
+      },
+      {
+        "type": "SignElf"
+      },
+      {
+        "type": "SignUndead"
+      },
+      {
+        "type": "SignAngel"
+      },
+      {
+        "type": "SignDemon"
+      },
+      {
+        "type": "NormalTicket",
+        "value": "138"
+      },
+      {
+        "type": "RaceTicket"
+      },
+      {
+        "type": "RareSoulstone",
+        "value": "4529"
+      },
+      {
+        "type": "EpicSoulstone",
+        "value": "1272"
+      },
+      {
+        "type": "EquipExp",
+        "value": "3777"
+      },
+      {
+        "type": "CollaborationSummonTicket"
+      },
+      {
+        "type": "PayDia",
+        "value": "982"
+      },
+      {
+        "type": "TeamarenaTicket"
+      },
+      {
+        "type": "SignatureGachaTicket",
+        "value": "122"
+      },
+      {
+        "type": "PremiumGachaTicket",
+        "value": "4"
+      },
+      {
+        "type": "MonthlyHeroResetTicket",
+        "value": "1"
+      },
+      {
+        "type": "EquipExpMiddle",
+        "value": "197"
+      },
+      {
+        "type": "EquipExpHigh",
+        "value": "210"
+      },
+      {
+        "type": "ZodiacExp"
+      },
+      {
+        "type": "LabyrinthTicket"
+      },
+      {
+        "type": "TranscendentStone",
+        "value": "1511"
+      },
+      {
+        "type": "SingleRaidTicket"
+      },
+      {
+        "type": "SetItemEngrave"
+      },
+      {
+        "type": "RotationDungeonTicket"
+      },
+      {
+        "type": "EdenCoin",
+        "value": "6250"
+      },
+      {
+        "type": "TypeBarrierGateTicket"
+      },
+      {
+        "type": "OriginTowerTicket"
+      },
+      {
+        "type": "DoubleGateNormalTicket"
+      },
+      {
+        "type": "DoubleGateNormalTicketCharge"
+      },
+      {
+        "type": "SignatureEnhanceStone",
+        "value": "2840"
+      },
+      {
+        "type": "HeroOptionChangeStone",
+        "value": "31628"
+      },
+      {
+        "type": "WishGachaTicket",
+        "value": "40"
+      },
+      {
+        "type": "TotalDia",
+        "value": "1787"
+      }
+    ]
+  },
+  "itemAddAmount": [
+    {
+      "itemNo": 13,
+      "cnt": 200
+    }
+  ],
+  "battleRecord": {
+    "thumbnail": {
+      "thumbnailFrame": 5692,
+      "useCustom": true,
+      "thumbnail": "MSwxMTYsNTQ5LjcxMzYsLTc0LjA5ODAzLDAuNTUsMC41NSww",
+      "firstTitle": 6602,
+      "secondTitle": 6612
+    },
+    "tThumbnail": {
+      "thumbnailFrame": 5613,
+      "thumbnailImage": 30001,
+      "firstTitle": 510601,
+      "secondTitle": 565201
+    },
+    "bName": "https://replaydn-esoul.kakaogames.com/LiveSEA/Replay/KAKAO_LIVE/4725/ArenaNormal/23/260610/2_e21PMpdN_mcP_1781053965691",
+    "score": 33,
+    "winUserIdx": "2_e21PMpdN_mcP",
+    "tUserIdx": "0_e41PdILv_5oB2",
+    "dt": "1781053965691",
+    "battletype": 110,
+    "nickname": "旅游的sensei",
+    "tNickname": "STI",
+    "battleStatus": 1,
+    "fileName": "Replay/KAKAO_LIVE/4725/ArenaNormal/23/260610/2_e21PMpdN_mcP_1781053965691",
+    "clientVersion": "4725",
+    "userIdx": "2_e21PMpdN_mcP"
+  },
+  "__format__": "proto"
+}

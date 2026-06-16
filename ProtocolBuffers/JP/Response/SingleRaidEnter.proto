@@ -1,0 +1,84 @@
+syntax = "proto3";
+
+package EsPb;
+
+message SingleRaidEnter {
+  sSingleRaidInfo raidInfo = 1;
+  sSingleRaidBoss raidBoss = 2;
+  repeated sSingleRaidCloneHero raidHero = 3;
+  repeated sSingleRaidFormation raidFormation = 4;
+  int32 lastUseFormationIndex = 5;
+  repeated sContentBuff buff = 6;
+}
+
+message sSingleRaidInfo {
+  int32 no = 1;
+  int32 currentLevel = 2;
+  int32 maxClearLevel = 3;
+  int32 isPlay = 4;
+  int32 clearCount = 5;
+  int32 enterLimitCount = 6;
+}
+
+message sSingleRaidBoss {
+  int64 hp = 1;
+  int64 maxHp = 2;
+  int64 groggy = 3;
+  int64 maxGroggy = 4;
+}
+
+message sSingleRaidCloneHero {
+  string heroIdx = 1;
+  int32 heroNo = 2;
+  int32 level = 3;
+  int32 gradeSno = 4;
+  int32 raceSno = 5;
+  repeated sSlotAndEquipItem slotAndEquipItem = 6;
+  sItemSignature signature = 7;
+  repeated sHeroOption heroOption = 8;
+}
+
+message sSlotAndEquipItem {
+  int32 slot = 1;
+  sItemEquip itemEquip = 2;
+}
+
+message sItemEquip {
+  int64 id = 1;
+  int32 itemNo = 2;
+  int32 exp = 3;
+}
+
+message sItemSignature {
+  int32 itemNo = 1;
+  int32 grade = 2;
+  int32 level = 3;
+}
+
+message sHeroOption {
+  int32 heroNo = 1;
+  int32 groupNo = 2;
+  int32 optionSlot = 3;
+  int32 optionNo = 4;
+  int32 optionValue = 5;
+  int32 optionType = 6;
+  int32 optionLock = 7;
+}
+
+message sSingleRaidFormation {
+  int32 formationType = 1;
+  repeated sSingleRaidHeroPosition formationHero = 2;
+}
+
+message sSingleRaidHeroPosition {
+  string heroIdx = 1;
+  int32 position = 2;
+}
+
+message sContentBuff {
+  int32 contentType = 1;
+  int32 buffType = 2;
+  int32 buffNo = 3;
+  int32 value = 4;
+}
+

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package EsPb;
+
+message LabyrinthRelicSell {
+  int32 dungeonNo = 1;
+  bytes relicInfo = 2;
+  repeated sLabyrinthItem labyrinthItem = 3;
+}
+
+message sLabyrinthItem {
+  int32 itemNo = 1;
+  int32 cnt = 2;
+}
+

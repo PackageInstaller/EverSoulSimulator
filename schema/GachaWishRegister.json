@@ -1,0 +1,43 @@
+{
+ "root": "GachaWishRegister",
+ "messages": {
+  "GachaWishRegister": {
+   "fields": [
+    {
+     "name": "gachaWish",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sGachaWish",
+     "packed": false
+    }
+   ]
+  },
+  "sGachaWish": {
+   "fields": [
+    {
+     "name": "gachaType",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "slotNum",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "wishId",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

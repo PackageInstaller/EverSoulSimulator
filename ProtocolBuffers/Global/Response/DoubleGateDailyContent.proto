@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package EsPb;
+
+enum eDoubleGateStageType {
+  DoubleGateStageTypeNone = 0;
+  DoubleGateNormalManaCrystal = 1;
+  DoubleGateNormalGold = 2;
+  DoubleGateNormalManaDust = 3;
+  DoubleGateNormalEnhanceStone = 4;
+}
+
+message DoubleGateDailyContent {
+  eDoubleGateStageType stageType = 1;
+  int32 firstDoubleGateGroupNo = 2;
+  int32 secondDoubleGateGroupNo = 3;
+  int32 buffNo = 4;
+  int32 debuffNo = 5;
+  int32 globalDebuffNo = 6;
+}
+

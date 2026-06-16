@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package EsPb;
+
+message EventDoubleStageRoundStart {
+  int32 stageId = 1;
+  int64 stageUniqueKey = 2;
+}
+

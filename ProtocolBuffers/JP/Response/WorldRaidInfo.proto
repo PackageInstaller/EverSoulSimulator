@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package EsPb;
+
+message WorldRaidInfo {
+  sWorldRaidInfo worldRaid = 1;
+}
+
+message sWorldRaidInfo {
+  int32 scheduleNo = 1;
+  int32 raidNo = 2;
+  int64 startDt = 3;
+  int64 endDt = 4;
+  int64 adjustmentEndDt = 5;
+  int64 rewardEndDt = 6;
+  int64 nextRaidStartDt = 7;
+  int32 score = 8;
+  int32 myRank = 9;
+  int64 myDamage = 10;
+  int32 rewardReceiveFlag = 11;
+  int32 rankRewardReceiveFlag = 12;
+  sWorldRaidRanking firstRankingData = 13;
+  repeated int32 bannedHeroNo = 14;
+}
+
+message sWorldRaidRanking {
+  string userIdx = 1;
+  string nickName = 2;
+  sThumbnail thumbnail = 3;
+  int32 rank = 4;
+  int64 userDamage = 5;
+}
+
+message sThumbnail {
+  int32 thumbnailFrame = 1;
+  int32 thumbnailImage = 2;
+  bool useCustom = 3;
+  bytes thumbnail = 4;
+}
+

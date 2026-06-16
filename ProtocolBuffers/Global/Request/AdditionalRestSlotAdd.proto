@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message AdditionalRestSlotAdd {
+  int32 openType = 1;
+}
+

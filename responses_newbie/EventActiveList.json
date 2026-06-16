@@ -1,0 +1,59 @@
+{
+  "eventActive": [
+    {
+      "eventType": 22,
+      "userType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "startTs": "1781101894824",
+      "endTs": "1783693894834",
+      "delayOffTs": "1783693894834"
+    },
+    {
+      "eventType": 3,
+      "userType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "startTs": "1781101455846",
+      "endTs": "1783693455848",
+      "delayOffTs": "1783693455848"
+    },
+    {
+      "eventType": 3,
+      "userType": 3,
+      "group": 2,
+      "eventNumber": 1,
+      "startTs": "1781101455846",
+      "endTs": "1783693455848",
+      "delayOffTs": "1783693455848"
+    },
+    {
+      "eventType": 15,
+      "userType": 3,
+      "group": 4,
+      "eventNumber": 1,
+      "startTs": "1781101894824",
+      "endTs": "1783693894836",
+      "delayOffTs": "1783693894836"
+    },
+    {
+      "eventType": 15,
+      "userType": 3,
+      "group": 2,
+      "eventNumber": 1,
+      "startTs": "1781101894824",
+      "endTs": "1781706694836",
+      "delayOffTs": "1781706694836"
+    },
+    {
+      "eventType": 2,
+      "userType": 3,
+      "group": 3,
+      "eventNumber": 1,
+      "startTs": "1779926400000",
+      "endTs": "1781136000000",
+      "delayOffTs": "1781136000000"
+    }
+  ],
+  "__format__": "proto"
+}

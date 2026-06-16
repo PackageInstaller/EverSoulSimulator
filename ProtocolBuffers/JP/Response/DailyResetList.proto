@@ -1,0 +1,141 @@
+syntax = "proto3";
+
+package EsPb;
+
+enum eDoubleGateStageType {
+  DoubleGateStageTypeNone = 0;
+  DoubleGateNormalManaCrystal = 1;
+  DoubleGateNormalGold = 2;
+  DoubleGateNormalManaDust = 3;
+  DoubleGateNormalEnhanceStone = 4;
+}
+
+enum eDungeonRewardType {
+  NoneDungeonReward = 0;
+  Mission = 1;
+  Object = 2;
+  Monster = 3;
+  Chest = 4;
+}
+
+enum eDungeonMaxLevelType {
+  Weekly = 0;
+  Training = 1;
+}
+
+message DailyResetList {
+  repeated sDoubleGate doubleGate = 1;
+  sDailyContent dailyContent = 2;
+  sDungeonList dungeonList = 3;
+  repeated sTownVisitHero townVisitHero = 4;
+  int32 monthlyHeroResetFlag = 5;
+  repeated DoubleGateDailyContent doubleGateDailyContent = 6;
+  repeated sCashDailyN cashDailyN = 7;
+}
+
+message sDoubleGate {
+  eDoubleGateStageType stageType = 1;
+  int32 difficulty = 2;
+  int32 isEnter = 3;
+  int32 sweepDifficulty = 4;
+  repeated sDoubleGateRecord record = 5;
+}
+
+message sDoubleGateRecord {
+  int32 roundType = 1;
+  repeated sDoubleGateHero heroInfo = 2;
+}
+
+message sDoubleGateHero {
+  string heroIdx = 1;
+  int32 heroNo = 2;
+  int32 level = 3;
+  int32 gradeSno = 4;
+}
+
+message sDailyContent {
+  int32 arenaCnt = 1;
+  int32 townCoin = 2;
+  int32 raceSno = 3;
+  int32 ahQuickCnt = 4;
+  int32 teamarenaCnt = 5;
+  int32 doubleGateNormalTicketBuyCount = 6;
+}
+
+message sDungeonList {
+  repeated sDungeonAndReward dungeonReward = 1;
+  repeated sDungeonPerfectClearRecord dungeonPerfectClearRecord = 2;
+  int32 rotationDungeonNo = 3;
+  int64 rotationDungeonExpireDt = 4;
+  int64 labyrinthExpireDt = 5;
+  int32 labyrinthClearCnt = 6;
+  int32 labyrinthTicketCnt = 7;
+  int32 rotationDungeonClearCnt = 8;
+  int32 rotationDungeonTicketCnt = 9;
+}
+
+message sDungeonAndReward {
+  sDungeon dungeon = 1;
+  repeated sDungeonReward dungeonReward = 2;
+}
+
+message sDungeon {
+  int32 id = 1;
+  int32 dungeonNo = 2;
+  int32 dungeonLevel = 3;
+  float x = 4;
+  float z = 5;
+  bytes mapInfo = 6;
+  bytes conditionInfo = 7;
+  bytes heroInfo = 8;
+  bytes additionalInfo = 9;
+  bytes relicInfo = 10;
+  int32 isEnter = 11;
+  int32 isClear = 12;
+  int32 isFirstClear = 13;
+  int32 missionNo = 14;
+  int32 missionCnt = 15;
+  int32 seed = 16;
+  bytes dungeonItem = 17;
+  int32 difficulty = 18;
+  int32 ultimatePoint = 19;
+  int32 playerObjectId = 20;
+  bool useTicket = 21;
+  int32 maxClearLevel = 22;
+  int32 isSweep = 23;
+  int32 isPerfectClear = 24;
+  int32 isHiddenKeyNotAvailable = 25;
+  int32 randomGimmickSeed = 26;
+}
+
+message sDungeonReward {
+  eDungeonRewardType type = 1;
+  int32 rewardNo = 2;
+}
+
+message sDungeonPerfectClearRecord {
+  eDungeonMaxLevelType type = 1;
+  int32 dungeonNo = 2;
+  int32 dungeonLevel = 3;
+}
+
+message sTownVisitHero {
+  int32 heroNo = 1;
+  int32 pickUpFlag = 2;
+}
+
+message DoubleGateDailyContent {
+  eDoubleGateStageType stageType = 1;
+  int32 firstDoubleGateGroupNo = 2;
+  int32 secondDoubleGateGroupNo = 3;
+  int32 buffNo = 4;
+  int32 debuffNo = 5;
+  int32 globalDebuffNo = 6;
+}
+
+message sCashDailyN {
+  int32 packageNo = 1;
+  int32 rewardYyyymmdd = 2;
+  int32 endYyyymmdd = 3;
+}
+

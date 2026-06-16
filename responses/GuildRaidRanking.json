@@ -1,0 +1,822 @@
+{
+  "guildRaidRankGroup": [
+    {
+      "guildIdx": "0_131PdeSx_dLr",
+      "name": "星之碎片",
+      "rank": 1,
+      "score": "472063313787",
+      "scheduleId": "58",
+      "customEmblem": "MSw2NTIwMSwxMjIuMDQ5MiwtMjUxLjg2MDUsMC45NDc1NTcxLDAuOTQ3NTU3MSwzNDQuODgxNw=="
+    },
+    {
+      "guildIdx": "0_821PdeSE_129M",
+      "name": "NUMB",
+      "rank": 2,
+      "score": "469757517306",
+      "scheduleId": "58",
+      "customEmblem": "MSw5MzksMzkuMzI2MTQsLTE2NC42MDc3LDAuNTUsMC41NSwzNTkuNzQ2OQ=="
+    },
+    {
+      "guildIdx": "0_b31PfYMc_58LQ",
+      "name": "Kawaii",
+      "rank": 3,
+      "score": "266114076532",
+      "scheduleId": "58",
+      "customEmblem": "MSwyMTQwMywxNjQuMDAwMSwtMTUyLjExNTYsMC44ODYwMDAxLDAuODg2MDAwMSww"
+    },
+    {
+      "guildIdx": "0_911PdeSE_5KR",
+      "name": "MASH",
+      "rank": 4,
+      "score": "251163635814",
+      "scheduleId": "58",
+      "customEmblem": "Miw5MDkwMiwtNTYuMDQ4MjIsLTM5LjI1MjU2LDAuMzE4MywwLjMxODMsMC43NjgzNTU3"
+    },
+    {
+      "guildIdx": "0_631PdeSx_vf4",
+      "name": "楓与鈴",
+      "rank": 5,
+      "score": "183925637709",
+      "scheduleId": "58",
+      "customEmblem": "MSw0MDQwNyw0LjE2NDkxNyw2LjY2NjY1NiwwLjM0OTIyODYsMC4zNDkyMjg2LDM1OS44NDMy"
+    },
+    {
+      "guildIdx": "0_441PfYyH_2xt0",
+      "name": "千本櫻華落",
+      "rank": 6,
+      "score": "169909043446",
+      "scheduleId": "58",
+      "customEmblem": "MSw3OTIsMTIuODgxMjQsLTEzOC4yMjg3LDAuNTU4MDQ4MSwwLjU1ODA0ODEsMy45OTIyNzk="
+    },
+    {
+      "guildIdx": "0_111PiKaD_bVO",
+      "name": "蘿莉神教",
+      "rank": 7,
+      "score": "164590766501",
+      "scheduleId": "58",
+      "customEmblem": "MSw0MDQwNywtMy4wNzY1OTksLTkzLjg0NjA5LDAuNDI2OTAzNCwwLjQyNjkwMzQsMzU4LjUxNTQ="
+    },
+    {
+      "guildIdx": "0_a11PdILw_aaTN",
+      "name": "永恆守望",
+      "rank": 8,
+      "score": "159939337376",
+      "scheduleId": "58",
+      "customEmblem": "MSwyMTMwNywzMDIuMDAwMSwtODQuOTk5OTgsMC41NSwwLjU1LDA="
+    },
+    {
+      "guildIdx": "0_821PdeSE_Mft",
+      "name": "蝗虫大本营",
+      "rank": 9,
+      "score": "151289239004",
+      "scheduleId": "58",
+      "customEmblem": "MywyMjkzLDQzLjE5ODM5LC00NTIuNSwxLDEsMA=="
+    },
+    {
+      "guildIdx": "0_641PdILo_6xxV",
+      "emblemNo": 180,
+      "name": "EVENGELION",
+      "rank": 10,
+      "score": "142641594842",
+      "scheduleId": "58",
+      "customEmblem": "MSwzNDMsMTc4LjI2MDgsLTE2NS4yMTc0LDAuNTUsMC41NSww"
+    },
+    {
+      "guildIdx": "0_411PdeSx_FaT",
+      "name": "閃耀之月",
+      "rank": 11,
+      "score": "133106103781",
+      "scheduleId": "58",
+      "customEmblem": "MSw5MTUwMiwtMTEuNjYxMDUsLTUwLjc4NTMsMC40MTAwMDAxLDAuNDEwMDAwMSww"
+    },
+    {
+      "guildIdx": "0_241Spj8n_pWK",
+      "name": "永恆靈魂行者",
+      "rank": 12,
+      "score": "118878368230",
+      "scheduleId": "58",
+      "customEmblem": "MSw5MjgwNCw5Mi41MDAwOSwtMTI4LjMzMzMsMC41NSwwLjU1LDA="
+    },
+    {
+      "guildIdx": "0_421PfYyH_5IQT",
+      "name": "uWu",
+      "rank": 13,
+      "score": "105818540471",
+      "scheduleId": "58",
+      "customEmblem": "MiwyMDkwMiwtMjkyLjkyMjcsLTcxLjUzODQzLDAuNjU0NTE0LDAuNjU0NTE0LDAuMzI2MjM4"
+    },
+    {
+      "guildIdx": "0_f41PdILw_1N7m",
+      "emblemNo": 6510,
+      "name": "AiryTH",
+      "rank": 14,
+      "score": "96333025300",
+      "scheduleId": "58",
+      "customEmblem": "MSw3OTQsLTE1OC41MzMsNi45ODQ1MzksMC4yNTQzNDEsMC4yNTQzNDEsMzU5Ljg3Nzg="
+    },
+    {
+      "guildIdx": "0_011PFBQx_at2",
+      "name": "ARISA",
+      "rank": 15,
+      "score": "96101147986",
+      "scheduleId": "58",
+      "customEmblem": "MSw5MTMwMiw2MTkuNjc3NiwtMjQ4LjkzNTUsMC42OTk5OTk5LDAuNjk5OTk5OSww"
+    },
+    {
+      "guildIdx": "0_411PdeSx_1rCC",
+      "name": "大楓樹",
+      "rank": 16,
+      "score": "74087945561",
+      "scheduleId": "58",
+      "customEmblem": "Miw1MDMwMiwxMDUuNTQ2OSwtMTguNDU3MDMsMC4yNjYxODkzLDAuMjY2MTg5MywzNTUuODcwOA=="
+    },
+    {
+      "guildIdx": "0_021PdeSx_oht",
+      "name": "姊姊妳太美了",
+      "rank": 17,
+      "score": "72236133332",
+      "scheduleId": "58",
+      "customEmblem": "MCwzMDQwLC0zNDAuNTE0OSwtMjA4Ljg3NzQsMC41MTIwNiwwLjUxMjA2LDM0Ni43NzM2"
+    },
+    {
+      "guildIdx": "0_131PdeSx_ik8",
+      "name": "xQvQx",
+      "rank": 18,
+      "score": "57517270866",
+      "scheduleId": "58",
+      "customEmblem": "MSw5MjAwMiwzNDAuMTYwMiwtOTYuNzM5MTgsMC43Mjk4NTkyLDAuNzI5ODU5MiwzLjE3NDIz"
+    },
+    {
+      "guildIdx": "0_e11PdeSE_Q1O",
+      "name": "擦邊球",
+      "rank": 19,
+      "score": "56676740148",
+      "scheduleId": "58",
+      "customEmblem": "MSw2ODEsMTU1LjYxMzUsLTU5LjgwMDMyLDAuNTY0MjkwNSwwLjU2NDI5MDUsMzU2LjU0MTg="
+    },
+    {
+      "guildIdx": "0_841Q73Dg_7zd",
+      "emblemNo": 2010,
+      "name": "Unranker",
+      "rank": 20,
+      "score": "56592128315",
+      "scheduleId": "58",
+      "customEmblem": "MSwxMzUsLTUuMDA1MTUsLTQuMTYxMjY2LDAuMjU3NDAyNywwLjI1NzQwMjcsMC4wMjY0MjkxOQ=="
+    },
+    {
+      "guildIdx": "0_b31PdeSE_1g12",
+      "emblemNo": 1100,
+      "name": "寶鐘海賊團",
+      "rank": 21,
+      "score": "55727644807",
+      "scheduleId": "58",
+      "customEmblem": "MCwxMTAwLDE1MS4wNjUsLTkyLjg5OTIzLDAuODIwMzYxMSwwLjgyMDM2MTEsMTEuMjczNjg="
+    },
+    {
+      "guildIdx": "0_141WhSEa_VEa",
+      "emblemNo": 130,
+      "name": "darkouls",
+      "rank": 22,
+      "score": "51407282469",
+      "scheduleId": "58"
+    },
+    {
+      "guildIdx": "0_811PdeSE_9Yl",
+      "name": "MEOW",
+      "rank": 23,
+      "score": "49568944366",
+      "scheduleId": "58",
+      "customEmblem": "MSwxMTIwMSwzNjYuOTg4MywtMTE1LjgzMzQsMC43NjMyOTgsMC43NjMyOTgsMC4wMDc3NDE3OTI="
+    },
+    {
+      "guildIdx": "0_e31PdILv_rHH",
+      "name": "Chalice",
+      "rank": 24,
+      "score": "48814111095",
+      "scheduleId": "58",
+      "customEmblem": "MSw5MjUwMiwtMjM1LjYzNTcsLTE1NS45MTg4LDAuNTUsMC41NSww"
+    },
+    {
+      "guildIdx": "0_131PdILo_3Wvf",
+      "name": "公會是要多難找",
+      "rank": 25,
+      "score": "48765594060",
+      "scheduleId": "58",
+      "customEmblem": "MSw1MDIwMywtMjgzLjU5MzcsLTE2NC4yMjI1LDAuNTUsMC41NSwzNTkuNzY3NQ=="
+    },
+    {
+      "guildIdx": "0_d31PdeSF_gZw",
+      "name": "緋紅騎士團",
+      "rank": 26,
+      "score": "45636644901",
+      "scheduleId": "58",
+      "customEmblem": "MSw5MDAwMSwtMTE5LjA5MywzNzMuOTg5LDEuNTI3MDU2LDEuNTI3MDU2LDMxMy44MzA1"
+    },
+    {
+      "guildIdx": "0_d41PdeSF_1vWI",
+      "name": "Phantasy",
+      "rank": 27,
+      "score": "39065149157",
+      "scheduleId": "58",
+      "customEmblem": "MSwxNjEsMzU3Ljg3MDEsLTEwMC42ODY0LDAuNTUsMC41NSwwLjczMDIwODY="
+    },
+    {
+      "guildIdx": "0_241PvqPo_bS9",
+      "name": "捕夢網",
+      "rank": 28,
+      "score": "38622764500",
+      "scheduleId": "58",
+      "customEmblem": "MSw5MTQwMyw0MTYuNzkxMiwxMzguMjU3NiwwLjUxMzY4MzYsMC41MTM2ODM2LDM1OS4xNjg1"
+    },
+    {
+      "guildIdx": "0_c31PdILv_eo8",
+      "name": "微風咖啡廳",
+      "rank": 29,
+      "score": "38103388226",
+      "scheduleId": "58",
+      "customEmblem": "MSwxMjIsLTQ2LjUxMTY2LC0zNy43OTA3OSwwLjQ2NzQwNTQsMC40Njc0MDU0LDEuMzU2ODUy"
+    },
+    {
+      "guildIdx": "0_921PdILv_Wqs",
+      "name": "镇守府",
+      "rank": 30,
+      "score": "38075711154",
+      "scheduleId": "58",
+      "customEmblem": "MSw3OTYsLTM5Ljk5OTg5LC0yMDQuNzA5NCwwLjg3NjI2NDYsMC44NzYyNjQ2LDM1Ni40MzQ1"
+    },
+    {
+      "guildIdx": "0_421SL2Oz_3gr",
+      "name": "ARASHI",
+      "rank": 31,
+      "score": "37391643480",
+      "scheduleId": "58",
+      "customEmblem": "MSw5MTMwMiw2MzUuMjI3MSwtMjYwLDAuNzE5OTk5OCwwLjcxOTk5OTgsMA=="
+    },
+    {
+      "guildIdx": "0_311PdeSx_kKn",
+      "name": "貓奴汪汪團",
+      "rank": 32,
+      "score": "36573415682",
+      "scheduleId": "58",
+      "customEmblem": "MSw5MDQwNSw2Mi4zMTE2OCwzLjM0OTcyNSwwLjIzNzE0ODcsMC4yMzcxNDg3LDEuMjAwMTMy"
+    },
+    {
+      "guildIdx": "0_941QVWBh_9oK",
+      "emblemNo": 1121,
+      "name": "freestyle",
+      "rank": 33,
+      "score": "34551249032",
+      "scheduleId": "58",
+      "customEmblem": "MCw0MDMwLDE4Ny41NzEzLC0zNDUuODg2NCwxLDEsMA=="
+    },
+    {
+      "guildIdx": "0_621PdeSx_3ZJ",
+      "name": "飛舞蒼穹",
+      "rank": 34,
+      "score": "34509892269",
+      "scheduleId": "58",
+      "customEmblem": "MSw0MDYwMSw0NjIuNjI3MywtMjAuOTQwODgsMC42MTY4OTExLDAuNjE2ODkxMSwxOC40NTU3Mg=="
+    },
+    {
+      "guildIdx": "0_011PdILo_2p7l",
+      "name": "月心小築",
+      "rank": 35,
+      "score": "33725383019",
+      "scheduleId": "58",
+      "customEmblem": "MSw2MDIwNCw4Ny40NjU4NCwtMTUyLjI2MTgsMC41NSwwLjU1LDA="
+    },
+    {
+      "guildIdx": "0_241PdILo_2x4h",
+      "name": "哭泣少女乐队",
+      "rank": 36,
+      "score": "33397836236",
+      "scheduleId": "58",
+      "customEmblem": "Miw3OTMsMTguOTcxNjUsLTU5LjM2MzEzLDAuMzQ4MzkxOCwwLjM0ODM5MTgsMC4yOTgxODk4"
+    },
+    {
+      "guildIdx": "0_521PdeSx_TpR",
+      "name": "INDONESIAN",
+      "rank": 37,
+      "score": "30397506379",
+      "scheduleId": "58",
+      "customEmblem": "MSw5MDMwMiwyODkuNjgwOCwtMjYzLjczNzIsMC42NjYxMDc4LDAuNjY2MTA3OCwzNDMuODg5"
+    },
+    {
+      "guildIdx": "0_421PdILo_2C95",
+      "emblemNo": 4090,
+      "name": "FSociety",
+      "rank": 38,
+      "score": "29887501935",
+      "scheduleId": "58",
+      "customEmblem": "MSw5MDAwMSwtMTI1Ljg3OTQsMzUwLjM4MzksMS4zMTUxMjEsMS4zMTUxMjEsMzE2Ljg3NzE="
+    },
+    {
+      "guildIdx": "0_011Tt99O_Z7o",
+      "name": "云梦泽",
+      "rank": 39,
+      "score": "27273175209",
+      "scheduleId": "58",
+      "customEmblem": "MywyNDIwLDM2LjgwOTY5LC0zNTkuMzE4MiwwLjY5NDUzMjIsMC42OTQ1MzIyLDAuODU1MDg3Mg=="
+    },
+    {
+      "guildIdx": "0_821PfYMb_478x",
+      "name": "鳶尾花之夢",
+      "rank": 40,
+      "score": "26665011089",
+      "scheduleId": "58",
+      "customEmblem": "MSwyMzEsLTEuMTM1ODAzLC0yNy4yNzEyMywwLjMwNzc1MjMsMC4zMDc3NTIzLDM1NC43MjAy"
+    },
+    {
+      "guildIdx": "0_721PdeSx_3Ch",
+      "emblemNo": 1060,
+      "name": "THAITEA",
+      "rank": 41,
+      "score": "25980661303",
+      "scheduleId": "58"
+    },
+    {
+      "guildIdx": "0_e11PCBtq_oAP",
+      "name": "清鬆小會",
+      "rank": 42,
+      "score": "25778323001",
+      "scheduleId": "58",
+      "customEmblem": "MCw2NTEwLDEzLjE5MzQzLC0zNzIuNDM2NSwxLDEsMA=="
+    },
+    {
+      "guildIdx": "0_a31PdeSF_Kd8",
+      "name": "如果可以我想回到相遇那天",
+      "rank": 43,
+      "score": "24150456322",
+      "scheduleId": "58",
+      "customEmblem": "MSw5MDEwMywtMzMuNzQ5OTcsMTAzLjc1LDAuNTUsMC41NSww"
+    },
+    {
+      "guildIdx": "0_d21PfYMb_1sJY",
+      "name": "雪月琉璃",
+      "rank": 44,
+      "score": "23440988484",
+      "scheduleId": "58",
+      "customEmblem": "MSw2MDEwMiwxMzQ0Ljc4LC0yNzIuNjIxMiwxLjE1NDU3NiwxLjE1NDU3Niww"
+    },
+    {
+      "guildIdx": "0_211PdeSx_YhM",
+      "name": "CRU",
+      "rank": 45,
+      "score": "21561075980",
+      "scheduleId": "58",
+      "customEmblem": "MSwxMDkwMiwxMjE3Ljk0OSwyMTkuNzA1NiwxLjA1MzQwNCwxLjA1MzQwNCwzNTkuOTMyNQ=="
+    },
+    {
+      "guildIdx": "0_611PdeSx_hqW",
+      "name": "貓耳朵菓子鋪",
+      "rank": 46,
+      "score": "21453539862",
+      "scheduleId": "58",
+      "customEmblem": "MSw5MDYwMiwxODMuOTQsLTExNC41MDM3LDAuNDU4OTU0NiwwLjQ1ODk1NDYsMC41MjU3OTU2"
+    },
+    {
+      "guildIdx": "0_111PdILo_5ZZ",
+      "name": "Iluminado",
+      "rank": 47,
+      "score": "19716842113",
+      "scheduleId": "58",
+      "customEmblem": "MSw2NjEsOS4xOTM1NDIsMS41Nzg5MzQsMC4yMzY3OTU2LDAuMjM2Nzk1NiwzNTkuNjg3Ng=="
+    },
+    {
+      "guildIdx": "0_431PdILo_7yQ1",
+      "name": "蒼藍彼方",
+      "rank": 48,
+      "score": "19494566672",
+      "scheduleId": "58",
+      "customEmblem": "MSw5MDQwMywxMzcuNTcwNiwtMTIyLjM2MDIsMC41NSwwLjU1LDA="
+    },
+    {
+      "guildIdx": "0_e31PdILv_wHD",
+      "name": "Lycoris",
+      "rank": 49,
+      "score": "18483250451",
+      "scheduleId": "58",
+      "customEmblem": "MSw2MDMwNCwyNDMuNTMwMyw4OS4yMTU1OCwwLjQxMTY1MjMsMC40MTE2NTIzLDM1OS41MDg4"
+    },
+    {
+      "guildIdx": "0_211PdeSx_70e",
+      "name": "太陽騎士團",
+      "rank": 50,
+      "score": "16997952530",
+      "scheduleId": "58",
+      "customEmblem": "MSw5MTIwMSwtMzkyLjI4NTEsLTM0Mi43NzM0LDAuODE1NjMwMywwLjgxNTYzMDMsNi4zMjQyNzc="
+    },
+    {
+      "guildIdx": "0_411PuZrA_3Ie",
+      "emblemNo": 4030,
+      "name": "Empire",
+      "rank": 51,
+      "score": "16000813037",
+      "scheduleId": "58"
+    },
+    {
+      "guildIdx": "0_c31PdeSF_yKP",
+      "name": "lExplosionl",
+      "rank": 52,
+      "score": "15940051393",
+      "scheduleId": "58",
+      "customEmblem": "MSw5MTUwMSwyODAuOTk4MiwtMTcxLjcyOSwwLjU2NjUxMzYsMC41NjY1MTM2LDAuMTMzODcyNQ=="
+    },
+    {
+      "guildIdx": "0_m31PvqPC_h1k",
+      "name": "瓜牛會社",
+      "rank": 53,
+      "score": "15518680568",
+      "scheduleId": "58",
+      "customEmblem": "Miw5MTIwMywxMTYuNTA0OSwtNTIuMjE3NywwLjM0NDUyNzksMC4zNDQ1Mjc5LDM1OS45MjQ3"
+    },
+    {
+      "guildIdx": "0_631PtzIA_c96",
+      "name": "Vels",
+      "rank": 54,
+      "score": "15512791088",
+      "scheduleId": "58",
+      "customEmblem": "MSw2MDEwMSwyMy4wNzU5MiwtMTUuMTYxMTIsMC41NSwwLjU1LDA="
+    },
+    {
+      "guildIdx": "0_c11PdILv_2Eoo",
+      "emblemNo": 1,
+      "name": "88不存在的伊甸園",
+      "rank": 55,
+      "score": "15028023438",
+      "scheduleId": "58"
+    },
+    {
+      "guildIdx": "0_011UzKjz_rh9",
+      "name": "Indonesia",
+      "rank": 56,
+      "score": "14948777210",
+      "scheduleId": "58",
+      "customEmblem": "MCwxMjAsMzA4LjQ2NjYsLTIzNDUuMTc5LDUsNSwzMzcuOTQyMQ=="
+    },
+    {
+      "guildIdx": "0_e41PdeSE_Az6",
+      "name": "拂水樓",
+      "rank": 57,
+      "score": "14914795339",
+      "scheduleId": "58",
+      "customEmblem": "MSw5MDYwNCwtMTQuMDY2MDIsMCwwLjI0MTk3MzksMC4yNDE5NzM5LDM1OS4yOTc3"
+    },
+    {
+      "guildIdx": "0_f31PfYMc_DrJ",
+      "name": "JustBegin",
+      "rank": 58,
+      "score": "14253652730",
+      "scheduleId": "58",
+      "customEmblem": "MSwzMTAwMywyMjQuNTIyNyw0Mi41MTcwOSwwLjM4NjIxODgsMC4zODYyMTg4LDAuNjM2OTU2Mg=="
+    },
+    {
+      "guildIdx": "0_e21PdeSE_dP8",
+      "name": "PemuasJanda",
+      "rank": 59,
+      "score": "13683874768",
+      "scheduleId": "58",
+      "customEmblem": "MSw1MDIwNSwtNDAuMjAwMjcsLTQuNzgzODUyLDAuMjUxODkxNiwwLjI1MTg5MTYsMC4xMTgwNTI2"
+    },
+    {
+      "guildIdx": "0_e11PxwOV_g85",
+      "name": "莫名奇妙公會",
+      "rank": 60,
+      "score": "13497429281",
+      "scheduleId": "58",
+      "customEmblem": "MSw5MDgwNCwyMDIuMTQwMSwxMS45NTYzOSwwLjI2NjYzOCwwLjI2NjYzOCwwLjc1OTUzMzE="
+    },
+    {
+      "guildIdx": "0_611PdeSx_7jI",
+      "name": "美食研究會",
+      "rank": 61,
+      "score": "13330858901",
+      "scheduleId": "58",
+      "customEmblem": "MSwyNTEsLTIxOS4wNzg0LC02My41MDQzMSwwLjU1LDAuNTUsMA=="
+    },
+    {
+      "guildIdx": "0_021PdILo_2gga",
+      "name": "極樂養老院",
+      "rank": 62,
+      "score": "12648461029",
+      "scheduleId": "58",
+      "customEmblem": "MSw5MDMwMywtMTAuMDA3MDUsLTE0LjE3MzYzLDAuMjY1MjUsMC4yNjUyNSwzNTkuODYzNw=="
+    },
+    {
+      "guildIdx": "0_111PvqPo_cDP",
+      "name": "Losser",
+      "rank": 63,
+      "score": "12061188242",
+      "scheduleId": "58",
+      "customEmblem": "MSw5MDgwNCwzNjAuODA1OCwtOTEuODIyNTMsMC40NzYyNTU4LDAuNDc2MjU1OCwxLjA1NjEwOQ=="
+    },
+    {
+      "guildIdx": "0_n31PvqPC_6Xk",
+      "name": "南區業務一課",
+      "rank": 64,
+      "score": "12016924601",
+      "scheduleId": "58",
+      "customEmblem": "MSwyMTEwMSwwLDAsMC4yNDc5MzI5LDAuMjQ3OTMyOSwzNTkuNDM4OA=="
+    },
+    {
+      "guildIdx": "0_441PdILo_aXj5",
+      "emblemNo": 1090,
+      "name": "Magicians",
+      "rank": 65,
+      "score": "12015155900",
+      "scheduleId": "58"
+    },
+    {
+      "guildIdx": "0_931QfsMt_4QB",
+      "name": "WAH",
+      "rank": 66,
+      "score": "11892037491",
+      "scheduleId": "58",
+      "customEmblem": "MSw5MDQwNSwtNzguNzMyNjcsLTEyMCwwLjU1LDAuNTUsMzU5LjkyODc="
+    },
+    {
+      "guildIdx": "0_241PCBtj_wFf",
+      "emblemNo": 6510,
+      "name": "EverPH",
+      "rank": 67,
+      "score": "11716462777",
+      "scheduleId": "58",
+      "customEmblem": "MSwxNDMsLTUuOTg1NDA1LC05LjE2NjY1MywwLjI1NDQzODgsMC4yNTQ0Mzg4LDM1OS43NjE3"
+    },
+    {
+      "guildIdx": "0_131WhSEa_xQd",
+      "emblemNo": 1,
+      "name": "Nilfheim",
+      "rank": 68,
+      "score": "11306331578",
+      "scheduleId": "58",
+      "customEmblem": "MCw2NTQwLDAsMCwxLDEsMA=="
+    },
+    {
+      "guildIdx": "0_d31PdILw_2zYG",
+      "name": "貓咪咖啡廳",
+      "rank": 69,
+      "score": "11296353407",
+      "scheduleId": "58",
+      "customEmblem": "MSwxMDEwMyw1NS45NzYyLC00Mi44NzY5MiwwLjM2Njg1NCwwLjM2Njg1NCw5LjE4NTc1Mw=="
+    },
+    {
+      "guildIdx": "0_311PAymE_db5",
+      "name": "一點點",
+      "rank": 70,
+      "score": "11190380744",
+      "scheduleId": "58",
+      "customEmblem": "MCwyMDQwLDAuMDAwMTIyMDcwMywtMzM0LjM5OTksMSwxLDA="
+    },
+    {
+      "guildIdx": "0_b21PdeSE_Vwp",
+      "name": "Nanashi",
+      "rank": 71,
+      "score": "10447920077",
+      "scheduleId": "58",
+      "customEmblem": "MywyMjg2LC02ODguNTIwOSwxMDEzLjY1MiwxLjY1NzMzOCwxLjY1NzMzOCwyLjA2NDQwOA=="
+    },
+    {
+      "guildIdx": "0_e11PvqPv_e1n",
+      "name": "NIKKE",
+      "rank": 72,
+      "score": "10373374073",
+      "scheduleId": "58",
+      "customEmblem": "MywyMzAxLDM3MC42Mjg5LDUyNS40Njk0LDEsMSww"
+    },
+    {
+      "guildIdx": "0_531PdeSx_1Ao",
+      "name": "SoulSociety",
+      "rank": 73,
+      "score": "10117168026",
+      "scheduleId": "58",
+      "customEmblem": "MCwzMDQwLC01MzguMzM4MiwyMDMuOTA2MywwLjc0NjI1MTUsMC43NDYyNTE1LDI5NS4wOTQ5"
+    },
+    {
+      "guildIdx": "0_a21PdeSF_OYp",
+      "name": "GarudaIndo",
+      "rank": 74,
+      "score": "9898260327",
+      "scheduleId": "58",
+      "customEmblem": "MSwxMDEwMSwtODYuOTQxODYsLTE2NS4yMTc0LDAuNTUsMC41NSww"
+    },
+    {
+      "guildIdx": "0_841PdeSE_70Y",
+      "name": "NikkeRefugee",
+      "rank": 75,
+      "score": "9378401640",
+      "scheduleId": "58",
+      "customEmblem": "MSw1MDMwNywtMTE0LjIyMTMsLTExOS4xNTg5LDAuNTUsMC41NSww"
+    },
+    {
+      "guildIdx": "0_131Rvl2J_a1N",
+      "name": "關門放喵",
+      "rank": 76,
+      "score": "9337827397",
+      "scheduleId": "58",
+      "customEmblem": "MSw5MDEwMSwxNDIuMzQ5NywtNDkuOTk5OTcsMC4zMTA3ODg4LDAuMzEwNzg4OCwzNTkuOTc5MQ=="
+    },
+    {
+      "guildIdx": "0_741PdeSx_lDr",
+      "name": "SlowLife",
+      "rank": 77,
+      "score": "9235894284",
+      "scheduleId": "58",
+      "customEmblem": "MCwzMTEwLDEuODI5MzUzLC0zNzQuNDA1OSwxLDEsMA=="
+    },
+    {
+      "guildIdx": "0_341PZA6A_2J1",
+      "name": "SoulMasters",
+      "rank": 78,
+      "score": "8951424309",
+      "scheduleId": "58",
+      "customEmblem": "MSw2MTIsMCwwLDAuMjUyMDMzNCwwLjI1MjAzMzQsMC41NDUxNTY1"
+    },
+    {
+      "guildIdx": "0_521PdILo_3t4l",
+      "name": "SHINE",
+      "rank": 79,
+      "score": "8903576852",
+      "scheduleId": "58",
+      "customEmblem": "MSw2ODEsMTY0LjA5OTgsLTQ1Ljc5MDk1LDAuNTUsMC41NSww"
+    },
+    {
+      "guildIdx": "0_121RqhD3_g8H",
+      "name": "花無名",
+      "rank": 80,
+      "score": "8840534797",
+      "scheduleId": "58",
+      "customEmblem": "MSwzMTEwMSwtMzEuNjUyNTcsLTMuMzMzMzQsMC4yMzk1NjA2LDAuMjM5NTYwNiwwLjA2Njg4ODY="
+    },
+    {
+      "guildIdx": "0_611QfsFj_48q",
+      "name": "ConQuerO",
+      "rank": 81,
+      "score": "8565329615",
+      "scheduleId": "58",
+      "customEmblem": "MCw2NTEwLDAuOTQyMzQ4NSwxLjMxODM1OSwwLjIwMjQ1MzMsMC4yMDI0NTMzLDM1Ny4yNDA1"
+    },
+    {
+      "guildIdx": "0_e41PdeSE_1Ek9",
+      "name": "彼岸花開",
+      "rank": 82,
+      "score": "8460723556",
+      "scheduleId": "58",
+      "customEmblem": "MSw2MDMwNywtNC4yMDU2NTgsMS41NzQ0NzgsMC4yNTcwODg3LDAuMjU3MDg4NywzNTkuNDg5"
+    },
+    {
+      "guildIdx": "0_b11PdILw_tSG",
+      "name": "Thiccbois",
+      "rank": 83,
+      "score": "8439720012",
+      "scheduleId": "58",
+      "customEmblem": "MSwzMDcwMSwyMy42Mzg3NiwxNjYuNTUyNywwLjU1LDAuNTUsMA=="
+    },
+    {
+      "guildIdx": "0_c31PdeSF_4uh",
+      "name": "Odyssey",
+      "rank": 84,
+      "score": "8209747309",
+      "scheduleId": "58",
+      "customEmblem": "MiwzMDcwMSwyNzIuNzUxOSwtMzI5LjY4OTEsMSwxLDA="
+    },
+    {
+      "guildIdx": "0_131PdILo_aOO",
+      "emblemNo": 3090,
+      "name": "FairyWinG",
+      "rank": 85,
+      "score": "7983281349",
+      "scheduleId": "58",
+      "customEmblem": "MSwzMDkwMiwtNTYuMTQ4NSwtMTEzLjg0NjEsMC40NTUwOTc3LDAuNDU1MDk3NywzNTguODMwNQ=="
+    },
+    {
+      "guildIdx": "0_541PCBti_GVO",
+      "name": "PumPkin",
+      "rank": 86,
+      "score": "7818470049",
+      "scheduleId": "58",
+      "customEmblem": "MSw5MjUwMiwtMjMuNzQ5OTUsLTE5NS4zOTU4LDAuNjM0MTYsMC42MzQxNiwzNTQuODQ1Nw=="
+    },
+    {
+      "guildIdx": "0_031PxwOO_6P4",
+      "name": "貓咪旅館",
+      "rank": 87,
+      "score": "7747445736",
+      "scheduleId": "58",
+      "customEmblem": "MSw5MTcwMiwtMTYzLjQ4NDEsLTk3LjgxNDc2LDAuNDc4OTcyLDAuNDc4OTcyLDM1OS44NDk1"
+    },
+    {
+      "guildIdx": "0_231Rvl2I_dMt",
+      "name": "中央庭",
+      "rank": 88,
+      "score": "7677905225",
+      "scheduleId": "58",
+      "customEmblem": "MSwzMDYwMiw1NS42NDQ1NywtMTM5LjAxODMsMC41NSwwLjU1LDA="
+    },
+    {
+      "guildIdx": "0_741PvqPo_bep",
+      "name": "銀色車輪",
+      "rank": 89,
+      "score": "7512762017",
+      "scheduleId": "58",
+      "customEmblem": "MSw0MTIwMSwtMjY5Ljg1OTMsLTU4Ni45NTY0LDEuMSwxLjEsMjUuNDk5OTE="
+    },
+    {
+      "guildIdx": "0_541QjSGK_h3",
+      "emblemNo": 520,
+      "name": "都要上線過每日喔",
+      "rank": 90,
+      "score": "7475026597",
+      "scheduleId": "58"
+    },
+    {
+      "guildIdx": "0_a11PdeSF_oW1",
+      "name": "老爺與后宮佳麗",
+      "rank": 91,
+      "score": "7389942919",
+      "scheduleId": "58",
+      "customEmblem": "MSwyMDEwMiwzNy4xMDA4OSwyLjYwNzU5LDAuMjQwNzQ2MywwLjI0MDc0NjMsMC4yNjE0MjE3"
+    },
+    {
+      "guildIdx": "0_911PdeSE_LVS",
+      "name": "不道德公會",
+      "rank": 92,
+      "score": "7375368572",
+      "scheduleId": "58",
+      "customEmblem": "MywyMjU2LC0yNC45ODcwMywtMzUuODAwNzgsMC4yNjk5ODA5LDAuMjY5OTgwOSww"
+    },
+    {
+      "guildIdx": "0_031PdILo_yPY",
+      "emblemNo": 6980,
+      "name": "少爺和我",
+      "rank": 93,
+      "score": "7061687206",
+      "scheduleId": "58"
+    },
+    {
+      "guildIdx": "0_n31PuZrO_4i9",
+      "name": "轉生到異世界當個苦丸家膩",
+      "rank": 94,
+      "score": "7055364014",
+      "scheduleId": "58",
+      "customEmblem": "MSw5MDEwMSwyNjYuOTIzMSwtMTI4LjQ2MTQsMC41NSwwLjU1LDA="
+    },
+    {
+      "guildIdx": "0_c41PdeSF_iyV",
+      "name": "DRAKE",
+      "rank": 95,
+      "score": "7038310778",
+      "scheduleId": "58",
+      "customEmblem": "MSw2MDMwMywtNTMuMzQwNTgsLTY1LjY0ODk5LDAuNTA2ODk4MywwLjUwNjg5ODMsMC42NzMxMzg4"
+    },
+    {
+      "guildIdx": "0_241Qhg9i_dZw",
+      "name": "Sleep",
+      "rank": 96,
+      "score": "6932720668",
+      "scheduleId": "58",
+      "customEmblem": "MCw2NTQwLDEwMy41NTA2LC0xODMuNzI0OSwxLDEsMA=="
+    },
+    {
+      "guildIdx": "0_121QcdBO_Rh",
+      "name": "Godhunter",
+      "rank": 97,
+      "score": "6893798758",
+      "scheduleId": "58",
+      "customEmblem": "MSw5MTMwMiwtOTkuMjkyMjcsMTY4LjQ5MjksMC41NDk3ODE3LDAuNTQ5NzgxNywzNTkuMzAxOA=="
+    },
+    {
+      "guildIdx": "0_e21PdILv_4l1V",
+      "name": "thailand",
+      "rank": 98,
+      "score": "6767533447",
+      "scheduleId": "58",
+      "customEmblem": "MywyMzAxLDE2Ny4xMjAxLDQ5Ny4zNjI1LDEsMSww"
+    },
+    {
+      "guildIdx": "0_c11PdILv_9sD",
+      "name": "MaenSantai",
+      "rank": 99,
+      "score": "6520239842",
+      "scheduleId": "58",
+      "customEmblem": "MSwzMTAwNiwtMTQuOTk5OTcsLTE2NC43MDg4LDAuNTUsMC41NSww"
+    },
+    {
+      "guildIdx": "0_211PfYyH_5I6p",
+      "name": "大圖書館",
+      "rank": 100,
+      "score": "6490707798",
+      "scheduleId": "58",
+      "customEmblem": "MSw5MTEwMiwtMjc5LjIyNjMsLTExMi44MTYsMC41NSwwLjU1LDA="
+    }
+  ],
+  "myGuildRaidRankInfo": {
+    "guildIdx": "0_631PdeSx_vf4",
+    "name": "楓与鈴",
+    "rank": 5,
+    "score": "183925637709",
+    "scheduleId": "58",
+    "customEmblem": "MSw0MDQwNyw0LjE2NDkxNyw2LjY2NjY1NiwwLjM0OTIyODYsMC4zNDkyMjg2LDM1OS44NDMy"
+  },
+  "__format__": "proto"
+}

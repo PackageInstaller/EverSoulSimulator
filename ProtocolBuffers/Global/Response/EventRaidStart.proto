@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package EsPb;
+
+message EventRaidStart {
+  sEventRaid eventRaid = 1;
+}
+
+message sEventRaid {
+  int32 eventGroup = 1;
+  int32 eventNumber = 2;
+  int32 enterCnt = 3;
+  int32 stageStep = 4;
+  int64 maxDemage = 5;
+  int64 maxDemageLastReward = 6;
+  int64 accumDemage = 7;
+  int64 accumDemageLastReward = 8;
+  repeated sEventRaidHero eventRaidHero = 9;
+  int32 diaUseCount = 10;
+}
+
+message sEventRaidHero {
+  int32 heroNo = 1;
+  int32 grade = 2;
+  int32 level = 3;
+}
+

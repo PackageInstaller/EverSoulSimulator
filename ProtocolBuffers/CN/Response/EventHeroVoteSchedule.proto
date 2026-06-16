@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package EsPb;
+
+message EventHeroVoteSchedule {
+  int32 eventGroup = 1;
+  int32 earlyScheduleCount = 2;
+  int32 earlyResultsNo = 3;
+  int64 earlyCalculateDt = 4;
+  int32 voteStatus = 5;
+  int64 resultsDt = 6;
+  int32 finalResultsTalkGroupNo = 7;
+  int64 voteEndDt = 8;
+  int32 rankingListNo = 9;
+  int64 rankingListResultsDt = 10;
+  repeated sEventHeroVoteInfo rankingList = 11;
+}
+
+message sEventHeroVoteInfo {
+  int32 heroNo = 1;
+  int32 voteCount = 2;
+}
+

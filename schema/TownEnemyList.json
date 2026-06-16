@@ -1,0 +1,57 @@
+{
+ "root": "TownEnemyList",
+ "messages": {
+  "TownEnemyList": {
+   "fields": [
+    {
+     "name": "townEnemy",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sTownEnemy",
+     "packed": false
+    },
+    {
+     "name": "townEnemyDefeatCount",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sTownEnemy": {
+   "fields": [
+    {
+     "name": "no",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "count",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "type",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "section",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package EsChatPb;
+
+message LangChatEnter {
+  int32 channel = 1;
+  int32 langType = 2;
+  int64 dt = 3;
+}
+

@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package EsPb;
+
+message ObjetBuffList {
+  repeated sObjetBuff buildBuff = 1;
+  repeated sHeroObjetBuff heroBuff = 2;
+}
+
+message sObjetBuff {
+  int32 objetNo = 1;
+  repeated int32 buffNo = 2;
+}
+
+message sHeroObjetBuff {
+  int32 heroNo = 1;
+  int32 objetUid = 2;
+  int32 objetNo = 3;
+  repeated int32 buffNo = 4;
+}
+

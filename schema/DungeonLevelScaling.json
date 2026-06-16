@@ -1,0 +1,17 @@
+{
+ "root": "DungeonLevelScaling",
+ "messages": {
+  "DungeonLevelScaling": {
+   "fields": [
+    {
+     "name": "scalingLevel",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

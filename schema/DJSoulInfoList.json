@@ -1,0 +1,50 @@
+{
+ "root": "DJSoulInfoList",
+ "messages": {
+  "DJSoulInfoList": {
+   "fields": [
+    {
+     "name": "info",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sDJSoulInfo",
+     "packed": false
+    },
+    {
+     "name": "receiveRewardNo",
+     "number": 2,
+     "repeated": true,
+     "type": "int32",
+     "packed": true
+    }
+   ]
+  },
+  "sDJSoulInfo": {
+   "fields": [
+    {
+     "name": "stageNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "level",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "maxScore",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

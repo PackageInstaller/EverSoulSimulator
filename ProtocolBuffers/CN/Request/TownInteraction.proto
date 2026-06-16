@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message TownInteraction {
+  int32 no = 1;
+  int32 id = 2;
+}
+

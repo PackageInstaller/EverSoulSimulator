@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package EsPb;
+
+message DestinyInfoList {
+  repeated sDestinyStoryEpisode destinyStoryEpisode = 1;
+  repeated int32 pickUpHeroNoList = 2;
+  repeated sTempReputation tempReputation = 3;
+  repeated sDestinyStoryAffinityPoint destinyStoryAffinityPoint = 4;
+  repeated sTrip trip = 6;
+  int32 tripRemainCount = 7;
+  repeated sTripCancel tripCancel = 8;
+  repeated sTripKeyword tripKeyword = 9;
+  int64 tripResetDt = 10;
+  repeated sLostFound lostFound = 11;
+}
+
+message sDestinyStoryEpisode {
+  int64 storyNo = 1;
+  int32 state = 2;
+  int32 heroNo = 3;
+  int32 happy = 4;
+  int32 normal = 5;
+  int32 bad = 6;
+  int32 lastReceiveStoryNo = 7;
+}
+
+message sTempReputation {
+  int32 heroNo = 1;
+  int32 reputation = 2;
+  int64 giftDt = 3;
+  int64 maxLevelDt = 4;
+}
+
+message sDestinyStoryAffinityPoint {
+  int32 heroNo = 1;
+  int32 affinityPoint = 2;
+}
+
+message sTrip {
+  int32 heroNo = 1;
+  int32 isReceive = 2;
+  int64 yymmdd = 3;
+  int32 uid = 4;
+}
+
+message sTripCancel {
+  int32 heroNo = 1;
+  int64 tripCancelDt = 2;
+}
+
+message sTripKeyword {
+  int32 keywordNo = 1;
+  int32 isFirst = 2;
+  int32 heroNo = 3;
+}
+
+message sLostFound {
+  int32 heroNo = 1;
+  int32 lastNo = 2;
+  int32 state = 3;
+  int32 id = 4;
+  int64 clearDt = 5;
+}
+

@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message ArbeitStart {
+  repeated sArbeit arbeit = 1;
+}
+
+message sArbeit {
+  int32 arbeitNo = 1;
+  repeated int32 heroNo = 2;
+}
+

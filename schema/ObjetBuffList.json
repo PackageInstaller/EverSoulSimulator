@@ -1,0 +1,76 @@
+{
+ "root": "ObjetBuffList",
+ "messages": {
+  "ObjetBuffList": {
+   "fields": [
+    {
+     "name": "buildBuff",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sObjetBuff",
+     "packed": false
+    },
+    {
+     "name": "heroBuff",
+     "number": 2,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sHeroObjetBuff",
+     "packed": false
+    }
+   ]
+  },
+  "sObjetBuff": {
+   "fields": [
+    {
+     "name": "objetNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "buffNo",
+     "number": 2,
+     "repeated": true,
+     "type": "int32",
+     "packed": true
+    }
+   ]
+  },
+  "sHeroObjetBuff": {
+   "fields": [
+    {
+     "name": "heroNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "objetUid",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "objetNo",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "buffNo",
+     "number": 4,
+     "repeated": true,
+     "type": "int32",
+     "packed": true
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

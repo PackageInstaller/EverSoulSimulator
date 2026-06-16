@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message OriginTowerExtendReceiveReward {
+  int32 towerNo = 1;
+}
+

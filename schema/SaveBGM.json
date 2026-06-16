@@ -1,0 +1,36 @@
+{
+ "root": "SaveBGM",
+ "messages": {
+  "SaveBGM": {
+   "fields": [
+    {
+     "name": "bGM",
+     "number": 1,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sBGM",
+     "packed": false
+    }
+   ]
+  },
+  "sBGM": {
+   "fields": [
+    {
+     "name": "lobbyBgm",
+     "number": 1,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    },
+    {
+     "name": "battleBgm",
+     "number": 2,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

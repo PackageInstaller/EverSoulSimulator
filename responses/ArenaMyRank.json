@@ -1,0 +1,13 @@
+{
+  "myNormalArena": {
+    "normalRank": 1,
+    "arenaOpenNotificationDt": "1781482200000"
+  },
+  "myChampionsArena": {
+    "championsRank": 1,
+    "waitRewardStartDt": "1781013600000",
+    "waitRewardPercentage": 38,
+    "championsArenaOpenNotificationDt": "1781100000000"
+  },
+  "__format__": "proto"
+}

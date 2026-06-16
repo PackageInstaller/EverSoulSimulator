@@ -1,0 +1,445 @@
+{
+  "guildMember": [
+    {
+      "guildIdx": "0_631PdeSx_vf4",
+      "userIdx": "0_111PHKfl_553",
+      "grade": 1,
+      "dt": "1749868144704",
+      "contribution": 20570,
+      "lastLoginDt": "1781048358885",
+      "thumbnail": {
+        "thumbnailFrame": 5503,
+        "thumbnailImage": 35020
+      },
+      "logoutDt": "1781048688975",
+      "weeklyContribution": 120
+    },
+    {
+      "guildIdx": "0_631PdeSx_vf4",
+      "userIdx": "0_131PdILo_1YYt",
+      "grade": 1,
+      "dt": "1757380939240",
+      "contribution": 13500,
+      "lastLoginDt": "1780926401407",
+      "thumbnail": {
+        "thumbnailFrame": 5674,
+        "useCustom": true,
+        "thumbnail": "MSwxMDEwMiwyMjcuODE5NCw2LjgzNzIzNCwwLjU1LDAuNTUsMA=="
+      },
+      "logoutDt": "1780926603715",
+      "weeklyContribution": 40
+    },
+    {
+      "guildIdx": "0_631PdeSx_vf4",
+      "userIdx": "0_231RL1Gh_mJC",
+      "grade": 1,
+      "dt": "1755574017638",
+      "contribution": 14340,
+      "lastLoginDt": "1777437206169",
+      "thumbnail": {
+        "thumbnailFrame": 5653,
+        "thumbnailImage": 31020
+      },
+      "logoutDt": "1777437206169"
+    },
+    {
+      "guildIdx": "0_631PdeSx_vf4",
+      "userIdx": "0_231Sftwd_2bi",
+      "grade": 8,
+      "dt": "1749780959522",
+      "contribution": 18160,
+      "lastLoginDt": "1777269119868",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "thumbnailImage": 36540,
+        "thumbnail": "MywyMzUzLDEzLjA3NTYyLC01MDIuMzA3OCwwLjgxNTEzMzYsMC44MTUxMzM2LDM1OS43MDY3"
+      },
+      "logoutDt": "1777269119868"
+    },
+    {
+      "guildIdx": "0_631PdeSx_vf4",
+      "userIdx": "0_421RZUM6_8Tn",
+      "grade": 1,
+      "dt": "1731647435146",
+      "contribution": 29990,
+      "lastLoginDt": "1777647893730",
+      "thumbnail": {
+        "thumbnailFrame": 5674,
+        "thumbnailImage": 32130
+      },
+      "logoutDt": "1777647893730"
+    },
+    {
+      "guildIdx": "0_631PdeSx_vf4",
+      "userIdx": "0_441Te5v3_6PK",
+      "grade": 1,
+      "dt": "1748756025472",
+      "contribution": 17380,
+      "lastLoginDt": "1775145546841",
+      "thumbnail": {
+        "thumbnailFrame": 5697,
+        "useCustom": true,
+        "thumbnail": "MywyMzk3LC03LjQ1NzYyNiwtMzA3LjA2NCwwLjgyNTEyNDEsMC44MjUxMjQxLDM1OC45OTI2"
+      },
+      "logoutDt": "1775145546841"
+    },
+    {
+      "guildIdx": "0_631PdeSx_vf4",
+      "userIdx": "0_731PdeSx_1qK",
+      "grade": 1,
+      "dt": "1723278127180",
+      "contribution": 36150,
+      "lastLoginDt": "1778594377890",
+      "thumbnail": {
+        "thumbnailFrame": 5700,
+        "useCustom": true,
+        "thumbnail": "MSw1MDMwOCwxMDQuOTU5Myw1LjE5MDAxMiwwLjI1NzAxMTIsMC4yNTcwMTEyLDAuMzU2NzA0Mw=="
+      },
+      "logoutDt": "1778594377890"
+    },
+    {
+      "guildIdx": "0_631PdeSx_vf4",
+      "userIdx": "0_931PdeSE_56H",
+      "grade": 1,
+      "dt": "1766199012794",
+      "contribution": 7540,
+      "lastLoginDt": "1780473869007",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "thumbnailImage": 36530,
+        "thumbnail": "MSw5MDgwMSwtMTUuNTkzMTYsLTEzLjU1MTg4LDAuMjczODkyNywwLjI3Mzg5MjcsMS40MDM4Nzk="
+      },
+      "logoutDt": "1780476078816"
+    },
+    {
+      "guildIdx": "0_631PdeSx_vf4",
+      "userIdx": "0_a31PKrLK_6NJ",
+      "grade": 1,
+      "dt": "1693575639705",
+      "contribution": 52140,
+      "lastLoginDt": "1780801632843",
+      "thumbnail": {
+        "thumbnailFrame": 5694,
+        "useCustom": true,
+        "thumbnail": "MSw2MDIwNSwtMTI4Ljk1NzUsLTIxLjM1MTExLDAuMjk3NzA0NSwwLjI5NzcwNDUsMzU4LjUwNjg="
+      },
+      "logoutDt": "1780808620030"
+    },
+    {
+      "guildIdx": "0_631PdeSx_vf4",
+      "userIdx": "0_b31PdILw_1yJP",
+      "grade": 1,
+      "dt": "1771657102421",
+      "contribution": 2470,
+      "lastLoginDt": "1775539479615",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MSw5MjgwNCwxMjEuNzMwOCwtMjYuNjQwNjIsMC40NzE5Mjg5LDAuNDcxOTI4OSwzNS4wMzc2NQ=="
+      },
+      "logoutDt": "1775539479615"
+    },
+    {
+      "guildIdx": "0_631PdeSx_vf4",
+      "userIdx": "1_031VyXg5_eoG",
+      "channelNo": 1,
+      "grade": 1,
+      "dt": "1775310475099",
+      "contribution": 620,
+      "lastLoginDt": "1777512335007",
+      "thumbnail": {
+        "thumbnailFrame": 5501,
+        "useCustom": true,
+        "thumbnail": "MSwxMDMwNywtMjEuMjQ5ODIsLTMxLjY2NjY5LDAuMzE4MDQ1MSwwLjMxODA0NTEsMzU5LjI5NTc="
+      },
+      "logoutDt": "1777512335007"
+    },
+    {
+      "guildIdx": "0_631PdeSx_vf4",
+      "userIdx": "1_121TAReC_cc8",
+      "channelNo": 1,
+      "grade": 1,
+      "dt": "1751612703273",
+      "contribution": 14870,
+      "lastLoginDt": "1774913444553",
+      "thumbnail": {
+        "thumbnailFrame": 5701,
+        "useCustom": true,
+        "thumbnail": "MSwyMTEwMSwxMjAuNjU0NSwtMTM5LjUzNDksMC41NSwwLjU1LDA="
+      },
+      "logoutDt": "1774913444553"
+    },
+    {
+      "guildIdx": "0_631PdeSx_vf4",
+      "userIdx": "1_421Q73D8_akF",
+      "channelNo": 1,
+      "grade": 1,
+      "dt": "1757476942862",
+      "contribution": 7850,
+      "lastLoginDt": "1773218999047",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MywyNDIwLDE5Ljc1ODM5LC0zNjMuMzM0NywwLjcyODEwOTgsMC43MjgxMDk4LDM1OS43ODIx"
+      },
+      "logoutDt": "1773218999047"
+    },
+    {
+      "guildIdx": "0_631PdeSx_vf4",
+      "userIdx": "1_521PfYyH_3amk",
+      "channelNo": 1,
+      "grade": 1,
+      "dt": "1736173975935",
+      "contribution": 29590,
+      "lastLoginDt": "1780965140268",
+      "thumbnail": {
+        "thumbnailFrame": 5700,
+        "useCustom": true,
+        "thumbnail": "MywyMjgxLDEyLjc2NDgyLC0yNDUuNzk5NywwLjUwMTE5MjUsMC41MDExOTI1LDM1OC43OTA5"
+      },
+      "logoutDt": "1780965499339",
+      "weeklyContribution": 110
+    },
+    {
+      "guildIdx": "0_631PdeSx_vf4",
+      "userIdx": "1_621SwU19_269",
+      "channelNo": 1,
+      "grade": 1,
+      "dt": "1775779366045",
+      "contribution": 1870,
+      "lastLoginDt": "1778715316050",
+      "thumbnail": {
+        "thumbnailFrame": 5653,
+        "thumbnailImage": 36990
+      },
+      "logoutDt": "1778715316050"
+    },
+    {
+      "guildIdx": "0_631PdeSx_vf4",
+      "userIdx": "1_621T7Pee_lbk",
+      "channelNo": 1,
+      "grade": 1,
+      "dt": "1753838802542",
+      "contribution": 6350,
+      "lastLoginDt": "1775022788178",
+      "thumbnail": {
+        "thumbnailFrame": 5711,
+        "useCustom": true,
+        "thumbnail": "MywyMjI4LC0xMTkuMjExNywtNTM1LjMzODUsMC44NzUwODMzLDAuODc1MDgzMywzNTkuNzkwMg=="
+      },
+      "logoutDt": "1775022788178"
+    },
+    {
+      "guildIdx": "0_631PdeSx_vf4",
+      "userIdx": "1_641RFzBU_dcz",
+      "channelNo": 1,
+      "grade": 1,
+      "dt": "1753605650338",
+      "contribution": 13710,
+      "lastLoginDt": "1774434991798",
+      "thumbnail": {
+        "thumbnailFrame": 5633,
+        "thumbnailImage": 36030,
+        "thumbnail": "MywyMjAxLC0xOTIuNjU5NSwxNDQuNDA4LDAuOTk5MDM0NiwwLjk5OTAzNDYsMTMuNTA0MjQ="
+      },
+      "logoutDt": "1774434991798"
+    },
+    {
+      "guildIdx": "0_631PdeSx_vf4",
+      "userIdx": "1_821PxwOU_ezt",
+      "channelNo": 1,
+      "grade": 1,
+      "dt": "1700287693787",
+      "contribution": 50650,
+      "lastLoginDt": "1777390689882",
+      "thumbnail": {
+        "thumbnailFrame": 5700,
+        "useCustom": true,
+        "thumbnail": "MCw2MDMwLDQ4LjEyNTAyLC0yNzAsMSwxLDA="
+      },
+      "logoutDt": "1777390689882"
+    },
+    {
+      "guildIdx": "0_631PdeSx_vf4",
+      "userIdx": "1_841PdILv_6uMy",
+      "channelNo": 1,
+      "grade": 1,
+      "dt": "1765246164113",
+      "contribution": 6300,
+      "lastLoginDt": "1776731051708",
+      "thumbnail": {
+        "thumbnailFrame": 5723,
+        "useCustom": true,
+        "thumbnail": "Miw2MDEwNywxMjguNTQwOSwtNi41MzI0MzMsMC4yNjQ0OTgsMC4yNjQ0OTgsMzU4Ljg4Mzg="
+      },
+      "logoutDt": "1776731051708"
+    },
+    {
+      "guildIdx": "0_631PdeSx_vf4",
+      "userIdx": "1_941PdILv_5sPo",
+      "channelNo": 1,
+      "grade": 1,
+      "dt": "1762486850514",
+      "contribution": 5460,
+      "lastLoginDt": "1775173158783",
+      "thumbnail": {
+        "thumbnailFrame": 5701,
+        "useCustom": true,
+        "thumbnail": "MSwzMDYwNyw3OC4xNzM0NSwtMzkuOTk5OTcsMC4zMTkzMzk4LDAuMzE5MzM5OCwzNTkuMDQzOQ=="
+      },
+      "logoutDt": "1775173158783"
+    },
+    {
+      "guildIdx": "0_631PdeSx_vf4",
+      "userIdx": "1_a11PdeSF_9QL",
+      "channelNo": 1,
+      "grade": 1,
+      "dt": "1767935798264",
+      "contribution": 4760,
+      "lastLoginDt": "1775725975006",
+      "thumbnail": {
+        "thumbnailFrame": 5611,
+        "thumbnailImage": 32010
+      },
+      "logoutDt": "1775725975006"
+    },
+    {
+      "guildIdx": "0_631PdeSx_vf4",
+      "userIdx": "1_a21PdeSF_kA9",
+      "channelNo": 1,
+      "grade": 8,
+      "dt": "1701267838714",
+      "contribution": 52600,
+      "lastLoginDt": "1781022337926",
+      "thumbnail": {
+        "thumbnailFrame": 5613,
+        "useCustom": true,
+        "thumbnail": "MSw1MDMwMSwxODAuMzM2NywtMTY0Ljg0NDUsMC41OTI4OTU0LDAuNTkyODk1NCwzNTEuOTIxOA=="
+      },
+      "logoutDt": "1781022546019",
+      "weeklyContribution": 110
+    },
+    {
+      "guildIdx": "0_631PdeSx_vf4",
+      "userIdx": "1_b21PdILw_4zxW",
+      "channelNo": 1,
+      "grade": 1,
+      "dt": "1697978655389",
+      "contribution": 45620,
+      "lastLoginDt": "1777269859572",
+      "thumbnail": {
+        "thumbnailFrame": 5679,
+        "useCustom": true,
+        "thumbnail": "MywyMjgyLDgyLjAxNDQzLC0xNjkuMDY0OCwwLjU2MzQ3NDMsMC41NjM0NzQzLDM1OC42MDgy"
+      },
+      "logoutDt": "1777269859572"
+    },
+    {
+      "guildIdx": "0_631PdeSx_vf4",
+      "userIdx": "2_041PdeSx_sMx",
+      "channelNo": 2,
+      "grade": 1,
+      "dt": "1673318486542",
+      "contribution": 67170,
+      "lastLoginDt": "1778149598394",
+      "thumbnail": {
+        "thumbnailFrame": 5700,
+        "thumbnailImage": 35030,
+        "thumbnail": "MSwxMDEwMiwyMDcuNDA3NCwtMTgyLjk2MjksMC42MTUzMDQ4LDAuNjE1MzA0OCwzMTguNDA5OA=="
+      },
+      "logoutDt": "1778149598394"
+    },
+    {
+      "guildIdx": "0_631PdeSx_vf4",
+      "userIdx": "2_221RL1Gh_erb",
+      "channelNo": 2,
+      "grade": 1,
+      "dt": "1767329401149",
+      "contribution": 4680,
+      "lastLoginDt": "1774484452456",
+      "thumbnail": {
+        "thumbnailFrame": 5501,
+        "thumbnailImage": 36520
+      },
+      "logoutDt": "1774484452456"
+    },
+    {
+      "guildIdx": "0_631PdeSx_vf4",
+      "userIdx": "2_531QYlvG_adW",
+      "channelNo": 2,
+      "grade": 1,
+      "dt": "1751600874594",
+      "contribution": 19410,
+      "lastLoginDt": "1781048843918",
+      "thumbnail": {
+        "thumbnailFrame": 5700,
+        "thumbnailImage": 36050
+      },
+      "logoutDt": "1781049547749",
+      "weeklyContribution": 120
+    },
+    {
+      "guildIdx": "0_631PdeSx_vf4",
+      "userIdx": "2_621RI22o_65C",
+      "channelNo": 2,
+      "grade": 1,
+      "dt": "1746660035169",
+      "contribution": 22750,
+      "lastLoginDt": "1781048832494",
+      "thumbnail": {
+        "thumbnailFrame": 5623,
+        "useCustom": true,
+        "thumbnail": "MiwxMDIwMywtMy44MDg2MjQsLTE0Ni41NTc2LDAuNTI2OTc2MiwwLjUyNjk3NjIsMzU5Ljg1NQ=="
+      },
+      "logoutDt": "1781048904169",
+      "weeklyContribution": 130
+    },
+    {
+      "guildIdx": "0_631PdeSx_vf4",
+      "userIdx": "2_831PdILv_bsD8",
+      "channelNo": 2,
+      "grade": 1,
+      "dt": "1711682955944",
+      "contribution": 37340,
+      "lastLoginDt": "1773493588193",
+      "thumbnail": {
+        "thumbnailFrame": 5700,
+        "useCustom": true,
+        "thumbnail": "MiwyMTQwNSwtMzA0Ljc3MjMsNDcuOTgyNTgsMC4zNjUzMDE2LDAuMzY1MzAxNiwxLjUyOTIyMg=="
+      },
+      "logoutDt": "1773493588193"
+    },
+    {
+      "guildIdx": "0_631PdeSx_vf4",
+      "userIdx": "2_c11PsAFi_61D",
+      "channelNo": 2,
+      "grade": 1,
+      "dt": "1768525840072",
+      "contribution": 2780,
+      "lastLoginDt": "1776070463758",
+      "thumbnail": {
+        "thumbnailFrame": 5633,
+        "useCustom": true,
+        "thumbnail": "MSw1MDMwOCw0LjUxNzA5LC0xMTIuOTMyLDAuMTkzNjM5MSwwLjE5MzYzOTEsMjcwLjAwMzI="
+      },
+      "logoutDt": "1776070463758"
+    },
+    {
+      "guildIdx": "0_631PdeSx_vf4",
+      "userIdx": "2_e21PMpdN_mcP",
+      "channelNo": 2,
+      "grade": 9,
+      "dt": "1690005992786",
+      "contribution": 60140,
+      "lastLoginDt": "1781049498936",
+      "thumbnail": {
+        "thumbnailFrame": 5692,
+        "useCustom": true,
+        "thumbnail": "MSwxMTYsNTQ5LjcxMzYsLTc0LjA5ODAzLDAuNTUsMC41NSww"
+      },
+      "logoutDt": "-1",
+      "weeklyContribution": 150
+    }
+  ],
+  "__format__": "proto"
+}

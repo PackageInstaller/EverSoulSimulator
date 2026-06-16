@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message DungeonRestart {
+  int32 dungeonId = 1;
+}
+

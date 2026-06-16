@@ -1,0 +1,29 @@
+{
+  "cashGrow": [
+    {
+      "shopItemNo": 501,
+      "lastReceiveNo": 525,
+      "firstPaidReceived": true,
+      "bought": true
+    },
+    {
+      "shopItemNo": 502,
+      "lastReceiveNo": 770,
+      "firstPaidReceived": true,
+      "bought": true
+    },
+    {
+      "shopItemNo": 503,
+      "lastReceiveNo": 1170,
+      "firstPaidReceived": true,
+      "bought": true
+    },
+    {
+      "shopItemNo": 511,
+      "lastReceiveNo": 44,
+      "firstPaidReceived": true,
+      "bought": true
+    }
+  ],
+  "__format__": "proto"
+}

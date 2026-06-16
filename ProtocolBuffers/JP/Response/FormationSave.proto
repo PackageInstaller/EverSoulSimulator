@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package EsPb;
+
+message FormationSave {
+  sFormation results = 1;
+}
+
+message sFormation {
+  int32 no = 1;
+  int32 kind = 2;
+  repeated string heroidx = 3;
+  int32 formationType = 4;
+  string formationName = 5;
+  sRelic relic = 6;
+}
+
+message sRelic {
+  int32 type = 1;
+  int32 formation = 2;
+  int32 relicOrder = 3;
+  int32 relicNo = 4;
+}
+

@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package EsPb;
+
+message ThreeMatchTotalRanking {
+  repeated sThreeMatchRank stageRank = 1;
+  repeated sThreeMatchRank friendRank = 2;
+  int32 myPercent = 3;
+  int32 myFriendRank = 4;
+  int32 myStageRank = 5;
+  int32 myScore = 6;
+}
+
+message sThreeMatchRank {
+  string userIdx = 1;
+  string nickName = 2;
+  sThumbnail thumbnail = 3;
+  int32 rank = 4;
+  int32 score = 5;
+}
+
+message sThumbnail {
+  int32 thumbnailFrame = 1;
+  int32 thumbnailImage = 2;
+  bool useCustom = 3;
+  bytes thumbnail = 4;
+}
+

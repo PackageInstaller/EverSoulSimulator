@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package EsPb;
+
+message EverLiveInfo {
+  repeated sEverLive everLive = 1;
+  repeated sEverLiveReward rewards = 2;
+}
+
+message sEverLive {
+  int32 groupNo = 1;
+  int32 eventNumber = 2;
+  int32 stageNo = 3;
+  int32 stageMode = 4;
+  int32 clearCount = 5;
+  int32 clearYymmdd = 6;
+  int32 perfectCount = 7;
+  int32 signatureCount = 8;
+}
+
+message sEverLiveReward {
+  int32 eventGroup = 1;
+  int32 eventNumber = 2;
+  int32 stageMode = 3;
+  int32 repeatType = 4;
+  int32 clearStage = 5;
+  int32 rewardType = 6;
+  int32 goalAmount = 7;
+  int32 isReward = 8;
+  int32 rewardNo = 9;
+}
+

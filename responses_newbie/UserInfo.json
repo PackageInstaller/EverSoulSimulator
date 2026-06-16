@@ -1,0 +1,401 @@
+{
+  "user": {
+    "idx": "1_621WhSES_19fD",
+    "lastLoginDt": "1781101455820",
+    "channelNo": 1,
+    "createdDt": "1781101455820",
+    "thumbnail": {
+      "thumbnailFrame": 5501,
+      "thumbnailImage": 30001
+    }
+  },
+  "currency": {
+    "allCurrency": [
+      {
+        "type": "Gold"
+      },
+      {
+        "type": "FreeDia"
+      },
+      {
+        "type": "ManaDust"
+      },
+      {
+        "type": "ManaCrystal"
+      },
+      {
+        "type": "Exp"
+      },
+      {
+        "type": "Heart"
+      },
+      {
+        "type": "LifeEssence"
+      },
+      {
+        "type": "ArenaTicket"
+      },
+      {
+        "type": "Dungeon"
+      },
+      {
+        "type": "Guild"
+      },
+      {
+        "type": "Release"
+      },
+      {
+        "type": "Arena"
+      },
+      {
+        "type": "Relics"
+      },
+      {
+        "type": "Silver"
+      },
+      {
+        "type": "SingleRaidCoin"
+      },
+      {
+        "type": "PickupGachaTicket"
+      },
+      {
+        "type": "Sign1"
+      },
+      {
+        "type": "Sign2"
+      },
+      {
+        "type": "SignHuman"
+      },
+      {
+        "type": "SignFurry"
+      },
+      {
+        "type": "SignElf"
+      },
+      {
+        "type": "SignUndead"
+      },
+      {
+        "type": "SignAngel"
+      },
+      {
+        "type": "SignDemon"
+      },
+      {
+        "type": "NormalTicket"
+      },
+      {
+        "type": "RaceTicket"
+      },
+      {
+        "type": "RareSoulstone"
+      },
+      {
+        "type": "EpicSoulstone"
+      },
+      {
+        "type": "EquipExp"
+      },
+      {
+        "type": "CollaborationSummonTicket"
+      },
+      {
+        "type": "PayDia"
+      },
+      {
+        "type": "TeamarenaTicket"
+      },
+      {
+        "type": "SignatureGachaTicket"
+      },
+      {
+        "type": "PremiumGachaTicket"
+      },
+      {
+        "type": "MonthlyHeroResetTicket"
+      },
+      {
+        "type": "EquipExpMiddle"
+      },
+      {
+        "type": "EquipExpHigh"
+      },
+      {
+        "type": "ZodiacExp"
+      },
+      {
+        "type": "LabyrinthTicket"
+      },
+      {
+        "type": "TranscendentStone"
+      },
+      {
+        "type": "SingleRaidTicket"
+      },
+      {
+        "type": "SetItemEngrave"
+      },
+      {
+        "type": "RotationDungeonTicket"
+      },
+      {
+        "type": "EdenCoin"
+      },
+      {
+        "type": "TypeBarrierGateTicket"
+      },
+      {
+        "type": "OriginTowerTicket"
+      },
+      {
+        "type": "DoubleGateNormalTicket",
+        "value": "3"
+      },
+      {
+        "type": "DoubleGateNormalTicketCharge"
+      },
+      {
+        "type": "SignatureEnhanceStone"
+      },
+      {
+        "type": "HeroOptionChangeStone"
+      },
+      {
+        "type": "WishGachaTicket"
+      },
+      {
+        "type": "TotalDia"
+      }
+    ]
+  },
+  "hero": [
+    {
+      "idx": "1_131WhSEa_14YK",
+      "heroNo": 10,
+      "level": 1,
+      "gradeSno": 110011,
+      "raceSno": 110052
+    },
+    {
+      "idx": "1_131WhSEa_14YL",
+      "heroNo": 20,
+      "level": 1,
+      "gradeSno": 110011,
+      "raceSno": 110053
+    },
+    {
+      "idx": "1_131WhSEa_14YM",
+      "heroNo": 30,
+      "level": 1,
+      "gradeSno": 110011,
+      "raceSno": 110054
+    },
+    {
+      "idx": "1_131WhSEa_14YN",
+      "heroNo": 40,
+      "level": 1,
+      "gradeSno": 110011,
+      "raceSno": 110055
+    }
+  ],
+  "formation": [
+    {
+      "kind": 150,
+      "heroidx": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "formationType": 1
+    },
+    {
+      "no": 1,
+      "kind": 150,
+      "heroidx": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "formationType": 1
+    },
+    {
+      "no": 2,
+      "kind": 150,
+      "heroidx": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "formationType": 1
+    },
+    {
+      "no": 3,
+      "kind": 150,
+      "heroidx": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "formationType": 1
+    }
+  ],
+  "heroReputation": [
+    {
+      "heroNo": 10,
+      "maxGradeSno": 110011,
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 20,
+      "maxGradeSno": 110011,
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 30,
+      "maxGradeSno": 110011,
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 40,
+      "maxGradeSno": 110011,
+      "objetNo": "0"
+    }
+  ],
+  "autoHunt": {
+    "labDt": "1781101455820",
+    "receiveDt": "1781101455820"
+  },
+  "spiritTree": [
+    {}
+  ],
+  "dailyContent": {
+    "arenaCnt": 5,
+    "townCoin": 1,
+    "raceSno": 201,
+    "ahQuickCnt": 5,
+    "teamarenaCnt": 5
+  },
+  "itemEtc": [
+    {
+      "itemNo": 5000,
+      "cnt": 1
+    },
+    {
+      "itemNo": 5501,
+      "cnt": 1
+    },
+    {
+      "itemNo": 5502,
+      "cnt": 1
+    },
+    {
+      "itemNo": 5503,
+      "cnt": 1
+    },
+    {
+      "itemNo": 5504,
+      "cnt": 1
+    },
+    {
+      "itemNo": 5505,
+      "cnt": 1
+    },
+    {
+      "itemNo": 5506,
+      "cnt": 1
+    },
+    {
+      "itemNo": 5507,
+      "cnt": 1
+    },
+    {
+      "itemNo": 30001,
+      "cnt": 1
+    }
+  ],
+  "doubleGate": [
+    {
+      "stageType": "DoubleGateNormalManaCrystal"
+    },
+    {
+      "stageType": "DoubleGateNormalGold"
+    },
+    {
+      "stageType": "DoubleGateNormalManaDust"
+    },
+    {
+      "stageType": "DoubleGateNormalEnhanceStone"
+    }
+  ],
+  "secureSeed": "8620110210442976",
+  "lobbyBackground": {
+    "type": 2,
+    "heroNo1": 10,
+    "heroNo2": 20,
+    "heroNo3": 30,
+    "heroNo4": 40,
+    "backgroundId": 5000,
+    "illustId": 117
+  },
+  "dungeonList": {
+    "rotationDungeonNo": 2001,
+    "rotationDungeonExpireDt": "1781481600000",
+    "labyrinthExpireDt": "1781222400000"
+  },
+  "bgm": {
+    "lobbyBgm": "WzEwMSwxMDJd",
+    "battleBgm": "WzEwMSwxMDIsMTAzXQ=="
+  },
+  "chatKey": "2368900|5SzzFrAVMWc56IcGFNwbfQ==",
+  "chatServerUrl": "http://127.0.0.1:9999",
+  "sdHeroNo": 1,
+  "battleAutoUltimate": true,
+  "monthlyHeroResetFlag": 1,
+  "arkOperator": 1010,
+  "doubleGateDailyContent": [
+    {
+      "stageType": "DoubleGateNormalManaCrystal",
+      "firstDoubleGateGroupNo": 9,
+      "secondDoubleGateGroupNo": 14,
+      "buffNo": 1008,
+      "debuffNo": 2016,
+      "globalDebuffNo": 3003
+    },
+    {
+      "stageType": "DoubleGateNormalGold",
+      "firstDoubleGateGroupNo": 16,
+      "secondDoubleGateGroupNo": 1,
+      "buffNo": 1013,
+      "debuffNo": 2004,
+      "globalDebuffNo": 3002
+    },
+    {
+      "stageType": "DoubleGateNormalManaDust",
+      "firstDoubleGateGroupNo": 20,
+      "secondDoubleGateGroupNo": 2,
+      "buffNo": 1018,
+      "debuffNo": 2005,
+      "globalDebuffNo": 3003
+    },
+    {
+      "stageType": "DoubleGateNormalEnhanceStone",
+      "firstDoubleGateGroupNo": 21,
+      "secondDoubleGateGroupNo": 5,
+      "buffNo": 1017,
+      "debuffNo": 2001,
+      "globalDebuffNo": 3009
+    }
+  ],
+  "arbeitOption": {},
+  "__format__": "proto"
+}

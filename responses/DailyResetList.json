@@ -1,0 +1,710 @@
+{
+  "doubleGate": [
+    {
+      "stageType": "DoubleGateNormalManaCrystal",
+      "difficulty": 25,
+      "sweepDifficulty": 25
+    },
+    {
+      "stageType": "DoubleGateNormalGold",
+      "difficulty": 25,
+      "sweepDifficulty": 25
+    },
+    {
+      "stageType": "DoubleGateNormalManaDust"
+    },
+    {
+      "stageType": "DoubleGateNormalEnhanceStone"
+    }
+  ],
+  "dailyContent": {
+    "arenaCnt": 5,
+    "townCoin": 1,
+    "raceSno": 202,
+    "ahQuickCnt": 5,
+    "teamarenaCnt": 5
+  },
+  "dungeonList": {
+    "dungeonReward": [
+      {
+        "dungeon": {
+          "id": 1054451,
+          "dungeonNo": 5003,
+          "x": 999.0,
+          "z": 999.0,
+          "isFirstClear": 1,
+          "missionCnt": -1,
+          "difficulty": 1
+        },
+        "dungeonReward": [
+          {}
+        ]
+      },
+      {
+        "dungeon": {
+          "id": 1072379,
+          "dungeonNo": 5005,
+          "x": 999.0,
+          "z": 999.0,
+          "isFirstClear": 1,
+          "missionCnt": -1,
+          "difficulty": 1
+        },
+        "dungeonReward": [
+          {}
+        ]
+      },
+      {
+        "dungeon": {
+          "id": 1073494,
+          "dungeonNo": 5006,
+          "x": 999.0,
+          "z": 999.0,
+          "isFirstClear": 1,
+          "missionCnt": -1,
+          "difficulty": 1
+        },
+        "dungeonReward": [
+          {}
+        ]
+      },
+      {
+        "dungeon": {
+          "id": 1094822,
+          "dungeonNo": 5007,
+          "x": 999.0,
+          "z": 999.0,
+          "isFirstClear": 1,
+          "missionCnt": -1,
+          "difficulty": 1
+        },
+        "dungeonReward": [
+          {}
+        ]
+      },
+      {
+        "dungeon": {
+          "id": 1102894,
+          "dungeonNo": 5009,
+          "x": 999.0,
+          "z": 999.0,
+          "isFirstClear": 1,
+          "missionCnt": -1,
+          "difficulty": 1
+        },
+        "dungeonReward": [
+          {}
+        ]
+      },
+      {
+        "dungeon": {
+          "id": 1044495,
+          "dungeonNo": 2001,
+          "x": 999.0,
+          "z": 999.0,
+          "isFirstClear": 1,
+          "missionCnt": -1,
+          "difficulty": 1,
+          "maxClearLevel": 9
+        },
+        "dungeonReward": [
+          {}
+        ]
+      },
+      {
+        "dungeon": {
+          "id": 1047292,
+          "dungeonNo": 2002,
+          "x": 999.0,
+          "z": 999.0,
+          "isFirstClear": 1,
+          "missionCnt": -1,
+          "difficulty": 1,
+          "maxClearLevel": 9
+        },
+        "dungeonReward": [
+          {}
+        ]
+      },
+      {
+        "dungeon": {
+          "id": 1048903,
+          "dungeonNo": 2003,
+          "x": 999.0,
+          "z": 999.0,
+          "isFirstClear": 1,
+          "missionCnt": -1,
+          "difficulty": 1,
+          "maxClearLevel": 9
+        },
+        "dungeonReward": [
+          {}
+        ]
+      },
+      {
+        "dungeon": {
+          "id": 1050257,
+          "dungeonNo": 2004,
+          "x": 999.0,
+          "z": 999.0,
+          "isFirstClear": 1,
+          "missionCnt": -1,
+          "difficulty": 1,
+          "maxClearLevel": 9
+        },
+        "dungeonReward": [
+          {}
+        ]
+      },
+      {
+        "dungeon": {
+          "id": 1105438,
+          "dungeonNo": 2005,
+          "x": 999.0,
+          "z": 999.0,
+          "isFirstClear": 1,
+          "missionCnt": -1,
+          "difficulty": 1,
+          "maxClearLevel": 9
+        },
+        "dungeonReward": [
+          {}
+        ]
+      },
+      {
+        "dungeon": {
+          "id": 1136004,
+          "dungeonNo": 2006,
+          "x": 999.0,
+          "z": 999.0,
+          "isFirstClear": 1,
+          "missionCnt": -1,
+          "difficulty": 1,
+          "maxClearLevel": 9
+        },
+        "dungeonReward": [
+          {}
+        ]
+      },
+      {
+        "dungeon": {
+          "id": 1043918,
+          "dungeonNo": 10001,
+          "x": 999.0,
+          "z": 999.0,
+          "mapInfo": "LcoBCgAwCAJA25RF/3/wbO0QKVAkFU1fjiICz6bLd4/qLAaRfoByTdoF",
+          "isClear": 1,
+          "isFirstClear": 1,
+          "missionNo": -1,
+          "missionCnt": -1,
+          "seed": 28208,
+          "difficulty": 1
+        },
+        "dungeonReward": [
+          {}
+        ]
+      },
+      {
+        "dungeon": {
+          "id": 1044219,
+          "dungeonNo": 10002,
+          "x": 999.0,
+          "z": 999.0,
+          "mapInfo": "hYxBEoAwDAIRYUbz/webNG315h46Q2Fjv0jyURA0AHdK/MeV3EFSwysRJaLe0DyC/mxymHl2a7qbKuMcSfhYa/AA",
+          "isClear": 1,
+          "isFirstClear": 1,
+          "missionNo": -1,
+          "missionCnt": -1,
+          "seed": 21044,
+          "difficulty": 1
+        },
+        "dungeonReward": [
+          {}
+        ]
+      },
+      {
+        "dungeon": {
+          "id": 1044691,
+          "dungeonNo": 10003,
+          "x": 999.0,
+          "z": 999.0,
+          "mapInfo": "fYxBCsBACAMnbApF9v/vrboIhULnZEaNJF1/ODmTXhxzF30wPiIfgK0Ak8Zs14YRX2O1ibU6MmVQIdse",
+          "isClear": 1,
+          "isFirstClear": 1,
+          "missionNo": -1,
+          "missionCnt": -1,
+          "seed": 16227,
+          "difficulty": 1
+        },
+        "dungeonReward": [
+          {}
+        ]
+      },
+      {
+        "dungeon": {
+          "id": 1045122,
+          "dungeonNo": 10004,
+          "x": 999.0,
+          "z": 999.0,
+          "mapInfo": "jY5JDsAwCAPNYhHx/wcX0qRSl0PngjEITBZG8wml4T/Gg+3LDQUwqrph0h6QGeLdAN8LWjGkdQl5j0Pg83yq6nLLN1x/wTghlog1qYgH",
+          "isClear": 1,
+          "isFirstClear": 1,
+          "missionNo": -1,
+          "missionCnt": -1,
+          "seed": 11180,
+          "difficulty": 1
+        },
+        "dungeonReward": [
+          {}
+        ]
+      },
+      {
+        "dungeon": {
+          "id": 1045133,
+          "dungeonNo": 10005,
+          "x": -511.929,
+          "z": 10.9395,
+          "mapInfo": "hY8JCgAhDAMTSED//2FZRKuux0ChHQJt7SuJjUHygA0QGUKdJX5CWNFGhyB6G5ndPvxL1kAPvpj/i5PIAg==",
+          "conditionInfo": "Y2JiRAFMjEwQEQZGBiAAUjAaQoFJAA==",
+          "heroInfo": "dZRJb+JAEIX/EIpc3e3tyBgUljBpG8zEuZSMsYFJWIQJYdD8+GlvI6Wrc/HlU9WrrvfKDHMAOTutf+L+PO5BDx4sy+pZ6vuXITAI/cdggPY+NDAZX8sMt1MduQBR/yQZbvmnzvxO7n34rjOHQ3SYiBtyNtMZBwjzkTtGPrcMdXP37I7QeV0Y6hq9ssx1xgSE242/wzSThNV1rosH60p6qrpLsthhlpHn8W6b+YvOUrXNopxd0F+CzizWyv1Z+Aa5puehHOhMiNaFyZygruXFS4gcb7cp3EhnHuscWgzJVlTdc7bJUIx3pjHj632NsNqSRKin/573HWQhWVmqXPc+EguZw3WWq1kiKUfoAXEo7/Qcj6SlCu5iE53RO0/IXtQbhiy+4fPK4F7o8sEGl4J0FO3GVnKkM7uZ8o7sfCBq0E7CPwljako2LQRynhpeEAXJtES4EhdA3ZcVBwVmm29je3x5NASikRPlKzkhqE9hq95yIoEQrQn8ZjzLo4wc9I5kTBWyJpt8TUxwRDvn6fJhqlN6fbyRuFdnsozjCfr09KpLr/PAV79I/ngrt7eeTC7UeWAD8rdyu1GckMzy/8/ylhRGZ+8ix50WJKhOSK7HT0e0C3ntia+w6llDUaSJCU5PjOM41pGtmgY/LjsU9pvOqh91I8iC6Cv8Bw==",
+          "additionalInfo": "q1ZyUbKqVjI0MDA3MISzjJSsDHQgTGMlK8PaWh0lN7BQmJKVkqGeoZKOkiNIHAA=",
+          "isEnter": 1,
+          "isClear": 1,
+          "isFirstClear": 1,
+          "missionNo": 200502,
+          "seed": 32629,
+          "difficulty": 1,
+          "playerObjectId": 100701
+        },
+        "dungeonReward": [
+          {}
+        ]
+      },
+      {
+        "dungeon": {
+          "id": 1082582,
+          "dungeonNo": 10006,
+          "x": 999.0,
+          "z": 999.0,
+          "mapInfo": "nVJRDoUwCKMK0+z+B35CAeePybOJMtutRRFo7BesoPYfdkISY4zDPX3t9SSwXKcWzG94xdzUjUQmoGVKe2L6GkKVZjKdhJSHC6WRCE0Wl7TyLI/ovZdVZWb4ferRp6wB1O1o2BLVG1DGiBfMQrmbDLLSs+9o4f2zfcA9/BhNPuacLBgWykXHFC1PJGXaf9EP",
+          "isClear": 1,
+          "isFirstClear": 1,
+          "missionNo": -1,
+          "missionCnt": -1,
+          "seed": 17864,
+          "difficulty": 1
+        },
+        "dungeonReward": [
+          {
+            "type": "Object",
+            "rewardNo": 5010
+          }
+        ]
+      },
+      {
+        "dungeon": {
+          "id": 1124477,
+          "dungeonNo": 10007,
+          "x": 999.0,
+          "z": 999.0,
+          "mapInfo": "dYtBDgAhCAOn6MHw/wcvSmJUskMItIUxEhW8SRCdEtpc7XLBpnuIK3Q3drwcLIiBCn2TtxJ/9XxTOF19",
+          "isClear": 1,
+          "isFirstClear": 1,
+          "missionNo": -1,
+          "missionCnt": -1,
+          "seed": 44070,
+          "difficulty": 1
+        },
+        "dungeonReward": [
+          {}
+        ]
+      }
+    ],
+    "dungeonPerfectClearRecord": [
+      {
+        "type": "Training",
+        "dungeonNo": 5003
+      },
+      {
+        "type": "Training",
+        "dungeonNo": 5005
+      },
+      {
+        "type": "Training",
+        "dungeonNo": 5006
+      },
+      {
+        "type": "Training",
+        "dungeonNo": 5007
+      },
+      {
+        "type": "Training",
+        "dungeonNo": 5009
+      },
+      {
+        "type": 2,
+        "dungeonNo": 2001,
+        "dungeonLevel": 9
+      },
+      {
+        "type": 2,
+        "dungeonNo": 2002,
+        "dungeonLevel": 9
+      },
+      {
+        "type": 2,
+        "dungeonNo": 2003,
+        "dungeonLevel": 9
+      },
+      {
+        "type": 2,
+        "dungeonNo": 2004,
+        "dungeonLevel": 9
+      },
+      {
+        "type": 2,
+        "dungeonNo": 2005,
+        "dungeonLevel": 9
+      },
+      {
+        "type": 2,
+        "dungeonNo": 2006,
+        "dungeonLevel": 9
+      }
+    ],
+    "rotationDungeonNo": 2001,
+    "rotationDungeonExpireDt": "1781481600000",
+    "labyrinthExpireDt": "1781222400000",
+    "rotationDungeonClearCnt": 1
+  },
+  "townVisitHero": [
+    {
+      "heroNo": 1050
+    },
+    {
+      "heroNo": 1090
+    },
+    {
+      "heroNo": 3060
+    },
+    {
+      "heroNo": 3120
+    }
+  ],
+  "monthlyHeroResetFlag": 1,
+  "doubleGateDailyContent": [
+    {
+      "stageType": "DoubleGateNormalManaCrystal",
+      "firstDoubleGateGroupNo": 9,
+      "secondDoubleGateGroupNo": 14,
+      "buffNo": 1008,
+      "debuffNo": 2016,
+      "globalDebuffNo": 3003
+    },
+    {
+      "stageType": "DoubleGateNormalGold",
+      "firstDoubleGateGroupNo": 16,
+      "secondDoubleGateGroupNo": 1,
+      "buffNo": 1013,
+      "debuffNo": 2004,
+      "globalDebuffNo": 3002
+    },
+    {
+      "stageType": "DoubleGateNormalManaDust",
+      "firstDoubleGateGroupNo": 20,
+      "secondDoubleGateGroupNo": 2,
+      "buffNo": 1018,
+      "debuffNo": 2005,
+      "globalDebuffNo": 3003
+    },
+    {
+      "stageType": "DoubleGateNormalEnhanceStone",
+      "firstDoubleGateGroupNo": 21,
+      "secondDoubleGateGroupNo": 5,
+      "buffNo": 1017,
+      "debuffNo": 2001,
+      "globalDebuffNo": 3009
+    }
+  ],
+  "cashDailyN": [
+    {
+      "packageNo": 310,
+      "rewardYyyymmdd": 20260527,
+      "endYyyymmdd": 20260528
+    },
+    {
+      "packageNo": 320,
+      "rewardYyyymmdd": 20260527,
+      "endYyyymmdd": 20260528
+    },
+    {
+      "packageNo": 1212,
+      "rewardYyyymmdd": 20250228,
+      "endYyyymmdd": 20250301
+    },
+    {
+      "packageNo": 1216,
+      "rewardYyyymmdd": 20250320,
+      "endYyyymmdd": 20250321
+    },
+    {
+      "packageNo": 1224,
+      "rewardYyyymmdd": 20250501,
+      "endYyyymmdd": 20250502
+    },
+    {
+      "packageNo": 1231,
+      "rewardYyyymmdd": 20250529,
+      "endYyyymmdd": 20250530
+    },
+    {
+      "packageNo": 4051,
+      "rewardYyyymmdd": 20240715,
+      "endYyyymmdd": 20240716
+    },
+    {
+      "packageNo": 4061,
+      "rewardYyyymmdd": 20241015,
+      "endYyyymmdd": 20241016
+    },
+    {
+      "packageNo": 4062,
+      "rewardYyyymmdd": 20241015,
+      "endYyyymmdd": 20241016
+    },
+    {
+      "packageNo": 4063,
+      "rewardYyyymmdd": 20241015,
+      "endYyyymmdd": 20241016
+    },
+    {
+      "packageNo": 4081,
+      "rewardYyyymmdd": 20250117,
+      "endYyyymmdd": 20250118
+    },
+    {
+      "packageNo": 4082,
+      "rewardYyyymmdd": 20250117,
+      "endYyyymmdd": 20250118
+    },
+    {
+      "packageNo": 4211,
+      "rewardYyyymmdd": 20250727,
+      "endYyyymmdd": 20250728
+    },
+    {
+      "packageNo": 4231,
+      "rewardYyyymmdd": 20250816,
+      "endYyyymmdd": 20250817
+    },
+    {
+      "packageNo": 4251,
+      "rewardYyyymmdd": 20250906,
+      "endYyyymmdd": 20250907
+    },
+    {
+      "packageNo": 4395,
+      "rewardYyyymmdd": 20260201,
+      "endYyyymmdd": 20260202
+    },
+    {
+      "packageNo": 4396,
+      "rewardYyyymmdd": 20260201,
+      "endYyyymmdd": 20260202
+    }
+  ],
+  "currency": {
+    "allCurrency": [
+      {
+        "type": "Gold",
+        "value": "2680352014"
+      },
+      {
+        "type": "FreeDia",
+        "value": "505"
+      },
+      {
+        "type": "ManaDust",
+        "value": "6025455755"
+      },
+      {
+        "type": "ManaCrystal",
+        "value": "44782"
+      },
+      {
+        "type": "Exp",
+        "value": "33688425"
+      },
+      {
+        "type": "Heart",
+        "value": "3598"
+      },
+      {
+        "type": "LifeEssence",
+        "value": "94068"
+      },
+      {
+        "type": "ArenaTicket",
+        "value": "41"
+      },
+      {
+        "type": "Dungeon",
+        "value": "5829"
+      },
+      {
+        "type": "Guild",
+        "value": "84640"
+      },
+      {
+        "type": "Release",
+        "value": "374250"
+      },
+      {
+        "type": "Arena",
+        "value": "869780"
+      },
+      {
+        "type": "Relics",
+        "value": "258870"
+      },
+      {
+        "type": "Silver",
+        "value": "23220"
+      },
+      {
+        "type": "SingleRaidCoin",
+        "value": "220635"
+      },
+      {
+        "type": "PickupGachaTicket"
+      },
+      {
+        "type": "Sign1",
+        "value": "19190"
+      },
+      {
+        "type": "Sign2",
+        "value": "4996"
+      },
+      {
+        "type": "SignHuman"
+      },
+      {
+        "type": "SignFurry"
+      },
+      {
+        "type": "SignElf"
+      },
+      {
+        "type": "SignUndead"
+      },
+      {
+        "type": "SignAngel"
+      },
+      {
+        "type": "SignDemon"
+      },
+      {
+        "type": "NormalTicket",
+        "value": "138"
+      },
+      {
+        "type": "RaceTicket"
+      },
+      {
+        "type": "RareSoulstone",
+        "value": "4424"
+      },
+      {
+        "type": "EpicSoulstone",
+        "value": "1252"
+      },
+      {
+        "type": "EquipExp",
+        "value": "2221"
+      },
+      {
+        "type": "CollaborationSummonTicket"
+      },
+      {
+        "type": "PayDia",
+        "value": "982"
+      },
+      {
+        "type": "TeamarenaTicket"
+      },
+      {
+        "type": "SignatureGachaTicket",
+        "value": "122"
+      },
+      {
+        "type": "PremiumGachaTicket",
+        "value": "4"
+      },
+      {
+        "type": "MonthlyHeroResetTicket",
+        "value": "1"
+      },
+      {
+        "type": "EquipExpMiddle",
+        "value": "185"
+      },
+      {
+        "type": "EquipExpHigh",
+        "value": "210"
+      },
+      {
+        "type": "ZodiacExp"
+      },
+      {
+        "type": "LabyrinthTicket"
+      },
+      {
+        "type": "TranscendentStone",
+        "value": "1506"
+      },
+      {
+        "type": "SingleRaidTicket"
+      },
+      {
+        "type": "SetItemEngrave"
+      },
+      {
+        "type": "RotationDungeonTicket"
+      },
+      {
+        "type": "EdenCoin",
+        "value": "6250"
+      },
+      {
+        "type": "TypeBarrierGateTicket"
+      },
+      {
+        "type": "OriginTowerTicket"
+      },
+      {
+        "type": "DoubleGateNormalTicket"
+      },
+      {
+        "type": "DoubleGateNormalTicketCharge"
+      },
+      {
+        "type": "SignatureEnhanceStone",
+        "value": "2839"
+      },
+      {
+        "type": "HeroOptionChangeStone",
+        "value": "31628"
+      },
+      {
+        "type": "WishGachaTicket",
+        "value": "40"
+      },
+      {
+        "type": "TotalDia",
+        "value": "1487"
+      }
+    ]
+  },
+  "__format__": "proto"
+}

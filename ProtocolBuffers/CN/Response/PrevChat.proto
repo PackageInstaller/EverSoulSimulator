@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package EsPb;
+
+enum E_CHAT_MESSAGE_TYPE {
+  CommonChat = 0;
+  Emoticon = 1;
+  SystemGuildNameChange = 2;
+}
+
+message PrevChat {
+  repeated sChat chat = 1;
+}
+
+message sChat {
+  tUserInfo userInfo = 1;
+  string message = 2;
+  E_CHAT_MESSAGE_TYPE messageType = 3;
+  int64 dt = 4;
+}
+
+message tUserInfo {
+  string cookie = 1;
+  string userIdx = 2;
+  string nickname = 3;
+  sThumbnail thumbnail = 4;
+  int64 guildGrade = 5;
+  sMuteInfo muteInfo = 6;
+}
+
+message sThumbnail {
+  int32 thumbnailFrame = 1;
+  int32 thumbnailImage = 2;
+  bool useCustom = 3;
+  bytes thumbnail = 4;
+}
+
+message sMuteInfo {
+  int32 operation = 1;
+  int64 until = 2;
+  bool isPermanent = 3;
+  string reason = 4;
+  string operator = 5;
+}
+

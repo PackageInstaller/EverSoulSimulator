@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message EventBingoRandomPick {
+  int32 eventGroup = 1;
+  int32 roundNo = 2;
+  int32 ticketCount = 3;
+}
+

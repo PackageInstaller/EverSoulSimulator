@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message StageClear {
+  int32 stageNo = 1;
+  repeated sStageClearDeck heroIdx = 2;
+  sStageClearDeck friendHeroIdx = 3;
+  repeated stageLog stageLog = 4;
+  repeated stagePower stagePower = 5;
+  int32 skipFlag = 6;
+}
+
+message sStageClearDeck {
+  repeated string heroIdx = 1;
+  int32 formationIndex = 2;
+}
+
+message stageLog {
+  int32 attack = 1;
+  int32 damage = 2;
+  int32 recovery = 3;
+  repeated sSkill skill = 4;
+  int32 heroNo = 5;
+  string heroIdx = 6;
+  int32 formationIndex = 7;
+}
+
+message sSkill {
+  int32 type = 1;
+  int32 no = 2;
+  int32 cnt = 3;
+}
+
+message stagePower {
+  string heroIdx = 1;
+  int32 power = 2;
+}
+

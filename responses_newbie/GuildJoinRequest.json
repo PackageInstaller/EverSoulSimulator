@@ -1,0 +1,544 @@
+{
+  "guild": {
+    "idx": "0_131Rvl2J_a1N",
+    "name": "關門放喵",
+    "exp": 742690,
+    "cnt": 29,
+    "notice": "感謝大家的陪伴~<br>",
+    "dt": "1706877025340",
+    "regularRaidNo": 1,
+    "irregularRaidNo": 1001,
+    "useSkillPoint": 55,
+    "skillLevel": "[3,6,7]",
+    "customEmblem": "MSw5MDEwMSwxNDIuMzQ5NywtNDkuOTk5OTcsMC4zMTA3ODg4LDAuMzEwNzg4OCwzNTkuOTc5MQ==",
+    "skillResetDt": "1742697834090",
+    "introduction": "三天沒上會踢（可先請假）"
+  },
+  "guildMember": [
+    {
+      "guildIdx": "0_131Rvl2J_a1N",
+      "userIdx": "0_331PCBtj_FCk",
+      "grade": 1,
+      "dt": "1710664517306",
+      "contribution": 27610,
+      "nickName": "貓車伊始",
+      "lastLoginDt": "1781101080655",
+      "thumbnail": {
+        "thumbnailFrame": 5623,
+        "useCustom": true,
+        "thumbnail": "MSw5MDgwMSwtMTguMzA4MDcsLTguMDU1ODQsMC4yNzQ5MzY4LDAuMjc0OTM2OCwzNTkuNDk5OA=="
+      },
+      "power": "18214690",
+      "level": 410,
+      "logoutDt": "1781101116132"
+    },
+    {
+      "guildIdx": "0_131Rvl2J_a1N",
+      "userIdx": "0_611RsPMJ_vv0",
+      "grade": 1,
+      "dt": "1707136478143",
+      "contribution": 45050,
+      "nickName": "嵐星",
+      "lastLoginDt": "1777478859446",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MywyMzAyLC0yMy43MDA5NiwtMjkzLjk4NTIsMC40OTIzNDc3LDAuNDkyMzQ3NywzNTMuMTQyNA==",
+        "firstTitle": 6819,
+        "secondTitle": 6705
+      },
+      "power": "15775670",
+      "level": 307,
+      "logoutDt": "1777478859446"
+    },
+    {
+      "guildIdx": "0_131Rvl2J_a1N",
+      "userIdx": "0_711W312v_pnZ",
+      "grade": 1,
+      "dt": "1776236956767",
+      "contribution": 1520,
+      "nickName": "Lucario",
+      "lastLoginDt": "1778749706122",
+      "thumbnail": {
+        "thumbnailFrame": 5641,
+        "thumbnailImage": 31170,
+        "thumbnail": "MCwxMTYwLC0xMi43NzgxNiwtNjM5Ljk3NjcsMSwxLDA="
+      },
+      "power": "887536",
+      "level": 106,
+      "logoutDt": "1778749706122"
+    },
+    {
+      "guildIdx": "0_131Rvl2J_a1N",
+      "userIdx": "1_111QoPR6_1mC",
+      "channelNo": 1,
+      "grade": 1,
+      "dt": "1781039210220",
+      "contribution": 90,
+      "nickName": "byeclaudia",
+      "lastLoginDt": "1781040291999",
+      "thumbnail": {
+        "thumbnailFrame": 5653,
+        "thumbnailImage": 35020,
+        "firstTitle": 6804,
+        "secondTitle": 6705
+      },
+      "power": "13987735",
+      "level": 380,
+      "logoutDt": "1781041920266",
+      "weeklyContribution": 90
+    },
+    {
+      "guildIdx": "0_131Rvl2J_a1N",
+      "userIdx": "1_141WhSEa_ukS",
+      "channelNo": 1,
+      "grade": 1,
+      "dt": "1778624293113",
+      "contribution": 180,
+      "nickName": "Aqua",
+      "lastLoginDt": "1779004093544",
+      "thumbnail": {
+        "thumbnailFrame": 5504,
+        "thumbnailImage": 36540
+      },
+      "power": "178312",
+      "level": 70,
+      "logoutDt": "1779004093544"
+    },
+    {
+      "guildIdx": "0_131Rvl2J_a1N",
+      "userIdx": "1_221W314c_7sS",
+      "channelNo": 1,
+      "grade": 1,
+      "dt": "1775009119490",
+      "contribution": 1660,
+      "nickName": "MiniE",
+      "lastLoginDt": "1777774523631",
+      "thumbnail": {
+        "thumbnailFrame": 5504,
+        "thumbnailImage": 32160
+      },
+      "power": "1320646",
+      "level": 108,
+      "logoutDt": "1777774523631"
+    },
+    {
+      "guildIdx": "0_131Rvl2J_a1N",
+      "userIdx": "1_441S7r7H_Dva",
+      "channelNo": 1,
+      "grade": 1,
+      "dt": "1770654871717",
+      "contribution": 2980,
+      "nickName": "阿鲁巴",
+      "lastLoginDt": "1775845963552",
+      "thumbnail": {
+        "thumbnailFrame": 5501,
+        "thumbnailImage": 30001
+      },
+      "power": "5689105",
+      "level": 251,
+      "logoutDt": "1775845963552"
+    },
+    {
+      "guildIdx": "0_131Rvl2J_a1N",
+      "userIdx": "1_621TY1Pq_xMv",
+      "channelNo": 1,
+      "grade": 1,
+      "dt": "1767705519085",
+      "contribution": 6430,
+      "nickName": "Kyvie",
+      "lastLoginDt": "1778060298454",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MSw2MDUwMiw1LjAwNDg4MiwtOTUuODI4MjUsMC41NSwwLjU1LDA=",
+        "firstTitle": 6822,
+        "secondTitle": 6808
+      },
+      "power": "12727887",
+      "level": 331,
+      "logoutDt": "1778060298454"
+    },
+    {
+      "guildIdx": "0_131Rvl2J_a1N",
+      "userIdx": "1_621WhSES_19fD",
+      "channelNo": 1,
+      "grade": 1,
+      "dt": "1781106837495",
+      "nickName": "11111",
+      "lastLoginDt": "1781101455820",
+      "thumbnail": {
+        "thumbnailFrame": 5501,
+        "thumbnailImage": 30001
+      },
+      "power": "53531",
+      "level": 22,
+      "logoutDt": "-1"
+    },
+    {
+      "guildIdx": "0_131Rvl2J_a1N",
+      "userIdx": "1_621WhSES_A5u",
+      "channelNo": 1,
+      "grade": 1,
+      "dt": "1778816593529",
+      "contribution": 40,
+      "nickName": "Hase",
+      "lastLoginDt": "1778923680682",
+      "thumbnail": {
+        "thumbnailFrame": 5504,
+        "thumbnailImage": 36540
+      },
+      "power": "149492",
+      "level": 35,
+      "logoutDt": "1778923680682"
+    },
+    {
+      "guildIdx": "0_131Rvl2J_a1N",
+      "userIdx": "1_631Tt99O_Cw7",
+      "channelNo": 1,
+      "grade": 1,
+      "dt": "1769315650897",
+      "contribution": 4500,
+      "nickName": "Rein",
+      "lastLoginDt": "1779675599377",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MywyMzUzLC0xOC40Mzc0MiwtMTQ0LjUzMTIsMC4zNjU1MzQ2LDAuMzY1NTM0NiwzNDkuNDA5OQ==",
+        "firstTitle": 6706,
+        "secondTitle": 565301
+      },
+      "power": "2351859",
+      "level": 116,
+      "logoutDt": "1779675599377"
+    },
+    {
+      "guildIdx": "0_131Rvl2J_a1N",
+      "userIdx": "1_731VLfOR_ivh",
+      "channelNo": 1,
+      "grade": 1,
+      "dt": "1770273809493",
+      "contribution": 3160,
+      "nickName": "JustLilith",
+      "lastLoginDt": "1779091629473",
+      "thumbnail": {
+        "thumbnailFrame": 5621,
+        "thumbnailImage": 35020,
+        "thumbnail": "MSwxMDEwMSwtMTE2LjUxMjQsLTE2NC42OTEyLDAuNTUsMC41NSww",
+        "firstTitle": 6830,
+        "secondTitle": 6831
+      },
+      "power": "2858524",
+      "level": 138,
+      "logoutDt": "1779091629473"
+    },
+    {
+      "guildIdx": "0_131Rvl2J_a1N",
+      "userIdx": "2_131W311a_qDw",
+      "channelNo": 2,
+      "grade": 1,
+      "dt": "1779238378309",
+      "contribution": 1050,
+      "nickName": "蘇Kyokou",
+      "lastLoginDt": "1780993843733",
+      "thumbnail": {
+        "thumbnailFrame": 5612,
+        "useCustom": true,
+        "thumbnail": "MywyMjAxLDExOS45MDY0LC0xNTAuNjQ2MiwxLDEsMA=="
+      },
+      "power": "2546501",
+      "level": 201,
+      "logoutDt": "1780994927062",
+      "weeklyContribution": 100
+    },
+    {
+      "guildIdx": "0_131Rvl2J_a1N",
+      "userIdx": "2_131WhSEa_130R",
+      "channelNo": 2,
+      "grade": 1,
+      "dt": "1780967595318",
+      "contribution": 120,
+      "nickName": "MUNHWAN",
+      "lastLoginDt": "1781099385224",
+      "thumbnail": {
+        "thumbnailFrame": 5501,
+        "thumbnailImage": 36530
+      },
+      "power": "278268",
+      "level": 59,
+      "logoutDt": "1781103009064",
+      "weeklyContribution": 120
+    },
+    {
+      "guildIdx": "0_131Rvl2J_a1N",
+      "userIdx": "2_131WhSEa_qEE",
+      "channelNo": 2,
+      "grade": 1,
+      "dt": "1778524698038",
+      "contribution": 170,
+      "nickName": "XinsXz",
+      "lastLoginDt": "1779901193680",
+      "thumbnail": {
+        "thumbnailFrame": 5501,
+        "thumbnailImage": 30001
+      },
+      "power": "277918",
+      "level": 43,
+      "logoutDt": "1779901193680"
+    },
+    {
+      "guildIdx": "0_131Rvl2J_a1N",
+      "userIdx": "2_141VD4Sv_ajJ",
+      "channelNo": 2,
+      "grade": 1,
+      "dt": "1770638344180",
+      "contribution": 3130,
+      "nickName": "流云",
+      "lastLoginDt": "1776259084930",
+      "thumbnail": {
+        "thumbnailFrame": 5501,
+        "thumbnailImage": 30001
+      },
+      "power": "716163",
+      "level": 87,
+      "logoutDt": "1776259084930"
+    },
+    {
+      "guildIdx": "0_131Rvl2J_a1N",
+      "userIdx": "2_221Ux7AF_Ny",
+      "channelNo": 2,
+      "grade": 1,
+      "dt": "1769340294649",
+      "contribution": 1450,
+      "nickName": "Selena",
+      "lastLoginDt": "1776506927366",
+      "thumbnail": {
+        "thumbnailFrame": 5504,
+        "useCustom": true,
+        "thumbnail": "MSw2MDYwNCwyMS42NjY3NSwtNzIuNDk5OTgsMC4zNzMwNTcyLDAuMzczMDU3MiwzNTkuODI2Ng==",
+        "firstTitle": 6812,
+        "secondTitle": 6831
+      },
+      "power": "2827855",
+      "level": 157,
+      "logoutDt": "1776506927366"
+    },
+    {
+      "guildIdx": "0_131Rvl2J_a1N",
+      "userIdx": "2_421TbnLm_hr",
+      "channelNo": 2,
+      "grade": 1,
+      "dt": "1752327671666",
+      "contribution": 10460,
+      "nickName": "花无十日红",
+      "lastLoginDt": "1781033533992",
+      "thumbnail": {
+        "thumbnailFrame": 5504,
+        "useCustom": true,
+        "thumbnail": "MSw5MDYwMSwtNDM4LjYzMDMsLTIyOS45OTg5LDAuNjgwNzI1MywwLjY4MDcyNTMsMzU5Ljk3NjM=",
+        "firstTitle": 6812,
+        "secondTitle": 6804
+      },
+      "power": "10149033",
+      "level": 260,
+      "logoutDt": "1781033747887"
+    },
+    {
+      "guildIdx": "0_131Rvl2J_a1N",
+      "userIdx": "2_441Rvl2I_2fT",
+      "channelNo": 2,
+      "grade": 9,
+      "dt": "1706877025340",
+      "contribution": 48100,
+      "nickName": "韭菜公主要玩到最後",
+      "lastLoginDt": "1781058055482",
+      "thumbnail": {
+        "thumbnailFrame": 5621,
+        "thumbnailImage": 32100,
+        "thumbnail": "MywyMzEzLDEzLjk0OTk3LDMuOTM2NzYsMC4zMTQ2MTQ2LDAuMzE0NjE0NiwzNTkuNDc5NA==",
+        "firstTitle": 6813
+      },
+      "power": "38637235",
+      "level": 490,
+      "logoutDt": "1781058344067",
+      "weeklyContribution": 60
+    },
+    {
+      "guildIdx": "0_131Rvl2J_a1N",
+      "userIdx": "2_611T3LvA_bam",
+      "channelNo": 2,
+      "grade": 1,
+      "dt": "1730349743418",
+      "contribution": 31100,
+      "nickName": "神秘收刀人",
+      "lastLoginDt": "1777811128614",
+      "thumbnail": {
+        "thumbnailFrame": 5701,
+        "thumbnailImage": 36510
+      },
+      "power": "14523739",
+      "level": 348,
+      "logoutDt": "1777811128614"
+    },
+    {
+      "guildIdx": "0_131Rvl2J_a1N",
+      "userIdx": "2_611U7Kt3_xYZ",
+      "channelNo": 2,
+      "grade": 1,
+      "dt": "1774748905594",
+      "contribution": 330,
+      "nickName": "Una",
+      "lastLoginDt": "1775446378810",
+      "thumbnail": {
+        "thumbnailFrame": 5501,
+        "thumbnailImage": 30001
+      },
+      "power": "433904",
+      "level": 57,
+      "logoutDt": "1775446378810"
+    },
+    {
+      "guildIdx": "0_131Rvl2J_a1N",
+      "userIdx": "2_611W311S_kbJ",
+      "channelNo": 2,
+      "grade": 1,
+      "dt": "1775907535150",
+      "nickName": "艾可",
+      "lastLoginDt": "1776234982525",
+      "thumbnail": {
+        "thumbnailFrame": 5501,
+        "thumbnailImage": 30001
+      },
+      "power": "148765",
+      "level": 39,
+      "logoutDt": "1776234982525"
+    },
+    {
+      "guildIdx": "0_131Rvl2J_a1N",
+      "userIdx": "2_621Te5rT_qx3",
+      "channelNo": 2,
+      "grade": 1,
+      "dt": "1771288574519",
+      "contribution": 1370,
+      "nickName": "melusine",
+      "lastLoginDt": "1775465910701",
+      "thumbnail": {
+        "thumbnailFrame": 5507,
+        "useCustom": true,
+        "thumbnail": "Miw5MzIsMTA4LjUwMDksMTAuODIyNzksMSwxLDA=",
+        "firstTitle": 6803,
+        "secondTitle": 6830
+      },
+      "power": "4318258",
+      "level": 182,
+      "logoutDt": "1775465910701"
+    },
+    {
+      "guildIdx": "0_131Rvl2J_a1N",
+      "userIdx": "2_631WhSES_Ogh",
+      "channelNo": 2,
+      "grade": 1,
+      "dt": "1780156526647",
+      "contribution": 400,
+      "nickName": "飛天小母豬",
+      "lastLoginDt": "1781104644074",
+      "thumbnail": {
+        "thumbnailFrame": 5501,
+        "thumbnailImage": 30001
+      },
+      "power": "379147",
+      "level": 40,
+      "logoutDt": "1781104765502",
+      "weeklyContribution": 110
+    },
+    {
+      "guildIdx": "0_131Rvl2J_a1N",
+      "userIdx": "2_711W312v_5AE",
+      "channelNo": 2,
+      "grade": 1,
+      "dt": "1774864839997",
+      "nickName": "akiraa",
+      "lastLoginDt": "1774886568013",
+      "thumbnail": {
+        "thumbnailFrame": 5621,
+        "thumbnailImage": 32010,
+        "thumbnail": "MSwxNDUsLTYzLjc1LDAsMC4yNDY3MzE3LDAuMjQ2NzMxNywwLjQ1MzAxNjQ="
+      },
+      "power": "192157",
+      "level": 27,
+      "logoutDt": "1774886568013"
+    },
+    {
+      "guildIdx": "0_131Rvl2J_a1N",
+      "userIdx": "2_721SOA49_4Iz",
+      "channelNo": 2,
+      "grade": 1,
+      "dt": "1780415944597",
+      "nickName": "Eiji",
+      "lastLoginDt": "1780933597069",
+      "thumbnail": {
+        "thumbnailFrame": 5623,
+        "useCustom": true,
+        "thumbnail": "MSw2MTEsLTI0OS45NTg1LC0zMy4zMjA2MywwLjU1LDAuNTUsMA==",
+        "firstTitle": 6804,
+        "secondTitle": 6171
+      },
+      "power": "6138554",
+      "level": 171,
+      "logoutDt": "1780933668104"
+    },
+    {
+      "guildIdx": "0_131Rvl2J_a1N",
+      "userIdx": "2_721WddVU_vZ",
+      "channelNo": 2,
+      "grade": 1,
+      "dt": "1776444558645",
+      "contribution": 2040,
+      "nickName": "椒盐蛋",
+      "lastLoginDt": "1780498361108",
+      "thumbnail": {
+        "thumbnailFrame": 5631,
+        "thumbnailImage": 32100
+      },
+      "power": "1081548",
+      "level": 117,
+      "logoutDt": "1780498361108"
+    },
+    {
+      "guildIdx": "0_131Rvl2J_a1N",
+      "userIdx": "2_741W312v_oTa",
+      "channelNo": 2,
+      "grade": 1,
+      "dt": "1775984100203",
+      "contribution": 590,
+      "nickName": "Seto",
+      "lastLoginDt": "1776838425660",
+      "thumbnail": {
+        "thumbnailFrame": 5501,
+        "thumbnailImage": 34130
+      },
+      "power": "776002",
+      "level": 114,
+      "logoutDt": "1776838425660"
+    },
+    {
+      "guildIdx": "0_131Rvl2J_a1N",
+      "userIdx": "2_841Roagi_aXd",
+      "channelNo": 2,
+      "grade": 8,
+      "dt": "1709991346689",
+      "contribution": 43930,
+      "nickName": "姆Q",
+      "lastLoginDt": "1780056537579",
+      "thumbnail": {
+        "thumbnailFrame": 5622,
+        "thumbnailImage": 36980,
+        "thumbnail": "MywyMjQzLDE2LjM3OTg1LC0yMzYuNjgxLDAuNzE3NzM1MSwwLjcxNzczNTEsMC42ODQ5OTQ1"
+      },
+      "power": "37298540",
+      "level": 532,
+      "logoutDt": "1780056537579"
+    }
+  ],
+  "__format__": "proto"
+}

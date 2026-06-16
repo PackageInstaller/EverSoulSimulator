@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package EsPb;
+
+message TripStart {
+  int32 heroNo = 1;
+  int32 tripRemainCount = 2;
+  int32 uid = 3;
+}
+

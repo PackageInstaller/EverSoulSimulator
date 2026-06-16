@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package EsPb;
+
+message GachaHeroTutorial {
+  repeated sHero heros = 1;
+}
+
+message sHero {
+  string idx = 1;
+  int32 heroNo = 2;
+  int32 level = 3;
+  int32 isResonance = 4;
+  int32 gradeSno = 5;
+  int32 raceSno = 6;
+  int32 isLock = 7;
+}
+

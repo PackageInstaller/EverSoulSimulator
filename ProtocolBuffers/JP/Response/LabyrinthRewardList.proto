@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package EsPb;
+
+message LabyrinthRewardList {
+  repeated sLabyrinthItem labyrinthItem = 1;
+}
+
+message sLabyrinthItem {
+  int32 itemNo = 1;
+  int32 cnt = 2;
+}
+

@@ -1,0 +1,97 @@
+{
+ "root": "FormationSave",
+ "messages": {
+  "FormationSave": {
+   "fields": [
+    {
+     "name": "results",
+     "number": 1,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sFormation",
+     "packed": false
+    }
+   ]
+  },
+  "sFormation": {
+   "fields": [
+    {
+     "name": "no",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "kind",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "heroidx",
+     "number": 3,
+     "repeated": true,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "formationType",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "formationName",
+     "number": 5,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "relic",
+     "number": 6,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sRelic",
+     "packed": false
+    }
+   ]
+  },
+  "sRelic": {
+   "fields": [
+    {
+     "name": "type",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "formation",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "relicOrder",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "relicNo",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

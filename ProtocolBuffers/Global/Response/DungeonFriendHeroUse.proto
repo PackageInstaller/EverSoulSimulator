@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package EsPb;
+
+message DungeonFriendHeroUse {
+  repeated sRentUsedHero rentUsedHero = 1;
+}
+
+message sRentUsedHero {
+  string heroIdx = 1;
+  int32 used = 2;
+}
+

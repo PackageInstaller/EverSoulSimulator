@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message TownTileMultiRemove {
+  repeated sRemoveTownObjet removeTile = 1;
+}
+
+message sRemoveTownObjet {
+  int32 objetNo = 1;
+  int32 uid = 2;
+}
+

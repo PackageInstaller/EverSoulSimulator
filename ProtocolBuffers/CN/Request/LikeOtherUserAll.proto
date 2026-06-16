@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message LikeOtherUserAll {
+  repeated string otherUserIdx = 1;
+}
+

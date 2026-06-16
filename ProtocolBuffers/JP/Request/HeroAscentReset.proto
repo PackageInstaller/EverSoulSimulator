@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message HeroAscentReset {
+  string heroIdx = 1;
+  int32 useTicket = 2;
+}
+

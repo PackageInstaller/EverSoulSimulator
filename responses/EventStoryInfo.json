@@ -1,0 +1,197 @@
+{
+  "story": [
+    {
+      "eventType": 6,
+      "eventGroup": 1,
+      "eventNumber": 2,
+      "lastStoryNo": 6
+    },
+    {
+      "eventType": 6,
+      "eventGroup": 2,
+      "eventNumber": 2,
+      "lastStoryNo": 5
+    },
+    {
+      "eventType": 6,
+      "eventGroup": 3,
+      "eventNumber": 2,
+      "lastStoryNo": 6
+    },
+    {
+      "eventType": 6,
+      "eventGroup": 4,
+      "eventNumber": 2,
+      "lastStoryNo": 8
+    },
+    {
+      "eventType": 6,
+      "eventGroup": 5,
+      "eventNumber": 2,
+      "lastStoryNo": 8
+    },
+    {
+      "eventType": 6,
+      "eventGroup": 6,
+      "eventNumber": 2,
+      "lastStoryNo": 10
+    },
+    {
+      "eventType": 6,
+      "eventGroup": 8,
+      "eventNumber": 2,
+      "lastStoryNo": 9
+    },
+    {
+      "eventType": 6,
+      "eventGroup": 9,
+      "eventNumber": 2,
+      "lastStoryNo": 7
+    },
+    {
+      "eventType": 6,
+      "eventGroup": 10,
+      "eventNumber": 2,
+      "lastStoryNo": 9
+    },
+    {
+      "eventType": 6,
+      "eventGroup": 12,
+      "eventNumber": 1,
+      "lastStoryNo": 6
+    },
+    {
+      "eventType": 6,
+      "eventGroup": 13,
+      "eventNumber": 2,
+      "lastStoryNo": 9
+    },
+    {
+      "eventType": 6,
+      "eventGroup": 14,
+      "eventNumber": 2,
+      "lastStoryNo": 8
+    },
+    {
+      "eventType": 6,
+      "eventGroup": 15,
+      "eventNumber": 2,
+      "lastStoryNo": 9
+    },
+    {
+      "eventType": 6,
+      "eventGroup": 16,
+      "eventNumber": 1,
+      "lastStoryNo": 11
+    },
+    {
+      "eventType": 6,
+      "eventGroup": 17,
+      "eventNumber": 2,
+      "lastStoryNo": 7
+    },
+    {
+      "eventType": 6,
+      "eventGroup": 18,
+      "eventNumber": 2,
+      "lastStoryNo": 11
+    },
+    {
+      "eventType": 6,
+      "eventGroup": 19,
+      "eventNumber": 2,
+      "lastStoryNo": 11
+    },
+    {
+      "eventType": 6,
+      "eventGroup": 20,
+      "eventNumber": 2,
+      "lastStoryNo": 8
+    },
+    {
+      "eventType": 6,
+      "eventGroup": 23,
+      "eventNumber": 1,
+      "lastStoryNo": 10
+    },
+    {
+      "eventType": 6,
+      "eventGroup": 24,
+      "eventNumber": 1,
+      "lastStoryNo": 10
+    },
+    {
+      "eventType": 6,
+      "eventGroup": 26,
+      "eventNumber": 1,
+      "lastStoryNo": 6
+    },
+    {
+      "eventType": 6,
+      "eventGroup": 27,
+      "eventNumber": 1,
+      "lastStoryNo": 8
+    },
+    {
+      "eventType": 6,
+      "eventGroup": 10001,
+      "eventNumber": 2,
+      "lastStoryNo": 6
+    },
+    {
+      "eventType": 8,
+      "eventGroup": 1,
+      "eventNumber": 2,
+      "lastStoryNo": 6
+    },
+    {
+      "eventType": 17,
+      "eventGroup": 2,
+      "eventNumber": 1,
+      "lastStoryNo": 5
+    },
+    {
+      "eventType": 24,
+      "eventGroup": 1,
+      "eventNumber": 2,
+      "lastStoryNo": 12
+    },
+    {
+      "eventType": 24,
+      "eventGroup": 2,
+      "eventNumber": 1,
+      "lastStoryNo": 15
+    },
+    {
+      "eventType": 24,
+      "eventGroup": 3,
+      "eventNumber": 1,
+      "lastStoryNo": 15
+    },
+    {
+      "eventType": 24,
+      "eventGroup": 4,
+      "eventNumber": 1,
+      "lastStoryNo": 17
+    },
+    {
+      "eventType": 24,
+      "eventGroup": 5,
+      "eventNumber": 1,
+      "lastStoryNo": 16
+    },
+    {
+      "eventType": 24,
+      "eventGroup": 6,
+      "eventNumber": 1,
+      "lastStoryNo": 6
+    },
+    {
+      "eventType": 24,
+      "eventGroup": 7,
+      "eventNumber": 1,
+      "lastStoryNo": 7
+    }
+  ],
+  "__format__": "proto"
+}

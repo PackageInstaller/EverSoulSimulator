@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message WebPay {
+  string webPay_ = 1;
+  string country = 2;
+  string os = 3;
+}
+

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message GachaPremium {
+  int32 count = 1;
+  int32 gachaNo = 2;
+}
+

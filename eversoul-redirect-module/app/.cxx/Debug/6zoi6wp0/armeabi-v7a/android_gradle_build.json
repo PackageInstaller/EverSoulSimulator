@@ -1,0 +1,96 @@
+{
+  "buildFiles": [
+    "/home/rikka/Games/永恒灵魂/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/CMakeLists.txt",
+    "/home/rikka/Games/永恒灵魂/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/CMakeLists.txt",
+    "/home/rikka/Games/永恒灵魂/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/builtin-plugin/SymbolResolver/CMakeLists.txt",
+    "/home/rikka/Games/永恒灵魂/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/cmake/Macros.cmake",
+    "/home/rikka/Games/永恒灵魂/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/cmake/Util.cmake",
+    "/home/rikka/Games/永恒灵魂/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/cmake/auto_source_group.cmake",
+    "/home/rikka/Games/永恒灵魂/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/cmake/build_environment_check.cmake",
+    "/home/rikka/Games/永恒灵魂/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/cmake/compiler_and_linker.cmake",
+    "/home/rikka/Games/永恒灵魂/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/cmake/xcode_generator_helper.cmake",
+    "/home/rikka/Games/永恒灵魂/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/external/logging/CMakeLists.txt",
+    "/home/rikka/Games/永恒灵魂/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/external/osbase/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/opt/android-sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/home/rikka/Games/永恒灵魂/Global/eversoul_offline/eversoul-redirect-module/app/.cxx/Debug/6zoi6wp0/armeabi-v7a",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/opt/android-sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/home/rikka/Games/永恒灵魂/Global/eversoul_offline/eversoul-redirect-module/app/.cxx/Debug/6zoi6wp0/armeabi-v7a",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "dobby::@fb579df6436f49169c19": {
+      "toolchain": "toolchain",
+      "abi": "armeabi-v7a",
+      "artifactName": "dobby",
+      "output": "/home/rikka/Games/永恒灵魂/Global/eversoul_offline/eversoul-redirect-module/app/build/intermediates/cxx/Debug/6zoi6wp0/obj/armeabi-v7a/libdobby.so",
+      "runtimeFiles": []
+    },
+    "dobby_static::@fb579df6436f49169c19": {
+      "toolchain": "toolchain",
+      "abi": "armeabi-v7a",
+      "artifactName": "dobby_static",
+      "output": "/home/rikka/Games/永恒灵魂/Global/eversoul_offline/eversoul-redirect-module/app/.cxx/Debug/6zoi6wp0/armeabi-v7a/dobby/libdobby.a"
+    },
+    "dobby_symbol_resolver::@ae8170e007b0dbbeb132": {
+      "toolchain": "toolchain",
+      "abi": "armeabi-v7a",
+      "artifactName": "dobby_symbol_resolver",
+      "output": "/home/rikka/Games/永恒灵魂/Global/eversoul_offline/eversoul-redirect-module/app/.cxx/Debug/6zoi6wp0/armeabi-v7a/dobby/builtin-plugin/SymbolResolver/libdobby_symbol_resolver.a"
+    },
+    "logging::@9c6456fefc909ebba7e0": {
+      "toolchain": "toolchain",
+      "abi": "armeabi-v7a",
+      "artifactName": "logging",
+      "output": "/home/rikka/Games/永恒灵魂/Global/eversoul_offline/eversoul-redirect-module/app/.cxx/Debug/6zoi6wp0/armeabi-v7a/dobby/external/logging/liblogging.a"
+    },
+    "macho_ctx_kit::@ae8170e007b0dbbeb132": {
+      "toolchain": "toolchain",
+      "abi": "armeabi-v7a",
+      "artifactName": "macho_ctx_kit",
+      "output": "/home/rikka/Games/永恒灵魂/Global/eversoul_offline/eversoul-redirect-module/app/.cxx/Debug/6zoi6wp0/armeabi-v7a/dobby/builtin-plugin/SymbolResolver/libmacho_ctx_kit.a"
+    },
+    "osbase::@480db58ddda8864805da": {
+      "toolchain": "toolchain",
+      "abi": "armeabi-v7a",
+      "artifactName": "osbase",
+      "output": "/home/rikka/Games/永恒灵魂/Global/eversoul_offline/eversoul-redirect-module/app/.cxx/Debug/6zoi6wp0/armeabi-v7a/dobby/external/osbase/libosbase.a"
+    },
+    "redirect::@6890427a1f51a3e7e1df": {
+      "toolchain": "toolchain",
+      "abi": "armeabi-v7a",
+      "artifactName": "redirect",
+      "output": "/home/rikka/Games/永恒灵魂/Global/eversoul_offline/eversoul-redirect-module/app/build/intermediates/cxx/Debug/6zoi6wp0/obj/armeabi-v7a/libredirect.so",
+      "runtimeFiles": [
+        "/home/rikka/Games/永恒灵魂/Global/eversoul_offline/eversoul-redirect-module/app/build/intermediates/cxx/Debug/6zoi6wp0/obj/armeabi-v7a/libdobby.so"
+      ]
+    },
+    "shared_cache_ctx_kit::@ae8170e007b0dbbeb132": {
+      "toolchain": "toolchain",
+      "abi": "armeabi-v7a",
+      "artifactName": "shared_cache_ctx_kit",
+      "output": "/home/rikka/Games/永恒灵魂/Global/eversoul_offline/eversoul-redirect-module/app/.cxx/Debug/6zoi6wp0/armeabi-v7a/dobby/builtin-plugin/SymbolResolver/libshared_cache_ctx_kit.a"
+    }
+  },
+  "toolchains": {
+    "toolchain": {
+      "cCompilerExecutable": "/home/rikka/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/linux-x86_64/bin/clang.lld",
+      "cppCompilerExecutable": "/home/rikka/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++.lld"
+    }
+  },
+  "cFileExtensions": [
+    "c"
+  ],
+  "cppFileExtensions": [
+    "cc",
+    "cpp"
+  ]
+}

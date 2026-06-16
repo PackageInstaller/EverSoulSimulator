@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package EsPb;
+
+enum E_LOBBY_DOT {
+  DotNone = 0;
+  Event = 1;
+  Achievement = 2;
+  Cash = 3;
+  GuideQuest = 4;
+  Mail = 5;
+  MissionPassTask = 6;
+  GuildChat = 7;
+  ChampionsArenaWaitReward = 8;
+  EventPass = 9;
+  MissionPassOld = 10;
+  WorldRaidBanner = 11;
+}
+
+message LobbyRefresh {
+  repeated sLobbyDot dot = 1;
+  int64 dt = 2;
+  repeated sRankRewardRedDot rankRewardRedDot = 3;
+  repeated sAchievementFeatured achievementFeatured = 4;
+  repeated int32 releasedHeroList = 5;
+  int32 isUserKick = 6;
+  sGuildRaidBanner topGuildInfo = 7;
+}
+
+message sLobbyDot {
+  E_LOBBY_DOT dot = 1;
+  int32 seq = 2;
+}
+
+message sRankRewardRedDot {
+  int32 rankNo = 1;
+}
+
+message sAchievementFeatured {
+  string gid = 1;
+  int32 behavior = 2;
+  int32 value = 3;
+}
+
+message sGuildRaidBanner {
+  string name = 1;
+  int32 emblemNo = 2;
+  bytes customEmblem = 3;
+  bool isDelete = 4;
+}
+

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package EsPb;
+
+message GachaMileageInfo {
+  repeated sGachaMileage gachaMileage = 1;
+}
+
+message sGachaMileage {
+  int32 mileageNo = 1;
+  int32 changedPoint = 2;
+  int32 afterPoint = 3;
+  int32 rewardedPoint = 4;
+}
+

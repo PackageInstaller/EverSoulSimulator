@@ -1,0 +1,205 @@
+{
+  "mail": [
+    {
+      "idx": "2_rjAiK0E6_wgg",
+      "type": 51,
+      "sender": "10:560056",
+      "subject": "10:19113",
+      "context": "10:19117,1",
+      "reward": "[[13,3000]]",
+      "dt": "1781049601330",
+      "expireDt": "1781654401356"
+    },
+    {
+      "idx": "2_121WhSEa_179p",
+      "sender": "10:560056",
+      "subject": "10:540069",
+      "context": "10:540070,諾亞 nails 顾学文",
+      "reward": "[[6,30]]",
+      "dt": "1781049600384",
+      "expireDt": "1781136000384"
+    },
+    {
+      "idx": "2_121WhSEa_179o",
+      "sender": "10:560056",
+      "subject": "10:540060",
+      "context": "10:540061,8,8,20",
+      "reward": "[[6,8]]",
+      "dt": "1781049600348",
+      "expireDt": "1781654400348"
+    },
+    {
+      "idx": "2_121WhSEa_16y4",
+      "sender": "10:560056",
+      "subject": "10:540069",
+      "context": "10:540070,諾亞 顾学文 Hextor",
+      "reward": "[[6,30]]",
+      "isRead": 1,
+      "isItemReceived": 1,
+      "dt": "1780977161966",
+      "expireDt": "1781063561966"
+    },
+    {
+      "idx": "2_121WhSEa_16y3",
+      "sender": "10:560056",
+      "subject": "10:540060",
+      "context": "10:540061,7,7,20",
+      "reward": "[[6,7]]",
+      "isRead": 1,
+      "isItemReceived": 1,
+      "dt": "1780977161954",
+      "expireDt": "1781581961954"
+    },
+    {
+      "idx": "2_dlOmg4Pl_vIx",
+      "type": 51,
+      "sender": "10:560056",
+      "subject": "10:19113",
+      "context": "10:19117,1",
+      "reward": "[[13,3000]]",
+      "isRead": 1,
+      "isItemReceived": 1,
+      "dt": "1780963201267",
+      "expireDt": "1781568001295"
+    },
+    {
+      "idx": "2_111WhSEa_13Ju",
+      "type": 52,
+      "sender": "10:560056",
+      "subject": "10:19114",
+      "context": "10:19118,1",
+      "reward": "[[2,700],[13,4500]]",
+      "isRead": 1,
+      "isItemReceived": 1,
+      "dt": "1780926350829",
+      "expireDt": "1781531150829"
+    },
+    {
+      "idx": "2_111WhSEa_130x",
+      "sender": "10:560056",
+      "subject": "10:540060",
+      "context": "10:540061,5,5,20",
+      "reward": "[[6,5]]",
+      "isRead": 1,
+      "isItemReceived": 1,
+      "dt": "1780878554480",
+      "expireDt": "1781483354480"
+    },
+    {
+      "idx": "2_hQM6mOlj_vae",
+      "type": 51,
+      "sender": "10:560056",
+      "subject": "10:19113",
+      "context": "10:19117,1",
+      "reward": "[[13,3000]]",
+      "isRead": 1,
+      "isItemReceived": 1,
+      "dt": "1780876801466",
+      "expireDt": "1781481601496"
+    },
+    {
+      "idx": "2_111WhSEa_12kE",
+      "sender": "10:560056",
+      "subject": "10:540060",
+      "context": "10:540061,2,2,20",
+      "reward": "[[6,2]]",
+      "isRead": 1,
+      "isItemReceived": 1,
+      "dt": "1780810484979",
+      "expireDt": "1781415284979"
+    },
+    {
+      "idx": "2_Emd9ernu_uBh",
+      "type": 51,
+      "sender": "10:560056",
+      "subject": "10:19113",
+      "context": "10:19117,1",
+      "reward": "[[13,3000]]",
+      "isRead": 1,
+      "isItemReceived": 1,
+      "dt": "1780790401381",
+      "expireDt": "1781395201410"
+    },
+    {
+      "idx": "2_631WhSES_ZEW",
+      "sender": "10:560056",
+      "subject": "10:540060",
+      "context": "10:540061,4,4,20",
+      "reward": "[[6,4]]",
+      "isRead": 1,
+      "isItemReceived": 1,
+      "dt": "1780723005046",
+      "expireDt": "1781327805046"
+    },
+    {
+      "idx": "2_fhFSbKIM_u1K",
+      "type": 51,
+      "sender": "10:560056",
+      "subject": "10:19113",
+      "context": "10:19117,1",
+      "reward": "[[13,3000]]",
+      "isRead": 1,
+      "isItemReceived": 1,
+      "dt": "1780704001388",
+      "expireDt": "1781308801416"
+    },
+    {
+      "idx": "2_641WhSES_12Ti",
+      "sender": "10:560056",
+      "subject": "10:540060",
+      "context": "10:540061,4,4,20",
+      "reward": "[[6,4]]",
+      "isRead": 1,
+      "isItemReceived": 1,
+      "dt": "1780621480186",
+      "expireDt": "1781226280186"
+    },
+    {
+      "idx": "2_YcFScXOz_trT",
+      "type": 51,
+      "sender": "10:560056",
+      "subject": "10:19113",
+      "context": "10:19117,1",
+      "reward": "[[13,3000]]",
+      "isRead": 1,
+      "isItemReceived": 1,
+      "dt": "1780617601497",
+      "expireDt": "1781222401530"
+    },
+    {
+      "idx": "2_611WhSES_YaB",
+      "sender": "10:560056",
+      "subject": "10:540060",
+      "context": "10:540061,4,4,20",
+      "reward": "[[6,4]]",
+      "isRead": 1,
+      "isItemReceived": 1,
+      "dt": "1780537361705",
+      "expireDt": "1781142161705"
+    },
+    {
+      "idx": "2_ta7xOJVu_sRH",
+      "type": 51,
+      "sender": "10:560056",
+      "subject": "10:19113",
+      "context": "10:19117,1",
+      "reward": "[[13,3000]]",
+      "isRead": 1,
+      "isItemReceived": 1,
+      "dt": "1780531201578",
+      "expireDt": "1781136001611"
+    },
+    {
+      "idx": "2_111WhSEa_Z6Y",
+      "sender": "10:560056",
+      "subject": "10:540060",
+      "context": "10:540061,3,3,20",
+      "reward": "[[6,3]]",
+      "isRead": 1,
+      "isItemReceived": 1,
+      "dt": "1780461916443",
+      "expireDt": "1781066716443"
+    }
+  ],
+  "__format__": "proto"
+}

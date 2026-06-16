@@ -1,0 +1,207 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.6.0"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						6
+					]
+				},
+				{
+					"build" : "dobby",
+					"childIndexes" : 
+					[
+						2,
+						3,
+						4
+					],
+					"jsonFile" : "directory-dobby-Debug-e3f06214715239d6f62f.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "dobby",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				},
+				{
+					"build" : "dobby/external/logging",
+					"jsonFile" : "directory-dobby.external.logging-Debug-0a5b2c672ebff8fa1ada.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "dobby/external/logging",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "dobby/external/osbase",
+					"jsonFile" : "directory-dobby.external.osbase-Debug-96c8c8761a88442594a7.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "dobby/external/osbase",
+					"targetIndexes" : 
+					[
+						5
+					]
+				},
+				{
+					"build" : "dobby/builtin-plugin/SymbolResolver",
+					"jsonFile" : "directory-dobby.builtin-plugin.SymbolResolver-Debug-627bc28e43053bbf34a5.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "dobby/builtin-plugin/SymbolResolver",
+					"targetIndexes" : 
+					[
+						2,
+						4,
+						7
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "redirect",
+					"targetIndexes" : 
+					[
+						6
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4
+					],
+					"name" : "Dobby",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						7
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 1,
+					"id" : "dobby::@fb579df6436f49169c19",
+					"jsonFile" : "target-dobby-Debug-60af80474d7652907d5c.json",
+					"name" : "dobby",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "dobby_static::@fb579df6436f49169c19",
+					"jsonFile" : "target-dobby_static-Debug-808f82ecf79c9af064ae.json",
+					"name" : "dobby_static",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "dobby_symbol_resolver::@ae8170e007b0dbbeb132",
+					"jsonFile" : "target-dobby_symbol_resolver-Debug-2fc751b0894aed5bb8b3.json",
+					"name" : "dobby_symbol_resolver",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "logging::@9c6456fefc909ebba7e0",
+					"jsonFile" : "target-logging-Debug-ce2825f6bcc73ff95aa6.json",
+					"name" : "logging",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "macho_ctx_kit::@ae8170e007b0dbbeb132",
+					"jsonFile" : "target-macho_ctx_kit-Debug-a7b37b8bcaed089ad88a.json",
+					"name" : "macho_ctx_kit",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "osbase::@480db58ddda8864805da",
+					"jsonFile" : "target-osbase-Debug-1249083367d30c8efaa1.json",
+					"name" : "osbase",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "redirect::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-redirect-Debug-cb2e8d106d4442c5b6bb.json",
+					"name" : "redirect",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "shared_cache_ctx_kit::@ae8170e007b0dbbeb132",
+					"jsonFile" : "target-shared_cache_ctx_kit-Debug-33b188df9b72acb549cd.json",
+					"name" : "shared_cache_ctx_kit",
+					"projectIndex" : 1
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/rikka/Games/\u6c38\u6052\u7075\u9b42/Global/eversoul_offline/eversoul-redirect-module/app/.cxx/Debug/6zoi6wp0/armeabi-v7a",
+		"source" : "/home/rikka/Games/\u6c38\u6052\u7075\u9b42/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

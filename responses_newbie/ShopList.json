@@ -1,0 +1,80 @@
+{
+  "shop": {
+    "shopNo": 10,
+    "refreshAbleCnt": 3,
+    "nextResetYyyymmdd": 20260611
+  },
+  "shopItem": [
+    {
+      "no": 183179792,
+      "shopNo": 10,
+      "shopItemNo": 100360
+    },
+    {
+      "no": 183179793,
+      "shopNo": 10,
+      "shopItemNo": 100350
+    },
+    {
+      "no": 183179794,
+      "shopNo": 10,
+      "shopItemNo": 100280
+    },
+    {
+      "no": 183179795,
+      "shopNo": 10,
+      "shopItemNo": 100170
+    },
+    {
+      "no": 183179796,
+      "shopNo": 10,
+      "shopItemNo": 100090
+    },
+    {
+      "no": 183179797,
+      "shopNo": 10,
+      "shopItemNo": 100340
+    },
+    {
+      "no": 183179798,
+      "shopNo": 10,
+      "shopItemNo": 100370
+    },
+    {
+      "no": 183179799,
+      "shopNo": 10,
+      "shopItemNo": 100310
+    },
+    {
+      "no": 183179800,
+      "shopNo": 10,
+      "shopItemNo": 100010
+    },
+    {
+      "no": 183179801,
+      "shopNo": 10,
+      "shopItemNo": 100020
+    },
+    {
+      "no": 183179802,
+      "shopNo": 10,
+      "shopItemNo": 100030
+    },
+    {
+      "no": 183179803,
+      "shopNo": 10,
+      "shopItemNo": 100040
+    },
+    {
+      "no": 183179804,
+      "shopNo": 10,
+      "shopItemNo": 100050
+    },
+    {
+      "no": 183179805,
+      "shopNo": 10,
+      "shopItemNo": 100060
+    }
+  ],
+  "__format__": "proto"
+}

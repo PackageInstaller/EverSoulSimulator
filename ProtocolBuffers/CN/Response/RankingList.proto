@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package EsPb;
+
+message RankingList {
+  repeated sRankGroup rankGroup = 1;
+}
+
+message sRankGroup {
+  repeated sRank rank = 1;
+  int32 myRank = 2;
+  int64 myValue = 3;
+  int64 myUpdateDt = 4;
+  int32 rankNo = 5;
+}
+
+message sRank {
+  int32 rank = 1;
+  string userIdx = 2;
+  int64 value = 3;
+  string nickName = 4;
+  int64 lastLoginDt = 5;
+  sThumbnail thumbnail = 6;
+  int32 popularity = 7;
+  int32 level = 8;
+  int64 updateDt = 9;
+}
+
+message sThumbnail {
+  int32 thumbnailFrame = 1;
+  int32 thumbnailImage = 2;
+  bool useCustom = 3;
+  bytes thumbnail = 4;
+}
+

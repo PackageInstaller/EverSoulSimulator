@@ -1,0 +1,174 @@
+{
+ "root": "LikeOtherUserAll",
+ "messages": {
+  "LikeOtherUserAll": {
+   "fields": [
+    {
+     "name": "otherUserInfoList",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sOtherUserInfo",
+     "packed": false
+    }
+   ]
+  },
+  "sOtherUserInfo": {
+   "fields": [
+    {
+     "name": "userIdx",
+     "number": 1,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "nickName",
+     "number": 2,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "lastLoginDt",
+     "number": 3,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "thumbnail",
+     "number": 4,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sThumbnail",
+     "packed": false
+    },
+    {
+     "name": "stageNo",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "popularity",
+     "number": 6,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "likeClick",
+     "number": 7,
+     "repeated": false,
+     "type": "bool",
+     "packed": false
+    },
+    {
+     "name": "enemyTotalCount",
+     "number": 8,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "enemyDefeatCount",
+     "number": 9,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "townLevel",
+     "number": 10,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "isVisitBattleFlag",
+     "number": 11,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "visitBattleFriendCount",
+     "number": 12,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "isVisitBattleFriendFlag",
+     "number": 13,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "isFavorite",
+     "number": 14,
+     "repeated": false,
+     "type": "bool",
+     "packed": false
+    },
+    {
+     "name": "isYesterdayHelper",
+     "number": 15,
+     "repeated": false,
+     "type": "bool",
+     "packed": false
+    }
+   ]
+  },
+  "sThumbnail": {
+   "fields": [
+    {
+     "name": "thumbnailFrame",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "thumbnailImage",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "useCustom",
+     "number": 3,
+     "repeated": false,
+     "type": "bool",
+     "packed": false
+    },
+    {
+     "name": "thumbnail",
+     "number": 4,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    },
+    {
+     "name": "firstTitle",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "secondTitle",
+     "number": 6,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

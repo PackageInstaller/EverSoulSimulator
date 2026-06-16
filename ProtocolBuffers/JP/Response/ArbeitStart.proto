@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package EsPb;
+
+message ArbeitStart {
+  repeated sArbeitList arbeitList = 1;
+  repeated sHeroReputation heroReputation = 2;
+}
+
+message sArbeitList {
+  int32 no = 1;
+  int32 date = 2;
+  int32 arbeitChoiceNo = 3;
+  int32 arbeitNo = 4;
+  int32 objetNo = 5;
+  int64 arbeitStartTimestamp = 6;
+  int64 arbeitEndTimestamp = 7;
+  int32 state = 8;
+  repeated int32 heroNo = 9;
+  string kind = 10;
+  int32 ingameDay = 11;
+}
+
+message sHeroReputation {
+  int32 heroNo = 1;
+  int32 reputation = 2;
+  int32 state = 3;
+  int32 stress = 4;
+  int64 lastUpdateDt = 5;
+  int64 giftDt = 6;
+  int32 costumeItemNo = 7;
+  int32 storyReward = 8;
+  int32 maxGradeSno = 9;
+  int32 objetUid = 10;
+  int64 maxLevelDt = 11;
+  int32 arbeitExp = 12;
+  int32 priority = 13;
+  int64 restFinishDt = 14;
+}
+

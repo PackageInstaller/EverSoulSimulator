@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message WorldRaidRankingRewardReceive {
+  int32 scheduleNo = 1;
+}
+

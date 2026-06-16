@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package EsPb;
+
+message EventNoteInfo {
+  sEventNotePlay playInfo = 1;
+  int32 ticketCount = 2;
+  repeated sEventNoteReward rewardInfo = 3;
+}
+
+message sEventNotePlay {
+  int32 eventGroup = 1;
+  int32 eventNumber = 2;
+  int32 maxScore = 3;
+  int32 totalScore = 4;
+  int32 lastClearScore = 5;
+  int32 lastClearTime = 6;
+  int32 ticketUseCount = 7;
+  int32 diaUseCount = 8;
+  int32 basicRewardReceived = 9;
+}
+
+message sEventNoteReward {
+  int32 rewardNo = 1;
+  int32 rewardType = 2;
+  int32 scoreValue = 3;
+  int32 isReceived = 4;
+  int32 canReceive = 5;
+}
+

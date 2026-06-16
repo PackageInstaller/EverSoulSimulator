@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message RecordListV2 {
+  int32 battleType = 1;
+  string clientVersion = 2;
+}
+

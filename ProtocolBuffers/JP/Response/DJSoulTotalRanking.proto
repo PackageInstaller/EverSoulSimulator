@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package EsPb;
+
+message DJSoulTotalRanking {
+  repeated sDJSoulRank totalRank = 1;
+  repeated sDJSoulRank friendRank = 2;
+  int32 myFriendRank = 3;
+  int32 myTotalRank = 4;
+  int32 myScore = 5;
+  int32 myRatingScore = 6;
+}
+
+message sDJSoulRank {
+  string userIdx = 1;
+  string nickName = 2;
+  sThumbnail thumbnail = 3;
+  int32 rank = 4;
+  int32 score = 5;
+  int32 ratingScore = 6;
+}
+
+message sThumbnail {
+  int32 thumbnailFrame = 1;
+  int32 thumbnailImage = 2;
+  bool useCustom = 3;
+  bytes thumbnail = 4;
+}
+

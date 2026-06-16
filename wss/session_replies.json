@@ -1,0 +1,292 @@
+{
+  "host": "gc-session-zinny3.kakaogames.com",
+  "note": "Kakao SDK JSON-RPC over WS. Server echoes txNo; publishTime is refreshed at runtime. content bodies captured from the real session (playerId 431921183232).",
+  "initial_push": {
+    "topic": "auth://v3/auth/loginGoogle",
+    "meta": {
+      "publishTime": 1780878538634,
+      "country": "hk",
+      "sessionIp": "10.232.71.123",
+      "sessionId": "/10.232.68.33:6062/1780878538486",
+      "cfViewerCountry": "HK",
+      "zat": "fwPla7fQ8ty9+DZT/lD//j2CcLx/qXq4xqzNDgvOle81uDCpT5faqtrmdJnLdjClfPrSHDK0m/xygu0eZ4Mw/rvX/ABd4l276d46P21e/JyAQKczzXLup4hPJa0TTD3NYBwBhtqMGhU6NL3JTd3urwBVgi+LggORu6liFIl7ki2v5BmYnahCGfPYxr3Muqp9E/z92uHQIQJZ3VscGgJef8Msv39yKoLcwqNROXasymRvuAB6BThALd90lulEsTAU",
+      "qid": -5802397644286062365,
+      "market": "googlePlay",
+      "txNo": -1012249387,
+      "loginTime": 1780878538634,
+      "firstLoginTime": 1681819316235,
+      "clientIp": "155.254.122.112, 3.172.30.4",
+      "appId": "743491",
+      "startTime": 1780878538487,
+      "lang": "zh-hans",
+      "playerId": "431921183232",
+      "idpCode": "google"
+    },
+    "body": {
+      "status": 200,
+      "desc": "OK",
+      "content": {
+        "zatExpiryTime": 1781051338634,
+        "zrtExpiryTime": 1783470538634,
+        "firstLogin": false,
+        "externalToken": "jIccoMs58K+0gYAqR/KexnDIfcm00y9Cu6lwurA2/TcKuhxwrT0GXlRtxzFoyU+2TSUwaArvJI+UotYHt0ND2FT6izNZaPtca0bnzAy3QdsRgR9i5I4cPkviQMkqA77q+XsUqSt+QS4wtv2uGWBmuKn6q1g0T33vja9qefSAxIJRDfT67OlVsRV9ltnTRBYnvOrI8sHRK1MdvgmqAs0GXxSLOPERfVt/zYmTBxa2A18xw/+AeGlSKZeJ/IfNafYJlUaGj5d09RZISG2Ds19ofb8FQYxdR8+47B+mQOuf94HuXssjKcvgNbiCSzH5ia++IQ2IgH0F1k0dmyrAfV3Eara0egQRIfyRjkQ8dNRX1m4=",
+        "zat": "fwPla7fQ8ty9+DZT/lD//j2CcLx/qXq4xqzNDgvOle81uDCpT5faqtrmdJnLdjClfPrSHDK0m/xygu0eZ4Mw/rvX/ABd4l276d46P21e/JyAQKczzXLup4hPJa0TTD3NYBwBhtqMGhU6NL3JTd3urwBVgi+LggORu6liFIl7ki2v5BmYnahCGfPYxr3Muqp9E/z92uHQIQJZ3VscGgJef8Msv39yKoLcwqNROXasymRvuAB6BThALd90lulEsTAU",
+        "zrt": "bpMGprJHnw3BuuqwgzDBBCRlrxqGrKG1VFXlTm4K7AiDfnZqhrMLHPyo2pLGIQGq43xvoc+7T4zbsngY0+5sxqLxCAa47CqgVhT4YjtLmYf9Nk0DLVvofJqGM40vvc5KeczD5fWpD2dNXleNTSyl5iqj/DLO2Lz6y2CQY1arEjY5pZcDDks2Shobyx3LMXuuLMtDgE3VCs1gCojYsZK+LA==",
+        "player": {
+          "agreement": {
+            "N002": "y",
+            "E006": "y",
+            "N003": "y",
+            "E001": "y",
+            "AN001": "y",
+            "E002": "y",
+            "AN002": "y"
+          },
+          "memberKey": "NWsengyL.ABie3QjDu_hWNOsD687y8rqUu_ZJezJhrFAwRQmImZLDQ00",
+          "idpId": "102305402181706331695",
+          "pushOption": {
+            "night": "y",
+            "player": "y"
+          },
+          "pushToken": "fvltL8YqQGuu0OymqLp8Ce:APA91bHaAFandWycCgUB9Sa3StSZbW497P59Mvy8psGdIXXWKmA_bANVANZJAEqaweWLUnxf7TaRFLsF7Okr6DQ4WXxLzHZm-TrLz-z1zNhKyC0Lt4SkWJs",
+          "lastLoginTime": 1780875969709,
+          "firstLoginTime": 1681819316235,
+          "appId": "743491",
+          "lang": "zh-hans",
+          "playerId": "431921183232",
+          "idpCode": "google",
+          "status": "normal"
+        }
+      }
+    }
+  },
+  "replies": {
+    "auth://v3/auth/loginGoogle": {
+      "meta_template": {
+        "publishTime": 1780878538634,
+        "country": "hk",
+        "sessionIp": "10.232.71.123",
+        "sessionId": "/10.232.68.33:6062/1780878538486",
+        "cfViewerCountry": "HK",
+        "zat": "fwPla7fQ8ty9+DZT/lD//j2CcLx/qXq4xqzNDgvOle81uDCpT5faqtrmdJnLdjClfPrSHDK0m/xygu0eZ4Mw/rvX/ABd4l276d46P21e/JyAQKczzXLup4hPJa0TTD3NYBwBhtqMGhU6NL3JTd3urwBVgi+LggORu6liFIl7ki2v5BmYnahCGfPYxr3Muqp9E/z92uHQIQJZ3VscGgJef8Msv39yKoLcwqNROXasymRvuAB6BThALd90lulEsTAU",
+        "qid": -5802397644286062365,
+        "market": "googlePlay",
+        "txNo": -1012249387,
+        "loginTime": 1780878538634,
+        "firstLoginTime": 1681819316235,
+        "clientIp": "155.254.122.112, 3.172.30.4",
+        "appId": "743491",
+        "startTime": 1780878538487,
+        "lang": "zh-hans",
+        "playerId": "431921183232",
+        "idpCode": "google"
+      },
+      "body": {
+        "status": 200,
+        "desc": "OK",
+        "content": {
+          "zatExpiryTime": 1781051338634,
+          "zrtExpiryTime": 1783470538634,
+          "firstLogin": false,
+          "externalToken": "jIccoMs58K+0gYAqR/KexnDIfcm00y9Cu6lwurA2/TcKuhxwrT0GXlRtxzFoyU+2TSUwaArvJI+UotYHt0ND2FT6izNZaPtca0bnzAy3QdsRgR9i5I4cPkviQMkqA77q+XsUqSt+QS4wtv2uGWBmuKn6q1g0T33vja9qefSAxIJRDfT67OlVsRV9ltnTRBYnvOrI8sHRK1MdvgmqAs0GXxSLOPERfVt/zYmTBxa2A18xw/+AeGlSKZeJ/IfNafYJlUaGj5d09RZISG2Ds19ofb8FQYxdR8+47B+mQOuf94HuXssjKcvgNbiCSzH5ia++IQ2IgH0F1k0dmyrAfV3Eara0egQRIfyRjkQ8dNRX1m4=",
+          "zat": "fwPla7fQ8ty9+DZT/lD//j2CcLx/qXq4xqzNDgvOle81uDCpT5faqtrmdJnLdjClfPrSHDK0m/xygu0eZ4Mw/rvX/ABd4l276d46P21e/JyAQKczzXLup4hPJa0TTD3NYBwBhtqMGhU6NL3JTd3urwBVgi+LggORu6liFIl7ki2v5BmYnahCGfPYxr3Muqp9E/z92uHQIQJZ3VscGgJef8Msv39yKoLcwqNROXasymRvuAB6BThALd90lulEsTAU",
+          "zrt": "bpMGprJHnw3BuuqwgzDBBCRlrxqGrKG1VFXlTm4K7AiDfnZqhrMLHPyo2pLGIQGq43xvoc+7T4zbsngY0+5sxqLxCAa47CqgVhT4YjtLmYf9Nk0DLVvofJqGM40vvc5KeczD5fWpD2dNXleNTSyl5iqj/DLO2Lz6y2CQY1arEjY5pZcDDks2Shobyx3LMXuuLMtDgE3VCs1gCojYsZK+LA==",
+          "player": {
+            "agreement": {
+              "N002": "y",
+              "E006": "y",
+              "N003": "y",
+              "E001": "y",
+              "AN001": "y",
+              "E002": "y",
+              "AN002": "y"
+            },
+            "memberKey": "NWsengyL.ABie3QjDu_hWNOsD687y8rqUu_ZJezJhrFAwRQmImZLDQ00",
+            "idpId": "102305402181706331695",
+            "pushOption": {
+              "night": "y",
+              "player": "y"
+            },
+            "pushToken": "fvltL8YqQGuu0OymqLp8Ce:APA91bHaAFandWycCgUB9Sa3StSZbW497P59Mvy8psGdIXXWKmA_bANVANZJAEqaweWLUnxf7TaRFLsF7Okr6DQ4WXxLzHZm-TrLz-z1zNhKyC0Lt4SkWJs",
+            "lastLoginTime": 1780875969709,
+            "firstLoginTime": 1681819316235,
+            "appId": "743491",
+            "lang": "zh-hans",
+            "playerId": "431921183232",
+            "idpCode": "google",
+            "status": "normal"
+          }
+        }
+      }
+    },
+    "push_manager://v3/token/register": {
+      "meta_template": {
+        "publishTime": 1780878538789,
+        "country": "hk",
+        "kgAppId": "743491",
+        "sessionIp": "10.232.71.123",
+        "sessionId": "/10.232.68.33:6062/1780878538486",
+        "cfViewerCountry": "HK",
+        "qid": -5131082744923851349,
+        "market": "googlePlay",
+        "txNo": -1640531870,
+        "loginTime": 1780878538634,
+        "firstLoginTime": 1681819316235,
+        "traceparent": "00-ec63cf9cf62a6dd3b1d75a03986a19a9-2759dcd61f9584be-00",
+        "clientIp": "155.254.122.112, 3.172.30.4",
+        "appId": "743491",
+        "startTime": 1780878538781,
+        "lang": "zh-hans",
+        "playerId": "431921183232",
+        "idpCode": "google"
+      },
+      "body": {
+        "status": 200,
+        "desc": "OK",
+        "content": {}
+      }
+    },
+    "inhousegw://v3/player/agreement/set": {
+      "meta_template": {
+        "publishTime": 1780878538896,
+        "country": "hk",
+        "kgAppId": "743491",
+        "sessionIp": "10.232.71.123",
+        "sessionId": "/10.232.68.33:6062/1780878538486",
+        "cfViewerCountry": "HK",
+        "qid": -2594341165182469764,
+        "market": "googlePlay",
+        "txNo": 1677350585,
+        "loginTime": 1780878538634,
+        "firstLoginTime": 1681819316235,
+        "traceparent": "00-bfbd122bb7b83c9df1fdbf45a711d15d-a42a6db350ae5eb5-00",
+        "clientIp": "155.254.122.112, 3.172.30.4",
+        "appId": "743491",
+        "startTime": 1780878538895,
+        "lang": "zh-hans",
+        "playerId": "431921183232",
+        "idpCode": "google"
+      },
+      "body": {
+        "status": 400,
+        "desc": "Invalid request parameter : agreement is empty",
+        "content": {}
+      }
+    },
+    "profile://v2/player/getUUID": {
+      "meta_template": {
+        "publishTime": 1780878540434,
+        "country": "hk",
+        "kgAppId": "743491",
+        "sessionIp": "10.232.71.123",
+        "sessionId": "/10.232.68.33:6062/1780878538486",
+        "cfViewerCountry": "HK",
+        "qid": -5596525198422194174,
+        "market": "googlePlay",
+        "txNo": 185601014,
+        "loginTime": 1780878538634,
+        "firstLoginTime": 1681819316235,
+        "traceparent": "00-1d860ded5fbd112597bead5d04dca4a0-2f50f10b9f9563a2-00",
+        "clientIp": "155.254.122.112, 3.172.30.4",
+        "appId": "743491",
+        "startTime": 1780878540433,
+        "lang": "zh-hans",
+        "playerId": "431921183232",
+        "idpCode": "google"
+      },
+      "body": {
+        "status": 200,
+        "desc": "OK",
+        "content": {
+          "zinnyUuid": "9f9f35ab-fcd9-4e2c-b361-ea1f19749c6b"
+        }
+      }
+    },
+    "promotion_container://v4/popup/getList": {
+      "meta_template": {
+        "publishTime": 1780878568521,
+        "country": "hk",
+        "kgAppId": "743491",
+        "sessionIp": "10.232.71.123",
+        "sessionId": "/10.232.68.33:6062/1780878538486",
+        "cfViewerCountry": "HK",
+        "qid": -6962100039309575758,
+        "market": "googlePlay",
+        "txNo": -1448140536,
+        "loginTime": 1780878538634,
+        "firstLoginTime": 1681819316235,
+        "traceparent": "00-aa004699b69c7e97aa82c41662b34404-7eee6b755233731c-00",
+        "clientIp": "155.254.122.112, 3.172.30.4",
+        "appId": "743491",
+        "startTime": 1780878568521,
+        "lang": "zh-hans",
+        "playerId": "431921183232",
+        "idpCode": "google"
+      },
+      "body": {
+        "status": 200,
+        "desc": "OK",
+        "content": {
+          "popups": []
+        }
+      }
+    },
+    "promotion://v2/getStartingPopupPromotions": {
+      "meta_template": {
+        "publishTime": 1780878568620,
+        "country": "hk",
+        "kgAppId": "743491",
+        "sessionIp": "10.232.71.123",
+        "sessionId": "/10.232.68.33:6062/1780878538486",
+        "cfViewerCountry": "HK",
+        "qid": 3405330779569408513,
+        "market": "googlePlay",
+        "txNo": 748445158,
+        "loginTime": 1780878538634,
+        "firstLoginTime": 1681819316235,
+        "traceparent": "00-0d7c3d11f7a373172783053aab4bf74a-fcae9cdb1e237e92-00",
+        "clientIp": "155.254.122.112, 3.172.30.4",
+        "appId": "743491",
+        "startTime": 1780878568619,
+        "lang": "zh-hans",
+        "playerId": "431921183232",
+        "idpCode": "google"
+      },
+      "body": {
+        "status": 200,
+        "desc": "OK",
+        "content": {
+          "promotions": [],
+          "appId": "743491",
+          "playerId": "431921183232"
+        }
+      }
+    },
+    "auth://v3/zat/pause": {
+      "meta_template": {
+        "publishTime": 1780879079529,
+        "country": "hk",
+        "kgAppId": "743491",
+        "sessionIp": "10.232.71.123",
+        "sessionId": "/10.232.68.33:6062/1780878538486",
+        "cfViewerCountry": "HK",
+        "qid": 4294937960783908344,
+        "market": "googlePlay",
+        "txNo": -1328057798,
+        "loginTime": 1780878538634,
+        "firstLoginTime": 1681819316235,
+        "clientIp": "155.254.122.112, 3.172.30.4",
+        "appId": "743491",
+        "startTime": 1780879079528,
+        "lang": "zh-hans",
+        "playerId": "431921183232",
+        "idpCode": "google"
+      },
+      "body": {
+        "status": 200,
+        "desc": "OK",
+        "content": {}
+      }
+    }
+  }
+}

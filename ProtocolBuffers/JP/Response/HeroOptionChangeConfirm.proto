@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package EsPb;
+
+message HeroOptionChangeConfirm {
+  repeated sHeroOption heroOption = 1;
+}
+
+message sHeroOption {
+  int32 heroNo = 1;
+  int32 groupNo = 2;
+  int32 optionSlot = 3;
+  int32 optionNo = 4;
+  int32 optionValue = 5;
+  int32 optionType = 6;
+  int32 optionLock = 7;
+}
+

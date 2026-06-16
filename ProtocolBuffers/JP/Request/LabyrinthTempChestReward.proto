@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message LabyrinthTempChestReward {
+  int32 dungeonId = 1;
+  int32 rewardNo = 2;
+}
+

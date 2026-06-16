@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package EsPb;
+
+message HeroEquipPresetDelete {
+  int32 slotCount = 1;
+  int32 applySlot = 2;
+  repeated sHeroEquipPresetSlot presetSlot = 3;
+}
+
+message sHeroEquipPresetSlot {
+  int32 slot = 1;
+  string name = 2;
+}
+

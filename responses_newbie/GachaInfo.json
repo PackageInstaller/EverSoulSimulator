@@ -1,0 +1,30 @@
+{
+  "gachaLimit": [
+    {
+      "gachaNo": 401,
+      "ableCnt": 1,
+      "expiredDt": "32503597200000"
+    },
+    {
+      "gachaNo": 901,
+      "ableCnt": 1
+    },
+    {
+      "gachaNo": 902,
+      "ableCnt": 1,
+      "expiredDt": "1781136000000"
+    },
+    {
+      "gachaNo": 1101,
+      "ableCnt": 1,
+      "expiredDt": "1781136000000"
+    },
+    {
+      "gachaNo": 1201,
+      "ableCnt": 1,
+      "expiredDt": "1781136000000"
+    }
+  ],
+  "gacha": {},
+  "__format__": "proto"
+}

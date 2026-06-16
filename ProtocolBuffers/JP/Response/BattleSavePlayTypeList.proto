@@ -1,0 +1,120 @@
+syntax = "proto3";
+
+package EsPb;
+
+enum eBattleBufferType {
+  UseUltimate = 0;
+  UseActive = 1;
+  AutoBattle = 2;
+  AutoUltimate = 3;
+  UltimatePriority = 4;
+}
+
+message BattleSavePlayTypeList {
+  repeated sBattleSave battleSave = 1;
+}
+
+message sBattleSave {
+  int64 idx = 1;
+  string playerId = 2;
+  string userIdx = 3;
+  int64 eventDate = 4;
+  int32 stageNo = 5;
+  int32 skip = 6;
+  int32 formationKind = 7;
+  sBattleSaveDeck myDeck = 8;
+  sBattleSaveDeck targetDeck = 9;
+  repeated sBattleSkillList battleSkill = 10;
+  sBattleConfig battleConfig = 11;
+  sBattleConfig targetBattleConfig = 12;
+  string clientVersion = 13;
+  string tableVersion = 14;
+  repeated int32 option = 15;
+  repeated int32 random = 16;
+  string log = 17;
+}
+
+message sBattleSaveDeck {
+  repeated sBattleSaveHero hero = 1;
+  repeated sFormation formation = 2;
+  repeated sContentBuff buff = 3;
+  repeated sContentBuff rentalBuff = 4;
+}
+
+message sBattleSaveHero {
+  sHero hero = 1;
+  repeated sItemEquipAndEquipSlot itemEquip = 2;
+  repeated int32 equipSetBuff = 3;
+  sItemSignature signature = 4;
+  bool isRental = 5;
+}
+
+message sHero {
+  string idx = 1;
+  int32 heroNo = 2;
+  int32 level = 3;
+  int32 isResonance = 4;
+  int32 gradeSno = 5;
+  int32 raceSno = 6;
+  int32 isLock = 7;
+}
+
+message sItemEquipAndEquipSlot {
+  int64 id = 1;
+  int32 itemNo = 2;
+  int32 exp = 3;
+  int32 slot = 4;
+}
+
+message sItemSignature {
+  int32 itemNo = 1;
+  int32 grade = 2;
+  int32 level = 3;
+}
+
+message sFormation {
+  int32 no = 1;
+  int32 kind = 2;
+  repeated string heroidx = 3;
+  int32 formationType = 4;
+  string formationName = 5;
+  sRelic relic = 6;
+}
+
+message sRelic {
+  int32 type = 1;
+  int32 formation = 2;
+  int32 relicOrder = 3;
+  int32 relicNo = 4;
+}
+
+message sContentBuff {
+  int32 contentType = 1;
+  int32 buffType = 2;
+  int32 buffNo = 3;
+  int32 value = 4;
+}
+
+message sBattleSkillList {
+  repeated sBattleSkill skill = 1;
+}
+
+message sBattleSkill {
+  string heroIdx = 1;
+  int64 frame = 2;
+  bool flag = 3;
+  eBattleBufferType battleBuffType = 4;
+  repeated sHeroActionPriority heroActionPriority = 5;
+}
+
+message sHeroActionPriority {
+  int32 heroNo = 1;
+  int32 priority = 2;
+}
+
+message sBattleConfig {
+  bool autoActive = 1;
+  bool autoUltimate = 2;
+  repeated sHeroActionPriority heroActionPriority = 3;
+}
+

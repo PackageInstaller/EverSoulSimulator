@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package EsPb;
+
+message UnprocessedCashProduct {
+  repeated sUnprocessedCashProduct product = 1;
+  string playerId = 2;
+}
+
+message sUnprocessedCashProduct {
+  string productId = 1;
+  int32 result = 2;
+}
+

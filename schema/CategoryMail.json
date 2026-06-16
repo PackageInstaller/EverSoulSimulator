@@ -1,0 +1,106 @@
+{
+ "root": "CategoryMail",
+ "messages": {
+  "CategoryMail": {
+   "fields": [
+    {
+     "name": "mail",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sMail",
+     "packed": false
+    }
+   ]
+  },
+  "sMail": {
+   "fields": [
+    {
+     "name": "idx",
+     "number": 1,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "type",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "sender",
+     "number": 3,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "subject",
+     "number": 4,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "context",
+     "number": 5,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "reward",
+     "number": 6,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "isRead",
+     "number": 7,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "isItemReceived",
+     "number": 8,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "isDelete",
+     "number": 9,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "dt",
+     "number": 10,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "expireDt",
+     "number": 11,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "additionalParameter",
+     "number": 12,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

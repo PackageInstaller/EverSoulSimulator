@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message ChangeLobbyBackground {
+  int32 type = 1;
+  int32 heroNo1 = 2;
+  int32 heroNo2 = 3;
+  int32 heroNo3 = 4;
+  int32 heroNo4 = 5;
+  int32 heroNo5 = 6;
+  int32 backgroundImgItemNo = 7;
+  int32 illustId = 8;
+  float angle1 = 9;
+  float angle2 = 10;
+  float angle3 = 11;
+  float angle4 = 12;
+  float angle5 = 13;
+}
+

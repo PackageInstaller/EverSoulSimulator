@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message VistaTreasure {
+  int32 vistaNo = 1;
+  int32 count = 2;
+}
+

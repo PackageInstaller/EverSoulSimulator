@@ -1,0 +1,17 @@
+{
+ "root": "BattleStart",
+ "messages": {
+  "BattleStart": {
+   "fields": [
+    {
+     "name": "result",
+     "number": 1,
+     "repeated": false,
+     "type": "bool",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

@@ -1,0 +1,102 @@
+{
+ "root": "GetContentClearDeck",
+ "messages": {
+  "GetContentClearDeck": {
+   "fields": [
+    {
+     "name": "contentType",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "contentNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "contentClearDecks",
+     "number": 3,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sContentClearDeckList",
+     "packed": false
+    }
+   ]
+  },
+  "sContentClearDeckList": {
+   "fields": [
+    {
+     "name": "contentClearDeckInfo",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sContentClearDeckInfo",
+     "packed": false
+    }
+   ]
+  },
+  "sContentClearDeckInfo": {
+   "fields": [
+    {
+     "name": "formationType",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "sumPower",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "deckOrderNo",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "clearHero",
+     "number": 4,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sContentClearHeroInfo",
+     "packed": false
+    }
+   ]
+  },
+  "sContentClearHeroInfo": {
+   "fields": [
+    {
+     "name": "heroNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "gradeSno",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "level",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

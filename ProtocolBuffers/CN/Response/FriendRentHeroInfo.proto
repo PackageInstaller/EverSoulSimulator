@@ -1,0 +1,59 @@
+syntax = "proto3";
+
+package EsPb;
+
+message FriendRentHeroInfo {
+  sRentUseHero useRentHero = 3;
+}
+
+message sRentUseHero {
+  string heroIdx = 1;
+  string userIdx = 2;
+  int32 heroNo = 3;
+  int32 level = 4;
+  int32 gradeSno = 5;
+  int32 raceSno = 6;
+  int64 power = 7;
+  string nickName = 8;
+  int32 used = 9;
+  int32 costumeItemNo = 10;
+  repeated sSlotAndEquipItem slotAndEquipItem = 11;
+  sItemSignature signature = 12;
+  repeated sContentBuff buff = 13;
+  repeated sHeroOption heroOption = 14;
+}
+
+message sSlotAndEquipItem {
+  int32 slot = 1;
+  sItemEquip itemEquip = 2;
+}
+
+message sItemEquip {
+  int64 id = 1;
+  int32 itemNo = 2;
+  int32 exp = 3;
+}
+
+message sItemSignature {
+  int32 itemNo = 1;
+  int32 grade = 2;
+  int32 level = 3;
+}
+
+message sContentBuff {
+  int32 contentType = 1;
+  int32 buffType = 2;
+  int32 buffNo = 3;
+  int32 value = 4;
+}
+
+message sHeroOption {
+  int32 heroNo = 1;
+  int32 groupNo = 2;
+  int32 optionSlot = 3;
+  int32 optionNo = 4;
+  int32 optionValue = 5;
+  int32 optionType = 6;
+  int32 optionLock = 7;
+}
+

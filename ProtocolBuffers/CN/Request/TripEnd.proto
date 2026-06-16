@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message TripEnd {
+  int32 heroNo = 1;
+  repeated int32 keywords = 2;
+  int32 uid = 3;
+  int32 bonusLovePoint = 4;
+  int32 bonusGiftNo = 5;
+}
+

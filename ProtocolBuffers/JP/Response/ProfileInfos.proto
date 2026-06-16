@@ -1,0 +1,106 @@
+syntax = "proto3";
+
+package EsPb;
+
+message ProfileInfos {
+  repeated sProfileInfo profileInfo = 1;
+  repeated sContentBuff buff = 2;
+}
+
+message sProfileInfo {
+  sProfileBase profileBase = 1;
+  sProfileCustom profileCustom = 2;
+}
+
+message sProfileBase {
+  string userIdx = 1;
+  int32 channelNo = 2;
+  string nickName = 3;
+  string aboutMe = 4;
+  string guildIdx = 5;
+  string guildName = 6;
+  int32 currentStageNo = 7;
+  int32 currentBarrierNo = 8;
+  sThumbnail thumbnail = 9;
+  int32 popularity = 10;
+  int64 power = 11;
+  int32 spritTreeLevel = 12;
+  int32 ownedHeroCount = 13;
+  int64 arenaScore = 14;
+  int32 activatedZodiacBlessNo = 15;
+  repeated sHero heroes = 16;
+  string id = 17;
+  int32 arkMainCoreLevel = 18;
+  repeated sHallOfFameMyRank hallOfFameMyRank = 19;
+  int32 costumeCount = 20;
+  int64 createdDt = 21;
+  int32 townLevel = 22;
+  int32 destinyStoryTrueEndingCount = 23;
+  int32 stickerCount = 24;
+  int32 frameCount = 25;
+  int32 sdCharacterHeroNo = 26;
+  repeated sGuildRaidMyMaxScoreRecord guildRaidRecord = 27;
+  repeated sProfileSingleRaidRecord singleRaidRecord = 28;
+  repeated sProfileEdenAllianceRecord edenAllianceRecord = 29;
+  string profileVisibleBase64 = 30;
+  int32 championsArenaRank = 31;
+  int32 userLevel = 32;
+  repeated sProfileWorldRaidRecord worldRaidRecord = 33;
+}
+
+message sThumbnail {
+  int32 thumbnailFrame = 1;
+  int32 thumbnailImage = 2;
+  bool useCustom = 3;
+  bytes thumbnail = 4;
+}
+
+message sHero {
+  string idx = 1;
+  int32 heroNo = 2;
+  int32 level = 3;
+  int32 isResonance = 4;
+  int32 gradeSno = 5;
+  int32 raceSno = 6;
+  int32 isLock = 7;
+}
+
+message sHallOfFameMyRank {
+  int32 id = 1;
+  int32 rank = 2;
+}
+
+message sGuildRaidMyMaxScoreRecord {
+  int32 bossNo = 1;
+  int64 score = 2;
+}
+
+message sProfileSingleRaidRecord {
+  int32 levelGroup = 1;
+  int32 level = 2;
+  int32 rank = 3;
+}
+
+message sProfileEdenAllianceRecord {
+  int32 nameSno = 1;
+  int64 score = 2;
+  int32 tier = 3;
+}
+
+message sProfileWorldRaidRecord {
+  int32 raidNo = 1;
+  int64 rank = 2;
+}
+
+message sProfileCustom {
+  int32 uid = 1;
+  bytes profile = 2;
+}
+
+message sContentBuff {
+  int32 contentType = 1;
+  int32 buffType = 2;
+  int32 buffNo = 3;
+  int32 value = 4;
+}
+

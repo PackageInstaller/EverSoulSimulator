@@ -1,0 +1,50 @@
+{
+ "root": "AchievementList",
+ "messages": {
+  "AchievementList": {
+   "fields": [
+    {
+     "name": "achievement",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sAchievement",
+     "packed": false
+    }
+   ]
+  },
+  "sAchievement": {
+   "fields": [
+    {
+     "name": "behavior",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "group",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "value",
+     "number": 3,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "lastReceivedNo",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

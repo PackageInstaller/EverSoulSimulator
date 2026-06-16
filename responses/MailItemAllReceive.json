@@ -1,0 +1,230 @@
+{
+  "mail": [
+    {
+      "idx": "2_121WhSEa_179o",
+      "sender": "10:560056",
+      "subject": "10:540060",
+      "context": "10:540061,8,8,20",
+      "reward": "[[6,8]]",
+      "isItemReceived": 1,
+      "dt": "1781049600348",
+      "expireDt": "1781654400348"
+    },
+    {
+      "idx": "2_121WhSEa_179p",
+      "sender": "10:560056",
+      "subject": "10:540069",
+      "context": "10:540070,諾亞 nails 顾学文",
+      "reward": "[[6,30]]",
+      "isItemReceived": 1,
+      "dt": "1781049600384",
+      "expireDt": "1781136000384"
+    },
+    {
+      "idx": "2_rjAiK0E6_wgg",
+      "type": 51,
+      "sender": "10:560056",
+      "subject": "10:19113",
+      "context": "10:19117,1",
+      "reward": "[[13,3000]]",
+      "isItemReceived": 1,
+      "dt": "1781049601330",
+      "expireDt": "1781654401356"
+    }
+  ],
+  "currency": {
+    "allCurrency": [
+      {
+        "type": "Gold",
+        "value": "2680352014"
+      },
+      {
+        "type": "FreeDia",
+        "value": "505"
+      },
+      {
+        "type": "ManaDust",
+        "value": "6025455755"
+      },
+      {
+        "type": "ManaCrystal",
+        "value": "44782"
+      },
+      {
+        "type": "Exp",
+        "value": "33688425"
+      },
+      {
+        "type": "Heart",
+        "value": "3636"
+      },
+      {
+        "type": "LifeEssence",
+        "value": "94068"
+      },
+      {
+        "type": "ArenaTicket",
+        "value": "41"
+      },
+      {
+        "type": "Dungeon",
+        "value": "5829"
+      },
+      {
+        "type": "Guild",
+        "value": "84640"
+      },
+      {
+        "type": "Release",
+        "value": "374250"
+      },
+      {
+        "type": "Arena",
+        "value": "872780"
+      },
+      {
+        "type": "Relics",
+        "value": "258870"
+      },
+      {
+        "type": "Silver",
+        "value": "23220"
+      },
+      {
+        "type": "SingleRaidCoin",
+        "value": "220635"
+      },
+      {
+        "type": "PickupGachaTicket"
+      },
+      {
+        "type": "Sign1",
+        "value": "19190"
+      },
+      {
+        "type": "Sign2",
+        "value": "4996"
+      },
+      {
+        "type": "SignHuman"
+      },
+      {
+        "type": "SignFurry"
+      },
+      {
+        "type": "SignElf"
+      },
+      {
+        "type": "SignUndead"
+      },
+      {
+        "type": "SignAngel"
+      },
+      {
+        "type": "SignDemon"
+      },
+      {
+        "type": "NormalTicket",
+        "value": "138"
+      },
+      {
+        "type": "RaceTicket"
+      },
+      {
+        "type": "RareSoulstone",
+        "value": "4424"
+      },
+      {
+        "type": "EpicSoulstone",
+        "value": "1252"
+      },
+      {
+        "type": "EquipExp",
+        "value": "2221"
+      },
+      {
+        "type": "CollaborationSummonTicket"
+      },
+      {
+        "type": "PayDia",
+        "value": "982"
+      },
+      {
+        "type": "TeamarenaTicket"
+      },
+      {
+        "type": "SignatureGachaTicket",
+        "value": "122"
+      },
+      {
+        "type": "PremiumGachaTicket",
+        "value": "4"
+      },
+      {
+        "type": "MonthlyHeroResetTicket",
+        "value": "1"
+      },
+      {
+        "type": "EquipExpMiddle",
+        "value": "185"
+      },
+      {
+        "type": "EquipExpHigh",
+        "value": "210"
+      },
+      {
+        "type": "ZodiacExp"
+      },
+      {
+        "type": "LabyrinthTicket"
+      },
+      {
+        "type": "TranscendentStone",
+        "value": "1506"
+      },
+      {
+        "type": "SingleRaidTicket"
+      },
+      {
+        "type": "SetItemEngrave"
+      },
+      {
+        "type": "RotationDungeonTicket"
+      },
+      {
+        "type": "EdenCoin",
+        "value": "6250"
+      },
+      {
+        "type": "TypeBarrierGateTicket"
+      },
+      {
+        "type": "OriginTowerTicket"
+      },
+      {
+        "type": "DoubleGateNormalTicket",
+        "value": "3"
+      },
+      {
+        "type": "DoubleGateNormalTicketCharge"
+      },
+      {
+        "type": "SignatureEnhanceStone",
+        "value": "2839"
+      },
+      {
+        "type": "HeroOptionChangeStone",
+        "value": "31628"
+      },
+      {
+        "type": "WishGachaTicket",
+        "value": "40"
+      },
+      {
+        "type": "TotalDia",
+        "value": "1487"
+      }
+    ]
+  },
+  "__format__": "proto"
+}

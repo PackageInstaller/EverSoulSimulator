@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package EsPb;
+
+message VistaClear {
+  sVistaInfo vistaInfo = 1;
+}
+
+message sVistaInfo {
+  int32 vistaNo = 1;
+  int32 maxClearLevel = 2;
+  int32 maxRewardLevel = 3;
+  int32 vistaTreasureEnergy = 4;
+  int64 expireDt = 5;
+  int64 energyUpdateDt = 6;
+}
+

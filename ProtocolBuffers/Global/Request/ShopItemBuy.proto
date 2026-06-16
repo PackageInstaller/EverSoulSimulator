@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message ShopItemBuy {
+  int32 shopType = 1;
+  int32 shopNo = 2;
+  int32 no = 3;
+  int32 buyCnt = 4;
+}
+

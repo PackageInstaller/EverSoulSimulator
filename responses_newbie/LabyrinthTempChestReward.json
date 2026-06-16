@@ -1,0 +1,19 @@
+{
+  "labyrinthTempReward": {
+    "dungeonReward": {
+      "type": "Chest",
+      "rewardNo": 1005015001
+    },
+    "labyrinthItem": [
+      {
+        "itemNo": 3001,
+        "cnt": 2
+      },
+      {
+        "itemNo": 10,
+        "cnt": 530
+      }
+    ]
+  },
+  "__format__": "proto"
+}

@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package EsPb;
+
+message SpiritTreeSlotList {
+  repeated sSpiritTree spiritTree = 1;
+}
+
+message sSpiritTree {
+  int32 slotNo = 1;
+  string heroIdx = 2;
+  int64 enableDt = 3;
+}
+

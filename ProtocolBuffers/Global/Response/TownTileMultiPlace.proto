@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package EsPb;
+
+message TownTileMultiPlace {
+  repeated sTownObjet townObjectList = 1;
+  repeated sItemEtc itemEtc = 2;
+}
+
+message sTownObjet {
+  int32 objetNo = 1;
+  int32 uid = 2;
+  string position = 3;
+  string rotation = 4;
+  int32 objetGroupNo = 5;
+}
+
+message sItemEtc {
+  int32 itemNo = 1;
+  int32 cnt = 2;
+}
+

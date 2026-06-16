@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+package EsPb;
+
+message OtherUserTownVisit {
+  repeated sTownObjet townObjectList = 1;
+  sOtherUserInfo otherUserInfo = 2;
+  repeated sTownEnemy townEnemy = 3;
+  int32 enemyCount = 4;
+  int32 castleMaxFloorNo = 5;
+}
+
+message sTownObjet {
+  int32 objetNo = 1;
+  int32 uid = 2;
+  string position = 3;
+  string rotation = 4;
+  int32 objetGroupNo = 5;
+}
+
+message sOtherUserInfo {
+  string userIdx = 1;
+  string nickName = 2;
+  int64 lastLoginDt = 3;
+  sThumbnail thumbnail = 4;
+  int32 stageNo = 5;
+  int32 popularity = 6;
+  bool likeClick = 7;
+  int32 enemyTotalCount = 8;
+  int32 enemyDefeatCount = 9;
+  int32 townLevel = 10;
+  int32 isVisitBattleFlag = 11;
+  int32 visitBattleFriendCount = 12;
+  int32 isVisitBattleFriendFlag = 13;
+  bool isFavorite = 14;
+  bool isYesterdayHelper = 15;
+}
+
+message sThumbnail {
+  int32 thumbnailFrame = 1;
+  int32 thumbnailImage = 2;
+  bool useCustom = 3;
+  bytes thumbnail = 4;
+}
+
+message sTownEnemy {
+  int32 no = 1;
+  int32 count = 2;
+  int32 type = 3;
+  int32 section = 4;
+}
+

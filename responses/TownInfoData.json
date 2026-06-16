@@ -1,0 +1,16 @@
+{
+  "townInfo": {
+    "townLevel": 25,
+    "currentDevelopPoint": "1986875"
+  },
+  "castleMaxFloorNo": 113,
+  "additionalRestSlotCount": 10,
+  "playerPosition": {
+    "x": 35.5589,
+    "y": -0.901493,
+    "z": 17.1555
+  },
+  "visitBattleMaxCount": 3,
+  "managerHeroNo": 4100,
+  "__format__": "proto"
+}

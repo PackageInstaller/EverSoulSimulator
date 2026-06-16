@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package EsPb;
+
+message Login {
+  string playerId = 1;
+  int32 type = 2;
+  int32 accountType = 3;
+  sBanInfo banInfo = 4;
+}
+
+message sBanInfo {
+  int32 operationNum = 1;
+  int64 banUntil = 2;
+  int32 isPermanent = 3;
+  string reason = 4;
+}
+

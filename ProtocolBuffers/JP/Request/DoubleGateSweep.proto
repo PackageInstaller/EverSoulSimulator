@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package ReqPb;
+
+enum eDoubleGateStageType {
+  DoubleGateStageTypeNone = 0;
+  DoubleGateNormalManaCrystal = 1;
+  DoubleGateNormalGold = 2;
+  DoubleGateNormalManaDust = 3;
+  DoubleGateNormalEnhanceStone = 4;
+}
+
+enum eDoubleGateTicketId {
+  DoubleGateTicketNone = 0;
+  DoubleGateTicketNormal = 60;
+  DoubleGateTicketChallenge = 61;
+  DoubleGateTicketNormalCharge = 62;
+  DoubleGateTicketChallengeCharge = 63;
+}
+
+message DoubleGateSweep {
+  eDoubleGateStageType stageType = 1;
+  eDoubleGateTicketId ticketId = 2;
+  int32 sweepCount = 3;
+}
+

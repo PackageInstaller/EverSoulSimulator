@@ -1,0 +1,172 @@
+{
+ "root": "RankingList",
+ "messages": {
+  "RankingList": {
+   "fields": [
+    {
+     "name": "rankGroup",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sRankGroup",
+     "packed": false
+    }
+   ]
+  },
+  "sRankGroup": {
+   "fields": [
+    {
+     "name": "rank",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sRank",
+     "packed": false
+    },
+    {
+     "name": "myRank",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "myValue",
+     "number": 3,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "myUpdateDt",
+     "number": 4,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "rankNo",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sRank": {
+   "fields": [
+    {
+     "name": "rank",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "userIdx",
+     "number": 2,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "value",
+     "number": 3,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "nickName",
+     "number": 4,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "lastLoginDt",
+     "number": 5,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "thumbnail",
+     "number": 6,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sThumbnail",
+     "packed": false
+    },
+    {
+     "name": "popularity",
+     "number": 7,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "level",
+     "number": 8,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "updateDt",
+     "number": 9,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    }
+   ]
+  },
+  "sThumbnail": {
+   "fields": [
+    {
+     "name": "thumbnailFrame",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "thumbnailImage",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "useCustom",
+     "number": 3,
+     "repeated": false,
+     "type": "bool",
+     "packed": false
+    },
+    {
+     "name": "thumbnail",
+     "number": 4,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    },
+    {
+     "name": "firstTitle",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "secondTitle",
+     "number": 6,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

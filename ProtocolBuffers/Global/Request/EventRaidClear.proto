@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message EventRaidClear {
+  int32 eventGroup = 1;
+  int32 eventNumber = 2;
+  int32 stageStep = 3;
+  int64 demage = 4;
+  repeated sEventRaidHero eventRaidHero = 5;
+}
+
+message sEventRaidHero {
+  int32 heroNo = 1;
+  int32 grade = 2;
+  int32 level = 3;
+}
+

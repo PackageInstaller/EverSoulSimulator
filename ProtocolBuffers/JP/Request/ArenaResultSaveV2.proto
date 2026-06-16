@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message ArenaResultSaveV2 {
+  int32 arenaType = 1;
+  int32 isWin = 2;
+  string nickName = 3;
+  int32 battleType = 4;
+  string winUserIdx = 5;
+  string tUserIdx = 6;
+  string tNickName = 7;
+  int32 battleStatus = 8;
+  string clientVersion = 9;
+  bytes replayFile = 10;
+}
+

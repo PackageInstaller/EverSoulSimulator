@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package EsPb;
+
+message SaveBGM {
+  sBGM bGM = 1;
+}
+
+message sBGM {
+  bytes lobbyBgm = 1;
+  bytes battleBgm = 2;
+}
+

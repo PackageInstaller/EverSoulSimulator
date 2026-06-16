@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package EsPb;
+
+message TownRaceRecordReset {
+  repeated sTownRaceRecord townRaceRecord = 1;
+}
+
+message sTownRaceRecord {
+  string userIdx = 1;
+  string nickName = 2;
+  int32 elapsedTime = 3;
+  sThumbnail thumbnail = 4;
+}
+
+message sThumbnail {
+  int32 thumbnailFrame = 1;
+  int32 thumbnailImage = 2;
+  bool useCustom = 3;
+  bytes thumbnail = 4;
+}
+

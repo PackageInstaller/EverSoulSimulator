@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package EsPb;
+
+message FriendRecommendList {
+  repeated sFriendRecommendInfo friendRecommend = 1;
+}
+
+message sFriendRecommendInfo {
+  string userIdx = 1;
+  string id = 2;
+  sThumbnail thumbnail = 3;
+  string nickName = 4;
+  int32 level = 5;
+  int64 lastLoginDt = 6;
+  int64 power = 7;
+  int64 logoutDt = 8;
+}
+
+message sThumbnail {
+  int32 thumbnailFrame = 1;
+  int32 thumbnailImage = 2;
+  bool useCustom = 3;
+  bytes thumbnail = 4;
+}
+

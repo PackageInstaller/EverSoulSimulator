@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package EsPb;
+
+message HeroEquipPresetNameChange {
+  int32 presetSlot = 1;
+  string presetName = 2;
+}
+

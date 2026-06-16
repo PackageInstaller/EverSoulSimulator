@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package EsPb;
+
+message CashShopGivePendingItem {
+  repeated string processedProductIds = 1;
+}
+

@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package EsPb;
+
+message GuildRaidMemberHistoryList {
+  repeated sGuildRaidPlayMemberHistory guildRaidPlayMemberHistory = 1;
+}
+
+message sGuildRaidPlayMemberHistory {
+  string otherGuildUserIdx = 1;
+  int32 scheduleId = 2;
+  int64 maxScore = 3;
+  string nickName = 4;
+  sThumbnail thumbnail = 5;
+  bool isDelete = 6;
+}
+
+message sThumbnail {
+  int32 thumbnailFrame = 1;
+  int32 thumbnailImage = 2;
+  bool useCustom = 3;
+  bytes thumbnail = 4;
+}
+

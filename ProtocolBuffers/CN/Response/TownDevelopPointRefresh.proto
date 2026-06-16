@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package EsPb;
+
+message TownDevelopPointRefresh {
+  sTownInfo townInfo = 1;
+}
+
+message sTownInfo {
+  int32 townLevel = 1;
+  int64 currentDevelopPoint = 2;
+}
+

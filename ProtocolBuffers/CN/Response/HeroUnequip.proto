@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package EsPb;
+
+message HeroUnequip {
+  string heroUnequip_ = 1;
+}
+

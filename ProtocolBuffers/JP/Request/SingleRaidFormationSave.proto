@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message SingleRaidFormationSave {
+  repeated sSingleRaidFormation raidFormation = 1;
+}
+
+message sSingleRaidFormation {
+  int32 formationType = 1;
+  repeated sSingleRaidHeroPosition formationHero = 2;
+}
+
+message sSingleRaidHeroPosition {
+  string heroIdx = 1;
+  int32 position = 2;
+}
+

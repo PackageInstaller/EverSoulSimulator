@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package EsPb;
+
+message EventDoubleStageInfo {
+  int32 enterCnt = 1;
+  int32 difficulty = 2;
+  int32 ableDifficulty = 3;
+  int32 isPlaying = 4;
+  int32 buffStage1 = 5;
+  int32 buffStage2 = 6;
+  int64 buffUpdateTimestamp = 7;
+  repeated int32 firstClearRewardedArr = 8;
+  int32 eventGroup = 9;
+  int32 eventNumber = 10;
+}
+

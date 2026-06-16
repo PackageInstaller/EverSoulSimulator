@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package EsPb;
+
+enum eRankRewardState {
+  Rewarded = 0;
+  Available = 1;
+  Empty = 2;
+  RankCalculating = 3;
+  Progressing = 4;
+}
+
+message EventRankRaidInfo {
+  repeated sEventRankRaid eventRankRaid = 1;
+}
+
+message sEventRankRaid {
+  int32 eventGroup = 1;
+  int32 eventNumber = 2;
+  int32 maxRankScore = 3;
+  int32 maxDamageLastReward = 4;
+  eRankRewardState rankRewardState = 5;
+  int32 myRank = 6;
+}
+

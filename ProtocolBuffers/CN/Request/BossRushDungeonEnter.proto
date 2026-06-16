@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message BossRushDungeonEnter {
+  int32 eventGroup = 1;
+  int32 eventNumber = 2;
+  int32 dungeonNo = 3;
+  repeated string heroIdx = 4;
+}
+

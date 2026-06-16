@@ -1,0 +1,65 @@
+{
+  "tripKeyword": [
+    {
+      "keywordNo": 101001,
+      "isFirst": 1,
+      "heroNo": 1010
+    },
+    {
+      "keywordNo": 106001,
+      "isFirst": 1,
+      "heroNo": 1060
+    },
+    {
+      "keywordNo": 109001,
+      "isFirst": 1,
+      "heroNo": 1090
+    },
+    {
+      "keywordNo": 112001,
+      "isFirst": 1,
+      "heroNo": 1120
+    },
+    {
+      "keywordNo": 113001,
+      "isFirst": 1,
+      "heroNo": 1130
+    },
+    {
+      "keywordNo": 208001,
+      "isFirst": 1,
+      "heroNo": 2080
+    },
+    {
+      "keywordNo": 211001,
+      "isFirst": 1,
+      "heroNo": 2110
+    },
+    {
+      "keywordNo": 309001,
+      "isFirst": 1,
+      "heroNo": 3090
+    },
+    {
+      "keywordNo": 313001,
+      "isFirst": 1,
+      "heroNo": 3130
+    },
+    {
+      "keywordNo": 314001,
+      "isFirst": 1,
+      "heroNo": 3140
+    },
+    {
+      "keywordNo": 408001,
+      "isFirst": 1,
+      "heroNo": 4080
+    },
+    {
+      "keywordNo": 508001,
+      "isFirst": 1,
+      "heroNo": 5080
+    }
+  ],
+  "__format__": "proto"
+}

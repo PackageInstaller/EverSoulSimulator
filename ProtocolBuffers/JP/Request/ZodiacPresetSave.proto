@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message ZodiacPresetSave {
+  int64 presetIdx = 1;
+  repeated int32 zodiacNo = 2;
+}
+

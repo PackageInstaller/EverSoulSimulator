@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message CashCustomPackSelect {
+  int32 shopNo = 1;
+  int32 shopItemNo = 2;
+  repeated CashShopCustomPackSlotInfo slotInfo = 3;
+}
+
+message CashShopCustomPackSlotInfo {
+  int32 rewardId = 1;
+  int32 itemNo = 2;
+}
+
