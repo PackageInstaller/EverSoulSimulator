@@ -252,7 +252,7 @@ static void start_offline_server(const std::string& exe_path)
     std::wstring wcmd = wexe + L" --mock-only";
     if (CreateProcessW(
             nullptr, wcmd.data(), nullptr, nullptr,
-            FALSE, DETACHED_PROCESS | CREATE_NEW_PROCESS_GROUP,
+            FALSE, CREATE_NEW_CONSOLE | CREATE_NEW_PROCESS_GROUP,
             nullptr, wdir.empty() ? nullptr : wdir.c_str(), &si, &pi)) {
         CloseHandle(pi.hProcess);
         CloseHandle(pi.hThread);
@@ -283,8 +283,9 @@ static void start_offline_server(const std::string& exe_path)
 
 static void stream_logcat(const std::string& adb, const std::string& serial)
 {
+    eversoul::adb_pclose(eversoul::adb_popen(adb, "-s " + serial + " logcat -c"));
     FILE* pipe = eversoul::adb_popen(adb,
-        "-s " + serial + " logcat -s libswappywrapper:V eversoul_offline:V *:S");
+        "-s " + serial + " logcat -s libswappywrapper:V eversoul_offline:V eversoul_agent:V *:S");
     if (!pipe) return;
     char buf[512];
     while (fgets(buf, sizeof(buf), pipe))
@@ -445,6 +446,7 @@ int main(int argc, char* argv[])
     }
 
     // --- 5. replace base.apk via su ------------------------------------------
+    /*
     printf("[replace] Pushing base.apk...\n");
     {
         std::string push = run_adb(adb,
@@ -466,8 +468,10 @@ int main(int argc, char* argv[])
         }
         printf("%s\n", eversoul::i18n::T("injector.root_replace_ok", "path", device_base_apk).c_str());
     }
+    */
 
     // --- 6. replace libswappywrapper.so via su --------------------------------
+    /*
     printf("[replace] Pushing libswappywrapper.so...\n");
     {
         const std::string device_so = device_app_dir + "lib/arm64/libswappywrapper.so";
@@ -490,8 +494,10 @@ int main(int argc, char* argv[])
         }
         printf("%s\n", eversoul::i18n::T("injector.root_swapper_ok").c_str());
     }
+    */
 
     // --- 7. (optional) replace libcawwyayy.so via su -------------------------
+    /*
     if (path_exists(cawwyayy_so)) {
         printf("[replace] Pushing libcawwyayy.so...\n");
         const std::string device_so = device_app_dir + "lib/arm64/libcawwyayy.so";
@@ -509,6 +515,7 @@ int main(int argc, char* argv[])
             printf("[replace] libcawwyayy.so -> %s  OK\n", device_so.c_str());
         }
     }
+    */
 
     // --- 8. adb reverse ------------------------------------------------------
     run_adb(adb, "-s " + serial + " reverse tcp:9999 tcp:9999");

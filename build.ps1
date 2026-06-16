@@ -208,9 +208,10 @@ if ($NDK_ROOT -and (Test-Path $NDK_ROOT)) {
 
     Write-Host "== Build Android ARM64 =="
     $cleanFirst = if ($env:CLEAN_ANDROID -eq "1") { @("--clean-first") } else { @() }
-    & cmake --build $ANDROID_BUILD_DIR --target swappywrapper @cleanFirst -j $JOBS
+    & cmake --build $ANDROID_BUILD_DIR --target swappywrapper eversoul_agent @cleanFirst -j $JOBS
     if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
     Write-Host "Built: $ANDROID_BUILD_DIR/libswappywrapper.so (arm64-v8a)"
+    Write-Host "Built: $ANDROID_BUILD_DIR/libeversoul_agent.so (arm64-v8a)"
 
     $ANDROID_X86_BUILD_DIR = "build/android_x86"
     & cmake -S . -B $ANDROID_X86_BUILD_DIR `
@@ -241,14 +242,22 @@ if ($NDK_ROOT -and (Test-Path $NDK_ROOT)) {
         Write-Host "Copied: build/apk/libcawwyayy.so"
     }
 
+    $agentSo = "$ANDROID_BUILD_DIR\libeversoul_agent.so"
+    if (Test-Path $agentSo) {
+        Copy-Item -Force $agentSo "build\apk\libeversoul_agent.so"
+        Write-Host "Copied: build/apk/libeversoul_agent.so"
+    }
+
     Write-Host "== Output hashes =="
     foreach ($f in @(
         "build\eversoul_offline_server.exe",
         "$ANDROID_BUILD_DIR\libswappywrapper.so",
+        "$ANDROID_BUILD_DIR\libeversoul_agent.so",
         "$ANDROID_BUILD_DIR\inject_helper",
         "build\offline_data\libofflinedata.so",
         "build\apk\base.apk",
-        "build\apk\libcawwyayy.so"
+        "build\apk\libcawwyayy.so",
+        "build\apk\libeversoul_agent.so"
     )) {
         if (Test-Path $f) {
             $h = (Get-FileHash $f -Algorithm SHA256).Hash.ToLower()

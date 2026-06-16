@@ -94,6 +94,21 @@ if(ANDROID)
   target_link_libraries(swappywrapper PRIVATE log dl m android z)
   target_link_options(swappywrapper PRIVATE -static-libstdc++ -s)
 
+  # Standalone agent SO: injected via inject_helper as root, separate from
+  # libswappywrapper.so. Installs il2cpp inline hooks + GOT hooks + JNI Java
+  # hooks. Kakaogames API traffic → 127.0.0.1:8080 (on-device server),
+  # game server traffic → 127.0.0.1:9999 (PC EXE via ADB reverse).
+  set(EVERSOUL_AGENT_SOURCES
+    src/agent_entry.cpp
+    src/agent_il2cpp_hook.cpp
+    src/agent_java_hook.cpp
+    src/agent_http_server.cpp)
+  add_library(eversoul_agent SHARED ${EVERSOUL_AGENT_SOURCES})
+  target_include_directories(eversoul_agent PRIVATE ${EVERSOUL_INCLUDE_DIRS})
+  target_compile_options(eversoul_agent PRIVATE -O2 -fvisibility=hidden -Wno-format-security)
+  target_link_libraries(eversoul_agent PRIVATE log dl m android)
+  target_link_options(eversoul_agent PRIVATE -static-libstdc++ -s)
+
   # On-device ARM64 ptrace injector — pushed to the device as root, polls for
   # the game process and injects libswappywrapper.so via ptrace + dlopen.
   add_executable(inject_helper src/inject_helper.c)
