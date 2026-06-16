@@ -35,6 +35,11 @@ set_source_files_properties(third_party/sqlite/sqlite3.c PROPERTIES
   COMPILE_OPTIONS "-w"
   COMPILE_DEFINITIONS "SQLITE_THREADSAFE=1;SQLITE_OMIT_LOAD_EXTENSION;SQLITE_DEFAULT_MEMSTATUS=0;SQLITE_OMIT_DEPRECATED")
 
+# sqlite_orm.h uses C++26 pack-indexing and pre-C++20 literal operator syntax;
+# suppress diagnostics that are third_party's concern, not ours.
+set_source_files_properties(src/orm/storage.cpp PROPERTIES
+  COMPILE_OPTIONS "-Wno-deprecated-literal-operator;-Wno-c++26-extensions")
+
 # The .inc protobuf fixtures live in the project root.
 set(EVERSOUL_INCLUDE_DIRS src ${CMAKE_CURRENT_SOURCE_DIR} third_party/sqlite third_party/sqlite_orm)
 
@@ -55,25 +60,16 @@ if(ANDROID)
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
     VERBATIM)
 
-  # === Build LSPlant as a static library ===
-  # LSPlant needs C++23 (modules), so we build it in its own scope.
-  # It only needs to be compiled as a static lib linked into swappywrapper.
-  set(LSPLANT_SRC_DIR third_party/lsplant/lsplant/src/main/jni)
-  set(LSPLANT_BUILD_SHARED OFF CACHE INTERNAL "" FORCE)
-  set(LSPLANT_STANDALONE OFF CACHE INTERNAL "" FORCE)
-  add_subdirectory(${LSPLANT_SRC_DIR} ${CMAKE_CURRENT_BINARY_DIR}/lsplant)
-
   # === Build Dobby as a static library ===
   # Mature ARM64 inline hook engine with instruction relocation (handles ADRP etc.)
   add_subdirectory(third_party/dobby ${CMAKE_CURRENT_BINARY_DIR}/dobby)
 
-  # Android-only sources: inline hook engine, URL redirect, native & Java hooks.
+  # Android-only sources: inline hook engine, URL redirect, native hooks.
+  # Java-layer redirect is handled by Smali injection (not LSPlant).
   set(EVERSOUL_ANDROID_SOURCES
-    src/inline_hook.cpp
     src/redirect.cpp
     src/net_redirect.cpp
-    src/il2cpp_hook.cpp
-    src/lsplant_hook.cpp)
+    src/il2cpp_hook.cpp)
 
   # Merged single library: anti-cheat hook + offline server + entry. Must be named
   # libswappywrapper.so so the game auto-loads it.
@@ -85,13 +81,11 @@ if(ANDROID)
     ${PROTO_OBJ})
   target_include_directories(swappywrapper PRIVATE
     ${EVERSOUL_INCLUDE_DIRS}
-    ${LSPLANT_SRC_DIR}/include
-    ${LSPLANT_SRC_DIR}
     third_party/dobby/include)
   target_compile_options(swappywrapper PRIVATE -O2 -fvisibility=hidden)
+  target_compile_definitions(swappywrapper PRIVATE SQLITE_ORM_OMITS_CODECVT)
   target_link_libraries(swappywrapper PRIVATE
     log dl m
-    lsplant_static
     dobby)
   target_link_options(swappywrapper PRIVATE -static-libstdc++ -s)
 
@@ -102,7 +96,7 @@ if(ANDROID)
   message(STATUS "  Offline server:     YES (port 9999)")
   message(STATUS "  Transport redirect: YES (connect/getaddrinfo -> 127.0.0.1:9999)")
   message(STATUS "  Native IL2CPP hook: YES (UnityWebRequest)")
-  message(STATUS "  Java LSPlant hook:  YES (URL/OkHttp)")
+  message(STATUS "  Java layer:         Smali injection (URL/OkHttp)")
   message(STATUS "")
 else()
   # Desktop capture/proxy/mock server.
@@ -111,7 +105,17 @@ else()
   add_executable(eversoul_offline_server ${EVERSOUL_CORE_SOURCES} src/main.cpp)
   target_include_directories(eversoul_offline_server PRIVATE ${EVERSOUL_INCLUDE_DIRS})
   target_compile_options(eversoul_offline_server PRIVATE -O2 -Wall -Wextra)
-  target_link_libraries(eversoul_offline_server PRIVATE CURL::libcurl Threads::Threads ${CMAKE_DL_LIBS})
+  target_link_libraries(eversoul_offline_server PRIVATE CURL::libcurl Threads::Threads ${CMAKE_DL_LIBS}
+    $<$<PLATFORM_ID:Windows>:ws2_32>)
+
+  add_custom_command(TARGET eversoul_offline_server POST_BUILD
+    COMMAND ${CMAKE_COMMAND}
+      -DSRC_DIR=${CMAKE_SOURCE_DIR}
+      -DDST_DIR=$<TARGET_FILE_DIR:eversoul_offline_server>
+      -P ${CMAKE_SOURCE_DIR}/cmake/copy_data_dirs.cmake
+    COMMENT "Syncing offline data dirs (responses/ schema/ wss/ web/) to build output"
+    VERBATIM
+  )
 
   # Desktop validator for the descriptor-driven JSON->protobuf encoder. Links
   # only the small pieces it needs (no curl/sqlite), so it builds fast.

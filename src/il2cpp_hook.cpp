@@ -60,13 +60,8 @@ namespace eversoul::il2cpp_hook
         kg_return_string_t g_kg_rva_orig[kMaxKgRVA] = {};
         int g_kg_rva_count = 0;
 
-        void *kg_rva_detour(void *a1, unsigned int a2, void *a3)
+        void *kg_rva_rewrite(void *ret)
         {
-            // Find which slot we're in by comparing LR (link register)
-            // But easier: just call original, then modify return
-            void *ret = g_kg_rva_orig[g_kg_rva_count > 0 ? g_kg_rva_count - 1 : 0](a1, a2, a3);
-
-            // Rewrite the returned IL2CPP string if possible
             if (g_il2cpp_string_chars && g_il2cpp_string_length && ret)
             {
                 std::string url = il2cpp_string_to_utf8(ret);
@@ -79,6 +74,19 @@ namespace eversoul::il2cpp_hook
             }
             return ret;
         }
+
+#define MAKE_KG_DETOUR(n)                                                                         \
+    static void *kg_rva_detour_##n(void *a1, unsigned int a2, void *a3)                           \
+    { return kg_rva_rewrite(g_kg_rva_orig[n](a1, a2, a3)); }
+
+        MAKE_KG_DETOUR(0); MAKE_KG_DETOUR(1); MAKE_KG_DETOUR(2);
+#undef MAKE_KG_DETOUR
+
+        void *kg_detour_table[kMaxKgRVA] = {
+            reinterpret_cast<void *>(kg_rva_detour_0),
+            reinterpret_cast<void *>(kg_rva_detour_1),
+            reinterpret_cast<void *>(kg_rva_detour_2),
+        };
 
         // ---------- IL2CPP string helpers ----------
 
@@ -306,7 +314,7 @@ namespace eversoul::il2cpp_hook
                     logi("KG RVA hook #%d @ 0x%lx → %p", i,
                          static_cast<unsigned long>(kKgRVAs[i]), addr);
                     void *origin = nullptr;
-                    int ret = DobbyHook(addr, reinterpret_cast<void *>(kg_rva_detour), &origin);
+                    int ret = DobbyHook(addr, kg_detour_table[g_kg_rva_count], &origin);
                     if (ret == 0)
                     {
                         g_kg_rva_orig[g_kg_rva_count] = reinterpret_cast<kg_return_string_t>(origin);

@@ -1,0 +1,44 @@
+{
+  "configurations": [
+    {
+      "name": "Desktop (Windows)",
+      "includePath": [
+        "${workspaceFolder}/src",
+        "${workspaceFolder}",
+        "${workspaceFolder}/third_party/sqlite",
+        "${workspaceFolder}/third_party/sqlite_orm"
+      ],
+      "defines": [
+        "_WIN32",
+        "WIN32_LEAN_AND_MEAN",
+        "_SSIZE_T_DEFINED"
+      ],
+      "cppStandard": "c++23",
+      "intelliSenseMode": "windows-msvc-x64"
+    },
+    {
+      "name": "Android (arm64-v8a API29)",
+      "includePath": [
+        "${workspaceFolder}/src",
+        "${workspaceFolder}",
+        "${workspaceFolder}/third_party/sqlite",
+        "${workspaceFolder}/third_party/sqlite_orm",
+        "${workspaceFolder}/third_party/dobby/include",
+        "${workspaceFolder}/third_party/lsplant/lsplant/src/main/jni/include",
+        "${workspaceFolder}/third_party/lsplant/lsplant/src/main/jni",
+        "C:/Users/koiya/AppData/Local/Android/Sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include",
+        "C:/Users/koiya/AppData/Local/Android/Sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/include/aarch64-linux-android"
+      ],
+      "defines": [
+        "__ANDROID__",
+        "ANDROID",
+        "__ANDROID_API__=29",
+        "__aarch64__"
+      ],
+      "cppStandard": "c++23",
+      "intelliSenseMode": "clang-arm64",
+      "compilerPath": "C:/Users/koiya/AppData/Local/Android/Sdk/ndk/29.0.14206865/toolchains/llvm/prebuilt/windows-x86_64/bin/aarch64-linux-android29-clang++"
+    }
+  ],
+  "version": 4
+}

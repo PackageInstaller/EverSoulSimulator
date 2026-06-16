@@ -15,4 +15,11 @@ namespace eversoul
     // Android: raw TCP → 127.0.0.1:kServerListenPort (adb reverse tcp:9991 tcp:9991 → PC server).
     [[nodiscard]] HttpResponse proxy_request(std::uint64_t id, const HttpRequest &req);
 
+#ifdef __ANDROID__
+    // Android only: tunnel a WebSocket upgrade + bidirectional byte relay to PC server.
+    // client_fd remains open on return; caller closes it.
+    void proxy_websocket(std::uint64_t id, int client_fd, const HttpRequest &req,
+                         const std::string &pre);
+#endif
+
 } // namespace eversoul

@@ -1,0 +1,5 @@
+foreach(D responses responses_newbie schema wss web)
+  if(IS_DIRECTORY "${SRC_DIR}/${D}")
+    file(COPY "${SRC_DIR}/${D}" DESTINATION "${DST_DIR}")
+  endif()
+endforeach()

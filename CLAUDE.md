@@ -61,7 +61,9 @@ adb logcat
 빌드 시스템: **CMake 전용** — gradle, make, ninja 직접 호출 금지.
 
 환경 요구사항:
-- NDK: 환경변수 `$NDK` 또는 `$ANDROID_NDK_HOME` 으로 참조
+- NDK: **29.0.14206865** (r29, Clang 21.0.0)
+  - 경로: `C:\Users\koiya\AppData\Local\Android\Sdk\ndk\29.0.14206865`
+  - 환경변수 `$NDK` 또는 `$ANDROID_NDK_HOME` 으로 참조
 - CMake 3.21+
 - ABI: arm64-v8a / Platform: android-29
 
@@ -83,10 +85,19 @@ cmake --build build/desktop --target eversoul_offline_server -j$(nproc)
 - Android: `build/android/libswappywrapper.so`
 - Desktop: `build/desktop/eversoul_offline_server(.exe)`
 
+## 실행 환경
+
+**MuMu Player Global 12.0 에뮬레이터** (PC 로컬 실행) — 실제 기기 아님.
+- ADB 경로: `D:\MuMuPlayer\nx_device\12.0\shell\adb.exe` (이것만 사용)
+- 별도 `adb connect` 불필요, PowerShell에서 전체 경로로 직접 실행
+- ADB 포트: 5557 / Root 활성화 완료
+- 에뮬레이터 내부 IP: 10.0.2.15 / GPU: RTX 3070 (Vulkan 1.4)
+- 디바이스 모델: Samsung Galaxy S24 Snapdragon
+
 ## 배포 절차
 
 ```powershell
-# 1. adb reverse 설정 (PowerShell)
+# 1. adb reverse 설정 (PowerShell — 뮤뮤플레이어 내장 ADB 직접 사용)
 adb reverse tcp:9991 tcp:9991
 
 # 2. SO 교체 (PowerShell)

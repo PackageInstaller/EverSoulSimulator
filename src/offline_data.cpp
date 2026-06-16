@@ -3,8 +3,6 @@
 
 #ifndef _WIN32
 #include <dlfcn.h>
-#else
-#include <windows.h>
 #endif
 
 #include <cstdint>
@@ -52,11 +50,7 @@ namespace eversoul
     std::string guess_blob_path()
     {
 #ifdef _WIN32
-        char buf[MAX_PATH];
-        DWORD len = GetModuleFileNameA(nullptr, buf, MAX_PATH);
-        if (len == 0 || len >= MAX_PATH)
-            return {};
-        fs::path self(buf);
+        return {};
 #else
         Dl_info info{};
         if (dladdr(reinterpret_cast<void *>(&guess_blob_path), &info) == 0 ||
@@ -65,11 +59,11 @@ namespace eversoul
             return {};
         }
         fs::path self(info.dli_fname);
-#endif
         fs::path dir = self.parent_path();
         if (dir.empty())
             return {};
         return (dir / kBlobName).string();
+#endif
     }
 
     bool OfflineData::load_blob(const std::string &path)

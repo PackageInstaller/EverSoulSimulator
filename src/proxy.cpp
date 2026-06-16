@@ -12,6 +12,7 @@
 #else
 #include <arpa/inet.h>
 #include <netinet/in.h>
+#include <sys/select.h>
 #include <sys/socket.h>
 #include <unistd.h>
 #include <cerrno>
@@ -202,6 +203,100 @@ namespace eversoul
 
         log_line(id, "PROXY_FWD", req.method + " " + req.path + " -> " + std::to_string(out.status));
         return out;
+    }
+
+    void proxy_websocket(std::uint64_t id, int client_fd, const HttpRequest &req,
+                         const std::string &pre)
+    {
+        int pc_fd = ::socket(AF_INET, SOCK_STREAM, 0);
+        if (pc_fd < 0)
+        {
+            log_line(id, "WS_PROXY_ERR", std::string("socket: ") + std::strerror(errno));
+            return;
+        }
+
+        sockaddr_in addr{};
+        addr.sin_family = AF_INET;
+        addr.sin_port = htons(static_cast<uint16_t>(kServerListenPort));
+        addr.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
+
+        if (::connect(pc_fd, reinterpret_cast<sockaddr *>(&addr), sizeof(addr)) < 0)
+        {
+            log_line(id, "WS_PROXY_ERR", std::string("connect 127.0.0.1:") +
+                         std::to_string(kServerListenPort) + " " + std::strerror(errno));
+            ::close(pc_fd);
+            return;
+        }
+
+        // Reconstruct the HTTP upgrade request and forward it to PC server.
+        std::string raw;
+        raw += req.method + " " + req.path + " HTTP/1.1\r\n";
+        raw += "Host: 127.0.0.1:" + std::to_string(kServerListenPort) + "\r\n";
+        for (const auto &[k, v] : req.headers)
+        {
+            if (lower(k) == "host")
+                continue;
+            raw += k + ": " + v + "\r\n";
+        }
+        raw += "\r\n";
+
+        auto send_all_raw = [](int fd, const char *p, std::size_t rem) -> bool
+        {
+            while (rem > 0)
+            {
+                ssize_t s = ::send(fd, p, rem, 0);
+                if (s <= 0)
+                    return false;
+                p += s;
+                rem -= static_cast<std::size_t>(s);
+            }
+            return true;
+        };
+
+        if (!send_all_raw(pc_fd, raw.data(), raw.size()))
+        {
+            ::close(pc_fd);
+            return;
+        }
+        if (!pre.empty() && !send_all_raw(pc_fd, pre.data(), pre.size()))
+        {
+            ::close(pc_fd);
+            return;
+        }
+
+        log_line(id, "WS_PROXY", "tunnel open " + req.path);
+
+        // Bidirectional byte relay: client_fd ↔ pc_fd.
+        char buf[8192];
+        bool alive = true;
+        while (alive)
+        {
+            fd_set rfds;
+            FD_ZERO(&rfds);
+            FD_SET(client_fd, &rfds);
+            FD_SET(pc_fd, &rfds);
+            int maxfd = (client_fd > pc_fd ? client_fd : pc_fd) + 1;
+            if (::select(maxfd, &rfds, nullptr, nullptr, nullptr) <= 0)
+                break;
+
+            if (FD_ISSET(pc_fd, &rfds))
+            {
+                ssize_t n = ::recv(pc_fd, buf, sizeof(buf), 0);
+                if (n <= 0) { alive = false; break; }
+                if (!send_all_raw(client_fd, buf, static_cast<std::size_t>(n)))
+                    alive = false;
+            }
+            if (alive && FD_ISSET(client_fd, &rfds))
+            {
+                ssize_t n = ::recv(client_fd, buf, sizeof(buf), 0);
+                if (n <= 0) { alive = false; break; }
+                if (!send_all_raw(pc_fd, buf, static_cast<std::size_t>(n)))
+                    alive = false;
+            }
+        }
+
+        ::close(pc_fd);
+        log_line(id, "WS_PROXY", "tunnel closed " + req.path);
     }
 #endif
 

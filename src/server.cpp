@@ -11,6 +11,7 @@
 #include "fixture_store.hpp"
 #include "http.hpp"
 #include "log.hpp"
+#include "proxy.hpp"
 #include "router.hpp"
 #include "websocket.hpp"
 #include "ws_session.hpp"
@@ -65,7 +66,11 @@ namespace eversoul
             if (is_websocket_upgrade(req))
             {
                 log_line(id, "REQUEST", std::string(ip) + " WS " + req.path);
+#ifdef __ANDROID__
+                proxy_websocket(id, fd, req, req.body);
+#else
                 handle_websocket(id, fd, req, req.body);
+#endif
                 platform_close(fd);
                 return;
             }

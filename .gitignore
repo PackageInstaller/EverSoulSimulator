@@ -90,3 +90,9 @@ __pycache__/
 *.pyo
 *.pyd
 
+# APK
+apk/
+
+#no push
+sss/
+
