@@ -131,8 +131,8 @@ namespace {
         if (!g_interceptor || !target || !detour) return false;
         gum_interceptor_begin_transaction(g_interceptor);
         GumReplaceReturn r = gum_interceptor_replace(
-            g_interceptor, target, detour, nullptr,
-            reinterpret_cast<gpointer*>(out_orig));
+            g_interceptor, target, detour,
+            reinterpret_cast<gpointer*>(out_orig), nullptr);
         gum_interceptor_end_transaction(g_interceptor);
         return r == GUM_REPLACE_OK;
     }

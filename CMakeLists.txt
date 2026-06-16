@@ -26,6 +26,7 @@ set(EVERSOUL_CORE_SOURCES
   src/orm/storage.cpp
   src/orm/userinfo_builder.cpp
   src/account_db.cpp
+  src/sse_log.cpp
   src/router.cpp
   src/server.cpp
   third_party/sqlite/sqlite3.c)
@@ -37,7 +38,7 @@ set_source_files_properties(third_party/sqlite/sqlite3.c PROPERTIES
 
 # sqlite_orm.h: C++26 pack-indexing / C++20 이전 literal operator 사용 — third_party 경고 억제
 set_source_files_properties(src/orm/storage.cpp PROPERTIES
-  COMPILE_OPTIONS "-Wno-deprecated-literal-operator;-Wno-c++26-extensions")
+  COMPILE_OPTIONS "-Wno-deprecated-literal-operator;-Wno-c++26-extensions;-Wno-unused-local-typedefs;-Wno-unused-but-set-parameter")
 
 # .inc protobuf fixture들은 프로젝트 루트에 위치
 set(EVERSOUL_INCLUDE_DIRS src ${CMAKE_CURRENT_SOURCE_DIR} third_party/sqlite third_party/sqlite_orm)
@@ -136,32 +137,74 @@ if(ANDROID)
   message(STATUS "  frida-gum 런타임:          ON (정적 링크)")
   message(STATUS "")
 else()
-  # Desktop 캡처/프록시/목업 서버
-  # Android 전용 모듈(인라인 훅, LSPlant 등) 미포함
   find_package(CURL REQUIRED)
-  add_executable(eversoul_offline_server ${EVERSOUL_CORE_SOURCES} src/main.cpp)
-  target_include_directories(eversoul_offline_server PRIVATE ${EVERSOUL_INCLUDE_DIRS})
-  target_compile_options(eversoul_offline_server PRIVATE -O2 -Wall -Wextra)
-  target_link_libraries(eversoul_offline_server PRIVATE CURL::libcurl Threads::Threads ${CMAKE_DL_LIBS}
-    $<$<PLATFORM_ID:Windows>:ws2_32>)
 
-  add_custom_command(TARGET eversoul_offline_server POST_BUILD
-    COMMAND ${CMAKE_COMMAND}
-      -DSRC_DIR=${CMAKE_SOURCE_DIR}
-      -DDST_DIR=$<TARGET_FILE_DIR:eversoul_offline_server>
-      -P ${CMAKE_SOURCE_DIR}/cmake/copy_data_dirs.cmake
-    COMMENT "Syncing offline data dirs (responses/ schema/ wss/ web/) to build output"
-    VERBATIM
-  )
+  if(WIN32)
+    file(GLOB WEB_EMBED_SOURCES
+      "${CMAKE_CURRENT_SOURCE_DIR}/src/web/*.html"
+      "${CMAKE_CURRENT_SOURCE_DIR}/src/web/*.js"
+      "${CMAKE_CURRENT_SOURCE_DIR}/src/web/*.css"
+      "${CMAKE_CURRENT_SOURCE_DIR}/src/web/*.png"
+      "${CMAKE_CURRENT_SOURCE_DIR}/src/web/*.ico"
+      "${CMAKE_CURRENT_SOURCE_DIR}/src/web/*.svg"
+    )
+    set(WEB_EMBEDDED_CPP "${CMAKE_CURRENT_BINARY_DIR}/web_embedded.cpp")
+    add_custom_command(
+      OUTPUT "${WEB_EMBEDDED_CPP}"
+      COMMAND python
+        "${CMAKE_CURRENT_SOURCE_DIR}/cmake/gen_web_blob.py"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/web"
+        "${WEB_EMBEDDED_CPP}"
+      DEPENDS ${WEB_EMBED_SOURCES}
+      COMMENT "Embedding web assets (src/web/) into web_embedded.cpp"
+      VERBATIM
+    )
 
-  # descriptor 기반 JSON→protobuf 인코더 검증 유틸 (curl/sqlite 미포함, 빠른 빌드)
+    add_executable(eversoul_gui WIN32
+      ${EVERSOUL_CORE_SOURCES}
+      src/adb_runner.cpp
+      src/logcat_process.cpp
+      src/gui_main.cpp
+      src/app.rc
+      "${WEB_EMBEDDED_CPP}")
+    target_include_directories(eversoul_gui PRIVATE
+      ${EVERSOUL_INCLUDE_DIRS}
+      third_party/webview2/include)
+    target_compile_definitions(eversoul_gui PRIVATE
+      UNICODE _UNICODE WIN32_LEAN_AND_MEAN NOMINMAX SQLITE_ORM_OMITS_CODECVT
+      _WIN32_WINNT=0x0A00)
+    target_compile_options(eversoul_gui PRIVATE
+      -O2 -Wall -Wextra -Wno-unknown-pragmas -Wno-cast-function-type)
+    target_link_libraries(eversoul_gui PRIVATE
+      CURL::libcurl Threads::Threads
+      ole32 oleaut32 shlwapi ws2_32)
+    target_link_options(eversoul_gui PRIVATE
+      -static-libgcc -static-libstdc++
+      -Wl,-Bstatic,-lpthread,-Bdynamic)
+    add_custom_command(TARGET eversoul_gui POST_BUILD
+      COMMAND ${CMAKE_COMMAND}
+        -DSRC_DIR=${CMAKE_SOURCE_DIR}
+        -DDST_DIR=$<TARGET_FILE_DIR:eversoul_gui>
+        -P ${CMAKE_SOURCE_DIR}/cmake/copy_data_dirs.cmake
+      COMMENT "Syncing offline data dirs to build output"
+      VERBATIM
+    )
+    add_custom_command(TARGET eversoul_gui POST_BUILD
+      COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "${CMAKE_CURRENT_SOURCE_DIR}/third_party/webview2/x64/WebView2Loader.dll"
+        "$<TARGET_FILE_DIR:eversoul_gui>/WebView2Loader.dll"
+      COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/assets/logo.ico"
+        "$<TARGET_FILE_DIR:eversoul_gui>/logo.ico"
+      VERBATIM)
+  endif()
+
   add_executable(encoder_validate
     src/json.cpp src/json_encoder.cpp src/protobuf.cpp src/crypto.cpp
     src/encoder_validate.cpp)
   target_include_directories(encoder_validate PRIVATE ${EVERSOUL_INCLUDE_DIRS})
   target_compile_options(encoder_validate PRIVATE -O2 -Wall -Wextra)
 
-  # OfflineData blob(SO 위장) 읽기 및 인코딩 검증
   add_executable(offline_data_test
     src/json.cpp src/json_encoder.cpp src/protobuf.cpp src/crypto.cpp
     src/offline_data.cpp src/log.cpp src/util.cpp src/offline_data_test.cpp)

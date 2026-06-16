@@ -1,5 +1,16 @@
-foreach(D responses responses_newbie schema wss web)
+foreach(D responses responses_newbie schema wss)
   if(IS_DIRECTORY "${SRC_DIR}/${D}")
     file(COPY "${SRC_DIR}/${D}" DESTINATION "${DST_DIR}")
   endif()
 endforeach()
+
+if(IS_DIRECTORY "${SRC_DIR}/copy_only/dll")
+  file(GLOB _COPY_DLLS "${SRC_DIR}/copy_only/dll/*")
+  foreach(F ${_COPY_DLLS})
+    file(COPY "${F}" DESTINATION "${DST_DIR}")
+  endforeach()
+endif()
+
+if(IS_DIRECTORY "${SRC_DIR}/copy_only/adb")
+  file(COPY "${SRC_DIR}/copy_only/adb" DESTINATION "${DST_DIR}")
+endif()

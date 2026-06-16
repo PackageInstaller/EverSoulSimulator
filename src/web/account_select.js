@@ -133,7 +133,7 @@ async function load() {
   var el = document.getElementById('acct-list');
   el.innerHTML = '<div class="acct-empty"><span class="t-spinner"></span> ' + t('acct.loading') + '</div>';
   try {
-    var res  = await fetch('/admin/api/accounts');
+    var res  = await fetch('/web/api/accounts');
     var list = await res.json();
     if (!Array.isArray(list) || list.length === 0) {
       el.innerHTML = '<div class="acct-empty">' + t('acct.empty') + '</div>';
@@ -162,7 +162,7 @@ async function load() {
 }
 
 async function selectAcct(id) {
-  await fetch('/admin/api/accounts/' + encodeURIComponent(id) + '/select', {
+  await fetch('/web/api/accounts/' + encodeURIComponent(id) + '/select', {
     method: 'POST'
   }).catch(function() {});
   location.replace(AGREE);
@@ -170,7 +170,7 @@ async function selectAcct(id) {
 
 async function delAcct(id) {
   if (!confirm(t('acct.delete_confirm'))) return;
-  await fetch('/admin/api/accounts/' + encodeURIComponent(id), { method: 'DELETE' }).catch(function() {});
+  await fetch('/web/api/accounts/' + encodeURIComponent(id), { method: 'DELETE' }).catch(function() {});
   load();
 }
 
@@ -185,7 +185,7 @@ async function createAccount() {
   sts.className = 'acct-status';
   sts.textContent = t('new_acct.creating');
   try {
-    var res  = await fetch('/admin/api/accounts', {
+    var res  = await fetch('/web/api/accounts', {
       method:  'POST',
       headers: { 'Content-Type': 'application/json' },
       body:    JSON.stringify({ nickname: nick, idpCode: 'zd3' })
@@ -197,7 +197,7 @@ async function createAccount() {
       return;
     }
     sts.textContent = '';
-    await fetch('/admin/api/accounts/' + encodeURIComponent(data.id) + '/select', {
+    await fetch('/web/api/accounts/' + encodeURIComponent(data.id) + '/select', {
       method: 'POST'
     }).catch(function() {});
     location.replace(AGREE);

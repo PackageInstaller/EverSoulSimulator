@@ -227,11 +227,14 @@ namespace eversoul
         }
 
         // ─── /web/ 라우트 전역 상태 ─────────────────────────────────────────────
+#ifndef __ANDROID__
         std::atomic<bool> g_setup_complete{false};
         std::atomic<int64_t> g_started_at{0};
+#endif
 
     } // namespace
 
+#ifndef __ANDROID__
     // ─── /web/ 헬퍼 ─────────────────────────────────────────────────────────────
 
     namespace
@@ -279,15 +282,6 @@ namespace eversoul
             if (path.size() >= 4 && path.substr(path.size() - 4) == ".png") return "image/png";
             if (path.size() >= 4 && path.substr(path.size() - 4) == ".jpg") return "image/jpeg";
             return "application/octet-stream";
-        }
-
-        // adb runner에서 adb path를 반환 (third_party/adb/adb.exe 기본).
-        std::string resolved_adb_path()
-        {
-            std::string p = adb_runner::adb_path();
-            if (!p.empty()) return p;
-            // 실행 파일 기준 third_party/adb/adb.exe
-            return "third_party/adb/adb.exe";
         }
 
         // adb devices → serial 목록 파싱.
@@ -362,7 +356,7 @@ namespace eversoul
         }
 
         // /web/api/* 경로 처리.
-        HttpResponse handle_web_api(uint64_t id, int fd, const HttpRequest &req)
+        HttpResponse handle_web_api([[maybe_unused]] uint64_t id, int fd, const HttpRequest &req)
         {
             const std::string &path = req.path;
             const std::string &method = req.method;
@@ -421,12 +415,13 @@ namespace eversoul
             {
                 bool db_ok = !orm::opened_path().empty();
                 bool fix_ok = fixture_store().loaded();
-                bool adb_ok = !resolved_adb_path().empty();
+                std::string adb_path = adb_runner::adb_path();
+                bool adb_ok = !adb_path.empty();
                 std::string body = "[";
                 body += "{\"name\":\"Game Server\",\"status\":\"ok\",\"detail\":\"" + json_escape(config().game_server_url) + "\"}";
                 body += ",{\"name\":\"Database\",\"status\":\"" + std::string(db_ok ? "ok" : "fail") + "\",\"detail\":\"" + json_escape(orm::opened_path()) + "\"}";
                 body += ",{\"name\":\"Fixtures\",\"status\":\"" + std::string(fix_ok ? (fixture_store().errors().empty() ? "ok" : "warn") : "fail") + "\",\"detail\":\"" + std::to_string(fixture_store().size()) + " loaded\"}";
-                body += ",{\"name\":\"ADB\",\"status\":\"" + std::string(adb_ok ? "ok" : "warn") + "\",\"detail\":\"" + json_escape(resolved_adb_path()) + "\"}";
+                body += ",{\"name\":\"ADB\",\"status\":\"" + std::string(adb_ok ? "ok" : "warn") + "\",\"detail\":\"" + json_escape(adb_path) + "\"}";
                 body += "]";
                 return json_ok(body);
             }
@@ -555,8 +550,6 @@ namespace eversoul
             if (path == "/web/api/adb/probe" && method == "POST")
             {
                 std::string target = body_json_string(req.body, "target", "");
-                std::string adb = resolved_adb_path();
-                adb_runner::set_adb_path(adb);
                 // adb connect
                 std::string conn = adb_runner::run({"connect", target});
                 bool connected = conn.find("connected") != std::string::npos;
@@ -581,8 +574,6 @@ namespace eversoul
             // ── 인젝터: 기기 목록 ────────────────────────────────────────────────
             if (path == "/web/api/injector/devices" && method == "GET")
             {
-                std::string adb = resolved_adb_path();
-                adb_runner::set_adb_path(adb);
                 std::string out = adb_runner::run({"devices"});
                 auto devs = parse_adb_devices(out);
                 return json_ok("{\"devices\":" + json_str_array(devs) + "}");
@@ -594,7 +585,7 @@ namespace eversoul
                 std::string serial = adb_runner::serial();
                 auto q = path.find("serial=");
                 if (q != std::string::npos) serial = path.substr(q + 7);
-                std::string adb = resolved_adb_path();
+                std::string adb = adb_runner::adb_path();
                 std::string pkg;
                 if (!serial.empty())
                 {
@@ -613,7 +604,6 @@ namespace eversoul
             if (path == "/web/api/injector/connect" && method == "POST")
             {
                 std::string target = body_json_string(req.body, "target", "");
-                adb_runner::set_adb_path(resolved_adb_path());
                 std::string out = adb_runner::run({"connect", target});
                 bool ok = out.find("connected") != std::string::npos;
                 if (ok) adb_runner::set_serial(target);
@@ -625,7 +615,6 @@ namespace eversoul
             if (path == "/web/api/injector/run" && method == "POST")
             {
                 std::string serial = body_json_string(req.body, "serial", adb_runner::serial());
-                adb_runner::set_adb_path(resolved_adb_path());
                 if (!serial.empty()) adb_runner::set_serial(serial);
                 std::vector<std::string> args = {"shell", "am", "start",
                     "-n", "com.kakaogames.eversoul/com.kakaogames.eversoul.unity.UnityPlayerActivity"};
@@ -638,7 +627,6 @@ namespace eversoul
             // ── 인젝터: 게임 중지 ─────────────────────────────────────────────────
             if (path == "/web/api/injector/stop" && method == "POST")
             {
-                adb_runner::set_adb_path(resolved_adb_path());
                 std::string out = adb_runner::run({"shell", "am", "force-stop", "com.kakaogames.eversoul"});
                 return json_ok("{\"ok\":true,\"output\":\"" + json_escape(out) + "\"}");
             }
@@ -653,7 +641,6 @@ namespace eversoul
             if (path == "/web/api/injector/adb" && method == "POST")
             {
                 std::string cmd = body_json_string(req.body, "cmd", "");
-                adb_runner::set_adb_path(resolved_adb_path());
                 std::vector<std::string> args;
                 std::istringstream ss(cmd);
                 std::string tok;
@@ -698,7 +685,7 @@ namespace eversoul
             if (path == "/web/api/gamedata/userinfo" && method == "POST")
             {
                 std::string nick = body_json_string(req.body, "nickname", "");
-                if (!nick.empty()) { orm::kv_set("nickname", nick); db::set_nickname(nick); }
+                if (!nick.empty()) { orm::kv_set("nickname", nick); (void)db::set_nickname(nick); }
                 return json_ok("{\"ok\":true}");
             }
 
@@ -796,9 +783,28 @@ namespace eversoul
                 return HttpResponse{404, {}, ""};
             }
 
-            // ── 멀티계정 — 보류: 현재 단일 계정 no-op ───────────────────────────
+            // ── 단일 오프라인 계정 (멀티계정 미구현, DB nickname 기반 단일 항목 반환) ──
             if (path.rfind("/web/api/accounts", 0) == 0)
-                return json_ok("{\"ok\":true,\"id\":\"\",\"items\":[]}");
+            {
+                std::string nick = orm::kv_get("nickname", "offline");
+                if (method == "GET" && path == "/web/api/accounts")
+                    return json_ok("[{\"id\":\"offline-single\",\"nickname\":\"" + json_escape(nick) +
+                        "\",\"idp_code\":\"zd3\",\"player_id\":\"" + json_escape(kDefaultPlayerId) +
+                        "\",\"active\":true}]");
+                if (method == "POST" && path == "/web/api/accounts")
+                    return json_ok("{\"ok\":true,\"id\":\"offline-single\"}");
+                if (method == "GET" && path == "/web/api/accounts/offline-single")
+                    return json_ok("{\"id\":\"offline-single\",\"nickname\":\"" + json_escape(nick) +
+                        "\",\"idp_code\":\"zd3\",\"player_id\":\"" + json_escape(kDefaultPlayerId) +
+                        "\",\"active\":true}");
+                if (method == "PATCH" && path == "/web/api/accounts/offline-single")
+                {
+                    std::string new_nick = body_json_string(req.body, "nickname", "");
+                    if (!new_nick.empty()) { orm::kv_set("nickname", new_nick); (void)db::set_nickname(new_nick); }
+                    return json_ok("{\"ok\":true}");
+                }
+                return json_ok("{\"ok\":true}");
+            }
 
             // ── setup ────────────────────────────────────────────────────────────
             if (path == "/web/api/setup/complete" && method == "POST")
@@ -834,12 +840,24 @@ namespace eversoul
         }
 
     } // namespace (web helpers)
+#endif // !__ANDROID__
 
     HttpResponse route_request(uint64_t id, int fd, const HttpRequest &req)
     {
 #ifdef __ANDROID__
         return proxy_request(id, req);
 #endif
+
+#ifndef __ANDROID__
+        // ── /web/ 라우팅: API 및 정적 파일 ────────────────────────────────────────
+        if (req.path == "/" || req.path == "/web" || req.path.rfind("/web/", 0) == 0)
+        {
+            if (req.path.rfind("/web/api/", 0) == 0)
+                return handle_web_api(id, fd, req);
+            return serve_web_static(req);
+        }
+#endif
+
         // LIAPP anti-cheat (lockincomp.com) device-auth — posted right before country/get.
         // Offline it can't reach lockincomp -> game shows "시스템 초기화 실패". The captured
         // response's signature (fdbd8509) is constant across sessions, so we replay it

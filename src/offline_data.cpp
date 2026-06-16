@@ -66,6 +66,36 @@ namespace eversoul
 #endif
     }
 
+    void OfflineData::load_embedded_web(const unsigned char *blob, std::size_t size)
+    {
+        if (!blob || size < sizeof(kMagic) + 4)
+            return;
+        std::string buf(reinterpret_cast<const char *>(blob), size);
+        if (std::memcmp(buf.data(), kMagic, sizeof(kMagic)) != 0)
+            return;
+
+        std::size_t pos = sizeof(kMagic);
+        std::uint32_t count = 0;
+        if (!read_u32(buf, pos, count))
+            return;
+
+        web_entries_.clear();
+        for (std::uint32_t i = 0; i < count; ++i)
+        {
+            std::uint32_t plen = 0;
+            if (!read_u32(buf, pos, plen) || pos + plen > buf.size())
+                return;
+            std::string rel = buf.substr(pos, plen);
+            pos += plen;
+            std::uint32_t dlen = 0;
+            if (!read_u32(buf, pos, dlen) || pos + dlen > buf.size())
+                return;
+            web_entries_.emplace(std::move(rel), buf.substr(pos, dlen));
+            pos += dlen;
+        }
+        log_line(0, "OFFLINE_DATA", "embedded web entries=" + std::to_string(web_entries_.size()));
+    }
+
     bool OfflineData::load_blob(const std::string &path)
     {
         std::string buf = read_file(path);
@@ -147,6 +177,14 @@ namespace eversoul
 
     std::optional<std::string> OfflineData::read(const std::string &rel) const
     {
+        // EXE 내장 web 데이터 (web/* 키) — 다른 소스보다 우선.
+        if (!web_entries_.empty() && rel.rfind("web/", 0) == 0)
+        {
+            auto it = web_entries_.find(rel);
+            if (it != web_entries_.end())
+                return it->second;
+            return std::nullopt;
+        }
         if (from_blob_)
         {
             auto it = blob_entries_.find(rel);

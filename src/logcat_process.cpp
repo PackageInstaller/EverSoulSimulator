@@ -2,7 +2,6 @@
 #include "logcat_process.hpp"
 #ifndef __ANDROID__
 
-#define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 
 #include <atomic>

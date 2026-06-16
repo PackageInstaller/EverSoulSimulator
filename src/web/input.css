@@ -82,6 +82,7 @@ html, body {
   background: var(--color-bg-root);
   color: var(--color-text);
   font-family: var(--font-mono);
+  font-size: clamp(13px, 1.1vw, 15px);
   overflow: hidden;
 }
 
@@ -229,18 +230,19 @@ html, body {
   flex-shrink: 0;
 }
 
-#adb-input-section {
+#adb-port-input-section {
+  border: none; margin: 0;
   padding: 10px 18px 14px;
   border-top: 1px solid var(--color-border);
   display: none;
 }
-#adb-input-section.visible { display: block; }
+#adb-port-input-section.visible { display: block; }
 .adb-input-label {
   font-size: 11px; color: var(--color-accent-dim);
   letter-spacing: 1px; margin-bottom: 6px;
 }
 .adb-input-row { display: flex; gap: 8px; align-items: center; }
-#adb-path-input {
+#adb-port-input {
   flex: 1;
   background: rgba(10,22,40,.9);
   border: 1px solid var(--color-border-mid);
@@ -249,8 +251,8 @@ html, body {
   font-family: var(--font-mono); font-size: 13px;
   border-radius: 3px; outline: none;
 }
-#adb-path-input:focus { border-color: var(--color-accent-dim); }
-#adb-path-input::placeholder { color: var(--color-text-muted); }
+#adb-port-input:focus { border-color: var(--color-accent-dim); }
+#adb-port-input::placeholder { color: var(--color-text-muted); }
 .btn-term {
   padding: 7px 14px;
   background: rgba(0,102,170,.2);
@@ -262,11 +264,11 @@ html, body {
 }
 .btn-term:hover { background: rgba(0,150,220,.3); }
 .btn-term:disabled { opacity: .4; cursor: not-allowed; }
-#adb-validate-msg {
+#adb-port-msg {
   font-size: 11px; margin-top: 6px; min-height: 16px; letter-spacing: .5px;
 }
-#adb-validate-msg.ok  { color: var(--color-green); }
-#adb-validate-msg.err { color: var(--color-red); }
+#adb-port-msg.ok  { color: var(--color-green); }
+#adb-port-msg.err { color: var(--color-red); }
 
 #terminal-footer { padding: 10px 18px 12px; border-top: 1px solid var(--color-border); }
 #overall-bar-track {
@@ -858,11 +860,73 @@ dialog {
 dialog::backdrop { background: rgba(0,0,0,.55); backdrop-filter: blur(3px); }
 
 dialog#lang-select-overlay {
+  width: 100vw; height: 100dvh;
+  max-width: 100vw; max-height: 100dvh;
+  margin: 0; padding: 0;
+  border: none; border-radius: 0;
   background-image: url('lang.png');
-  background-size: cover;
-  background-position: center;
-  background-color: rgba(3,8,18,.6);
+  background-size: cover; background-position: center;
+  background-color: #030b15;
   overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+
+#lang-select-box {
+  position: relative; z-index: 10;
+  background: var(--glass-bg-deep);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: clamp(28px, 4vh, 56px) clamp(36px, 6vw, 80px);
+  display: flex; flex-direction: column; align-items: center;
+  gap: clamp(14px, 2vh, 24px);
+  backdrop-filter: blur(24px) saturate(1.5);
+  -webkit-backdrop-filter: blur(24px) saturate(1.5);
+  box-shadow: 0 16px 56px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.06);
+  min-width: clamp(280px, 42vw, 520px);
+}
+
+.lang-select-logo {
+  font-size: clamp(36px, 6vw, 72px);
+  font-weight: 700; letter-spacing: 0.2em;
+  color: var(--color-accent);
+  text-shadow: 0 0 28px var(--color-accent), 0 0 56px rgba(0,170,255,.4);
+  text-transform: uppercase; margin: 0; text-align: center;
+}
+
+.lang-select-sub {
+  font-size: clamp(12px, 1.4vw, 16px);
+  letter-spacing: 0.4em; color: var(--color-text-dim);
+  text-transform: uppercase; margin: 0; text-align: center;
+}
+
+.lang-select-title {
+  font-size: clamp(15px, 1.8vw, 20px);
+  color: var(--color-text); letter-spacing: 0.1em;
+  margin: 0; font-weight: 400; text-align: center;
+}
+
+.lang-select-row {
+  display: flex; gap: clamp(8px, 1.5vw, 18px);
+  flex-wrap: wrap; justify-content: center;
+  margin: 0; padding: 0; list-style: none;
+}
+
+.lang-select-btn {
+  padding: clamp(10px, 1.5vh, 16px) clamp(24px, 3vw, 44px);
+  background: rgba(0,80,130,.25);
+  border: 1px solid var(--color-border-hi);
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: clamp(14px, 1.6vw, 18px);
+  letter-spacing: 0.15em; border-radius: 4px; cursor: pointer;
+  transition: all .2s;
+  box-shadow: 0 0 14px rgba(0,150,220,.15);
+}
+.lang-select-btn:hover {
+  background: rgba(0,120,190,.4);
+  box-shadow: 0 0 24px rgba(0,200,255,.3);
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
 }
 
 /* ── GameData editor ───────────────────────────────────── */

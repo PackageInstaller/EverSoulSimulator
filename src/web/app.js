@@ -421,8 +421,32 @@ document.querySelectorAll('.nav-item').forEach(item => {
 
 // ── MAIN: status poll ─────────────────────────────────────────────────────────
 
-let _startTime = null;
-let _uptimeIv  = null;
+let _startTime  = null;
+let _uptimeIv   = null;
+let _reqHistory = [];
+let _lastReqCount = 0;
+
+function _updateReqChart(total) {
+  const delta = Math.max(0, total - _lastReqCount);
+  _lastReqCount = total;
+  _reqHistory.push(delta);
+  if (_reqHistory.length > 40) _reqHistory.shift();
+  const svg  = document.getElementById('req-chart');
+  if (!svg) return;
+  const W = 400, H = 48;
+  const n = _reqHistory.length;
+  const max = Math.max(1, ..._reqHistory);
+  const bw  = Math.floor(W / 40) - 1;
+  let html = '';
+  _reqHistory.forEach((v, i) => {
+    const x = Math.floor(i * (W / 40));
+    const h = Math.max(2, Math.round((v / max) * (H - 4)));
+    const y = H - h;
+    const alpha = 0.35 + 0.65 * (i / (n - 1 || 1));
+    html += `<rect x="${x}" y="${y}" width="${bw}" height="${h}" fill="rgba(0,212,255,${alpha.toFixed(2)})"/>`;
+  });
+  svg.innerHTML = html;
+}
 
 async function pollStatus() {
   try {
@@ -439,6 +463,7 @@ async function pollStatus() {
     document.getElementById('srv-dot').className   = 'srv-dot';
     document.getElementById('srv-label').textContent = 'Online';
     if (!_startTime && d.started_at) { _startTime = d.started_at; startUptimeTick(); }
+    _updateReqChart(d.request_count || 0);
   } catch (_) {
     document.getElementById('srv-dot').className = 'srv-dot fail';
     document.getElementById('srv-label').textContent = 'Offline';
@@ -754,7 +779,7 @@ async function loadFixture(path) {
   document.getElementById('fixture-detail').classList.add('open');
   document.getElementById('fixture-content').textContent = 'Loading…';
   try {
-    const r = await fetch('/web/api/fixtures/' + encodeURIComponent(path));
+    const r = await fetch('/web/api/fixtures/' + path.split('/').map(s => encodeURIComponent(s)).join('/'));
     document.getElementById('fixture-content').textContent = await r.text();
   } catch (_) {
     document.getElementById('fixture-content').textContent = 'Error';
@@ -769,7 +794,6 @@ async function loadSettings() {
     const d = await r.json();
     document.getElementById('toggle-proxy').checked = !!d.proxy_enabled;
     document.getElementById('set-game-url').value   = d.game_server_url || '';
-    document.getElementById('set-ws-url').value     = d.ws_server_url   || '';
     document.getElementById('set-data-dir').value   = d.data_dir || '';
   } catch (_) {}
 }
@@ -787,8 +811,6 @@ async function applySettings() {
     method: 'POST', headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       game_server_url: document.getElementById('set-game-url').value,
-      ws_server_url:   document.getElementById('set-ws-url').value,
-      data_dir:        document.getElementById('set-data-dir').value,
     }),
   }).catch(() => {});
   pollStatus();
@@ -945,15 +967,26 @@ async function pollInjectorStatus() {
 
 async function sendAdbCmd() {
   const input = document.getElementById('adb-cmd-input');
+  const log   = document.getElementById('injector-log');
   const cmd   = input.value.trim();
   if (!cmd) return;
+  input.value = '';
   try {
-    await fetch('/web/api/injector/adb', {
+    const r = await fetch('/web/api/injector/adb', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ cmd }),
     });
+    const d = await r.json();
+    if (log && d.output !== undefined) {
+      const div = document.createElement('div');
+      div.className = 'log-line';
+      div.innerHTML =
+        `<span class="log-tag tag-ADB">[ADB]</span>` +
+        `<span class="log-text">${escHtml(d.output.trim())}</span>`;
+      log.appendChild(div);
+      log.scrollTop = log.scrollHeight;
+    }
   } catch (_) {}
-  input.value = '';
 }
 
 // ── MAIN: game data editor ────────────────────────────────────────────────────
@@ -963,18 +996,14 @@ let _gdData    = {};
 
 const _GD_SCHEMA = {
   userinfo: [
-    { key: 'nickname',      label: 'Nickname',       type: 'text' },
-    { key: 'level',         label: 'Level',          type: 'number', min: 1, max: 999 },
-    { key: 'exp',           label: 'EXP',            type: 'number', min: 0 },
-    { key: 'gold',          label: 'Gold',           type: 'number', min: 0 },
-    { key: 'crystal',       label: 'Crystal',        type: 'number', min: 0 },
-    { key: 'stamina',       label: 'Stamina',        type: 'number', min: 0 },
-    { key: 'arena_tickets', label: 'Arena Tickets',  type: 'number', min: 0 },
+    { key: 'nickname', label: 'Nickname', type: 'text' },
+    { key: 'level',    label: 'Level',    type: 'readonly' },
+    { key: 'gold',     label: 'Gold',     type: 'readonly' },
+    { key: 'crystal',  label: 'Crystal',  type: 'readonly' },
   ],
   settings: [
-    { key: 'proxy_enabled', label: 'Proxy Enabled',  type: 'checkbox' },
-    { key: 'game_server_url', label: 'Game Server URL', type: 'text' },
-    { key: 'ws_server_url',   label: 'WebSocket Server URL', type: 'text' },
+    { key: 'proxy_enabled',   label: 'Proxy Enabled',    type: 'checkbox' },
+    { key: 'game_server_url', label: 'Game Server URL',  type: 'text' },
   ],
 };
 
@@ -1041,7 +1070,9 @@ function _renderGameDataForm() {
   schema.forEach(f => {
     const val = _gdData[f.key] ?? '';
     let input = '';
-    if (f.type === 'checkbox') {
+    if (f.type === 'readonly') {
+      input = `<div class="gamedata-input" style="opacity:.6;cursor:default;padding:5px 8px;border:1px solid var(--glass-border-lo);border-radius:5px;background:rgba(0,0,0,.2);font-size:12px">${escHtml(String(val))}</div>`;
+    } else if (f.type === 'checkbox') {
       input = `<label style="display:flex;align-items:center;gap:8px">` +
         `<input class="gamedata-input" type="checkbox" id="gd-${f.key}"${val ? ' checked' : ''} style="width:auto;accent-color:var(--color-accent)">` +
         `<span style="font-size:12px;color:var(--color-text-dim)">${val ? 'ON' : 'OFF'}</span></label>`;
@@ -1065,6 +1096,7 @@ async function saveGameData() {
   const schema  = _GD_SCHEMA[_gdSection] || [];
   const payload = {};
   schema.forEach(f => {
+    if (f.type === 'readonly') return;
     const el = document.getElementById('gd-' + f.key);
     if (!el) return;
     payload[f.key] = f.type === 'checkbox' ? el.checked :

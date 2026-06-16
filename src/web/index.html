@@ -300,12 +300,8 @@
               <input type="text" id="set-game-url"/>
             </div>
             <div class="setting-row">
-              <label class="setting-label" for="set-ws-url">WebSocket Server URL</label>
-              <input type="text" id="set-ws-url"/>
-            </div>
-            <div class="setting-row">
-              <label class="setting-label" for="set-data-dir">Data Dir</label>
-              <input type="text" id="set-data-dir"/>
+              <label class="setting-label" for="set-data-dir" style="color:var(--color-text-dim)">Data Dir (read-only)</label>
+              <input type="text" id="set-data-dir" readonly style="opacity:.6;cursor:default"/>
             </div>
             <div style="margin-top:12px;display:flex;gap:8px">
               <button class="btn btn-primary" onclick="applySettings()">Apply</button>
