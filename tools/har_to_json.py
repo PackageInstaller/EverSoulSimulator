@@ -167,11 +167,11 @@ def extract_game(entries, reg, out_dir):
         req_payload, resp_payload = hits[-1]  # last occurrence = final state
         obj, info = build_fixture(reg, ep, req_payload, resp_payload)
         info = {"hits": len(hits), **info}
-        with open(os.path.join(out_dir, ep + ".json"), "w", encoding="utf-8") as f:
+        with open(os.path.join(out_dir, ep + ".json"), "w") as f:
             json.dump(obj, f, indent=2, ensure_ascii=False)
         manifest[ep] = info
 
-    with open(os.path.join(out_dir, "_manifest.json"), "w", encoding="utf-8") as f:
+    with open(os.path.join(out_dir, "_manifest.json"), "w") as f:
         json.dump(manifest, f, indent=2, ensure_ascii=False)
     return manifest
 
@@ -220,14 +220,14 @@ def extract_ws(entries, out_dir):
             "ws_frames": convos[host],
             "poll_http": polls[host],
         }
-        with open(os.path.join(out_dir, name + ".json"), "w", encoding="utf-8") as f:
+        with open(os.path.join(out_dir, name + ".json"), "w") as f:
             json.dump(out, f, indent=2, ensure_ascii=False)
     return {host: len(convos[host]) for host in convos}
 
 
 def main():
     har_path = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_HAR
-    har = json.load(open(har_path, encoding="utf-8"))
+    har = json.load(open(har_path))
     entries = har["log"]["entries"]
     reg = ProtoRegistry()
 

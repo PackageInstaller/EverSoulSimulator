@@ -357,7 +357,7 @@
     "battleBgm": "WzEwMSwxMDIsMTAzXQ=="
   },
   "chatKey": "2368900|5SzzFrAVMWc56IcGFNwbfQ==",
-  "chatServerUrl": "https://live-sea-chat.esoul.kakaogames.com:1739",
+  "chatServerUrl": "http://127.0.0.1:9999",
   "sdHeroNo": 1,
   "battleAutoUltimate": true,
   "monthlyHeroResetFlag": 1,

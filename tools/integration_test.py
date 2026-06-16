@@ -47,9 +47,9 @@ def http_post(path, body):
 
 
 def main():
-    har = json.load(open(HAR, encoding="utf-8"))
+    har = json.load(open(HAR))
     reg = ProtoRegistry()
-    man = json.load(open(os.path.join(ROOT, "responses", "_manifest.json"), encoding="utf-8"))
+    man = json.load(open(os.path.join(ROOT, "responses", "_manifest.json")))
 
     # Build a request body per endpoint from the HAR (last occurrence).
     reqs = {}

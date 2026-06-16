@@ -36,7 +36,7 @@ def resp_payload(entry):
 
 def main():
     har_path = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_HAR
-    har = json.load(open(har_path, encoding="utf-8"))
+    har = json.load(open(har_path))
     reg = ProtoRegistry()
 
     # endpoint -> last captured payload

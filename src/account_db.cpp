@@ -9,9 +9,6 @@
 #include <vector>
 
 #include <sys/stat.h>
-#ifdef _WIN32
-#include <direct.h>
-#endif
 
 #include "sqlite3.h"
 
@@ -660,13 +657,8 @@ namespace eversoul::db
                 "eversoul_offline.db",
             };
             // Best-effort create the external app dir (already exists for an installed app).
-#ifdef _WIN32
-            _mkdir("/sdcard/Android/data/com.kakaogames.eversoul");
-            _mkdir("/sdcard/Android/data/com.kakaogames.eversoul/files");
-#else
             ::mkdir("/sdcard/Android/data/com.kakaogames.eversoul", 0770);
             ::mkdir("/sdcard/Android/data/com.kakaogames.eversoul/files", 0770);
-#endif
             for (const char *p : kPaths)
             {
                 if (sqlite3_open(p, &g_db) == SQLITE_OK && g_db &&

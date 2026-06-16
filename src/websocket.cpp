@@ -1,7 +1,7 @@
 // websocket.cpp — RFC 6455 handshake + frame codec + Eversoul WS handlers.
 #include "websocket.hpp"
 
-#include "platform.hpp"
+#include <sys/socket.h>
 
 #include <cstring>
 #include <string>
@@ -41,7 +41,7 @@ namespace eversoul
             return {};
         }
 
-        bool send_handshake(socket_fd_t fd, const HttpRequest &req)
+        bool send_handshake(int fd, const HttpRequest &req)
         {
             std::string key = header_value(req, "sec-websocket-key");
             if (key.empty())
@@ -140,7 +140,7 @@ namespace eversoul
         // Receive loop shared by both protocols: reads frames, answers control frames
         // (ping->pong, close->close), and hands text frames to `on_text`.
         template <typename OnText>
-        void ws_loop(std::uint64_t id, socket_fd_t fd, const std::string &pre, OnText on_text)
+        void ws_loop(std::uint64_t id, int fd, const std::string &pre, OnText on_text)
         {
             std::string buf = pre;
             char rbuf[8192];
@@ -177,7 +177,7 @@ namespace eversoul
                 buf.erase(0, pos);
                 if (!open)
                     break;
-                ssize_t n = platform_recv(fd, rbuf, sizeof(rbuf));
+                ssize_t n = recv(fd, rbuf, sizeof(rbuf), 0);
                 if (n <= 0)
                     break;
                 buf.append(rbuf, static_cast<std::size_t>(n));
@@ -185,7 +185,7 @@ namespace eversoul
             log_line(id, "WS", "connection closed");
         }
 
-        void handle_session_ws(std::uint64_t id, socket_fd_t fd, const std::string &pre)
+        void handle_session_ws(std::uint64_t id, int fd, const std::string &pre)
         {
             log_line(id, "WS", "gc-session-zinny3 JSON-RPC session");
             // Send the unsolicited initial push (auth://v3/auth/loginGoogle) right away.
@@ -195,7 +195,7 @@ namespace eversoul
                 send_all(fd, ws_encode_frame(WsOpcode::Text, push));
                 log_line(id, "WS_TX", "initial_push " + push.substr(0, 60));
             }
-            ws_loop(id, fd, pre, [id](socket_fd_t cfd, const std::string &text)
+            ws_loop(id, fd, pre, [id](int cfd, const std::string &text)
                     {
         std::string reply;
         if (ws_session_reply(text, reply)) {
@@ -206,10 +206,10 @@ namespace eversoul
         } });
         }
 
-        void handle_chat_ws(std::uint64_t id, socket_fd_t fd, const std::string &pre)
+        void handle_chat_ws(std::uint64_t id, int fd, const std::string &pre)
         {
             log_line(id, "WS", "live-sea-chat socket.io/engine.io");
-            ws_loop(id, fd, pre, [id](socket_fd_t cfd, const std::string &text)
+            ws_loop(id, fd, pre, [id](int cfd, const std::string &text)
                     {
         std::string reply;
         if (ws_chat_reply(text, reply)) {
@@ -222,7 +222,7 @@ namespace eversoul
 
     } // namespace
 
-    void handle_websocket(std::uint64_t id, socket_fd_t fd, const HttpRequest &req,
+    void handle_websocket(std::uint64_t id, int fd, const HttpRequest &req,
                           const std::string &pre)
     {
         if (!send_handshake(fd, req))

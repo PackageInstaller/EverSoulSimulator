@@ -25,8 +25,6 @@ import struct
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, HERE)
-from i18n import T
 ROOT = os.path.dirname(HERE)
 
 MAGIC = b"ESOFLND1"
@@ -41,7 +39,7 @@ def collect():
     for d in DIRS:
         dpath = os.path.join(ROOT, d)
         if not os.path.isdir(dpath):
-            print(T("pack.warn_missing_dir", d=d), file=sys.stderr)
+            print(f"警告：缺少目录 {d}/", file=sys.stderr)
             continue
         for fn in sorted(os.listdir(dpath)):
             if d != "web" and not fn.endswith(".json"):
@@ -55,7 +53,7 @@ def collect():
             with open(fpath, "rb") as f:
                 entries.append((rel, f.read()))
         else:
-            print(T("pack.warn_missing_file", rel=rel), file=sys.stderr)
+            print(f"警告：缺少 {rel}", file=sys.stderr)
     return entries
 
 
@@ -81,12 +79,13 @@ def main():
     with open(out_path, "wb") as f:
         f.write(blob)
     total = sum(len(d) for _, d in entries)
-    print(T("pack.summary", count=len(entries), total=total, size=len(blob)))
-    print(T("pack.output", path=out_path))
+    print(f"打包 {len(entries)} 个文件，原始 {total} 字节 -> {len(blob)} 字节")
+    print(f"输出：{out_path}")
+    # 列出条目数分布
     import collections
     by_dir = collections.Counter(rel.split("/")[0] for rel, _ in entries)
     for d, c in sorted(by_dir.items()):
-        print(T("pack.dir_count", d=d, c=c))
+        print(f"  {d}/: {c} 个文件")
 
 
 if __name__ == "__main__":

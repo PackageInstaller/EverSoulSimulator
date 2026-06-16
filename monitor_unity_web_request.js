@@ -21,7 +21,8 @@ const CONFIG = {
   enableSocketHexdump: false,
   enableLoggerThrowableHook: false,
   enableInfodeskSignatureBypass: false,
-  enableAndroidExitBypass: true,
+  enableAndroidExitBypass: false,
+  enableCustomUiLoginBypass: true,
   enableKakaoDiagnostics: false,
   // When true, force the Kakao SDK onto its HTTP transport (session topics go
   // to mocked /service/ endpoints) instead of the session WebSocket. This is
@@ -40,20 +41,13 @@ const CONFIG = {
     "openapi-zinny3.game.kakao.com",
     "game.kakao.com",
     "kakaogames.com",
-    "patch.esoul.kakaogames.com",
-    "replaydn-esoul.kakaogames.com",
-    "kauth.kakao.com",
-    "accounts.kakao.com",
   ],
   // Game WebSocket hosts (chat socket.io + the game server, which also serves
   // the live-sea-chat socket.io upgrade on :1739). Redirected for ws/wss too.
   wsDomains: [
     "live-sea-chat.esoul.kakaogames.com",
     "live-sea.esoul.kakaogames.com",
-    "live-kr.esoul.kakaogames.com",
-    "live-kr-chat.esoul.kakaogames.com",
     "gc-session-zinny3.kakaogames.com",
-    "session-zinny3.game.kakao.com",
   ],
   il2cpp: {
     LoginManager_MidSequence: 0x04c79070,
@@ -204,13 +198,6 @@ function redirectUrl(url) {
     /https?:\/\/[a-z0-9-]+\.lockincomp\.com(:\d+)?/gi,
     CONFIG.localBaseUrl,
   );
-  // RTT-check endpoints: (ga-)rttcheck-{region}.kakaogames.io — used for server
-  // selection before login. Redirect so the game gets an instant local response
-  // instead of hanging on internet timeouts in offline mode.
-  out = out.replace(
-    /https?:\/\/(ga-)?rttcheck-[a-z0-9-]+\.kakaogames\.io(:\d+)?/gi,
-    CONFIG.localBaseUrl,
-  );
   return out;
 }
 
@@ -322,8 +309,7 @@ function readKGRawResult(rawResult) {
 
 function makeIl2CppString(value) {
   if (!il2cppStringNew) {
-    const il2cppMod = Process.findModuleByName("libil2cpp.so");
-    const addr = il2cppMod ? il2cppMod.findExportByName("il2cpp_string_new") : null;
+    const addr = Module.findExportByName("libil2cpp.so", "il2cpp_string_new");
     if (!addr) return null;
     il2cppStringNew = new NativeFunction(addr, "pointer", ["pointer"]);
   }
@@ -738,7 +724,7 @@ function hookIl2Cpp() {
 }
 
 function hookJavaLoggerThrowable() {
-  if (typeof Java === "undefined" || !Java.available) return;
+  if (!Java.available) return;
 
   try {
     const Logger = Java.use("com.kakaogame.Logger");
@@ -758,9 +744,102 @@ function hookJavaLoggerThrowable() {
   }
 }
 
+function hookJavaCustomUiLoginBypass() {
+  if (!Java.available) return;
+
+  function jsonEscape(s) {
+    return String(s)
+      .replace(/[\\"]/g, "\\$&")
+      .replace(/\n/g, "\\n")
+      .replace(/\r/g, "\\r");
+  }
+
+  function buildOfflineLoginBody(request) {
+    const body = request.getBody();
+    let idpId = body.get("idpId");
+    if (idpId === null) idpId = body.get("deviceId");
+    if (idpId === null) idpId = "offline-device";
+    idpId = String(idpId);
+
+    let playerId = body.get("playerId");
+    if (playerId === null || !/^\d{10,}$/.test(String(playerId))) {
+      playerId = "9000000001";
+    } else {
+      playerId = String(playerId);
+    }
+
+    const now = Date.now();
+    const exp = now + 7 * 24 * 3600 * 1000;
+    const zat = `offline-zat-${now}`;
+    const zrt = `offline-zrt-${now}`;
+    const player = `{"playerId":"${jsonEscape(playerId)}","idpId":"${jsonEscape(idpId)}","appId":"743491","lang":"zh-hans","status":"normal","customProperty":{},"secureProperty":{},"pushToken":"","agreement":{"N002":"y","E006":"y","N003":"y","E001":"y","AN001":"y","E002":"y","AN002":"y"},"pushOption":{"night":"y","player":"y"},"memberKey":null,"firstLoginTime":${now},"lastLoginTime":${now},"zinnyUuid":"900cf1fd-2347-4299-a8f9-ffa06c76e62b"}`;
+    const content = `{"player":${player},"playerId":"${jsonEscape(playerId)}","idpId":"${jsonEscape(idpId)}","idpCode":"zd3","accessToken":"${zat}","zat":"${zat}","zatExpireTime":${exp},"zatExpiryTime":${exp},"expiryTime":${exp},"zrt":"${zrt}","zrtExpireTime":${exp},"zrtExpiryTime":${exp},"zinnyUuid":"900cf1fd-2347-4299-a8f9-ffa06c76e62b","isFirstLogin":false,"isMarketRefund":false}`;
+    return `{"status":200,"desc":"Success","content":${content},"message":""}`;
+  }
+
+  // Let AuthImpl.loginWithoutUI run normally so CoreManager.authorize/onLogin still
+  // sets the SDK session state. Only replace the platform auth server response that
+  // would otherwise go to the real Kakao backend and reject our offline device token.
+  try {
+    const KGResult = Java.use("com.kakaogame.KGResult");
+    const ServerResponse = Java.use("com.kakaogame.server.ServerResponse");
+    const ServerResult = Java.use("com.kakaogame.server.ServerResult");
+    const ServerService = Java.use("com.kakaogame.server.ServerService");
+    const SessionService = Java.use(
+      "com.kakaogame.server.session.SessionService",
+    );
+    const getSuccessResultWithContent =
+      KGResult.getSuccessResult.overload("java.lang.Object");
+    const makeMockResult = function (request, uri, type) {
+      const responseBody = buildOfflineLoginBody(request);
+      log(
+        "KAKAO_LOGIN",
+        `mock requestConnect ${uri} type=${type} body=${short(responseBody)}`,
+      );
+      const response = ServerResponse.getResponse(uri, responseBody);
+      const serverResult = ServerResult.getServerResult(request, response);
+      return getSuccessResultWithContent.call(KGResult, serverResult);
+    };
+    const requestConnect = ServerService.requestConnect.overload(
+      "com.kakaogame.server.ServerRequest",
+      "java.lang.String",
+      "int",
+    );
+    const sessionRequestConnect = SessionService.requestConnect.overload(
+      "com.kakaogame.server.ServerRequest",
+      "java.lang.String",
+      "int",
+    );
+
+    requestConnect.implementation = function (request, type, traceJobId) {
+      const uri = String(request.getRequestUri());
+      if (uri.indexOf("loginZinnyDevice3") !== -1) {
+        return makeMockResult(request, uri, type);
+      }
+      return requestConnect.call(this, request, type, traceJobId);
+    };
+    sessionRequestConnect.implementation = function (
+      request,
+      type,
+      traceJobId,
+    ) {
+      const uri = String(request.getRequestUri());
+      if (uri.indexOf("loginZinnyDevice3") !== -1) {
+        return makeMockResult(request, uri, type);
+      }
+      return sessionRequestConnect.call(this, request, type, traceJobId);
+    };
+    log(
+      "HOOK",
+      "ServerService/SessionService.requestConnect loginZinnyDevice3 -> offline login data",
+    );
+  } catch (e) {
+    log("KAKAO_LOGIN", `requestConnect login mock hook failed: ${e.message}`);
+  }
+}
 
 function hookJavaInfodeskSignatureVerify() {
-  if (typeof Java === "undefined" || !Java.available) return;
+  if (!Java.available) return;
 
   try {
     const HmacSHA256Util = Java.use("com.kakaogame.util.HmacSHA256Util");
@@ -785,138 +864,8 @@ function hookJavaInfodeskSignatureVerify() {
   }
 }
 
-function hookKakaoChromeCustomTab() {
-  if (!Java.available) return;
-
-  try {
-    const Activity = Java.use("android.app.Activity");
-    const Intent = Java.use("android.content.Intent");
-    const Uri = Java.use("android.net.Uri");
-
-    const startActivityForResult = Activity.startActivityForResult.overload(
-      "android.content.Intent",
-      "int",
-    );
-    startActivityForResult.implementation = function (intent, requestCode) {
-      let dataStr = "";
-      try {
-        const d = intent.getDataString();
-        if (d) dataStr = String(d);
-      } catch (_) {}
-      let extraUrl = "";
-      try {
-        const b = intent.getExtras();
-        if (b) {
-          const u =
-            b.getString("url") ||
-            b.getString("redirect_url") ||
-            b.getString("android.support.customtabs.extra.SESSION") ||
-            "";
-          extraUrl = String(u);
-        }
-      } catch (_) {}
-      const combined = dataStr + " " + extraUrl;
-      if (
-        combined.indexOf("kauth.kakao.com") !== -1 ||
-        combined.indexOf("accounts.kakao.com") !== -1
-      ) {
-        log(
-          "KAKAO_CHROME_TAB",
-          `blocked startActivityForResult kauth requestCode=${requestCode} data=${dataStr}`,
-        );
-        const fakeIntent = Intent.$new();
-        fakeIntent.setData(
-          Uri.parse(
-            "kakao743487://oauth?code=offline-kakao-code-" + Date.now(),
-          ),
-        );
-        const self = this;
-        Java.scheduleOnMainThread(function () {
-          try {
-            self.onActivityResult(requestCode, -1, fakeIntent);
-          } catch (e) {
-            log(
-              "KAKAO_CHROME_TAB",
-              `onActivityResult inject failed: ${e.message}`,
-            );
-          }
-        });
-        return;
-      }
-      return startActivityForResult.call(this, intent, requestCode);
-    };
-    log("HOOK", "Activity.startActivityForResult -> kauth.kakao.com block");
-  } catch (e) {
-    log("KAKAO_CHROME_TAB", `startActivityForResult hook failed: ${e.message}`);
-  }
-
-  try {
-    const CustomTabsIntent = Java.use(
-      "androidx.browser.customtabs.CustomTabsIntent",
-    );
-    const launchUrl = CustomTabsIntent.launchUrl.overload(
-      "android.content.Context",
-      "android.net.Uri",
-    );
-    launchUrl.implementation = function (context, uri) {
-      const uriStr = String(uri.toString());
-      if (
-        uriStr.indexOf("kauth.kakao.com") !== -1 ||
-        uriStr.indexOf("accounts.kakao.com") !== -1
-      ) {
-        log("KAKAO_CHROME_TAB", `blocked CustomTabsIntent.launchUrl: ${uriStr}`);
-        return;
-      }
-      return launchUrl.call(this, context, uri);
-    };
-    log("HOOK", "CustomTabsIntent.launchUrl -> kauth.kakao.com block");
-  } catch (e) {
-    log("KAKAO_CHROME_TAB", `CustomTabsIntent.launchUrl hook failed: ${e.message}`);
-  }
-}
-
-function hookNativeLiAppBypass() {
-  try {
-    const dummyNativeMethod = new NativeCallback(
-      function () {
-        return 0;
-      },
-      "int",
-      [],
-    );
-
-    const jniEnvHandle = Java.vm.getEnv().handle;
-    const vtable = jniEnvHandle.readPointer();
-    const ptrSize = Process.pointerSize;
-    const registerNativesPtr = vtable.add(215 * ptrSize).readPointer();
-
-    Interceptor.attach(registerNativesPtr, {
-      onEnter(args) {
-        const mod = Process.findModuleByAddress(this.returnAddress);
-        if (!mod || mod.name !== "libcawwyayy.so") return;
-        const nMethods = args[3].toInt32();
-        for (let i = 0; i < nMethods; i++) {
-          const entry = args[2].add(i * 3 * ptrSize);
-          const namePtr = entry.readPointer();
-          const sigPtr = entry.add(ptrSize).readPointer();
-          const fnPtrSlot = entry.add(2 * ptrSize);
-          const name = namePtr.readCString();
-          const sig = sigPtr.readCString();
-          fnPtrSlot.writePointer(dummyNativeMethod);
-          log("LIAPP", "RegisterNatives libcawwyayy.so: " + name + sig + " -> dummy");
-        }
-      },
-    });
-    log("HOOK", "JNIEnv.RegisterNatives watching for libcawwyayy.so");
-    return true;
-  } catch (e) {
-    log("LIAPP", "RegisterNatives hook failed: " + e.message);
-    return false;
-  }
-}
-
 function hookJavaAndroidExitBypass() {
-  if (typeof Java === "undefined" || !Java.available) return;
+  if (!Java.available) return;
 
   try {
     const Process = Java.use("android.os.Process");
@@ -1151,7 +1100,7 @@ function hookJavaForceHttpConnection() {
 }
 
 function hookJavaNetwork() {
-  if (typeof Java === "undefined" || !Java.available) return;
+  if (!Java.available) return;
 
   Java.perform(function () {
     log("JAVA", "installing Java network hooks");
@@ -1164,11 +1113,13 @@ function hookJavaNetwork() {
     if (CONFIG.enableAndroidExitBypass) {
       hookJavaAndroidExitBypass();
     }
-    hookKakaoChromeCustomTab();
     if (CONFIG.redirectToLocal && CONFIG.forceHttpConnection) {
       hookJavaForceHttpConnection();
     }
 
+    if (CONFIG.enableCustomUiLoginBypass) {
+      hookJavaCustomUiLoginBypass();
+    }
     if (CONFIG.enableKakaoDiagnostics) {
       hookJavaKakaoDiagnostics();
     }
@@ -1355,7 +1306,6 @@ function hookJavaNetwork() {
     } catch (e) {
       log("JAVA", `OkHttp ResponseBody hook failed: ${e.message}`);
     }
-    hookNativeLiAppBypass();
   });
 }
 
@@ -1438,8 +1388,7 @@ function hookNativeNetwork() {
       },
     ],
   ].forEach(([lib, name, onEnter, onLeave]) => {
-    const nativeMod = Process.findModuleByName(lib);
-    const addr = nativeMod ? nativeMod.findExportByName(name) : null;
+    const addr = Module.findExportByName(lib, name);
     if (!addr) {
       log("NATIVE", `${lib}!${name} not found`);
       return;
@@ -1454,7 +1403,7 @@ function hookNativeNetwork() {
 }
 
 function showToast(text, duration) {
-  if (typeof Java === "undefined" || !Java.available) return;
+  if (!Java.available) return;
   Java.perform(function () {
     Java.scheduleOnMainThread(function () {
       try {
@@ -1473,7 +1422,7 @@ function showToast(text, duration) {
 }
 
 hookIl2Cpp();
-try { hookNativeNetwork(); } catch (e) { log("NATIVE", "hookNativeNetwork failed: " + e.message); }
+hookNativeNetwork();
 hookJavaNetwork();
 
 setTimeout(function () {

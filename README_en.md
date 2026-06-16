@@ -1,143 +1,66 @@
-<p align="center">
-  <img src="src/assets/logo.png" width="140" alt="EverSoul Offline" />
-</p>
+# Eversoul Offline (Offline Server & Injection Tools)
 
-<h1 align="center">Eversoul Offline</h1>
-<h3 align="center">Offline Server &amp; Injection Tools</h3>
+This project provides a local Kakao SDK / Infodesk mock server for the game Eversoul, alongside C++ injection wrappers and an offline game server to intercept and handle Unity web requests offline.
 
-<p align="center">
-  A local Kakao SDK / Infodesk mock server for the Eversoul game client, along with a C++ injection wrapper and admin dashboard that lets you run the game in a fully offline in-process environment.
-</p>
-
-<p align="center">
-  <strong>English</strong> &nbsp;|&nbsp; <a href="README_cn.md">中文</a> &nbsp;|&nbsp; <a href="README.md">한국어</a>
-</p>
-- **English Documentation** | [中文文档](README.md)
-- Discord Community: [Join our Discord](https://discord.gg/ZptEmqfuv)
+- English Documentation | 中文文档: README.md
 
 ---
 
-## Quick Start
+## Quick Start Guide
 
-### 1. Build Prerequisites (Windows)
+### 1. Build Desktop and Android Libraries
 
-| Tool | Version | Install |
-|------|---------|---------|
-| CMake | 3.21+ | `winget install Kitware.CMake` |
-| GCC (MinGW-W64 POSIX UCRT) | 15.x | `winget install BrechtSanders.WinLibs.POSIX.UCRT` |
-| Python | 3.x | `winget install Python.Python.3` |
-| protoc | 35.x | `winget install Google.Protobuf` |
-| protobuf (Python) | 4.21+ | `pip install protobuf` |
-| libcurl (MinGW) | 8.x | `winget install cURL.cURL` |
-| Android NDK | r27+ | `winget install Google.AndroidCLI` then `sdkmanager "ndk;27.2.12479018"` |
-
-Run the unified build script from the project root (Git Bash on Windows):
+Run the unified build script directly from the project root:
 
 ```bash
 ./build.sh
 ```
 
-Choose the Python tool output language via environment variable:
+If the build script detects that the .har capture files are missing in the root directory, it will automatically skip the HAR merge steps and use the pre-existing JSON fixtures in responses/ and responses_newbie/ for compilation, making it easy to build directly after cloning.
+
+After a successful build, the following main artifacts are generated:
+
+- build/eversoul_offline_server (Local proxy and offline game mock server)
+- build/android/libswappywrapper.so (C++ wrapper hook for the Android client)
+- build/offline_data/libofflinedata.so (Android library containing packed static JSON data)
+
+---
+
+### 2. Deploy Runtime Libraries and Data to Android
+
+Ensure your Android device has USB debugging enabled and is connected via ADB. Then run:
 
 ```bash
-EVERSOUL_LANG=en ./build.sh   # English (default)
-EVERSOUL_LANG=ko ./build.sh   # Korean
-EVERSOUL_LANG=zh ./build.sh   # Chinese
- ./build.ps1 -NoExit #windwos only
+./deploy_offline_data.sh
 ```
 
-If no `.har` capture file is present in the project root, the build script automatically skips the HAR merge step and compiles directly from the existing `responses/` and `responses_newbie/` fixtures.
-
-Build artifacts:
-
-| Path | Description |
-|------|-------------|
-| `build/eversoul_offline_server` | Desktop offline server / proxy |
-| `build/eversoul_injector.exe` | MuMu emulator auto-injector (Windows) |
-| `build/android/libswappywrapper.so` | Android intercept wrapper library |
-| `build/offline_data/libofflinedata.so` | Packed offline JSON data (Android) |
+This script will:
+1. Push libswappywrapper.so and libofflinedata.so to the app's native library directory.
+2. Verify SHA-256 hashes of the files on the device to confirm successful deployment.
 
 ---
 
-### 2. Running the Desktop Server
+## Core Technical Implementation Details
 
-```bash
-# Offline mode (default)
-./build/eversoul_offline_server
+### 1. Injection and Patch Load Method (Anti-cheat Bypass)
 
-# Proxy mode (capture live traffic)
-./build/eversoul_offline_server --proxy
+Since the game uses LIAPP anti-cheat protection, performing a full package unpacking is tedious and hard to maintain. The bypass and injection wrapper loading scheme is as follows:
 
-# Full options
-./build/eversoul_offline_server \
-  --port 9999          \   # Game server port (default: 9999)
-  --admin-port 9998    \   # Admin web UI port (default: 9998)
-  --lang en            \   # Terminal output language: ko / en / zh
-  --data-dir ./        \   # Root path for responses/ and schema/
-  --game-server-url https://live-sea.esoul.kakaogames.com:1739
+Inject the following Smali code into the `attachBaseContext` method of the core anti-cheat entry class `com.liapp.x` to load our compiled hook wrapper early:
+
+```smali
+const-string v0, "swappywrapper"
+invoke-static {v0}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V
 ```
 
-After startup, open `http://localhost:9998/admin/` in your browser to access the admin dashboard.
+By loading the wrapper library early in this method, we can suspend or block the creation of security detection threads before the anti-cheat environment initializes them. This allows the game to load and execute our offline interceptor library while keeping the protected shell intact.
 
----
+### 2. Network Traffic Redirection
 
-### 3. Admin Web Dashboard (Port 9998)
+The network request redirection is planned in two phases:
 
-| Page | Content |
-|------|---------|
-| Dashboard | Live stats: port, request count, uptime, fixture count, DB info |
-| Health | 9-item health check: server, DB, fixtures, offline data, proxy, data dir |
-| Request Log | SSE real-time streaming, filter, pause, clear |
-| Database | SQLite table list and row-level data viewer |
-| Fixtures | Loaded response JSON index with content preview |
-| Settings | Toggle proxy, change game server URL and data dir at runtime |
-
-Language switching (Korean / English / Chinese) is available in the sidebar footer and is reflected immediately across the entire UI and server terminal output.
-
----
-
-### 4. Automatic Injection into Android Emulator
-
-`eversoul_injector.exe` automates Frida-based injection into a running MuMu Player 12 instance on Windows.
-
-```
-CMake POST_BUILD hook runs the injector automatically after each Android build.
-Manual execution: build/eversoul_injector.exe
-```
-
-Injection sequence:
-1. Locate ADB at `D:\MuMuPlayer\nx_device\12.0\shell\adb.exe` or system PATH
-2. Auto-select connected emulator / device
-3. Push `frida-server` from `tools/frida/` to the device if not already present, then start it
-4. Inject `libswappywrapper.so` into the Eversoul process via `Module.load()`
-5. Stream `logcat -s libswappywrapper` on a dedicated background thread
-
----
-
-## Core Architecture
-
-### Anti-cheat Bypass
-
-The game uses LIAPP anti-cheat. The current strategy injects `libswappywrapper.so` into the game process via Frida. The library constructor installs an ARM64 inline hook on `pthread_create` in `libc.so`. Whenever a new thread is created, the hook checks if the `start_routine` belongs to `libcawwyayy.so` (LIAPP). Anti-cheat scanner threads are silently redirected to a no-op function; all other game threads run normally.
-
-### Offline Data Pipeline
-
-```
-libofflinedata.so  (custom archive disguised as a .so)
-  └─ OfflineData::init()    ← auto-located via dladdr
-       └─ FixtureStore::load()
-            └─ responses/*.json  +  schema/*.json
-                 └─ JsonEncoder → Protobuf binary cache (in memory)
-                      └─ router.cpp → dispatch by request path
-```
-
-### SQLite ORM
-
-`src/orm/` provides a `sqlite_orm`-backed persistence layer for mutable account state. Stage clears, formations, gacha results, and item inventory are all persisted. `/UserInfo` and other response payloads are built dynamically from the current database state.
-
-### i18n System
-
-`src/i18n.cpp` and `tools/i18n.py` share the same key table. The C++ runtime (`--lang`), Python tools (`EVERSOUL_LANG`), and the admin web UI (sidebar switcher) all resolve strings from the same source. Supported languages: Korean · English · Chinese.
+- Development and Testing Phase: Currently, a Frida script (monitor_unity_web_request.js) is used to intercept and redirect Unity's HTTP and WebSocket connections to localhost.
+- Upcoming Rootless Phase: Future updates will support Frida Gadget or bypass the client's dual check of package size and SHA-256 hash to achieve rootless, script-free redirection.
 
 ---
 
@@ -145,53 +68,111 @@ libofflinedata.so  (custom archive disguised as a .so)
 
 ### A. Capture / Proxy Mode
 
-The server runs on your PC, so port forwarding is required:
+In this mode, the local server functions as a transparent HTTP proxy, intercepting authentication/SDK requests of interest while forwarding game-server traffic to live servers and saving capture dumps.
 
 ```bash
+# 1. Reverse-forward TCP port 9999
 adb reverse tcp:9999 tcp:9999
-./build/eversoul_offline_server --proxy
-frida -H 127.0.0.1:27042 -f com.kakaogames.eversoul -l tools/monitor_unity_web_request.js
+
+# 2. Start the local server in proxy mode
+./build/eversoul_offline_server --proxy --port 9999
+
+# 3. Hook the game process using Frida to redirect Unity HTTP/WebSocket endpoints
+frida -H 127.0.0.1:27042 -f com.kakaogames.eversoul -l monitor_unity_web_request.js
 ```
 
-### B. Full Offline Mode
+### B. Offline Mock Mode
 
-`libswappywrapper.so` starts its own server internally on the device — no port forwarding needed:
+In this mode, all platform and game requests are mocked by the local server or the injected offline package.
 
 ```bash
-frida -H 127.0.0.1:27042 -f com.kakaogames.eversoul -l tools/monitor_unity_web_request.js
+# 1. Reverse-forward TCP port 9999
+adb reverse tcp:9999 tcp:9999
+
+# 2. Start the mock-only server and point the game server host address to localhost
+./build/eversoul_offline_server --mock-only --port 9999 --game-server-url http://127.0.0.1:9999
+
+# 3. Hook the game process with Frida
+frida -H 127.0.0.1:27042 -f com.kakaogames.eversoul -l monitor_unity_web_request.js
 ```
 
 ---
 
-## Implemented Endpoints
+## Endpoint Implementation Status & Roadmap
 
-### Platform / SDK (Kakao · Infodesk)
+Currently, the mocked endpoints **return purely static JSON responses**. The goal is to first establish complete protocol coverage, ensuring the game can smoothly run through the startup, login, newbie tutorial, and main UI loading screens in a completely offline environment. Future development plans will introduce dynamic game state updates (e.g. handling gacha pulls, hero upgrades, and battle clears dynamically).
 
-- `/service/v3/util/country/get`
-- `/service/v4/device/accessToken/create`
-- `/service/v3/agreement/getForLogin`
-- `/service/v3/log/writeSdkBasicLog`
-- `/v2/appGroup`, `/v2/app`, `/v2/app/server/maintenance`
+### 1. Mocked Platform / SDK Endpoints (Kakao / Infodesk)
 
-### Game Server (Protobuf)
+- /service/v3/util/country/get (Country lookup)
+- /service/v4/device/accessToken/create (Access token creation)
+- /service/v3/agreement/getForLogin (Terms agreements)
+- /service/v3/log/writeSdkBasicLog (SDK logging)
+- /v2/appGroup (App group metadata)
+- /v2/app (App configurations & server addresses)
+- /v2/app/server/maintenance (Server maintenance status check)
 
-`/Login` · `/ServerTime` · `/UserInfo` · `/LobbyRefresh` · `/TutorialActive` · `/BattleStart` · `/UserNicknameChange` · `/StageClear` · `/StoryClear` · `/HeroLevelUp` · `/DungeonEnter` · `/DungeonInfoUpdate` · `/DungeonBattle` · `/DungeonClear` · `/FormationSave` · `/HeroUpgrade` · `/HeroGift` · `/HeroEquip` · `/HeroUnequip` · `/EquipItemUpgrade` · `/EquipItemTranscendence` · `/SpiritTreeSlotEquip` · `/SpiritTreeSlotUnEquip` · `/GachaHero` · `/GachaPremium` · `/GachaSignature` · `/ShopItemBuy` · `/ItemUse` · `/TaskReceive` · `/AchievementAllReceive` · `/MailItemAllReceive` · `/ReceiveAttendance` · `/FriendHeartReceiveAll` · `/GetContentClearDeck` · `/AutoHuntOpen` · `/AutoHuntReceive` · `/HeroEquipMulti` · `/GachaHeroTutorial` · `/GachaHeroTutorialFix` · `/GachaMileageDelete` · `/CashShopList` · `/CashShopUserAbleCashItemIdAllList` · `/AchievementList` · `/GuideQuestList` · `/TaskList` · `/NewMailCnt` · `/GachaInfo` · `/IllustList`
+### 2. Mocked Game Server Protobuf Routes
 
-Unclassified bootstrap and list endpoints respond with an 8-byte header and an empty Protobuf payload.
+The following endpoints are currently mocked:
+
+- /Login
+- /ServerTime
+- /UserInfo
+- /LobbyRefresh
+- /TutorialActive
+- /BattleStart
+- /UserNicknameChange
+- /StageClear
+- /StoryClear
+- /HeroLevelUp
+- /DungeonEnter
+- /DungeonInfoUpdate
+- /DungeonBattle
+- /DungeonClear
+- /FormationSave
+- /HeroUpgrade
+- /HeroGift
+- /HeroEquip
+- /HeroUnequip
+- /EquipItemUpgrade
+- /EquipItemTranscendence
+- /SpiritTreeSlotEquip
+- /SpiritTreeSlotUnEquip
+- /GachaHero
+- /GachaPremium
+- /GachaSignature
+- /ShopItemBuy
+- /ItemUse
+- /TaskReceive
+- /AchievementAllReceive
+- /MailItemAllReceive
+- /ReceiveAttendance
+- /FriendHeartReceiveAll
+- /GetContentClearDeck
+- /AutoHuntReceive
+- /HeroEquipMulti
+- /GachaHeroTutorial
+- /GachaHeroTutorialFix
+- /GachaMileageDelete
+- /CashShopList
+- /CashShopUserAbleCashItemIdAllList
+- /AchievementList
+- /GuideQuestList
+- /TaskList
+- /AutoHuntOpen
+- /NewMailCnt
+- /GachaInfo
+- /IllustList
+- Note: All other captured bootstrap or list endpoints return an empty Protobuf payload with the observed 8-byte response header.
+
+Detailed traffic analysis reports:
+- captured_requests.md (Standard traffic capture analysis)
+- captured_new_user_registration.md (Registration and tutorial state flow)
 
 ---
 
-## Contribution Guide
+## Project Pipelines & Structures
 
-- **Dynamic Route Logic** — add ORM-backed dynamic handlers in `router.cpp` to replace static mocks
-- **ORM Extensions** — add guild, spirit tree, or other tables to `orm/schema.hpp` and `orm/storage.hpp`
-- **Expand Capture Coverage** — capture new routes in proxy mode, convert to JSON + schema, submit to `responses/` and `schema/`
-- **Cross-platform Injector** — implement macOS / Linux branches in `src/injector_main.cpp`
-
----
-
-## Related Documentation
-
-- `OFFLINE_PIPELINE.md` — JSON ↔ Protobuf conversion pipeline and validation
-- `captured_requests.md` — Standard traffic capture analysis
-- `captured_new_user_registration.md` — New account registration and tutorial flow
+For information on the JSON-Protobuf conversion pipeline, schemas, expected binary verification, and desktop validation tools, please read:
+- OFFLINE_PIPELINE.md

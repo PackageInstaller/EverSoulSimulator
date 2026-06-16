@@ -1,23 +1,17 @@
-// entry.cpp — Android entry point for the merged libswappywrapper.so.
-//
-// The game auto-loads this library under the name "swappywrapper" very early
-// (before LIAPP / libcawwyayy initialize). A single constructor:
-//   1. migrates assets if needed,
-//   2. installs LIAPP bypass hooks (must precede libcawwyayy init),
-//   3. installs the anti-cheat pthread_create hook,
-//   4. installs il2cpp URL redirect hooks (game HTTP → 127.0.0.1:9999 via adb reverse).
-//
-// No in-process server is started. The offline server runs as a desktop exe;
-// adb reverse tcp:9999 tcp:9999 bridges the device to it.
+// entry.cpp — Android entry point for libswappywrapper.so.
+// 1. Anti-cheat bypass (pthread_create hook)
+// 2. Offline mock server on :9999
+// 3. IL2CPP UnityWebRequest URL redirect (native)
+// Java-layer Kakao SDK URL redirect is handled by Smali injection.
 #include <jni.h>
-
 #include <android/log.h>
+#include <dlfcn.h>
 
 #include "anticheat_patch.hpp"
-#include "asset_migration.hpp"
-#include "il2cpp_redirect.hpp"
-#include "jni_bypass.hpp"
-#include "liapp_bypass.hpp"
+#include "common.hpp"
+#include "il2cpp_hook.hpp"
+#include "net_redirect.hpp"
+#include "server.hpp"
 
 namespace
 {
@@ -29,17 +23,30 @@ extern "C"
 
     __attribute__((constructor)) static void eversoul_entry()
     {
-        eversoul::asset_migration::migrate();
-        eversoul::liapp_bypass::install();
+        // 1. Anti-cheat
+        __android_log_print(ANDROID_LOG_INFO, kLogTag, "anti-cheat hook");
         eversoul::anticheat::install();
-        eversoul::il2cpp_redirect::install();
+
+        // 2. Offline server
+        __android_log_print(ANDROID_LOG_INFO, kLogTag, "starting offline server :%d",
+                             eversoul::kDefaultPort);
+        eversoul::start_async(eversoul::kDefaultPort);
+
+        // 3. Transport-layer redirect: connect()/getaddrinfo() -> 127.0.0.1:9999.
+        // Catches Java HttpURLConnection + raw-Socket WebSocket + Unity UWR in one
+        // place, below the URL-string layer. See net_redirect.cpp for the TLS caveat.
+        __android_log_print(ANDROID_LOG_INFO, kLogTag, "transport redirect hooks");
+        eversoul::net_redirect::install();
+
+        // 4. IL2CPP UnityWebRequest hook
+        __android_log_print(ANDROID_LOG_INFO, kLogTag, "IL2CPP hook thread");
+        eversoul::il2cpp_hook::init();
     }
 
     JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved)
     {
         (void)reserved;
-        __android_log_print(ANDROID_LOG_INFO, kLogTag, "JNI_OnLoad (merged anti-cheat + offline server)");
-        eversoul::jni_bypass::init(vm);
+        __android_log_print(ANDROID_LOG_INFO, kLogTag, "JNI_OnLoad");
         return JNI_VERSION_1_6;
     }
 

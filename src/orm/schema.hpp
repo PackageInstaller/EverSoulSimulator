@@ -112,14 +112,4 @@ struct Dungeon {
     int isFirstClear = 0;
 };
 
-struct Account {
-    std::string id;
-    std::string nickname;
-    std::string player_id;
-    std::string idp_code;
-    std::string idp_id;
-    std::int64_t created_at = 0;
-    std::int64_t last_login = 0;
-};
-
 }  // namespace eversoul::orm

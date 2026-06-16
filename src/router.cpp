@@ -68,108 +68,7 @@ namespace eversoul
         {
             if (auto html = offline_data().read("web/account_select.html"))
                 return *html;
-            return R"html(<!doctype html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Eversoul Offline — 계정 선택</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:sans-serif;background:#0d0d1a;color:#e0e0f0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:16px}
-.card{background:#1a1a2e;border-radius:12px;padding:24px;width:100%;max-width:400px;box-shadow:0 4px 24px #0008}
-h1{font-size:1.2rem;margin-bottom:4px;color:#a0c4ff}
-.sub{font-size:.75rem;color:#666;margin-bottom:20px}
-.account-item{display:flex;align-items:center;background:#22223b;border-radius:8px;padding:12px 14px;margin-bottom:10px;gap:10px}
-.account-info{flex:1;min-width:0}
-.account-name{font-weight:700;font-size:.95rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.account-meta{font-size:.72rem;color:#888;margin-top:2px}
-.btn{border:none;border-radius:6px;padding:6px 12px;cursor:pointer;font-size:.8rem;font-weight:600}
-.btn-select{background:#4361ee;color:#fff}
-.btn-delete{background:#333;color:#f44}
-.btn-create{width:100%;background:#2d6a4f;color:#fff;padding:12px;border-radius:8px;font-size:.95rem;margin-top:6px;border:none;cursor:pointer;font-weight:700}
-.form-section{margin-top:16px;background:#22223b;border-radius:8px;padding:14px;display:none}
-.form-section.visible{display:block}
-.form-row{margin-bottom:10px}
-label{display:block;font-size:.78rem;color:#aaa;margin-bottom:4px}
-input,select{width:100%;background:#111;border:1px solid #333;border-radius:6px;padding:8px 10px;color:#e0e0f0;font-size:.9rem}
-.btn-submit{width:100%;background:#4361ee;color:#fff;padding:10px;border-radius:6px;font-size:.9rem;margin-top:8px;border:none;cursor:pointer;font-weight:700}
-.empty{text-align:center;color:#555;padding:20px 0;font-size:.9rem}
-.error{color:#f44;font-size:.8rem;margin-top:6px}
-</style>
-</head>
-<body>
-<div class="card">
-  <h1>Eversoul Offline</h1>
-  <p class="sub">계정을 선택하거나 새로 만드세요.</p>
-  <div id="list"></div>
-  <button class="btn-create" onclick="toggleForm()">+ 새 계정 만들기</button>
-  <div class="form-section" id="form">
-    <div class="form-row">
-      <label>닉네임</label>
-      <input id="nickname" type="text" placeholder="닉네임 입력" maxlength="20">
-    </div>
-    <div class="form-row">
-      <label>로그인 방식</label>
-      <select id="idpCode">
-        <option value="zd3">게스트 (ZinnyDevice)</option>
-        <option value="kakaocapri">카카오</option>
-      </select>
-    </div>
-    <div id="form-error" class="error"></div>
-    <button class="btn-submit" onclick="createAccount()">생성 후 시작</button>
-  </div>
-</div>
-<script>
-const AGREE='zinny://AgreementOk?E001=y&E002=y&E006=y&AN001=y&AN002=y&N002=y&N003=y&joinMemberShip=n&setAdAgreement=n';
-function fmt(ts){if(!ts)return'';var d=new Date(ts);return d.getFullYear()+'.'+(d.getMonth()+1).toString().padStart(2,'0')+'.'+d.getDate().toString().padStart(2,'0');}
-function idpLabel(c){return c==='kakaocapri'?'카카오':'게스트';}
-async function load(){
-  var res=await fetch('/api/accounts');
-  var list=await res.json();
-  var el=document.getElementById('list');
-  if(!list||list.length===0){el.innerHTML='<div class="empty">등록된 계정이 없습니다.</div>';return;}
-  el.innerHTML=list.map(function(a){
-    return '<div class="account-item">'
-      +'<div class="account-info">'
-      +'<div class="account-name">'+esc(a.nickname)+'</div>'
-      +'<div class="account-meta">'+idpLabel(a.idp_code)+' · '+a.player_id+(a.last_login?' · '+fmt(a.last_login):'')+'</div>'
-      +'</div>'
-      +'<button class="btn btn-select" onclick="selectAccount(\''+a.id+'\')">선택</button>'
-      +'<button class="btn btn-delete" onclick="delAccount(\''+a.id+'\')">삭제</button>'
-      +'</div>';
-  }).join('');
-}
-function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-function toggleForm(){
-  var f=document.getElementById('form');
-  f.classList.toggle('visible');
-}
-async function selectAccount(id){
-  await fetch('/api/accounts/select',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:id})});
-  location.replace(AGREE);
-}
-async function delAccount(id){
-  if(!confirm('이 계정을 삭제하시겠습니까?'))return;
-  await fetch('/api/accounts/'+id,{method:'DELETE'});
-  load();
-}
-async function createAccount(){
-  var nick=document.getElementById('nickname').value.trim();
-  var idp=document.getElementById('idpCode').value;
-  var err=document.getElementById('form-error');
-  if(!nick){err.textContent='닉네임을 입력하세요.';return;}
-  err.textContent='';
-  var res=await fetch('/api/accounts/create',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({nickname:nick,idpCode:idp})});
-  if(!res.ok){err.textContent='생성 실패 ('+res.status+')';return;}
-  var data=await res.json();
-  await fetch('/api/accounts/select',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:data.id})});
-  location.replace(AGREE);
-}
-load();
-</script>
-</body>
-</html>)html";
+            return R"(<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><title>Eversoul Offline</title></head><body><h1>Eversoul Offline</h1><p>Select account mode.</p><p><a href="/account-mode/set?mode=full">Full account</a></p><p><a href="/account-mode/set?mode=newbie">Newbie account</a></p></body></html>)";
         }
 
         HttpResponse html_response(const std::string &body)
@@ -184,32 +83,28 @@ load();
         }
 
         std::string build_player_json(const std::string &player_id, const std::string &idp_id,
-                                      const std::string &app_id, const std::string &idp_code,
-                                      const std::string &lang, int64_t now)
+                                      const std::string &app_id, int64_t now)
         {
             return std::string(R"({"playerId":")") + player_id +
                    R"(","idpId":")" + json_escape(idp_id) +
                    R"(","appId":")" + json_escape(app_id) +
-                   R"(","lang":")" + json_escape(lang) +
-                   R"(","idpCode":")" + json_escape(idp_code) +
-                   R"(","status":"normal","customProperty":{},"secureProperty":{},"pushToken":"","agreement":{"N002":"y","E006":"y","N003":"y","E001":"y","AN001":"y","E002":"y","AN002":"y"},"pushOption":{"night":"y","player":"y"},"memberKey":null,"firstLoginTime":)" +
+                   R"(","lang":"zh-hans","status":"normal","customProperty":{},"secureProperty":{},"pushToken":"","agreement":{"N002":"y","E006":"y","N003":"y","E001":"y","AN001":"y","E002":"y","AN002":"y"},"pushOption":{"night":"y","player":"y"},"memberKey":null,"firstLoginTime":)" +
                    std::to_string(now) + R"(,"lastLoginTime":)" + std::to_string(now) +
                    R"(,"zinnyUuid":"900cf1fd-2347-4299-a8f9-ffa06c76e62b"})";
         }
 
         std::string build_login_data_json(const std::string &player_id, const std::string &idp_id,
-                                          const std::string &app_id, const std::string &idp_code,
-                                          const std::string &lang, bool is_first_login)
+                                          const std::string &app_id,
+                                          bool is_first_login)
         {
             const std::string zat = "offline-zat-" + std::to_string(unix_ms());
             const std::string zrt = "offline-zrt-" + std::to_string(unix_ms());
             const int64_t now = unix_ms();
             const int64_t exp = now + 7LL * 24 * 3600 * 1000;
-            return std::string(R"({"player":)") + build_player_json(player_id, idp_id, app_id, idp_code, lang, now) +
+            return std::string(R"({"player":)") + build_player_json(player_id, idp_id, app_id, now) +
                    R"(,"playerId":")" + player_id +
                    R"(","idpId":")" + json_escape(idp_id) +
-                   R"(","idpCode":")" + json_escape(idp_code) +
-                   R"(","accessToken":")" + zat +
+                   R"(","idpCode":"zd3","accessToken":")" + zat +
                    R"(","zat":")" + zat +
                    R"(","zatExpireTime":)" + std::to_string(exp) +
                    R"(,"zatExpiryTime":)" + std::to_string(exp) +
@@ -291,43 +186,27 @@ load();
         HttpResponse mock_login_data_response(uint64_t id, const std::string &label, const HttpRequest &req,
                                               bool is_first_login)
         {
-            auto acct = orm::active_account();
-            std::string player_id = acct ? acct->player_id
-                                         : body_json_string(req.body, "playerId", kDefaultPlayerId);
-            std::string idp_code  = acct ? acct->idp_code
-                                         : body_json_string(req.body, "idpCode", "zd3");
-            std::string idp_id    = acct ? acct->idp_id
-                                         : body_json_string(req.body, "idpId",
-                                               body_json_string(req.body, "deviceId", "offline-device"));
-            std::string app_id    = body_json_string(req.body, "appId", "743487");
-            std::string lang      = body_json_string(req.body, "lang", "ko");
+            std::string idp_id = body_json_string(req.body, "idpId", body_json_string(req.body, "deviceId", "offline-device"));
+            std::string player_id = body_json_string(req.body, "playerId", kDefaultPlayerId);
+            std::string app_id = "743491";
             if (!is_numeric_player_id(player_id))
                 player_id = kDefaultPlayerId;
-            std::string body = build_login_data_json(player_id, idp_id, app_id, idp_code, lang, is_first_login);
-            log_line(id, "MOCK", label + " playerId=" + player_id + " idpId=" + idp_id + " idpCode=" + idp_code
-                                 + (acct ? " [account:" + acct->id + "]" : " [no-account]"));
+            std::string body = build_login_data_json(player_id, idp_id, app_id, is_first_login);
+            log_line(id, "MOCK", label + " playerId=" + player_id + " idpId=" + idp_id);
             return HttpResponse{200, {{"Content-Type", "application/json;charset=UTF-8"}}, body};
         }
 
         HttpResponse mock_local_player_response(uint64_t id, const HttpRequest &req)
         {
-            auto acct = orm::active_account();
-            std::string player_id = acct ? acct->player_id
-                                         : body_json_string(req.body, "playerId", kDefaultPlayerId);
-            std::string app_id    = body_json_string(req.body, "appId", "743487");
-            std::string idp_id    = acct ? acct->idp_id
-                                         : body_json_string(req.body, "idpId",
-                                               body_json_string(req.body, "deviceId", "offline-device"));
-            std::string idp_code  = acct ? acct->idp_code
-                                         : body_json_string(req.body, "idpCode", "zd3");
-            std::string lang      = body_json_string(req.body, "lang", "ko");
+            std::string player_id = body_json_string(req.body, "playerId", kDefaultPlayerId);
+            std::string app_id = "743491";
+            std::string idp_id = body_json_string(req.body, "idpId", body_json_string(req.body, "deviceId", "offline-device"));
             if (!is_numeric_player_id(player_id))
                 player_id = kDefaultPlayerId;
             const std::string body = std::string(R"({"player":)") +
-                                     build_player_json(player_id, idp_id, app_id, idp_code, lang, unix_ms()) +
+                                     build_player_json(player_id, idp_id, app_id, unix_ms()) +
                                      "}";
-            log_line(id, "MOCK", "player/getLocal playerId=" + player_id + " idpCode=" + idp_code
-                                 + (acct ? " [account:" + acct->id + "]" : " [no-account]"));
+            log_line(id, "MOCK", "player/getLocal playerId=" + player_id + " appId=" + app_id);
             return HttpResponse{200, {{"Content-Type", "application/json;charset=UTF-8"}}, body};
         }
 
@@ -335,60 +214,6 @@ load();
 
     HttpResponse route_request(uint64_t id, const HttpRequest &req)
     {
-        // Account management API — called by the account-select SPA.
-        if (req.path == "/api/accounts" && req.method == "GET")
-        {
-            (void)orm::ensure_ready(config().data_dir);
-            auto list = orm::accounts();
-            std::string body = "[";
-            for (std::size_t i = 0; i < list.size(); ++i) {
-                if (i) body += ",";
-                body += std::string(R"({"id":")") + json_escape(list[i].id) +
-                        R"(","nickname":")" + json_escape(list[i].nickname) +
-                        R"(","player_id":")" + json_escape(list[i].player_id) +
-                        R"(","idp_code":")" + json_escape(list[i].idp_code) +
-                        R"(","created_at":)" + std::to_string(list[i].created_at) +
-                        R"(,"last_login":)" + std::to_string(list[i].last_login) + "}";
-            }
-            body += "]";
-            return HttpResponse{200, {{"Content-Type", "application/json;charset=UTF-8"},
-                                      {"Access-Control-Allow-Origin", "*"}}, body};
-        }
-
-        if (req.path == "/api/accounts/create" && req.method == "POST")
-        {
-            std::string nickname = body_json_string(req.body, "nickname", "Player");
-            std::string idp_code = body_json_string(req.body, "idpCode", "zd3");
-            std::string new_id   = orm::create_account(nickname, idp_code, "", config().data_dir);
-            if (new_id.empty())
-                return HttpResponse{500, {{"Content-Type", "application/json;charset=UTF-8"}},
-                                    R"({"error":"account creation failed"})"};
-            set_account_mode(AccountMode::Newbie);
-            log_line(id, "ACCOUNT", "created id=" + new_id + " nickname=" + nickname);
-            std::string body = std::string(R"({"id":")") + json_escape(new_id) + "\"}";
-            return HttpResponse{200, {{"Content-Type", "application/json;charset=UTF-8"}}, body};
-        }
-
-        if (req.path == "/api/accounts/select" && req.method == "POST")
-        {
-            std::string acct_id = body_json_string(req.body, "id", "");
-            if (acct_id.empty() || !orm::select_account(acct_id, config().data_dir))
-                return HttpResponse{404, {{"Content-Type", "application/json;charset=UTF-8"}},
-                                    R"({"error":"account not found"})"};
-            log_line(id, "ACCOUNT", "selected id=" + acct_id);
-            return HttpResponse{204, {}, ""};
-        }
-
-        if (req.path.rfind("/api/accounts/", 0) == 0 && req.method == "DELETE")
-        {
-            std::string acct_id = req.path.substr(std::string("/api/accounts/").size());
-            if (acct_id.empty() || !orm::delete_account(acct_id))
-                return HttpResponse{404, {{"Content-Type", "application/json;charset=UTF-8"}},
-                                    R"({"error":"account not found"})"};
-            log_line(id, "ACCOUNT", "deleted id=" + acct_id);
-            return HttpResponse{204, {}, ""};
-        }
-
         // LIAPP anti-cheat (lockincomp.com) device-auth — posted right before country/get.
         // Offline it can't reach lockincomp -> game shows "系统初始化失败". The captured
         // response's signature (fdbd8509) is constant across sessions, so we replay it
@@ -450,7 +275,7 @@ load();
 
         if (req.path.find("/service/v3/util/country/get") != std::string::npos)
         {
-            log_line(id, "MOCK", "country=kr");
+            log_line(id, "MOCK", "country=hk");
             return HttpResponse{200, {{"Content-Type", "application/json;charset=UTF-8"}}, R"({"country":"kr"})"};
         }
 
@@ -471,7 +296,7 @@ load();
             log_line(id, "MOCK", "appGroup esoul_service");
             std::string body = std::string(R"({"status":200,"desc":"OK","content":{"timestamp":)") +
                                std::to_string(unix_ms()) +
-                               R"(,"apps":[{"notices":[],"appId":"743487","dataMap":{"countryCodeList":"kr","region":"kr"}}]}})";
+                               R"(,"apps":[{"notices":[],"appId":"743491","dataMap":{"countryCodeList":"kr,aq,tw,mo,kp,jp,cn,hk,af,as,au,bd,bn,bt,cc,ck,cx,fj,fm,gu,hm,id,in,io,kg,kh,ki,kz,la,lk,mh,mm,mn,mp,mv,my,nc,nf,np,nr,nu,nz,pf,pg,ph,pk,pn,pw,sb,sg,th,tj,tk,tl,tm,to,tv,vn,vu,wf,ws","region":"asia"}}]}})";
             return HttpResponse{200,
                                 {{"Content-Type", "application/json;charset=UTF-8"},
                                  {"sig", infodesk_sig(body)}},
@@ -518,9 +343,9 @@ load();
         if (req.path.find("/service/v3/agreement/getForLogin") != std::string::npos)
         {
             std::string idp_id = body_json_string(req.body, "idpId", body_json_string(req.body, "deviceId", ""));
-            std::string app_id = "743487";
-            std::string country = body_json_string(req.body, "country", "kr");
-            std::string lang = body_json_string(req.body, "lang", "ko");
+            std::string app_id = "743491";
+            std::string country = body_json_string(req.body, "country", "hk");
+            std::string lang = body_json_string(req.body, "lang", "zh-hans");
             const bool newbie = is_newbie_mode();
             const bool auto_login = req.headers.find("zat") != req.headers.end() ||
                                     req.headers.find("playerId") != req.headers.end();
@@ -529,7 +354,7 @@ load();
             std::string agreement = auto_login
                                         ? R"({"N002":"y","E006":"y","N003":"y","E001":"y","AN001":"y","E002":"y","AN002":"y"})"
                                         : "null";
-            std::string app_name = "Eversoul";
+            std::string app_name = "Eversoul_Asia";
             std::string body = std::string(R"({"country":")") + json_escape(country) +
                                R"(","agreement":)" + agreement +
                                R"(,"partnerName":"주식회사 카카오게임즈","idpId":")" +
@@ -574,31 +399,9 @@ load();
             return HttpResponse{200, {{"Content-Type", "application/json;charset=UTF-8"}}, R"({"result":"NO_PROMOTION"})"};
         }
 
-        if (req.path.find("/oauth/token") != std::string::npos)
-        {
-            log_line(id, "MOCK", "kakao /oauth/token -> fake access_token");
-            const std::string token = "offline-kakao-at-" + std::to_string(unix_ms());
-            const int64_t exp_sec = unix_ms() / 1000 + 3600;
-            std::string body = std::string(R"({"access_token":")") + token +
-                               R"(","token_type":"bearer","refresh_token":"offline-kakao-rt-)" +
-                               std::to_string(unix_ms()) +
-                               R"(","expires_in":)" + std::to_string(exp_sec) +
-                               R"(,"scope":"account_email profile","refresh_token_expires_in":5184000})";
-            return HttpResponse{200, {{"Content-Type", "application/json;charset=UTF-8"}}, body};
-        }
-
         if (req.path.find("/service/v4/auth/loginDevice") != std::string::npos)
         {
             return mock_login_data_response(id, "loginDevice", req, false);
-        }
-
-        // Kakao account login (kakaocapri idp). The game posts
-        // /service/v3/auth/loginKakao after obtaining a Kakao OAuth token.
-        // Must return full zat/player content; falling through to the generic
-        // /service/ "{}" reply causes SDK "accessToken is invalid" (406).
-        if (req.path.find("loginKakao") != std::string::npos)
-        {
-            return mock_login_data_response(id, "loginKakao", req, false);
         }
 
         // Guest/device login over HTTP (serverConnectionType=https path). The custom-UI

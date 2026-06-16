@@ -72,7 +72,7 @@ def recover_response_bytes(content):
 
 
 def load_entries():
-    h = json.load(open(HAR, encoding="utf-8"))
+    h = json.load(open(HAR))
     ents = h["log"]["entries"]
     games = []
     for e in ents:
@@ -163,7 +163,7 @@ def main():
     for e in games[start:]:
         seq.append(path_of(e).lstrip("/"))
 
-    with open(os.path.join(OUTDIR, "01_chrono_sequence.txt"), "w", encoding="utf-8") as f:
+    with open(os.path.join(OUTDIR, "01_chrono_sequence.txt"), "w") as f:
         f.write(f"Total game endpoints from /Login onward: {len(seq)}\n\n")
         from collections import Counter
         c = Counter(seq)
@@ -214,7 +214,7 @@ def main():
         elif resp_msg is None:
             detail_lines.append("  --- RESPONSE: (no response proto mapped) ---")
 
-    with open(os.path.join(OUTDIR, "02_tutorial_calls_decoded.txt"), "w", encoding="utf-8") as f:
+    with open(os.path.join(OUTDIR, "02_tutorial_calls_decoded.txt"), "w") as f:
         f.write("\n".join(detail_lines))
     print(f"wrote 02_tutorial_calls_decoded.txt")
 

@@ -1,11 +1,7 @@
 // offline_data.cpp — 离线资源数据源实现。
 #include "offline_data.hpp"
 
-#ifdef _WIN32
-#include <windows.h>
-#else
 #include <dlfcn.h>
-#endif
 
 #include <cstdint>
 #include <cstring>
@@ -51,23 +47,14 @@ namespace eversoul
 
     std::string guess_blob_path()
     {
-#ifdef _WIN32
-        HMODULE hmod = nullptr;
-        if (!GetModuleHandleExA(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS |
-                                    GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT,
-                                reinterpret_cast<LPCSTR>(&guess_blob_path), &hmod))
-            return {};
-        char modpath[MAX_PATH];
-        if (!GetModuleFileNameA(hmod, modpath, MAX_PATH))
-            return {};
-        fs::path self(modpath);
-#else
+        // 用 dladdr 定位本函数所在 .so 的路径，取其目录拼出 libofflinedata.so。
         Dl_info info{};
         if (dladdr(reinterpret_cast<void *>(&guess_blob_path), &info) == 0 ||
             info.dli_fname == nullptr)
+        {
             return {};
+        }
         fs::path self(info.dli_fname);
-#endif
         fs::path dir = self.parent_path();
         if (dir.empty())
             return {};
@@ -132,6 +119,7 @@ namespace eversoul
         {
             dir_ = dir;
             source_ = dir;
+            // 统计一下条目数（responses + schema + wss）。
             std::size_t n = 0;
             for (const char *sub : {"responses", "schema", "wss"})
             {
@@ -144,7 +132,6 @@ namespace eversoul
                         ++n;
                 }
             }
-            dir_count_ = n;
             log_line(0, "OFFLINE_DATA", "using dir " + dir + " json=" + std::to_string(n));
             return n;
         }

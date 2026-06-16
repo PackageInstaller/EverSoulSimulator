@@ -26410,7 +26410,7 @@
     39,
     40
   ],
-  "chatServerUrl": "https://live-sea-chat.esoul.kakaogames.com:1739",
+  "chatServerUrl": "http://127.0.0.1:9999",
   "sdHeroNo": 4160,
   "speed": 2,
   "battleAutoActive": true,

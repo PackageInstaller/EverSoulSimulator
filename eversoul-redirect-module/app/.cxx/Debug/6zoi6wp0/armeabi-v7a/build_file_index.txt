@@ -1,0 +1,11 @@
+/home/rikka/Games/永恒灵魂/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/CMakeLists.txt
+/home/rikka/Games/永恒灵魂/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/CMakeLists.txt
+/home/rikka/Games/永恒灵魂/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/builtin-plugin/SymbolResolver/CMakeLists.txt
+/home/rikka/Games/永恒灵魂/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/cmake/Macros.cmake
+/home/rikka/Games/永恒灵魂/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/cmake/Util.cmake
+/home/rikka/Games/永恒灵魂/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/cmake/auto_source_group.cmake
+/home/rikka/Games/永恒灵魂/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/cmake/build_environment_check.cmake
+/home/rikka/Games/永恒灵魂/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/cmake/compiler_and_linker.cmake
+/home/rikka/Games/永恒灵魂/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/cmake/xcode_generator_helper.cmake
+/home/rikka/Games/永恒灵魂/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/external/logging/CMakeLists.txt
+/home/rikka/Games/永恒灵魂/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/external/osbase/CMakeLists.txt

@@ -25,7 +25,7 @@ from json_to_proto import build_payload, load_fixture  # noqa: E402
 
 def main():
     reg = ProtoRegistry()
-    man = json.load(open(os.path.join(ROOT, "responses", "_manifest.json"), encoding="utf-8"))
+    man = json.load(open(os.path.join(ROOT, "responses", "_manifest.json")))
     out_dir = os.path.join(ROOT, "expected")
     if os.path.isdir(out_dir):
         for fn in os.listdir(out_dir):

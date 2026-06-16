@@ -4,15 +4,14 @@
 #include <string>
 
 #include "common.hpp"
-#include "platform.hpp"
 
 namespace eversoul
 {
 
-    [[nodiscard]] std::string recv_until_headers(socket_fd_t fd, std::string &extra);
-    [[nodiscard]] bool parse_request(socket_fd_t fd, HttpRequest &req);
-    void send_all(socket_fd_t fd, const std::string &data);
+    [[nodiscard]] std::string recv_until_headers(int fd, std::string &extra);
+    [[nodiscard]] bool parse_request(int fd, HttpRequest &req);
+    void send_all(int fd, const std::string &data);
     [[nodiscard]] std::string status_text(long status);
-    void send_response(socket_fd_t fd, const HttpResponse &res);
+    void send_response(int fd, const HttpResponse &res);
 
 } // namespace eversoul

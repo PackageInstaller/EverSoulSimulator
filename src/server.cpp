@@ -1,7 +1,10 @@
 // server.cpp — TCP accept loop, per-connection handling, global runtime state.
 #include "server.hpp"
 
-#include "platform.hpp"
+#include <arpa/inet.h>
+#include <netinet/in.h>
+#include <sys/socket.h>
+#include <unistd.h>
 
 #include <atomic>
 #include <string>
@@ -11,7 +14,6 @@
 #include "fixture_store.hpp"
 #include "http.hpp"
 #include "log.hpp"
-#include "orm/storage.hpp"
 #include "router.hpp"
 #include "websocket.hpp"
 #include "ws_session.hpp"
@@ -44,7 +46,7 @@ namespace eversoul
     {
         std::atomic<bool> g_server_started{false};
 
-        void handle_client(socket_fd_t fd, sockaddr_in peer)
+        void handle_client(int fd, sockaddr_in peer)
         {
             std::uint64_t id = ++request_id();
             char ip[INET_ADDRSTRLEN] = {};
@@ -55,7 +57,7 @@ namespace eversoul
             {
                 log_line(id, "ERROR", "failed to parse request");
                 send_response(fd, HttpResponse{400, {}, R"({"error":"bad request"})"});
-                socket_close(fd);
+                close(fd);
                 return;
             }
 
@@ -67,7 +69,7 @@ namespace eversoul
             {
                 log_line(id, "REQUEST", std::string(ip) + " WS " + req.path);
                 handle_websocket(id, fd, req, req.body);
-                socket_close(fd);
+                close(fd);
                 return;
             }
 
@@ -92,7 +94,7 @@ namespace eversoul
                 log_line(id, "RES_BODY", clip_body(res.body));
             }
             send_response(fd, res);
-            socket_close(fd);
+            close(fd);
         }
     } // namespace
 
@@ -100,30 +102,26 @@ namespace eversoul
 
     int run_server(int port)
     {
-#ifdef _WIN32
-        WSADATA wsaData;
-        WSAStartup(MAKEWORD(2, 2), &wsaData);
-#endif
 #ifndef __ANDROID__
         curl_global_init(CURL_GLOBAL_DEFAULT);
 #endif
         open_log_file();
 
+        // Load editable JSON response fixtures (responses/ + schema/) and encode
+        // them to protobuf via the descriptor-driven encoder. Served by the router.
         fixture_store().load(config().data_dir);
+        // Load WebSocket replay fixtures (Kakao session + socket.io chat).
         ws_load_fixtures(config().data_dir);
-        if (!orm::ensure_ready(config().data_dir)) {
-            log_line(0, "WARN", "orm init failed: data_dir=" + config().data_dir + " — serving fixture-only mode");
-        }
 
-        socket_fd_t server_fd = socket(AF_INET, SOCK_STREAM, 0);
-        if (server_fd == kInvalidSocket)
+        int server_fd = socket(AF_INET, SOCK_STREAM, 0);
+        if (server_fd < 0)
         {
             log_line(0, "ERROR", "socket failed");
             return 1;
         }
 
         int yes = 1;
-        setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR, reinterpret_cast<const char *>(&yes), sizeof(yes));
+        setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(yes));
 
         sockaddr_in addr{};
         addr.sin_family = AF_INET;
@@ -132,7 +130,7 @@ namespace eversoul
         if (bind(server_fd, reinterpret_cast<sockaddr *>(&addr), sizeof(addr)) < 0)
         {
             log_line(0, "ERROR", "bind failed on port " + std::to_string(port));
-            socket_close(server_fd);
+            close(server_fd);
 #ifndef __ANDROID__
             curl_global_cleanup();
 #endif
@@ -141,7 +139,7 @@ namespace eversoul
         if (listen(server_fd, 64) < 0)
         {
             log_line(0, "ERROR", "listen failed");
-            socket_close(server_fd);
+            close(server_fd);
 #ifndef __ANDROID__
             curl_global_cleanup();
 #endif
@@ -154,8 +152,8 @@ namespace eversoul
         {
             sockaddr_in peer{};
             socklen_t len = sizeof(peer);
-            socket_fd_t client_fd = accept(server_fd, reinterpret_cast<sockaddr *>(&peer), &len);
-            if (client_fd == kInvalidSocket)
+            int client_fd = accept(server_fd, reinterpret_cast<sockaddr *>(&peer), &len);
+            if (client_fd < 0)
             {
                 if (running())
                     log_line(0, "ERROR", "accept failed");
@@ -164,10 +162,7 @@ namespace eversoul
             std::thread(handle_client, client_fd, peer).detach();
         }
 
-        socket_close(server_fd);
-#ifdef _WIN32
-        WSACleanup();
-#endif
+        close(server_fd);
 #ifndef __ANDROID__
         curl_global_cleanup();
 #endif

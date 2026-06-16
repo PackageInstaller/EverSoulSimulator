@@ -34,16 +34,16 @@ namespace eversoul
         std::vector<std::string> list(const std::string &prefix) const;
 
         bool from_blob() const { return from_blob_; }
-        std::size_t size() const { return from_blob_ ? blob_entries_.size() : dir_count_; }
+        std::size_t size() const { return blob_entries_.size(); }
         const std::string &source() const { return source_; }
 
     private:
         bool load_blob(const std::string &path);
 
         bool from_blob_ = false;
-        std::size_t dir_count_ = 0;
-        std::string source_;
-        std::string dir_;
+        std::string source_; // 诊断用：blob 路径或目录
+        std::string dir_;    // 文件系统后端的根目录
+        // blob 后端：相对路径 -> 内容
         std::map<std::string, std::string> blob_entries_;
     };
 

@@ -1,0 +1,154 @@
+{
+	"archive" : {},
+	"artifacts" : 
+	[
+		{
+			"path" : "dobby/external/logging/liblogging.a"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"include_directories"
+		],
+		"files" : 
+		[
+			"dobby/external/logging/CMakeLists.txt",
+			"dobby/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 12,
+				"parent" : 0
+			},
+			{
+				"file" : 1
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 81,
+				"parent" : 2
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 98,
+				"parent" : 2
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 1,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -fno-rtti -fno-exceptions -fomit-frame-pointer -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -std=c++17 -Wall -O3 -fno-limit-debug-info  -fPIC"
+				},
+				{
+					"fragment" : "-std=gnu++11"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 3,
+					"path" : "/home/rikka/Games/\u6c38\u6052\u7075\u9b42/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/."
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/rikka/Games/\u6c38\u6052\u7075\u9b42/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/./include"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/rikka/Games/\u6c38\u6052\u7075\u9b42/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/./source"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/rikka/Games/\u6c38\u6052\u7075\u9b42/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/source/dobby"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/rikka/Games/\u6c38\u6052\u7075\u9b42/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/./external"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/rikka/Games/\u6c38\u6052\u7075\u9b42/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/./external/logging"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "/home/rikka/Games/\u6c38\u6052\u7075\u9b42/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/./builtin-plugin"
+				},
+				{
+					"backtrace" : 4,
+					"path" : "/home/rikka/Games/\u6c38\u6052\u7075\u9b42/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/source/Backend/UserMode"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "/home/rikka/Games/\u6c38\u6052\u7075\u9b42/Global/eversoul_offline/eversoul-redirect-module/app/src/main/cpp/dobby/external/logging/."
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					1
+				],
+				"standard" : "11"
+			},
+			"sourceIndexes" : 
+			[
+				0
+			],
+			"sysroot" : 
+			{
+				"path" : "/home/rikka/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/linux-x86_64/sysroot"
+			}
+		}
+	],
+	"id" : "logging::@9c6456fefc909ebba7e0",
+	"name" : "logging",
+	"nameOnDisk" : "liblogging.a",
+	"paths" : 
+	{
+		"build" : "dobby/external/logging",
+		"source" : "dobby/external/logging"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "dobby/external/logging/logging.cc",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "STATIC_LIBRARY"
+}

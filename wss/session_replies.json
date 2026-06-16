@@ -2,58 +2,59 @@
   "host": "gc-session-zinny3.kakaogames.com",
   "note": "Kakao SDK JSON-RPC over WS. Server echoes txNo; publishTime is refreshed at runtime. content bodies captured from the real session (playerId 431921183232).",
   "initial_push": {
-    "topic": "auth://v3/auth/loginZinnyDevice3",
+    "topic": "auth://v3/auth/loginGoogle",
     "meta": {
-      "publishTime": 1781212062300,
-      "country": "kr",
-      "sessionIp": "10.232.71.1",
-      "sessionId": "/10.232.68.33:6062/1781212062000",
-      "cfViewerCountry": "KR",
-      "zat": "fwPla7fQ8ty9+DZT/lD//joCle9lga1qIYjS1AQGrDxZaL/HYXXr6T4yGla8HuYOqraiJ6SkUL5Byw8H1zDAzf2zAhJRbaaSK1z2y9ehOh8MJjYwZKJkyuStFzR6xjb2Gk9wOHoEaAKFbaWmxEORM8RNHVpIEf0fZHqRPwV7H27yNGIt3R2V46xDSHZqjFNVRK7GsljpRDWR/CJMYALywWv1lwxC5tllj65CXKh/Mcw=",
-      "qid": 1882019465,
+      "publishTime": 1780878538634,
+      "country": "hk",
+      "sessionIp": "10.232.71.123",
+      "sessionId": "/10.232.68.33:6062/1780878538486",
+      "cfViewerCountry": "HK",
+      "zat": "fwPla7fQ8ty9+DZT/lD//j2CcLx/qXq4xqzNDgvOle81uDCpT5faqtrmdJnLdjClfPrSHDK0m/xygu0eZ4Mw/rvX/ABd4l276d46P21e/JyAQKczzXLup4hPJa0TTD3NYBwBhtqMGhU6NL3JTd3urwBVgi+LggORu6liFIl7ki2v5BmYnahCGfPYxr3Muqp9E/z92uHQIQJZ3VscGgJef8Msv39yKoLcwqNROXasymRvuAB6BThALd90lulEsTAU",
+      "qid": -5802397644286062365,
       "market": "googlePlay",
-      "txNo": 1882019465,
-      "loginTime": 1781212062293,
-      "firstLoginTime": 1781212062293,
-      "clientIp": "1.2.3.4",
-      "appId": "743487",
-      "startTime": 1781212062000,
-      "lang": "ko",
-      "playerId": "762942128285697",
-      "idpCode": "zd3"
+      "txNo": -1012249387,
+      "loginTime": 1780878538634,
+      "firstLoginTime": 1681819316235,
+      "clientIp": "155.254.122.112, 3.172.30.4",
+      "appId": "743491",
+      "startTime": 1780878538487,
+      "lang": "zh-hans",
+      "playerId": "431921183232",
+      "idpCode": "google"
     },
     "body": {
       "status": 200,
       "desc": "OK",
       "content": {
-        "zatExpiryTime": 1781385262293,
-        "zrtExpiryTime": 1783804462293,
-        "firstLogin": true,
-        "zat": "fwPla7fQ8ty9+DZT/lD//joCle9lga1qIYjS1AQGrDxZaL/HYXXr6T4yGla8HuYOqraiJ6SkUL5Byw8H1zDAzf2zAhJRbaaSK1z2y9ehOh8MJjYwZKJkyuStFzR6xjb2Gk9wOHoEaAKFbaWmxEORM8RNHVpIEf0fZHqRPwV7H27yNGIt3R2V46xDSHZqjFNVRK7GsljpRDWR/CJMYALywWv1lwxC5tllj65CXKh/Mcw=",
+        "zatExpiryTime": 1781051338634,
+        "zrtExpiryTime": 1783470538634,
+        "firstLogin": false,
+        "externalToken": "jIccoMs58K+0gYAqR/KexnDIfcm00y9Cu6lwurA2/TcKuhxwrT0GXlRtxzFoyU+2TSUwaArvJI+UotYHt0ND2FT6izNZaPtca0bnzAy3QdsRgR9i5I4cPkviQMkqA77q+XsUqSt+QS4wtv2uGWBmuKn6q1g0T33vja9qefSAxIJRDfT67OlVsRV9ltnTRBYnvOrI8sHRK1MdvgmqAs0GXxSLOPERfVt/zYmTBxa2A18xw/+AeGlSKZeJ/IfNafYJlUaGj5d09RZISG2Ds19ofb8FQYxdR8+47B+mQOuf94HuXssjKcvgNbiCSzH5ia++IQ2IgH0F1k0dmyrAfV3Eara0egQRIfyRjkQ8dNRX1m4=",
+        "zat": "fwPla7fQ8ty9+DZT/lD//j2CcLx/qXq4xqzNDgvOle81uDCpT5faqtrmdJnLdjClfPrSHDK0m/xygu0eZ4Mw/rvX/ABd4l276d46P21e/JyAQKczzXLup4hPJa0TTD3NYBwBhtqMGhU6NL3JTd3urwBVgi+LggORu6liFIl7ki2v5BmYnahCGfPYxr3Muqp9E/z92uHQIQJZ3VscGgJef8Msv39yKoLcwqNROXasymRvuAB6BThALd90lulEsTAU",
         "zrt": "bpMGprJHnw3BuuqwgzDBBCRlrxqGrKG1VFXlTm4K7AiDfnZqhrMLHPyo2pLGIQGq43xvoc+7T4zbsngY0+5sxqLxCAa47CqgVhT4YjtLmYf9Nk0DLVvofJqGM40vvc5KeczD5fWpD2dNXleNTSyl5iqj/DLO2Lz6y2CQY1arEjY5pZcDDks2Shobyx3LMXuuLMtDgE3VCs1gCojYsZK+LA==",
         "player": {
           "agreement": {
-            "N002": "n",
+            "N002": "y",
             "E006": "y",
-            "N003": "n",
+            "N003": "y",
             "E001": "y",
             "AN001": "y",
             "E002": "y",
             "AN002": "y"
           },
-          "memberKey": null,
-          "idpId": "7612eedf-3602-4244-afac-b0381d84d080",
+          "memberKey": "NWsengyL.ABie3QjDu_hWNOsD687y8rqUu_ZJezJhrFAwRQmImZLDQ00",
+          "idpId": "102305402181706331695",
           "pushOption": {
             "night": "y",
             "player": "y"
           },
-          "pushToken": "",
-          "lastLoginTime": 1781212062293,
-          "firstLoginTime": 1781212062293,
-          "appId": "743487",
-          "lang": "ko",
-          "playerId": "762942128285697",
-          "idpCode": "zd3",
+          "pushToken": "fvltL8YqQGuu0OymqLp8Ce:APA91bHaAFandWycCgUB9Sa3StSZbW497P59Mvy8psGdIXXWKmA_bANVANZJAEqaweWLUnxf7TaRFLsF7Okr6DQ4WXxLzHZm-TrLz-z1zNhKyC0Lt4SkWJs",
+          "lastLoginTime": 1780875969709,
+          "firstLoginTime": 1681819316235,
+          "appId": "743491",
+          "lang": "zh-hans",
+          "playerId": "431921183232",
+          "idpCode": "google",
           "status": "normal"
         }
       }
@@ -259,242 +260,6 @@
           "appId": "743491",
           "playerId": "431921183232"
         }
-      }
-    },
-    "auth://v3/auth/loginKakao": {
-      "meta_template": {
-        "publishTime": 1781211954200,
-        "country": "kr",
-        "kgAppId": "743487",
-        "sessionIp": "10.232.71.1",
-        "sessionId": "/10.232.68.33:6062/1781211954000",
-        "cfViewerCountry": "KR",
-        "zat": "fwPla7fQ8ty9+DZT/lD//sJHrsu1hRB28tCN5IPzKHI1G6Mak/0oznKkIigyEB7Spp4fhX14yu0fiu+JQBigy6PKlr6kJo2cm90xw7of4XvsIjfQgmDrj1fPWlY+nh+MpXk8XZo9/k0RsAIjDvqmKd6T/oisyIeV1dGjneF5HC/zb1WSRYOuRSuUXf6NBkyYpvao5b6VocD9iAX9Pho747CFtF4CO6Jm2rU97tPjxfY=",
-        "qid": -194925083,
-        "market": "googlePlay",
-        "txNo": -194925083,
-        "loginTime": 1781211954144,
-        "firstLoginTime": 1681819316235,
-        "clientIp": "1.2.3.4",
-        "appId": "743487",
-        "startTime": 1781211954000,
-        "lang": "ko",
-        "playerId": "619721165821",
-        "idpCode": "kakaocapri"
-      },
-      "body": {
-        "status": 200,
-        "desc": "OK",
-        "content": {
-          "zatExpiryTime": 1781384754144,
-          "zrtExpiryTime": 1783803954144,
-          "firstLogin": false,
-          "zat": "fwPla7fQ8ty9+DZT/lD//sJHrsu1hRB28tCN5IPzKHI1G6Mak/0oznKkIigyEB7Spp4fhX14yu0fiu+JQBigy6PKlr6kJo2cm90xw7of4XvsIjfQgmDrj1fPWlY+nh+MpXk8XZo9/k0RsAIjDvqmKd6T/oisyIeV1dGjneF5HC/zb1WSRYOuRSuUXf6NBkyYpvao5b6VocD9iAX9Pho747CFtF4CO6Jm2rU97tPjxfY=",
-          "zrt": "bpMGprJHnw3BuuqwgzDBBCRlrxqGrKG1VFXlTm4K7AiDfnZqhrMLHPyo2pLGIQGq43xvoc+7T4zbsngY0+5sxqLxCAa47CqgVhT4YjtLmYf9Nk0DLVvofJqGM40vvc5KeczD5fWpD2dNXleNTSyl5iqj/DLO2Lz6y2CQY1arEjY5pZcDDks2Shobyx3LMXuuLMtDgE3VCs1gCojYsZK+LA==",
-          "player": {
-            "agreement": {
-              "N002": "y",
-              "E006": "y",
-              "N003": "y",
-              "E001": "y",
-              "AN001": "y",
-              "E002": "y",
-              "AN002": "y"
-            },
-            "memberKey": "NWsengyL.ABie3QjDu_hWNOsD687y8rqUu_ZJezJhrFAwRQmImZLDQ00",
-            "idpId": "2667818819",
-            "pushOption": {
-              "night": "y",
-              "player": "y"
-            },
-            "pushToken": "",
-            "lastLoginTime": 1781211954144,
-            "firstLoginTime": 1681819316235,
-            "appId": "743487",
-            "lang": "ko",
-            "playerId": "619721165821",
-            "idpCode": "kakaocapri",
-            "status": "normal"
-          }
-        }
-      }
-    },
-    "auth://v3/zat/login": {
-      "meta_template": {
-        "publishTime": 1781210843200,
-        "country": "kr",
-        "kgAppId": "743487",
-        "sessionIp": "10.232.71.1",
-        "sessionId": "/10.232.68.33:6062/1781210843000",
-        "cfViewerCountry": "KR",
-        "zat": "fwPla7fQ8ty9+DZT/lD//s50v1oHoRRmBJ0LL8U3pVtQhUyj3+/KxWixGyBwIe2bOBDoxv5P1yIQ28GYXm8IHDQivcm93TlN8+gAz7gykXFIbDkgNCbKaJ6AWkQB8YIZDz1kS5J/WsuIGa9X28pMCo0J7k4DDCkXqN6Vea9RsEwqWb0FEJ8ElNUhF4etXlX3qNKTyIz8HKRKwsOurUbhUSVXA3EmiAQdz6ewQgx7Zs92kHOyHoYd+iOEkrsniWen",
-        "qid": -1251037344,
-        "market": "googlePlay",
-        "txNo": -1251037344,
-        "loginTime": 1781210843138,
-        "firstLoginTime": 1681819316235,
-        "clientIp": "1.2.3.4",
-        "appId": "743487",
-        "startTime": 1781210843000,
-        "lang": "ko",
-        "playerId": "619721165821",
-        "idpCode": "kakaocapri"
-      },
-      "body": {
-        "status": 200,
-        "desc": "OK",
-        "content": {
-          "zatExpiryTime": 1781383643138,
-          "zrtExpiryTime": 1783802843138,
-          "firstLogin": false,
-          "zat": "fwPla7fQ8ty9+DZT/lD//s50v1oHoRRmBJ0LL8U3pVtQhUyj3+/KxWixGyBwIe2bOBDoxv5P1yIQ28GYXm8IHDQivcm93TlN8+gAz7gykXFIbDkgNCbKaJ6AWkQB8YIZDz1kS5J/WsuIGa9X28pMCo0J7k4DDCkXqN6Vea9RsEwqWb0FEJ8ElNUhF4etXlX3qNKTyIz8HKRKwsOurUbhUSVXA3EmiAQdz6ewQgx7Zs92kHOyHoYd+iOEkrsniWen",
-          "zrt": "bpMGprJHnw3BuuqwgzDBBCRlrxqGrKG1VFXlTm4K7AiDfnZqhrMLHPyo2pLGIQGq43xvoc+7T4zbsngY0+5sxqLxCAa47CqgVhT4YjtLmYf9Nk0DLVvofJqGM40vvc5KeczD5fWpD2dNXleNTSyl5iqj/DLO2Lz6y2CQY1arEjY5pZcDDks2Shobyx3LMXuuLMtDgE3VCs1gCojYsZK+LA==",
-          "player": {
-            "agreement": {
-              "N002": "y",
-              "E006": "y",
-              "N003": "y",
-              "E001": "y",
-              "AN001": "y",
-              "E002": "y",
-              "AN002": "y"
-            },
-            "memberKey": "NWsengyL.ABie3QjDu_hWNOsD687y8rqUu_ZJezJhrFAwRQmImZLDQ00",
-            "idpId": "2667818819",
-            "pushOption": {
-              "night": "y",
-              "player": "y"
-            },
-            "pushToken": "",
-            "lastLoginTime": 1781210843138,
-            "firstLoginTime": 1681819316235,
-            "appId": "743487",
-            "lang": "ko",
-            "playerId": "619721165821",
-            "idpCode": "kakaocapri",
-            "status": "normal"
-          }
-        }
-      }
-    },
-    "inhousegw://v3/player/agreement/getForLogin": {
-      "meta_template": {
-        "publishTime": 1781210843300,
-        "country": "kr",
-        "kgAppId": "743487",
-        "sessionIp": "10.232.71.1",
-        "sessionId": "/10.232.68.33:6062/1781210843000",
-        "cfViewerCountry": "KR",
-        "qid": -1023836238,
-        "market": "googlePlay",
-        "txNo": -1023836238,
-        "loginTime": 1781210843138,
-        "firstLoginTime": 1681819316235,
-        "clientIp": "1.2.3.4",
-        "appId": "743487",
-        "startTime": 1781210843290,
-        "lang": "ko",
-        "playerId": "619721165821",
-        "idpCode": "kakaocapri"
-      },
-      "body": {
-        "status": 200,
-        "desc": "OK",
-        "content": {
-          "agreement": {
-            "N002": "y",
-            "E006": "y",
-            "N003": "y",
-            "E001": "y",
-            "AN001": "y",
-            "E002": "y",
-            "AN002": "y"
-          }
-        }
-      }
-    },
-    "auth://v3/auth/loginZinnyDevice3": {
-      "meta_template": {
-        "publishTime": 1781212062300,
-        "country": "kr",
-        "kgAppId": "743487",
-        "sessionIp": "10.232.71.1",
-        "sessionId": "/10.232.68.33:6062/1781212062000",
-        "cfViewerCountry": "KR",
-        "zat": "fwPla7fQ8ty9+DZT/lD//joCle9lga1qIYjS1AQGrDxZaL/HYXXr6T4yGla8HuYOqraiJ6SkUL5Byw8H1zDAzf2zAhJRbaaSK1z2y9ehOh8MJjYwZKJkyuStFzR6xjb2Gk9wOHoEaAKFbaWmxEORM8RNHVpIEf0fZHqRPwV7H27yNGIt3R2V46xDSHZqjFNVRK7GsljpRDWR/CJMYALywWv1lwxC5tllj65CXKh/Mcw=",
-        "qid": 1882019465,
-        "market": "googlePlay",
-        "txNo": 1882019465,
-        "loginTime": 1781212062293,
-        "firstLoginTime": 1781212062293,
-        "clientIp": "1.2.3.4",
-        "appId": "743487",
-        "startTime": 1781212062000,
-        "lang": "ko",
-        "playerId": "762942128285697",
-        "idpCode": "zd3"
-      },
-      "body": {
-        "status": 200,
-        "desc": "OK",
-        "content": {
-          "zatExpiryTime": 1781385262293,
-          "zrtExpiryTime": 1783804462293,
-          "firstLogin": true,
-          "zat": "fwPla7fQ8ty9+DZT/lD//joCle9lga1qIYjS1AQGrDxZaL/HYXXr6T4yGla8HuYOqraiJ6SkUL5Byw8H1zDAzf2zAhJRbaaSK1z2y9ehOh8MJjYwZKJkyuStFzR6xjb2Gk9wOHoEaAKFbaWmxEORM8RNHVpIEf0fZHqRPwV7H27yNGIt3R2V46xDSHZqjFNVRK7GsljpRDWR/CJMYALywWv1lwxC5tllj65CXKh/Mcw=",
-          "zrt": "bpMGprJHnw3BuuqwgzDBBCRlrxqGrKG1VFXlTm4K7AiDfnZqhrMLHPyo2pLGIQGq43xvoc+7T4zbsngY0+5sxqLxCAa47CqgVhT4YjtLmYf9Nk0DLVvofJqGM40vvc5KeczD5fWpD2dNXleNTSyl5iqj/DLO2Lz6y2CQY1arEjY5pZcDDks2Shobyx3LMXuuLMtDgE3VCs1gCojYsZK+LA==",
-          "player": {
-            "agreement": {
-              "N002": "n",
-              "E006": "y",
-              "N003": "n",
-              "E001": "y",
-              "AN001": "y",
-              "E002": "y",
-              "AN002": "y"
-            },
-            "memberKey": null,
-            "idpId": "7612eedf-3602-4244-afac-b0381d84d080",
-            "pushOption": {
-              "night": "y",
-              "player": "y"
-            },
-            "pushToken": "",
-            "lastLoginTime": 1781212062293,
-            "firstLoginTime": 1781212062293,
-            "appId": "743487",
-            "lang": "ko",
-            "playerId": "762942128285697",
-            "idpCode": "zd3",
-            "status": "normal"
-          }
-        }
-      }
-    },
-    "auth://v3/zat/logout": {
-      "meta_template": {
-        "publishTime": 1781211954761,
-        "country": "kr",
-        "kgAppId": "743487",
-        "sessionIp": "10.232.71.1",
-        "sessionId": "/10.232.68.33:6062/1781211954000",
-        "cfViewerCountry": "KR",
-        "qid": 91247567,
-        "market": "googlePlay",
-        "txNo": 91247567,
-        "loginTime": 1781211954144,
-        "firstLoginTime": 1681819316235,
-        "clientIp": "1.2.3.4",
-        "appId": "743487",
-        "startTime": 1781211954750,
-        "lang": "ko",
-        "playerId": "619721165821",
-        "idpCode": "kakaocapri"
-      },
-      "body": {
-        "status": 200,
-        "desc": "OK",
-        "content": {}
       }
     },
     "auth://v3/zat/pause": {
