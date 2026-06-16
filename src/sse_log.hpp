@@ -1,5 +1,4 @@
-// sse_log.hpp — 서버 로그 SSE 브로드캐스터. log_line()이 호출될 때마다
-// JSON 엔트리를 ring buffer에 저장하고 모든 SSE 구독자에게 전송한다.
+// sse_log.hpp — 로그 SSE 브로드캐스터. Server/Adb 두 채널을 독립적으로 관리한다.
 #pragma once
 #ifndef __ANDROID__
 
@@ -11,18 +10,26 @@ namespace eversoul::sse_log
 {
     using SubscriberFn = std::function<bool(const std::string &json)>;
 
-    // 구독자 등록 (반환값 false 이면 자동 제거).
-    int  subscribe(SubscriberFn fn);
-    void unsubscribe(int id);
+    // ── Server 채널: 게임 API 요청/응답 로그 ─────────────────────────────────
+    int  subscribe_server(SubscriberFn fn);
+    void unsubscribe_server(int id);
+    void broadcast_server(const std::string &json);
+    std::vector<std::string> recent_server(int n);
+    void clear_server();
 
-    // log_line() 내부에서 호출 — JSON을 ring buffer에 추가하고 모든 구독자에게 전송.
-    void broadcast(const std::string &json);
+    // ── Adb 채널: ADB 명령 결과 + logcat 스트림 ──────────────────────────────
+    int  subscribe_adb(SubscriberFn fn);
+    void unsubscribe_adb(int id);
+    void broadcast_adb(const std::string &json);
+    std::vector<std::string> recent_adb(int n);
+    void clear_adb();
 
-    // 최근 n개 로그 JSON 엔트리 반환 (ring buffer, 최대 2000개 보관).
-    std::vector<std::string> recent(int n);
-
-    // 로그 히스토리 클리어.
-    void clear_history();
+    // ── 하위 호환 별칭 (기존 router.cpp 코드와 호환) ─────────────────────────
+    inline int  subscribe(SubscriberFn fn)                { return subscribe_server(std::move(fn)); }
+    inline void unsubscribe(int id)                       { unsubscribe_server(id); }
+    inline void broadcast(const std::string &j)           { broadcast_server(j); }
+    inline std::vector<std::string> recent(int n)         { return recent_server(n); }
+    inline void clear_history()                           { clear_server(); }
 }
 
 #endif // !__ANDROID__

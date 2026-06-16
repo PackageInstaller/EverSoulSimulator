@@ -197,6 +197,34 @@ else()
         "${CMAKE_CURRENT_SOURCE_DIR}/src/assets/logo.ico"
         "$<TARGET_FILE_DIR:eversoul_gui>/logo.ico"
       VERBATIM)
+
+    # ── CMD 전용 모드: CONSOLE 서브시스템, WebView2 없음 ──────────────────────
+    add_executable(eversoul_console
+      ${EVERSOUL_CORE_SOURCES}
+      src/adb_runner.cpp
+      src/logcat_process.cpp
+      src/console_main.cpp
+      "${WEB_EMBEDDED_CPP}")
+    target_include_directories(eversoul_console PRIVATE
+      ${EVERSOUL_INCLUDE_DIRS})
+    target_compile_definitions(eversoul_console PRIVATE
+      UNICODE _UNICODE WIN32_LEAN_AND_MEAN NOMINMAX SQLITE_ORM_OMITS_CODECVT
+      _WIN32_WINNT=0x0A00)
+    target_compile_options(eversoul_console PRIVATE
+      -O2 -Wall -Wextra -Wno-unknown-pragmas -Wno-cast-function-type)
+    target_link_libraries(eversoul_console PRIVATE
+      CURL::libcurl Threads::Threads
+      ole32 oleaut32 shlwapi ws2_32)
+    target_link_options(eversoul_console PRIVATE
+      -static-libgcc -static-libstdc++
+      -Wl,-Bstatic,-lpthread,-Bdynamic)
+    add_custom_command(TARGET eversoul_console POST_BUILD
+      COMMAND ${CMAKE_COMMAND}
+        -DSRC_DIR=${CMAKE_SOURCE_DIR}
+        -DDST_DIR=$<TARGET_FILE_DIR:eversoul_console>
+        -P ${CMAKE_SOURCE_DIR}/cmake/copy_data_dirs.cmake
+      COMMENT "Syncing offline data dirs to eversoul_console build output"
+      VERBATIM)
   endif()
 
   add_executable(encoder_validate

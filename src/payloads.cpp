@@ -385,7 +385,20 @@ namespace eversoul
             "/ChangeLobbyBackground",
             "/HeroPowerUpdate",
             "/HeroUpgrade",
-            "/Log"};
+            "/Log",
+            "/EventQuestList",
+            "/GuideQuestRewardAllReceive",
+            "/EventQuestRewardAllReceive",
+            "/EventQuestAllReceive",
+            "/EventDailyPassList",
+            "/EventActiveList",
+            "/EventPickupGachaSelect",
+            "/AttendanceInfo",
+            "/BannerList",
+            "/SignatureHeroList",
+            "/SkywatcherInfo",
+            "/SkywatcherSelectList",
+            "/SkywatcherResultList"};
         for (const auto &endpoint : kEndpoints)
         {
             if (path == endpoint)

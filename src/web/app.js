@@ -34,7 +34,7 @@ const _I = {
   'intro.device_none':       { ko:'기기 없음 (나중에 연결 가능)', en:'No device connected (can connect later)', zh:'未连接设备（稍后可连接）' },
   'intro.device_fail':       { ko:'기기 스캔 실패',               en:'Device scan failed',                zh:'设备扫描失败' },
   'intro.ready_banner':      { ko:'─── 시스템 준비 완료 ───',     en:'─── SYSTEM READY ───',              zh:'─── 系统就绪 ───' },
-  'intro.enter_hint':        { ko:'ENTER DUNGEON 클릭 또는 3초 후 자동 진입', en:'Click ENTER DUNGEON or auto-entering in 3s', zh:'点击 ENTER DUNGEON 或 3 秒后自动进入' },
+  'intro.enter_hint':        { ko:'ENTER DUNGEON 을 클릭하세요', en:'Click ENTER DUNGEON to continue', zh:'点击 ENTER DUNGEON 继续' },
   'intro.proxy_mode':        { ko:'프록시', en:'proxy', zh:'代理' },
   'intro.offline_mode':      { ko:'오프라인', en:'offline', zh:'离线' },
   'intro.adb_empty_err':        { ko:'경로를 입력하세요', en:'Please enter a path', zh:'请输入路径' },
@@ -378,12 +378,6 @@ async function runIntro() {
   await sleep(400);
   document.getElementById('btn-enter').classList.add('visible');
   termSetStatus(t('intro.enter_hint'));
-
-  setTimeout(() => {
-    if (document.getElementById('intro') && !document.getElementById('intro').classList.contains('hidden')) {
-      enterMain();
-    }
-  }, 3000);
 }
 
 function skipIntro() {
@@ -497,13 +491,18 @@ function startUptimeTick() {
 
 // ── MAIN: SSE log ─────────────────────────────────────────────────────────────
 
-let logPaused = false;
-let logFilter = '';
-const MAX_LOG = 1000;
+let logPaused   = false;
+let logFilter   = '';
+let _logChannel = 'server';
+const MAX_LOG   = 1000;
 
 function tagClass(tag) { return 'tag-' + tag.replace(/[^A-Z0-9_]/gi, ''); }
 
-function appendLogLine(entry, panel) {
+function _activeLogPanel() {
+  return document.getElementById(_logChannel === 'adb' ? 'log-panel-adb' : 'log-panel-server');
+}
+
+function appendServerLogLine(entry, panel) {
   const div = document.createElement('div');
   div.className = 'log-line';
   const ts  = entry.timestamp || '';
@@ -511,7 +510,7 @@ function appendLogLine(entry, panel) {
   const txt = entry.text || '';
   div.innerHTML =
     `<span class="log-ts">${escHtml(ts.slice(11, 19) || ts)}</span>` +
-    `<span class="log-id">#${entry.id}</span>` +
+    `<span class="log-id">#${entry.id ?? ''}</span>` +
     `<span class="log-tag ${tagClass(tag)}">[${escHtml(tag)}]</span>` +
     `<span class="log-text">${escHtml(txt)}</span>`;
   if (logFilter && !txt.toLowerCase().includes(logFilter) && !tag.toLowerCase().includes(logFilter))
@@ -521,36 +520,79 @@ function appendLogLine(entry, panel) {
   return div;
 }
 
-function initSSE() {
-  const src      = new EventSource('/web/api/logs/stream');
-  const logPanel = document.getElementById('log-panel');
-  const dashLog  = document.getElementById('dash-log');
+function appendAdbLogLine(entry, panel) {
+  const div = document.createElement('div');
+  div.className = 'log-line';
+  const ts  = entry.timestamp || '';
+  const txt = entry.text || '';
+  div.innerHTML =
+    `<span class="log-ts">${escHtml(ts.slice(11, 19) || ts)}</span>` +
+    `<span class="log-text" style="color:var(--color-text-dim)">${escHtml(txt)}</span>`;
+  if (logFilter && !txt.toLowerCase().includes(logFilter))
+    div.classList.add('filtered');
+  panel.appendChild(div);
+  while (panel.children.length > MAX_LOG) panel.removeChild(panel.firstChild);
+  return div;
+}
+
+function switchLogChannel(ch) {
+  _logChannel = ch;
+  document.getElementById('log-chtab-server').classList.toggle('active', ch === 'server');
+  document.getElementById('log-chtab-adb').classList.toggle('active',    ch === 'adb');
+  document.getElementById('log-panel-server').style.display = ch === 'server' ? '' : 'none';
+  document.getElementById('log-panel-adb').style.display    = ch === 'adb'    ? '' : 'none';
+}
+
+function initSSEServer() {
+  const src   = new EventSource('/web/api/logs/server/stream');
+  const panel = document.getElementById('log-panel-server');
+  const dash  = document.getElementById('dash-log');
   src.onmessage = e => {
     const entry = JSON.parse(e.data);
     if (!logPaused) {
-      appendLogLine(entry, logPanel);
-      logPanel.scrollTop = logPanel.scrollHeight;
+      appendServerLogLine(entry, panel);
+      panel.scrollTop = panel.scrollHeight;
     }
-    appendLogLine(entry, dashLog);
-    dashLog.scrollTop = dashLog.scrollHeight;
-    while (dashLog.children.length > 80) dashLog.removeChild(dashLog.firstChild);
-    if (entry.tag === 'INJECTOR' || entry.tag === 'ADB') {
+    appendServerLogLine(entry, dash);
+    dash.scrollTop = dash.scrollHeight;
+    while (dash.children.length > 80) dash.removeChild(dash.firstChild);
+  };
+  src.onerror = () => { setTimeout(initSSEServer, 3000); src.close(); };
+}
+
+function initSSEAdb() {
+  const src   = new EventSource('/web/api/logs/adb/stream');
+  const panel = document.getElementById('log-panel-adb');
+  src.onmessage = e => {
+    const entry = JSON.parse(e.data);
+    if (!logPaused) {
+      appendAdbLogLine(entry, panel);
+      panel.scrollTop = panel.scrollHeight;
+    }
+    if (entry.text && (entry.text.startsWith('$') || entry.text.startsWith('adb'))) {
       const inj = document.getElementById('injector-log');
-      if (inj) { appendLogLine(entry, inj); inj.scrollTop = inj.scrollHeight; }
+      if (inj) { appendAdbLogLine(entry, inj); inj.scrollTop = inj.scrollHeight; }
     }
   };
-  src.onerror = () => { setTimeout(initSSE, 3000); src.close(); };
+  src.onerror = () => { setTimeout(initSSEAdb, 3000); src.close(); };
 }
 
 async function loadRecentLogs() {
   try {
-    const r    = await fetch('/web/api/logs/recent?n=200');
-    const logs = await r.json();
-    const panel = document.getElementById('log-panel');
-    const dash  = document.getElementById('dash-log');
-    logs.forEach(e => { appendLogLine(e, panel); appendLogLine(e, dash); });
-    panel.scrollTop = panel.scrollHeight;
-    dash.scrollTop  = dash.scrollHeight;
+    const [rs, ra] = await Promise.all([
+      fetch('/web/api/logs/server/recent?n=200'),
+      fetch('/web/api/logs/adb/recent?n=200'),
+    ]);
+    const serverLogs = await rs.json();
+    const adbLogs    = await ra.json();
+    const panelS = document.getElementById('log-panel-server');
+    const panelA = document.getElementById('log-panel-adb');
+    const dash   = document.getElementById('dash-log');
+    serverLogs.forEach(e => { appendServerLogLine(e, panelS); appendServerLogLine(e, dash); });
+    adbLogs.forEach(e => appendAdbLogLine(e, panelA));
+    panelS.scrollTop = panelS.scrollHeight;
+    panelA.scrollTop = panelA.scrollHeight;
+    dash.scrollTop   = dash.scrollHeight;
   } catch (_) {}
 }
 
@@ -562,13 +604,16 @@ function toggleLogPause() {
 }
 
 function clearLog() {
-  document.getElementById('log-panel').innerHTML = '';
-  fetch('/web/api/logs/clear', { method: 'POST' }).catch(() => {});
+  _activeLogPanel().innerHTML = '';
+  if (_logChannel === 'adb')
+    fetch('/web/api/logs/adb/clear', { method: 'POST' }).catch(() => {});
+  else
+    fetch('/web/api/logs/clear', { method: 'POST' }).catch(() => {});
 }
 
 function filterLog(v) {
   logFilter = v.toLowerCase();
-  document.querySelectorAll('#log-panel .log-line').forEach(el => {
+  _activeLogPanel().querySelectorAll('.log-line').forEach(el => {
     const txt = el.querySelector('.log-text')?.textContent.toLowerCase() || '';
     const tag = el.querySelector('.log-tag')?.textContent.toLowerCase()  || '';
     el.classList.toggle('filtered', !!logFilter && !txt.includes(logFilter) && !tag.includes(logFilter));
@@ -790,11 +835,16 @@ async function loadFixture(path) {
 
 async function loadSettings() {
   try {
-    const r = await fetch('/web/api/status');
-    const d = await r.json();
-    document.getElementById('toggle-proxy').checked = !!d.proxy_enabled;
-    document.getElementById('set-game-url').value   = d.game_server_url || '';
-    document.getElementById('set-data-dir').value   = d.data_dir || '';
+    const [rs, rp] = await Promise.all([
+      fetch('/web/api/status'),
+      fetch('/web/api/adb/port'),
+    ]);
+    const d  = await rs.json();
+    const dp = await rp.json();
+    document.getElementById('toggle-proxy').checked  = !!d.proxy_enabled;
+    document.getElementById('set-game-url').value    = d.game_server_url || '';
+    document.getElementById('set-data-dir').value    = d.data_dir || '';
+    document.getElementById('set-adb-port').value    = dp.port || '';
   } catch (_) {}
 }
 
@@ -807,12 +857,17 @@ async function applyProxy(v) {
 }
 
 async function applySettings() {
-  await fetch('/web/api/config', {
-    method: 'POST', headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      game_server_url: document.getElementById('set-game-url').value,
-    }),
-  }).catch(() => {});
+  const adbPort = document.getElementById('set-adb-port').value.trim();
+  await Promise.all([
+    fetch('/web/api/config', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ game_server_url: document.getElementById('set-game-url').value }),
+    }).catch(() => {}),
+    adbPort ? fetch('/web/api/adb/port', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ port: adbPort }),
+    }).catch(() => {}) : Promise.resolve(),
+  ]);
   pollStatus();
 }
 
@@ -1355,7 +1410,8 @@ document.getElementById('modal-about').addEventListener('click', e => {
 function initMain() {
   loadStrings();
   loadRecentLogs();
-  initSSE();
+  initSSEServer();
+  initSSEAdb();
   loadSettings();
   pollStatus();
   setInterval(pollStatus, 4000);

@@ -9,11 +9,14 @@ namespace eversoul::logcat
 {
     using LineFn = std::function<bool(const std::string &line)>;
 
-    // adb logcat 시작. adb_path: adb.exe 경로, serial: 기기 시리얼(빈 문자열=기본).
+    // adb logcat 시작 (파이프 방식 — SSE adb 채널로 전달, logs/adb.log 기록).
     // 이미 실행 중이면 무시.
     void start(const std::string &adb_path, const std::string &serial);
 
-    // adb logcat 중지.
+    // adb logcat 을 별도 새 콘솔 창으로 시작 (CMD 전용 모드 — 직접 콘솔 출력).
+    void start_in_new_console(const std::string &adb_path, const std::string &serial);
+
+    // adb logcat 중지 (파이프 방식).
     void stop();
 
     // 현재 실행 여부.

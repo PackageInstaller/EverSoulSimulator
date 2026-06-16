@@ -108,9 +108,6 @@
         <li class="nav-item" data-page="settings">
           <span class="nav-icon">⚙</span><span data-i18n="admin.settings">Settings</span>
         </li>
-        <li class="nav-item" data-page="injector">
-          <span class="nav-icon">▶</span><span data-i18n="admin.injector">Injector</span>
-        </li>
         <li class="nav-item" data-page="gamedata">
           <span class="nav-icon">✦</span><span data-i18n="admin.gamedata">Game Data</span>
         </li>
@@ -233,12 +230,17 @@
 
       <!-- LOGS -->
       <section class="page" id="page-logs">
+        <nav class="log-channel-tabs">
+          <button class="log-ch-tab active" id="log-chtab-server" onclick="switchLogChannel('server')">Server Log</button>
+          <button class="log-ch-tab"        id="log-chtab-adb"    onclick="switchLogChannel('adb')">ADB / Logcat</button>
+        </nav>
         <div id="log-controls">
           <input id="log-filter" placeholder="Filter…" oninput="filterLog(this.value)"/>
           <button class="btn" onclick="toggleLogPause()" id="btn-pause">Pause</button>
           <button class="btn danger" onclick="clearLog()">Clear</button>
         </div>
-        <div id="log-panel" role="log" aria-live="off"></div>
+        <div id="log-panel-server" class="log-ch-panel" role="log" aria-live="off"></div>
+        <div id="log-panel-adb"    class="log-ch-panel" role="log" aria-live="off" style="display:none"></div>
       </section>
 
       <!-- DB -->
@@ -296,6 +298,10 @@
               <label class="toggle"><input type="checkbox" id="toggle-proxy" onchange="applyProxy(this.checked)"><span class="slider"></span></label>
             </div>
             <div class="setting-row">
+              <label class="setting-label" for="set-adb-port">ADB Port</label>
+              <input type="text" id="set-adb-port" placeholder="5557"/>
+            </div>
+            <div class="setting-row">
               <label class="setting-label" for="set-game-url">Game Server URL</label>
               <input type="text" id="set-game-url"/>
             </div>
@@ -306,46 +312,6 @@
             <div style="margin-top:12px;display:flex;gap:8px">
               <button class="btn btn-primary" onclick="applySettings()">Apply</button>
             </div>
-          </div>
-        </article>
-      </section>
-
-      <!-- INJECTOR -->
-      <section class="page" id="page-injector">
-        <article class="card">
-          <header class="card-header"><span class="nav-icon">▶</span><h2 class="card-title" data-i18n="admin.injector">Injector</h2></header>
-          <div class="card-body">
-            <section style="margin-bottom:12px">
-              <h3 class="setting-label" data-i18n="admin.injector_connect" style="margin-bottom:7px">ADB Connect</h3>
-              <div style="display:flex;gap:8px;margin-bottom:10px">
-                <input id="adb-connect-input" placeholder="127.0.0.1:16384" style="flex:1;font-size:12px" onkeydown="if(event.key==='Enter')connectAdbDevice()"/>
-                <button class="btn btn-primary" onclick="connectAdbDevice()" id="btn-adb-connect" data-i18n="admin.injector_connect_btn">Connect</button>
-              </div>
-              <output id="adb-connect-status" style="font-size:11px;color:var(--color-text-dim)"></output>
-            </section>
-            <section style="margin-bottom:12px">
-              <div style="display:flex;gap:8px;align-items:center;margin-bottom:7px">
-                <h3 class="setting-label" data-i18n="admin.injector_devices">Connected Devices</h3>
-                <button class="btn" onclick="loadInjectorDevices()">↻</button>
-              </div>
-              <div id="injector-device-list" style="font-size:12px;color:var(--color-text-dim)">–</div>
-            </section>
-            <div id="injector-check-result" style="font-size:12px;color:var(--color-text-dim);margin-bottom:12px;line-height:2"></div>
-            <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-              <button class="btn btn-primary" onclick="runInjector()" id="btn-inject">Run Injector</button>
-              <button class="btn danger" onclick="stopInjector()">Stop</button>
-              <span id="injector-status-text" style="font-size:11px;color:var(--color-text-dim)"></span>
-            </div>
-          </div>
-        </article>
-        <article class="card" style="margin-top:12px">
-          <header class="card-header"><span class="nav-icon">▤</span><h2 class="card-title">ADB Command</h2></header>
-          <div class="card-body">
-            <div style="display:flex;gap:8px;margin-bottom:9px">
-              <input id="adb-cmd-input" placeholder="adb command (e.g. devices)" onkeydown="if(event.key==='Enter')sendAdbCmd()"/>
-              <button class="btn btn-primary" onclick="sendAdbCmd()">Run</button>
-            </div>
-            <div id="injector-log" role="log" aria-live="off"></div>
           </div>
         </article>
       </section>

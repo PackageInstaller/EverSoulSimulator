@@ -75,14 +75,16 @@ namespace eversoul
                 return;
             }
 
-            log_line(id, "REQUEST", std::string(ip) + " " + req.method + " " + req.path);
-            for (const auto &[k, v] : req.headers)
+            // /web/ 하위 요청(웹UI 자체 통신)은 서버 로그에서 완전 제외.
+            const bool is_webui = req.path.compare(0, 5, "/web/") == 0;
+
+            if (!is_webui)
             {
-                log_line(id, "REQ_HEADER", k + "=" + v);
-            }
-            if (!req.body.empty())
-            {
-                log_line(id, "REQ_BODY", clip_body(req.body));
+                log_line(id, "REQUEST", std::string(ip) + " " + req.method + " " + req.path);
+                for (const auto &[k, v] : req.headers)
+                    log_line(id, "REQ_HEADER", k + "=" + v);
+                if (!req.body.empty())
+                    log_line(id, "REQ_BODY", clip_body(req.body));
             }
 
             HttpResponse res = route_request(id, fd, req);
@@ -92,15 +94,16 @@ namespace eversoul
                 platform_close(fd);
                 return;
             }
-            log_line(id, "RESPONSE", "status=" + std::to_string(res.status) + " bytes=" + std::to_string(res.body.size()));
-            for (const auto &[k, v] : res.headers)
+
+            if (!is_webui)
             {
-                log_line(id, "RES_HEADER", k + "=" + v);
+                log_line(id, "RESPONSE", "status=" + std::to_string(res.status) + " bytes=" + std::to_string(res.body.size()));
+                for (const auto &[k, v] : res.headers)
+                    log_line(id, "RES_HEADER", k + "=" + v);
+                if (!res.body.empty())
+                    log_line(id, "RES_BODY", clip_body(res.body));
             }
-            if (!res.body.empty())
-            {
-                log_line(id, "RES_BODY", clip_body(res.body));
-            }
+
             send_response(fd, res);
             platform_close(fd);
         }

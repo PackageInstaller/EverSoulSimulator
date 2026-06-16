@@ -10,6 +10,8 @@
 #include <string>
 #include <vector>
 
+#include "log.hpp"
+
 namespace eversoul::adb_runner
 {
     namespace
@@ -22,6 +24,7 @@ namespace eversoul::adb_runner
 
         void broadcast(const std::string &line)
         {
+            eversoul::log_adb_line(line);
             std::lock_guard lock(g_mu);
             for (auto it = g_subs.begin(); it != g_subs.end(); )
             {

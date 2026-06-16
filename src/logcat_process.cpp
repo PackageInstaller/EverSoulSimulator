@@ -5,10 +5,13 @@
 #include <windows.h>
 
 #include <atomic>
+#include <chrono>
 #include <map>
 #include <mutex>
 #include <string>
 #include <thread>
+
+#include "log.hpp"
 
 namespace eversoul::logcat
 {
@@ -18,11 +21,23 @@ namespace eversoul::logcat
         HANDLE g_proc = INVALID_HANDLE_VALUE;
         HANDLE g_read_pipe = INVALID_HANDLE_VALUE;
         std::atomic<bool> g_running{false};
+        std::atomic<bool> g_stop_requested{false};
+        std::string g_saved_adb_path;
+        std::string g_saved_serial;
         int g_next_id = 0;
         std::map<int, LineFn> g_subs;
 
+        bool is_eversoul_line(const std::string &line)
+        {
+            return line.find("com.kakaogames.eversoul") != std::string::npos ||
+                   line.find("libswappywrapper") != std::string::npos;
+        }
+
         void broadcast(const std::string &line)
         {
+            if (!is_eversoul_line(line))
+                return;
+            eversoul::log_adb_line(line);
             std::lock_guard lock(g_mu);
             for (auto it = g_subs.begin(); it != g_subs.end(); )
             {
@@ -59,6 +74,24 @@ namespace eversoul::logcat
             if (!partial.empty())
                 broadcast(partial);
             g_running = false;
+
+            if (!g_stop_requested.load())
+            {
+                std::string adb_path, serial;
+                {
+                    std::lock_guard lock(g_mu);
+                    adb_path = g_saved_adb_path;
+                    serial   = g_saved_serial;
+                }
+                if (!adb_path.empty())
+                {
+                    std::thread([adb_path, serial]()
+                    {
+                        std::this_thread::sleep_for(std::chrono::seconds(2));
+                        start(adb_path, serial);
+                    }).detach();
+                }
+            }
         }
     }
 
@@ -67,6 +100,26 @@ namespace eversoul::logcat
         std::lock_guard lock(g_mu);
         if (g_running.load())
             return;
+        g_stop_requested = false;
+        g_saved_adb_path = adb_path;
+        g_saved_serial   = serial;
+
+        {
+            std::string clr_cmd = "\"" + adb_path + "\"";
+            if (!serial.empty())
+                clr_cmd += " -s " + serial;
+            clr_cmd += " logcat -c";
+            STARTUPINFOA clr_si{};
+            clr_si.cb = sizeof(clr_si);
+            PROCESS_INFORMATION clr_pi{};
+            if (CreateProcessA(nullptr, clr_cmd.data(), nullptr, nullptr,
+                               FALSE, CREATE_NO_WINDOW, nullptr, nullptr, &clr_si, &clr_pi))
+            {
+                WaitForSingleObject(clr_pi.hProcess, 2000);
+                CloseHandle(clr_pi.hThread);
+                CloseHandle(clr_pi.hProcess);
+            }
+        }
 
         HANDLE read_pipe = INVALID_HANDLE_VALUE;
         HANDLE write_pipe = INVALID_HANDLE_VALUE;
@@ -113,6 +166,7 @@ namespace eversoul::logcat
             std::lock_guard lock(g_mu);
             if (!g_running.load())
                 return;
+            g_stop_requested = true;
             g_running = false;
             proc = g_proc;
             pipe = g_read_pipe;
@@ -145,6 +199,29 @@ namespace eversoul::logcat
     {
         std::lock_guard lock(g_mu);
         g_subs.erase(id);
+    }
+
+    void start_in_new_console(const std::string &adb_path, const std::string &serial)
+    {
+        if (adb_path.empty())
+            return;
+        std::string cmd = "\"" + adb_path + "\"";
+        if (!serial.empty())
+            cmd += " -s " + serial;
+        cmd += " logcat";
+
+        STARTUPINFOA si{};
+        si.cb = sizeof(si);
+        PROCESS_INFORMATION pi{};
+        std::string cmd_buf = cmd;
+        BOOL ok = CreateProcessA(
+            nullptr, cmd_buf.data(), nullptr, nullptr,
+            FALSE, CREATE_NEW_CONSOLE, nullptr, nullptr, &si, &pi);
+        if (ok)
+        {
+            CloseHandle(pi.hThread);
+            CloseHandle(pi.hProcess);
+        }
     }
 }
 

@@ -426,16 +426,14 @@ namespace eversoul
                 return json_ok(body);
             }
 
-            // ── 로그 SSE 스트림 ──────────────────────────────────────────────────
-            if (path == "/web/api/logs/stream" && method == "GET")
+            // ── 서버 로그 SSE (게임 API 요청/응답) ──────────────────────────────
+            if (path == "/web/api/logs/server/stream" && method == "GET")
             {
                 send_sse_header(fd);
-                // 최근 200개 즉시 전송
-                for (const auto &j : sse_log::recent(200))
+                for (const auto &j : sse_log::recent_server(200))
                     send_all(fd, "data: " + j + "\n\n");
-                // 새 로그 구독 — 연결 종료까지 블록
                 std::atomic<bool> done{false};
-                auto sid = sse_log::subscribe([fd, &done](const std::string &json) -> bool {
+                auto sid = sse_log::subscribe_server([fd, &done](const std::string &json) -> bool {
                     bool ok = send_all(fd, "data: " + json + "\n\n");
                     if (!ok) done = true;
                     return ok;
@@ -447,17 +445,54 @@ namespace eversoul
                     if (r <= 0) break;
                     std::this_thread::sleep_for(std::chrono::milliseconds(100));
                 }
-                sse_log::unsubscribe(sid);
+                sse_log::unsubscribe_server(sid);
                 return HttpResponse{-1, {}, ""};
             }
 
-            // ── 최근 로그 ────────────────────────────────────────────────────────
-            if (path.rfind("/web/api/logs/recent", 0) == 0 && method == "GET")
+            // ── ADB+Logcat SSE ────────────────────────────────────────────────
+            if (path == "/web/api/logs/adb/stream" && method == "GET")
+            {
+                logcat::start(adb_runner::adb_path(), adb_runner::serial());
+                send_sse_header(fd);
+                for (const auto &j : sse_log::recent_adb(200))
+                    send_all(fd, "data: " + j + "\n\n");
+                std::atomic<bool> done{false};
+                auto sid = sse_log::subscribe_adb([fd, &done](const std::string &json) -> bool {
+                    bool ok = send_all(fd, "data: " + json + "\n\n");
+                    if (!ok) done = true;
+                    return ok;
+                });
+                while (!done.load())
+                {
+                    char buf[1];
+                    int r = ::recv(fd, buf, 1, MSG_PEEK);
+                    if (r <= 0) break;
+                    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+                }
+                sse_log::unsubscribe_adb(sid);
+                return HttpResponse{-1, {}, ""};
+            }
+
+            // ── 서버 로그 최근 N개 ───────────────────────────────────────────────
+            if (path.rfind("/web/api/logs/server/recent", 0) == 0 && method == "GET")
             {
                 int n = 200;
                 auto q = path.find("n=");
                 if (q != std::string::npos) n = std::atoi(path.c_str() + q + 2);
-                auto logs = sse_log::recent(n);
+                auto logs = sse_log::recent_server(n);
+                std::string body = "[";
+                for (std::size_t i = 0; i < logs.size(); ++i) { if (i) body += ","; body += logs[i]; }
+                body += "]";
+                return json_ok(body);
+            }
+
+            // ── ADB 로그 최근 N개 ────────────────────────────────────────────────
+            if (path.rfind("/web/api/logs/adb/recent", 0) == 0 && method == "GET")
+            {
+                int n = 200;
+                auto q = path.find("n=");
+                if (q != std::string::npos) n = std::atoi(path.c_str() + q + 2);
+                auto logs = sse_log::recent_adb(n);
                 std::string body = "[";
                 for (std::size_t i = 0; i < logs.size(); ++i) { if (i) body += ","; body += logs[i]; }
                 body += "]";
@@ -467,7 +502,14 @@ namespace eversoul
             // ── 로그 클리어 ──────────────────────────────────────────────────────
             if (path == "/web/api/logs/clear" && method == "POST")
             {
-                sse_log::clear_history();
+                sse_log::clear_server();
+                return json_ok("{\"ok\":true}");
+            }
+
+            if (path == "/web/api/logs/adb/clear" && method == "POST")
+            {
+                sse_log::clear_adb();
+                adb_runner::run({"logcat", "-c"});
                 return json_ok("{\"ok\":true}");
             }
 
@@ -1082,6 +1124,17 @@ namespace eversoul
         {
             log_line(id, "MOCK", "kakao service ok " + req.path);
             return HttpResponse{200, {{"Content-Type", "application/json;charset=UTF-8"}}, R"({})"};
+        }
+
+        if (req.path.rfind("/Live/", 0) == 0 && req.method == "GET")
+        {
+            if (req.path.find("/Table/const_data_version.json") != std::string::npos)
+            {
+                log_line(id, "MOCK", "CDN /Live/ const_data_version version=4725 action=1");
+                return HttpResponse{200, {{"Content-Type", "application/json"}}, R"({"version":4725,"action":1})"};
+            }
+            log_line(id, "MOCK", "CDN /Live/ 404 " + req.path);
+            return HttpResponse{404, {{"Content-Type", "application/json"}}, R"({"error":"not found"})"};
         }
 
         if (req.path == "/Login")

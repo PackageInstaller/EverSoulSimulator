@@ -1202,8 +1202,33 @@ nav {
 .btn-primary:hover {
   background: rgba(0,110,170,.4);
 }
-#log-panel {
-  height: calc(100vh - 230px);
+.log-channel-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.log-ch-tab {
+  padding: 5px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--glass-border-lo);
+  border-radius: 4px;
+  background: rgba(0,0,0,.25);
+  color: var(--color-text-dim);
+  transition: color .15s, border-color .15s, background .15s;
+}
+.log-ch-tab.active {
+  border-color: var(--color-accent-dim);
+  color: var(--color-accent);
+  background: rgba(0,80,130,.2);
+}
+.log-ch-tab:hover:not(.active) {
+  border-color: var(--color-border-mid);
+  color: var(--color-text);
+}
+.log-ch-panel {
+  height: calc(100vh - 255px);
   overflow-y: auto;
   background: rgba(3,8,18,.75);
   backdrop-filter: blur(8px);
@@ -1213,10 +1238,10 @@ nav {
   font-size: 12px;
   line-height: 1.6;
 }
-#log-panel::-webkit-scrollbar {
+.log-ch-panel::-webkit-scrollbar {
   width: 4px;
 }
-#log-panel::-webkit-scrollbar-thumb {
+.log-ch-panel::-webkit-scrollbar-thumb {
   background: var(--color-border-mid);
 }
 .log-line {

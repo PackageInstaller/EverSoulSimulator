@@ -1,4 +1,4 @@
-// log.cpp — logging sink shared by the server and router.
+// log.cpp — logging sink: Server 채널(game API) + Adb 채널(adb/logcat) 분리.
 #include "log.hpp"
 
 #include "platform.hpp"
@@ -25,7 +25,8 @@ namespace eversoul
     namespace
     {
         std::mutex g_log_mutex;
-        std::ofstream g_log_file;
+        std::ofstream g_server_log;  // logs/server.log
+        std::ofstream g_adb_log;     // logs/adb.log
     } // namespace
 
     std::string clip_body(const std::string &body)
@@ -45,16 +46,21 @@ namespace eversoul
 #else
         std::cout << line;
         std::cout.flush();
-#endif
-        if (g_log_file.is_open())
-        {
-            g_log_file << line;
-            g_log_file.flush();
-        }
-#ifndef __ANDROID__
+        if (g_server_log.is_open()) { g_server_log << line; g_server_log.flush(); }
         std::string json = "{\"timestamp\":\"" + ts + "\",\"id\":" + std::to_string(id) +
                            ",\"tag\":\"" + json_escape(tag) + "\",\"text\":\"" + json_escape(text) + "\"}";
-        sse_log::broadcast(json);
+        sse_log::broadcast_server(json);
+#endif
+    }
+
+    void log_adb_line(const std::string &text)
+    {
+#ifndef __ANDROID__
+        std::lock_guard<std::mutex> lock(g_log_mutex);
+        std::string ts = now_string();
+        if (g_adb_log.is_open()) { g_adb_log << text << "\n"; g_adb_log.flush(); }
+        std::string json = "{\"timestamp\":\"" + ts + "\",\"text\":\"" + json_escape(text) + "\"}";
+        sse_log::broadcast_adb(json);
 #endif
     }
 
@@ -63,11 +69,12 @@ namespace eversoul
 #ifdef __ANDROID__
         mkdir("/data/data/com.kakaogames.eversoul/files", 0700);
         const std::string path = "/data/data/com.kakaogames.eversoul/files/offline_server.log";
+        g_server_log.open(path, std::ios::trunc);
 #else
         platform_mkdir("logs");
-        const std::string path = "logs/offline_server.log";
+        g_server_log.open("logs/server.log", std::ios::trunc);
+        g_adb_log.open("logs/adb.log", std::ios::trunc);
 #endif
-        g_log_file.open(path, std::ios::trunc);
     }
 
 } // namespace eversoul
