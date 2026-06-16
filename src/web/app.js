@@ -110,7 +110,7 @@ function t(key) {
 
 async function loadStrings() {
   try {
-    const r = await fetch('/admin/api/i18n');
+    const r = await fetch('/web/api/i18n');
     _SERVER_STRINGS = await r.json();
   } catch (_) {}
   applyI18n();
@@ -133,7 +133,7 @@ function applyI18n() {
 
 function setLang(l) {
   LANG = l;
-  fetch('/admin/api/config', {
+  fetch('/web/api/config', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ lang: l }),
@@ -144,7 +144,7 @@ function setLang(l) {
 function selectLangAndStart(lang) {
   LANG = lang;
   localStorage.setItem('eversoul_lang', lang);
-  fetch('/admin/api/config', {
+  fetch('/web/api/config', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ lang }),
@@ -207,63 +207,6 @@ function sleep(ms) {
   return new Promise(r => setTimeout(r, ms));
 }
 
-// ── INTRO: ADB input section ──────────────────────────────────────────────────
-
-let _adbValidatedPath = '';
-
-function showAdbInput() {
-  document.getElementById('adb-input-section').classList.add('visible');
-  document.getElementById('adb-path-input').focus();
-}
-
-async function validateAdbPath() {
-  const path = document.getElementById('adb-path-input').value.trim();
-  const msg  = document.getElementById('adb-validate-msg');
-  const btn  = document.getElementById('btn-adb-validate');
-  if (!path) { msg.textContent = t('intro.adb_empty_err'); msg.className = 'err'; return; }
-
-  btn.disabled = true;
-  msg.textContent = t('intro.adb_validating');
-  msg.className = '';
-
-  try {
-    const r = await fetch('/admin/api/adb/validate', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ path }),
-    });
-    const d = await r.json();
-    if (d.ok) {
-      _adbValidatedPath = d.resolved;
-      msg.textContent = '✓ ' + d.resolved;
-      msg.className = 'ok';
-      document.getElementById('btn-adb-save').style.display = '';
-    } else {
-      _adbValidatedPath = '';
-      msg.textContent = '✗ ' + t('intro.adb_not_found') + (d.reason ? ': ' + d.reason : '');
-      msg.className = 'err';
-      document.getElementById('btn-adb-save').style.display = 'none';
-    }
-  } catch (_) {
-    msg.textContent = t('intro.server_conn_fail');
-    msg.className = 'err';
-  }
-  btn.disabled = false;
-}
-
-async function saveAdbFromIntro() {
-  if (!_adbValidatedPath) return;
-  await fetch('/admin/api/adb/set', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ path: _adbValidatedPath }),
-  }).catch(() => {});
-  document.getElementById('adb-input-section').classList.remove('visible');
-  document.getElementById('btn-adb-save').style.display = 'none';
-  _adbSetDone();
-}
-
-let _adbSetDone = () => {};
 
 // ── INTRO: port input section ────────────────────────────────────────────────
 
@@ -308,13 +251,13 @@ async function probeDevice() {
   const target = '127.0.0.1:' + port;
 
   try {
-    await fetch('/admin/api/adb/port', {
+    await fetch('/web/api/adb/port', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ port }),
     }).catch(() => {});
 
-    const r = await fetch('/admin/api/adb/probe', {
+    const r = await fetch('/web/api/adb/probe', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ target }),
@@ -356,7 +299,7 @@ async function runIntro() {
   termPrint(t('intro.connecting_server'), 'dim');
   termSetProgress(20);
   try {
-    const r = await fetch('/admin/api/status');
+    const r = await fetch('/web/api/status');
     const d = await r.json();
     const mode = d.proxy_enabled ? t('intro.proxy_mode') : t('intro.offline_mode');
     termPrintResult(
@@ -368,39 +311,13 @@ async function runIntro() {
   }
   termSetProgress(35);
 
-  termSetStatus(t('intro.status_adb'));
-  termPrint(t('intro.loading_adb'), 'dim');
-  let adbPath = '';
-  try {
-    const r = await fetch('/admin/api/adb/current');
-    const d = await r.json();
-    adbPath = d.path || '';
-  } catch (_) {}
-
-  if (!adbPath) {
-    termPrintResult(t('intro.adb_need'), 0, 'badge-warn', 'NEED');
-    termSetProgress(40);
-    termSetStatus(t('intro.status_adb_input'));
-
-    await new Promise(resolve => {
-      _adbSetDone = resolve;
-      showAdbInput();
-    });
-
-    termPrintResult(t('intro.adb_saved_path').replace('{path}', _adbValidatedPath), 100, 'badge-ok', 'OK');
-    termSetProgress(55);
-  } else {
-    termPrintResult(t('intro.adb_loaded').replace('{path}', adbPath), 100, 'badge-ok', 'OK');
-    termSetProgress(55);
-  }
-
   termSetStatus(t('intro.status_port'));
   termPrint(t('intro.loading_port'), 'dim');
   termSetProgress(58);
 
   let savedPort = '';
   try {
-    const rp = await fetch('/admin/api/adb/port');
+    const rp = await fetch('/web/api/adb/port');
     const dp = await rp.json();
     savedPort = dp.port || '';
   } catch (_) {}
@@ -423,7 +340,7 @@ async function runIntro() {
     termSetStatus(t('intro.status_probe'));
     termPrint(t('intro.probe_connecting').replace('{target}', '127.0.0.1:' + savedPort), 'dim');
     try {
-      const rr = await fetch('/admin/api/adb/probe', {
+      const rr = await fetch('/web/api/adb/probe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ target: '127.0.0.1:' + savedPort }),
@@ -439,7 +356,7 @@ async function runIntro() {
   termPrint(t('intro.scanning_devices'), 'dim');
   termSetProgress(78);
   try {
-    const r = await fetch('/admin/api/injector/devices');
+    const r = await fetch('/web/api/injector/devices');
     const d = await r.json();
     if (d.devices && d.devices.length > 0) {
       termPrintResult(t('intro.device_found').replace('{serial}', d.devices[0]), 100, 'badge-ok', 'OK');
@@ -456,7 +373,7 @@ async function runIntro() {
   termSetStatus(t('intro.status_ready'));
   termPrintResult(t('intro.ready_banner'), 100, 'badge-ok', 'READY');
 
-  fetch('/admin/api/setup/complete', { method: 'POST' }).catch(() => {});
+  fetch('/web/api/setup/complete', { method: 'POST' }).catch(() => {});
 
   await sleep(400);
   document.getElementById('btn-enter').classList.add('visible');
@@ -494,7 +411,7 @@ document.querySelectorAll('.nav-item').forEach(item => {
     if (page === 'db')       loadDbTables();
     if (page === 'fixtures') loadFixtures();
     if (page === 'health')   loadHealth();
-    if (page === 'settings') { loadSettings(); loadAdbCurrent(); }
+    if (page === 'settings') { loadSettings(); }
     if (page === 'injector') { loadInjectorDevices(); pollInjectorStatus(); }
     if (page === 'gamedata') loadGameData();
     if (page === 'accounts') loadAdminAccounts();
@@ -509,7 +426,7 @@ let _uptimeIv  = null;
 
 async function pollStatus() {
   try {
-    const r = await fetch('/admin/api/status');
+    const r = await fetch('/web/api/status');
     const d = await r.json();
     document.getElementById('s-port').textContent  = d.port || '–';
     document.getElementById('s-reqs').textContent  = d.request_count || '0';
@@ -531,7 +448,7 @@ async function pollStatus() {
 
 async function pollGameSummary() {
   try {
-    const r = await fetch('/admin/api/gamedata/summary');
+    const r = await fetch('/web/api/gamedata/summary');
     const d = await r.json();
     const fmt = n => n >= 1000000 ? (n / 1000000).toFixed(1) + 'M' :
                      n >= 1000    ? (n / 1000).toFixed(1) + 'K' : String(n);
@@ -580,7 +497,7 @@ function appendLogLine(entry, panel) {
 }
 
 function initSSE() {
-  const src      = new EventSource('/admin/api/logs/stream');
+  const src      = new EventSource('/web/api/logs/stream');
   const logPanel = document.getElementById('log-panel');
   const dashLog  = document.getElementById('dash-log');
   src.onmessage = e => {
@@ -602,7 +519,7 @@ function initSSE() {
 
 async function loadRecentLogs() {
   try {
-    const r    = await fetch('/admin/api/logs/recent?n=200');
+    const r    = await fetch('/web/api/logs/recent?n=200');
     const logs = await r.json();
     const panel = document.getElementById('log-panel');
     const dash  = document.getElementById('dash-log');
@@ -621,7 +538,7 @@ function toggleLogPause() {
 
 function clearLog() {
   document.getElementById('log-panel').innerHTML = '';
-  fetch('/admin/api/logs/clear', { method: 'POST' }).catch(() => {});
+  fetch('/web/api/logs/clear', { method: 'POST' }).catch(() => {});
 }
 
 function filterLog(v) {
@@ -639,7 +556,7 @@ async function loadHealth() {
   const grid = document.getElementById('health-grid');
   grid.innerHTML = '';
   try {
-    const r      = await fetch('/admin/api/health');
+    const r      = await fetch('/web/api/health');
     const checks = await r.json();
     checks.forEach(c => {
       const statCls  = c.status === 'ok' ? 'ok' : c.status === 'warn' ? 'warn' : 'fail';
@@ -671,7 +588,7 @@ let _dbActiveTab = 'data';
 
 async function loadDbTables() {
   try {
-    const r      = await fetch('/admin/api/db/tables');
+    const r      = await fetch('/web/api/db/tables');
     const tables = await r.json();
     const list   = document.getElementById('table-list');
     list.innerHTML = '';
@@ -706,7 +623,7 @@ async function loadTableData(name) {
   const wrap = document.getElementById('db-table-wrap');
   wrap.innerHTML = '<div class="db-empty-msg">Loading…</div>';
   try {
-    const r = await fetch('/admin/api/db/table/' + encodeURIComponent(name) + '?limit=5000');
+    const r = await fetch('/web/api/db/table/' + encodeURIComponent(name) + '?limit=5000');
     const d = await r.json();
     _dbAllRows = d.rows || [];
     _dbFiltered = _dbAllRows;
@@ -790,7 +707,7 @@ async function loadDbSchema(name) {
   colsEl.innerHTML = '<div style="color:var(--color-text-dim)">Loading…</div>';
   ddlEl.textContent = '';
   try {
-    const r = await fetch('/admin/api/db/schema/' + encodeURIComponent(name));
+    const r = await fetch('/web/api/db/schema/' + encodeURIComponent(name));
     const d = await r.json();
     colsEl.innerHTML = '';
     (d.columns || []).forEach(c => {
@@ -812,7 +729,7 @@ async function loadDbSchema(name) {
 
 async function loadFixtures() {
   try {
-    const r    = await fetch('/admin/api/fixtures');
+    const r    = await fetch('/web/api/fixtures');
     const list = await r.json();
     const el   = document.getElementById('fixture-list');
     el.innerHTML = '';
@@ -837,7 +754,7 @@ async function loadFixture(path) {
   document.getElementById('fixture-detail').classList.add('open');
   document.getElementById('fixture-content').textContent = 'Loading…';
   try {
-    const r = await fetch('/admin/api/fixtures/' + encodeURIComponent(path));
+    const r = await fetch('/web/api/fixtures/' + encodeURIComponent(path));
     document.getElementById('fixture-content').textContent = await r.text();
   } catch (_) {
     document.getElementById('fixture-content').textContent = 'Error';
@@ -848,7 +765,7 @@ async function loadFixture(path) {
 
 async function loadSettings() {
   try {
-    const r = await fetch('/admin/api/status');
+    const r = await fetch('/web/api/status');
     const d = await r.json();
     document.getElementById('toggle-proxy').checked = !!d.proxy_enabled;
     document.getElementById('set-game-url').value   = d.game_server_url || '';
@@ -858,7 +775,7 @@ async function loadSettings() {
 }
 
 async function applyProxy(v) {
-  await fetch('/admin/api/config', {
+  await fetch('/web/api/config', {
     method: 'POST', headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ proxy_enabled: v }),
   }).catch(() => {});
@@ -866,7 +783,7 @@ async function applyProxy(v) {
 }
 
 async function applySettings() {
-  await fetch('/admin/api/config', {
+  await fetch('/web/api/config', {
     method: 'POST', headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       game_server_url: document.getElementById('set-game-url').value,
@@ -875,41 +792,6 @@ async function applySettings() {
     }),
   }).catch(() => {});
   pollStatus();
-}
-
-// ── MAIN: ADB path (settings page) ───────────────────────────────────────────
-
-async function loadAdbCurrent() {
-  try {
-    const r = await fetch('/admin/api/adb/current');
-    const d = await r.json();
-    document.getElementById('adb-current-display').textContent = d.path || '(not set)';
-    document.getElementById('input-adb-path').value = d.path || '';
-  } catch (_) {}
-}
-
-async function saveAdbPath() {
-  const path = document.getElementById('input-adb-path').value.trim();
-  const msg  = document.getElementById('adb-save-msg');
-  await fetch('/admin/api/adb/set', {
-    method: 'POST', headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ path }),
-  }).catch(() => {});
-  document.getElementById('adb-current-display').textContent = path || '(not set)';
-  msg.textContent = 'Saved.';
-  setTimeout(() => { msg.textContent = ''; }, 2000);
-}
-
-async function clearAdbPath() {
-  const msg = document.getElementById('adb-save-msg');
-  await fetch('/admin/api/adb/set', {
-    method: 'POST', headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ path: '' }),
-  }).catch(() => {});
-  document.getElementById('input-adb-path').value = '';
-  document.getElementById('adb-current-display').textContent = '(not set)';
-  msg.textContent = 'Cleared.';
-  setTimeout(() => { msg.textContent = ''; }, 2000);
 }
 
 // ── MAIN: game start button ───────────────────────────────────────────────────
@@ -924,7 +806,7 @@ async function startGame() {
   sts.textContent = '인젝터 실행 중…';
 
   try {
-    const r = await fetch('/admin/api/injector/run', {
+    const r = await fetch('/web/api/injector/run', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({}),
     });
@@ -959,7 +841,7 @@ async function connectAdbDevice() {
   status.textContent = 'Connecting…';
   status.style.color = 'var(--color-text-dim)';
   try {
-    const r = await fetch('/admin/api/injector/connect', {
+    const r = await fetch('/web/api/injector/connect', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ target }),
     });
@@ -978,7 +860,7 @@ async function loadInjectorDevices() {
   const el = document.getElementById('injector-device-list');
   el.innerHTML = '<span style="color:var(--color-text-dim)">Scanning…</span>';
   try {
-    const r = await fetch('/admin/api/injector/devices');
+    const r = await fetch('/web/api/injector/devices');
     const d = await r.json();
     if (!d.devices || d.devices.length === 0) {
       el.innerHTML = '<span style="color:var(--color-text-dim)">No devices found.</span>';
@@ -1004,7 +886,7 @@ function selectSerial(s) {
 async function loadInjectorCheck() {
   const el = document.getElementById('injector-check-result');
   try {
-    const url = '/admin/api/injector/check' + (selectedSerial ? '?serial=' + encodeURIComponent(selectedSerial) : '');
+    const url = '/web/api/injector/check' + (selectedSerial ? '?serial=' + encodeURIComponent(selectedSerial) : '');
     const r   = await fetch(url);
     const d   = await r.json();
     const ok  = v => `<span style="color:${v ? 'var(--color-green)' : 'var(--color-red)'}">${v ? '✓' : '✗'}</span>`;
@@ -1021,7 +903,7 @@ async function runInjector() {
   document.getElementById('injector-status-text').textContent = 'Running…';
   try {
     const body = selectedSerial ? { serial: selectedSerial } : {};
-    const r    = await fetch('/admin/api/injector/run', {
+    const r    = await fetch('/web/api/injector/run', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
     });
@@ -1035,7 +917,7 @@ async function runInjector() {
 }
 
 async function stopInjector() {
-  await fetch('/admin/api/injector/stop', { method: 'POST' }).catch(() => {});
+  await fetch('/web/api/injector/stop', { method: 'POST' }).catch(() => {});
   document.getElementById('injector-status-text').textContent = 'Stopped';
   document.getElementById('btn-game-start').disabled = false;
   document.getElementById('game-start-status').textContent = '';
@@ -1044,7 +926,7 @@ async function stopInjector() {
 
 async function pollInjectorStatus() {
   try {
-    const r = await fetch('/admin/api/injector/status');
+    const r = await fetch('/web/api/injector/status');
     const d = await r.json();
     const el = document.getElementById('injector-status-text');
     if (el) el.textContent = d.running ? 'Running…' : 'Idle';
@@ -1066,7 +948,7 @@ async function sendAdbCmd() {
   const cmd   = input.value.trim();
   if (!cmd) return;
   try {
-    await fetch('/admin/api/injector/adb', {
+    await fetch('/web/api/injector/adb', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ cmd }),
     });
@@ -1100,7 +982,7 @@ async function loadGameData() {
   const form = document.getElementById('gamedata-form');
   form.innerHTML = '<div style="color:var(--color-text-dim);font-size:12px;padding:12px">Loading…</div>';
   try {
-    const r = await fetch('/admin/api/gamedata/' + _gdSection);
+    const r = await fetch('/web/api/gamedata/' + _gdSection);
     _gdData = await r.json();
   } catch (_) { _gdData = {}; }
   _renderGameDataForm();
@@ -1190,7 +1072,7 @@ async function saveGameData() {
   });
   const statusEl = document.getElementById('gd-status');
   try {
-    const r = await fetch('/admin/api/gamedata/' + _gdSection, {
+    const r = await fetch('/web/api/gamedata/' + _gdSection, {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     });
@@ -1212,7 +1094,7 @@ async function loadAdminAccounts() {
   const el = document.getElementById('admin-acct-list');
   el.innerHTML = '<div style="color:var(--color-text-dim);font-size:12px;padding:8px">로딩 중…</div>';
   try {
-    const r    = await fetch('/admin/api/accounts');
+    const r    = await fetch('/web/api/accounts');
     const list = await r.json();
     if (!Array.isArray(list) || list.length === 0) {
       el.innerHTML = '<div style="color:var(--color-text-dim);font-size:12px;padding:8px">등록된 계정 없음</div>';
@@ -1242,14 +1124,14 @@ async function loadAdminAccounts() {
 }
 
 async function adminSelectAccount(id) {
-  await fetch(`/admin/api/accounts/${id}/select`, { method: 'POST' }).catch(() => {});
+  await fetch(`/web/api/accounts/${id}/select`, { method: 'POST' }).catch(() => {});
   loadAdminAccounts();
   pollStatus();
 }
 
 async function adminDeleteAccount(id) {
   if (!confirm('이 계정을 삭제하시겠습니까?')) return;
-  await fetch(`/admin/api/accounts/${id}`, { method: 'DELETE' }).catch(() => {});
+  await fetch(`/web/api/accounts/${id}`, { method: 'DELETE' }).catch(() => {});
   closeAdminAccountEdit();
   loadAdminAccounts();
 }
@@ -1261,7 +1143,7 @@ async function adminCreateAccount() {
   if (!nick) { sts.style.color = 'var(--color-red)'; sts.textContent = '닉네임을 입력하세요.'; return; }
   sts.style.color = 'var(--color-text-dim)'; sts.textContent = '생성 중…';
   try {
-    const r = await fetch('/admin/api/accounts', {
+    const r = await fetch('/web/api/accounts', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ nickname: nick, idpCode: idp }),
@@ -1284,7 +1166,7 @@ async function openAdminAccountEdit(id) {
   card.style.display = '';
   body.innerHTML = '<div style="color:var(--color-text-dim);font-size:12px;padding:4px">로딩 중…</div>';
   try {
-    const r = await fetch(`/admin/api/accounts/${id}`);
+    const r = await fetch(`/web/api/accounts/${id}`);
     const a = await r.json();
     body.innerHTML =
       `<div class="setting-row"><label style="font-size:12px;color:var(--color-text-dim)">닉네임</label>` +
@@ -1312,7 +1194,7 @@ async function saveAdminAccountEdit() {
   const pid  = document.getElementById('edit-acct-pid')?.value.trim()  || '';
   const sts  = document.getElementById('edit-acct-status');
   try {
-    const r = await fetch(`/admin/api/accounts/${_acctEditId}`, {
+    const r = await fetch(`/web/api/accounts/${_acctEditId}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ nickname: nick, player_id: pid }),
@@ -1348,7 +1230,7 @@ async function doImport() {
   if(sts) { sts.style.color='var(--color-text-dim)'; sts.textContent='가져오는 중…'; }
   try {
     const text = await file.text();
-    const r = await fetch(`/admin/api/accounts/${id}/import`, {
+    const r = await fetch(`/web/api/accounts/${id}/import`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: text,
@@ -1369,7 +1251,7 @@ async function listFiles(prefix) {
   const el = document.getElementById('file-list');
   el.textContent = '로딩 중…';
   try {
-    const r    = await fetch('/admin/api/files/list?prefix=' + encodeURIComponent(prefix));
+    const r    = await fetch('/web/api/files/list?prefix=' + encodeURIComponent(prefix));
     const list = await r.json();
     if (!Array.isArray(list) || list.length === 0) {
       el.innerHTML = '<span style="color:var(--color-text-muted)">파일 없음</span>'; return;
@@ -1393,7 +1275,7 @@ async function openFileEdit(path) {
   const ta = document.getElementById('file-editor');
   ta.value = '로딩 중…';
   try {
-    const r = await fetch('/admin/api/files?path=' + encodeURIComponent(path));
+    const r = await fetch('/web/api/files?path=' + encodeURIComponent(path));
     ta.value = await r.text();
   } catch(_) {
     ta.value = '로드 실패';
@@ -1411,7 +1293,7 @@ async function saveFileEdit() {
   const sts     = document.getElementById('file-save-status');
   sts.style.color = 'var(--color-text-dim)'; sts.textContent = '저장 중…';
   try {
-    const r = await fetch('/admin/api/files?path=' + encodeURIComponent(_filePath), {
+    const r = await fetch('/web/api/files?path=' + encodeURIComponent(_filePath), {
       method: 'POST',
       headers: { 'Content-Type': 'text/plain; charset=UTF-8' },
       body: content,
@@ -1443,7 +1325,6 @@ function initMain() {
   loadRecentLogs();
   initSSE();
   loadSettings();
-  loadAdbCurrent();
   pollStatus();
   setInterval(pollStatus, 4000);
   setInterval(() => {
@@ -1463,7 +1344,7 @@ function initMain() {
 
   const proceedBoot = async () => {
     try {
-      const r = await fetch('/admin/api/setup/status');
+      const r = await fetch('/web/api/setup/status');
       const d = await r.json();
       if (d.complete) {
         enterMain();

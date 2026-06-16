@@ -9,14 +9,30 @@
 #include "offline_data.hpp"
 #include "orm/storage.hpp"
 #include "payloads.hpp"
+#include "platform.hpp"
 #include "protobuf.hpp"
 #include "proxy.hpp"
+#include "sse_log.hpp"
 #include "util.hpp"
 #include "ws_session.hpp"
+#include "adb_runner.hpp"
+#include "logcat_process.hpp"
 
 #include <algorithm>
+#include <atomic>
 #include <cctype>
+#include <chrono>
+#include <filesystem>
+#include <fstream>
+#include <sstream>
+#include <thread>
 #include <vector>
+
+#ifdef _WIN32
+#include <winsock2.h>
+#else
+#include <sys/socket.h>
+#endif
 
 namespace eversoul
 {
@@ -210,15 +226,622 @@ namespace eversoul
             return HttpResponse{200, {{"Content-Type", "application/json;charset=UTF-8"}}, body};
         }
 
+        // ─── /web/ 라우트 전역 상태 ─────────────────────────────────────────────
+        std::atomic<bool> g_setup_complete{false};
+        std::atomic<int64_t> g_started_at{0};
+
     } // namespace
 
-    HttpResponse route_request(uint64_t id, const HttpRequest &req)
+    // ─── /web/ 헬퍼 ─────────────────────────────────────────────────────────────
+
+    namespace
+    {
+        // TCP 소켓에 문자열 전체 전송 (부분 전송 재시도).
+        bool send_all(int sock, const std::string &data)
+        {
+            std::size_t sent = 0;
+            while (sent < data.size())
+            {
+                int n = ::send(sock, data.c_str() + sent, (int)(data.size() - sent), 0);
+                if (n <= 0) return false;
+                sent += (std::size_t)n;
+            }
+            return true;
+        }
+
+        // SSE 응답 헤더 전송.
+        void send_sse_header(int sock)
+        {
+            send_all(sock,
+                "HTTP/1.1 200 OK\r\n"
+                "Content-Type: text/event-stream\r\n"
+                "Cache-Control: no-cache\r\n"
+                "Connection: keep-alive\r\n"
+                "Access-Control-Allow-Origin: *\r\n"
+                "\r\n");
+        }
+
+        // JSON 응답 생성.
+        HttpResponse json_ok(const std::string &body)
+        {
+            return HttpResponse{200,
+                {{"Content-Type", "application/json;charset=UTF-8"},
+                 {"Access-Control-Allow-Origin", "*"}},
+                body};
+        }
+
+        // MIME 타입 추론.
+        std::string mime_type(const std::string &path)
+        {
+            if (path.size() >= 3 && path.substr(path.size() - 3) == ".js")  return "application/javascript";
+            if (path.size() >= 4 && path.substr(path.size() - 4) == ".css") return "text/css";
+            if (path.size() >= 5 && path.substr(path.size() - 5) == ".html") return "text/html; charset=UTF-8";
+            if (path.size() >= 4 && path.substr(path.size() - 4) == ".png") return "image/png";
+            if (path.size() >= 4 && path.substr(path.size() - 4) == ".jpg") return "image/jpeg";
+            return "application/octet-stream";
+        }
+
+        // adb runner에서 adb path를 반환 (third_party/adb/adb.exe 기본).
+        std::string resolved_adb_path()
+        {
+            std::string p = adb_runner::adb_path();
+            if (!p.empty()) return p;
+            // 실행 파일 기준 third_party/adb/adb.exe
+            return "third_party/adb/adb.exe";
+        }
+
+        // adb devices → serial 목록 파싱.
+        std::vector<std::string> parse_adb_devices(const std::string &output)
+        {
+            std::vector<std::string> result;
+            std::istringstream ss(output);
+            std::string line;
+            while (std::getline(ss, line))
+            {
+                if (line.empty() || line.rfind("List of devices", 0) == 0) continue;
+                std::istringstream ls(line);
+                std::string serial, status;
+                ls >> serial >> status;
+                if (!serial.empty() && status == "device")
+                    result.push_back(serial);
+            }
+            return result;
+        }
+
+        // JSON 문자열 배열 직렬화.
+        std::string json_str_array(const std::vector<std::string> &v)
+        {
+            std::string r = "[";
+            for (std::size_t i = 0; i < v.size(); ++i)
+            {
+                if (i) r += ",";
+                r += "\"" + json_escape(v[i]) + "\"";
+            }
+            return r + "]";
+        }
+
+        // 오프라인 데이터 디렉토리의 파일 목록 반환.
+        std::vector<std::pair<std::string, std::size_t>> list_data_files(const std::string &prefix)
+        {
+            std::vector<std::pair<std::string, std::size_t>> result;
+            namespace fs = std::filesystem;
+            std::error_code ec;
+            fs::path root = fs::path(config().data_dir) / prefix;
+            if (!fs::exists(root, ec)) return result;
+            for (auto &entry : fs::recursive_directory_iterator(root, ec))
+            {
+                if (!entry.is_regular_file(ec)) continue;
+                std::string rel = fs::relative(entry.path(), fs::path(config().data_dir), ec).string();
+                std::replace(rel.begin(), rel.end(), '\\', '/');
+                result.push_back({rel, (std::size_t)entry.file_size(ec)});
+            }
+            return result;
+        }
+
+        // 데이터 파일 읽기.
+        std::string read_data_file(const std::string &rel_path)
+        {
+            namespace fs = std::filesystem;
+            fs::path full = fs::path(config().data_dir) / rel_path;
+            std::ifstream f(full, std::ios::binary);
+            if (!f) return "";
+            return std::string(std::istreambuf_iterator<char>(f), {});
+        }
+
+        // 데이터 파일 쓰기.
+        bool write_data_file(const std::string &rel_path, const std::string &content)
+        {
+            namespace fs = std::filesystem;
+            fs::path full = fs::path(config().data_dir) / rel_path;
+            std::error_code ec;
+            fs::create_directories(full.parent_path(), ec);
+            std::ofstream f(full, std::ios::binary | std::ios::trunc);
+            if (!f) return false;
+            f << content;
+            return f.good();
+        }
+
+        // /web/api/* 경로 처리.
+        HttpResponse handle_web_api(uint64_t id, int fd, const HttpRequest &req)
+        {
+            const std::string &path = req.path;
+            const std::string &method = req.method;
+
+            // ── OPTIONS 프리플라이트 ─────────────────────────────────────────────
+            if (method == "OPTIONS")
+                return HttpResponse{204,
+                    {{"Access-Control-Allow-Origin", "*"},
+                     {"Access-Control-Allow-Methods", "GET,POST,PATCH,DELETE,OPTIONS"},
+                     {"Access-Control-Allow-Headers", "Content-Type"}}, ""};
+
+            // ── 서버 상태 ────────────────────────────────────────────────────────
+            if (path == "/web/api/status" && method == "GET")
+            {
+                int64_t sat = g_started_at.load();
+                if (sat == 0) { sat = (int64_t)(unix_ms() / 1000); g_started_at.store(sat); }
+                std::string db_path = orm::opened_path();
+                int db_tables = 0;
+                // 테이블 수: ORM 알려진 테이블 목록 크기로 추정
+                static const char *kTables[] = {
+                    "currencies","heroes","hero_reps","item_etcs","item_equips",
+                    "hero_equip_slots","formations","spirit_trees","hero_options",
+                    "challenge_modes","stages","stories","tutorials","dungeons","kv"
+                };
+                db_tables = sizeof(kTables) / sizeof(kTables[0]);
+                std::string body = "{\"port\":" + std::to_string(kServerListenPort) +
+                    ",\"proxy_enabled\":" + (config().proxy_enabled ? "true" : "false") +
+                    ",\"game_server_url\":\"" + json_escape(config().game_server_url) + "\"" +
+                    ",\"ws_server_url\":\"\"" +
+                    ",\"data_dir\":\"" + json_escape(config().data_dir) + "\"" +
+                    ",\"fixture_count\":" + std::to_string(fixture_store().size()) +
+                    ",\"fixture_errors\":" + std::to_string(fixture_store().errors().size()) +
+                    ",\"db_tables\":" + std::to_string(db_tables) +
+                    ",\"db_path\":\"" + json_escape(db_path) + "\"" +
+                    ",\"lang\":\"" + json_escape(orm::kv_get("lang", "ko")) + "\"" +
+                    ",\"request_count\":" + std::to_string(request_id().load()) +
+                    ",\"started_at\":" + std::to_string(sat) + "}";
+                return json_ok(body);
+            }
+
+            // ── 설정 변경 ────────────────────────────────────────────────────────
+            if (path == "/web/api/config" && method == "POST")
+            {
+                if (req.body.find("\"proxy_enabled\"") != std::string::npos)
+                    config().proxy_enabled = body_json_string(req.body, "proxy_enabled", "false") == "true" ||
+                                             req.body.find("\"proxy_enabled\":true") != std::string::npos;
+                std::string gurl = body_json_string(req.body, "game_server_url", "");
+                if (!gurl.empty()) config().game_server_url = gurl;
+                std::string lang = body_json_string(req.body, "lang", "");
+                if (!lang.empty()) orm::kv_set("lang", lang);
+                return json_ok("{\"ok\":true}");
+            }
+
+            // ── 헬스체크 ─────────────────────────────────────────────────────────
+            if (path == "/web/api/health" && method == "GET")
+            {
+                bool db_ok = !orm::opened_path().empty();
+                bool fix_ok = fixture_store().loaded();
+                bool adb_ok = !resolved_adb_path().empty();
+                std::string body = "[";
+                body += "{\"name\":\"Game Server\",\"status\":\"ok\",\"detail\":\"" + json_escape(config().game_server_url) + "\"}";
+                body += ",{\"name\":\"Database\",\"status\":\"" + std::string(db_ok ? "ok" : "fail") + "\",\"detail\":\"" + json_escape(orm::opened_path()) + "\"}";
+                body += ",{\"name\":\"Fixtures\",\"status\":\"" + std::string(fix_ok ? (fixture_store().errors().empty() ? "ok" : "warn") : "fail") + "\",\"detail\":\"" + std::to_string(fixture_store().size()) + " loaded\"}";
+                body += ",{\"name\":\"ADB\",\"status\":\"" + std::string(adb_ok ? "ok" : "warn") + "\",\"detail\":\"" + json_escape(resolved_adb_path()) + "\"}";
+                body += "]";
+                return json_ok(body);
+            }
+
+            // ── 로그 SSE 스트림 ──────────────────────────────────────────────────
+            if (path == "/web/api/logs/stream" && method == "GET")
+            {
+                send_sse_header(fd);
+                // 최근 200개 즉시 전송
+                for (const auto &j : sse_log::recent(200))
+                    send_all(fd, "data: " + j + "\n\n");
+                // 새 로그 구독 — 연결 종료까지 블록
+                std::atomic<bool> done{false};
+                auto sid = sse_log::subscribe([fd, &done](const std::string &json) -> bool {
+                    bool ok = send_all(fd, "data: " + json + "\n\n");
+                    if (!ok) done = true;
+                    return ok;
+                });
+                while (!done.load())
+                {
+                    char buf[1];
+                    int r = ::recv(fd, buf, 1, MSG_PEEK);
+                    if (r <= 0) break;
+                    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+                }
+                sse_log::unsubscribe(sid);
+                return HttpResponse{-1, {}, ""};
+            }
+
+            // ── 최근 로그 ────────────────────────────────────────────────────────
+            if (path.rfind("/web/api/logs/recent", 0) == 0 && method == "GET")
+            {
+                int n = 200;
+                auto q = path.find("n=");
+                if (q != std::string::npos) n = std::atoi(path.c_str() + q + 2);
+                auto logs = sse_log::recent(n);
+                std::string body = "[";
+                for (std::size_t i = 0; i < logs.size(); ++i) { if (i) body += ","; body += logs[i]; }
+                body += "]";
+                return json_ok(body);
+            }
+
+            // ── 로그 클리어 ──────────────────────────────────────────────────────
+            if (path == "/web/api/logs/clear" && method == "POST")
+            {
+                sse_log::clear_history();
+                return json_ok("{\"ok\":true}");
+            }
+
+            // ── DB 테이블 목록 ───────────────────────────────────────────────────
+            if (path == "/web/api/db/tables" && method == "GET")
+            {
+                static const std::vector<std::pair<const char *, const char *>> kTbl = {
+                    {"currencies", nullptr}, {"heroes", nullptr}, {"hero_reps", nullptr},
+                    {"item_etcs", nullptr}, {"item_equips", nullptr}, {"hero_equip_slots", nullptr},
+                    {"formations", nullptr}, {"spirit_trees", nullptr}, {"hero_options", nullptr},
+                    {"challenge_modes", nullptr}, {"stages", nullptr}, {"stories", nullptr},
+                    {"tutorials", nullptr}, {"dungeons", nullptr}, {"kv", nullptr}
+                };
+                std::string body = "[";
+                bool first = true;
+                for (const auto &[name, _] : kTbl)
+                {
+                    int rows = 0;
+                    try { rows = orm::row_count(name); } catch (...) {}
+                    if (!first) body += ",";
+                    body += "{\"name\":\"" + std::string(name) + "\",\"rows\":" + std::to_string(rows) + "}";
+                    first = false;
+                }
+                body += "]";
+                return json_ok(body);
+            }
+
+            // ── DB 테이블 데이터 ─────────────────────────────────────────────────
+            if (path.rfind("/web/api/db/table/", 0) == 0 && method == "GET")
+            {
+                return json_ok("{\"columns\":[],\"rows\":[],\"note\":\"raw table dump not implemented\"}");
+            }
+
+            // ── DB 스키마 ────────────────────────────────────────────────────────
+            if (path.rfind("/web/api/db/schema/", 0) == 0 && method == "GET")
+            {
+                return json_ok("{\"columns\":[],\"ddl\":\"\",\"note\":\"schema not implemented\"}");
+            }
+
+            // ── 픽스처 목록 ──────────────────────────────────────────────────────
+            if (path == "/web/api/fixtures" && method == "GET")
+            {
+                auto files = list_data_files("responses/");
+                std::string body = "[";
+                for (std::size_t i = 0; i < files.size(); ++i)
+                {
+                    if (i) body += ",";
+                    body += "{\"path\":\"" + json_escape(files[i].first) + "\",\"bytes\":" + std::to_string(files[i].second) + "}";
+                }
+                body += "]";
+                return json_ok(body);
+            }
+
+            // ── 픽스처 파일 내용 ─────────────────────────────────────────────────
+            if (path.rfind("/web/api/fixtures/", 0) == 0 && method == "GET")
+            {
+                std::string rel = path.substr(std::string("/web/api/fixtures/").size());
+                std::string content = read_data_file(rel);
+                return HttpResponse{200, {{"Content-Type", "text/plain; charset=UTF-8"},
+                                          {"Access-Control-Allow-Origin", "*"}}, content};
+            }
+
+            // ── ADB 포트 ─────────────────────────────────────────────────────────
+            if (path == "/web/api/adb/port" && method == "GET")
+            {
+                std::string port = orm::kv_get("adb_port", "");
+                return json_ok("{\"port\":\"" + json_escape(port) + "\"}");
+            }
+            if (path == "/web/api/adb/port" && method == "POST")
+            {
+                std::string port = body_json_string(req.body, "port", "");
+                if (!port.empty()) orm::kv_set("adb_port", port);
+                // serial도 갱신
+                std::string target = "127.0.0.1:" + port;
+                adb_runner::set_serial(target);
+                return json_ok("{\"ok\":true}");
+            }
+
+            // ── ADB probe (connect + 기기 확인) ──────────────────────────────────
+            if (path == "/web/api/adb/probe" && method == "POST")
+            {
+                std::string target = body_json_string(req.body, "target", "");
+                std::string adb = resolved_adb_path();
+                adb_runner::set_adb_path(adb);
+                // adb connect
+                std::string conn = adb_runner::run({"connect", target});
+                bool connected = conn.find("connected") != std::string::npos;
+                bool eversoul = false, rooted = false, adb_root = false;
+                if (connected)
+                {
+                    adb_runner::set_serial(target);
+                    std::string pkg = adb_runner::run({"shell", "pm", "list", "packages", "com.kakaogames.eversoul"});
+                    eversoul = pkg.find("com.kakaogames.eversoul") != std::string::npos;
+                    std::string su_r = adb_runner::run({"shell", "su", "-c", "id"});
+                    rooted = su_r.find("uid=0") != std::string::npos;
+                    std::string ar = adb_runner::run({"root"});
+                    adb_root = ar.find("restarting") != std::string::npos || ar.find("already running as root") != std::string::npos;
+                }
+                std::string body = "{\"connected\":" + std::string(connected ? "true" : "false") +
+                    ",\"eversoul\":" + (eversoul ? "true" : "false") +
+                    ",\"rooted\":" + (rooted ? "true" : "false") +
+                    ",\"adb_root\":" + (adb_root ? "true" : "false") + "}";
+                return json_ok(body);
+            }
+
+            // ── 인젝터: 기기 목록 ────────────────────────────────────────────────
+            if (path == "/web/api/injector/devices" && method == "GET")
+            {
+                std::string adb = resolved_adb_path();
+                adb_runner::set_adb_path(adb);
+                std::string out = adb_runner::run({"devices"});
+                auto devs = parse_adb_devices(out);
+                return json_ok("{\"devices\":" + json_str_array(devs) + "}");
+            }
+
+            // ── 인젝터: 기기 상태 확인 ───────────────────────────────────────────
+            if (path.rfind("/web/api/injector/check", 0) == 0 && method == "GET")
+            {
+                std::string serial = adb_runner::serial();
+                auto q = path.find("serial=");
+                if (q != std::string::npos) serial = path.substr(q + 7);
+                std::string adb = resolved_adb_path();
+                std::string pkg;
+                if (!serial.empty())
+                {
+                    std::vector<std::string> args = {"-s", serial, "shell", "pm", "list", "packages", "com.kakaogames.eversoul"};
+                    pkg = adb_runner::run(args);
+                }
+                bool eversoul_ok = pkg.find("com.kakaogames.eversoul") != std::string::npos;
+                std::string body = "{\"adb_ok\":" + std::string(!adb.empty() ? "true" : "false") +
+                    ",\"adb\":\"" + json_escape(adb) + "\"" +
+                    ",\"serial\":\"" + json_escape(serial) + "\"" +
+                    ",\"eversoul\":" + (eversoul_ok ? "true" : "false") + "}";
+                return json_ok(body);
+            }
+
+            // ── 인젝터: ADB connect ───────────────────────────────────────────────
+            if (path == "/web/api/injector/connect" && method == "POST")
+            {
+                std::string target = body_json_string(req.body, "target", "");
+                adb_runner::set_adb_path(resolved_adb_path());
+                std::string out = adb_runner::run({"connect", target});
+                bool ok = out.find("connected") != std::string::npos;
+                if (ok) adb_runner::set_serial(target);
+                return json_ok("{\"ok\":" + std::string(ok ? "true" : "false") +
+                    ",\"output\":\"" + json_escape(out) + "\"}");
+            }
+
+            // ── 인젝터: 게임 시작 (am start) ─────────────────────────────────────
+            if (path == "/web/api/injector/run" && method == "POST")
+            {
+                std::string serial = body_json_string(req.body, "serial", adb_runner::serial());
+                adb_runner::set_adb_path(resolved_adb_path());
+                if (!serial.empty()) adb_runner::set_serial(serial);
+                std::vector<std::string> args = {"shell", "am", "start",
+                    "-n", "com.kakaogames.eversoul/com.kakaogames.eversoul.unity.UnityPlayerActivity"};
+                std::string out = adb_runner::run(args);
+                bool ok = out.find("Error") == std::string::npos;
+                return json_ok("{\"ok\":" + std::string(ok ? "true" : "false") +
+                    ",\"output\":\"" + json_escape(out) + "\"}");
+            }
+
+            // ── 인젝터: 게임 중지 ─────────────────────────────────────────────────
+            if (path == "/web/api/injector/stop" && method == "POST")
+            {
+                adb_runner::set_adb_path(resolved_adb_path());
+                std::string out = adb_runner::run({"shell", "am", "force-stop", "com.kakaogames.eversoul"});
+                return json_ok("{\"ok\":true,\"output\":\"" + json_escape(out) + "\"}");
+            }
+
+            // ── 인젝터: 상태 ─────────────────────────────────────────────────────
+            if (path == "/web/api/injector/status" && method == "GET")
+            {
+                return json_ok("{\"running\":false}");
+            }
+
+            // ── 인젝터: ADB 명령 ─────────────────────────────────────────────────
+            if (path == "/web/api/injector/adb" && method == "POST")
+            {
+                std::string cmd = body_json_string(req.body, "cmd", "");
+                adb_runner::set_adb_path(resolved_adb_path());
+                std::vector<std::string> args;
+                std::istringstream ss(cmd);
+                std::string tok;
+                while (ss >> tok) args.push_back(tok);
+                std::string out = adb_runner::run(args);
+                return json_ok("{\"ok\":true,\"output\":\"" + json_escape(out) + "\"}");
+            }
+
+            // ── 게임 데이터: summary ──────────────────────────────────────────────
+            if (path == "/web/api/gamedata/summary" && method == "GET")
+            {
+                int64_t gold = 0, crystal = 0;
+                int hero_count = 0;
+                try {
+                    for (const auto &c : orm::currencies()) {
+                        if (c.type == 1) gold = c.value;
+                        if (c.type == 2) crystal = c.value;
+                    }
+                    hero_count = (int)orm::heroes().size();
+                } catch (...) {}
+                return json_ok("{\"gold\":" + std::to_string(gold) +
+                    ",\"crystal\":" + std::to_string(crystal) +
+                    ",\"hero_count\":" + std::to_string(hero_count) + "}");
+            }
+
+            // ── 게임 데이터: userinfo ─────────────────────────────────────────────
+            if (path == "/web/api/gamedata/userinfo" && method == "GET")
+            {
+                std::string nick = orm::kv_get("nickname", "offline");
+                int level = 0; int64_t gold = 0, crystal = 0;
+                try {
+                    for (const auto &c : orm::currencies()) {
+                        if (c.type == 1) gold = c.value;
+                        if (c.type == 2) crystal = c.value;
+                    }
+                } catch (...) {}
+                return json_ok("{\"nickname\":\"" + json_escape(nick) + "\"" +
+                    ",\"level\":" + std::to_string(level) +
+                    ",\"gold\":" + std::to_string(gold) +
+                    ",\"crystal\":" + std::to_string(crystal) + "}");
+            }
+            if (path == "/web/api/gamedata/userinfo" && method == "POST")
+            {
+                std::string nick = body_json_string(req.body, "nickname", "");
+                if (!nick.empty()) { orm::kv_set("nickname", nick); db::set_nickname(nick); }
+                return json_ok("{\"ok\":true}");
+            }
+
+            // ── 게임 데이터: currencies ───────────────────────────────────────────
+            if (path == "/web/api/gamedata/currencies" && method == "GET")
+            {
+                std::string body = "[";
+                bool first = true;
+                try {
+                    for (const auto &c : orm::currencies()) {
+                        if (!first) body += ",";
+                        body += "{\"type\":" + std::to_string(c.type) + ",\"value\":" + std::to_string(c.value) + "}";
+                        first = false;
+                    }
+                } catch (...) {}
+                return json_ok(body + "]");
+            }
+
+            // ── 게임 데이터: heroes ───────────────────────────────────────────────
+            if (path == "/web/api/gamedata/heroes" && method == "GET")
+            {
+                std::string body = "[";
+                bool first = true;
+                try {
+                    for (const auto &h : orm::heroes()) {
+                        if (!first) body += ",";
+                        body += "{\"idx\":\"" + json_escape(h.idx) + "\",\"heroNo\":" + std::to_string(h.heroNo) +
+                                ",\"level\":" + std::to_string(h.level) + ",\"gradeSno\":" + std::to_string(h.gradeSno) + "}";
+                        first = false;
+                    }
+                } catch (...) {}
+                return json_ok(body + "]");
+            }
+
+            // ── 게임 데이터: settings ─────────────────────────────────────────────
+            if (path == "/web/api/gamedata/settings" && method == "GET")
+            {
+                return json_ok("{\"proxy_enabled\":" + std::string(config().proxy_enabled ? "true" : "false") +
+                    ",\"game_server_url\":\"" + json_escape(config().game_server_url) + "\"}");
+            }
+            if (path == "/web/api/gamedata/settings" && method == "POST")
+            {
+                if (req.body.find("\"proxy_enabled\"") != std::string::npos)
+                    config().proxy_enabled = req.body.find("\"proxy_enabled\":true") != std::string::npos;
+                std::string gurl = body_json_string(req.body, "game_server_url", "");
+                if (!gurl.empty()) config().game_server_url = gurl;
+                return json_ok("{\"ok\":true}");
+            }
+
+            // ── 파일 목록 ────────────────────────────────────────────────────────
+            if (path.rfind("/web/api/files/list", 0) == 0 && method == "GET")
+            {
+                std::string prefix;
+                auto q = path.find("prefix=");
+                if (q != std::string::npos) {
+                    prefix = path.substr(q + 7);
+                    // URL decode 기본 (공백 정도만)
+                    for (auto &c : prefix) if (c == '+') c = ' ';
+                }
+                auto files = list_data_files(prefix);
+                std::string body = "[";
+                for (std::size_t i = 0; i < files.size(); ++i) {
+                    if (i) body += ",";
+                    body += "{\"path\":\"" + json_escape(files[i].first) + "\",\"bytes\":" + std::to_string(files[i].second) + "}";
+                }
+                return json_ok(body + "]");
+            }
+
+            // ── 파일 읽기 / 쓰기 ─────────────────────────────────────────────────
+            if (path.rfind("/web/api/files", 0) == 0)
+            {
+                std::string rel;
+                auto q = path.find("path=");
+                if (q != std::string::npos) rel = path.substr(q + 5);
+                if (method == "GET") {
+                    std::string content = read_data_file(rel);
+                    return HttpResponse{200, {{"Content-Type", "text/plain; charset=UTF-8"},
+                                              {"Access-Control-Allow-Origin", "*"}}, content};
+                }
+                if (method == "POST") {
+                    bool ok = write_data_file(rel, req.body);
+                    return json_ok("{\"ok\":" + std::string(ok ? "true" : "false") + "}");
+                }
+            }
+
+            // ── i18n ─────────────────────────────────────────────────────────────
+            if (path == "/web/api/i18n" && method == "GET")
+                return json_ok("{}");
+
+            // ── 로고 이미지 ──────────────────────────────────────────────────────
+            if (path == "/web/api/logo" && method == "GET")
+            {
+                if (auto img = offline_data().read("web/logo.png"))
+                    return HttpResponse{200, {{"Content-Type", "image/png"}}, *img};
+                return HttpResponse{404, {}, ""};
+            }
+
+            // ── 멀티계정 — 보류: 현재 단일 계정 no-op ───────────────────────────
+            if (path.rfind("/web/api/accounts", 0) == 0)
+                return json_ok("{\"ok\":true,\"id\":\"\",\"items\":[]}");
+
+            // ── setup ────────────────────────────────────────────────────────────
+            if (path == "/web/api/setup/complete" && method == "POST")
+            {
+                g_setup_complete = true;
+                return json_ok("{\"ok\":true}");
+            }
+            if (path == "/web/api/setup/status" && method == "GET")
+            {
+                return json_ok("{\"complete\":" + std::string(g_setup_complete.load() ? "true" : "false") + "}");
+            }
+
+            return json_ok("{\"error\":\"not implemented\"}");
+        }
+
+        // /web/ 정적 파일 서빙.
+        HttpResponse serve_web_static(const HttpRequest &req)
+        {
+            std::string file_path = req.path;
+            // /web → /web/index.html
+            if (file_path == "/web" || file_path == "/web/")
+                file_path = "/web/index.html";
+
+            // offline_data에서 읽기 (web/ prefix 제거)
+            std::string key = file_path.substr(1); // leading '/' 제거
+            if (auto content = offline_data().read(key))
+            {
+                std::string mt = mime_type(file_path);
+                return HttpResponse{200, {{"Content-Type", mt},
+                                          {"Cache-Control", "no-cache"}}, *content};
+            }
+            return HttpResponse{404, {{"Content-Type", "text/plain"}}, "Not Found"};
+        }
+
+    } // namespace (web helpers)
+
+    HttpResponse route_request(uint64_t id, int fd, const HttpRequest &req)
     {
 #ifdef __ANDROID__
         return proxy_request(id, req);
 #endif
         // LIAPP anti-cheat (lockincomp.com) device-auth — posted right before country/get.
-        // Offline it can't reach lockincomp -> game shows "系统初始化失败". The captured
+        // Offline it can't reach lockincomp -> game shows "시스템 초기화 실패". The captured
         // response's signature (fdbd8509) is constant across sessions, so we replay it
         // verbatim. Identify by path /sbaa479o or the obfuscated body keys (f39ad58*) in
         // case the path changes across versions. (fdbd8508 == fdbd850f in the capture, and
@@ -454,7 +1077,7 @@ namespace eversoul
                     return game_binary_response(req, *fx);
                 }
             }
-            // 旧动态 Login 保留作为 fixture 缺失时的兜底；成品账号路径优先走上面的 HAR fixture。
+            // fixture 누락 시 폴백용 동적 Login 처리; 성장 계정은 위의 HAR fixture 우선.
             std::string payload = request_payload(req);
             std::string player_id = pb_get_string(payload, 1, kDefaultPlayerId);
             int32_t type = pb_get_int32(payload, 3, 0);
@@ -476,10 +1099,10 @@ namespace eversoul
 
         const bool newbie_mode = is_newbie_mode();
 
-        // ---- 成品账号模式 ----------------------------------------------------------
-        // 用户用 HAR 抓到的真实成品账号（93KB 已发育账号）登录，不是新建教程账号。
-        // prefer_fixtures 开启时只要 HAR fixture 存在，就无条件回放成品抓包响应。
-        // 没有 fixture 的操作端点才继续落到后面的 SQLite/session 兜底。
+        // ---- 성장 계정 모드 ----------------------------------------------------------
+        // HAR으로 캡처한 실제 성장 계정(93KB 육성 완료)으로 로그인, 신규 튜토리얼 계정 아님.
+        // prefer_fixtures 활성화 시 HAR fixture 존재하면 무조건 캡처 응답 재생.
+        // fixture 없는 엔드포인트만 뒤의 SQLite/session 폴백으로 진행.
         if (newbie_mode && req.path == "/UserInfo")
         {
             std::string response = db::build_user_info();
@@ -525,7 +1148,7 @@ namespace eversoul
         if (newbie_mode && req.path == "/DungeonClear")
         {
             int32_t dungeon_id = pb_get_int32(request_payload(req), 1, 0);
-            log_line(id, "MOCK_GAME", "/DungeonClear dungeonId=" + std::to_string(dungeon_id) + " (db落库)");
+            log_line(id, "MOCK_GAME", "/DungeonClear dungeonId=" + std::to_string(dungeon_id) + " (db저장)");
             return game_binary_response(req, db::dungeon_clear(dungeon_id));
         }
         if (newbie_mode && req.path == "/DungeonBattle")
@@ -721,8 +1344,8 @@ namespace eversoul
 
         if (req.path == "/Logout")
         {
-            // 真机 Logout 响应 = {success:1}(0x0801)；客户端发完即注销登出，无 EsPb.Logout 响应类。
-            // 之前无 handler→404→客户端重试5次后崩。
+            // 실기기 Logout 응답 = {success:1}(0x0801); 클라이언트 전송 후 즉시 로그아웃, EsPb.Logout 응답 없음.
+            // handler 없을 때 → 404 → 클라이언트 5회 재시도 후 크래시.
             std::string response;
             pb_bool(response, 1, true);
             log_line(id, "MOCK_GAME", "/Logout success");
@@ -732,9 +1355,9 @@ namespace eversoul
         if (req.path == "/StageClear")
         {
             int32_t stage_no = pb_get_int32(request_payload(req), 1, 1);
-            // db::stage_clear 落库 save_stage(已清关卡持久化，UserInfo/current_stage 一致)，
-            // 并回显正确 stageNo(field8)+currency+autoHunt。绝不能用单一 fixture(永远 stageNo 1
-            // 会让客户端关卡进度卡死→教程回退重打→1-2 死循环)。
+            // db::stage_clear: save_stage 저장 (클리어 스테이지 영속화, UserInfo/current_stage 일관성 유지),
+            // 올바른 stageNo(field8)+currency+autoHunt 응답. fixture 단독 사용 금지
+            // (항상 stageNo 1 → 클라이언트 스테이지 진행 고착 → 튜토리얼 롤백 반복 → 1-2 무한루프).
             log_line(id, "MOCK_GAME", "/StageClear stageNo=" + std::to_string(stage_no));
             return game_binary_response(req, db::stage_clear(stage_no));
         }
@@ -742,7 +1365,7 @@ namespace eversoul
         if (req.path == "/StoryClear")
         {
             int32_t story_no = pb_get_int32(request_payload(req), 1, 1);
-            // db::story_clear 落库 save_story + 回显 storyNo，保证剧情进度持久一致。
+            // db::story_clear: save_story 저장 + storyNo 응답, 스토리 진행도 영속 일관성 보장.
             log_line(id, "MOCK_GAME", "/StoryClear storyNo=" + std::to_string(story_no));
             return game_binary_response(req, db::story_clear(story_no));
         }
@@ -779,9 +1402,9 @@ namespace eversoul
         if (req.path == "/DungeonClear")
         {
             int32_t dungeon_id = pb_get_int32(request_payload(req), 1, 0);
-            // tutorialNo 4800 触发条件 = "DungeonClear,10001"，依赖地下城通关被持久化。
-            // 响应 dungeon.id 必须与客户端 DungeonEnter/Clear 请求的 dungeonId 一致。
-            log_line(id, "MOCK_GAME", "/DungeonClear dungeonId=" + std::to_string(dungeon_id) + " (db落库)");
+            // tutorialNo 4800 트리거 조건 = "DungeonClear,10001", 던전 클리어 영속화 필요.
+            // 응답 dungeon.id는 클라이언트 DungeonEnter/Clear 요청의 dungeonId와 일치해야 함.
+            log_line(id, "MOCK_GAME", "/DungeonClear dungeonId=" + std::to_string(dungeon_id) + " (db저장)");
             return game_binary_response(req, db::dungeon_clear(dungeon_id));
         }
 

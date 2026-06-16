@@ -85,7 +85,13 @@ namespace eversoul
                 log_line(id, "REQ_BODY", clip_body(req.body));
             }
 
-            HttpResponse res = route_request(id, req);
+            HttpResponse res = route_request(id, fd, req);
+            if (res.status == -1)
+            {
+                // SSE 등 직접 전송 완료 — send_response 스킵.
+                platform_close(fd);
+                return;
+            }
             log_line(id, "RESPONSE", "status=" + std::to_string(res.status) + " bytes=" + std::to_string(res.body.size()));
             for (const auto &[k, v] : res.headers)
             {
@@ -96,7 +102,7 @@ namespace eversoul
                 log_line(id, "RES_BODY", clip_body(res.body));
             }
             send_response(fd, res);
-            close(fd);
+            platform_close(fd);
         }
     } // namespace
 

@@ -1,4 +1,4 @@
-// offline_data.cpp — 离线资源数据源实现。
+// offline_data.cpp — 오프라인 리소스 데이터 소스 구현.
 #include "offline_data.hpp"
 
 #ifndef _WIN32
@@ -108,7 +108,7 @@ namespace eversoul
         dir_.clear();
         source_.clear();
 
-        // 1) 优先尝试 blob（伪装 so）。
+        // 1) blob(위장 so) 우선 시도.
         std::string bp = blob_path.empty() ? guess_blob_path() : blob_path;
         if (!bp.empty() && load_blob(bp))
         {
@@ -118,13 +118,13 @@ namespace eversoul
             return blob_entries_.size();
         }
 
-        // 2) 回退到目录散文件（桌面调试）。
+        // 2) 디렉토리 파일로 폴백 (데스크톱 디버그).
         std::error_code ec;
         if (fs::is_directory(dir, ec))
         {
             dir_ = dir;
             source_ = dir;
-            // 统计一下条目数（responses + schema + wss）。
+            // 항목 수 집계 (responses + schema + wss).
             std::size_t n = 0;
             for (const char *sub : {"responses", "schema", "wss"})
             {
@@ -177,7 +177,7 @@ namespace eversoul
         }
         if (dir_.empty())
             return out;
-        // prefix 形如 "responses/"，对应 dir_/responses 目录。
+        // prefix는 "responses/" 형태로, dir_/responses 디렉토리에 대응.
         std::string sub = prefix;
         if (!sub.empty() && sub.back() == '/')
             sub.pop_back();

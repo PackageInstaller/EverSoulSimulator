@@ -66,7 +66,7 @@ namespace eversoul::anticheat
                 {
                     auto offset = reinterpret_cast<std::uintptr_t>(start_routine) -
                                   reinterpret_cast<std::uintptr_t>(info.dli_fbase);
-                    logi("拦截: %s 线程 offset=0x%lx", info.dli_fname, static_cast<unsigned long>(offset));
+                    logi("차단: %s 스레드 offset=0x%lx", info.dli_fname, static_cast<unsigned long>(offset));
                     return g_orig_pthread_create(thread, attr, dummy_thread, arg);
                 }
             }
@@ -109,12 +109,12 @@ namespace eversoul::anticheat
                 mprotect(reinterpret_cast<void *>(page_start), prot_size, PROT_READ | PROT_EXEC);
                 return true;
             }
-            logw("write_memory: mprotect 失败 (%s)，尝试 /proc/self/mem", std::strerror(errno));
+            logw("write_memory: mprotect 실패 (%s), /proc/self/mem 방식 시도", std::strerror(errno));
 
             int fd = open("/proc/self/mem", O_RDWR);
             if (fd < 0)
             {
-                loge("write_memory: open /proc/self/mem 失败: %s", std::strerror(errno));
+                loge("write_memory: /proc/self/mem 열기 실패: %s", std::strerror(errno));
                 return false;
             }
             bool ok = false;
@@ -124,17 +124,17 @@ namespace eversoul::anticheat
                 if (written == static_cast<ssize_t>(len))
                 {
                     __builtin___clear_cache(static_cast<char *>(dest), static_cast<char *>(dest) + len);
-                    logi("write_memory: /proc/self/mem 方式成功");
+                    logi("write_memory: /proc/self/mem 방식 성공");
                     ok = true;
                 }
                 else
                 {
-                    loge("write_memory: write 失败 (wrote %zd/%zu): %s", written, len, std::strerror(errno));
+                    loge("write_memory: write 실패 (wrote %zd/%zu): %s", written, len, std::strerror(errno));
                 }
             }
             else
             {
-                loge("write_memory: lseek 失败: %s", std::strerror(errno));
+                loge("write_memory: lseek 실패: %s", std::strerror(errno));
             }
             close(fd);
             return ok;
@@ -148,7 +148,7 @@ namespace eversoul::anticheat
                              MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
             if (mem == MAP_FAILED)
             {
-                loge("create_trampoline: mmap 失败: %s", std::strerror(errno));
+                loge("create_trampoline: mmap 실패: %s", std::strerror(errno));
                 return nullptr;
             }
 
@@ -162,7 +162,7 @@ namespace eversoul::anticheat
 
             if (mprotect(mem, static_cast<std::size_t>(page_size), PROT_READ | PROT_EXEC) != 0)
             {
-                loge("create_trampoline: mprotect RX 失败: %s", std::strerror(errno));
+                loge("create_trampoline: mprotect RX 실패: %s", std::strerror(errno));
                 munmap(mem, static_cast<std::size_t>(page_size));
                 return nullptr;
             }
@@ -177,15 +177,15 @@ namespace eversoul::anticheat
             {
                 if (is_pc_relative_insn(insns[i]))
                 {
-                    logw("WARNING: 指令[%d]=0x%08x 是 PC 相对寻址，trampoline 中可能执行异常!", i, insns[i]);
+                    logw("경고: 명령[%d]=0x%08x 는 PC 상대 주소 지정, trampoline 내 실행 오류 가능", i, insns[i]);
                 }
             }
-            logi("原始指令: [0]=0x%08x [1]=0x%08x [2]=0x%08x [3]=0x%08x", insns[0], insns[1], insns[2], insns[3]);
+            logi("원본 명령: [0]=0x%08x [1]=0x%08x [2]=0x%08x [3]=0x%08x", insns[0], insns[1], insns[2], insns[3]);
 
             void *tramp = create_trampoline(target);
             if (!tramp)
             {
-                loge("install_inline_hook: 创建 trampoline 失败");
+                loge("install_inline_hook: trampoline 생성 실패");
                 return false;
             }
 
@@ -197,13 +197,13 @@ namespace eversoul::anticheat
 
             if (!write_memory(target, patch.data(), patch.size()))
             {
-                loge("install_inline_hook: 写入补丁失败");
+                loge("install_inline_hook: 패치 쓰기 실패");
                 munmap(tramp, static_cast<std::size_t>(sysconf(_SC_PAGESIZE)));
                 return false;
             }
 
             *out_trampoline = tramp;
-            logi("Hook 安装成功: target=%p -> hook=%p, trampoline=%p", target, hook, tramp);
+            logi("훅 설치 성공: target=%p -> hook=%p, trampoline=%p", target, hook, tramp);
             return true;
         }
 
@@ -218,7 +218,7 @@ namespace eversoul::anticheat
         void *target = dlsym(RTLD_DEFAULT, "pthread_create");
         if (!target)
         {
-            loge("无法找到 pthread_create!");
+            loge("pthread_create 심볼을 찾을 수 없음");
             g_hook_installed = false;
             return;
         }
@@ -226,24 +226,24 @@ namespace eversoul::anticheat
         Dl_info dl;
         if (dladdr(target, &dl))
         {
-            logi("目标: pthread_create @ %p (%s + 0x%lx)", target, dl.dli_fname,
+            logi("대상: pthread_create @ %p (%s + 0x%lx)", target, dl.dli_fname,
                  static_cast<unsigned long>(reinterpret_cast<std::uintptr_t>(target) -
                                             reinterpret_cast<std::uintptr_t>(dl.dli_fbase)));
         }
         else
         {
-            logi("目标: pthread_create @ %p (dladdr 失败)", target);
+            logi("대상: pthread_create @ %p (dladdr 실패)", target);
         }
 
         void *trampoline = nullptr;
         if (install_inline_hook(target, reinterpret_cast<void *>(hook_pthread_create), &trampoline))
         {
             g_orig_pthread_create = std::bit_cast<pthread_create_fn>(trampoline);
-            logi("pthread_create Hook 已激活");
+            logi("pthread_create 훅 활성화 완료");
         }
         else
         {
-            loge("安装 pthread_create Hook 失败");
+            loge("pthread_create 훅 설치 실패");
             g_hook_installed = false;
         }
     }

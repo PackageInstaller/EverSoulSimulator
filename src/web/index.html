@@ -49,17 +49,6 @@
 
       <div id="terminal-output" role="log" aria-live="polite"></div>
 
-      <fieldset id="adb-input-section">
-        <legend class="adb-input-label">▶ ADB EXECUTABLE PATH</legend>
-        <div class="adb-input-row">
-          <input id="adb-path-input" type="text"
-            data-i18n-placeholder="intro.adb_path_placeholder"/>
-          <button class="btn-term" id="btn-adb-validate" onclick="validateAdbPath()">VALIDATE</button>
-          <button class="btn-term" id="btn-adb-save" onclick="saveAdbFromIntro()" style="display:none">SAVE ▶</button>
-        </div>
-        <output id="adb-validate-msg" for="adb-path-input"></output>
-      </fieldset>
-
       <fieldset id="adb-port-input-section">
         <legend class="adb-input-label">▶ DEVICE ADB PORT</legend>
         <div class="adb-input-row">
@@ -93,7 +82,7 @@
   <!-- SIDEBAR -->
   <aside id="sidebar">
     <header id="sidebar-logo">
-      <img src="/admin/api/logo" alt="" onerror="this.style.display='none'"/>
+      <img src="/web/api/logo" alt="" onerror="this.style.display='none'"/>
       <p class="brand">EverSoul</p>
       <p class="sub">Offline Server</p>
       <span class="ver">ADMIN v2</span>
@@ -321,23 +310,6 @@
             <div style="margin-top:12px;display:flex;gap:8px">
               <button class="btn btn-primary" onclick="applySettings()">Apply</button>
             </div>
-          </div>
-        </article>
-        <article class="card" style="margin-top:14px">
-          <header class="card-header"><span class="nav-icon">◈</span><h2 class="card-title">ADB Path</h2></header>
-          <div class="card-body">
-            <div class="setting-row" style="margin-bottom:10px">
-              <div>
-                <p class="setting-label">Current Path</p>
-                <p id="adb-current-display" style="color:var(--color-accent);font-size:11px;margin-top:4px;word-break:break-all"></p>
-              </div>
-            </div>
-            <div style="display:flex;gap:8px;align-items:center">
-              <input type="text" id="input-adb-path" style="flex:1;width:auto" placeholder="ADB executable path"/>
-              <button class="btn btn-primary" onclick="saveAdbPath()">Save</button>
-              <button class="btn" onclick="clearAdbPath()">Clear</button>
-            </div>
-            <output id="adb-save-msg" style="font-size:10px;color:var(--color-green);margin-top:5px;min-height:14px"></output>
           </div>
         </article>
       </section>

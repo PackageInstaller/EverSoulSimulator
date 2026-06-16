@@ -51,7 +51,7 @@ namespace eversoul
 
     bool ws_load_fixtures(const std::string &data_dir)
     {
-        (void)data_dir; // 数据源已由 fixture_store 初始化（blob 或目录），这里直接读。
+        (void)data_dir; // 데이터 소스는 fixture_store에서 이미 초기화됨 (blob 또는 디렉토리), 직접 읽기.
         WsFixtures &f = fixtures();
         OfflineData &data = offline_data();
         std::string serr, cerr;

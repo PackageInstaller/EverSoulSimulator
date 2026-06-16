@@ -1,4 +1,4 @@
-// net_redirect.hpp — Transport-layer URL redirect (方案 B).
+// net_redirect.hpp — Transport-layer URL redirect (방식 B).
 //
 // Hooks libc connect()/getaddrinfo()/android_getaddrinfofornet() so that every
 // outbound connection destined for a Kakao / zinny3 / esoul / lockincomp host

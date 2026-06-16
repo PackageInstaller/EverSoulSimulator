@@ -10,6 +10,9 @@
 
 #include "common.hpp"
 #include "util.hpp"
+#ifndef __ANDROID__
+#include "sse_log.hpp"
+#endif
 
 #ifdef __ANDROID__
 #include <android/log.h>
@@ -35,7 +38,8 @@ namespace eversoul
     void log_line(std::uint64_t id, const std::string &tag, const std::string &text)
     {
         std::lock_guard<std::mutex> lock(g_log_mutex);
-        std::string line = "[" + now_string() + "][#" + std::to_string(id) + "][" + tag + "] " + text + "\n";
+        std::string ts = now_string();
+        std::string line = "[" + ts + "][#" + std::to_string(id) + "][" + tag + "] " + text + "\n";
 #ifdef __ANDROID__
         __android_log_print(ANDROID_LOG_INFO, "libswappywrapper/eversoul_offline", "%s", line.c_str());
 #else
@@ -47,6 +51,11 @@ namespace eversoul
             g_log_file << line;
             g_log_file.flush();
         }
+#ifndef __ANDROID__
+        std::string json = "{\"timestamp\":\"" + ts + "\",\"id\":" + std::to_string(id) +
+                           ",\"tag\":\"" + json_escape(tag) + "\",\"text\":\"" + json_escape(text) + "\"}";
+        sse_log::broadcast(json);
+#endif
     }
 
     void open_log_file()
@@ -58,7 +67,6 @@ namespace eversoul
         platform_mkdir("logs");
         const std::string path = "logs/offline_server.log";
 #endif
-        // 每次 server 启动清空旧日志，重新开始记录（不与上次会话混在一起）。
         g_log_file.open(path, std::ios::trunc);
     }
 

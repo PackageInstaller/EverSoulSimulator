@@ -1,8 +1,8 @@
-// offline_data_test.cpp — 验证 OfflineData 能从 blob（伪装 so）正确读取资源。
+// offline_data_test.cpp — OfflineData가 blob(위장 so)에서 리소스를 올바르게 읽는지 검증.
 //
-// 用法：offline_data_test <blob路径> [endpoint] [responses_dir]
-// 直接指定 blob 路径（不依赖 dladdr），加载后打印条目数并抽查几个文件，
-// 再用 fixture_store 的同款逻辑编码 UserInfo，确认字节数符合预期。
+// 사용법: offline_data_test <blob경로> [endpoint] [responses_dir]
+// blob 경로를 직접 지정(dladdr 불의존), 로드 후 항목 수 출력 및 몇 가지 파일 점검,
+// fixture_store 동일 로직으로 UserInfo 인코딩 후 바이트 수 예상 값 확인.
 #include <cstdio>
 #include <string>
 
@@ -22,13 +22,13 @@ int main(int argc, char **argv)
     std::string responses_dir = (argc > 3) ? argv[3] : "responses";
 
     eversoul::OfflineData data;
-    // 显式给 blob 路径，绕过 dladdr。
+    // blob 경로 명시 지정, dladdr 우회.
     std::size_t n = data.init("/nonexistent_dir", blob);
     std::printf("from_blob=%d entries=%zu source=%s\n",
                 static_cast<int>(data.from_blob()), n, data.source().c_str());
     if (!data.from_blob())
     {
-        std::printf("FAIL: 没有从 blob 加载\n");
+        std::printf("FAIL: blob 로드 안 됨\n");
         return 1;
     }
 
@@ -36,7 +36,7 @@ int main(int argc, char **argv)
     auto sch = data.read("schema/" + ep + ".json");
     if (!resp || !sch)
     {
-        std::printf("FAIL: 读不到 %s/%s.json 或 schema\n", responses_dir.c_str(), ep.c_str());
+        std::printf("FAIL: %s/%s.json 또는 schema 읽기 실패\n", responses_dir.c_str(), ep.c_str());
         return 1;
     }
     std::printf("%s/%s.json = %zu bytes, schema = %zu bytes\n",
@@ -45,14 +45,14 @@ int main(int argc, char **argv)
     std::string out, err;
     if (!eversoul::json_encode_from_text(*sch, *resp, out, err))
     {
-        std::printf("FAIL: 编码失败 %s\n", err.c_str());
+        std::printf("FAIL: 인코딩 실패 %s\n", err.c_str());
         return 1;
     }
-    std::printf("编码 %s -> protobuf %zu bytes\n", ep.c_str(), out.size());
+    std::printf("인코딩 %s -> protobuf %zu bytes\n", ep.c_str(), out.size());
 
-    // 列出 responses/ 条目数。
+    // responses/ 항목 수 열거.
     auto list = data.list(responses_dir + "/");
-    std::printf("%s/ 共 %zu 个文件\n", responses_dir.c_str(), list.size());
+    std::printf("%s/ 총 %zu 개 파일\n", responses_dir.c_str(), list.size());
     std::printf("OK\n");
     return 0;
 }

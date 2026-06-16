@@ -1,4 +1,4 @@
-// net_redirect.cpp — Transport-layer redirect (方案 B): bounce every outbound
+// net_redirect.cpp — Transport-layer redirect (방식 B): bounce every outbound
 // connection aimed at a Kakao/zinny3/esoul/lockincomp host to 127.0.0.1:9999.
 //
 // Strategy (two cooperating hooks):

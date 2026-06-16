@@ -15,7 +15,7 @@ namespace eversoul
         newbie_payloads_.clear();
         errors_.clear();
 
-        // 数据源（blob 伪装 so 优先，否则 base_dir 散文件）。
+        // 데이터 소스 (blob 위장 so 우선, 없으면 base_dir 디렉토리 파일).
         OfflineData &data = offline_data();
         data.init(base_dir);
 
@@ -31,11 +31,11 @@ namespace eversoul
 
             for (const std::string &rel : resp_files)
             {
-                // rel 形如 "responses/UserInfo.json" 或 "responses_newbie/UserInfo.json"
+                // rel 예시: "responses/UserInfo.json" 또는 "responses_newbie/UserInfo.json"
                 std::string fn = rel.substr(rel.find_last_of('/') + 1);
                 if (fn.size() <= 5)
-                    continue;                                 // 不是 *.json
-                std::string ep = fn.substr(0, fn.size() - 5); // 去掉 ".json"
+                    continue;                                 // *.json 아님
+                std::string ep = fn.substr(0, fn.size() - 5); // ".json" 제거
                 if (ep == "_manifest")
                     continue;
                 std::string path = "/" + ep;

@@ -42,9 +42,11 @@ namespace eversoul
         std::string data_dir = "/data/data/com.kakaogames.eversoul/files/offline_data";
         bool prefer_fixtures = true;
 #else
-        bool proxy_enabled = true;
-        std::string game_server_url = "https://live-sea.esoul.kakaogames.com:1739";
-        // Default to the project root so the desktop server finds responses/ + schema/.
+        bool proxy_enabled = false;
+        // 오프라인 전용: 게임 서버 주소를 로컬 SO 서버로 고정
+        // Android SO 훅이 URL을 127.0.0.1:9999로 리다이렉트하므로 이 값이
+        // /v2/app gameServerAddr 응답에 포함되어야 SO가 올바르게 9991로 포워딩
+        std::string game_server_url = "http://127.0.0.1:9999";
         std::string data_dir = ".";
         bool prefer_fixtures = true;
 #endif
