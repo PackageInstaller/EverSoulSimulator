@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>EverSoul — Offline Server</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════ LANG SELECT ══ -->
+<dialog id="lang-select-overlay">
+  <article id="lang-select-box">
+    <h1 class="lang-select-logo">EverSoul</h1>
+    <p class="lang-select-sub">Offline Simulator</p>
+    <h2 class="lang-select-title" id="ls-title">Select Language / 언어 선택 / 选择语言</h2>
+    <nav class="lang-select-row">
+      <button class="lang-select-btn" onclick="selectLangAndStart('ko')">한국어</button>
+      <button class="lang-select-btn" onclick="selectLangAndStart('en')">English</button>
+      <button class="lang-select-btn" onclick="selectLangAndStart('zh')">中文</button>
+    </nav>
+  </article>
+</dialog>
+
+<!-- ═══════════════════════════════════════ INTRO ══ -->
+<section id="intro" class="hidden">
+  <div id="intro-bg"></div>
+  <div id="intro-overlay"></div>
+  <div id="intro-scanline"></div>
+
+  <button id="btn-skip" onclick="skipIntro()">SKIP ▶▶</button>
+
+  <article id="intro-content">
+    <header id="intro-logo">
+      <h1 class="game-title">EverSoul</h1>
+      <p class="game-sub">Offline Simulator</p>
+      <p class="game-badge">ADMIN CONTROL PANEL</p>
+    </header>
+
+    <section id="terminal-box">
+      <header id="terminal-titlebar">
+        <div class="dots">
+          <span class="dot-r" aria-hidden="true"></span>
+          <span class="dot-y" aria-hidden="true"></span>
+          <span class="dot-g" aria-hidden="true"></span>
+        </div>
+        <span class="title-text">[ SYSTEM INITIALIZATION ]</span>
+      </header>
+
+      <div id="terminal-output" role="log" aria-live="polite"></div>
+
+      <fieldset id="adb-input-section">
+        <legend class="adb-input-label">▶ ADB EXECUTABLE PATH</legend>
+        <div class="adb-input-row">
+          <input id="adb-path-input" type="text"
+            data-i18n-placeholder="intro.adb_path_placeholder"/>
+          <button class="btn-term" id="btn-adb-validate" onclick="validateAdbPath()">VALIDATE</button>
+          <button class="btn-term" id="btn-adb-save" onclick="saveAdbFromIntro()" style="display:none">SAVE ▶</button>
+        </div>
+        <output id="adb-validate-msg" for="adb-path-input"></output>
+      </fieldset>
+
+      <fieldset id="adb-port-input-section">
+        <legend class="adb-input-label">▶ DEVICE ADB PORT</legend>
+        <div class="adb-input-row">
+          <input id="adb-port-input" type="text" data-i18n-placeholder="intro.port_placeholder"/>
+          <button class="btn-term" id="btn-port-probe" onclick="probeDevice()">CONNECT &amp; CHECK</button>
+        </div>
+        <output id="adb-port-msg" for="adb-port-input"></output>
+      </fieldset>
+
+      <footer id="terminal-footer">
+        <div id="overall-bar-track"><div id="overall-bar-fill"></div></div>
+        <p id="terminal-status-text">Waiting…</p>
+      </footer>
+    </section>
+
+    <button id="btn-enter" onclick="enterMain()">▶ ENTER DUNGEON</button>
+  </article>
+
+  <footer id="intro-credits">
+    <span class="credit-orig">少姜</span>
+    <span class="credit-sep">×</span>
+    <span class="credit-dev">Nekoi</span>
+  </footer>
+</section>
+
+<!-- ═══════════════════════════════════════ MAIN APP ══ -->
+<div id="app">
+  <div id="app-bg"></div>
+  <div id="app-overlay"></div>
+
+  <!-- SIDEBAR -->
+  <aside id="sidebar">
+    <header id="sidebar-logo">
+      <img src="/admin/api/logo" alt="" onerror="this.style.display='none'"/>
+      <p class="brand">EverSoul</p>
+      <p class="sub">Offline Server</p>
+      <span class="ver">ADMIN v2</span>
+    </header>
+    <nav>
+      <h6 class="nav-section">MENU</h6>
+      <ul>
+        <li class="nav-item active" data-page="dashboard">
+          <span class="nav-icon">⬡</span><span data-i18n="admin.dashboard">Dashboard</span>
+        </li>
+        <li class="nav-item" data-page="health">
+          <span class="nav-icon">♥</span><span data-i18n="admin.health">Health</span>
+        </li>
+        <li class="nav-item" data-page="logs">
+          <span class="nav-icon">▤</span><span data-i18n="admin.logs">Request Log</span>
+        </li>
+        <li class="nav-item" data-page="db">
+          <span class="nav-icon">◉</span><span data-i18n="admin.db">Database</span>
+        </li>
+        <li class="nav-item" data-page="fixtures">
+          <span class="nav-icon">◧</span><span data-i18n="admin.fixtures">Fixtures</span>
+        </li>
+        <li class="nav-item" data-page="settings">
+          <span class="nav-icon">⚙</span><span data-i18n="admin.settings">Settings</span>
+        </li>
+        <li class="nav-item" data-page="injector">
+          <span class="nav-icon">▶</span><span data-i18n="admin.injector">Injector</span>
+        </li>
+        <li class="nav-item" data-page="gamedata">
+          <span class="nav-icon">✦</span><span data-i18n="admin.gamedata">Game Data</span>
+        </li>
+        <li class="nav-item" data-page="accounts">
+          <span class="nav-icon">◈</span><span data-i18n="admin.accounts">Accounts</span>
+        </li>
+        <li class="nav-item" data-page="files">
+          <span class="nav-icon">◧</span><span data-i18n="admin.files">Files</span>
+        </li>
+      </ul>
+    </nav>
+    <footer id="sidebar-footer">
+      <div class="lang-row">
+        <button class="lang-btn active" onclick="setLang('ko')">한국어</button>
+        <button class="lang-btn" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('zh')">中文</button>
+      </div>
+      <button class="about-btn" onclick="openAbout()">ⓘ About</button>
+    </footer>
+  </aside>
+
+  <!-- MAIN -->
+  <main id="main">
+    <header id="topbar">
+      <h1 class="page-title" id="topbar-title">Dashboard</h1>
+      <span class="srv-indicator">
+        <span class="srv-dot" id="srv-dot"></span>
+        <span id="srv-label">Connecting…</span>
+      </span>
+      <span id="uptime-display"></span>
+    </header>
+
+    <section id="content">
+
+      <!-- DASHBOARD -->
+      <section class="page active" id="page-dashboard">
+        <article class="card" style="margin-bottom:14px">
+          <header class="card-header">
+            <span class="nav-icon">▶</span>
+            <h2 class="card-title" data-i18n="admin.game_start_title">Start Game</h2>
+          </header>
+          <div class="card-body">
+            <button id="btn-game-start" onclick="startGame()" data-i18n="admin.game_start_btn">▶ START GAME</button>
+            <p id="game-start-status"></p>
+          </div>
+        </article>
+
+        <ul class="stat-grid" id="stat-grid">
+          <li class="stat-card cyan">
+            <p class="stat-label" data-i18n="server.port">Port</p>
+            <p class="stat-value" id="s-port">–</p>
+            <p class="stat-sub" id="s-mode">–</p>
+          </li>
+          <li class="stat-card green">
+            <p class="stat-label" data-i18n="admin.requests">Requests</p>
+            <p class="stat-value" id="s-reqs">0</p>
+            <p class="stat-sub" id="s-reqs-sub"></p>
+          </li>
+          <li class="stat-card yellow">
+            <p class="stat-label" data-i18n="admin.uptime">Uptime</p>
+            <p class="stat-value" id="s-uptime">0s</p>
+            <p class="stat-sub" id="s-started">–</p>
+          </li>
+          <li class="stat-card purple">
+            <p class="stat-label" data-i18n="admin.fixtures">Fixtures</p>
+            <p class="stat-value" id="s-fix">–</p>
+            <p class="stat-sub" id="s-fix-err"></p>
+          </li>
+          <li class="stat-card cyan">
+            <p class="stat-label">DB</p>
+            <p class="stat-value" id="s-db">–</p>
+            <p class="stat-sub" id="s-db-path" style="font-size:9px;word-break:break-all"></p>
+          </li>
+          <li class="stat-card green">
+            <p class="stat-label">Lang</p>
+            <p class="stat-value" id="s-lang">–</p>
+          </li>
+          <li class="stat-card yellow">
+            <p class="stat-label">Gold</p>
+            <p class="stat-value" id="s-gold">–</p>
+          </li>
+          <li class="stat-card purple">
+            <p class="stat-label">Crystal</p>
+            <p class="stat-value" id="s-crystal">–</p>
+          </li>
+          <li class="stat-card cyan">
+            <p class="stat-label">Heroes</p>
+            <p class="stat-value" id="s-heroes">–</p>
+          </li>
+        </ul>
+        <article class="card">
+          <header class="card-header"><span class="nav-icon">▸</span><h2 class="card-title">Request Chart</h2></header>
+          <div class="card-body">
+            <div class="dash-chart-wrap">
+              <svg id="req-chart" viewBox="0 0 400 48" preserveAspectRatio="none"></svg>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <header class="card-header"><span class="nav-icon">▤</span><h2 class="card-title">Recent Log</h2></header>
+          <div class="card-body">
+            <div id="dash-log"></div>
+          </div>
+        </article>
+      </section>
+
+      <!-- HEALTH -->
+      <section class="page flow" id="page-health">
+        <article class="card">
+          <header class="card-header">
+            <span class="nav-icon">♥</span>
+            <h2 class="card-title" data-i18n="admin.health">Health Check</h2>
+            <button class="btn" style="margin-left:auto;font-size:11px" onclick="loadHealth()">↻ Refresh</button>
+          </header>
+          <div class="card-body">
+            <div class="health-cards" id="health-grid"></div>
+          </div>
+        </article>
+      </section>
+
+      <!-- LOGS -->
+      <section class="page" id="page-logs">
+        <div id="log-controls">
+          <input id="log-filter" placeholder="Filter…" oninput="filterLog(this.value)"/>
+          <button class="btn" onclick="toggleLogPause()" id="btn-pause">Pause</button>
+          <button class="btn danger" onclick="clearLog()">Clear</button>
+        </div>
+        <div id="log-panel" role="log" aria-live="off"></div>
+      </section>
+
+      <!-- DB -->
+      <section class="page" id="page-db">
+        <section class="db-manager">
+          <aside class="db-panel-left">
+            <header class="db-panel-hdr">
+              <h2>TABLES</h2>
+              <button class="btn" onclick="loadDbTables()" title="Refresh">↻</button>
+            </header>
+            <div class="db-table-list" id="table-list"></div>
+          </aside>
+          <section class="db-panel-right">
+            <nav class="db-tabs">
+              <button class="db-tab active" id="db-tab-data"   onclick="switchDbTab('data')">DATA</button>
+              <button class="db-tab"         id="db-tab-schema" onclick="switchDbTab('schema')">SCHEMA</button>
+            </nav>
+            <div class="db-toolbar">
+              <input class="db-search" id="db-search" placeholder="Search rows…" oninput="dbSearch(this.value)"/>
+              <button class="btn" onclick="dbPrevPage()">‹</button>
+              <span class="db-page-info" id="db-page-info">–</span>
+              <button class="btn" onclick="dbNextPage()">›</button>
+              <span class="db-row-total" id="db-row-total"></span>
+            </div>
+            <div id="db-table-wrap" style="display:flex;flex-direction:column;flex:1;overflow:auto"><p class="db-empty-msg" data-i18n="admin.db_select_table">Select a table.</p></div>
+            <div id="db-schema-wrap" style="display:none;flex-direction:column;flex:1;overflow:auto;padding:14px">
+              <div class="db-schema-cols" id="db-schema-cols"></div>
+              <pre id="db-ddl"></pre>
+            </div>
+          </section>
+        </section>
+      </section>
+
+      <!-- FIXTURES -->
+      <section class="page" id="page-fixtures">
+        <article class="card">
+          <header class="card-header"><span class="nav-icon">◧</span><h2 class="card-title" data-i18n="admin.fixtures">Fixtures</h2></header>
+          <div class="card-body">
+            <div id="fixture-list"></div>
+            <section class="fixture-detail" id="fixture-detail">
+              <p id="fixture-detail-title" style="color:var(--color-accent);margin-bottom:6px;font-size:11px"></p>
+              <pre id="fixture-content"></pre>
+            </section>
+          </div>
+        </article>
+      </section>
+
+      <!-- SETTINGS -->
+      <section class="page" id="page-settings">
+        <article class="card">
+          <header class="card-header"><span class="nav-icon">⚙</span><h2 class="card-title" data-i18n="admin.settings">Settings</h2></header>
+          <div class="card-body">
+            <div class="setting-row">
+              <p class="setting-label" data-i18n="admin.proxy_on">Proxy</p>
+              <label class="toggle"><input type="checkbox" id="toggle-proxy" onchange="applyProxy(this.checked)"><span class="slider"></span></label>
+            </div>
+            <div class="setting-row">
+              <label class="setting-label" for="set-game-url">Game Server URL</label>
+              <input type="text" id="set-game-url"/>
+            </div>
+            <div class="setting-row">
+              <label class="setting-label" for="set-ws-url">WebSocket Server URL</label>
+              <input type="text" id="set-ws-url"/>
+            </div>
+            <div class="setting-row">
+              <label class="setting-label" for="set-data-dir">Data Dir</label>
+              <input type="text" id="set-data-dir"/>
+            </div>
+            <div style="margin-top:12px;display:flex;gap:8px">
+              <button class="btn btn-primary" onclick="applySettings()">Apply</button>
+            </div>
+          </div>
+        </article>
+        <article class="card" style="margin-top:14px">
+          <header class="card-header"><span class="nav-icon">◈</span><h2 class="card-title">ADB Path</h2></header>
+          <div class="card-body">
+            <div class="setting-row" style="margin-bottom:10px">
+              <div>
+                <p class="setting-label">Current Path</p>
+                <p id="adb-current-display" style="color:var(--color-accent);font-size:11px;margin-top:4px;word-break:break-all"></p>
+              </div>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center">
+              <input type="text" id="input-adb-path" style="flex:1;width:auto" placeholder="ADB executable path"/>
+              <button class="btn btn-primary" onclick="saveAdbPath()">Save</button>
+              <button class="btn" onclick="clearAdbPath()">Clear</button>
+            </div>
+            <output id="adb-save-msg" style="font-size:10px;color:var(--color-green);margin-top:5px;min-height:14px"></output>
+          </div>
+        </article>
+      </section>
+
+      <!-- INJECTOR -->
+      <section class="page" id="page-injector">
+        <article class="card">
+          <header class="card-header"><span class="nav-icon">▶</span><h2 class="card-title" data-i18n="admin.injector">Injector</h2></header>
+          <div class="card-body">
+            <section style="margin-bottom:12px">
+              <h3 class="setting-label" data-i18n="admin.injector_connect" style="margin-bottom:7px">ADB Connect</h3>
+              <div style="display:flex;gap:8px;margin-bottom:10px">
+                <input id="adb-connect-input" placeholder="127.0.0.1:16384" style="flex:1;font-size:12px" onkeydown="if(event.key==='Enter')connectAdbDevice()"/>
+                <button class="btn btn-primary" onclick="connectAdbDevice()" id="btn-adb-connect" data-i18n="admin.injector_connect_btn">Connect</button>
+              </div>
+              <output id="adb-connect-status" style="font-size:11px;color:var(--color-text-dim)"></output>
+            </section>
+            <section style="margin-bottom:12px">
+              <div style="display:flex;gap:8px;align-items:center;margin-bottom:7px">
+                <h3 class="setting-label" data-i18n="admin.injector_devices">Connected Devices</h3>
+                <button class="btn" onclick="loadInjectorDevices()">↻</button>
+              </div>
+              <div id="injector-device-list" style="font-size:12px;color:var(--color-text-dim)">–</div>
+            </section>
+            <div id="injector-check-result" style="font-size:12px;color:var(--color-text-dim);margin-bottom:12px;line-height:2"></div>
+            <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+              <button class="btn btn-primary" onclick="runInjector()" id="btn-inject">Run Injector</button>
+              <button class="btn danger" onclick="stopInjector()">Stop</button>
+              <span id="injector-status-text" style="font-size:11px;color:var(--color-text-dim)"></span>
+            </div>
+          </div>
+        </article>
+        <article class="card" style="margin-top:12px">
+          <header class="card-header"><span class="nav-icon">▤</span><h2 class="card-title">ADB Command</h2></header>
+          <div class="card-body">
+            <div style="display:flex;gap:8px;margin-bottom:9px">
+              <input id="adb-cmd-input" placeholder="adb command (e.g. devices)" onkeydown="if(event.key==='Enter')sendAdbCmd()"/>
+              <button class="btn btn-primary" onclick="sendAdbCmd()">Run</button>
+            </div>
+            <div id="injector-log" role="log" aria-live="off"></div>
+          </div>
+        </article>
+      </section>
+
+      <!-- GAME DATA -->
+      <section class="page flow" id="page-gamedata">
+        <article class="card">
+          <header class="card-header">
+            <span class="nav-icon">✦</span>
+            <h2 class="card-title" data-i18n="admin.gamedata">Game Data</h2>
+            <button class="btn" style="margin-left:auto;font-size:11px" onclick="loadGameData()">↻ Refresh</button>
+          </header>
+          <div class="card-body">
+            <div class="gamedata-layout">
+              <nav class="gamedata-nav" id="gamedata-nav">
+                <button class="gamedata-nav-item active" onclick="switchGameData('userinfo')">UserInfo</button>
+                <button class="gamedata-nav-item" onclick="switchGameData('currencies')">Currencies</button>
+                <button class="gamedata-nav-item" onclick="switchGameData('heroes')">Heroes</button>
+                <button class="gamedata-nav-item" onclick="switchGameData('settings')">Settings</button>
+              </nav>
+              <div>
+                <div class="gamedata-form" id="gamedata-form"></div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- ACCOUNTS -->
+      <section class="page" id="page-accounts">
+        <article class="card">
+          <header class="card-header">
+            <span class="nav-icon">◈</span>
+            <h2 class="card-title" data-i18n="admin.accounts">Accounts</h2>
+            <button class="btn" style="margin-left:auto" onclick="loadAdminAccounts()">↻</button>
+          </header>
+          <div class="card-body" id="admin-acct-list" style="min-height:48px"></div>
+        </article>
+        <article class="card" style="margin-top:12px">
+          <header class="card-header">
+            <span class="nav-icon">+</span>
+            <h2 class="card-title" data-i18n="admin.acct_new">New Account</h2>
+          </header>
+          <div class="card-body">
+            <div class="setting-row">
+              <label class="setting-label" for="admin-acct-nick" data-i18n="admin.acct_nick">Nickname</label>
+              <input type="text" id="admin-acct-nick" data-i18n-placeholder="admin.acct_nick_placeholder" placeholder="Nickname" maxlength="20"/>
+            </div>
+            <div class="setting-row">
+              <label class="setting-label" for="admin-acct-idp" data-i18n="admin.acct_login">Login Type</label>
+              <select id="admin-acct-idp" style="background:var(--glass-bg);border:1px solid var(--glass-border-lo);color:var(--color-text);border-radius:6px;padding:5px 8px">
+                <option value="zd3" data-i18n="admin.acct_idp_guest">Guest</option>
+                <option value="kakaocapri" data-i18n="admin.acct_idp_kakao">Kakao</option>
+                <option value="google">Google</option>
+              </select>
+            </div>
+            <button class="btn btn-primary" style="margin-top:8px" onclick="adminCreateAccount()" data-i18n="admin.acct_create">Create</button>
+            <output id="admin-acct-create-status" style="font-size:11px;margin-top:6px;min-height:14px"></output>
+          </div>
+        </article>
+        <article class="card" id="admin-acct-edit-card" style="margin-top:12px;display:none">
+          <header class="card-header">
+            <span class="nav-icon">✎</span>
+            <h2 class="card-title" data-i18n="admin.acct_edit">Edit Account</h2>
+            <button class="btn" style="margin-left:auto;font-size:11px" onclick="closeAdminAccountEdit()">✕</button>
+          </header>
+          <div class="card-body" id="admin-acct-edit-body"></div>
+        </article>
+      </section>
+
+      <!-- FILES -->
+      <section class="page" id="page-files">
+        <article class="card">
+          <header class="card-header">
+            <span class="nav-icon">◧</span>
+            <h2 class="card-title" data-i18n="admin.files">Files</h2>
+          </header>
+          <div class="card-body">
+            <nav style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap">
+              <button class="btn" onclick="listFiles('responses/')">responses/</button>
+              <button class="btn" onclick="listFiles('responses_newbie/')">responses_newbie/</button>
+              <button class="btn" onclick="listFiles('schema/')">schema/</button>
+            </nav>
+            <div id="file-list" style="margin-bottom:12px;font-size:12px;color:var(--color-text-dim)" data-i18n="admin.files_select_dir">Select a directory.</div>
+          </div>
+        </article>
+        <article class="card" id="file-edit-card" style="margin-top:12px;display:none">
+          <header class="card-header">
+            <span class="nav-icon">✎</span>
+            <h2 class="card-title" id="file-edit-title">파일 편집</h2>
+            <button class="btn" style="margin-left:auto;font-size:11px" onclick="closeFileEdit()">✕</button>
+          </header>
+          <div class="card-body">
+            <textarea id="file-editor" rows="16" style="width:100%;font-size:11px;font-family:monospace;background:rgba(0,0,0,.4);color:var(--color-text);border:1px solid var(--glass-border-lo);border-radius:6px;padding:8px;resize:vertical"></textarea>
+            <div style="margin-top:8px;display:flex;gap:8px;align-items:center">
+              <button class="btn btn-primary" onclick="saveFileEdit()" data-i18n="admin.save">Save</button>
+              <output id="file-save-status" style="font-size:11px;color:var(--color-text-dim)"></output>
+            </div>
+          </div>
+        </article>
+      </section>
+
+    </section><!-- /content -->
+  </main><!-- /main -->
+</div><!-- /app -->
+
+<!-- ABOUT DIALOG (HTML5 <dialog>) -->
+<dialog id="modal-about">
+  <header class="modal-hdr">
+    <h2 class="modal-hdr-title">About</h2>
+    <button class="modal-close" onclick="closeAbout()">✕</button>
+  </header>
+  <article class="modal-body">
+    <h1 class="about-brand">EverSoul</h1>
+    <p class="about-sub">Offline Admin Panel</p>
+    <dl class="about-dl">
+      <div class="about-row">
+        <dt class="about-lbl" data-i18n="about.orig_author">Original Author</dt>
+        <dd class="about-val lead">少姜</dd>
+      </div>
+      <div class="about-row">
+        <dt class="about-lbl" data-i18n="about.co_dev">Co-Developer</dt>
+        <dd class="about-val">Nekoi</dd>
+      </div>
+      <div class="about-row">
+        <dt class="about-lbl" data-i18n="about.tech">Technology</dt>
+        <dd class="about-val" style="font-size:11px;color:var(--color-text-dim)">HTML5 · C++23 · SQLite · ADB</dd>
+      </div>
+    </dl>
+  </article>
+</dialog>
+
+<!-- IMPORT DIALOG -->
+<dialog id="modal-import">
+  <header class="modal-hdr">
+    <h2 class="modal-hdr-title" data-i18n="admin.import_title">Import UserInfo</h2>
+    <button class="modal-close" onclick="closeImportModal()">✕</button>
+  </header>
+  <article class="modal-body">
+    <p style="font-size:11px;color:var(--color-text-dim);margin-bottom:2px;line-height:1.6" data-i18n="admin.import_desc1"></p>
+    <p style="font-size:11px;color:var(--color-text-dim);margin-bottom:14px;line-height:1.6" data-i18n="admin.import_desc2"></p>
+    <div style="margin-bottom:12px">
+      <input type="file" id="import-file" accept=".json" style="font-size:12px;color:var(--color-text)">
+    </div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <button class="btn btn-primary" onclick="doImport()" data-i18n="admin.import_btn">Import</button>
+      <button class="btn" onclick="closeImportModal()" data-i18n="admin.cancel">Cancel</button>
+      <output id="import-status" style="font-size:11px;color:var(--color-text-dim);margin-left:4px"></output>
+    </div>
+  </article>
+</dialog>
+
+<script src="app.js"></script>
+</body>
+</html>

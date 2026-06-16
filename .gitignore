@@ -75,3 +75,18 @@ Testing/
 .claude/
 tutorial_decode_out/
 
+# Third-party binary tools (not source deps)
+third_party/apktool*.jar
+third_party/jadx-*/
+third_party/tailwindcss*
+
+# Build artifacts
+build/offline_data/
+build/logcat_dump.txt
+
+# Python disallowed files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
