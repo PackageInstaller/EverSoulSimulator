@@ -70,15 +70,23 @@ namespace eversoul::redirect
     bool is_target_host(std::string_view host)
     {
         if (host.empty()) return false;
-        // LIAPP device-auth posts to a random *.lockincomp.com subdomain.
+        // LIAPP device-auth posts to a random *.lockincomp.com subdomain — substring.
         if (host.find(".lockincomp.com") != std::string_view::npos) return true;
+        // Game backend (API / session / game server / chat): EXACT host match.
+        // This mirrors the scheme://host prefix-anchoring in the reference redirects
+        // (eversoul-redirect-module XposedInit.java + monitor_unity_web_request.js):
+        // a broad list entry like "kakaogames.com" only ever matched a literal
+        // "https://kakaogames.com", never a subdomain. Exact match keeps the same
+        // coverage while NOT catching static CDN / web subdomains that merely end in
+        // kakaogames.com — patch.esoul (assets/data tables), replaydn-esoul (replays),
+        // cus-zinny3 (support), web-data-cdn, gisp-payment, device-enrollment, etc.
         for (auto &d : kDomains)
         {
-            if (host.find(d) != std::string_view::npos) return true;
+            if (host == d) return true;
         }
         for (auto &d : kWsDomains)
         {
-            if (host.find(d) != std::string_view::npos) return true;
+            if (host == d) return true;
         }
         return false;
     }
