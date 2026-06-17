@@ -18,6 +18,10 @@
       <button class="lang-select-btn" onclick="selectLangAndStart('ko')">한국어</button>
       <button class="lang-select-btn" onclick="selectLangAndStart('en')">English</button>
       <button class="lang-select-btn" onclick="selectLangAndStart('zh')">中文</button>
+      <button class="lang-select-btn" onclick="selectLangAndStart('ru')">Русский</button>
+      <button class="lang-select-btn" onclick="selectLangAndStart('de')">Deutsch</button>
+      <button class="lang-select-btn" onclick="selectLangAndStart('fr')">Français</button>
+      <button class="lang-select-btn" onclick="selectLangAndStart('vi')">Tiếng Việt</button>
     </nav>
   </article>
 </dialog>
@@ -27,8 +31,6 @@
   <div id="intro-bg"></div>
   <div id="intro-overlay"></div>
   <div id="intro-scanline"></div>
-
-  <button id="btn-skip" onclick="skipIntro()">SKIP ▶▶</button>
 
   <article id="intro-content">
     <header id="intro-logo">
@@ -144,7 +146,7 @@
 
       <!-- DASHBOARD -->
       <section class="page active" id="page-dashboard">
-        <article class="card" style="margin-bottom:14px">
+        <article class="card">
           <header class="card-header">
             <span class="nav-icon">▶</span>
             <h2 class="card-title" data-i18n="admin.game_start_title">Start Game</h2>
@@ -179,7 +181,7 @@
           <li class="stat-card cyan">
             <p class="stat-label">DB</p>
             <p class="stat-value" id="s-db">–</p>
-            <p class="stat-sub" id="s-db-path" style="font-size:9px;word-break:break-all"></p>
+            <p class="stat-sub stat-sub-path" id="s-db-path"></p>
           </li>
           <li class="stat-card green">
             <p class="stat-label">Lang</p>
@@ -220,7 +222,7 @@
           <header class="card-header">
             <span class="nav-icon">♥</span>
             <h2 class="card-title" data-i18n="admin.health">Health Check</h2>
-            <button class="btn" style="margin-left:auto;font-size:11px" onclick="loadHealth()">↻ Refresh</button>
+            <button class="btn ml-auto-btn" onclick="loadHealth()">↻ Refresh</button>
           </header>
           <div class="card-body">
             <div class="health-cards" id="health-grid"></div>
@@ -240,7 +242,7 @@
           <button class="btn danger" onclick="clearLog()">Clear</button>
         </div>
         <div id="log-panel-server" class="log-ch-panel" role="log" aria-live="off"></div>
-        <div id="log-panel-adb"    class="log-ch-panel" role="log" aria-live="off" style="display:none"></div>
+        <div id="log-panel-adb"    class="log-ch-panel log-panel-off" role="log" aria-live="off"></div>
       </section>
 
       <!-- DB -->
@@ -265,8 +267,8 @@
               <button class="btn" onclick="dbNextPage()">›</button>
               <span class="db-row-total" id="db-row-total"></span>
             </div>
-            <div id="db-table-wrap" style="display:flex;flex-direction:column;flex:1;overflow:auto"><p class="db-empty-msg" data-i18n="admin.db_select_table">Select a table.</p></div>
-            <div id="db-schema-wrap" style="display:none;flex-direction:column;flex:1;overflow:auto;padding:14px">
+            <div id="db-table-wrap"><p class="db-empty-msg" data-i18n="admin.db_select_table">Select a table.</p></div>
+            <div id="db-schema-wrap" class="hidden">
               <div class="db-schema-cols" id="db-schema-cols"></div>
               <pre id="db-ddl"></pre>
             </div>
@@ -281,7 +283,7 @@
           <div class="card-body">
             <div id="fixture-list"></div>
             <section class="fixture-detail" id="fixture-detail">
-              <p id="fixture-detail-title" style="color:var(--color-accent);margin-bottom:6px;font-size:11px"></p>
+              <p id="fixture-detail-title"></p>
               <pre id="fixture-content"></pre>
             </section>
           </div>
@@ -306,10 +308,10 @@
               <input type="text" id="set-game-url"/>
             </div>
             <div class="setting-row">
-              <label class="setting-label" for="set-data-dir" style="color:var(--color-text-dim)">Data Dir (read-only)</label>
-              <input type="text" id="set-data-dir" readonly style="opacity:.6;cursor:default"/>
+              <label class="setting-label label-dim" for="set-data-dir">Data Dir (read-only)</label>
+              <input type="text" id="set-data-dir" class="input-readonly" readonly/>
             </div>
-            <div style="margin-top:12px;display:flex;gap:8px">
+            <div class="settings-save-row">
               <button class="btn btn-primary" onclick="applySettings()">Apply</button>
             </div>
           </div>
@@ -322,7 +324,7 @@
           <header class="card-header">
             <span class="nav-icon">✦</span>
             <h2 class="card-title" data-i18n="admin.gamedata">Game Data</h2>
-            <button class="btn" style="margin-left:auto;font-size:11px" onclick="loadGameData()">↻ Refresh</button>
+            <button class="btn ml-auto-btn" onclick="loadGameData()">↻ Refresh</button>
           </header>
           <div class="card-body">
             <div class="gamedata-layout">
@@ -346,11 +348,11 @@
           <header class="card-header">
             <span class="nav-icon">◈</span>
             <h2 class="card-title" data-i18n="admin.accounts">Accounts</h2>
-            <button class="btn" style="margin-left:auto" onclick="loadAdminAccounts()">↻</button>
+            <button class="btn ml-auto-btn" onclick="loadAdminAccounts()">↻</button>
           </header>
-          <div class="card-body" id="admin-acct-list" style="min-height:48px"></div>
+          <div class="card-body" id="admin-acct-list"></div>
         </article>
-        <article class="card" style="margin-top:12px">
+        <article class="card card-mt">
           <header class="card-header">
             <span class="nav-icon">+</span>
             <h2 class="card-title" data-i18n="admin.acct_new">New Account</h2>
@@ -362,21 +364,21 @@
             </div>
             <div class="setting-row">
               <label class="setting-label" for="admin-acct-idp" data-i18n="admin.acct_login">Login Type</label>
-              <select id="admin-acct-idp" style="background:var(--glass-bg);border:1px solid var(--glass-border-lo);color:var(--color-text);border-radius:6px;padding:5px 8px">
+              <select id="admin-acct-idp" class="select-styled">
                 <option value="zd3" data-i18n="admin.acct_idp_guest">Guest</option>
                 <option value="kakaocapri" data-i18n="admin.acct_idp_kakao">Kakao</option>
                 <option value="google">Google</option>
               </select>
             </div>
-            <button class="btn btn-primary" style="margin-top:8px" onclick="adminCreateAccount()" data-i18n="admin.acct_create">Create</button>
-            <output id="admin-acct-create-status" style="font-size:11px;margin-top:6px;min-height:14px"></output>
+            <button class="btn btn-primary btn-mt-sm" onclick="adminCreateAccount()" data-i18n="admin.acct_create">Create</button>
+            <output id="admin-acct-create-status" class="acct-create-sts"></output>
           </div>
         </article>
-        <article class="card" id="admin-acct-edit-card" style="margin-top:12px;display:none">
+        <article class="card card-hidden" id="admin-acct-edit-card">
           <header class="card-header">
             <span class="nav-icon">✎</span>
             <h2 class="card-title" data-i18n="admin.acct_edit">Edit Account</h2>
-            <button class="btn" style="margin-left:auto;font-size:11px" onclick="closeAdminAccountEdit()">✕</button>
+            <button class="btn ml-auto-btn" onclick="closeAdminAccountEdit()">✕</button>
           </header>
           <div class="card-body" id="admin-acct-edit-body"></div>
         </article>
@@ -390,25 +392,25 @@
             <h2 class="card-title" data-i18n="admin.files">Files</h2>
           </header>
           <div class="card-body">
-            <nav style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap">
+            <nav class="file-nav">
               <button class="btn" onclick="listFiles('responses/')">responses/</button>
               <button class="btn" onclick="listFiles('responses_newbie/')">responses_newbie/</button>
               <button class="btn" onclick="listFiles('schema/')">schema/</button>
             </nav>
-            <div id="file-list" style="margin-bottom:12px;font-size:12px;color:var(--color-text-dim)" data-i18n="admin.files_select_dir">Select a directory.</div>
+            <div id="file-list" data-i18n="admin.files_select_dir">Select a directory.</div>
           </div>
         </article>
-        <article class="card" id="file-edit-card" style="margin-top:12px;display:none">
+        <article class="card card-hidden" id="file-edit-card">
           <header class="card-header">
             <span class="nav-icon">✎</span>
             <h2 class="card-title" id="file-edit-title">파일 편집</h2>
-            <button class="btn" style="margin-left:auto;font-size:11px" onclick="closeFileEdit()">✕</button>
+            <button class="btn ml-auto-btn" onclick="closeFileEdit()">✕</button>
           </header>
           <div class="card-body">
-            <textarea id="file-editor" rows="16" style="width:100%;font-size:11px;font-family:monospace;background:rgba(0,0,0,.4);color:var(--color-text);border:1px solid var(--glass-border-lo);border-radius:6px;padding:8px;resize:vertical"></textarea>
-            <div style="margin-top:8px;display:flex;gap:8px;align-items:center">
+            <textarea id="file-editor" rows="16" class="file-editor-ta"></textarea>
+            <div class="file-save-bar">
               <button class="btn btn-primary" onclick="saveFileEdit()" data-i18n="admin.save">Save</button>
-              <output id="file-save-status" style="font-size:11px;color:var(--color-text-dim)"></output>
+              <output id="file-save-status" class="file-save-sts"></output>
             </div>
           </div>
         </article>
@@ -438,7 +440,11 @@
       </div>
       <div class="about-row">
         <dt class="about-lbl" data-i18n="about.tech">Technology</dt>
-        <dd class="about-val" style="font-size:11px;color:var(--color-text-dim)">HTML5 · C++23 · SQLite · ADB</dd>
+        <dd class="about-val about-tech">HTML5 · C++23 · SQLite · ADB</dd>
+      </div>
+      <div class="about-row">
+        <dt class="about-lbl" data-i18n="about.issues">Issues</dt>
+        <dd class="about-val"><a class="about-link" href="https://github.com/PackageInstaller/EverSoulSimulator/issues" target="_blank">GitHub Issues ↗</a></dd>
       </div>
     </dl>
   </article>
@@ -451,19 +457,20 @@
     <button class="modal-close" onclick="closeImportModal()">✕</button>
   </header>
   <article class="modal-body">
-    <p style="font-size:11px;color:var(--color-text-dim);margin-bottom:2px;line-height:1.6" data-i18n="admin.import_desc1"></p>
-    <p style="font-size:11px;color:var(--color-text-dim);margin-bottom:14px;line-height:1.6" data-i18n="admin.import_desc2"></p>
-    <div style="margin-bottom:12px">
-      <input type="file" id="import-file" accept=".json" style="font-size:12px;color:var(--color-text)">
+    <p class="modal-desc" data-i18n="admin.import_desc1"></p>
+    <p class="modal-desc modal-mb12" data-i18n="admin.import_desc2"></p>
+    <div class="modal-mb12">
+      <input type="file" id="import-file" accept=".json" class="modal-file-input">
     </div>
-    <div style="display:flex;gap:8px;align-items:center">
+    <div class="modal-action-bar">
       <button class="btn btn-primary" onclick="doImport()" data-i18n="admin.import_btn">Import</button>
       <button class="btn" onclick="closeImportModal()" data-i18n="admin.cancel">Cancel</button>
-      <output id="import-status" style="font-size:11px;color:var(--color-text-dim);margin-left:4px"></output>
+      <output id="import-status" class="import-status"></output>
     </div>
   </article>
 </dialog>
 
+<script src="i18n.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

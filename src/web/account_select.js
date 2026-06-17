@@ -3,74 +3,6 @@
 var AGREE = 'zinny://AgreementOk?E001=y&E002=y&E006=y&AN001=y&AN002=y&N002=y&N003=y&joinMemberShip=n&setAdAgreement=n';
 var LANG_KEY = 'acct_lang';
 
-var I18N = {
-  ko: {
-    'page.title':                '계정 선택',
-    'acct.subtitle':             '계정을 선택하거나 새로 만드세요.',
-    'acct.loading':              '로딩 중…',
-    'acct.empty':                '등록된 계정이 없습니다.<br>아래에서 새 계정을 만드세요.',
-    'acct.error':                '서버 응답 오류',
-    'acct.current_badge':        '현재',
-    'acct.select_btn':           '선택',
-    'acct.delete_btn':           '삭제',
-    'acct.delete_confirm':       '이 계정을 삭제하시겠습니까?',
-    'idp.guest':                 '게스트',
-    'idp.kakao':                 '카카오',
-    'new_acct.title':            '새 계정',
-    'new_acct.nick_label':       '닉네임',
-    'new_acct.nick_placeholder': '닉네임 입력',
-    'new_acct.login_label':      '로그인',
-    'new_acct.create_btn':       '+ 새 계정 만들기',
-    'new_acct.nick_required':    '닉네임을 입력하세요.',
-    'new_acct.creating':         '생성 중…',
-    'new_acct.create_fail':      '생성 실패',
-    'new_acct.server_error':     '서버 오류',
-  },
-  en: {
-    'page.title':                'Account Select',
-    'acct.subtitle':             'Select or create an account.',
-    'acct.loading':              'Loading…',
-    'acct.empty':                'No accounts registered.<br>Create a new account below.',
-    'acct.error':                'Server error',
-    'acct.current_badge':        'ACTIVE',
-    'acct.select_btn':           'Select',
-    'acct.delete_btn':           'Delete',
-    'acct.delete_confirm':       'Delete this account?',
-    'idp.guest':                 'Guest',
-    'idp.kakao':                 'Kakao',
-    'new_acct.title':            'New Account',
-    'new_acct.nick_label':       'Nickname',
-    'new_acct.nick_placeholder': 'Enter nickname',
-    'new_acct.login_label':      'Login',
-    'new_acct.create_btn':       '+ Create Account',
-    'new_acct.nick_required':    'Enter a nickname.',
-    'new_acct.creating':         'Creating…',
-    'new_acct.create_fail':      'Creation failed',
-    'new_acct.server_error':     'Server error',
-  },
-  zh: {
-    'page.title':                '账号选择',
-    'acct.subtitle':             '选择账号或创建新账号。',
-    'acct.loading':              '加载中…',
-    'acct.empty':                '暂无账号。<br>请在下方创建新账号。',
-    'acct.error':                '服务器响应错误',
-    'acct.current_badge':        '当前',
-    'acct.select_btn':           '选择',
-    'acct.delete_btn':           '删除',
-    'acct.delete_confirm':       '确定要删除此账号吗？',
-    'idp.guest':                 '访客',
-    'idp.kakao':                 'Kakao',
-    'new_acct.title':            '新账号',
-    'new_acct.nick_label':       '昵称',
-    'new_acct.nick_placeholder': '输入昵称',
-    'new_acct.login_label':      '登录方式',
-    'new_acct.create_btn':       '+ 创建账号',
-    'new_acct.nick_required':    '请输入昵称。',
-    'new_acct.creating':         '创建中…',
-    'new_acct.create_fail':      '创建失败',
-    'new_acct.server_error':     '服务器错误',
-  }
-};
 
 var currentLang = 'ko';
 
@@ -89,7 +21,7 @@ function applyI18n() {
 }
 
 function updateLangButtons() {
-  ['ko', 'en', 'zh'].forEach(function(l) {
+  ['ko', 'en', 'zh', 'ru', 'de', 'fr', 'vi'].forEach(function(l) {
     var btn = document.getElementById('lbtn-' + l);
     if (!btn) return;
     if (l === currentLang) btn.classList.add('active');
@@ -125,7 +57,8 @@ function idpLabel(code) {
 
 function fmtDate(ts) {
   if (!ts) return '';
-  var locale = currentLang === 'zh' ? 'zh-CN' : currentLang === 'en' ? 'en-US' : 'ko-KR';
+  var localeMap = { ko: 'ko-KR', en: 'en-US', zh: 'zh-CN', ru: 'ru-RU', de: 'de-DE', fr: 'fr-FR', vi: 'vi-VN' };
+  var locale = localeMap[currentLang] || 'en-US';
   return new Date(Number(ts)).toLocaleDateString(locale);
 }
 

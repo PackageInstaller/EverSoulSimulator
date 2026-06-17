@@ -52,8 +52,8 @@ namespace eversoul::redirect
     {
         if (url.empty()) return false;
 
-        // 127.0.0.1:9999 is our own server — always interesting for logging but never needs redirect
-        if (url.find("127.0.0.1:9999") != std::string_view::npos) return true;
+        // 127.0.0.1:9991 is our own server — always interesting for logging but never needs redirect
+        if (url.find("127.0.0.1:9991") != std::string_view::npos) return true;
         if (url.find(".lockincomp.com") != std::string_view::npos) return true;
 
         for (auto &d : kDomains)

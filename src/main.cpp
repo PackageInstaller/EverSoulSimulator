@@ -37,6 +37,14 @@ int main(int argc, char **argv)
 
 #ifdef _WIN32
     offline_data().load_embedded_web(kWebBlobData, kWebBlobSize);
+    {
+        HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+        if (hOut != INVALID_HANDLE_VALUE) {
+            DWORD mode = 0;
+            if (GetConsoleMode(hOut, &mode))
+                SetConsoleMode(hOut, mode | ENABLE_VIRTUAL_TERMINAL_PROCESSING | ENABLE_PROCESSED_OUTPUT);
+        }
+    }
 #endif
 
     // adb 경로: EXE 위치를 동적으로 구해 copy_only/adb/adb.exe 절대 경로 설정.

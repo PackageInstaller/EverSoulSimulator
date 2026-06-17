@@ -27,12 +27,7 @@ extern "C"
         __android_log_print(ANDROID_LOG_INFO, kLogTag, "anti-cheat 훅 설치");
         eversoul::anticheat::install();
 
-        // 2. 오프라인 서버 기동 (9999 포트)
-        __android_log_print(ANDROID_LOG_INFO, kLogTag, "오프라인 서버 시작 :%d",
-                             eversoul::kDefaultPort);
-        eversoul::start_async(eversoul::kDefaultPort);
-
-        // 3. 전송 레이어 리다이렉트: connect()/getaddrinfo() → 127.0.0.1:9999
+        // 2. 전송 레이어 리다이렉트: connect()/getaddrinfo() → 127.0.0.1:9991
         __android_log_print(ANDROID_LOG_INFO, kLogTag, "전송 레이어 리다이렉트 훅 설치");
         eversoul::net_redirect::install();
 

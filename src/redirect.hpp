@@ -33,16 +33,19 @@ namespace eversoul::redirect
         "openapi-zinny3.game.kakao.com",
         "game.kakao.com",
         "kakaogames.com",
+        "live-kr.esoul.kakaogames.com",
+        "live-sea.esoul.kakaogames.com",
     };
 
     // WebSocket targets
     inline const std::vector<std::string_view> kWsDomains = {
+        "live-kr-chat.esoul.kakaogames.com",
         "live-sea-chat.esoul.kakaogames.com",
         "live-sea.esoul.kakaogames.com",
         "gc-session-zinny3.kakaogames.com",
     };
 
-    inline constexpr std::string_view kLocalHttpBase = "http://127.0.0.1:9999";
-    inline constexpr std::string_view kLocalWsBase = "ws://127.0.0.1:9999";
+    inline constexpr std::string_view kLocalHttpBase = "http://127.0.0.1:9991";
+    inline constexpr std::string_view kLocalWsBase = "ws://127.0.0.1:9991";
 
 } // namespace eversoul::redirect

@@ -86,4 +86,19 @@ move-result-object p2
 
 ```text
 smali assemble → classes4.dex 생성 → APK에 다시 교체 → 서명 → 설치
+
+IdpAuthManager.idpLogin() 메서드 파라미터 (라인 593):
+
+
+.method public static final idpLogin(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;I)Lcom/kakaogame/KGResult;
+p0 = Activity
+p1 = idpCode (String) ← 이게 핵심
+p2 = String (authType 같은 것)
+p3 = int (traceJobId)
+핵심 수정 포인트 (라인 688~691):
+
+
+:cond_0
+sget-object v1, Lcom/kakaogame/idp/IdpAuthManager;->authHandlerMap:Ljava/util/Map;
+invoke-interface {v1, p1}, Ljava/util/Map;->get(Ljava/lang/Object;)Ljava/lang/Object;
 ```

@@ -65,7 +65,7 @@ namespace eversoul::net_redirect
         void loge(const char *fmt, A... a) { __android_log_print(ANDROID_LOG_ERROR, kLogTag, fmt, a...); }
 #pragma clang diagnostic pop
 
-        constexpr std::uint16_t kLocalPort = static_cast<std::uint16_t>(kDefaultPort); // 9999
+        constexpr std::uint16_t kLocalPort = static_cast<std::uint16_t>(kServerListenPort); // 9991
 
         // Loopback connects on these ports get bounced to the local server.
         //   80  : plain HTTP        443 : HTTPS / WSS (openapi/infodesk/session)
