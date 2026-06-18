@@ -744,8 +744,7 @@ extern "C++" {
 using ::lsplant::IsHooked;
 
 [[maybe_unused]] bool Init(JNIEnv *env, const InitInfo &info) {
-    if (!info.inline_hooker || !info.inline_unhooker || !info.art_symbol_resolver ||
-        !info.art_symbol_prefix_resolver) {
+    if (!info.inline_hooker || !info.inline_unhooker || !info.art_symbol_resolver) {
         return false;
     }
     bool static kInit = InitConfig(info) && InitJNI(env) && InitNative(env, info);

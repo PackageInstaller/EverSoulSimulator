@@ -56,6 +56,10 @@ public:
     std::string auto_hunt_receive();
     std::string set_nickname(const std::string& name);
     std::string build_guide_quest_list();
+    std::string achievement_all_receive();
+    std::string mail_item_all_receive(std::int32_t category_flag);
+    std::string receive_attendance();
+    std::string friend_heart_receive_all();
 
 private:
     AccountDatabase& db_;
@@ -66,6 +70,7 @@ private:
     void        meta_set_int(const std::string& key, int value);
     bool        mark_once_per_day(const std::string& key);
     std::int64_t day_number() const;
+    static int  today_yyyymmdd();
     Pending     compute_pending() const;
     Pending     apply_pending_floor(Pending p) const;
     void        spend_gacha_cost(int ticket_currency, int dia_currency,

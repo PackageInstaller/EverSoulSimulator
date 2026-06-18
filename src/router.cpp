@@ -554,7 +554,7 @@ namespace eversoul
                 bool safe = !tbl.empty();
                 for (char c : tbl) if (!std::isalnum((unsigned char)c) && c != '_') { safe = false; break; }
                 if (!safe) return json_ok("{\"columns\":[],\"rows\":[]}");
-                AccountDatabase* adb = mgr.active_db();
+                AccountDatabase* adb = account_db_manager().active_db();
                 sqlite3* db = adb ? adb->raw_db() : nullptr;
                 if (!db) return json_ok("{\"columns\":[],\"rows\":[]}");
                 std::vector<std::string> cols;
@@ -578,7 +578,8 @@ namespace eversoul
                     if (sqlite3_prepare_v2(db, sel.c_str(), -1, &st, nullptr) == SQLITE_OK) {
                         bool fr = true;
                         while (sqlite3_step(st) == SQLITE_ROW) {
-                            if (!fr) body += ","; fr = false;
+                            if (!fr) body += ",";
+                            fr = false;
                             body += "{";
                             int nc = sqlite3_column_count(st);
                             for (int c = 0; c < nc; ++c) {
@@ -608,7 +609,7 @@ namespace eversoul
                 bool safe = !tbl.empty();
                 for (char c : tbl) if (!std::isalnum((unsigned char)c) && c != '_') { safe = false; break; }
                 if (!safe) return json_ok("{\"columns\":[],\"ddl\":\"\"}");
-                AccountDatabase* adb = mgr.active_db();
+                AccountDatabase* adb = account_db_manager().active_db();
                 sqlite3* db = adb ? adb->raw_db() : nullptr;
                 if (!db) return json_ok("{\"columns\":[],\"ddl\":\"\"}");
                 std::string cols_json = "[";
@@ -618,7 +619,8 @@ namespace eversoul
                     bool first = true;
                     if (sqlite3_prepare_v2(db, pragma.c_str(), -1, &st, nullptr) == SQLITE_OK) {
                         while (sqlite3_step(st) == SQLITE_ROW) {
-                            if (!first) cols_json += ","; first = false;
+                            if (!first) cols_json += ",";
+                            first = false;
                             const char* nm = reinterpret_cast<const char*>(sqlite3_column_text(st, 1));
                             const char* tp = reinterpret_cast<const char*>(sqlite3_column_text(st, 2));
                             int notnull = sqlite3_column_int(st, 3);

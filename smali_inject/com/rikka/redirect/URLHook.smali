@@ -6,9 +6,9 @@
 # static fields
 .field private static final HOSTS:[Ljava/lang/String;
 
-.field private static final LOCAL_HTTP:Ljava/lang/String; = "http://127.0.0.1:9999"
+.field private static final LOCAL_HTTP:Ljava/lang/String; = "http://127.0.0.1:9991"
 
-.field private static final LOCAL_WS:Ljava/lang/String; = "ws://127.0.0.1:9999"
+.field private static final LOCAL_WS:Ljava/lang/String; = "ws://127.0.0.1:9991"
 
 
 # direct methods
@@ -168,7 +168,7 @@
     :try_end_a
     .catchall {:try_start_4 .. :try_end_a} :catchall_5f
 
-    const-string v1, "http://127.0.0.1:9999"
+    const-string v1, "http://127.0.0.1:9991"
 
     if-eqz v0, :cond_13
 
@@ -288,7 +288,7 @@
     .line 63
     :cond_58
     :goto_58
-    const-string v0, "ws://127.0.0.1:9999"
+    const-string v0, "ws://127.0.0.1:9991"
 
     invoke-static {p0, v0}, Lcom/rikka/redirect/URLHook;->rebuild(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
 

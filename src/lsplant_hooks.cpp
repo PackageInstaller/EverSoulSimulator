@@ -6,6 +6,8 @@
 #include <dobby.h>
 #include <android/log.h>
 #include <dlfcn.h>
+#include <cstdio>
+#include <cstring>
 #include <atomic>
 #include <thread>
 #include <chrono>
@@ -31,12 +33,37 @@ namespace {
     // Object 클래스 (NewObjectArray 용)
     static jclass g_object_cls = nullptr;
 
-    // libart.so 심볼 조회
+    // libart.so 심볼 조회 — /proc/self/maps에서 절대경로 탐색 후 dlopen
     void* art_resolver(const std::string_view& name) {
         static void* libart = nullptr;
         if (!libart) {
-            libart = dlopen("libart.so", RTLD_NOW | RTLD_NOLOAD);
-            if (!libart) libart = dlopen("libart.so", RTLD_NOW);
+            char libart_path[512] = {};
+            FILE* maps = fopen("/proc/self/maps", "r");
+            if (maps) {
+                char line[512];
+                while (fgets(line, sizeof(line), maps)) {
+                    if (strstr(line, "libart.so")) {
+                        char* path = strrchr(line, ' ');
+                        if (path) {
+                            ++path;
+                            size_t len = strlen(path);
+                            while (len > 0 && (path[len - 1] == '\n' || path[len - 1] == '\r'))
+                                path[--len] = '\0';
+                            strncpy(libart_path, path, sizeof(libart_path) - 1);
+                        }
+                        break;
+                    }
+                }
+                fclose(maps);
+            }
+            if (libart_path[0]) {
+                libart = dlopen(libart_path, RTLD_NOW | RTLD_NOLOAD);
+                if (!libart) libart = dlopen(libart_path, RTLD_NOW);
+            }
+            if (!libart) {
+                libart = dlopen("libart.so", RTLD_NOW | RTLD_NOLOAD);
+                if (!libart) libart = dlopen("libart.so", RTLD_NOW);
+            }
         }
         if (!libart) return nullptr;
         return dlsym(libart, std::string(name).c_str());

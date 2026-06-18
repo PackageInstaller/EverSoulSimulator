@@ -563,8 +563,9 @@ std::string UserInfoRepository::build_json() const {
     {
         std::string dl_body = db_.preserved_field("dungeonList");
         if (!dl_body.empty()) {
-            json::parse(dl_body, preserved_dungeon_list, has_preserved_dl ? has_preserved_dl : has_preserved_dl);
-            has_preserved_dl = !dl_body.empty();
+            std::string dl_err;
+            json::parse(dl_body, preserved_dungeon_list, dl_err);
+            has_preserved_dl = true;
         }
     }
     set_f(root, "dungeonList",

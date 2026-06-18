@@ -6,7 +6,7 @@ baksmali'd Kakao SDK tree, covering BOTH network exits:
               → the URL string is downgraded https->http before HttpURLConnection.
   (B) WS    : at the head of WebSocketManager.<init>(String,String) and
               setSessionUrl(String) → the wss:// session URL is downgraded to
-              ws://127.0.0.1:9999, so WebSocketClient takes the plain-socket path
+              ws://127.0.0.1:9991, so WebSocketClient takes the plain-socket path
               (SocketFactory.getDefault) instead of getSSLSocketFactory — no TLS.
 
 Idempotent: re-running won't double-inject. Modifies smali in place.

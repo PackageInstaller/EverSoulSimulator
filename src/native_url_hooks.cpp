@@ -220,7 +220,7 @@ namespace {
 
         // KGConfiguration RVA 훅 (RVA from Il2CppInspector)
         Dl_info info{};
-        if (dladdr(handle, &info) && info.dli_fbase) {
+        if (g_str_new && dladdr(reinterpret_cast<void*>(g_str_new), &info) && info.dli_fbase) {
             auto base = reinterpret_cast<std::uintptr_t>(info.dli_fbase);
             static const uintptr_t kRVAs[] = { 0x0894A724, 0x0894A85C, 0x0894A994 };
             for (int i = 0; i < 3 && g_kg_count < kMaxKg; ++i) {

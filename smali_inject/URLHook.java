@@ -20,8 +20,8 @@ package com.rikka.redirect;
 // inverted null-check; keeping the logic in Java avoids both classes of bug.
 public final class URLHook {
 
-    private static final String LOCAL_HTTP = "http://127.0.0.1:9999";
-    private static final String LOCAL_WS = "ws://127.0.0.1:9999";
+    private static final String LOCAL_HTTP = "http://127.0.0.1:9991";
+    private static final String LOCAL_WS = "ws://127.0.0.1:9991";
 
     // Game-backend host markers (substring match) — mirrors redirect.hpp /
     // eversoul-redirect-module / monitor_unity_web_request.js. Covers every real

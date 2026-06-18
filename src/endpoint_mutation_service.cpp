@@ -1078,4 +1078,99 @@ std::string EndpointMutationService::build_guide_quest_list() {
     return out;
 }
 
+int EndpointMutationService::today_yyyymmdd() {
+    std::time_t seconds = static_cast<std::time_t>(unix_ms() / 1000);
+    std::tm local{};
+#if defined(_WIN32)
+    localtime_s(&local, &seconds);
+#else
+    localtime_r(&seconds, &local);
+#endif
+    return (local.tm_year + 1900) * 10000 + (local.tm_mon + 1) * 100 + local.tm_mday;
+}
+
+std::string EndpointMutationService::achievement_all_receive() {
+    if (db_.meta_get("achievement_all_received", "") != "1") {
+        db_.meta_set("achievement_all_received", "1");
+        db_.currency_add(2, 500);
+        db_.currency_add(28, 5);
+    }
+    std::string out;
+    std::string achievement;
+    pb_int32(achievement, 1, 999);
+    pb_int64(achievement, 3, 1);
+    pb_int32(achievement, 4, 999001);
+    pb_message(out, 1, achievement);
+    pb_message(out, 4, currency_all_pb());
+    log_line(0, "ADB", "achievement_all_receive");
+    return out;
+}
+
+std::string EndpointMutationService::mail_item_all_receive(std::int32_t category_flag) {
+    const bool grant = mark_once_per_day("mail_all_receive_" + std::to_string(category_flag));
+    if (grant) {
+        db_.currency_add(2, 700);
+        db_.currency_add(13, 4500);
+        db_.currency_add(28, 1);
+    }
+    const std::int64_t now = unix_ms();
+    std::string out;
+    std::string mail;
+    pb_string(mail, 1, "offline_mail_" + std::to_string(day_number()));
+    pb_int32(mail, 2, 52);
+    pb_string(mail, 3, "offline");
+    pb_string(mail, 4, "offline reward");
+    pb_string(mail, 6, "[[2,700],[13,4500],[28,1]]");
+    pb_int32(mail, 8, 1);
+    pb_int64(mail, 10, now);
+    pb_int64(mail, 11, now + 7LL * 86400000LL);
+    pb_message(out, 1, mail);
+    pb_message(out, 2, currency_all_pb());
+    log_line(0, "ADB", "mail_item_all_receive categoryFlag=" + std::to_string(category_flag));
+    return out;
+}
+
+std::string EndpointMutationService::receive_attendance() {
+    const bool grant = mark_once_per_day("attendance_receive");
+    if (grant) {
+        db_.currency_add(2, 100);
+        db_.currency_add(46, 1);
+    }
+    const int day = today_yyyymmdd();
+    int consecutive = meta_int("attendance_consecutive", 0);
+    if (grant) {
+        ++consecutive;
+        meta_set_int("attendance_consecutive", consecutive);
+    }
+    std::string out;
+    std::string attendance;
+    pb_int32(attendance, 1, 42);
+    pb_int32(attendance, 2, day);
+    pb_int32(attendance, 3, consecutive);
+    pb_message(out, 1, attendance);
+    pb_message(out, 2, currency_all_pb());
+    log_line(0, "ADB", "receive_attendance day=" + std::to_string(day));
+    return out;
+}
+
+std::string EndpointMutationService::friend_heart_receive_all() {
+    constexpr int kHeartCount = 15;
+    const bool grant = mark_once_per_day("friend_heart_receive_all");
+    if (grant)
+        db_.currency_add(6, kHeartCount);
+    std::string out;
+    const std::string self = db_.meta_get("user_idx", "offline");
+    for (int i = 0; i < kHeartCount; ++i) {
+        std::string heart;
+        pb_string(heart, 1, "offline_friend_" + std::to_string(i + 1));
+        pb_string(heart, 2, self);
+        pb_int32(heart, 3, 2);
+        pb_message(out, 1, heart);
+    }
+    pb_int32(out, 2, grant ? kHeartCount : 0);
+    pb_message(out, 3, currency_all_pb());
+    log_line(0, "ADB", "friend_heart_receive_all grant=" + std::to_string(static_cast<int>(grant)));
+    return out;
+}
+
 } // namespace eversoul
