@@ -1,5 +1,5 @@
 // net_redirect.cpp — Transport-layer redirect (방식 B): bounce every outbound
-// connection aimed at a Kakao/zinny3/esoul/lockincomp host to 127.0.0.1:9999.
+// connection aimed at a Kakao/zinny3/esoul/lockincomp host to 127.0.0.1:9991.
 //
 // Strategy (two cooperating hooks):
 //   1) getaddrinfo() / android_getaddrinfofornet(): when the resolved hostname
@@ -10,9 +10,9 @@
 //          via android_getaddrinfofornet (libcore -> bionic).
 //        - Native (Unity/curl) resolves via getaddrinfo.
 //   2) connect(): any connect to a loopback address on a known Kakao port
-//      (80 / 443 / 1739) is rewritten to 127.0.0.1:9999. The only way a loopback
+//      (80 / 443 / 1739) is rewritten to 127.0.0.1:9991. The only way a loopback
 //      connect on those ports happens is via our redirected DNS above, so this is
-//      precise; connections to our own server (:9999) and unrelated loopback
+//      precise; connections to our own server (:9991) and unrelated loopback
 //      services on other ports pass through untouched.
 //
 // We use DobbyHook (not the 16-byte inline_hook) because libc prologues contain
@@ -22,12 +22,12 @@
 // ─── TLS CAVEAT (read this) ────────────────────────────────────────────────
 // EVERY Kakao/game endpoint is TLS: https://*:443, wss://*:443, and the game
 // server https://live-sea*.kakaogames.com:1739. A socket-level redirect does NOT
-// change the URL scheme, so after the connection lands on 127.0.0.1:9999 the
-// client still performs a TLS handshake. The offline server on :9999 speaks
+// change the URL scheme, so after the connection lands on 127.0.0.1:9991 the
+// client still performs a TLS handshake. The offline server on :9991 speaks
 // plaintext HTTP/WS, so the handshake fails unless ONE of these is also done:
 //   (A) keep the URL-string scheme-downgrade (https->http, wss->ws) at the
 //       Java/IL2CPP layer (URLHook + UnityWebRequest hook) — proven, no TLS; or
-//   (B) terminate TLS on :9999 with a cert AND defeat the client's certificate
+//   (B) terminate TLS on :9991 with a cert AND defeat the client's certificate
 //       validation / pinning (e.g. hook boringssl SSL_get_verify_result -> 0,
 //       SSL_set_custom_verify, plus Conscrypt/OkHttp pinning).
 // This file implements the transport redirect only; it is the foundation, not a

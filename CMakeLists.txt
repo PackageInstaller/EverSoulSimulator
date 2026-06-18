@@ -8,7 +8,9 @@ if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Release)
 endif()
 
-# Android 라이브러리와 Desktop 서버 양쪽이 공유하는 핵심 소스
+# Android SO와 Desktop 서버 양쪽이 공유하는 전송/직렬화 레이어
+# Android: raw TCP 포워딩 전용 — DB/ORM/라우터/서버 코드 없음
+# PC 서버가 실제 서버 역할 전부 담당
 set(EVERSOUL_CORE_SOURCES
   src/util.cpp
   src/crypto.cpp
@@ -22,10 +24,19 @@ set(EVERSOUL_CORE_SOURCES
   src/log.cpp
   src/http.cpp
   src/proxy.cpp
-  src/payloads.cpp
+  src/payloads.cpp)
+
+# Desktop PC 서버 전용 소스 — Android swappywrapper에는 절대 포함 안 됨
+set(EVERSOUL_DESKTOP_SOURCES
   src/orm/storage.cpp
   src/orm/userinfo_builder.cpp
   src/account_db.cpp
+  src/account_registry.cpp
+  src/account_database.cpp
+  src/account_db_manager.cpp
+  src/userinfo_repository.cpp
+  src/endpoint_mutation_service.cpp
+  src/game_catalog.cpp
   src/sse_log.cpp
   src/router.cpp
   src/server.cpp
@@ -162,6 +173,7 @@ else()
 
     add_executable(eversoul_gui WIN32
       ${EVERSOUL_CORE_SOURCES}
+      ${EVERSOUL_DESKTOP_SOURCES}
       src/adb_runner.cpp
       src/logcat_process.cpp
       src/gui_main.cpp
@@ -201,6 +213,7 @@ else()
     # ── CMD 전용 모드: CONSOLE 서브시스템, WebView2 없음 ──────────────────────
     add_executable(eversoul_console
       ${EVERSOUL_CORE_SOURCES}
+      ${EVERSOUL_DESKTOP_SOURCES}
       src/adb_runner.cpp
       src/logcat_process.cpp
       src/console_main.cpp
@@ -243,7 +256,9 @@ else()
   add_executable(orm_seed_check
     src/json.cpp src/json_encoder.cpp src/protobuf.cpp src/crypto.cpp
     src/offline_data.cpp src/log.cpp src/util.cpp src/orm/storage.cpp
-    src/orm/userinfo_builder.cpp src/orm_seed_check.cpp third_party/sqlite/sqlite3.c)
+    src/orm/userinfo_builder.cpp src/account_registry.cpp
+    src/account_database.cpp src/account_db_manager.cpp
+    src/orm_seed_check.cpp third_party/sqlite/sqlite3.c)
   target_include_directories(orm_seed_check PRIVATE ${EVERSOUL_INCLUDE_DIRS})
   target_compile_options(orm_seed_check PRIVATE -O2 -Wall -Wextra)
   target_link_libraries(orm_seed_check PRIVATE ${CMAKE_DL_LIBS})

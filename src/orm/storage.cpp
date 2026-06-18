@@ -1,32 +1,27 @@
-// storage.cpp - sqlite_orm storage definitions and UserInfo seeding.
+// storage.cpp - orm::* 공개 API — AccountDatabase 위임 레이어.
 #include "orm/storage.hpp"
 
-#include <cstdlib>
-#include <filesystem>
-#include <fstream>
-#include <map>
-#include <memory>
-#include <mutex>
+#include <algorithm>
+#include <cstdint>
 #include <optional>
-#include <sstream>
 #include <string>
 #include <vector>
 
-#include <sys/stat.h>
-
-#include "json.hpp"
+#include "account_database.hpp"
+#include "account_db_manager.hpp"
+#include "account_registry.hpp"
+#include "common.hpp"
 #include "log.hpp"
-#include "offline_data.hpp"
+#include "orm/schema.hpp"
+#include "sqlite3.h"
 #include "sqlite_orm.h"
 #include "util.hpp"
+#include "ws_session.hpp"
 
-namespace fs = std::filesystem;
+#include <filesystem>
 
 namespace eversoul::orm {
 namespace {
-
-std::mutex g_mu;
-std::string g_opened_path;
 
 auto make_account_storage(const std::string& path) {
     using namespace sqlite_orm;
@@ -112,298 +107,14 @@ auto make_account_storage(const std::string& path) {
                    make_column("isFirstClear", &Dungeon::isFirstClear)));
 }
 
-using Storage = decltype(make_account_storage(""));
-std::unique_ptr<Storage> g_storage;
-
-const json::Value* field(const json::Value& obj, const std::string& key) {
-    return obj.find(key);
-}
-
-int jint(const json::Value& obj, const std::string& key, int fallback = 0) {
-    if (const auto* v = field(obj, key)) return static_cast<int>(v->as_int64());
-    return fallback;
-}
-
-std::int64_t ji64(const json::Value& obj, const std::string& key, std::int64_t fallback = 0) {
-    if (const auto* v = field(obj, key)) return v->as_int64();
-    return fallback;
-}
-
-std::string jtext(const json::Value& obj, const std::string& key, const std::string& fallback = "") {
-    if (const auto* v = field(obj, key)) return v->text();
-    return fallback;
-}
-
-std::string join_strings(const json::Value& arr) {
-    std::string out;
-    if (!arr.is_array()) return out;
-    for (std::size_t i = 0; i < arr.arr.size(); ++i) {
-        if (i) out.push_back(',');
-        out += arr.arr[i].text();
-    }
-    return out;
-}
-
-std::string join_ints(const json::Value& arr) {
-    std::string out;
-    if (!arr.is_array()) return out;
-    for (std::size_t i = 0; i < arr.arr.size(); ++i) {
-        if (i) out.push_back(',');
-        out += std::to_string(arr.arr[i].as_int64());
-    }
-    return out;
-}
-
-std::string read_file(const fs::path& path) {
-    std::ifstream f(path, std::ios::binary);
-    if (!f) return {};
-    std::ostringstream ss;
-    ss << f.rdbuf();
-    return ss.str();
-}
-
-std::optional<std::string> read_data_file(const std::string& data_dir, const std::string& rel) {
-    if (auto blob = offline_data().read(rel)) return blob;
-    if (!data_dir.empty()) {
-        std::string text = read_file(fs::path(data_dir) / rel);
-        if (!text.empty()) return text;
-    }
-    std::string text = read_file(rel);
-    if (!text.empty()) return text;
-    return std::nullopt;
-}
-
-std::map<std::string, int> load_currency_enum(const std::string& data_dir) {
-    std::map<std::string, int> out;
-    auto schema_text = read_data_file(data_dir, "schema/UserInfo.json");
-    if (!schema_text) return out;
-
-    json::Value root;
-    std::string err;
-    if (!json::parse(*schema_text, root, err)) {
-        log_line(0, "ORM", "schema/UserInfo.json parse failed: " + err);
-        return out;
-    }
-    const auto* enums = root.find("enums");
-    const auto* cur = enums ? enums->find("E_CURRENCY") : nullptr;
-    if (!cur || !cur->is_object()) return out;
-    for (const auto& [name, value] : cur->obj) {
-        out[name] = static_cast<int>(value.as_int64());
-    }
-    return out;
-}
-
-void clear_seed_tables() {
-    g_storage->remove_all<Dungeon>();
-    g_storage->remove_all<Tutorial>();
-    g_storage->remove_all<Story>();
-    g_storage->remove_all<Stage>();
-    g_storage->remove_all<ChallengeMode>();
-    g_storage->remove_all<HeroOption>();
-    g_storage->remove_all<SpiritTree>();
-    g_storage->remove_all<Formation>();
-    g_storage->remove_all<HeroEquipSlot>();
-    g_storage->remove_all<ItemEquip>();
-    g_storage->remove_all<ItemEtc>();
-    g_storage->remove_all<Currency>();
-    g_storage->remove_all<HeroRep>();
-    g_storage->remove_all<Hero>();
-    g_storage->remove_all<Kv>();
-}
-
-bool seed_from_userinfo(const std::string& data_dir, const std::string& responses_dir = "responses") {
-    auto userinfo_text = read_data_file(data_dir, responses_dir + "/UserInfo.json");
-    if (!userinfo_text) {
-        log_line(0, "ORM", responses_dir + "/UserInfo.json not found; seed skipped");
-        return false;
-    }
-
-    json::Value root;
-    std::string err;
-    if (!json::parse(*userinfo_text, root, err)) {
-        log_line(0, "ORM", responses_dir + "/UserInfo.json parse failed: " + err);
-        return false;
-    }
-    if (!root.is_object()) {
-        log_line(0, "ORM", responses_dir + "/UserInfo.json root is not object");
-        return false;
-    }
-
-    auto currency_enum = load_currency_enum(data_dir);
-    bool ok = g_storage->transaction([&]() {
-        clear_seed_tables();
-
-        auto put_kv = [&](std::string k, std::string v) {
-            g_storage->replace(Kv{std::move(k), std::move(v)});
-        };
-
-        if (const auto* user = root.find("user")) {
-            put_kv("user_idx", jtext(*user, "idx"));
-            put_kv("nickname", jtext(*user, "nickName"));
-            put_kv("created_dt", std::to_string(ji64(*user, "createdDt")));
-            put_kv("about", jtext(*user, "about"));
-            put_kv("channel_no", std::to_string(jint(*user, "channelNo")));
-            put_kv("tree_level", std::to_string(jint(*user, "treeLevel")));
-            put_kv("first_title", std::to_string(jint(*user, "firstTitle")));
-            put_kv("second_title", std::to_string(jint(*user, "secondTitle")));
-            if (const auto* thumb = user->find("thumbnail")) {
-                put_kv("thumbnail_frame", std::to_string(jint(*thumb, "thumbnailFrame")));
-                put_kv("thumbnail_image", std::to_string(jint(*thumb, "thumbnailImage")));
-                put_kv("thumbnail_use_custom", std::to_string(jint(*thumb, "useCustom")));
-                put_kv("thumbnail_blob", jtext(*thumb, "thumbnail"));
-                put_kv("thumbnail_first_title", std::to_string(jint(*thumb, "firstTitle")));
-                put_kv("thumbnail_second_title", std::to_string(jint(*thumb, "secondTitle")));
-            }
-        }
-
-        if (const auto* auto_hunt = root.find("autoHunt")) {
-            put_kv("autohunt_stage_no", std::to_string(jint(*auto_hunt, "stageNo")));
-            put_kv("autohunt_lab_dt", std::to_string(ji64(*auto_hunt, "labDt")));
-            put_kv("autohunt_receive_dt", std::to_string(ji64(*auto_hunt, "receiveDt")));
-        }
-        put_kv("seed_source", responses_dir + "/UserInfo.json");
-
-        if (const auto* currency = root.find("currency")) {
-            if (const auto* all = currency->find("allCurrency"); all && all->is_array()) {
-                for (const auto& c : all->arr) {
-                    std::string type_name = jtext(c, "type");
-                    int type = currency_enum.count(type_name) ? currency_enum[type_name] : std::atoi(type_name.c_str());
-                    g_storage->replace(Currency{type, ji64(c, "value")});
-                }
-            }
-        }
-
-        if (const auto* heroes = root.find("hero"); heroes && heroes->is_array()) {
-            for (const auto& h : heroes->arr) {
-                g_storage->replace(Hero{jtext(h, "idx"), jint(h, "heroNo"), jint(h, "level"),
-                                        jint(h, "isResonance"), jint(h, "gradeSno"),
-                                        jint(h, "raceSno"), jint(h, "isLock")});
-            }
-        }
-
-        if (const auto* reps = root.find("heroReputation"); reps && reps->is_array()) {
-            for (const auto& r : reps->arr) {
-                g_storage->replace(HeroRep{jint(r, "heroNo"), jint(r, "reputation"), jint(r, "state"),
-                                           jint(r, "stress"), ji64(r, "lastUpdateDt"), ji64(r, "giftDt"),
-                                           jint(r, "costumeItemNo"), jint(r, "storyReward"),
-                                           jint(r, "maxGradeSno"), jint(r, "objetUid"),
-                                           ji64(r, "maxLevelDt"), jint(r, "arbeitExp"),
-                                           jint(r, "priority"), ji64(r, "restFinishDt"),
-                                           jtext(r, "objetNo")});
-            }
-        }
-
-        if (const auto* items = root.find("itemEtc"); items && items->is_array()) {
-            for (const auto& it : items->arr) {
-                g_storage->replace(ItemEtc{jint(it, "itemNo"), jint(it, "cnt")});
-            }
-        }
-
-        if (const auto* equips = root.find("itemEquip"); equips && equips->is_array()) {
-            for (const auto& it : equips->arr) {
-                g_storage->replace(ItemEquip{ji64(it, "id"), jint(it, "itemNo"), jint(it, "exp")});
-            }
-        }
-
-        if (const auto* hero_equips = root.find("heroEquip"); hero_equips && hero_equips->is_array()) {
-            for (const auto& he : hero_equips->arr) {
-                std::string hero_idx = jtext(he, "heroIdx");
-                if (const auto* slots = he.find("equip"); slots && slots->is_array()) {
-                    for (const auto& slot : slots->arr) {
-                        g_storage->replace(HeroEquipSlot{hero_idx, jint(slot, "slot"), ji64(slot, "itemEquipId")});
-                    }
-                }
-            }
-        }
-
-        if (const auto* formations = root.find("formation"); formations && formations->is_array()) {
-            for (const auto& f : formations->arr) {
-                std::string hx;
-                if (const auto* arr = f.find("heroidx")) hx = join_strings(*arr);
-                g_storage->replace(Formation{jint(f, "no"), jint(f, "kind"), hx,
-                                             jint(f, "formationType"), jtext(f, "formationName")});
-            }
-        }
-
-        if (const auto* trees = root.find("spiritTree"); trees && trees->is_array()) {
-            for (const auto& t : trees->arr) {
-                g_storage->replace(SpiritTree{jint(t, "slotNo"), jtext(t, "heroIdx"), ji64(t, "enableDt")});
-            }
-        }
-
-        int option_id = 1;
-        if (const auto* options = root.find("heroOption"); options && options->is_array()) {
-            for (const auto& o : options->arr) {
-                g_storage->replace(HeroOption{option_id++, jint(o, "heroNo"), jint(o, "groupNo"),
-                                              jint(o, "optionSlot"), jint(o, "optionNo"),
-                                              jint(o, "optionValue"), jint(o, "optionType"),
-                                              jint(o, "optionLock")});
-            }
-        }
-
-        if (const auto* modes = root.find("challengeMode"); modes && modes->is_array()) {
-            for (const auto& m : modes->arr) {
-                std::string tasks;
-                if (const auto* arr = m.find("clearTaskNo")) tasks = join_ints(*arr);
-                g_storage->replace(ChallengeMode{jint(m, "clearStageNo"), tasks});
-            }
-        }
-
-        if (const auto* stages = root.find("stage"); stages && stages->is_array()) {
-            for (const auto& s : stages->arr) {
-                g_storage->replace(Stage{jint(s, "stageNo"), jint(s, "stageType"), ji64(s, "updateDt")});
-            }
-        }
-
-        if (const auto* stories = root.find("story"); stories && stories->is_array()) {
-            for (const auto& s : stories->arr) {
-                g_storage->replace(Story{jint(s, "storyNo"), ji64(s, "updateDt")});
-            }
-        }
-
-        if (const auto* tutorials = root.find("tutorial"); tutorials && tutorials->is_array()) {
-            for (const auto& t : tutorials->arr) {
-                g_storage->replace(Tutorial{jint(t, "tutorialNo")});
-            }
-        }
-
-        if (const auto* dungeon_list = root.find("dungeonList")) {
-            if (const auto* rewards = dungeon_list->find("dungeonReward"); rewards && rewards->is_array()) {
-                for (const auto& reward : rewards->arr) {
-                    const json::Value* d = reward.find("dungeon");
-                    if (!d) d = &reward;
-                    int dungeon_no = jint(*d, "dungeonNo");
-                    if (dungeon_no != 0) {
-                        g_storage->replace(Dungeon{dungeon_no, ji64(*d, "updateDt"), jint(*d, "isFirstClear")});
-                    }
-                }
-            }
-        }
-
-        put_kv("seeded", "1");
-        return true;
-    });
-
-    if (ok) {
-        log_line(0, "ORM", "seeded from " + responses_dir + "/UserInfo hero=" + std::to_string(g_storage->count<Hero>()) +
-                               " itemEtc=" + std::to_string(g_storage->count<ItemEtc>()) +
-                               " currency=" + std::to_string(g_storage->count<Currency>()));
-    }
-    return ok;
-}
-
-std::vector<std::string> candidate_paths(const std::string& override_path) {
-    if (!override_path.empty()) return {override_path};
-#ifdef __ANDROID__
-    ::mkdir("/sdcard/Android/data/com.kakaogames.eversoul", 0770);
-    ::mkdir("/sdcard/Android/data/com.kakaogames.eversoul/files", 0770);
-#endif
-    return {
-        "/sdcard/Android/data/com.kakaogames.eversoul/files/eversoul_orm.db",
-        "/storage/emulated/0/Android/data/com.kakaogames.eversoul/files/eversoul_orm.db",
-        "/data/data/com.kakaogames.eversoul/files/eversoul_orm.db",
-        "eversoul_orm.db",
-    };
+int raw_count(sqlite3* db, const char* table) {
+    std::string sql = std::string("SELECT COUNT(*) FROM ") + table;
+    sqlite3_stmt* st = nullptr;
+    if (sqlite3_prepare_v2(db, sql.c_str(), -1, &st, nullptr) != SQLITE_OK) return 0;
+    int n = 0;
+    if (sqlite3_step(st) == SQLITE_ROW) n = sqlite3_column_int(st, 0);
+    sqlite3_finalize(st);
+    return n;
 }
 
 std::string join_csv(const std::vector<std::string>& values) {
@@ -415,38 +126,39 @@ std::string join_csv(const std::vector<std::string>& values) {
     return out;
 }
 
-bool ensure_ready_locked(const std::string& data_dir, const std::string& db_path_override) {
-    if (g_storage) return true;
-
-    for (const auto& path : candidate_paths(db_path_override)) {
-        try {
-            auto storage = std::make_unique<Storage>(make_account_storage(path));
-            storage->pragma.journal_mode(sqlite_orm::journal_mode::WAL);
-            storage->pragma.synchronous(1);
-            storage->sync_schema();
-            g_storage = std::move(storage);
-            g_opened_path = path;
-            log_line(0, "ORM", "opened " + path);
-            break;
-        } catch (const std::exception& ex) {
-            log_line(0, "ORM", "open failed " + path + ": " + ex.what());
-        }
-    }
-
-    if (!g_storage) return false;
-
-    auto seeded = g_storage->get_optional<Kv>("seeded");
-    if (!seeded || seeded->v != "1") {
-        return seed_from_userinfo(data_dir);
-    }
-    return true;
+Hero to_orm_hero(const HeroRow& r) {
+    return Hero{r.idx, r.hero_no, r.level, r.is_resonance,
+                r.grade_sno, r.race_sno, r.is_lock};
 }
 
-template <class T>
-std::vector<T> all_rows() {
-    std::lock_guard<std::mutex> lock(g_mu);
-    if (!ensure_ready_locked(".", "")) return {};
-    return g_storage->get_all<T>();
+HeroRow to_acdb_hero(const Hero& h) {
+    return HeroRow{h.idx, h.heroNo, h.level, h.isResonance,
+                   h.gradeSno, h.raceSno, h.isLock};
+}
+
+HeroRep to_orm_herorep(const HeroReputationRow& r) {
+    return HeroRep{r.hero_no, r.reputation, r.state, r.stress,
+                   r.last_update_dt, r.gift_dt, r.costume_item_no,
+                   r.story_reward, r.max_grade_sno,
+                   static_cast<int>(r.objet_uid), r.max_level_dt,
+                   r.arbeit_exp, r.priority, r.rest_finish_dt, r.objet_no};
+}
+
+HeroReputationRow to_acdb_herorep(const HeroRep& r) {
+    return HeroReputationRow{r.heroNo, r.reputation, r.state, r.stress,
+                              r.lastUpdateDt, r.giftDt, r.costumeItemNo,
+                              r.storyReward, r.maxGradeSno,
+                              static_cast<std::int64_t>(r.objetUid),
+                              r.maxLevelDt, r.arbeitExp, r.priority,
+                              r.restFinishDt, r.objetNo};
+}
+
+ItemEquip to_orm_itemequip(const ItemEquipRow& r) {
+    return ItemEquip{r.id, r.item_no, r.exp};
+}
+
+ItemEquipRow to_acdb_itemequip(const ItemEquip& i) {
+    return ItemEquipRow{i.id, i.itemNo, i.exp};
 }
 
 }  // namespace
@@ -460,220 +172,494 @@ bool smoke_test() {
 }
 
 bool ensure_ready(const std::string& data_dir, const std::string& db_path_override) {
-    std::lock_guard<std::mutex> lock(g_mu);
-    return ensure_ready_locked(data_dir, db_path_override);
-}
+    (void)db_path_override;
+    auto& mgr = account_db_manager();
+    if (mgr.active_db()) return true;
 
-bool reseed_from_profile(const std::string& data_dir, const std::string& responses_dir) {
-    std::lock_guard<std::mutex> lock(g_mu);
-    if (!ensure_ready_locked(data_dir, "")) return false;
-    return seed_from_userinfo(data_dir, responses_dir);
-}
-
-std::string opened_path() {
-    std::lock_guard<std::mutex> lock(g_mu);
-    return g_opened_path;
-}
-
-int row_count(const std::string& table) {
-    std::lock_guard<std::mutex> lock(g_mu);
-    if (!ensure_ready_locked(".", "")) return 0;
-    if (table == "hero") return g_storage->count<Hero>();
-    if (table == "hero_rep") return g_storage->count<HeroRep>();
-    if (table == "currency") return g_storage->count<Currency>();
-    if (table == "item_etc") return g_storage->count<ItemEtc>();
-    if (table == "item_equip") return g_storage->count<ItemEquip>();
-    if (table == "hero_equip_slot") return g_storage->count<HeroEquipSlot>();
-    if (table == "formation") return g_storage->count<Formation>();
-    if (table == "spirit_tree") return g_storage->count<SpiritTree>();
-    if (table == "hero_option") return g_storage->count<HeroOption>();
-    if (table == "challenge_mode") return g_storage->count<ChallengeMode>();
-    if (table == "stage") return g_storage->count<Stage>();
-    if (table == "story") return g_storage->count<Story>();
-    if (table == "tutorial") return g_storage->count<Tutorial>();
-    if (table == "dungeon") return g_storage->count<Dungeon>();
-    if (table == "kv") return g_storage->count<Kv>();
-    return 0;
-}
-
-std::string kv_get(const std::string& key, const std::string& fallback) {
-    std::lock_guard<std::mutex> lock(g_mu);
-    if (!ensure_ready_locked(".", "")) return fallback;
-    auto row = g_storage->get_optional<Kv>(key);
-    return row ? row->v : fallback;
-}
-
-void kv_set(const std::string& key, const std::string& value) {
-    std::lock_guard<std::mutex> lock(g_mu);
-    if (!ensure_ready_locked(".", "")) return;
-    g_storage->replace(Kv{key, value});
-}
-
-std::vector<Currency> currencies() { return all_rows<Currency>(); }
-std::vector<Hero> heroes() { return all_rows<Hero>(); }
-std::vector<HeroRep> hero_reps() { return all_rows<HeroRep>(); }
-std::vector<ItemEtc> item_etcs() { return all_rows<ItemEtc>(); }
-std::vector<ItemEquip> item_equips() { return all_rows<ItemEquip>(); }
-std::vector<HeroEquipSlot> hero_equip_slots() { return all_rows<HeroEquipSlot>(); }
-std::vector<Formation> formations() { return all_rows<Formation>(); }
-std::vector<SpiritTree> spirit_trees() { return all_rows<SpiritTree>(); }
-std::vector<HeroOption> hero_options() { return all_rows<HeroOption>(); }
-std::vector<ChallengeMode> challenge_modes() { return all_rows<ChallengeMode>(); }
-std::vector<Stage> stages() { return all_rows<Stage>(); }
-std::vector<Story> stories() { return all_rows<Story>(); }
-std::vector<Tutorial> tutorials() { return all_rows<Tutorial>(); }
-std::vector<Dungeon> dungeons() { return all_rows<Dungeon>(); }
-
-std::optional<Hero> hero_by_idx(const std::string& idx) {
-    std::lock_guard<std::mutex> lock(g_mu);
-    if (!ensure_ready_locked(".", "")) return std::nullopt;
-    return g_storage->get_optional<Hero>(idx);
-}
-
-std::optional<HeroRep> hero_rep_by_no(int hero_no) {
-    std::lock_guard<std::mutex> lock(g_mu);
-    if (!ensure_ready_locked(".", "")) return std::nullopt;
-    return g_storage->get_optional<HeroRep>(hero_no);
-}
-
-std::optional<ItemEquip> item_equip_by_id(std::int64_t id) {
-    std::lock_guard<std::mutex> lock(g_mu);
-    if (!ensure_ready_locked(".", "")) return std::nullopt;
-    return g_storage->get_optional<ItemEquip>(id);
-}
-
-std::optional<HeroEquipSlot> hero_equip_slot(const std::string& hero_idx, int slot) {
-    std::lock_guard<std::mutex> lock(g_mu);
-    if (!ensure_ready_locked(".", "")) return std::nullopt;
-    return g_storage->get_optional<HeroEquipSlot>(hero_idx, slot);
-}
-
-int max_stage_no() {
-    int max_no = 0;
-    for (const auto& row : stages()) {
-        if (row.stageNo > max_no) max_no = row.stageNo;
-    }
-    return max_no;
-}
-
-int max_tutorial_no() {
-    int max_no = 0;
-    for (const auto& row : tutorials()) {
-        if (row.tutorialNo > max_no) max_no = row.tutorialNo;
-    }
-    return max_no;
-}
-
-void heal_progress() {
-    std::lock_guard<std::mutex> lock(g_mu);
-    if (!ensure_ready_locked(".", "")) return;
-
-    int max_stage = 0;
-    for (const auto& row : g_storage->get_all<Stage>()) {
-        if (row.stageNo > max_stage) max_stage = row.stageNo;
-    }
-    int max_tutorial = 0;
-    for (const auto& row : g_storage->get_all<Tutorial>()) {
-        if (row.tutorialNo > max_tutorial) max_tutorial = row.tutorialNo;
+    auto& reg = account_registry();
+    if (!reg.list_active().empty()) {
+        const bool ok = mgr.reload_active();
+        const std::string aid = reg.active_account_id();
+        if (!aid.empty() && !reg.find_session(aid)) {
+            AccountSessionRow sess = ws_session_default_row();
+            sess.account_id = aid;
+            reg.upsert_session(sess);
+        }
+        return ok;
     }
 
     const std::int64_t now = unix_ms();
+    const std::string account_id = "acct-default";
+    const std::string abs_dir =
+        (std::filesystem::path(config().state_dir) / "accounts" / account_id).string();
 
+    auto adb = std::make_unique<AccountDatabase>(abs_dir);
+    if (!adb->open()) {
+        log_line(0, "ORM", "bootstrap: db open failed: " + abs_dir);
+        return false;
+    }
+    if (!adb->seed_from_fixture("full", data_dir)) {
+        log_line(0, "ORM", "bootstrap: seed_from_fixture failed");
+    }
+
+    AccountEntry e;
+    e.account_id         = account_id;
+    e.display_name       = "offline";
+    e.player_id          = kDefaultPlayerId;
+    e.idp_code           = "zd3";
+    e.profile_source     = "responses";
+    e.state_db_relpath   = "accounts/" + account_id + "/state.sqlite3";
+    e.session_db_relpath = "accounts/" + account_id + "/session.sqlite3";
+    e.created_at_ms      = now;
+    e.updated_at_ms      = now;
+
+    if (!reg.insert(e)) {
+        log_line(0, "ORM", "bootstrap: registry insert failed");
+        return false;
+    }
+
+    {
+        AccountSessionRow sess = ws_session_default_row();
+        sess.account_id = account_id;
+        reg.upsert_session(sess);
+    }
+
+    reg.set_active(account_id, now);
+    adb.reset();
+    log_line(0, "ORM", "bootstrap: created default account " + abs_dir);
+    return mgr.switch_to(account_id);
+}
+
+bool reseed_from_profile(const std::string& data_dir, const std::string& responses_dir) {
+    auto* db = account_db_manager().active_db();
+    if (!db) return false;
+    return db->seed_from_fixture(responses_dir, data_dir);
+}
+
+std::string opened_path() {
+    auto* db = account_db_manager().active_db();
+    if (!db) return {};
+    return db->account_dir();
+}
+
+int row_count(const std::string& table) {
+    auto* db = account_db_manager().active_db();
+    if (!db) return 0;
+    sqlite3* raw = db->raw_db();
+    if (!raw) return 0;
+    const std::string& tbl = (table == "hero_rep") ? "hero_reputation" :
+                              (table == "kv")        ? "account_meta"    : table;
+    return raw_count(raw, tbl.c_str());
+}
+
+std::string kv_get(const std::string& key, const std::string& fallback) {
+    auto* db = account_db_manager().active_db();
+    if (!db) return fallback;
+    return db->meta_get(key, fallback);
+}
+
+void kv_set(const std::string& key, const std::string& value) {
+    auto* db = account_db_manager().active_db();
+    if (!db) return;
+    db->meta_set(key, value);
+}
+
+std::vector<Currency> currencies() {
+    auto* db = account_db_manager().active_db();
+    if (!db) return {};
+    std::vector<Currency> out;
+    for (const auto& r : db->currencies())
+        out.push_back(Currency{r.type, r.value});
+    return out;
+}
+
+std::vector<Hero> heroes() {
+    auto* db = account_db_manager().active_db();
+    if (!db) return {};
+    std::vector<Hero> out;
+    for (const auto& r : db->heroes())
+        out.push_back(to_orm_hero(r));
+    return out;
+}
+
+std::vector<HeroRep> hero_reps() {
+    auto* db = account_db_manager().active_db();
+    if (!db) return {};
+    std::vector<HeroRep> out;
+    for (const auto& r : db->hero_reputations())
+        out.push_back(to_orm_herorep(r));
+    return out;
+}
+
+std::vector<ItemEtc> item_etcs() {
+    auto* db = account_db_manager().active_db();
+    if (!db) return {};
+    sqlite3* raw = db->raw_db();
+    if (!raw) return {};
+    std::vector<ItemEtc> out;
+    sqlite3_stmt* st = nullptr;
+    if (sqlite3_prepare_v2(raw, "SELECT item_no, cnt FROM item_etc", -1, &st, nullptr) == SQLITE_OK) {
+        while (sqlite3_step(st) == SQLITE_ROW)
+            out.push_back(ItemEtc{sqlite3_column_int(st, 0), sqlite3_column_int(st, 1)});
+        sqlite3_finalize(st);
+    }
+    return out;
+}
+
+std::vector<ItemEquip> item_equips() {
+    auto* db = account_db_manager().active_db();
+    if (!db) return {};
+    std::vector<ItemEquip> out;
+    for (const auto& r : db->item_equips())
+        out.push_back(to_orm_itemequip(r));
+    return out;
+}
+
+std::vector<HeroEquipSlot> hero_equip_slots() {
+    auto* db = account_db_manager().active_db();
+    if (!db) return {};
+    sqlite3* raw = db->raw_db();
+    if (!raw) return {};
+    std::vector<HeroEquipSlot> out;
+    sqlite3_stmt* st = nullptr;
+    if (sqlite3_prepare_v2(raw,
+            "SELECT hero_idx, slot, item_equip_id FROM hero_equip_slot",
+            -1, &st, nullptr) == SQLITE_OK) {
+        while (sqlite3_step(st) == SQLITE_ROW) {
+            const char* idx = reinterpret_cast<const char*>(sqlite3_column_text(st, 0));
+            out.push_back(HeroEquipSlot{idx ? idx : "",
+                                        sqlite3_column_int(st, 1),
+                                        sqlite3_column_int64(st, 2)});
+        }
+        sqlite3_finalize(st);
+    }
+    return out;
+}
+
+std::vector<Formation> formations() {
+    auto* db = account_db_manager().active_db();
+    if (!db) return {};
+    std::vector<Formation> out;
+    for (const auto& f : db->formations()) {
+        std::vector<std::string> idxs;
+        for (const auto& h : db->formation_heroes(f.no, f.kind))
+            idxs.push_back(h.hero_idx);
+        out.push_back(Formation{f.no, f.kind, join_csv(idxs), f.formation_type, f.formation_name});
+    }
+    return out;
+}
+
+std::vector<SpiritTree> spirit_trees() {
+    auto* db = account_db_manager().active_db();
+    if (!db) return {};
+    std::vector<SpiritTree> out;
+    for (const auto& r : db->spirit_trees())
+        out.push_back(SpiritTree{r.slot_no, r.hero_idx, r.enable_dt});
+    return out;
+}
+
+std::vector<HeroOption> hero_options() {
+    auto* db = account_db_manager().active_db();
+    if (!db) return {};
+    sqlite3* raw = db->raw_db();
+    if (!raw) return {};
+    std::vector<HeroOption> out;
+    sqlite3_stmt* st = nullptr;
+    if (sqlite3_prepare_v2(raw,
+            "SELECT rowid, hero_no, group_no, option_slot, option_no,"
+            " option_value, option_type, option_lock FROM hero_option",
+            -1, &st, nullptr) == SQLITE_OK) {
+        while (sqlite3_step(st) == SQLITE_ROW) {
+            out.push_back(HeroOption{static_cast<int>(sqlite3_column_int64(st, 0)),
+                                     sqlite3_column_int(st, 1),
+                                     sqlite3_column_int(st, 2),
+                                     sqlite3_column_int(st, 3),
+                                     sqlite3_column_int(st, 4),
+                                     sqlite3_column_int(st, 5),
+                                     sqlite3_column_int(st, 6),
+                                     sqlite3_column_int(st, 7)});
+        }
+        sqlite3_finalize(st);
+    }
+    return out;
+}
+
+std::vector<ChallengeMode> challenge_modes() {
+    auto* db = account_db_manager().active_db();
+    if (!db) return {};
+    sqlite3* raw = db->raw_db();
+    if (!raw) return {};
+    std::vector<ChallengeMode> out;
+    sqlite3_stmt* st = nullptr;
+    if (sqlite3_prepare_v2(raw,
+            "SELECT clear_stage_no FROM challenge_mode",
+            -1, &st, nullptr) == SQLITE_OK) {
+        while (sqlite3_step(st) == SQLITE_ROW)
+            out.push_back(ChallengeMode{sqlite3_column_int(st, 0), ""});
+        sqlite3_finalize(st);
+    }
+    for (auto& cm : out) {
+        sqlite3_stmt* ts = nullptr;
+        if (sqlite3_prepare_v2(raw,
+                "SELECT clear_task_no FROM challenge_mode_task"
+                " WHERE clear_stage_no=? ORDER BY task_order",
+                -1, &ts, nullptr) == SQLITE_OK) {
+            sqlite3_bind_int(ts, 1, cm.clearStageNo);
+            std::string tasks;
+            while (sqlite3_step(ts) == SQLITE_ROW) {
+                if (!tasks.empty()) tasks.push_back(',');
+                tasks += std::to_string(sqlite3_column_int(ts, 0));
+            }
+            cm.clearTaskNo = std::move(tasks);
+            sqlite3_finalize(ts);
+        }
+    }
+    return out;
+}
+
+std::vector<Stage> stages() {
+    auto* db = account_db_manager().active_db();
+    if (!db) return {};
+    sqlite3* raw = db->raw_db();
+    if (!raw) return {};
+    std::vector<Stage> out;
+    sqlite3_stmt* st = nullptr;
+    if (sqlite3_prepare_v2(raw,
+            "SELECT stage_no, stage_type, update_dt FROM stage",
+            -1, &st, nullptr) == SQLITE_OK) {
+        while (sqlite3_step(st) == SQLITE_ROW)
+            out.push_back(Stage{sqlite3_column_int(st, 0),
+                                sqlite3_column_int(st, 1),
+                                sqlite3_column_int64(st, 2)});
+        sqlite3_finalize(st);
+    }
+    return out;
+}
+
+std::vector<Story> stories() {
+    auto* db = account_db_manager().active_db();
+    if (!db) return {};
+    sqlite3* raw = db->raw_db();
+    if (!raw) return {};
+    std::vector<Story> out;
+    sqlite3_stmt* st = nullptr;
+    if (sqlite3_prepare_v2(raw,
+            "SELECT story_no, update_dt FROM story",
+            -1, &st, nullptr) == SQLITE_OK) {
+        while (sqlite3_step(st) == SQLITE_ROW)
+            out.push_back(Story{sqlite3_column_int(st, 0), sqlite3_column_int64(st, 1)});
+        sqlite3_finalize(st);
+    }
+    return out;
+}
+
+std::vector<Tutorial> tutorials() {
+    auto* db = account_db_manager().active_db();
+    if (!db) return {};
+    std::vector<Tutorial> out;
+    for (int no : db->tutorials())
+        out.push_back(Tutorial{no});
+    return out;
+}
+
+std::vector<Dungeon> dungeons() {
+    auto* db = account_db_manager().active_db();
+    if (!db) return {};
+    std::vector<Dungeon> out;
+    for (const auto& r : db->dungeons())
+        out.push_back(Dungeon{r.dungeon_no, r.update_dt, r.is_first_clear});
+    return out;
+}
+
+std::optional<Hero> hero_by_idx(const std::string& idx) {
+    auto* db = account_db_manager().active_db();
+    if (!db) return std::nullopt;
+    auto r = db->hero_by_idx(idx);
+    if (!r) return std::nullopt;
+    return to_orm_hero(*r);
+}
+
+std::optional<HeroRep> hero_rep_by_no(int hero_no) {
+    auto* db = account_db_manager().active_db();
+    if (!db) return std::nullopt;
+    auto r = db->hero_reputation_by_no(hero_no);
+    if (!r) return std::nullopt;
+    return to_orm_herorep(*r);
+}
+
+std::optional<ItemEquip> item_equip_by_id(std::int64_t id) {
+    auto* db = account_db_manager().active_db();
+    if (!db) return std::nullopt;
+    auto r = db->item_equip_by_id(id);
+    if (!r) return std::nullopt;
+    return to_orm_itemequip(*r);
+}
+
+std::optional<HeroEquipSlot> hero_equip_slot(const std::string& hero_idx, int slot) {
+    auto* db = account_db_manager().active_db();
+    if (!db) return std::nullopt;
+    sqlite3* raw = db->raw_db();
+    if (!raw) return std::nullopt;
+    sqlite3_stmt* st = nullptr;
+    std::optional<HeroEquipSlot> result;
+    if (sqlite3_prepare_v2(raw,
+            "SELECT hero_idx, slot, item_equip_id FROM hero_equip_slot"
+            " WHERE hero_idx=? AND slot=?",
+            -1, &st, nullptr) == SQLITE_OK) {
+        sqlite3_bind_text(st, 1, hero_idx.c_str(), -1, SQLITE_STATIC);
+        sqlite3_bind_int(st, 2, slot);
+        if (sqlite3_step(st) == SQLITE_ROW) {
+            const char* idx = reinterpret_cast<const char*>(sqlite3_column_text(st, 0));
+            result = HeroEquipSlot{idx ? idx : "",
+                                   sqlite3_column_int(st, 1),
+                                   sqlite3_column_int64(st, 2)};
+        }
+        sqlite3_finalize(st);
+    }
+    return result;
+}
+
+int max_stage_no() {
+    auto* db = account_db_manager().active_db();
+    if (!db) return 0;
+    return db->max_stage_no();
+}
+
+int max_tutorial_no() {
+    auto* db = account_db_manager().active_db();
+    if (!db) return 0;
+    return db->max_tutorial_no();
+}
+
+void heal_progress() {
+    auto* db = account_db_manager().active_db();
+    if (!db) return;
+    int max_stage = db->max_stage_no();
+    int max_tutorial = db->max_tutorial_no();
+    const std::int64_t now = unix_ms();
+    const auto story_list = db->stories();
+    auto has_story = [&](int no) {
+        return std::find(story_list.begin(), story_list.end(), no) != story_list.end();
+    };
     if (max_stage >= 5 || max_tutorial >= 4800) {
-        if (!g_storage->get_optional<Story>(10001)) {
-            g_storage->replace(Story{10001, now});
+        if (!has_story(10001)) {
+            db->upsert_story(10001, now);
             log_line(0, "ORM", "heal: story 10001");
         }
-        if (!g_storage->get_optional<Dungeon>(10001)) {
-            g_storage->replace(Dungeon{10001, now, 1});
+        if (!db->dungeon_by_no(10001)) {
+            eversoul::DungeonRow dr;
+            dr.dungeon_no     = 10001;
+            dr.update_dt      = now;
+            dr.is_first_clear = 1;
+            db->upsert_dungeon(dr);
             log_line(0, "ORM", "heal: dungeon 10001 cleared");
         }
     }
-    if (max_tutorial >= 4700 && g_storage->get_optional<Dungeon>(10001) && max_tutorial < 4800) {
-        g_storage->replace(Tutorial{4800});
+    if (max_tutorial >= 4700 && db->dungeon_by_no(10001) && max_tutorial < 4800) {
+        db->upsert_tutorial(4800);
         log_line(0, "ORM", "heal: tutorial 4800 after dungeon 10001");
     }
     if (max_tutorial >= 4900) {
-        if (!g_storage->get_optional<Story>(11)) {
-            g_storage->replace(Story{11, now});
+        if (!has_story(11)) {
+            db->upsert_story(11, now);
             log_line(0, "ORM", "heal: story 11");
         }
     }
     if (max_stage >= 5) {
-        auto item = g_storage->get_optional<ItemEtc>(3201);
-        if (!item || item->cnt <= 0) {
-            g_storage->replace(ItemEtc{3201, 60});
+        if (db->item_etc_count(3201) <= 0) {
+            db->item_etc_set(3201, 60);
             log_line(0, "ORM", "heal: item_etc 3201 x60 for hero upgrade");
         }
     }
 }
 
 int item_etc_count(int item_no) {
-    std::lock_guard<std::mutex> lock(g_mu);
-    if (!ensure_ready_locked(".", "")) return 0;
-    auto row = g_storage->get_optional<ItemEtc>(item_no);
-    return row ? row->cnt : 0;
+    auto* db = account_db_manager().active_db();
+    if (!db) return 0;
+    return db->item_etc_count(item_no);
 }
 
 bool has_dungeon(int dungeon_no) {
-    std::lock_guard<std::mutex> lock(g_mu);
-    if (!ensure_ready_locked(".", "")) return false;
-    return g_storage->get_optional<Dungeon>(dungeon_no).has_value();
+    auto* db = account_db_manager().active_db();
+    if (!db) return false;
+    return db->dungeon_by_no(dungeon_no).has_value();
 }
 
 void save_tutorial(int tutorial_no) {
-    std::lock_guard<std::mutex> lock(g_mu);
-    if (!ensure_ready_locked(".", "")) return;
-    g_storage->replace(Tutorial{tutorial_no});
+    auto* db = account_db_manager().active_db();
+    if (!db) return;
+    db->upsert_tutorial(tutorial_no);
 }
 
 void save_stage(int stage_no, int stage_type, std::int64_t update_dt) {
-    std::lock_guard<std::mutex> lock(g_mu);
-    if (!ensure_ready_locked(".", "")) return;
-    g_storage->replace(Stage{stage_no, stage_type, update_dt});
+    auto* db = account_db_manager().active_db();
+    if (!db) return;
+    db->upsert_stage(stage_no, stage_type, update_dt);
 }
 
 void save_story(int story_no, std::int64_t update_dt) {
-    std::lock_guard<std::mutex> lock(g_mu);
-    if (!ensure_ready_locked(".", "")) return;
-    g_storage->replace(Story{story_no, update_dt});
+    auto* db = account_db_manager().active_db();
+    if (!db) return;
+    db->upsert_story(story_no, update_dt);
 }
 
 void save_dungeon(int dungeon_no, std::int64_t update_dt, int is_first_clear) {
-    std::lock_guard<std::mutex> lock(g_mu);
-    if (!ensure_ready_locked(".", "")) return;
-    g_storage->replace(Dungeon{dungeon_no, update_dt, is_first_clear});
+    auto* db = account_db_manager().active_db();
+    if (!db) return;
+    eversoul::DungeonRow row;
+    row.dungeon_no     = dungeon_no;
+    row.update_dt      = update_dt;
+    row.is_first_clear = is_first_clear;
+    db->upsert_dungeon(row);
 }
 
 void save_formation(int no, int kind, const std::vector<std::string>& heroidx,
                     int formation_type, const std::string& name) {
-    std::lock_guard<std::mutex> lock(g_mu);
-    if (!ensure_ready_locked(".", "")) return;
-    g_storage->replace(Formation{no, kind, join_csv(heroidx), formation_type, name});
+    auto* db = account_db_manager().active_db();
+    if (!db) return;
+    eversoul::FormationRow fr;
+    fr.no             = no;
+    fr.kind           = kind;
+    fr.formation_type = formation_type;
+    fr.formation_name = name;
+    db->upsert_formation(fr);
+    db->delete_formation_heroes(no, kind);
+    for (int i = 0; i < static_cast<int>(heroidx.size()); ++i) {
+        eversoul::FormationHeroRow fhr;
+        fhr.no       = no;
+        fhr.kind     = kind;
+        fhr.position = i;
+        fhr.hero_idx = heroidx[i];
+        db->upsert_formation_hero(fhr);
+    }
 }
 
 void save_hero(const Hero& hero) {
-    std::lock_guard<std::mutex> lock(g_mu);
-    if (!ensure_ready_locked(".", "")) return;
-    g_storage->replace(hero);
+    auto* db = account_db_manager().active_db();
+    if (!db) return;
+    db->upsert_hero(to_acdb_hero(hero));
 }
 
 void save_hero_rep(const HeroRep& rep) {
-    std::lock_guard<std::mutex> lock(g_mu);
-    if (!ensure_ready_locked(".", "")) return;
-    g_storage->replace(rep);
+    auto* db = account_db_manager().active_db();
+    if (!db) return;
+    db->upsert_hero_reputation(to_acdb_herorep(rep));
 }
 
 void save_item_equip(const ItemEquip& item) {
-    std::lock_guard<std::mutex> lock(g_mu);
-    if (!ensure_ready_locked(".", "")) return;
-    g_storage->replace(item);
+    auto* db = account_db_manager().active_db();
+    if (!db) return;
+    db->upsert_item_equip(to_acdb_itemequip(item));
 }
 
 void save_hero_equip_slot(const std::string& hero_idx, int slot, std::int64_t item_equip_id) {
-    std::lock_guard<std::mutex> lock(g_mu);
-    if (!ensure_ready_locked(".", "")) return;
-    g_storage->replace(HeroEquipSlot{hero_idx, slot, item_equip_id});
+    auto* db = account_db_manager().active_db();
+    if (!db) return;
+    eversoul::HeroEquipSlotRow row;
+    row.hero_idx      = hero_idx;
+    row.slot          = slot;
+    row.item_equip_id = item_equip_id;
+    db->upsert_hero_equip_slot(row);
 }
 
 void clear_hero_equip_slot(const std::string& hero_idx, int slot) {
@@ -681,42 +667,37 @@ void clear_hero_equip_slot(const std::string& hero_idx, int slot) {
 }
 
 void save_spirit_tree(int slot_no, const std::string& hero_idx, std::int64_t enable_dt) {
-    std::lock_guard<std::mutex> lock(g_mu);
-    if (!ensure_ready_locked(".", "")) return;
-    g_storage->replace(SpiritTree{slot_no, hero_idx, enable_dt});
+    auto* db = account_db_manager().active_db();
+    if (!db) return;
+    eversoul::AccountDatabase::SpiritTreeRow row{slot_no, hero_idx, enable_dt};
+    db->upsert_spirit_tree(row);
 }
 
 void set_hero_level(const std::string& idx, int level) {
-    std::lock_guard<std::mutex> lock(g_mu);
-    if (!ensure_ready_locked(".", "")) return;
-    auto row = g_storage->get_optional<Hero>(idx);
-    if (!row) return;
-    row->level = level;
-    g_storage->replace(*row);
+    auto* db = account_db_manager().active_db();
+    if (!db) return;
+    auto r = db->hero_by_idx(idx);
+    if (!r) return;
+    r->level = level;
+    db->upsert_hero(*r);
 }
 
 void add_item_etc(int item_no, int delta) {
-    std::lock_guard<std::mutex> lock(g_mu);
-    if (!ensure_ready_locked(".", "")) return;
-    auto row = g_storage->get_optional<ItemEtc>(item_no).value_or(ItemEtc{item_no, 0});
-    row.cnt += delta;
-    if (row.cnt < 0) row.cnt = 0;
-    g_storage->replace(row);
+    auto* db = account_db_manager().active_db();
+    if (!db) return;
+    db->item_etc_add(item_no, delta);
 }
 
 void set_item_etc(int item_no, int count) {
-    std::lock_guard<std::mutex> lock(g_mu);
-    if (!ensure_ready_locked(".", "")) return;
-    g_storage->replace(ItemEtc{item_no, count});
+    auto* db = account_db_manager().active_db();
+    if (!db) return;
+    db->item_etc_set(item_no, count);
 }
 
 void add_currency(int type, std::int64_t delta) {
-    std::lock_guard<std::mutex> lock(g_mu);
-    if (!ensure_ready_locked(".", "")) return;
-    auto row = g_storage->get_optional<Currency>(type).value_or(Currency{type, 0});
-    row.value += delta;
-    if (row.value < 0) row.value = 0;
-    g_storage->replace(row);
+    auto* db = account_db_manager().active_db();
+    if (!db) return;
+    db->currency_add(type, delta);
 }
 
 }  // namespace eversoul::orm

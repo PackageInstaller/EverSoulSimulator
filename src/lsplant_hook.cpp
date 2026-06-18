@@ -1,7 +1,7 @@
 // lsplant_hook.cpp — Java-layer URL redirection via LSPlant.
 //
 // Uses LSPlant to hook java.net.URL constructors and OkHttp's Request$Builder.url()
-// so that all outgoing HTTP requests are redirected to 127.0.0.1:9999.
+// so that all outgoing HTTP requests are redirected to 127.0.0.1:9991.
 //
 // LSPlant requires InitInfo with:
 //   - inline_hooker / inline_unhooker → backed by Dobby (full ARM64 relocation)

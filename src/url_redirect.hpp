@@ -6,8 +6,8 @@
 namespace eversoul::url_redirect {
 
 // HTTP 리다이렉트 대상 도메인 목록
-inline constexpr std::string_view kLocalHttpBase = "http://127.0.0.1:9999";
-inline constexpr std::string_view kLocalWsBase   = "ws://127.0.0.1:9999";
+inline constexpr std::string_view kLocalHttpBase = "http://127.0.0.1:9991";
+inline constexpr std::string_view kLocalWsBase   = "ws://127.0.0.1:9991";
 
 // Java / native 두 레이어에서 공통으로 사용하는 URL 재작성 순수 함수.
 // lockincomp / DOMAINS / WS_DOMAINS 규칙 적용.

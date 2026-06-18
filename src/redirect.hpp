@@ -17,7 +17,7 @@ namespace eversoul::redirect
     // hooks, which only ever see hostnames/IPs, never full URLs.
     bool is_target_host(std::string_view host);
 
-    // Rewrite a URL to point at the local offline server (127.0.0.1:9999).
+    // Rewrite a URL to point at the local offline server (127.0.0.1:9991).
     // Returns the original string if no rewrite applies.
     std::string rewrite_url(std::string_view url);
 

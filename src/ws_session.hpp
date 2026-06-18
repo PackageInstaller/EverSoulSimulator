@@ -3,6 +3,8 @@
 
 #include <string>
 
+#include "account_registry.hpp"
+
 namespace eversoul
 {
 
@@ -30,5 +32,9 @@ namespace eversoul
     // Returns true and sets `body` if this looks like a socket.io poll.
     bool socketio_poll_response(const std::string &method, const std::string &query,
                                 std::string &body);
+
+    // session_replies.json initial_push body에서 AccountSessionRow 기본값 추출.
+    // account_id / player_id / idp_code는 호출자가 덮어써야 한다.
+    AccountSessionRow ws_session_default_row();
 
 } // namespace eversoul

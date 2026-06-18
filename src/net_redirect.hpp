@@ -3,7 +3,7 @@
 // Hooks libc connect()/getaddrinfo()/android_getaddrinfofornet() so that every
 // outbound connection destined for a Kakao / zinny3 / esoul / lockincomp host
 // (see eversoul::redirect domain lists) is bounced to the in-process offline
-// server at 127.0.0.1:9999 — regardless of which layer issued it (Java
+// server at 127.0.0.1:9991 — regardless of which layer issued it (Java
 // HttpURLConnection, Java raw Socket / WebSocketClient, or Unity UnityWebRequest).
 //
 // This sits below the URL-string layer, so it catches the WebSocket path that

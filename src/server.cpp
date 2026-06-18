@@ -11,6 +11,7 @@
 #include "fixture_store.hpp"
 #include "http.hpp"
 #include "log.hpp"
+#include "orm/storage.hpp"
 #include "proxy.hpp"
 #include "router.hpp"
 #include "websocket.hpp"
@@ -127,6 +128,12 @@ namespace eversoul
         fixture_store().load(config().data_dir);
         // Load WebSocket replay fixtures (Kakao session + socket.io chat).
         ws_load_fixtures(config().data_dir);
+
+        // 서버 리슨 전에 sqlite3 계정 체계를 준비한다.
+        // 레지스트리가 비어있으면 acct-default 계정과 state.sqlite3를 자동 생성한다.
+        if (!orm::ensure_ready(config().data_dir)) {
+            log_line(0, "WARN", "account db bootstrap failed — DB will be attempted per-request");
+        }
 
         int server_fd = socket(AF_INET, SOCK_STREAM, 0);
         if (server_fd < 0)

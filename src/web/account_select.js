@@ -80,6 +80,7 @@ async function load() {
             (isActive ? '<span class="badge badge-ok" style="margin-left:6px;font-size:9px;letter-spacing:.5px">' + esc(t('acct.current_badge')) + '</span>' : '') +
           '</div>' +
           '<div class="acct-meta">' + esc(idpLabel(a.idp_code)) + ' · ' + esc(a.player_id) +
+            ' · ' + esc(t('acct.hero_count')) + ' ' + esc(String(a.hero_count || 0)) +
             (a.last_login ? ' · ' + esc(fmtDate(a.last_login)) : '') +
           '</div>' +
         '</div>' +
@@ -118,10 +119,15 @@ async function createAccount() {
   sts.className = 'acct-status';
   sts.textContent = t('new_acct.creating');
   try {
+    var profile = document.getElementById('new-profile').value;
+    var idp     = document.getElementById('new-idp').value;
+    var pid     = (document.getElementById('new-playerid').value || '').trim();
+    var payload = { nickname: nick, idp_code: idp, profile_source: profile };
+    if (pid) payload.player_id = pid;
     var res  = await fetch('/web/api/accounts', {
       method:  'POST',
       headers: { 'Content-Type': 'application/json' },
-      body:    JSON.stringify({ nickname: nick, idpCode: 'zd3' })
+      body:    JSON.stringify(payload)
     });
     var data = await res.json();
     if (!res.ok || !data.id) {

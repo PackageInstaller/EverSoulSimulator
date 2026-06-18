@@ -18,10 +18,13 @@ inline constexpr std::string_view kDomains[] = {
     "openapi-zinny3.game.kakao.com",
     "game.kakao.com",
     "kakaogames.com",
+    "live-kr.esoul.kakaogames.com",
+    "live-sea.esoul.kakaogames.com",
 };
 
 // WebSocket 대상 도메인
 inline constexpr std::string_view kWsDomains[] = {
+    "live-kr-chat.esoul.kakaogames.com",
     "live-sea-chat.esoul.kakaogames.com",
     "live-sea.esoul.kakaogames.com",
     "gc-session-zinny3.kakaogames.com",

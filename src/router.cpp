@@ -2,6 +2,10 @@
 #include "router.hpp"
 
 #include "account_db.hpp"
+#include "account_db_manager.hpp"
+#include "account_database.hpp"
+#include "account_registry.hpp"
+#include "userinfo_repository.hpp"
 #include "common.hpp"
 #include "crypto.hpp"
 #include "fixture_store.hpp"
@@ -17,6 +21,7 @@
 #include "ws_session.hpp"
 #include "adb_runner.hpp"
 #include "logcat_process.hpp"
+#include "sqlite3.h"
 
 #include <algorithm>
 #include <atomic>
@@ -540,13 +545,107 @@ namespace eversoul
             // ── DB 테이블 데이터 ─────────────────────────────────────────────────
             if (path.rfind("/web/api/db/table/", 0) == 0 && method == "GET")
             {
-                return json_ok("{\"columns\":[],\"rows\":[],\"note\":\"raw table dump not implemented\"}");
+                std::string tbl = path.substr(std::string("/web/api/db/table/").size());
+                auto q = tbl.find('?');
+                if (q != std::string::npos) tbl = tbl.substr(0, q);
+                int limit = 5000;
+                auto lq = path.find("limit=");
+                if (lq != std::string::npos) limit = std::atoi(path.c_str() + lq + 6);
+                bool safe = !tbl.empty();
+                for (char c : tbl) if (!std::isalnum((unsigned char)c) && c != '_') { safe = false; break; }
+                if (!safe) return json_ok("{\"columns\":[],\"rows\":[]}");
+                AccountDatabase* adb = mgr.active_db();
+                sqlite3* db = adb ? adb->raw_db() : nullptr;
+                if (!db) return json_ok("{\"columns\":[],\"rows\":[]}");
+                std::vector<std::string> cols;
+                {
+                    sqlite3_stmt* st = nullptr;
+                    std::string pragma = "PRAGMA table_info(\"" + tbl + "\")";
+                    if (sqlite3_prepare_v2(db, pragma.c_str(), -1, &st, nullptr) == SQLITE_OK) {
+                        while (sqlite3_step(st) == SQLITE_ROW) {
+                            const char* n = reinterpret_cast<const char*>(sqlite3_column_text(st, 1));
+                            if (n) cols.push_back(n);
+                        }
+                    }
+                    sqlite3_finalize(st);
+                }
+                std::string body = "{\"columns\":[";
+                for (std::size_t i = 0; i < cols.size(); ++i) { if (i) body += ","; body += "\"" + json_escape(cols[i]) + "\""; }
+                body += "],\"rows\":[";
+                {
+                    sqlite3_stmt* st = nullptr;
+                    std::string sel = "SELECT * FROM \"" + tbl + "\" LIMIT " + std::to_string(limit);
+                    if (sqlite3_prepare_v2(db, sel.c_str(), -1, &st, nullptr) == SQLITE_OK) {
+                        bool fr = true;
+                        while (sqlite3_step(st) == SQLITE_ROW) {
+                            if (!fr) body += ","; fr = false;
+                            body += "{";
+                            int nc = sqlite3_column_count(st);
+                            for (int c = 0; c < nc; ++c) {
+                                if (c) body += ",";
+                                const char* cn = sqlite3_column_name(st, c);
+                                body += "\"" + json_escape(cn ? cn : "") + "\":";
+                                if (sqlite3_column_type(st, c) == SQLITE_NULL) {
+                                    body += "null";
+                                } else {
+                                    const char* v = reinterpret_cast<const char*>(sqlite3_column_text(st, c));
+                                    body += "\"" + json_escape(v ? v : "") + "\"";
+                                }
+                            }
+                            body += "}";
+                        }
+                    }
+                    sqlite3_finalize(st);
+                }
+                body += "]}";
+                return json_ok(body);
             }
 
             // ── DB 스키마 ────────────────────────────────────────────────────────
             if (path.rfind("/web/api/db/schema/", 0) == 0 && method == "GET")
             {
-                return json_ok("{\"columns\":[],\"ddl\":\"\",\"note\":\"schema not implemented\"}");
+                std::string tbl = path.substr(std::string("/web/api/db/schema/").size());
+                bool safe = !tbl.empty();
+                for (char c : tbl) if (!std::isalnum((unsigned char)c) && c != '_') { safe = false; break; }
+                if (!safe) return json_ok("{\"columns\":[],\"ddl\":\"\"}");
+                AccountDatabase* adb = mgr.active_db();
+                sqlite3* db = adb ? adb->raw_db() : nullptr;
+                if (!db) return json_ok("{\"columns\":[],\"ddl\":\"\"}");
+                std::string cols_json = "[";
+                {
+                    sqlite3_stmt* st = nullptr;
+                    std::string pragma = "PRAGMA table_info(\"" + tbl + "\")";
+                    bool first = true;
+                    if (sqlite3_prepare_v2(db, pragma.c_str(), -1, &st, nullptr) == SQLITE_OK) {
+                        while (sqlite3_step(st) == SQLITE_ROW) {
+                            if (!first) cols_json += ","; first = false;
+                            const char* nm = reinterpret_cast<const char*>(sqlite3_column_text(st, 1));
+                            const char* tp = reinterpret_cast<const char*>(sqlite3_column_text(st, 2));
+                            int notnull = sqlite3_column_int(st, 3);
+                            int pk      = sqlite3_column_int(st, 5);
+                            cols_json += "{\"name\":\"" + json_escape(nm ? nm : "") + "\"";
+                            cols_json += ",\"type\":\"" + json_escape(tp ? tp : "") + "\"";
+                            cols_json += ",\"pk\":" + std::to_string(pk);
+                            cols_json += ",\"notnull\":" + std::to_string(notnull) + "}";
+                        }
+                    }
+                    sqlite3_finalize(st);
+                }
+                cols_json += "]";
+                std::string ddl;
+                {
+                    sqlite3_stmt* st = nullptr;
+                    const char* q2 = "SELECT sql FROM sqlite_master WHERE type='table' AND name=?1";
+                    if (sqlite3_prepare_v2(db, q2, -1, &st, nullptr) == SQLITE_OK) {
+                        sqlite3_bind_text(st, 1, tbl.c_str(), -1, SQLITE_TRANSIENT);
+                        if (sqlite3_step(st) == SQLITE_ROW) {
+                            const char* s = reinterpret_cast<const char*>(sqlite3_column_text(st, 0));
+                            if (s) ddl = s;
+                        }
+                    }
+                    sqlite3_finalize(st);
+                }
+                return json_ok("{\"columns\":" + cols_json + ",\"ddl\":\"" + json_escape(ddl) + "\"}");
             }
 
             // ── 픽스처 목록 ──────────────────────────────────────────────────────
@@ -676,7 +775,12 @@ namespace eversoul
             // ── 인젝터: 상태 ─────────────────────────────────────────────────────
             if (path == "/web/api/injector/status" && method == "GET")
             {
-                return json_ok("{\"running\":false}");
+                std::string pidout = adb_runner::run({"shell", "pidof", "com.kakaogames.eversoul"});
+                bool running = false;
+                for (char c : pidout) {
+                    if (std::isdigit(static_cast<unsigned char>(c))) { running = true; break; }
+                }
+                return json_ok(running ? "{\"running\":true}" : "{\"running\":false}");
             }
 
             // ── 인젝터: ADB 명령 ─────────────────────────────────────────────────
@@ -825,27 +929,385 @@ namespace eversoul
                 return HttpResponse{404, {}, ""};
             }
 
-            // ── 단일 오프라인 계정 (멀티계정 미구현, DB nickname 기반 단일 항목 반환) ──
+            // ── 다중 계정 CRUD (AccountRegistry + AccountDatabaseManager 기반) ─────
             if (path.rfind("/web/api/accounts", 0) == 0)
             {
-                std::string nick = orm::kv_get("nickname", "offline");
+                auto& reg = account_registry();
+                auto& mgr = account_db_manager();
+
+                const auto entry_json = [&](const AccountEntry& e, bool active, int hero_count) -> std::string {
+                    return "{\"id\":\"" + json_escape(e.account_id) +
+                        "\",\"nickname\":\"" + json_escape(e.display_name) +
+                        "\",\"idp_code\":\"" + json_escape(e.idp_code) +
+                        "\",\"player_id\":\"" + json_escape(e.player_id) +
+                        "\",\"profile_source\":\"" + json_escape(e.profile_source) +
+                        "\",\"active\":" + (active ? "true" : "false") +
+                        ",\"hero_count\":" + std::to_string(hero_count) +
+                        ",\"created_at\":" + std::to_string(e.created_at_ms) +
+                        ",\"updated_at\":" + std::to_string(e.updated_at_ms) +
+                        ",\"last_login\":" + std::to_string(e.last_login_at_ms) + "}";
+                };
+
+                // GET /web/api/accounts
                 if (method == "GET" && path == "/web/api/accounts")
-                    return json_ok("[{\"id\":\"offline-single\",\"nickname\":\"" + json_escape(nick) +
-                        "\",\"idp_code\":\"zd3\",\"player_id\":\"" + json_escape(kDefaultPlayerId) +
-                        "\",\"active\":true}]");
-                if (method == "POST" && path == "/web/api/accounts")
-                    return json_ok("{\"ok\":true,\"id\":\"offline-single\"}");
-                if (method == "GET" && path == "/web/api/accounts/offline-single")
-                    return json_ok("{\"id\":\"offline-single\",\"nickname\":\"" + json_escape(nick) +
-                        "\",\"idp_code\":\"zd3\",\"player_id\":\"" + json_escape(kDefaultPlayerId) +
-                        "\",\"active\":true}");
-                if (method == "PATCH" && path == "/web/api/accounts/offline-single")
                 {
-                    std::string new_nick = body_json_string(req.body, "nickname", "");
-                    if (!new_nick.empty()) { orm::kv_set("nickname", new_nick); (void)db::set_nickname(new_nick); }
-                    return json_ok("{\"ok\":true}");
+                    const std::string active_id = reg.active_account_id();
+                    const auto entries = reg.list_active();
+                    std::string body = "[";
+                    for (std::size_t i = 0; i < entries.size(); ++i) {
+                        if (i) body += ",";
+                        int hc = 0;
+                        if (entries[i].account_id == active_id) {
+                            if (auto* adb = mgr.active_db())
+                                hc = static_cast<int>(adb->heroes().size());
+                        } else {
+                            const std::string abs_dir2 =
+                                (std::filesystem::path(config().state_dir) /
+                                 std::filesystem::path(entries[i].state_db_relpath).parent_path()).string();
+                            AccountDatabase tmp_db(abs_dir2);
+                            if (tmp_db.open())
+                                hc = static_cast<int>(tmp_db.heroes().size());
+                        }
+                        body += entry_json(entries[i], entries[i].account_id == active_id, hc);
+                    }
+                    return json_ok(body + "]");
                 }
-                return json_ok("{\"ok\":true}");
+
+                // POST /web/api/accounts
+                if (method == "POST" && path == "/web/api/accounts")
+                {
+                    const std::string display  = body_json_string(req.body, "nickname",       "offline");
+                    const std::string player_id= body_json_string(req.body, "player_id",      kDefaultPlayerId);
+                    const std::string idp_code = body_json_string(req.body, "idp_code",       "zd3");
+                    const std::string profile  = body_json_string(req.body, "profile_source", "responses");
+
+                    const std::int64_t now = unix_ms();
+                    const std::string account_id = "acct-" + std::to_string(now);
+                    const std::string rel  = "accounts/" + account_id + "/state.sqlite3";
+                    const std::string srel = "accounts/" + account_id + "/session.sqlite3";
+                    const std::string abs_dir =
+                        (std::filesystem::path(config().state_dir) / "accounts" / account_id).string();
+
+                    AccountDatabase adb(abs_dir);
+                    if (!adb.open()) return json_ok("{\"error\":\"db open failed\"}");
+                    const std::string seed_profile = (profile == "responses_newbie") ? "newbie" : "full";
+                    if (!adb.seed_from_fixture(seed_profile, config().data_dir))
+                        return json_ok("{\"error\":\"seed failed\"}");
+
+                    AccountEntry e;
+                    e.account_id       = account_id;
+                    e.display_name     = display;
+                    e.player_id        = player_id;
+                    e.idp_code         = idp_code;
+                    e.profile_source   = profile;
+                    e.state_db_relpath = rel;
+                    e.session_db_relpath = srel;
+                    e.created_at_ms    = now;
+                    e.updated_at_ms    = now;
+                    if (!reg.insert(e)) return json_ok("{\"error\":\"registry insert failed\"}");
+
+                    {
+                        AccountSessionRow sess = ws_session_default_row();
+                        sess.account_id = account_id;
+                        if (!player_id.empty() && player_id != kDefaultPlayerId)
+                            sess.player_id = player_id;
+                        if (!idp_code.empty() && idp_code != "zd3")
+                            sess.idp_code = idp_code;
+                        reg.upsert_session(sess);
+                    }
+
+                    if (reg.active_account_id().empty()) {
+                        reg.set_active(account_id, now);
+                        mgr.switch_to(account_id);
+                    }
+                    reg.log_operation(account_id, "create", "ok", "");
+                    return json_ok("{\"ok\":true,\"id\":\"" + json_escape(account_id) + "\"}");
+                }
+
+                // 계정 ID 경로 파싱: /web/api/accounts/<id>[/action]
+                const std::string prefix = "/web/api/accounts/";
+                if (path.rfind(prefix, 0) == 0) {
+                    const std::string rest = path.substr(prefix.size());
+                    const auto slash = rest.find('/');
+                    const std::string account_id = (slash == std::string::npos) ? rest : rest.substr(0, slash);
+                    const std::string action = (slash == std::string::npos) ? "" : rest.substr(slash + 1);
+
+                    if (account_id.empty())
+                        return json_ok("{\"error\":\"missing account_id\"}");
+
+                    // GET /web/api/accounts/<id>
+                    if (method == "GET" && action.empty()) {
+                        auto e = reg.find(account_id);
+                        if (!e) return HttpResponse{404, {{"Content-Type","application/json;charset=UTF-8"},{"Access-Control-Allow-Origin","*"}}, "{\"error\":\"not found\"}"};
+                        const std::string active_id = reg.active_account_id();
+                        int hc = 0;
+                        if (account_id == active_id) {
+                            if (auto* adb = mgr.active_db())
+                                hc = static_cast<int>(adb->heroes().size());
+                        } else {
+                            const std::string abs_dir2 =
+                                (std::filesystem::path(config().state_dir) /
+                                 std::filesystem::path(e->state_db_relpath).parent_path()).string();
+                            AccountDatabase tmp_db(abs_dir2);
+                            if (tmp_db.open())
+                                hc = static_cast<int>(tmp_db.heroes().size());
+                        }
+                        return json_ok(entry_json(*e, account_id == active_id, hc));
+                    }
+
+                    // PATCH /web/api/accounts/<id>
+                    if (method == "PATCH" && action.empty()) {
+                        auto e = reg.find(account_id);
+                        if (!e) return HttpResponse{404,{{"Content-Type","application/json;charset=UTF-8"},{"Access-Control-Allow-Origin","*"}},"{\"error\":\"not found\"}"};
+                        const std::string new_nick = body_json_string(req.body, "nickname", "");
+                        if (!new_nick.empty()) {
+                            e->display_name = new_nick;
+                            e->updated_at_ms = unix_ms();
+                            reg.update(*e);
+                            if (account_id == reg.active_account_id()) {
+                                if (auto* adb = mgr.active_db())
+                                    adb->meta_set("nick_name", new_nick);
+                            } else {
+                                const std::string abs_dir2 =
+                                    (std::filesystem::path(config().state_dir) /
+                                     std::filesystem::path(e->state_db_relpath).parent_path()).string();
+                                AccountDatabase tmp_db(abs_dir2);
+                                if (tmp_db.open())
+                                    tmp_db.meta_set("nick_name", new_nick);
+                            }
+                        }
+                        return json_ok("{\"ok\":true}");
+                    }
+
+                    // POST /web/api/accounts/<id>/select
+                    if (method == "POST" && action == "select") {
+                        if (!mgr.switch_to(account_id))
+                            return json_ok("{\"error\":\"switch failed\"}");
+                        const std::int64_t sel_now = unix_ms();
+                        reg.set_active(account_id, sel_now);
+                        auto sel_e = reg.find(account_id);
+                        if (sel_e) {
+                            sel_e->last_login_at_ms = sel_now;
+                            sel_e->updated_at_ms    = sel_now;
+                            reg.update(*sel_e);
+                        }
+                        reg.log_operation(account_id, "select", "ok", "");
+                        return json_ok("{\"ok\":true}");
+                    }
+
+                    // POST /web/api/accounts/<id>/copy
+                    if (method == "POST" && action == "copy") {
+                        auto src = reg.find(account_id);
+                        if (!src) return json_ok("{\"error\":\"source not found\"}");
+                        const std::int64_t now = unix_ms();
+                        const std::string new_id = "acct-" + std::to_string(now);
+                        const std::string new_dir =
+                            (std::filesystem::path(config().state_dir) / "accounts" / new_id).string();
+                        std::error_code ec;
+                        std::filesystem::create_directories(new_dir, ec);
+                        const std::string dest_path = new_dir + "/state.sqlite3";
+
+                        bool copied = false;
+                        if (account_id == reg.active_account_id()) {
+                            if (auto* adb = mgr.active_db())
+                                copied = adb->backup_to(dest_path);
+                        } else {
+                            const std::string src_abs =
+                                (std::filesystem::path(config().state_dir) / src->state_db_relpath).string();
+                            std::filesystem::copy_file(src_abs, dest_path,
+                                std::filesystem::copy_options::overwrite_existing, ec);
+                            copied = !ec;
+                        }
+                        if (!copied) return json_ok("{\"error\":\"copy failed\"}");
+
+                        AccountDatabase copy_db(new_dir);
+                        if (copy_db.open()) {
+                            copy_db.meta_set("account_id",  new_id);
+                            copy_db.meta_set("created_at_ms", std::to_string(now));
+                            copy_db.meta_set("updated_at_ms", std::to_string(now));
+                        }
+
+                        const std::string new_nick = body_json_string(req.body, "nickname",
+                            src->display_name + " (copy)");
+                        AccountEntry ne;
+                        ne.account_id         = new_id;
+                        ne.display_name       = new_nick;
+                        ne.player_id          = src->player_id;
+                        ne.idp_code           = src->idp_code;
+                        ne.profile_source     = "copied_account";
+                        ne.state_db_relpath   = "accounts/" + new_id + "/state.sqlite3";
+                        ne.session_db_relpath = "accounts/" + new_id + "/session.sqlite3";
+                        ne.source_account_id  = account_id;
+                        ne.created_at_ms      = now;
+                        ne.updated_at_ms      = now;
+                        if (!reg.insert(ne)) return json_ok("{\"error\":\"registry insert failed\"}");
+
+                        {
+                            auto src_sess = reg.find_session(account_id);
+                            AccountSessionRow copy_sess = src_sess ? *src_sess : ws_session_default_row();
+                            copy_sess.account_id = new_id;
+                            copy_sess.player_id  = ne.player_id;
+                            copy_sess.idp_code   = ne.idp_code;
+                            reg.upsert_session(copy_sess);
+                        }
+
+                        reg.log_operation(new_id, "copy", "ok", "{\"source\":\"" + json_escape(account_id) + "\"}");
+                        return json_ok("{\"ok\":true,\"id\":\"" + json_escape(new_id) + "\"}");
+                    }
+
+                    // GET /web/api/accounts/<id>/export
+                    if (method == "GET" && action == "export") {
+                        AccountDatabase* adb_ptr = nullptr;
+                        std::unique_ptr<AccountDatabase> tmp_db;
+                        if (account_id == reg.active_account_id()) {
+                            adb_ptr = mgr.active_db();
+                        } else {
+                            auto e = reg.find(account_id);
+                            if (!e) return HttpResponse{404,{{"Content-Type","application/json;charset=UTF-8"},{"Access-Control-Allow-Origin","*"}},"{\"error\":\"not found\"}"};
+                            const std::string abs_dir2 =
+                                (std::filesystem::path(config().state_dir) /
+                                 std::filesystem::path(e->state_db_relpath).parent_path()).string();
+                            tmp_db = std::make_unique<AccountDatabase>(abs_dir2);
+                            if (!tmp_db->open()) return json_ok("{\"error\":\"db open failed\"}");
+                            adb_ptr = tmp_db.get();
+                        }
+                        if (!adb_ptr) return json_ok("{\"error\":\"no active db\"}");
+                        UserInfoRepository repo(*adb_ptr, config().data_dir);
+                        const std::string json_str = repo.build_json();
+                        reg.log_operation(account_id, "export", "ok", "");
+                        return HttpResponse{200,
+                            {{"Content-Type","application/json;charset=UTF-8"},
+                             {"Content-Disposition","attachment; filename=\"UserInfo_" + account_id + ".json\""},
+                             {"Access-Control-Allow-Origin","*"}},
+                            json_str};
+                    }
+
+                    // POST /web/api/accounts/<id>/import
+                    if (method == "POST" && action == "import") {
+                        auto e = reg.find(account_id);
+                        if (!e || e->deleted_at_ms != 0)
+                            return HttpResponse{404,{{"Content-Type","application/json;charset=UTF-8"},{"Access-Control-Allow-Origin","*"}},"{\"error\":\"not found\"}"};
+                        if (req.body.empty())
+                            return json_ok("{\"error\":\"empty body\"}");
+
+                        const std::string schema_path = config().data_dir + "/schema/UserInfo.json";
+                        std::string schema_text;
+                        {
+                            std::ifstream sf(schema_path, std::ios::binary);
+                            if (sf) {
+                                std::ostringstream ss;
+                                ss << sf.rdbuf();
+                                schema_text = ss.str();
+                            }
+                        }
+
+                        const std::int64_t now = unix_ms();
+                        const std::string tmp_id  = "import_tmp_" + std::to_string(now);
+                        const std::string tmp_dir =
+                            (std::filesystem::path(config().state_dir) / "accounts" / tmp_id).string();
+                        AccountDatabase tmp_db(tmp_dir);
+                        if (!tmp_db.open()) return json_ok("{\"error\":\"tmp db open failed\"}");
+                        if (!tmp_db.seed_from_json(req.body, schema_text)) {
+                            std::error_code ec2;
+                            std::filesystem::remove_all(tmp_dir, ec2);
+                            return json_ok("{\"error\":\"import parse failed\"}");
+                        }
+                        tmp_db.close();
+
+                        const std::string dest_abs =
+                            (std::filesystem::path(config().state_dir) /
+                             std::filesystem::path(e->state_db_relpath).parent_path()).string();
+                        const std::string dest_path = dest_abs + "/state.sqlite3";
+                        const std::string src_path  = tmp_dir + "/state.sqlite3";
+
+                        if (account_id == reg.active_account_id())
+                            mgr.close_active();
+
+                        std::error_code ec;
+                        std::filesystem::create_directories(dest_abs, ec);
+                        std::filesystem::rename(src_path, dest_path, ec);
+                        std::filesystem::remove_all(tmp_dir, ec);
+
+                        if (ec) return json_ok("{\"error\":\"atomic replace failed\"}");
+
+                        if (account_id == reg.active_account_id())
+                            mgr.reload_active();
+
+                        e->updated_at_ms  = now;
+                        e->profile_source = "imported_userinfo";
+                        reg.update(*e);
+                        reg.log_operation(account_id, "import", "ok", "");
+                        return json_ok("{\"ok\":true}");
+                    }
+
+                    // PATCH /web/api/accounts/<id>/session
+                    if (method == "PATCH" && action == "session") {
+                        auto e = reg.find(account_id);
+                        if (!e) return json_ok("{\"error\":\"not found\"}");
+                        auto existing = reg.find_session(account_id);
+                        AccountSessionRow sess = existing ? *existing : ws_session_default_row();
+                        sess.account_id = account_id;
+
+                        const std::string f_pid   = body_json_string(req.body, "player_id",     "");
+                        const std::string f_ic    = body_json_string(req.body, "idp_code",      "");
+                        const std::string f_iid   = body_json_string(req.body, "idp_id",        "");
+                        const std::string f_mk    = body_json_string(req.body, "member_key",    "");
+                        const std::string f_ai    = body_json_string(req.body, "app_id",        "");
+                        const std::string f_mkt   = body_json_string(req.body, "market",        "");
+                        const std::string f_lang  = body_json_string(req.body, "lang",          "");
+                        const std::string f_zu    = body_json_string(req.body, "zinny_uuid",    "");
+                        const std::string f_zat   = body_json_string(req.body, "zat",           "");
+                        const std::string f_zrt   = body_json_string(req.body, "zrt",           "");
+                        const std::string f_et    = body_json_string(req.body, "external_token","");
+                        const std::string f_zatex = body_json_string(req.body, "zat_expiry_ms", "");
+                        const std::string f_zrtex = body_json_string(req.body, "zrt_expiry_ms", "");
+                        const std::string f_flms  = body_json_string(req.body, "first_login_ms","");
+                        const std::string f_llms  = body_json_string(req.body, "last_login_ms", "");
+                        const std::string f_pt    = body_json_string(req.body, "push_token",    "");
+
+                        if (!f_pid.empty())   sess.player_id      = f_pid;
+                        if (!f_ic.empty())    sess.idp_code       = f_ic;
+                        if (!f_iid.empty())   sess.idp_id         = f_iid;
+                        if (!f_mk.empty())    sess.member_key     = f_mk;
+                        if (!f_ai.empty())    sess.app_id         = f_ai;
+                        if (!f_mkt.empty())   sess.market         = f_mkt;
+                        if (!f_lang.empty())  sess.lang           = f_lang;
+                        if (!f_zu.empty())    sess.zinny_uuid     = f_zu;
+                        if (!f_zat.empty())   sess.zat            = f_zat;
+                        if (!f_zrt.empty())   sess.zrt            = f_zrt;
+                        if (!f_et.empty())    sess.external_token = f_et;
+                        if (!f_zatex.empty()) { try { sess.zat_expiry_ms  = std::stoll(f_zatex); } catch (...) {} }
+                        if (!f_zrtex.empty()) { try { sess.zrt_expiry_ms  = std::stoll(f_zrtex); } catch (...) {} }
+                        if (!f_flms.empty())  { try { sess.first_login_ms = std::stoll(f_flms);  } catch (...) {} }
+                        if (!f_llms.empty())  { try { sess.last_login_ms  = std::stoll(f_llms);  } catch (...) {} }
+                        if (!f_pt.empty())    sess.push_token     = f_pt;
+
+                        if (!reg.upsert_session(sess))
+                            return json_ok("{\"error\":\"upsert failed\"}");
+                        reg.log_operation(account_id, "session_update", "ok", "");
+                        return json_ok("{\"ok\":true}");
+                    }
+
+                    // DELETE /web/api/accounts/<id>
+                    if (method == "DELETE" && action.empty()) {
+                        if (account_id == reg.active_account_id())
+                            mgr.close_active();
+                        const std::int64_t del_ms = unix_ms();
+                        reg.soft_delete(account_id, del_ms);
+                        auto e = reg.find(account_id);
+                        if (e) {
+                            const std::string abs_dir2 =
+                                (std::filesystem::path(config().state_dir) /
+                                 std::filesystem::path(e->state_db_relpath).parent_path()).string();
+                            std::error_code ec;
+                            std::filesystem::remove_all(abs_dir2, ec);
+                        }
+                        reg.log_operation(account_id, "delete", "ok", "");
+                        return json_ok("{\"ok\":true}");
+                    }
+                }
+
+                return json_ok("{\"error\":\"not implemented\"}");
             }
 
             // ── setup ────────────────────────────────────────────────────────────
@@ -1004,9 +1466,9 @@ namespace eversoul
         if (req.path.rfind("/v2/app", 0) == 0)
         {
             log_line(id, "MOCK", "app infodesk gameServerAddr=" + config().game_server_url);
-            std::string body = std::string(R"({"status":200,"desc":"OK","content":{"supportedFeatures":["urgentNotice","maintenance","push","delivery","promotion","coupon","notice","leaderboard","community"],"marketUrl":"market://details?id=com.kakaogames.eversoul","publicKeyMap":{},"secondaryPwOption":null,"capriAppOption":{"ageLimit":0,"lazyAgeAuth":null,"appType":"kakaogame","appCategory":"role","ageAuthLevel":"NONE"},"isTubeApp":false,"verRecent":"1.34.101","appOption":{"gispPaymentUrl":"https://gisp-payment-api.kakaogames.com","rttCheckUrls":"{\"urls\":[\"https://rttcheck-ap-northeast-1.kakaogames.io?type=v1\",\"https://rttcheck-ap-northeast-1.kakaogames.io?type=v2\",\"https://rttcheck-ap-northeast-1.kakaogames.io?type=v3\",\"https://ga-rttcheck-ap-northeast-1.kakaogames.io?type=v1\",\"https://ga-rttcheck-ap-northeast-1.kakaogames.io?type=v2\",\"https://ga-rttcheck-ap-northeast-1.kakaogames.io?type=v3\",\"https://rttcheck-ap-southeast-1.kakaogames.io?type=v1\",\"https://rttcheck-ap-southeast-1.kakaogames.io?type=v2\",\"https://rttcheck-ap-southeast-1.kakaogames.io?type=v3\",\"https://ga-rttcheck-ap-southeast-1.kakaogames.io?type=v1\",\"https://ga-rttcheck-ap-southeast-1.kakaogames.io?type=v2\",\"https://ga-rttcheck-ap-southeast-1.kakaogames.io?type=v3\",\"https://rttcheck-us-east-1.kakaogames.io?type=v1\",\"https://rttcheck-us-east-1.kakaogames.io?type=v2\",\"https://rttcheck-us-east-1.kakaogames.io?type=v3\",\"https://ga-rttcheck-us-east-1.kakaogames.io?type=v1\",\"https://ga-rttcheck-us-east-1.kakaogames.io?type=v2\",\"https://ga-rttcheck-us-east-1.kakaogames.io?type=v3\",\"https://rttcheck-us-west-1.kakaogames.io?type=v1\",\"https://rttcheck-us-west-1.kakaogames.io?type=v2\",\"https://rttcheck-us-west-1.kakaogames.io?type=v3\",\"https://ga-rttcheck-us-west-1.kakaogames.io?type=v1\",\"https://ga-rttcheck-us-west-1.kakaogames.io?type=v2\",\"https://ga-rttcheck-us-west-1.kakaogames.io?type=v3\",\"https://rttcheck-ap-east-1.kakaogames.io?type=v1\",\"https://rttcheck-ap-east-1.kakaogames.io?type=v2\",\"https://rttcheck-ap-east-1.kakaogames.io?type=v3\",\"https://ga-rttcheck-ap-east-1.kakaogames.io?type=v1\",\"https://ga-rttcheck-ap-east-1.kakaogames.io?type=v2\",\"https://ga-rttcheck-ap-east-1.kakaogames.io?type=v3\",\"https://rttcheck-eu-central-1.kakaogames.io?type=v1\",\"https://rttcheck-eu-central-1.kakaogames.io?type=v2\",\"https://rttcheck-eu-central-1.kakaogames.io?type=v3\",\"https://ga-rttcheck-eu-central-1.kakaogames.io?type=v1\",\"https://ga-rttcheck-eu-central-1.kakaogames.io?type=v2\",\"https://ga-rttcheck-eu-central-1.kakaogames.io?type=v3\",\"https://gc-infodesk-zinny3.kakaogames.com/v2/app?appId=103815&appVer=1.0.0&market=googlePlay&sdkVer=3.18.0&os=android&lang=en\",\"https://gc-infodesk-zinny3.kakaogames.com/v2/app?appId=103815&appVer=1.0.0&market=googlePlay&sdkVer=3.18.0&os=android&lang=en\"]}","cdnAddr":"https://patch.esoul.kakaogames.com/Live","agreementUrl":"http://127.0.0.1:9991/account-select","useGoogleGame":"false","CUSURL":"https://kakaogames.oqupie.com/portals/finder?jwt={0}","CUSURL_TW":"https://kakaogames.oqupie.com/portals/finder?jwt={0}","CSURL":"https://kakaogames.oqupie.com/portals/finder?jwt={0}","CSURL_TW":"https://kakaogames.oqupie.com/portals/finder?jwt={0}","isMaintenance":"0","privacyPolicyUrl":"https://web-data-cdn.kakaogames.com/real/www/html/terms/index.html?service=S0018&type=T003&country=hk&lang=ko","rttSampleRate":"50","manualRequestReview":"1","termsOfUseUrl":"https://web-data-game.kakaocdn.net/real/www/html/terms/index.html?service=S0001&type=T001&country=hk&lang=ko","ShowGachaOddsView":"https://cafe.daum.net/Eversoul/aCeo/20","kbsHost":"http://127.0.0.1:9999","userAgeCheck_appStore":"13","userAgeCheck_googleplay":"13","NoticeView":"https://kakaogames.oqupie.com/portals/2152/customer-news/2546","gameServerAddr":)") +
+            std::string body = std::string(R"({"status":200,"desc":"OK","content":{"supportedFeatures":["urgentNotice","maintenance","push","delivery","promotion","coupon","notice","leaderboard","community"],"marketUrl":"market://details?id=com.kakaogames.eversoul","publicKeyMap":{},"secondaryPwOption":null,"capriAppOption":{"ageLimit":0,"lazyAgeAuth":null,"appType":"kakaogame","appCategory":"role","ageAuthLevel":"NONE"},"isTubeApp":false,"verRecent":"1.34.101","appOption":{"gispPaymentUrl":"https://gisp-payment-api.kakaogames.com","rttCheckUrls":"{\"urls\":[\"https://rttcheck-ap-northeast-1.kakaogames.io?type=v1\",\"https://rttcheck-ap-northeast-1.kakaogames.io?type=v2\",\"https://rttcheck-ap-northeast-1.kakaogames.io?type=v3\",\"https://ga-rttcheck-ap-northeast-1.kakaogames.io?type=v1\",\"https://ga-rttcheck-ap-northeast-1.kakaogames.io?type=v2\",\"https://ga-rttcheck-ap-northeast-1.kakaogames.io?type=v3\",\"https://rttcheck-ap-southeast-1.kakaogames.io?type=v1\",\"https://rttcheck-ap-southeast-1.kakaogames.io?type=v2\",\"https://rttcheck-ap-southeast-1.kakaogames.io?type=v3\",\"https://ga-rttcheck-ap-southeast-1.kakaogames.io?type=v1\",\"https://ga-rttcheck-ap-southeast-1.kakaogames.io?type=v2\",\"https://ga-rttcheck-ap-southeast-1.kakaogames.io?type=v3\",\"https://rttcheck-us-east-1.kakaogames.io?type=v1\",\"https://rttcheck-us-east-1.kakaogames.io?type=v2\",\"https://rttcheck-us-east-1.kakaogames.io?type=v3\",\"https://ga-rttcheck-us-east-1.kakaogames.io?type=v1\",\"https://ga-rttcheck-us-east-1.kakaogames.io?type=v2\",\"https://ga-rttcheck-us-east-1.kakaogames.io?type=v3\",\"https://rttcheck-us-west-1.kakaogames.io?type=v1\",\"https://rttcheck-us-west-1.kakaogames.io?type=v2\",\"https://rttcheck-us-west-1.kakaogames.io?type=v3\",\"https://ga-rttcheck-us-west-1.kakaogames.io?type=v1\",\"https://ga-rttcheck-us-west-1.kakaogames.io?type=v2\",\"https://ga-rttcheck-us-west-1.kakaogames.io?type=v3\",\"https://rttcheck-ap-east-1.kakaogames.io?type=v1\",\"https://rttcheck-ap-east-1.kakaogames.io?type=v2\",\"https://rttcheck-ap-east-1.kakaogames.io?type=v3\",\"https://ga-rttcheck-ap-east-1.kakaogames.io?type=v1\",\"https://ga-rttcheck-ap-east-1.kakaogames.io?type=v2\",\"https://ga-rttcheck-ap-east-1.kakaogames.io?type=v3\",\"https://rttcheck-eu-central-1.kakaogames.io?type=v1\",\"https://rttcheck-eu-central-1.kakaogames.io?type=v2\",\"https://rttcheck-eu-central-1.kakaogames.io?type=v3\",\"https://ga-rttcheck-eu-central-1.kakaogames.io?type=v1\",\"https://ga-rttcheck-eu-central-1.kakaogames.io?type=v2\",\"https://ga-rttcheck-eu-central-1.kakaogames.io?type=v3\",\"https://gc-infodesk-zinny3.kakaogames.com/v2/app?appId=103815&appVer=1.0.0&market=googlePlay&sdkVer=3.18.0&os=android&lang=en\",\"https://gc-infodesk-zinny3.kakaogames.com/v2/app?appId=103815&appVer=1.0.0&market=googlePlay&sdkVer=3.18.0&os=android&lang=en\"]}","cdnAddr":"https://patch.esoul.kakaogames.com/Live","agreementUrl":"http://127.0.0.1:9991/account-select","useGoogleGame":"false","CUSURL":"https://kakaogames.oqupie.com/portals/finder?jwt={0}","CUSURL_TW":"https://kakaogames.oqupie.com/portals/finder?jwt={0}","CSURL":"https://kakaogames.oqupie.com/portals/finder?jwt={0}","CSURL_TW":"https://kakaogames.oqupie.com/portals/finder?jwt={0}","isMaintenance":"0","privacyPolicyUrl":"https://web-data-cdn.kakaogames.com/real/www/html/terms/index.html?service=S0018&type=T003&country=hk&lang=ko","rttSampleRate":"50","manualRequestReview":"1","termsOfUseUrl":"https://web-data-game.kakaocdn.net/real/www/html/terms/index.html?service=S0001&type=T001&country=hk&lang=ko","ShowGachaOddsView":"https://cafe.daum.net/Eversoul/aCeo/20","kbsHost":"http://127.0.0.1:9991","userAgeCheck_appStore":"13","userAgeCheck_googleplay":"13","NoticeView":"https://kakaogames.oqupie.com/portals/2152/customer-news/2546","gameServerAddr":)") +
                                "\"" + json_escape(config().game_server_url) + "\"" +
-                               R"(,"modTime":1661830306343,"daumCafeUrl":"https://m.cafe.daum.net/Eversoul/_boards?type=notice","RefundWebUrl":"https://kakaogames.oqupie.com/portals/1801/articles/41135"},"notices":[],"traceSampleRate":100,"isWhitelist":false,"svcStatus":"open","supportedIdpCodes":["kakaocapri","facebook","google","siwa","zd3"],"serverConnectionType":"https","appVerStatus":"noNeedToUpdate","publisher":{"privacyUrl":"https://www.kakao.com/ko/privacy","privacySummaryUrl":"https://gameevent.kakao.com/supports/terms/3?tabbar=false","noticeUrl2":"https://cus-zinny3.kakaogames.com/view/notice","agreementUrl":"http://127.0.0.1:9999/account-select","servicePolicyUrl":"https://gameevent.kakao.com/terms/operation","termsUrl":"https://gameevent.kakao.com/supports/terms/1","kakaogameCommunityUrl":"https://playgame.kakao.com/bridge/auth/zinny","termsSummaryUrl":"https://gameevent.kakao.com/supports/terms/1?tabbar=false","eventWallUrl":"https://cus-zinny3.kakaogames.com/view/event","noticeUrl":"https://cus-zinny3.kakaogames.com/notice","customerServiceUrl":"https://cus-zinny3.kakaogames.com/support/list","eventWinnerUrl":"http://event-winner.kakaogames.com/event","policyVer":"1.0","publisherId":"kakao","modTime":1651813742832},"sdk":{"heartbeatInterval":120000,"PercentOfSendingAPICallLog":0,"stopSendGeoDNS":"y","snsShareUrl":"https://invite.kakaogame.com","zrtiOSError":"{\"kakaocapri\":[500,502,503,-1,-7,-9]}","aesEncryptKey":"djfdskj12328438djdgjcjeejhdew15","aesEncryptIV":"7gnfn7f96rnanmt1s5iaa3kdruhuneu","zrtAOSError":"{\"kakaocapri\":[500,502,503,-1,-7,-9],\"google\":[8]}","zrtWindowsError":"{\"kakaocapri\":[500,502,503,-1,-7,-9]}","snsShareHostUrl":"https://invite.kakaogame.com/host/main","invitationUrl":"https://webinvite.nzincorp.com","csUrl":"http://customer.kakaogames.com:18080","platformVersion":3,"sessionTimeout":10000,"registerDeviceUrl":"https://device-enrollment.kakaogames.com/main","customDialogModels":["SM-T976N"],"unregisterAgreementUrl":"https://web-data-cdn.kakaogames.com/real/www/html/terms/index.html?service=S0001&type=T016","snsShareGuestUrl":"https://invite.kakaogame.com/guest/reward"},"deviceSecurityOption":null,"onlineNotifications":[],"timestamp":)" +
+                               R"(,"modTime":1661830306343,"daumCafeUrl":"https://m.cafe.daum.net/Eversoul/_boards?type=notice","RefundWebUrl":"https://kakaogames.oqupie.com/portals/1801/articles/41135"},"notices":[],"traceSampleRate":100,"isWhitelist":false,"svcStatus":"open","supportedIdpCodes":["kakaocapri","facebook","google","siwa","zd3"],"serverConnectionType":"https","appVerStatus":"noNeedToUpdate","publisher":{"privacyUrl":"https://www.kakao.com/ko/privacy","privacySummaryUrl":"https://gameevent.kakao.com/supports/terms/3?tabbar=false","noticeUrl2":"https://cus-zinny3.kakaogames.com/view/notice","agreementUrl":"http://127.0.0.1:9991/account-select","servicePolicyUrl":"https://gameevent.kakao.com/terms/operation","termsUrl":"https://gameevent.kakao.com/supports/terms/1","kakaogameCommunityUrl":"https://playgame.kakao.com/bridge/auth/zinny","termsSummaryUrl":"https://gameevent.kakao.com/supports/terms/1?tabbar=false","eventWallUrl":"https://cus-zinny3.kakaogames.com/view/event","noticeUrl":"https://cus-zinny3.kakaogames.com/notice","customerServiceUrl":"https://cus-zinny3.kakaogames.com/support/list","eventWinnerUrl":"http://event-winner.kakaogames.com/event","policyVer":"1.0","publisherId":"kakao","modTime":1651813742832},"sdk":{"heartbeatInterval":120000,"PercentOfSendingAPICallLog":0,"stopSendGeoDNS":"y","snsShareUrl":"https://invite.kakaogame.com","zrtiOSError":"{\"kakaocapri\":[500,502,503,-1,-7,-9]}","aesEncryptKey":"djfdskj12328438djdgjcjeejhdew15","aesEncryptIV":"7gnfn7f96rnanmt1s5iaa3kdruhuneu","zrtAOSError":"{\"kakaocapri\":[500,502,503,-1,-7,-9],\"google\":[8]}","zrtWindowsError":"{\"kakaocapri\":[500,502,503,-1,-7,-9]}","snsShareHostUrl":"https://invite.kakaogame.com/host/main","invitationUrl":"https://webinvite.nzincorp.com","csUrl":"http://customer.kakaogames.com:18080","platformVersion":3,"sessionTimeout":10000,"registerDeviceUrl":"https://device-enrollment.kakaogames.com/main","customDialogModels":["SM-T976N"],"unregisterAgreementUrl":"https://web-data-cdn.kakaogames.com/real/www/html/terms/index.html?service=S0001&type=T016","snsShareGuestUrl":"https://invite.kakaogame.com/guest/reward"},"deviceSecurityOption":null,"onlineNotifications":[],"timestamp":)" +
                                std::to_string(unix_ms()) + R"(}})";
             return HttpResponse{200,
                                 {{"Content-Type", "application/json;charset=UTF-8"},
@@ -1415,8 +1877,7 @@ namespace eversoul
 
         if (req.path == "/Logout")
         {
-            // 실기기 Logout 응답 = {success:1}(0x0801); 클라이언트 전송 후 즉시 로그아웃, EsPb.Logout 응답 없음.
-            // handler 없을 때 → 404 → 클라이언트 5회 재시도 후 크래시.
+            account_db_manager().close_active();
             std::string response;
             pb_bool(response, 1, true);
             log_line(id, "MOCK_GAME", "/Logout success");
