@@ -92,6 +92,8 @@ __pycache__/
 
 # APK
 apk/
+global_apk/
+kr_apk/
 
 #no push
 sss/

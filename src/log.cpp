@@ -34,13 +34,15 @@ namespace eversoul
 
         const char* tag_ansi(const std::string& tag)
         {
-            if (tag == "ERROR")                       return "\033[1;91m";
-            if (tag == "WARN")                        return "\033[93m";
-            if (tag == "REQUEST")                     return "\033[96m";
-            if (tag == "RESPONSE")                    return "\033[2;96m";
-            if (tag == "WS")                          return "\033[95m";
-            if (tag == "START" || tag == "STOP")      return "\033[92m";
-            return "\033[37m";
+            if (tag == "\xec\x98\xa4\xeb\xa5\x98"  || tag == "ERROR")    return "\033[48;5;94m\033[38;5;203m\033[1m";
+            if (tag == "\xea\xb2\xbd\xea\xb3\xa0"  || tag == "WARN")     return "\033[48;5;94m\033[38;5;220m\033[1m";
+            if (tag == "\xec\x9a\x94\xec\xb2\xad"  || tag == "REQUEST")  return "\033[48;5;94m\033[38;5;214m\033[1m";
+            if (tag == "\xec\x9d\x91\xeb\x8b\xb5"  || tag == "RESPONSE") return "\033[48;5;94m\033[38;5;222m\033[1m";
+            if (tag == "\xec\x9b\xb9\xec\x86\x8c\xec\xbc\x93" || tag == "WS") return "\033[48;5;94m\033[38;5;218m\033[1m";
+            if (tag == "\xec\x8b\x9c\xec\x9e\x91"  || tag == "START")   return "\033[48;5;94m\033[38;5;156m\033[1m";
+            if (tag == "\xec\xa2\x85\xeb\xa3\x8c"  || tag == "STOP")    return "\033[48;5;94m\033[38;5;210m\033[1m";
+            if (tag == "\xec\xa4\x91\xea\xb3\x84")                       return "\033[48;5;94m\033[38;5;87m\033[1m";
+            return "\033[48;5;94m\033[38;5;230m\033[1m";
         }
 
     } // namespace
@@ -61,9 +63,9 @@ namespace eversoul
         __android_log_print(ANDROID_LOG_INFO, "libswappywrapper/eversoul_offline", "%s", line.c_str());
 #else
         if (g_ansi_enabled) {
-            std::cout << "\033[2;37m[" << ts << "][#" << std::to_string(id) << "]\033[0m"
-                      << tag_ansi(tag) << "[" << tag << "]\033[0m "
-                      << (tag == "ERROR" ? "\033[91m" : "\033[37m") << text << "\033[0m\n";
+            std::cout << "\033[48;5;94m\033[38;5;180m[" << ts << "][#" << std::to_string(id) << "]\033[0m"
+                      << tag_ansi(tag) << "[" << tag << "]\033[0m"
+                      << "\033[48;5;94m\033[38;5;230m " << text << "\033[0m\n";
         } else {
             std::cout << line;
         }

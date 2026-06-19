@@ -70,7 +70,7 @@ namespace eversoul
         }
 
         std::string url = upstream_for_path(req.path);
-        log_line(id, "PROXY", req.method + " " + url);
+        log_line(id, "중계", req.method + " " + url);
 
         struct curl_slist *header_list = nullptr;
         for (const auto &[k, v] : req.headers)

@@ -239,6 +239,38 @@ else()
         -P ${CMAKE_SOURCE_DIR}/cmake/copy_data_dirs.cmake
       COMMENT "Syncing offline data dirs to eversoul_console build output"
       VERBATIM)
+
+    # ── HAR 캡처 서버: Windows 전용, 실제 Kakao 서버 투명 릴레이 + AI 분석 패킷 저장 ──
+    # 흐름: APK → 포트 9991 [기록] → 실제 서버 → [기록] → APK
+    # 저장: <exe>/har/log/{net|account|content|bundle|runtime}/{id}_{METHOD}_{slug}.json
+    # HAR 전용 소스: websocket/ws_session/offline_data/fixture_store 제외
+    # (ws_session.cpp → account_registry.cpp 가 DESKTOP_SOURCES 전용이라 링크 에러 발생)
+    add_executable(eversoul_har_recorder
+      src/util.cpp
+      src/crypto.cpp
+      src/protobuf.cpp
+      src/json.cpp
+      src/json_encoder.cpp
+      src/sse_log.cpp
+      src/log.cpp
+      src/http.cpp
+      src/proxy.cpp
+      src/har_recorder.cpp
+      src/har_server_main.cpp
+      src/har_app.rc)
+    target_include_directories(eversoul_har_recorder PRIVATE
+      ${EVERSOUL_INCLUDE_DIRS})
+    target_compile_definitions(eversoul_har_recorder PRIVATE
+      UNICODE _UNICODE WIN32_LEAN_AND_MEAN NOMINMAX SQLITE_ORM_OMITS_CODECVT
+      _WIN32_WINNT=0x0A00)
+    target_compile_options(eversoul_har_recorder PRIVATE
+      -O2 -Wall -Wextra -Wno-unknown-pragmas -Wno-cast-function-type)
+    target_link_libraries(eversoul_har_recorder PRIVATE
+      CURL::libcurl Threads::Threads
+      ws2_32)
+    target_link_options(eversoul_har_recorder PRIVATE
+      -static-libgcc -static-libstdc++
+      -Wl,-Bstatic,-lpthread,-Bdynamic)
   endif()
 
   add_executable(encoder_validate
