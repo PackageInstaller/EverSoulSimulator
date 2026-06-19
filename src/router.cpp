@@ -31,6 +31,7 @@
 #include <fstream>
 #include <sstream>
 #include <thread>
+#include <unordered_map>
 #include <vector>
 
 #ifdef _WIN32
@@ -90,6 +91,13 @@ namespace eversoul
             if (auto html = offline_data().read("web/account_select.html"))
                 return *html;
             return R"(<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><title>Eversoul Offline</title></head><body><h1>Eversoul Offline</h1><p>Select account mode.</p><p><a href="/account-mode/set?mode=full">Full account</a></p><p><a href="/account-mode/set?mode=newbie">Newbie account</a></p></body></html>)";
+        }
+
+        std::string account_new_html()
+        {
+            if (auto html = offline_data().read("web/account_new.html"))
+                return *html;
+            return R"(<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><title>New Account</title></head><body><h1>New Account</h1><p><a href="/web/account_select.html">Back</a></p></body></html>)";
         }
 
         HttpResponse html_response(const std::string &body)
@@ -946,6 +954,51 @@ namespace eversoul
                 }
             }
 
+            // ── 치트 API ─────────────────────────────────────────────────────────
+            if (path == "/web/api/cheat/status" && method == "GET")
+            {
+                auto cur_list  = orm::currencies();
+                auto hero_list = orm::heroes();
+                std::unordered_map<int,std::int64_t> cur_map;
+                for (const auto& c : cur_list) cur_map[c.type] = c.value;
+                std::string body = "{";
+                body += "\"gold\":"     + std::to_string(cur_map.count(1) ? cur_map[1] : 0);
+                body += ",\"crystal\":" + std::to_string(cur_map.count(2) ? cur_map[2] : 0);
+                body += ",\"stone\":"   + std::to_string(cur_map.count(3) ? cur_map[3] : 0);
+                body += ",\"heroes\":"  + std::to_string(static_cast<int>(hero_list.size()));
+                body += "}";
+                return json_ok(body);
+            }
+
+            if (path == "/web/api/cheat/currency" && method == "POST")
+            {
+                auto cur_list = orm::currencies();
+                std::unordered_map<int,std::int64_t> cur_map;
+                for (const auto& c : cur_list) cur_map[c.type] = c.value;
+                std::int64_t tgt_gold    = body_json_int64(req.body, "gold",    0);
+                std::int64_t tgt_crystal = body_json_int64(req.body, "crystal", 0);
+                std::int64_t tgt_stone   = body_json_int64(req.body, "stone",   0);
+                orm::add_currency(1, tgt_gold    - (cur_map.count(1) ? cur_map[1] : 0));
+                orm::add_currency(2, tgt_crystal - (cur_map.count(2) ? cur_map[2] : 0));
+                orm::add_currency(3, tgt_stone   - (cur_map.count(3) ? cur_map[3] : 0));
+                return json_ok("{\"ok\":true}");
+            }
+
+            if (path == "/web/api/cheat/hero" && method == "POST")
+            {
+                int hero_no = static_cast<int>(body_json_int64(req.body, "hero_no", 10));
+                int level   = static_cast<int>(body_json_int64(req.body, "level",    1));
+                orm::Hero h;
+                h.idx     = "0_dyn_cheat_" + std::to_string(hero_no);
+                h.heroNo  = hero_no;
+                h.level   = level;
+                h.gradeSno = 1;
+                h.raceSno  = 0;
+                h.isLock   = 0;
+                orm::save_hero(h);
+                return json_ok("{\"ok\":true}");
+            }
+
             // ── i18n ─────────────────────────────────────────────────────────────
             if (path == "/web/api/i18n" && method == "GET")
                 return json_ok("{}");
@@ -1409,6 +1462,13 @@ namespace eversoul
         {
             log_line(id, "MOCK", "account select page");
             return html_response(account_select_html());
+        }
+
+        if (req.path.rfind("/account_new.html", 0) == 0 ||
+            req.path.rfind("/web/account_new.html", 0) == 0)
+        {
+            log_line(id, "MOCK", "account new page");
+            return html_response(account_new_html());
         }
 
         if (req.path == "/favicon.ico")

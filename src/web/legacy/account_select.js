@@ -41,11 +41,9 @@ function _updatePlayBar() {
   if (!btn) return;
   if (selectedAcctId) {
     btn.disabled = false;
-    btn.classList.add('play-ready');
     if (hint) hint.style.display = 'none';
   } else {
     btn.disabled = true;
-    btn.classList.remove('play-ready');
     if (hint) hint.style.display = '';
   }
 }
@@ -53,7 +51,10 @@ function _updatePlayBar() {
 function pickAcct(id) {
   selectedAcctId = id;
   document.querySelectorAll('.acct-row').forEach(function(row) {
-    row.classList.toggle('selected', row.dataset.id === id);
+    var on = row.dataset.id === id;
+    row.classList.toggle('ring-2',         on);
+    row.classList.toggle('ring-blue-500',  on);
+    row.classList.toggle('bg-blue-900/20', on);
   });
   _updatePlayBar();
 }

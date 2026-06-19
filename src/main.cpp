@@ -44,6 +44,12 @@ int main(int argc, char **argv)
             if (GetConsoleMode(hOut, &mode))
                 SetConsoleMode(hOut, mode | ENABLE_VIRTUAL_TERMINAL_PROCESSING | ENABLE_PROCESSED_OUTPUT);
         }
+        HANDLE hIn = GetStdHandle(STD_INPUT_HANDLE);
+        if (hIn != INVALID_HANDLE_VALUE) {
+            DWORD mode = 0;
+            if (GetConsoleMode(hIn, &mode))
+                SetConsoleMode(hIn, (mode & ~ENABLE_QUICK_EDIT_MODE) | ENABLE_EXTENDED_FLAGS);
+        }
     }
 #endif
 

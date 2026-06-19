@@ -96,3 +96,8 @@ apk/
 #no push
 sss/
 
+# Node.js
+node_modules/
+dist/
+.vite/
+

@@ -18,4 +18,8 @@ namespace eversoul
     [[nodiscard]] std::string body_json_string(const std::string &body, const std::string &key,
                                                const std::string &fallback = "");
 
+    // Extract a JSON numeric (integer) value for `key` from a flat body. Returns `fallback` if absent.
+    [[nodiscard]] std::int64_t body_json_int64(const std::string &body, const std::string &key,
+                                               std::int64_t fallback = 0);
+
 } // namespace eversoul

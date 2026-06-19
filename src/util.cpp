@@ -146,4 +146,48 @@ namespace eversoul
         return fallback;
     }
 
+    std::int64_t body_json_int64(const std::string &body, const std::string &key, std::int64_t fallback)
+    {
+        const std::string needle = "\"" + key + "\"";
+        std::size_t pos = 0;
+        while ((pos = body.find(needle, pos)) != std::string::npos)
+        {
+            std::size_t after_key = pos + needle.size();
+            std::size_t colon = body.find(':', after_key);
+            if (colon == std::string::npos)
+                break;
+            bool only_space = true;
+            for (std::size_t i = after_key; i < colon; ++i)
+            {
+                if (!std::isspace(static_cast<unsigned char>(body[i])))
+                {
+                    only_space = false;
+                    break;
+                }
+            }
+            if (!only_space)
+            {
+                pos += needle.size();
+                continue;
+            }
+            std::size_t num_start = colon + 1;
+            while (num_start < body.size() && std::isspace(static_cast<unsigned char>(body[num_start])))
+                ++num_start;
+            if (num_start >= body.size())
+                return fallback;
+            char c0 = body[num_start];
+            if (c0 != '-' && (c0 < '0' || c0 > '9'))
+            {
+                pos += needle.size();
+                continue;
+            }
+            std::size_t num_end = num_start + 1;
+            while (num_end < body.size() && body[num_end] >= '0' && body[num_end] <= '9')
+                ++num_end;
+            try { return std::stoll(body.substr(num_start, num_end - num_start)); }
+            catch (...) { return fallback; }
+        }
+        return fallback;
+    }
+
 } // namespace eversoul

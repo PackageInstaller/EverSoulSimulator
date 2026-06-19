@@ -2216,6 +2216,7 @@ body.acct-body {
   border-color: var(--color-accent-dim);
   background: rgba(0,80,130,.2);
 }
+
 .acct-info {
   flex: 1;
   min-width: 0;
@@ -2553,16 +2554,7 @@ body.acct-body {
 .acct-new-card {
   margin-top: 10px;
 }
-.acct-nick-input {
-  width: 200px;
-}
-.acct-create-btn {
-  width: 100%;
-  margin-top: 12px;
-  padding: 9px 0;
-  font-size: 13px;
-  letter-spacing: 1px;
-}
+
 .edit-form-actions {
   margin-top: 10px;
   display: flex;

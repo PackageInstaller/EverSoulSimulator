@@ -294,8 +294,24 @@ function enterMain() {
 
 // ── MAIN: navigation ──────────────────────────────────────────────────────────
 
+let _cheatPollIv   = null;
+let _accountPollIv = null;
+let _dbPollIv      = null;
+
+function _clearPagePolls() {
+  if (_cheatPollIv)   { clearInterval(_cheatPollIv);   _cheatPollIv   = null; }
+  if (_accountPollIv) { clearInterval(_accountPollIv); _accountPollIv = null; }
+  if (_dbPollIv)      { clearInterval(_dbPollIv);      _dbPollIv      = null; }
+}
+
+function _dbPollTick() {
+  loadDbTables();
+  if (_dbTable) loadTableData(_dbTable);
+}
+
 document.querySelectorAll('.nav-item').forEach(item => {
   item.addEventListener('click', () => {
+    _clearPagePolls();
     document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     item.classList.add('active');
@@ -304,14 +320,24 @@ document.querySelectorAll('.nav-item').forEach(item => {
     document.getElementById('topbar-title').textContent =
       item.querySelector('[data-i18n]')?.textContent || '';
     const page = item.getAttribute('data-page');
-    if (page === 'db')       loadDbTables();
+    if (page === 'db') {
+      loadDbTables();
+      _dbPollIv = setInterval(_dbPollTick, 5000);
+    }
     if (page === 'fixtures') loadFixtures();
     if (page === 'health')   loadHealth();
     if (page === 'settings') { loadSettings(); }
     if (page === 'injector') { loadInjectorDevices(); pollInjectorStatus(); }
     if (page === 'gamedata') loadGameData();
-    if (page === 'accounts') loadAdminAccounts();
-    if (page === 'files')    listFiles('responses/');
+    if (page === 'accounts') {
+      loadAdminAccounts();
+      _accountPollIv = setInterval(loadAdminAccounts, 5000);
+    }
+    if (page === 'files') listFiles('responses/');
+    if (page === 'cheat') {
+      loadCheatStatus();
+      _cheatPollIv = setInterval(loadCheatStatus, 3000);
+    }
   });
 });
 
@@ -1110,14 +1136,15 @@ async function loadAdminAccounts() {
     }
     el.innerHTML = list.map(a => {
       const isActive = a.active;
-      return `<div class="acct-row${isActive ? ' active' : ''}">` +
+      return `<div class="acct-row${isActive ? ' active' : ''}" data-acct-id="${escHtml(a.id)}">` +
         `<div class="acct-info">` +
           `<div class="acct-name">${escHtml(a.nickname)}` +
             (isActive ? `<span class="badge badge-ok badge-acct-current">${t('admin.acct_badge_current')}</span>` : '') +
           `</div>` +
-          `<div class="acct-meta">${escHtml(a.idp_label || a.idp_code)} · ${escHtml(a.player_id)}` +
-            (a.hero_count !== undefined ? ` · 정령 ${a.hero_count}명` : '') +
+          `<div class="acct-meta">${escHtml(a.idp_code)} · ${escHtml(a.player_id)}` +
+            (a.hero_count !== undefined ? ` · ${t('cheat.hero')} ${escHtml(String(a.hero_count))}` : '') +
           `</div>` +
+          (isActive ? `<div id="acct-active-currency" class="flex gap-3 mt-1"></div>` : '') +
         `</div>` +
         `<div class="acct-actions">` +
           (isActive ? '' : `<button class="btn btn-primary" onclick="adminSelectAccount('${escHtml(a.id)}')">${t('admin.acct_select_btn')}</button>`) +
@@ -1126,6 +1153,15 @@ async function loadAdminAccounts() {
         `</div>` +
       `</div>`;
     }).join('');
+    const currEl = document.getElementById('acct-active-currency');
+    if (currEl) {
+      fetch('/web/api/cheat/status').then(r => r.json()).then(d => {
+        currEl.innerHTML =
+          `<span class="text-yellow-400 text-xs font-mono">${t('cheat.gold')} ${Number(d.gold ?? 0).toLocaleString()}</span>` +
+          `<span class="text-blue-400 text-xs font-mono">${t('cheat.crystal')} ${Number(d.crystal ?? 0).toLocaleString()}</span>` +
+          `<span class="text-purple-400 text-xs font-mono">${t('cheat.stone')} ${Number(d.stone ?? 0).toLocaleString()}</span>`;
+      }).catch(() => {});
+    }
   } catch(_) {
     el.innerHTML = `<div class="list-msg err">${t('admin.load_fail')}</div>`;
   }
@@ -1154,7 +1190,7 @@ async function adminCreateAccount() {
     const r = await fetch('/web/api/accounts', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ nickname: nick, idpCode: idp }),
+      body: JSON.stringify({ nickname: nick, idp_code: idp }),
     });
     const d = await r.json();
     if (!r.ok || !d.id) { sts.className = 'text-col-red'; sts.textContent = t('admin.acct_create_fail') + ' (' + r.status + ')'; return; }
@@ -1178,9 +1214,9 @@ async function openAdminAccountEdit(id) {
     const a = await r.json();
     body.innerHTML =
       `<div class="setting-row"><label class="label-dim">${t('admin.acct_nick_label')}</label>` +
-      `<input type="text" id="edit-acct-nick" value="${escHtml(a.nickname)}" class="acct-nick-input"/></div>` +
+      `<input type="text" id="edit-acct-nick" value="${escHtml(a.nickname)}" class="w-full bg-gray-900/80 border border-gray-700 text-white px-3 py-1.5 text-sm rounded outline-none focus:border-blue-500"/></div>` +
       `<div class="setting-row"><label class="label-dim">${t('admin.acct_pid_label')}</label>` +
-      `<input type="text" id="edit-acct-pid" value="${escHtml(a.player_id)}" class="acct-nick-input"/></div>` +
+      `<input type="text" id="edit-acct-pid" value="${escHtml(a.player_id)}" class="w-full bg-gray-900/80 border border-gray-700 text-white px-3 py-1.5 text-sm rounded outline-none focus:border-blue-500"/></div>` +
       `<div class="edit-form-actions">` +
         `<button class="btn btn-primary" onclick="saveAdminAccountEdit()">${t('admin.save')}</button>` +
         `<button class="btn" onclick="openImportModal('${escHtml(id)}')">${t('admin.import_title')}</button>` +
@@ -1319,6 +1355,82 @@ async function saveFileEdit() {
 
 function openAbout()  { document.getElementById('modal-about').style.display = 'flex'; }
 function closeAbout() { document.getElementById('modal-about').style.display = 'none'; }
+
+// ── MAIN: cheat menu ──────────────────────────────────────────────────────────
+
+async function loadCheatStatus() {
+  const grid = document.getElementById('cheat-state-grid');
+  if (!grid) return;
+  try {
+    const r = await fetch('/web/api/cheat/status');
+    const d = await r.json();
+    const cards = [
+      { label: t('cheat.gold'),    color: 'text-yellow-400', val: d.gold    ?? 0 },
+      { label: t('cheat.crystal'), color: 'text-blue-400',   val: d.crystal ?? 0 },
+      { label: t('cheat.stone'),   color: 'text-purple-400', val: d.stone   ?? 0 },
+      { label: t('cheat.hero'),    color: 'text-green-400',  val: d.heroes  ?? 0 },
+    ];
+    grid.innerHTML = cards.map(c =>
+      `<div class="bg-gray-800/80 border border-gray-700/50 rounded-lg p-3 flex flex-col gap-1">` +
+        `<div class="text-xs text-gray-500 uppercase tracking-widest">${escHtml(c.label)}</div>` +
+        `<div class="text-xl font-bold font-mono ${c.color}">${Number(c.val).toLocaleString()}</div>` +
+      `</div>`
+    ).join('');
+    const goldEl    = document.getElementById('cheat-gold');
+    const crystalEl = document.getElementById('cheat-crystal');
+    const stoneEl   = document.getElementById('cheat-stone');
+    if (goldEl    && document.activeElement !== goldEl)    goldEl.value    = d.gold    ?? 0;
+    if (crystalEl && document.activeElement !== crystalEl) crystalEl.value = d.crystal ?? 0;
+    if (stoneEl   && document.activeElement !== stoneEl)   stoneEl.value   = d.stone   ?? 0;
+  } catch (_) {
+    grid.innerHTML = `<span class="text-xs text-red-400">${t('admin.load_fail')}</span>`;
+  }
+}
+
+async function applyCheatCurrency() {
+  const gold    = parseInt(document.getElementById('cheat-gold')?.value    || '0', 10);
+  const crystal = parseInt(document.getElementById('cheat-crystal')?.value || '0', 10);
+  const stone   = parseInt(document.getElementById('cheat-stone')?.value   || '0', 10);
+  const sts     = document.getElementById('cheat-currency-status');
+  sts.className = 'text-xs text-gray-500';
+  sts.textContent = t('admin.save_ing');
+  try {
+    const r = await fetch('/web/api/cheat/currency', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ gold, crystal, stone }),
+    });
+    const d = await r.json();
+    sts.className = d.ok ? 'text-xs text-green-400' : 'text-xs text-red-400';
+    sts.textContent = d.ok ? '✓ OK' : ('✗ ' + (d.reason || 'fail'));
+    if (d.ok) loadCheatStatus();
+  } catch (_) {
+    sts.className = 'text-xs text-red-400';
+    sts.textContent = t('admin.server_error');
+  }
+}
+
+async function applyCheatHero() {
+  const hero_no = parseInt(document.getElementById('cheat-hero-no')?.value    || '10', 10);
+  const level   = parseInt(document.getElementById('cheat-hero-level')?.value || '1',  10);
+  const sts     = document.getElementById('cheat-hero-status');
+  sts.className = 'text-xs text-gray-500';
+  sts.textContent = t('admin.save_ing');
+  try {
+    const r = await fetch('/web/api/cheat/hero', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ hero_no, level }),
+    });
+    const d = await r.json();
+    sts.className = d.ok ? 'text-xs text-green-400' : 'text-xs text-red-400';
+    sts.textContent = d.ok ? '✓ OK' : ('✗ ' + (d.reason || 'fail'));
+    if (d.ok) loadCheatStatus();
+  } catch (_) {
+    sts.className = 'text-xs text-red-400';
+    sts.textContent = t('admin.server_error');
+  }
+}
 
 // ── MAIN: init ────────────────────────────────────────────────────────────────
 
