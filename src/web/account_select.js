@@ -1,10 +1,8 @@
 'use strict';
 
 var AGREE = 'zinny://AgreementOk?E001=y&E002=y&E006=y&AN001=y&AN002=y&N002=y&N003=y&joinMemberShip=n&setAdAgreement=n';
-var LANG_KEY = 'acct_lang';
-
-
 var currentLang = 'ko';
+var selectedAcctId = null;
 
 function t(key) {
   var dict = I18N[currentLang] || I18N['ko'];
@@ -18,31 +16,6 @@ function applyI18n() {
   document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
     el.placeholder = t(el.getAttribute('data-i18n-placeholder'));
   });
-}
-
-function updateLangButtons() {
-  ['ko', 'en', 'zh', 'ru', 'de', 'fr', 'vi'].forEach(function(l) {
-    var btn = document.getElementById('lbtn-' + l);
-    if (!btn) return;
-    if (l === currentLang) btn.classList.add('active');
-    else btn.classList.remove('active');
-  });
-}
-
-function setLang(lang) {
-  if (!I18N[lang]) return;
-  currentLang = lang;
-  localStorage.setItem(LANG_KEY, lang);
-  document.documentElement.lang = lang;
-  applyI18n();
-  updateLangButtons();
-  load();
-}
-
-function initLang(lang) {
-  var overlay = document.getElementById('lang-overlay');
-  if (overlay && overlay.open) overlay.close();
-  setLang(lang);
 }
 
 function esc(s) {
@@ -62,9 +35,44 @@ function fmtDate(ts) {
   return new Date(Number(ts)).toLocaleDateString(locale);
 }
 
+function _updatePlayBar() {
+  var btn  = document.getElementById('btn-play');
+  var hint = document.getElementById('play-hint');
+  if (!btn) return;
+  if (selectedAcctId) {
+    btn.disabled = false;
+    btn.classList.add('play-ready');
+    if (hint) hint.style.display = 'none';
+  } else {
+    btn.disabled = true;
+    btn.classList.remove('play-ready');
+    if (hint) hint.style.display = '';
+  }
+}
+
+function pickAcct(id) {
+  selectedAcctId = id;
+  document.querySelectorAll('.acct-row').forEach(function(row) {
+    row.classList.toggle('selected', row.dataset.id === id);
+  });
+  _updatePlayBar();
+}
+
+async function playSelected() {
+  if (!selectedAcctId) return;
+  var btn = document.getElementById('btn-play');
+  if (btn) btn.disabled = true;
+  await fetch('/web/api/accounts/' + encodeURIComponent(selectedAcctId) + '/select', {
+    method: 'POST'
+  }).catch(function() {});
+  location.replace(AGREE);
+}
+
 async function load() {
   var el = document.getElementById('acct-list');
   el.innerHTML = '<div class="acct-empty"><span class="t-spinner"></span> ' + t('acct.loading') + '</div>';
+  selectedAcctId = null;
+  _updatePlayBar();
   try {
     var res  = await fetch('/web/api/accounts');
     var list = await res.json();
@@ -73,11 +81,11 @@ async function load() {
       return;
     }
     el.innerHTML = list.map(function(a) {
-      var isActive = a.active;
-      return '<div class="acct-row' + (isActive ? ' active' : '') + '">' +
+      return '<div class="acct-row" data-id="' + esc(a.id) + '" onclick="pickAcct(\'' + esc(a.id) + '\')">' +
+        '<div class="acct-pick-indicator">◈</div>' +
         '<div class="acct-info">' +
           '<div class="acct-name">' + esc(a.nickname) +
-            (isActive ? '<span class="badge badge-ok" style="margin-left:6px;font-size:9px;letter-spacing:.5px">' + esc(t('acct.current_badge')) + '</span>' : '') +
+            (a.active ? '<span class="badge badge-ok" style="margin-left:6px;font-size:9px;letter-spacing:.5px">' + esc(t('acct.current_badge')) + '</span>' : '') +
           '</div>' +
           '<div class="acct-meta">' + esc(idpLabel(a.idp_code)) + ' · ' + esc(a.player_id) +
             ' · ' + esc(t('acct.hero_count')) + ' ' + esc(String(a.hero_count || 0)) +
@@ -85,26 +93,21 @@ async function load() {
           '</div>' +
         '</div>' +
         '<div class="acct-actions">' +
-          (isActive ? '' : '<button class="btn btn-primary" onclick="selectAcct(\'' + esc(a.id) + '\')">' + esc(t('acct.select_btn')) + '</button>') +
-          '<button class="btn btn-danger" onclick="delAcct(\'' + esc(a.id) + '\')">' + esc(t('acct.delete_btn')) + '</button>' +
+          '<button class="btn btn-danger acct-del-btn" onclick="event.stopPropagation();delAcct(\'' + esc(a.id) + '\')">' + esc(t('acct.delete_btn')) + '</button>' +
         '</div>' +
       '</div>';
     }).join('');
+    var active = list.find(function(a) { return a.active; });
+    if (active) { pickAcct(active.id); }
   } catch (e) {
     el.innerHTML = '<div class="acct-empty" style="color:var(--color-red)">' + esc(t('acct.error')) + '</div>';
   }
 }
 
-async function selectAcct(id) {
-  await fetch('/web/api/accounts/' + encodeURIComponent(id) + '/select', {
-    method: 'POST'
-  }).catch(function() {});
-  location.replace(AGREE);
-}
-
 async function delAcct(id) {
   if (!confirm(t('acct.delete_confirm'))) return;
   await fetch('/web/api/accounts/' + encodeURIComponent(id), { method: 'DELETE' }).catch(function() {});
+  if (selectedAcctId === id) { selectedAcctId = null; _updatePlayBar(); }
   load();
 }
 
@@ -136,26 +139,24 @@ async function createAccount() {
       return;
     }
     sts.textContent = '';
-    await fetch('/web/api/accounts/' + encodeURIComponent(data.id) + '/select', {
-      method: 'POST'
-    }).catch(function() {});
-    location.replace(AGREE);
+    selectedAcctId = data.id;
+    await playSelected();
   } catch (e) {
     sts.className = 'acct-status err';
     sts.textContent = t('new_acct.server_error');
   }
 }
 
-(function init() {
-  var saved = localStorage.getItem(LANG_KEY);
-  if (saved && I18N[saved]) {
-    currentLang = saved;
-    document.documentElement.lang = saved;
-    applyI18n();
-    updateLangButtons();
-    load();
-  } else {
-    var overlay = document.getElementById('lang-overlay');
-    if (overlay) overlay.showModal();
-  }
+(async function init() {
+  try {
+    var cr = await fetch('/web/api/config');
+    var cd = await cr.json();
+    if (cd.lang && I18N[cd.lang]) {
+      currentLang = cd.lang;
+      document.documentElement.lang = cd.lang;
+    }
+  } catch (_) {}
+  applyI18n();
+  _updatePlayBar();
+  load();
 })();

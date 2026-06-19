@@ -217,6 +217,7 @@ else()
       src/adb_runner.cpp
       src/logcat_process.cpp
       src/console_main.cpp
+      src/console_app.rc
       "${WEB_EMBEDDED_CPP}")
     target_include_directories(eversoul_console PRIVATE
       ${EVERSOUL_INCLUDE_DIRS})

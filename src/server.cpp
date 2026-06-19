@@ -85,7 +85,20 @@ namespace eversoul
                 for (const auto &[k, v] : req.headers)
                     log_line(id, "REQ_HEADER", k + "=" + v);
                 if (!req.body.empty())
-                    log_line(id, "REQ_BODY", clip_body(req.body));
+                {
+                    bool gzip_body = false;
+                    for (const auto &[k, v] : req.headers)
+                    {
+                        std::string lk = k;
+                        for (char &c : lk) c = (char)std::tolower((unsigned char)c);
+                        if (lk == "content-encoding" && v.find("gzip") != std::string::npos)
+                        { gzip_body = true; break; }
+                    }
+                    if (gzip_body)
+                        log_line(id, "REQ_BODY", "[gzip binary " + std::to_string(req.body.size()) + " bytes]");
+                    else
+                        log_line(id, "REQ_BODY", clip_body(req.body));
+                }
             }
 
             HttpResponse res = route_request(id, fd, req);

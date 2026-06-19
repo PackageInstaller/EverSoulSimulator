@@ -123,9 +123,13 @@
     </nav>
     <footer id="sidebar-footer">
       <div class="lang-row">
-        <button class="lang-btn active" onclick="setLang('ko')">한국어</button>
-        <button class="lang-btn" onclick="setLang('en')">EN</button>
-        <button class="lang-btn" onclick="setLang('zh')">中文</button>
+        <button class="lang-btn" id="lbtn-ko" onclick="setLang('ko')">한국어</button>
+        <button class="lang-btn" id="lbtn-en" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" id="lbtn-zh" onclick="setLang('zh')">中文</button>
+        <button class="lang-btn" id="lbtn-ru" onclick="setLang('ru')">RU</button>
+        <button class="lang-btn" id="lbtn-de" onclick="setLang('de')">DE</button>
+        <button class="lang-btn" id="lbtn-fr" onclick="setLang('fr')">FR</button>
+        <button class="lang-btn" id="lbtn-vi" onclick="setLang('vi')">VI</button>
       </div>
       <button class="about-btn" onclick="openAbout()">ⓘ About</button>
     </footer>
@@ -420,35 +424,37 @@
   </main><!-- /main -->
 </div><!-- /app -->
 
-<!-- ABOUT DIALOG (HTML5 <dialog>) -->
-<dialog id="modal-about">
-  <header class="modal-hdr">
-    <h2 class="modal-hdr-title">About</h2>
-    <button class="modal-close" onclick="closeAbout()">✕</button>
-  </header>
-  <article class="modal-body">
-    <h1 class="about-brand">EverSoul</h1>
-    <p class="about-sub">Offline Admin Panel</p>
-    <dl class="about-dl">
-      <div class="about-row">
-        <dt class="about-lbl" data-i18n="about.orig_author">Original Author</dt>
-        <dd class="about-val lead">少姜</dd>
-      </div>
-      <div class="about-row">
-        <dt class="about-lbl" data-i18n="about.co_dev">Co-Developer</dt>
-        <dd class="about-val">Nekoi</dd>
-      </div>
-      <div class="about-row">
-        <dt class="about-lbl" data-i18n="about.tech">Technology</dt>
-        <dd class="about-val about-tech">HTML5 · C++23 · SQLite · ADB</dd>
-      </div>
-      <div class="about-row">
-        <dt class="about-lbl" data-i18n="about.issues">Issues</dt>
-        <dd class="about-val"><a class="about-link" href="https://github.com/PackageInstaller/EverSoulSimulator/issues" target="_blank">GitHub Issues ↗</a></dd>
-      </div>
-    </dl>
-  </article>
-</dialog>
+<!-- ABOUT MODAL -->
+<div id="modal-about" class="modal-overlay" style="display:none" onclick="closeAbout()">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <header class="modal-hdr">
+      <h2 class="modal-hdr-title">About</h2>
+      <button class="modal-close" onclick="closeAbout()">✕</button>
+    </header>
+    <article class="modal-body">
+      <h1 class="about-brand">EverSoul</h1>
+      <p class="about-sub">Offline Admin Panel</p>
+      <dl class="about-dl">
+        <div class="about-row">
+          <dt class="about-lbl" data-i18n="about.orig_author">Original Author</dt>
+          <dd class="about-val lead">少姜</dd>
+        </div>
+        <div class="about-row">
+          <dt class="about-lbl" data-i18n="about.co_dev">Co-Developer</dt>
+          <dd class="about-val">Nekoi</dd>
+        </div>
+        <div class="about-row">
+          <dt class="about-lbl" data-i18n="about.tech">Technology</dt>
+          <dd class="about-val about-tech">HTML5 · C++23 · SQLite · ADB</dd>
+        </div>
+        <div class="about-row">
+          <dt class="about-lbl" data-i18n="about.issues">Issues</dt>
+          <dd class="about-val"><a class="about-link" href="https://github.com/PackageInstaller/EverSoulSimulator/issues" target="_blank">GitHub Issues ↗</a></dd>
+        </div>
+      </dl>
+    </article>
+  </div>
+</div>
 
 <!-- IMPORT DIALOG -->
 <dialog id="modal-import">

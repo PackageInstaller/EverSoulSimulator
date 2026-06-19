@@ -31,6 +31,8 @@ var I18N = {
     'new_acct.playerid_label':       'Player ID',
     'new_acct.playerid_placeholder': '(기본값 사용)',
     'acct.hero_count':               '영웅',
+    'acct.play_btn':                 '▶ 플레이',
+    'acct.play_hint':                '계정을 선택하세요',
   },
   en: {
     'page.title':                'Account Select',
@@ -62,6 +64,8 @@ var I18N = {
     'new_acct.playerid_label':       'Player ID',
     'new_acct.playerid_placeholder': '(use default)',
     'acct.hero_count':               'Heroes',
+    'acct.play_btn':                 '▶ Play',
+    'acct.play_hint':                'Select an account',
   },
   zh: {
     'page.title':                '账号选择',
@@ -93,6 +97,8 @@ var I18N = {
     'new_acct.playerid_label':       'Player ID',
     'new_acct.playerid_placeholder': '（使用默认值）',
     'acct.hero_count':               '英雄',
+    'acct.play_btn':                 '▶ 开始游戏',
+    'acct.play_hint':                '请选择账号',
   },
   ru: {
     'page.title':                'Выбор аккаунта',
@@ -124,6 +130,8 @@ var I18N = {
     'new_acct.playerid_label':       'Player ID',
     'new_acct.playerid_placeholder': '(по умолчанию)',
     'acct.hero_count':               'Герои',
+    'acct.play_btn':                 '▶ Играть',
+    'acct.play_hint':                'Выберите аккаунт',
   },
   de: {
     'page.title':                'Kontoauswahl',
@@ -155,6 +163,8 @@ var I18N = {
     'new_acct.playerid_label':       'Player ID',
     'new_acct.playerid_placeholder': '(Standard verwenden)',
     'acct.hero_count':               'Helden',
+    'acct.play_btn':                 '▶ Spielen',
+    'acct.play_hint':                'Konto auswählen',
   },
   fr: {
     'page.title':                'Sélection du compte',
@@ -186,6 +196,8 @@ var I18N = {
     'new_acct.playerid_label':       'Player ID',
     'new_acct.playerid_placeholder': '(valeur par défaut)',
     'acct.hero_count':               'Héros',
+    'acct.play_btn':                 '▶ Jouer',
+    'acct.play_hint':                'Sélectionnez un compte',
   },
   vi: {
     'page.title':                'Chọn tài khoản',
@@ -217,5 +229,7 @@ var I18N = {
     'new_acct.playerid_label':       'Player ID',
     'new_acct.playerid_placeholder': '(dùng mặc định)',
     'acct.hero_count':               'Anh hùng',
+    'acct.play_btn':                 '▶ Chơi',
+    'acct.play_hint':                'Chọn tài khoản',
   },
 };

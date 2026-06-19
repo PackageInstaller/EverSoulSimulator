@@ -24,6 +24,10 @@ namespace eversoul
 
     std::string upstream_for_path(const std::string &path)
     {
+        if (path.rfind("/Live/", 0) == 0)
+        {
+            return "https://patch.esoul.kakaogames.com" + path;
+        }
         if (path.rfind("/v2/", 0) == 0)
         {
             return "https://gc-infodesk-zinny3.kakaogames.com" + path;

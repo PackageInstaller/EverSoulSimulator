@@ -50,6 +50,7 @@ int main(int argc, char **argv)
     // adb 경로: EXE 위치를 동적으로 구해 copy_only/adb/adb.exe 절대 경로 설정.
     adb_runner::set_adb_path(
         (std::filesystem::path(exe_dir()) / "adb" / "adb.exe").string());
+    config().exe_dir = exe_dir();
 
     int port = kServerListenPort;
     for (int i = 1; i < argc; ++i)

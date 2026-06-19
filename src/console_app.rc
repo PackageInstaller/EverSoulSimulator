@@ -16,12 +16,12 @@ BEGIN
     BLOCK "040904B0"
     BEGIN
       VALUE "CompanyName",      "EOS TEAM\0"
-      VALUE "FileDescription",  "EverSoul Offline Simulator\0"
+      VALUE "FileDescription",  "EverSoul Offline Simulator (Console)\0"
       VALUE "FileVersion",      "0.0.1.0\0"
-      VALUE "InternalName",     "eversoul_offline_server\0"
+      VALUE "InternalName",     "eversoul_console\0"
       VALUE "LegalCopyright",   "Shao Jiang, GarnetRapture, MelodyDeck\0"
-      VALUE "OriginalFilename", "eversoul_offline_server.exe\0"
-      VALUE "ProductName",      "EverSoul Offline Simulator\0"
+      VALUE "OriginalFilename", "eversoul_console.exe\0"
+      VALUE "ProductName",      "EverSoul Offline\0"
       VALUE "ProductVersion",   "0.0.1.0\0"
     END
   END

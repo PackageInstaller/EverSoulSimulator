@@ -33,40 +33,77 @@ namespace {
     // Object 클래스 (NewObjectArray 용)
     static jclass g_object_cls = nullptr;
 
-    // libart.so 심볼 조회 — /proc/self/maps에서 절대경로 탐색 후 dlopen
-    void* art_resolver(const std::string_view& name) {
+    static std::string s_libart_path;
+
+    // libart.so 핸들 획득 — /proc/self/maps → 고정 경로 순으로 시도
+    static void* get_libart_handle() {
         static void* libart = nullptr;
-        if (!libart) {
-            char libart_path[512] = {};
-            FILE* maps = fopen("/proc/self/maps", "r");
-            if (maps) {
-                char line[512];
-                while (fgets(line, sizeof(line), maps)) {
-                    if (strstr(line, "libart.so")) {
-                        char* path = strrchr(line, ' ');
-                        if (path) {
-                            ++path;
-                            size_t len = strlen(path);
-                            while (len > 0 && (path[len - 1] == '\n' || path[len - 1] == '\r'))
-                                path[--len] = '\0';
-                            strncpy(libart_path, path, sizeof(libart_path) - 1);
-                        }
-                        break;
+        if (libart) return libart;
+
+        // 1단계: /proc/self/maps에서 실제 로드 경로 파싱
+        char maps_path[512] = {};
+        FILE* maps = fopen("/proc/self/maps", "r");
+        if (maps) {
+            char line[512];
+            while (fgets(line, sizeof(line), maps)) {
+                if (strstr(line, "libart.so")) {
+                    char* path = strrchr(line, ' ');
+                    if (path) {
+                        ++path;
+                        size_t len = strlen(path);
+                        while (len > 0 && (path[len-1] == '\n' || path[len-1] == '\r'))
+                            path[--len] = '\0';
+                        strncpy(maps_path, path, sizeof(maps_path) - 1);
                     }
+                    break;
                 }
-                fclose(maps);
             }
-            if (libart_path[0]) {
-                libart = dlopen(libart_path, RTLD_NOW | RTLD_NOLOAD);
-                if (!libart) libart = dlopen(libart_path, RTLD_NOW);
-            }
-            if (!libart) {
-                libart = dlopen("libart.so", RTLD_NOW | RTLD_NOLOAD);
-                if (!libart) libart = dlopen("libart.so", RTLD_NOW);
+            fclose(maps);
+        }
+        if (maps_path[0]) {
+            s_libart_path = maps_path;
+            libart = dlopen(maps_path, RTLD_NOW | RTLD_NOLOAD);
+            if (!libart) libart = dlopen(maps_path, RTLD_NOW);
+        }
+
+        // 2단계: APEX 경로 (Android 10+)
+        if (!libart) {
+            static const char* kApexPaths[] = {
+                "/apex/com.android.art/lib64/libart.so",
+                "/apex/com.android.art/lib/libart.so",
+                nullptr
+            };
+            for (int i = 0; kApexPaths[i]; ++i) {
+                libart = dlopen(kApexPaths[i], RTLD_NOW | RTLD_NOLOAD);
+                if (!libart) libart = dlopen(kApexPaths[i], RTLD_NOW);
+                if (libart) { s_libart_path = kApexPaths[i]; break; }
             }
         }
+
+        // 3단계: 이름만으로 fallback
+        if (!libart) {
+            libart = dlopen("libart.so", RTLD_NOW | RTLD_NOLOAD);
+            if (!libart) libart = dlopen("libart.so", RTLD_NOW);
+        }
+
+        return libart;
+    }
+
+    // libart.so 심볼 직접 조회
+    void* art_resolver(const std::string_view& name) {
+        void* libart = get_libart_handle();
         if (!libart) return nullptr;
         return dlsym(libart, std::string(name).c_str());
+    }
+
+    // libart.so 심볼 prefix 변형 조회 — lsplant::InitInfo::art_symbol_prefix_resolver
+    // lsplant는 내부 심볼에 대해 "art_" 또는 "__" prefix 변형을 prefix_resolver로 조회한다
+    void* art_prefix_resolver(const std::string_view& name) {
+        void* libart = get_libart_handle();
+        if (!libart) return nullptr;
+        // lsplant가 넘겨주는 name은 이미 prefix가 붙은 형태이므로 그대로 dlsym
+        void* sym = dlsym(libart, std::string(name).c_str());
+        return sym;
     }
 
     // redirect 후 backup Method를 JNI로 invoke
@@ -232,8 +269,8 @@ namespace {
             .inline_unhooker = [](void* func) -> bool {
                 return DobbyDestroy(func) == 0;
             },
-            .art_symbol_resolver   = art_resolver,
-            .art_symbol_prefix_resolver = nullptr,
+            .art_symbol_resolver        = art_resolver,
+            .art_symbol_prefix_resolver = art_prefix_resolver,
         };
         if (!::lsplant::Init(env, info)) { LOGE("lsplant::Init 실패"); return; }
         LOGI("lsplant::Init 완료");
@@ -314,7 +351,7 @@ namespace {
 } // anonymous namespace
 
 void install_java_hooks(JavaVM* vm) {
-    std::thread([vm]() { do_install(vm); }).detach();
+    (void)vm;
 }
 
 } // namespace eversoul::lsplant

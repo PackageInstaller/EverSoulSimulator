@@ -205,15 +205,30 @@ namespace eversoul::logcat
     {
         if (adb_path.empty())
             return;
-        std::string cmd = "\"" + adb_path + "\"";
+
+        std::string adb_cmd = "\"" + adb_path + "\"";
         if (!serial.empty())
-            cmd += " -s " + serial;
-        cmd += " logcat";
+            adb_cmd += " -s " + serial;
+
+        // 임시 .bat 파일로 따옴표 중첩 없이 실행
+        char tmp_dir[MAX_PATH] = {};
+        GetTempPathA(MAX_PATH, tmp_dir);
+        std::string bat_path = std::string(tmp_dir) + "eversoul_logcat.bat";
+
+        FILE* f = fopen(bat_path.c_str(), "w");
+        if (!f) return;
+        fprintf(f, "@echo off\n");
+        fprintf(f, "chcp 65001 > nul\n");
+        fprintf(f, "title EverSoul Logcat\n");
+        fprintf(f, "%s logcat -c 2>nul\n", adb_cmd.c_str());
+        fprintf(f, "%s logcat 2>nul | findstr /i \"eversoul libswappywrapper\"\n", adb_cmd.c_str());
+        fclose(f);
+
+        std::string cmd_buf = "cmd.exe /k \"" + bat_path + "\"";
 
         STARTUPINFOA si{};
         si.cb = sizeof(si);
         PROCESS_INFORMATION pi{};
-        std::string cmd_buf = cmd;
         BOOL ok = CreateProcessA(
             nullptr, cmd_buf.data(), nullptr, nullptr,
             FALSE, CREATE_NEW_CONSOLE, nullptr, nullptr, &si, &pi);

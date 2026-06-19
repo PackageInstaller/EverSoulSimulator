@@ -18,7 +18,7 @@
   &nbsp;
   <img src="https://img.shields.io/badge/C%2B%2B-23-00599C?style=for-the-badge&logo=cplusplus&logoColor=white" alt="C++23" />
   &nbsp;
-  <img src="https://img.shields.io/badge/version-0.0.6-blue?style=for-the-badge" alt="v0.0.5" />
+  <img src="https://img.shields.io/badge/version-0.0.7-blue?style=for-the-badge" alt="v0.0.5" />
 </p>
 
 <p align="center">
@@ -722,3 +722,9 @@ pine_helper/         Android helper Gradle 모듈
 ## 라이선스
 
 본 프로젝트의 라이선스는 `LICENSE` 파일에 따른다.
+
+---
+
+## APK
+
+https://drive.google.com/file/d/1v7oG2i1bFFInL-bW6YRYowwcKiqSaBuR/view?usp=sharing

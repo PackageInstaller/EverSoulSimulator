@@ -48,7 +48,6 @@ function setLang(l) {
 
 function selectLangAndStart(lang) {
   LANG = lang;
-  localStorage.setItem('eversoul_lang', lang);
   fetch('/web/api/config', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -1318,14 +1317,8 @@ async function saveFileEdit() {
 
 // ── MAIN: about modal ─────────────────────────────────────────────────────────
 
-function openAbout()  { document.getElementById('modal-about').showModal(); }
-function closeAbout() { document.getElementById('modal-about').close(); }
-document.getElementById('modal-about').addEventListener('click', e => {
-  const dlg = e.currentTarget;
-  const rect = dlg.getBoundingClientRect();
-  if (e.clientX < rect.left || e.clientX > rect.right ||
-      e.clientY < rect.top  || e.clientY > rect.bottom) dlg.close();
-});
+function openAbout()  { document.getElementById('modal-about').style.display = 'flex'; }
+function closeAbout() { document.getElementById('modal-about').style.display = 'none'; }
 
 // ── MAIN: init ────────────────────────────────────────────────────────────────
 
@@ -1345,10 +1338,12 @@ function initMain() {
 // ── BOOT ──────────────────────────────────────────────────────────────────────
 
 (async () => {
-  const savedLang = localStorage.getItem('eversoul_lang');
-  if (savedLang) {
-    LANG = savedLang;
-  }
+  let savedLang = null;
+  try {
+    const cr = await fetch('/web/api/config');
+    const cd = await cr.json();
+    if (cd.lang) { savedLang = cd.lang; LANG = cd.lang; }
+  } catch (_) {}
 
   await loadStrings();
 

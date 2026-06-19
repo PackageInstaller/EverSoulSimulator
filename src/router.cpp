@@ -396,9 +396,31 @@ namespace eversoul
                     ",\"fixture_errors\":" + std::to_string(fixture_store().errors().size()) +
                     ",\"db_tables\":" + std::to_string(db_tables) +
                     ",\"db_path\":\"" + json_escape(db_path) + "\"" +
-                    ",\"lang\":\"" + json_escape(orm::kv_get("lang", "ko")) + "\"" +
+                    ",\"lang\":\"" + json_escape([]() -> std::string {
+                        std::filesystem::path p = std::filesystem::path(config().exe_dir) / "lang.cfg";
+                        std::ifstream f(p);
+                        std::string v;
+                        if (f && std::getline(f, v) && !v.empty()) return v;
+                        return "ko";
+                    }()) + "\"" +
                     ",\"request_count\":" + std::to_string(request_id().load()) +
                     ",\"started_at\":" + std::to_string(sat) + "}";
+                return json_ok(body);
+            }
+
+            // ── 설정 읽기 ────────────────────────────────────────────────────────
+            if (path == "/web/api/config" && method == "GET")
+            {
+                std::string lang = [&]() -> std::string {
+                    std::filesystem::path p = std::filesystem::path(config().exe_dir) / "lang.cfg";
+                    std::ifstream f(p);
+                    std::string v;
+                    if (f && std::getline(f, v) && !v.empty()) return v;
+                    return "ko";
+                }();
+                std::string body = "{\"lang\":\"" + json_escape(lang) + "\"" +
+                    ",\"proxy_enabled\":" + (config().proxy_enabled ? "true" : "false") +
+                    ",\"game_server_url\":\"" + json_escape(config().game_server_url) + "\"}";
                 return json_ok(body);
             }
 
@@ -411,7 +433,11 @@ namespace eversoul
                 std::string gurl = body_json_string(req.body, "game_server_url", "");
                 if (!gurl.empty()) config().game_server_url = gurl;
                 std::string lang = body_json_string(req.body, "lang", "");
-                if (!lang.empty()) orm::kv_set("lang", lang);
+                if (!lang.empty()) {
+                    std::filesystem::path p = std::filesystem::path(config().exe_dir) / "lang.cfg";
+                    std::ofstream f(p, std::ios::trunc);
+                    if (f) f << lang;
+                }
                 return json_ok("{\"ok\":true}");
             }
 
@@ -700,6 +726,7 @@ namespace eversoul
                 if (connected)
                 {
                     adb_runner::set_serial(target);
+                    logcat::start_in_new_console(adb_runner::adb_path(), target);
                     std::string pkg = adb_runner::run({"shell", "pm", "list", "packages", "com.kakaogames.eversoul"});
                     eversoul = pkg.find("com.kakaogames.eversoul") != std::string::npos;
                     std::string su_r = adb_runner::run({"shell", "su", "-c", "id"});
@@ -1592,13 +1619,21 @@ namespace eversoul
 
         if (req.path.rfind("/Live/", 0) == 0 && req.method == "GET")
         {
-            if (req.path.find("/Table/const_data_version.json") != std::string::npos)
+            std::filesystem::path local = std::filesystem::path(config().data_dir) / req.path.substr(1);
+            std::ifstream lf(local, std::ios::binary);
+            if (lf.good())
             {
-                log_line(id, "MOCK", "CDN /Live/ const_data_version version=4725 action=1");
-                return HttpResponse{200, {{"Content-Type", "application/json"}}, R"({"version":4725,"action":1})"};
+                std::string body((std::istreambuf_iterator<char>(lf)), std::istreambuf_iterator<char>());
+                std::string ct = "application/octet-stream";
+                if (req.path.size() >= 5 && req.path.compare(req.path.size() - 5, 5, ".json") == 0)
+                    ct = "application/json";
+                else if (req.path.size() >= 4 && req.path.compare(req.path.size() - 4, 4, ".zip") == 0)
+                    ct = "application/zip";
+                log_line(id, "CDN_LOCAL", req.path + " bytes=" + std::to_string(body.size()));
+                return HttpResponse{200, {{"Content-Type", ct}}, std::move(body)};
             }
-            log_line(id, "MOCK", "CDN /Live/ 404 " + req.path);
-            return HttpResponse{404, {{"Content-Type", "application/json"}}, R"({"error":"not found"})"};
+            log_line(id, "MOCK", "CDN /Live/ redirect " + req.path);
+            return HttpResponse{302, {{"Location", "https://patch.esoul.kakaogames.com" + req.path}}, ""};
         }
 
         if (req.path == "/Login")

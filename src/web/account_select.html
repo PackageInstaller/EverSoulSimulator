@@ -8,22 +8,6 @@
 </head>
 <body class="acct-body">
 
-<dialog id="lang-overlay">
-  <article id="lang-select-box">
-    <h1 class="lang-select-logo">EverSoul</h1>
-    <p class="lang-select-sub">Offline Simulator</p>
-    <h2 class="lang-select-title">Select Language / 언어 선택 / 选择语言</h2>
-    <nav class="lang-select-row">
-      <button class="lang-select-btn" onclick="initLang('ko')">한국어</button>
-      <button class="lang-select-btn" onclick="initLang('en')">English</button>
-      <button class="lang-select-btn" onclick="initLang('zh')">中文</button>
-      <button class="lang-select-btn" onclick="initLang('ru')">Русский</button>
-      <button class="lang-select-btn" onclick="initLang('de')">Deutsch</button>
-      <button class="lang-select-btn" onclick="initLang('fr')">Français</button>
-      <button class="lang-select-btn" onclick="initLang('vi')">Tiếng Việt</button>
-    </nav>
-  </article>
-</dialog>
 
 <div id="acct-root" class="acct-root">
   <header class="acct-header">
@@ -31,15 +15,7 @@
       <h1 class="acct-logo">EverSoul</h1>
       <p class="acct-logo-sub">OFFLINE SIMULATOR</p>
     </div>
-    <div class="lang-row">
-      <button class="lang-btn" id="lbtn-ko" onclick="setLang('ko')">한국어</button>
-      <button class="lang-btn" id="lbtn-en" onclick="setLang('en')">EN</button>
-      <button class="lang-btn" id="lbtn-zh" onclick="setLang('zh')">中文</button>
-      <button class="lang-btn" id="lbtn-ru" onclick="setLang('ru')">RU</button>
-      <button class="lang-btn" id="lbtn-de" onclick="setLang('de')">DE</button>
-      <button class="lang-btn" id="lbtn-fr" onclick="setLang('fr')">FR</button>
-      <button class="lang-btn" id="lbtn-vi" onclick="setLang('vi')">VI</button>
-    </div>
+
   </header>
 
   <article class="card">
@@ -51,6 +27,10 @@
       <p class="acct-subtitle" data-i18n="acct.subtitle">계정을 선택하거나 새로 만드세요.</p>
       <div id="acct-list" class="acct-list">
         <div class="acct-empty"><span class="t-spinner"></span> <span data-i18n="acct.loading">로딩 중…</span></div>
+      </div>
+      <div id="play-bar" class="play-bar">
+        <span id="play-hint" class="play-hint" data-i18n="acct.play_hint">계정을 선택하세요</span>
+        <button id="btn-play" class="btn btn-play" disabled onclick="playSelected()" data-i18n="acct.play_btn">▶ 플레이</button>
       </div>
     </div>
   </article>
