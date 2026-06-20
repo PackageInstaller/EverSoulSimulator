@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { Pause, Play, Trash2, Filter } from 'lucide-react'
-import { GlassCard, GlassCardHeader } from '@/components/ui/GlassCard'
+import { GlassCard } from '@/components/ui/GlassCard'
 import { useI18n } from '@/lib/i18n'
 import { cn } from '@/lib/utils'
 
@@ -16,7 +16,7 @@ interface AdbLogEntry {
   text: string
 }
 
-type LogChannel = 'all' | 'request' | 'adb'
+type LogChannel = 'all' | 'request' | 'headers' | 'adb'
 
 const MAX_ENTRIES = 1000
 
@@ -128,8 +128,10 @@ export function LogsPage() {
 
   const filterLower = filter.toLowerCase()
 
+  const HEADER_TAGS = ['REQ_HEADER', 'REQ_BODY', 'RES_HEADER', 'RES_BODY']
   const visibleServer = serverLogs.filter(e => {
     if (channel === 'request' && e.tag !== 'REQUEST') return false
+    if (channel === 'headers' && !HEADER_TAGS.includes(e.tag)) return false
     if (!filterLower) return true
     return e.text.toLowerCase().includes(filterLower) || e.tag.toLowerCase().includes(filterLower)
   })
@@ -142,6 +144,7 @@ export function LogsPage() {
   const channels: { key: LogChannel; label: string }[] = [
     { key: 'all',     label: t('admin.logs_server') },
     { key: 'request', label: t('admin.requests') },
+    { key: 'headers', label: t('admin.logs_headers') },
     { key: 'adb',     label: t('admin.logs_adb') },
   ]
 
@@ -199,7 +202,13 @@ export function LogsPage() {
             >
               {ch.label}
               <span className="ml-1.5 text-[10px] font-mono opacity-60">
-                {ch.key === 'adb' ? adbLogs.length : serverLogs.filter(e => ch.key === 'request' ? e.tag === 'REQUEST' : true).length}
+                {ch.key === 'adb'
+                ? adbLogs.length
+                : ch.key === 'request'
+                  ? serverLogs.filter(e => e.tag === 'REQUEST').length
+                  : ch.key === 'headers'
+                    ? serverLogs.filter(e => ['REQ_HEADER', 'REQ_BODY', 'RES_HEADER', 'RES_BODY'].includes(e.tag)).length
+                    : serverLogs.length}
               </span>
             </button>
           ))}

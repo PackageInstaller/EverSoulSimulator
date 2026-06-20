@@ -8,9 +8,10 @@ export type NavPage =
   | 'health'
   | 'logs'
   | 'fixtures'
-  | 'settings'
   | 'gamedata'
   | 'files'
+  | 'injector'
+  | 'manual'
 
 export interface NavItemConfig {
   page: NavPage

@@ -141,33 +141,60 @@ if(ANDROID)
   message(STATUS "")
   message(STATUS "대상: libswappywrapper.so")
   message(STATUS "  Anti-cheat 훅:            ON")
-  message(STATUS "  오프라인 서버:             ON (포트 9999)")
-  message(STATUS "  전송 레이어 리다이렉트:     ON (connect/getaddrinfo → 127.0.0.1:9999)")
+  message(STATUS "  오프라인 서버:             ON (포트 9991)")
+  message(STATUS "  전송 레이어 리다이렉트:     ON (connect/getaddrinfo → 127.0.0.1:9991)")
   message(STATUS "  IL2CPP 훅 (Dobby):        ON (UnityWebRequest)")
-  message(STATUS "  Java 레이어 훅 (LSPlant):  ON (URL/OkHttp/Process/HmacSHA256Util)")
+  message(STATUS "  Java 레이어 훅 (LSPlant):  ON (URL/OkHttp/Process/HmacSHA256Util/KakaoAuth)")
   message(STATUS "  frida-gum 런타임:          ON (정적 링크)")
+  message(STATUS "")
+
+  # === HAR 수집용 SO: 훅 전부 설치, URL/transport 리다이렉트 없음 (실제 서버 직결) ===
+  add_library(swappywrapper_har SHARED
+    ${EVERSOUL_CORE_SOURCES}
+    ${EVERSOUL_ANDROID_SOURCES}
+    src/anticheat_patch.cpp
+    src/entry.cpp
+    ${PROTO_OBJ}
+    ${REDIRECT_DEX_OBJ})
+  target_include_directories(swappywrapper_har PRIVATE
+    ${EVERSOUL_INCLUDE_DIRS}
+    third_party/dobby/include
+    ${FRIDA_GUM_DIR}/include
+    third_party/lsplant/lsplant/src/main/jni/include)
+  target_compile_options(swappywrapper_har PRIVATE -O2 -fvisibility=hidden)
+  target_compile_definitions(swappywrapper_har PRIVATE
+    SQLITE_ORM_OMITS_CODECVT
+    EVERSOUL_HAR_MODE)
+  target_link_libraries(swappywrapper_har PRIVATE
+    log dl m
+    dobby
+    lsplant_static
+    -Wl,--whole-archive frida_gum_imported -Wl,--no-whole-archive)
+  target_link_options(swappywrapper_har PRIVATE -static-libstdc++ -s)
+
+  message(STATUS "대상: libswappywrapper_har.so (HAR 수집 전용)")
+  message(STATUS "  Anti-cheat 훅:            ON")
+  message(STATUS "  URL 리다이렉트:            OFF (실제 서버 직결)")
+  message(STATUS "  전송 레이어 리다이렉트:     OFF (실제 서버 직결)")
+  message(STATUS "  IL2CPP 훅 (Dobby):        ON")
+  message(STATUS "  Java 레이어 훅 (LSPlant):  ON (수집 로그/인증 콜백 관찰)")
   message(STATUS "")
 else()
   find_package(CURL REQUIRED)
 
   if(WIN32)
-    file(GLOB WEB_EMBED_SOURCES
-      "${CMAKE_CURRENT_SOURCE_DIR}/src/web/*.html"
-      "${CMAKE_CURRENT_SOURCE_DIR}/src/web/*.js"
-      "${CMAKE_CURRENT_SOURCE_DIR}/src/web/*.css"
-      "${CMAKE_CURRENT_SOURCE_DIR}/src/web/*.png"
-      "${CMAKE_CURRENT_SOURCE_DIR}/src/web/*.ico"
-      "${CMAKE_CURRENT_SOURCE_DIR}/src/web/*.svg"
+    file(GLOB_RECURSE WEB_EMBED_SOURCES
+      "${CMAKE_CURRENT_SOURCE_DIR}/src/web/dist/**"
     )
     set(WEB_EMBEDDED_CPP "${CMAKE_CURRENT_BINARY_DIR}/web_embedded.cpp")
     add_custom_command(
       OUTPUT "${WEB_EMBEDDED_CPP}"
       COMMAND python
         "${CMAKE_CURRENT_SOURCE_DIR}/cmake/gen_web_blob.py"
-        "${CMAKE_CURRENT_SOURCE_DIR}/src/web"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/web/dist"
         "${WEB_EMBEDDED_CPP}"
       DEPENDS ${WEB_EMBED_SOURCES}
-      COMMENT "Embedding web assets (src/web/) into web_embedded.cpp"
+      COMMENT "Embedding web assets (src/web/dist/) into web_embedded.cpp"
       VERBATIM
     )
 

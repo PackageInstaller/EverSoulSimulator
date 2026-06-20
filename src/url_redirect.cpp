@@ -4,6 +4,13 @@
 
 namespace eversoul::url_redirect {
 
+#ifdef EVERSOUL_HAR_MODE
+std::string redirect_url_cpp(std::string_view url) {
+    return std::string(url);
+}
+} // namespace eversoul::url_redirect
+#else
+
 namespace {
 
 // HTTP 대상 도메인 (monitor_unity_web_request.js 기준)
@@ -28,6 +35,7 @@ inline constexpr std::string_view kWsDomains[] = {
     "live-sea-chat.esoul.kakaogames.com",
     "live-sea.esoul.kakaogames.com",
     "gc-session-zinny3.kakaogames.com",
+    "session-zinny3.game.kakao.com",
 };
 
 // url에서 scheme("://") 이후 첫 경로 구분자 위치까지의 경로 suffix 반환
@@ -83,4 +91,5 @@ std::string redirect_url_cpp(std::string_view url) {
 }
 
 } // namespace eversoul::url_redirect
-#endif
+#endif // EVERSOUL_HAR_MODE
+#endif // __ANDROID__

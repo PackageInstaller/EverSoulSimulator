@@ -62,14 +62,18 @@ namespace eversoul
 #ifdef __ANDROID__
         __android_log_print(ANDROID_LOG_INFO, "libswappywrapper/eversoul_offline", "%s", line.c_str());
 #else
-        if (g_ansi_enabled) {
-            std::cout << "\033[48;5;94m\033[38;5;180m[" << ts << "][#" << std::to_string(id) << "]\033[0m"
-                      << tag_ansi(tag) << "[" << tag << "]\033[0m"
-                      << "\033[48;5;94m\033[38;5;230m " << text << "\033[0m\n";
-        } else {
-            std::cout << line;
+        const bool suppress_stdout = (tag == "REQ_HEADER" || tag == "REQ_BODY" ||
+                                       tag == "RES_HEADER" || tag == "RES_BODY");
+        if (!suppress_stdout) {
+            if (g_ansi_enabled) {
+                std::cout << "\033[48;5;94m\033[38;5;180m[" << ts << "][#" << std::to_string(id) << "]\033[0m"
+                          << tag_ansi(tag) << "[" << tag << "]\033[0m"
+                          << "\033[48;5;94m\033[38;5;230m " << text << "\033[0m\n";
+            } else {
+                std::cout << line;
+            }
+            std::cout.flush();
         }
-        std::cout.flush();
         if (g_server_log.is_open()) { g_server_log << line; g_server_log.flush(); }
         std::string json = "{\"timestamp\":\"" + ts + "\",\"id\":" + std::to_string(id) +
                            ",\"tag\":\"" + json_escape(tag) + "\",\"text\":\"" + json_escape(text) + "\"}";

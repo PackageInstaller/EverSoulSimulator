@@ -88,5 +88,9 @@ int main(int argc, char **argv)
                 { eversoul::request_shutdown(); });
     std::signal(SIGTERM, [](int)
                 { eversoul::request_shutdown(); });
-    return run_server(port);
+
+    adb_runner::start_server();
+    int ret = run_server(port);
+    adb_runner::kill_server();
+    return ret;
 }

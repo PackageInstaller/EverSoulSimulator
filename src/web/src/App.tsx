@@ -7,8 +7,10 @@ import { HealthPage } from '@/pages/HealthPage'
 import { FixturesPage } from '@/pages/FixturesPage'
 import { GameDataPage } from '@/pages/GameDataPage'
 import { FilesPage } from '@/pages/FilesPage'
-import { SettingsPage } from '@/pages/SettingsPage'
+
 import { LogsPage } from '@/pages/LogsPage'
+import { InjectorPage } from '@/pages/InjectorPage'
+import { ManualPage } from '@/pages/ManualPage'
 import { type NavPage } from '@/types/nav'
 
 function renderPage(page: NavPage) {
@@ -22,7 +24,8 @@ function renderPage(page: NavPage) {
     case 'fixtures':  return <FixturesPage />
     case 'gamedata':  return <GameDataPage />
     case 'files':     return <FilesPage />
-    case 'settings':  return <SettingsPage />
+    case 'injector':  return <InjectorPage />
+    case 'manual':    return <ManualPage />
   }
 }
 

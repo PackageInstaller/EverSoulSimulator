@@ -15,6 +15,8 @@ export interface CheatStatus {
   gold: number
   crystal: number
   stone: number
+  mana_crystal: number
+  pay_dia: number
   heroes: number
 }
 
@@ -44,6 +46,7 @@ export interface HealthCheck {
   name: string
   status: 'ok' | 'warn' | 'fail'
   detail?: string
+  hint?: string
 }
 
 export interface ServerStatus {

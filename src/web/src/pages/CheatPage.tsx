@@ -1,14 +1,16 @@
 import { useState } from 'react'
-import { Coins, Gem, Sparkles, Users, RefreshCw } from 'lucide-react'
+import { Coins, Gem, Sparkles, Users, RefreshCw, Diamond } from 'lucide-react'
 import { CurrencyCard } from '@/components/cheat/CurrencyCard'
+import { HeroAddCard } from '@/components/cheat/HeroAddCard'
 import { useCheatStatus } from '@/hooks/useCheatStatus'
 import { useI18n } from '@/lib/i18n'
 import { cn } from '@/lib/utils'
-import { type CurrencyCardConfig } from '@/types/cheat'
+import { type CurrencyCardConfig, type HeroCardConfig } from '@/types/cheat'
 
 const CURRENCY_CONFIGS: CurrencyCardConfig[] = [
   {
     type: 'gold',
+    currencyType: 1,
     i18nKey: 'cheat.gold',
     gradient: 'from-amber-400 to-orange-500',
     iconBg: 'bg-amber-100 dark:bg-amber-900/40',
@@ -17,6 +19,7 @@ const CURRENCY_CONFIGS: CurrencyCardConfig[] = [
   },
   {
     type: 'crystal',
+    currencyType: 2,
     i18nKey: 'cheat.crystal',
     gradient: 'from-sky-400 to-blue-500',
     iconBg: 'bg-sky-100 dark:bg-sky-900/40',
@@ -25,16 +28,34 @@ const CURRENCY_CONFIGS: CurrencyCardConfig[] = [
   },
   {
     type: 'stone',
+    currencyType: 3,
     i18nKey: 'cheat.stone',
     gradient: 'from-violet-400 to-purple-500',
     iconBg: 'bg-violet-100 dark:bg-violet-900/40',
     icon: Sparkles,
     iconColor: 'text-violet-600',
   },
+  {
+    type: 'mana_crystal',
+    currencyType: 4,
+    i18nKey: 'cheat.mana_crystal',
+    gradient: 'from-teal-400 to-cyan-500',
+    iconBg: 'bg-teal-100 dark:bg-teal-900/40',
+    icon: Gem,
+    iconColor: 'text-teal-600',
+  },
+  {
+    type: 'pay_dia',
+    currencyType: 42,
+    i18nKey: 'cheat.pay_dia',
+    gradient: 'from-rose-400 to-pink-500',
+    iconBg: 'bg-rose-100 dark:bg-rose-900/40',
+    icon: Diamond,
+    iconColor: 'text-rose-600',
+  },
 ]
 
-const HERO_CONFIG: CurrencyCardConfig = {
-  type: 'stone',
+const HERO_CONFIG: HeroCardConfig = {
   i18nKey: 'cheat.hero_count',
   gradient: 'from-emerald-400 to-teal-500',
   iconBg: 'bg-emerald-100 dark:bg-emerald-900/40',
@@ -46,23 +67,21 @@ export function CheatPage() {
   const { t } = useI18n()
   const { data, loading, refresh } = useCheatStatus()
 
-  const [inputs, setInputs] = useState<Record<string, string>>({
-    gold: '', crystal: '', stone: '', hero: '',
-  })
+  const [inputs, setInputs] = useState({ gold: '', crystal: '', stone: '', mana_crystal: '', pay_dia: '', heroNo: '', heroLevel: '1' })
   const [applying, setApplying] = useState(false)
   const [feedback, setFeedback] = useState<string | null>(null)
   const [feedbackOk, setFeedbackOk] = useState(true)
 
-  function setInput(key: string, val: string) {
+  function setInput(key: keyof typeof inputs, val: string) {
     setInputs(prev => ({ ...prev, [key]: val }))
   }
 
-  async function applyCurrency(type: 'gold' | 'crystal' | 'stone', value: string) {
+  async function applyCurrency(type: 'gold' | 'crystal' | 'stone' | 'mana_crystal' | 'pay_dia', value: string) {
     if (!value) return
     setApplying(true)
     setFeedback(null)
     try {
-      const body: Record<string, number> = { gold: 0, crystal: 0, stone: 0 }
+      const body: Record<string, number> = { gold: 0, crystal: 0, stone: 0, mana_crystal: 0, pay_dia: 0 }
       body[type] = Number(value)
       const res = await fetch('/web/api/cheat/currency', {
         method: 'POST',
@@ -78,15 +97,15 @@ export function CheatPage() {
     }
   }
 
-  async function applyHero(value: string) {
-    if (!value) return
+  async function applyHero(heroNo: string, heroLevel: string) {
+    if (!heroNo || !heroLevel) return
     setApplying(true)
     setFeedback(null)
     try {
       const res = await fetch('/web/api/cheat/hero', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ hero_no: Number(value), level: 1 }),
+        body: JSON.stringify({ hero_no: Number(heroNo), level: Number(heroLevel) }),
       })
       const d = await res.json()
       setFeedbackOk(!!d.ok)
@@ -101,6 +120,8 @@ export function CheatPage() {
     gold: data?.gold,
     crystal: data?.crystal,
     stone: data?.stone,
+    mana_crystal: data?.mana_crystal,
+    pay_dia: data?.pay_dia,
   }
 
   return (
@@ -145,12 +166,14 @@ export function CheatPage() {
             loading={applying}
           />
         ))}
-        <CurrencyCard
+        <HeroAddCard
           config={HERO_CONFIG}
-          value={data?.heroes}
-          inputValue={inputs.hero}
-          onInputChange={val => setInput('hero', val)}
-          onApply={() => applyHero(inputs.hero)}
+          heroCount={data?.heroes}
+          heroNoValue={inputs.heroNo}
+          heroLevelValue={inputs.heroLevel}
+          onHeroNoChange={val => setInput('heroNo', val)}
+          onHeroLevelChange={val => setInput('heroLevel', val)}
+          onApply={() => applyHero(inputs.heroNo, inputs.heroLevel)}
           loading={applying}
         />
       </div>

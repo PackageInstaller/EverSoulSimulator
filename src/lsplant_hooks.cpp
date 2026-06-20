@@ -22,10 +22,15 @@ namespace {
 #define LOGE(fmt, ...) __android_log_print(ANDROID_LOG_ERROR, TAG, fmt, ##__VA_ARGS__)
 
     // lsplant::Hook() 반환값 — C++에서 직접 보관하여 backup invoke 처리
-    static jobject g_backup_url_init1  = nullptr;  // java.net.URL.<init>(String)
-    static jobject g_backup_url_init2  = nullptr;  // java.net.URL.<init>(URL, String)
-    static jobject g_backup_url_init3  = nullptr;  // java.net.URL.<init>(URL, String, Handler)
-    static jobject g_backup_okhttp     = nullptr;   // okhttp3.Request$Builder.url(String)
+    static jobject g_backup_url_init1      = nullptr;  // java.net.URL.<init>(String)
+    static jobject g_backup_url_init2      = nullptr;  // java.net.URL.<init>(URL, String)
+    static jobject g_backup_url_init3      = nullptr;  // java.net.URL.<init>(URL, String, Handler)
+    static jobject g_backup_okhttp         = nullptr;  // okhttp3.Request$Builder.url(String)
+    static jobject g_backup_load_data      = nullptr;  // CustomTabLauncherActivity.loadData(Intent)
+    static jobject g_backup_on_new_intent  = nullptr;  // CustomTabLauncherActivity.onNewIntent(Intent)
+
+    // OAuth flow: loadData에서 저장한 ResultReceiver — onNewIntent에서 null인 경우 재사용
+    static jobject g_pending_rr = nullptr;
 
     // java.lang.reflect.Method.invoke(Object, Object[]) 메서드 ID
     static jmethodID g_method_invoke = nullptr;
@@ -115,6 +120,110 @@ namespace {
         return result;
     }
 
+    // class hierarchy를 위로 순회하며 field ID 조회
+    static jfieldID find_field(JNIEnv* env, jobject obj, const char* name, const char* sig) {
+        jclass cls = env->GetObjectClass(obj);
+        while (cls) {
+            jfieldID fid = env->GetFieldID(cls, name, sig);
+            if (!env->ExceptionCheck() && fid) { env->DeleteLocalRef(cls); return fid; }
+            env->ExceptionClear();
+            jclass sc = env->GetSuperclass(cls);
+            env->DeleteLocalRef(cls);
+            cls = sc;
+        }
+        return nullptr;
+    }
+
+    static jobject get_intent_data(JNIEnv* env, jobject intent) {
+        if (!intent) return nullptr;
+        jclass intent_cls = env->GetObjectClass(intent);
+        jmethodID get_data = env->GetMethodID(intent_cls, "getData", "()Landroid/net/Uri;");
+        env->DeleteLocalRef(intent_cls);
+        if (!get_data) {
+            env->ExceptionClear();
+            return nullptr;
+        }
+        jobject uri = env->CallObjectMethod(intent, get_data);
+        if (env->ExceptionCheck()) {
+            env->ExceptionClear();
+            return nullptr;
+        }
+        return uri;
+    }
+
+    static bool send_oauth_result(JNIEnv* env, jobject rr, jobject uri, const char* source) {
+        if (!rr || !uri) return false;
+
+        jclass bundle_cls = env->FindClass("android/os/Bundle");
+        if (!bundle_cls) {
+            env->ExceptionClear();
+            return false;
+        }
+        jmethodID bundle_ctor = env->GetMethodID(bundle_cls, "<init>", "()V");
+        jmethodID put_parcelable = env->GetMethodID(bundle_cls,
+            "putParcelable", "(Ljava/lang/String;Landroid/os/Parcelable;)V");
+        jobject bundle = bundle_ctor ? env->NewObject(bundle_cls, bundle_ctor) : nullptr;
+        env->DeleteLocalRef(bundle_cls);
+        if (!bundle || !put_parcelable) {
+            env->ExceptionClear();
+            if (bundle) env->DeleteLocalRef(bundle);
+            return false;
+        }
+
+        jstring key = env->NewStringUTF("key.url");
+        env->CallVoidMethod(bundle, put_parcelable, key, uri);
+        env->DeleteLocalRef(key);
+
+        jclass rr_cls = env->GetObjectClass(rr);
+        jmethodID send_mid = env->GetMethodID(rr_cls, "send", "(ILandroid/os/Bundle;)V");
+        env->DeleteLocalRef(rr_cls);
+        if (!send_mid) {
+            env->ExceptionClear();
+            env->DeleteLocalRef(bundle);
+            return false;
+        }
+
+        env->CallVoidMethod(rr, send_mid, (jint)-1, bundle);
+        env->DeleteLocalRef(bundle);
+
+        if (env->ExceptionCheck()) {
+            env->ExceptionClear();
+            LOGE("%s: ResultReceiver.send 실패", source);
+            return false;
+        }
+
+        LOGI("%s: OAuth code 전달 완료", source);
+        return true;
+    }
+
+    static bool send_pending_oauth_result(JNIEnv* env, jobject uri, const char* source) {
+        if (!g_pending_rr || !uri) return false;
+        bool sent = send_oauth_result(env, g_pending_rr, uri, source);
+        env->DeleteGlobalRef(g_pending_rr);
+        g_pending_rr = nullptr;
+        return sent;
+    }
+
+    static void clear_pending_receiver(JNIEnv* env) {
+        if (g_pending_rr) {
+            env->DeleteGlobalRef(g_pending_rr);
+            g_pending_rr = nullptr;
+        }
+    }
+
+    static void finish_activity(JNIEnv* env, jobject activity) {
+        if (!activity) return;
+        jclass activity_cls = env->GetObjectClass(activity);
+        jmethodID finish_mid = env->GetMethodID(activity_cls, "finish", "()V");
+        env->DeleteLocalRef(activity_cls);
+        if (!finish_mid) {
+            env->ExceptionClear();
+            return;
+        }
+        env->CallVoidMethod(activity, finish_mid);
+        if (env->ExceptionCheck()) env->ExceptionClear();
+    }
+
     // ---- RegisterNatives C++ 구현 ----
 
     // java.net.URL.<init>(String spec)
@@ -180,6 +289,75 @@ namespace {
         jobjectArray bargs = env->NewObjectArray(1, g_object_cls, nullptr);
         env->SetObjectArrayElement(bargs, 0, new_url);
         return invoke_backup(env, g_backup_okhttp, builder, bargs);
+    }
+
+    // CustomTabLauncherActivity.loadData(Intent)
+    // args[0]=this, args[1]=intent
+    static jobject native_hook_load_data(JNIEnv* env, jobject, jobjectArray args) {
+        jobject activity = env->GetObjectArrayElement(args, 0);
+        jobject intent   = env->GetObjectArrayElement(args, 1);
+
+        jobject uri = get_intent_data(env, intent);
+        if (uri && send_pending_oauth_result(env, uri, "loadData")) {
+            finish_activity(env, activity);
+            env->DeleteLocalRef(uri);
+            env->DeleteLocalRef(activity);
+            env->DeleteLocalRef(intent);
+            return nullptr;
+        }
+        if (uri) env->DeleteLocalRef(uri);
+
+        jobjectArray bargs = env->NewObjectArray(1, g_object_cls, nullptr);
+        env->SetObjectArrayElement(bargs, 0, intent);
+        invoke_backup(env, g_backup_load_data, activity, bargs);
+        env->DeleteLocalRef(bargs);
+
+        jfieldID fid = find_field(env, activity, "resultReceiver", "Landroid/os/ResultReceiver;");
+        if (fid) {
+            jobject rr = env->GetObjectField(activity, fid);
+            if (rr) {
+                if (g_pending_rr) env->DeleteGlobalRef(g_pending_rr);
+                g_pending_rr = env->NewGlobalRef(rr);
+                env->DeleteLocalRef(rr);
+                LOGI("loadData: resultReceiver 저장 완료");
+            }
+        }
+
+        env->DeleteLocalRef(activity);
+        env->DeleteLocalRef(intent);
+        return nullptr;
+    }
+
+    // CustomTabLauncherActivity.onNewIntent(Intent)
+    // args[0]=this, args[1]=intent
+    static jobject native_hook_on_new_intent(JNIEnv* env, jobject, jobjectArray args) {
+        jobject activity = env->GetObjectArrayElement(args, 0);
+        jobject intent   = env->GetObjectArrayElement(args, 1);
+
+        jobjectArray bargs = env->NewObjectArray(1, g_object_cls, nullptr);
+        env->SetObjectArrayElement(bargs, 0, intent);
+        invoke_backup(env, g_backup_on_new_intent, activity, bargs);
+        env->DeleteLocalRef(bargs);
+
+        jfieldID fid = find_field(env, activity, "resultReceiver", "Landroid/os/ResultReceiver;");
+        jobject rr = fid ? env->GetObjectField(activity, fid) : nullptr;
+
+        if (!rr && g_pending_rr) {
+            jobject uri = get_intent_data(env, intent);
+            if (uri) {
+                send_pending_oauth_result(env, uri, "onNewIntent");
+                env->DeleteLocalRef(uri);
+            } else {
+                LOGE("onNewIntent: intent.getData() null — URI 없음");
+            }
+        } else if (rr) {
+            env->DeleteLocalRef(rr);
+            clear_pending_receiver(env);
+        }
+
+        env->DeleteLocalRef(activity);
+        env->DeleteLocalRef(intent);
+        return nullptr;
     }
 
     // target 메서드 하나를 hooker_obj/callback 으로 훅, backup global ref 반환
@@ -290,12 +468,16 @@ namespace {
               reinterpret_cast<void*>(native_url_init3) },
             { "okhttpBuilderUrl", "([Ljava/lang/Object;)Ljava/lang/Object;",
               reinterpret_cast<void*>(native_okhttp_builder_url) },
+            { "hookLoadData",   "([Ljava/lang/Object;)Ljava/lang/Object;",
+              reinterpret_cast<void*>(native_hook_load_data) },
+            { "hookOnNewIntent","([Ljava/lang/Object;)Ljava/lang/Object;",
+              reinterpret_cast<void*>(native_hook_on_new_intent) },
         };
-        if (env->RegisterNatives(hooks_local, natives, 4) != JNI_OK) {
+        if (env->RegisterNatives(hooks_local, natives, 6) != JNI_OK) {
             env->ExceptionClear();
             LOGE("RegisterNatives 실패"); return;
         }
-        LOGI("RegisterNatives 완료: urlInit1/2/3/okhttpBuilderUrl → C++ native");
+        LOGI("RegisterNatives 완료: urlInit1/2/3/okhttpBuilderUrl/hookLoadData/hookOnNewIntent → C++ native");
 
         jclass hooks_global = static_cast<jclass>(env->NewGlobalRef(hooks_local));
         env->DeleteLocalRef(hooks_local);
@@ -345,13 +527,25 @@ namespace {
             "verifySignature", "(Ljava/lang/String;Ljava/lang/String;)Z",
             JNI_FALSE, "hookVerifySignature", nullptr });
 
+        // com.kakao.sdk.auth.CustomTabLauncherActivity.loadData(Intent)
+        hook_deferred({ vm, hooker_global, hooks_global,
+            "com/kakao/sdk/auth/CustomTabLauncherActivity",
+            "loadData", "(Landroid/content/Intent;)V",
+            JNI_FALSE, "hookLoadData", &g_backup_load_data });
+
+        // com.kakao.sdk.auth.CustomTabLauncherActivity.onNewIntent(Intent)
+        hook_deferred({ vm, hooker_global, hooks_global,
+            "com/kakao/sdk/auth/CustomTabLauncherActivity",
+            "onNewIntent", "(Landroid/content/Intent;)V",
+            JNI_FALSE, "hookOnNewIntent", &g_backup_on_new_intent });
+
         LOGI("Java 훅 설치 완료");
     }
 
 } // anonymous namespace
 
 void install_java_hooks(JavaVM* vm) {
-    (void)vm;
+    do_install(vm);
 }
 
 } // namespace eversoul::lsplant

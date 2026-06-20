@@ -5,6 +5,7 @@ import { type NavPage } from '@/types/nav'
 import { useServerStatus } from '@/hooks/useServerStatus'
 import { NavSidebar } from './NavSidebar'
 import { TopBar } from './TopBar'
+import styles from '@/styles/shell.module.css'
 
 const PAGE_I18N_KEYS: Record<NavPage, string> = {
   dashboard: 'admin.dashboard',
@@ -16,8 +17,8 @@ const PAGE_I18N_KEYS: Record<NavPage, string> = {
   fixtures:  'admin.fixtures',
   gamedata:  'admin.gamedata',
   files:     'admin.files',
-  settings:  'admin.settings',
   injector:  'admin.injector',
+  manual:    'admin.manual',
 }
 
 interface AppShellProps {
@@ -65,16 +66,7 @@ function AppShellInner({ children }: AppShellProps) {
   }
 
   return (
-    <div
-      className="min-h-screen overflow-hidden bg-slate-50 dark:bg-slate-950"
-      style={{
-        backgroundImage: `
-          radial-gradient(ellipse 80% 60% at 10% 0%, rgba(139,92,246,0.12) 0%, transparent 60%),
-          radial-gradient(ellipse 60% 50% at 90% 10%, rgba(59,130,246,0.10) 0%, transparent 60%),
-          radial-gradient(ellipse 50% 40% at 50% 100%, rgba(16,185,129,0.07) 0%, transparent 60%)
-        `,
-      }}
-    >
+    <div className={cn('min-h-screen overflow-hidden bg-slate-50 dark:bg-slate-950', styles.shellBackground)}>
       <div className="relative flex h-screen overflow-hidden">
         <NavSidebar
           current={page}

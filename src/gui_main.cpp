@@ -131,6 +131,7 @@ static LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp)
         if (g_wv)       { g_wv->Release();   g_wv   = nullptr; }
         if (g_ctrl)     { g_ctrl->Release(); g_ctrl = nullptr; }
         if (g_bg_brush) { DeleteObject(g_bg_brush); g_bg_brush = nullptr; }
+        eversoul::adb_runner::kill_server();
         eversoul::request_shutdown();
         PostQuitMessage(0);
         return 0;
@@ -148,6 +149,7 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE, LPSTR, int)
     eversoul::offline_data().load_embedded_web(kWebBlobData, kWebBlobSize);
     eversoul::adb_runner::set_adb_path(
         (std::filesystem::path(dir) / "adb" / "adb.exe").string());
+    eversoul::adb_runner::start_server();
     eversoul::start_async(eversoul::kServerListenPort);
 
     if (!load_webview2(dir))

@@ -3,6 +3,7 @@
 #ifndef __ANDROID__
 
 #include <windows.h>
+#include <shellapi.h>
 
 #include <map>
 #include <mutex>
@@ -136,6 +137,34 @@ namespace eversoul::adb_runner
     {
         std::lock_guard lock(g_mu);
         g_subs.erase(id);
+    }
+
+    void start_server()
+    {
+        std::string adb;
+        { std::lock_guard lock(g_mu); adb = g_adb_path; }
+        if (adb.empty())
+            return;
+        SHELLEXECUTEINFOA sei{};
+        sei.cbSize      = sizeof(sei);
+        sei.fMask       = SEE_MASK_NOCLOSEPROCESS;
+        sei.lpVerb      = "runas";
+        sei.lpFile      = adb.c_str();
+        sei.lpParameters = "start-server";
+        sei.nShow       = SW_HIDE;
+        if (ShellExecuteExA(&sei) && sei.hProcess && sei.hProcess != INVALID_HANDLE_VALUE)
+        {
+            WaitForSingleObject(sei.hProcess, 5000);
+            CloseHandle(sei.hProcess);
+        }
+    }
+
+    void kill_server()
+    {
+        std::string adb;
+        { std::lock_guard lock(g_mu); adb = g_adb_path; }
+        if (!adb.empty())
+            exec_adb(adb, {"kill-server"});
     }
 }
 

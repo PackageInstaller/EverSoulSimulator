@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Activity, Zap, RefreshCw, Package, Database, Globe, Coins, Gem, Ghost, Play, Square, Server } from 'lucide-react'
+import loadingUrl from '@/assets/loading.png'
 import { GlassCard, GlassCardHeader } from '@/components/ui/GlassCard'
 import { StatusBadge } from '@/components/ui/StatusBadge'
 import { useServerStatus } from '@/hooks/useServerStatus'
@@ -14,7 +15,7 @@ const MAIN_ACTIVITY = 'com.kakaogames.eversoul.unity.UnityPlayerActivity'
 interface InjectorStatus { running: boolean }
 
 function useUptime(startedAt: number | undefined): string {
-  const [tick, setTick] = useState(0)
+  const [, setTick] = useState(0)
   useEffect(() => {
     if (!startedAt) return
     const iv = setInterval(() => setTick(t => t + 1), 1000)
@@ -109,52 +110,61 @@ export function DashboardPage() {
       </div>
 
       <GlassCard>
-        <GlassCardHeader
-          icon={<Play className="w-4 h-4 text-green-600" />}
-          title={t('admin.game_start_title')}
-          iconBg="bg-green-100 dark:bg-green-900/40"
-        />
-        <div className="mt-4 space-y-3">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-            <div className="flex flex-col gap-0.5">
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Package</span>
-              <span className="font-mono text-xs text-slate-700 dark:text-slate-300 break-all">{PACKAGE_NAME}</span>
+        <div className="flex items-start gap-4">
+          <div className="flex-1 min-w-0">
+            <GlassCardHeader
+              icon={<Play className="w-4 h-4 text-green-600" />}
+              title={t('admin.game_start_title')}
+              iconBg="bg-green-100 dark:bg-green-900/40"
+            />
+            <div className="mt-4 space-y-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <div className="flex flex-col gap-0.5">
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Package</span>
+                  <span className="font-mono text-xs text-slate-700 dark:text-slate-300 break-all">{PACKAGE_NAME}</span>
+                </div>
+                <div className="flex flex-col gap-0.5">
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Activity</span>
+                  <span className="font-mono text-xs text-slate-700 dark:text-slate-300 break-all">{MAIN_ACTIVITY}</span>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Status</span>
+                {injStatus
+                  ? <StatusBadge variant={injStatus.running ? 'ok' : 'idle'}>{injStatus.running ? t('admin.running') : t('admin.stopped')}</StatusBadge>
+                  : <StatusBadge variant="idle">—</StatusBadge>
+                }
+              </div>
+              <div className="flex items-center gap-2 flex-wrap">
+                <button
+                  onClick={startGame}
+                  disabled={gameActing || !!injStatus?.running}
+                  className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold text-white bg-linear-to-r from-green-500 to-emerald-500 shadow-lg shadow-green-500/30 transition-all active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                  <Play className="w-4 h-4" />
+                  {t('admin.game_start_btn')}
+                </button>
+                <button
+                  onClick={stopGame}
+                  disabled={gameActing || !injStatus?.running}
+                  className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold text-white bg-linear-to-r from-rose-500 to-pink-500 shadow-lg shadow-rose-500/30 transition-all active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                  <Square className="w-4 h-4" />
+                  {t('admin.injector_stop')}
+                </button>
+                {gameMsg && (
+                  <span className={cn('text-xs font-medium', gameMsg.ok ? 'text-emerald-500' : 'text-rose-500')}>
+                    {gameMsg.text}
+                  </span>
+                )}
+              </div>
             </div>
-            <div className="flex flex-col gap-0.5">
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Activity</span>
-              <span className="font-mono text-xs text-slate-700 dark:text-slate-300 break-all">{MAIN_ACTIVITY}</span>
-            </div>
           </div>
-          <div className="flex items-center gap-3">
-            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Status</span>
-            {injStatus
-              ? <StatusBadge variant={injStatus.running ? 'ok' : 'idle'}>{injStatus.running ? t('admin.running') : t('admin.stopped')}</StatusBadge>
-              : <StatusBadge variant="idle">—</StatusBadge>
-            }
-          </div>
-          <div className="flex items-center gap-2 flex-wrap">
-            <button
-              onClick={startGame}
-              disabled={gameActing || !!injStatus?.running}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold text-white bg-linear-to-r from-green-500 to-emerald-500 shadow-lg shadow-green-500/30 transition-all active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed"
-            >
-              <Play className="w-4 h-4" />
-              {t('admin.game_start_btn')}
-            </button>
-            <button
-              onClick={stopGame}
-              disabled={gameActing || !injStatus?.running}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold text-white bg-linear-to-r from-rose-500 to-pink-500 shadow-lg shadow-rose-500/30 transition-all active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed"
-            >
-              <Square className="w-4 h-4" />
-              {t('admin.injector_stop')}
-            </button>
-            {gameMsg && (
-              <span className={cn('text-xs font-medium', gameMsg.ok ? 'text-emerald-500' : 'text-rose-500')}>
-                {gameMsg.text}
-              </span>
-            )}
-          </div>
+          <img
+            src={loadingUrl}
+            alt=""
+            className="hidden sm:block w-28 h-28 object-contain rounded-2xl shrink-0 self-center"
+          />
         </div>
       </GlassCard>
 

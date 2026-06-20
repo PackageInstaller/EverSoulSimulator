@@ -455,12 +455,22 @@ namespace eversoul
                 bool db_ok = !orm::opened_path().empty();
                 bool fix_ok = fixture_store().loaded();
                 std::string adb_path = adb_runner::adb_path();
-                bool adb_ok = !adb_path.empty();
+                bool adb_exe_exists = !adb_path.empty() && std::filesystem::exists(adb_path);
+                std::string devices_out = adb_exe_exists ? adb_runner::run({"devices"}) : "";
+                bool adb_device_ok = devices_out.find("\tdevice") != std::string::npos;
+                std::string adb_detail = adb_exe_exists
+                    ? (json_escape(adb_path) + (adb_device_ok ? " [connected]" : " [no device]"))
+                    : (adb_path.empty() ? "adb.exe not configured" : "adb.exe not found: " + json_escape(adb_path));
+                std::string adb_hint;
+                if (!adb_exe_exists)
+                    adb_hint = "EXE 폴더 adb\\ 하위에 adb.exe 를 복사하세요";
+                else if (!adb_device_ok)
+                    adb_hint = "에뮬레이터 실행 확인 후 Injector 탭에서 ADB 연결하세요";
                 std::string body = "[";
                 body += "{\"name\":\"Game Server\",\"status\":\"ok\",\"detail\":\"" + json_escape(config().game_server_url) + "\"}";
                 body += ",{\"name\":\"Database\",\"status\":\"" + std::string(db_ok ? "ok" : "fail") + "\",\"detail\":\"" + json_escape(orm::opened_path()) + "\"}";
                 body += ",{\"name\":\"Fixtures\",\"status\":\"" + std::string(fix_ok ? (fixture_store().errors().empty() ? "ok" : "warn") : "fail") + "\",\"detail\":\"" + std::to_string(fixture_store().size()) + " loaded\"}";
-                body += ",{\"name\":\"ADB\",\"status\":\"" + std::string(adb_ok ? "ok" : "warn") + "\",\"detail\":\"" + json_escape(adb_path) + "\"}";
+                body += ",{\"name\":\"ADB\",\"status\":\"" + std::string(adb_device_ok ? "ok" : "warn") + "\",\"detail\":\"" + adb_detail + "\",\"hint\":\"" + adb_hint + "\"}";
                 body += "]";
                 return json_ok(body);
             }
@@ -555,23 +565,31 @@ namespace eversoul
             // ── DB 테이블 목록 ───────────────────────────────────────────────────
             if (path == "/web/api/db/tables" && method == "GET")
             {
-                static const std::vector<std::pair<const char *, const char *>> kTbl = {
-                    {"currencies", nullptr}, {"heroes", nullptr}, {"hero_reps", nullptr},
-                    {"item_etcs", nullptr}, {"item_equips", nullptr}, {"hero_equip_slots", nullptr},
-                    {"formations", nullptr}, {"spirit_trees", nullptr}, {"hero_options", nullptr},
-                    {"challenge_modes", nullptr}, {"stages", nullptr}, {"stories", nullptr},
-                    {"tutorials", nullptr}, {"dungeons", nullptr}, {"kv", nullptr}
-                };
+                AccountDatabase* adb = account_db_manager().active_db();
+                sqlite3* db = adb ? adb->raw_db() : nullptr;
+                if (!db) return json_ok("[]");
                 std::string body = "[";
                 bool first = true;
-                for (const auto &[name, _] : kTbl)
-                {
-                    int rows = 0;
-                    try { rows = orm::row_count(name); } catch (...) {}
-                    if (!first) body += ",";
-                    body += "{\"name\":\"" + std::string(name) + "\",\"rows\":" + std::to_string(rows) + "}";
-                    first = false;
+                sqlite3_stmt* st = nullptr;
+                const char* sql = "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%' ORDER BY name";
+                if (sqlite3_prepare_v2(db, sql, -1, &st, nullptr) == SQLITE_OK) {
+                    while (sqlite3_step(st) == SQLITE_ROW) {
+                        const char* nm = reinterpret_cast<const char*>(sqlite3_column_text(st, 0));
+                        if (!nm) continue;
+                        std::string tname(nm);
+                        int rows = 0;
+                        sqlite3_stmt* cnt = nullptr;
+                        std::string csql = "SELECT COUNT(*) FROM \"" + tname + "\"";
+                        if (sqlite3_prepare_v2(db, csql.c_str(), -1, &cnt, nullptr) == SQLITE_OK) {
+                            if (sqlite3_step(cnt) == SQLITE_ROW) rows = sqlite3_column_int(cnt, 0);
+                        }
+                        sqlite3_finalize(cnt);
+                        if (!first) body += ",";
+                        body += "{\"name\":\"" + json_escape(tname) + "\",\"rows\":" + std::to_string(rows) + "}";
+                        first = false;
+                    }
                 }
+                sqlite3_finalize(st);
                 body += "]";
                 return json_ok(body);
             }
@@ -757,6 +775,20 @@ namespace eversoul
                 return json_ok("{\"devices\":" + json_str_array(devs) + "}");
             }
 
+            if (path == "/web/api/injector/reverse-list" && method == "GET")
+            {
+                std::string out = adb_runner::run({"reverse", "--list"});
+                std::vector<std::string> entries;
+                std::istringstream ss(out);
+                std::string line;
+                while (std::getline(ss, line))
+                {
+                    if (!line.empty() && line.back() == '\r') line.pop_back();
+                    if (!line.empty()) entries.push_back(line);
+                }
+                return json_ok("{\"entries\":" + json_str_array(entries) + "}");
+            }
+
             // ── 인젝터: 기기 상태 확인 ───────────────────────────────────────────
             if (path.rfind("/web/api/injector/check", 0) == 0 && method == "GET")
             {
@@ -918,6 +950,31 @@ namespace eversoul
                 return json_ok("{\"ok\":true}");
             }
 
+            // ── 파일 디렉토리 목록 ───────────────────────────────────────────────
+            if (path == "/web/api/files/dirs" && method == "GET")
+            {
+                namespace fs = std::filesystem;
+                std::string body = "[";
+                bool first = true;
+                std::error_code ec;
+                fs::path root = fs::path(config().data_dir);
+                if (fs::exists(root, ec)) {
+                    std::vector<std::string> dirs;
+                    for (auto& entry : fs::directory_iterator(root, ec)) {
+                        if (!entry.is_directory(ec)) continue;
+                        dirs.push_back(entry.path().filename().string());
+                    }
+                    std::sort(dirs.begin(), dirs.end());
+                    for (const auto& d : dirs) {
+                        if (!first) body += ",";
+                        body += "\"" + json_escape(d + "/") + "\"";
+                        first = false;
+                    }
+                }
+                body += "]";
+                return json_ok(body);
+            }
+
             // ── 파일 목록 ────────────────────────────────────────────────────────
             if (path.rfind("/web/api/files/list", 0) == 0 && method == "GET")
             {
@@ -962,38 +1019,69 @@ namespace eversoul
                 std::unordered_map<int,std::int64_t> cur_map;
                 for (const auto& c : cur_list) cur_map[c.type] = c.value;
                 std::string body = "{";
-                body += "\"gold\":"     + std::to_string(cur_map.count(1) ? cur_map[1] : 0);
-                body += ",\"crystal\":" + std::to_string(cur_map.count(2) ? cur_map[2] : 0);
-                body += ",\"stone\":"   + std::to_string(cur_map.count(3) ? cur_map[3] : 0);
-                body += ",\"heroes\":"  + std::to_string(static_cast<int>(hero_list.size()));
+                body += "\"gold\":"          + std::to_string(cur_map.count(1)  ? cur_map[1]  : 0);
+                body += ",\"crystal\":"      + std::to_string(cur_map.count(2)  ? cur_map[2]  : 0);
+                body += ",\"stone\":"        + std::to_string(cur_map.count(3)  ? cur_map[3]  : 0);
+                body += ",\"mana_crystal\":" + std::to_string(cur_map.count(4)  ? cur_map[4]  : 0);
+                body += ",\"pay_dia\":"      + std::to_string(cur_map.count(42) ? cur_map[42] : 0);
+                body += ",\"heroes\":"       + std::to_string(static_cast<int>(hero_list.size()));
                 body += "}";
                 return json_ok(body);
             }
 
             if (path == "/web/api/cheat/currency" && method == "POST")
             {
-                auto cur_list = orm::currencies();
-                std::unordered_map<int,std::int64_t> cur_map;
-                for (const auto& c : cur_list) cur_map[c.type] = c.value;
-                std::int64_t tgt_gold    = body_json_int64(req.body, "gold",    0);
-                std::int64_t tgt_crystal = body_json_int64(req.body, "crystal", 0);
-                std::int64_t tgt_stone   = body_json_int64(req.body, "stone",   0);
-                orm::add_currency(1, tgt_gold    - (cur_map.count(1) ? cur_map[1] : 0));
-                orm::add_currency(2, tgt_crystal - (cur_map.count(2) ? cur_map[2] : 0));
-                orm::add_currency(3, tgt_stone   - (cur_map.count(3) ? cur_map[3] : 0));
+                std::int64_t add_gold         = body_json_int64(req.body, "gold",         0);
+                std::int64_t add_crystal      = body_json_int64(req.body, "crystal",      0);
+                std::int64_t add_stone        = body_json_int64(req.body, "stone",        0);
+                std::int64_t add_mana_crystal = body_json_int64(req.body, "mana_crystal", 0);
+                std::int64_t add_pay_dia      = body_json_int64(req.body, "pay_dia",      0);
+                if (add_gold)         orm::add_currency(1,  add_gold);
+                if (add_crystal)      orm::add_currency(2,  add_crystal);
+                if (add_stone)        orm::add_currency(3,  add_stone);
+                if (add_mana_crystal) orm::add_currency(4,  add_mana_crystal);
+                if (add_pay_dia)      orm::add_currency(42, add_pay_dia);
                 return json_ok("{\"ok\":true}");
             }
 
             if (path == "/web/api/cheat/hero" && method == "POST")
             {
-                int hero_no = static_cast<int>(body_json_int64(req.body, "hero_no", 10));
-                int level   = static_cast<int>(body_json_int64(req.body, "level",    1));
+                int hero_no = static_cast<int>(body_json_int64(req.body, "hero_no", 0));
+                int level   = static_cast<int>(body_json_int64(req.body, "level",   1));
+                if (hero_no <= 0)
+                    return json_ok("{\"ok\":false,\"reason\":\"invalid hero_no\"}");
+                struct HeroMeta { int no; int grade; int race; };
+                static const HeroMeta kCheatMeta[] = {
+                    {10,   110011, 110052}, {20,   110011, 110053},
+                    {30,   110011, 110054}, {40,   110011, 110055},
+                    {110,  110012, 110052}, {120,  110012, 110052},
+                    {210,  110012, 110053}, {310,  110012, 110054},
+                    {410,  110012, 110055},
+                    {1010, 110014, 110052}, {1060, 110014, 110052},
+                    {2070, 110014, 110053},
+                };
+                int grade = 110011, race = 110052;
+                bool found = false;
+                for (const auto& m : kCheatMeta) {
+                    if (m.no == hero_no) { grade = m.grade; race = m.race; found = true; break; }
+                }
+                if (!found) {
+                    grade = 110014;
+                    const int prefix = hero_no / 1000;
+                    if      (prefix == 1) race = 110052;
+                    else if (prefix == 2) race = 110053;
+                    else if (prefix == 3) race = 110054;
+                    else if (prefix == 4) race = 110055;
+                    else if (prefix == 5) race = 110056;
+                    else if (prefix == 6) race = (hero_no >= 6500) ? 110058 : 110057;
+                    else                  race = 110052;
+                }
                 orm::Hero h;
-                h.idx     = "0_dyn_cheat_" + std::to_string(hero_no);
-                h.heroNo  = hero_no;
-                h.level   = level;
-                h.gradeSno = 1;
-                h.raceSno  = 0;
+                h.idx      = "0_cheat_" + std::to_string(hero_no);
+                h.heroNo   = hero_no;
+                h.level    = level;
+                h.gradeSno = grade;
+                h.raceSno  = race;
                 h.isLock   = 0;
                 orm::save_hero(h);
                 return json_ok("{\"ok\":true}");

@@ -39,7 +39,6 @@ extern "C"
     {
         (void)reserved;
         __android_log_print(ANDROID_LOG_INFO, kLogTag, "JNI_OnLoad — Java/IL2CPP 훅 초기화");
-        // Java 훅 (LSPlant + RedirectHooks.dex) + IL2CPP 훅 (frida-gum) 모두 JNI_OnLoad 스레드에서
         eversoul::lsplant::install_java_hooks(vm);
         eversoul::native_hooks::install_il2cpp_hooks();
         return JNI_VERSION_1_6;

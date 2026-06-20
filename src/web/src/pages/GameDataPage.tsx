@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { BookOpen, RefreshCw, Coins, Ghost, User, Settings2, Save } from 'lucide-react'
+import { RefreshCw, Coins, Ghost, User, Settings2, Save } from 'lucide-react'
 import { GlassCard, GlassCardHeader } from '@/components/ui/GlassCard'
 import { useI18n } from '@/lib/i18n'
 import { cn } from '@/lib/utils'

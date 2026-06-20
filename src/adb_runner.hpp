@@ -25,6 +25,11 @@ namespace eversoul::adb_runner
     // ADB 로그 구독 (반환값 false 이면 자동 제거).
     int  subscribe(LineFn fn);
     void unsubscribe(int id);
+
+    // ADB 서버를 관리자 권한(runas)으로 기동. 이미 실행 중이면 무해.
+    void start_server();
+    // ADB 서버 종료 (kill-server).
+    void kill_server();
 }
 
 #endif // !__ANDROID__

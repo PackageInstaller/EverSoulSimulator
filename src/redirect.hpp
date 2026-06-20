@@ -43,6 +43,7 @@ namespace eversoul::redirect
         "live-sea-chat.esoul.kakaogames.com",
         "live-sea.esoul.kakaogames.com",
         "gc-session-zinny3.kakaogames.com",
+        "session-zinny3.game.kakao.com",
     };
 
     inline constexpr std::string_view kLocalHttpBase = "http://127.0.0.1:9991";

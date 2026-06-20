@@ -4,8 +4,8 @@
 IDI_APP_ICON ICON "assets/logo.ico"
 
 VS_VERSION_INFO VERSIONINFO
-FILEVERSION 0,0,1,0
-PRODUCTVERSION 0,0,1,0
+FILEVERSION 0,0,2,0
+PRODUCTVERSION 0,0,2,0
 FILEFLAGSMASK VS_FFI_FILEFLAGSMASK
 FILEFLAGS 0
 FILEOS VOS_NT_WINDOWS32
@@ -16,14 +16,15 @@ BEGIN
   BEGIN
     BLOCK "040904B0"
     BEGIN
-      VALUE "CompanyName",      "Nekoi\0"
-      VALUE "FileDescription",  "에버소울오프라인HAR\0"
-      VALUE "FileVersion",      "0.0.1.0\0"
+      VALUE "CompanyName",      "EOS TEAM\0"
+      VALUE "FileDescription",  "Eversoul HAR Traffic Recorder\0"
+      VALUE "FileVersion",      "0.0.2.0\0"
       VALUE "InternalName",     "eversoul_har_recorder\0"
-      VALUE "LegalCopyright",   "Nekoi\0"
+      VALUE "LegalCopyright",   "Copyright (C) 2026 Shao Jiang, GarnetRapture, MelodyDeck\0"
       VALUE "OriginalFilename", "eversoul_har_recorder.exe\0"
-      VALUE "ProductName",      "에버소울오프라인HAR\0"
-      VALUE "ProductVersion",   "0.0.1.0\0"
+      VALUE "ProductName",      "Eversoul Offline Simulator\0"
+      VALUE "ProductVersion",   "Alpha V0.0.2\0"
+      VALUE "Comments",         "Alpha Release V0.0.2 — HAR capture mode. Transparent relay to live Eversoul servers. Records all HTTP/WebSocket traffic for offline fixture generation. Listens on port 9991.\0"
     END
   END
   BLOCK "VarFileInfo"

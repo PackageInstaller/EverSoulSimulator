@@ -31,4 +31,14 @@ public final class RedirectHooks {
     // com.kakaogame.util.HmacSHA256Util.verifySignature(String, String)
     // args[0]=this, args[1]=signature, args[2]=requestBody
     public Object hookVerifySignature(Object[] args) { return Boolean.TRUE; }
+
+    // com.kakao.sdk.auth.CustomTabLauncherActivity.loadData(Intent)
+    // args[0]=this(CustomTabLauncherActivity), args[1]=intent(Intent)
+    // backup invoke 후 resultReceiver 필드를 C++에서 g_pending_rr에 저장
+    public native Object hookLoadData(Object[] args);
+
+    // com.kakao.sdk.auth.CustomTabLauncherActivity.onNewIntent(Intent)
+    // args[0]=this(CustomTabLauncherActivity), args[1]=intent(Intent)
+    // backup invoke 후 resultReceiver null이면 g_pending_rr로 직접 send
+    public native Object hookOnNewIntent(Object[] args);
 }

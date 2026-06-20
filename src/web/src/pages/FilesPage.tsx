@@ -10,13 +10,6 @@ interface FileEntry {
   bytes: number
 }
 
-type DirTab = 'responses' | 'responses_newbie' | 'schema'
-
-const DIR_TABS: { key: DirTab; prefix: string; label: string }[] = [
-  { key: 'responses',        prefix: 'responses/',        label: 'responses/' },
-  { key: 'responses_newbie', prefix: 'responses_newbie/', label: 'responses_newbie/' },
-  { key: 'schema',           prefix: 'schema/',           label: 'schema/' },
-]
 
 function fmtSize(bytes: number): string {
   if (bytes < 1024) return `${bytes}B`
@@ -26,12 +19,14 @@ function fmtSize(bytes: number): string {
 
 export function FilesPage() {
   const { t } = useI18n()
-  const [dir, setDir] = useState<DirTab>('responses')
-  const prefix = DIR_TABS.find(d => d.key === dir)!.prefix
+  const { data: dirs } = usePolling<string[]>({ url: '/web/api/files/dirs', intervalMs: 3000 })
+  const [dir, setDir] = useState<string>('')
+  const activeDir = dir || (dirs?.[0] ?? '')
 
   const { data: files, loading, refresh } = usePolling<FileEntry[]>({
-    url: `/web/api/files/list?prefix=${encodeURIComponent(prefix)}`,
-    intervalMs: 15000,
+    url: `/web/api/files/list?prefix=${encodeURIComponent(activeDir)}`,
+    intervalMs: 3000,
+    enabled: !!activeDir,
   })
 
   const [editPath, setEditPath] = useState<string | null>(null)
@@ -81,7 +76,7 @@ export function FilesPage() {
     }
   }
 
-  function switchDir(tab: DirTab) {
+  function switchDir(tab: string) {
     setDir(tab)
     setEditPath(null)
     setSavingState('idle')
@@ -102,18 +97,18 @@ export function FilesPage() {
       </div>
 
       <div className="flex gap-1.5 flex-wrap">
-        {DIR_TABS.map(d => (
+        {(dirs ?? []).map(d => (
           <button
-            key={d.key}
-            onClick={() => switchDir(d.key)}
+            key={d}
+            onClick={() => switchDir(d)}
             className={cn(
               'px-3 py-1.5 rounded-xl text-xs font-bold font-mono transition-all active:scale-95',
-              dir === d.key
+              activeDir === d
                 ? 'bg-linear-to-r from-yellow-400 to-amber-500 text-white shadow-lg shadow-amber-500/30'
                 : 'text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/8'
             )}
           >
-            {d.label}
+            {d}
           </button>
         ))}
       </div>
@@ -122,7 +117,7 @@ export function FilesPage() {
         <GlassCard className="lg:col-span-2">
           <GlassCardHeader
             icon={<FolderOpen className="w-4 h-4 text-yellow-600" />}
-            title={prefix}
+            title={activeDir}
             iconBg="bg-yellow-100 dark:bg-yellow-900/40"
           />
           <div className="mt-3 space-y-0.5">

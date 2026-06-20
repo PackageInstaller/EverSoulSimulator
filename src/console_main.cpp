@@ -32,6 +32,7 @@ static BOOL WINAPI ctrl_handler(DWORD type)
         type == CTRL_BREAK_EVENT || type == CTRL_SHUTDOWN_EVENT)
     {
         eversoul::logcat::stop();
+        eversoul::adb_runner::kill_server();
         eversoul::request_shutdown();
         return TRUE;
     }
@@ -45,6 +46,7 @@ int main()
 
     eversoul::offline_data().load_embedded_web(kWebBlobData, kWebBlobSize);
     eversoul::adb_runner::set_adb_path(adb);
+    eversoul::adb_runner::start_server();
     eversoul::start_async(eversoul::kServerListenPort);
 
     SetConsoleCtrlHandler(ctrl_handler, TRUE);

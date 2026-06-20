@@ -178,6 +178,10 @@ namespace eversoul::net_redirect
 
     void install()
     {
+#ifdef EVERSOUL_HAR_MODE
+        logi("HAR mode: transport-layer redirect disabled (real server)");
+        return;
+#endif
         bool expected = false;
         if (!g_installed.compare_exchange_strong(expected, true))
             return;
