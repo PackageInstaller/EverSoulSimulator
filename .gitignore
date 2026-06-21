@@ -103,3 +103,7 @@ node_modules/
 dist/
 .vite/
 
+#AI
+CLAUDE.md
+.githooks/
+.vscode/
