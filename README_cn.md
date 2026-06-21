@@ -18,7 +18,7 @@
   &nbsp;
   <img src="https://img.shields.io/badge/C%2B%2B-23-00599C?style=for-the-badge&logo=cplusplus&logoColor=white" alt="C++23" />
   &nbsp;
-  <img src="https://img.shields.io/badge/version-0.0.10-blue?style=for-the-badge" alt="v0.0.5" />
+  <img src="https://img.shields.io/badge/version-0.0.11-blue?style=for-the-badge" alt="v0.0.5" />
 </p>
 
 <p align="center">
@@ -28,6 +28,8 @@
   &nbsp;
   <img src="https://img.shields.io/badge/%E4%B8%AD%E6%96%87-CN-DE2910?style=flat-square" alt="中文" />
 </p>
+
+> **平台说明** — Linux（arm64 专用，Wayland）和 macOS 版本基于 Android 内部服务端，需克隆 **[`arm64` 分支](https://github.com/PackageInstaller/EverSoulSimulator/tree/arm64)** 使用。当前仅 Windows 版本已优先集成，其余平台将逐步扩展联动。
 
 ---
 

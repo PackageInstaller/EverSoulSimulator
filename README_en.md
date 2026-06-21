@@ -18,7 +18,7 @@
   &nbsp;
   <img src="https://img.shields.io/badge/C%2B%2B-23-00599C?style=for-the-badge&logo=cplusplus&logoColor=white" alt="C++23" />
   &nbsp;
-  <img src="https://img.shields.io/badge/version-0.0.10-blue?style=for-the-badge" alt="v0.0.5" />
+  <img src="https://img.shields.io/badge/version-0.0.11-blue?style=for-the-badge" alt="v0.0.5" />
 </p>
 
 <p align="center">
@@ -28,6 +28,8 @@
   &nbsp;
   <a href="README_cn.md"><img src="https://img.shields.io/badge/%E4%B8%AD%E6%96%87-CN-DE2910?style=flat-square" alt="中文" /></a>
 </p>
+
+> **Platform Notice** — Linux (arm64, Wayland) and macOS builds are based on an Android-internal server and must be cloned from the **[`arm64` branch](https://github.com/PackageInstaller/EverSoulSimulator/tree/arm64)**. The Windows version is the first fully integrated target; support for the remaining platforms will be extended progressively.
 
 ---
 

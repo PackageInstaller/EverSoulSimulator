@@ -18,7 +18,7 @@
   &nbsp;
   <img src="https://img.shields.io/badge/C%2B%2B-23-00599C?style=for-the-badge&logo=cplusplus&logoColor=white" alt="C++23" />
   &nbsp;
-  <img src="https://img.shields.io/badge/version-0.0.10-blue?style=for-the-badge" alt="v0.0.5" />
+  <img src="https://img.shields.io/badge/version-0.0.11-blue?style=for-the-badge" alt="v0.0.5" />
 </p>
 
 <p align="center">
@@ -28,6 +28,8 @@
   &nbsp;
   <img src="https://img.shields.io/badge/%ED%95%9C%EA%B5%AD%EC%96%B4-KR-003478?style=flat-square" alt="한국어" />
 </p>
+
+> **플랫폼 안내** — arm64 전용 Linux · macOS (Wayland) 환경과 Android 내부 서버 기반은 **[`arm64` 브랜치](https://github.com/PackageInstaller/EverSoulSimulator/tree/arm64)** 를 클론하여 사용해야 한다. 현재 Windows 버전만 우선 통합되었으며, 나머지 OS는 연동 확장해나갈 계획이다.
 
 ---
 

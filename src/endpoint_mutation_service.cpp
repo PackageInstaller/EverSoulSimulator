@@ -518,13 +518,20 @@ std::string EndpointMutationService::formation_save(
     return out;
 }
 
+static int hero_max_level_for_grade(int grade_sno) {
+    if (grade_sno >= 110020) return 240;
+    if (grade_sno >= 110011) return (grade_sno - 110011) * 20 + 40;
+    return 40;
+}
+
 std::string EndpointMutationService::hero_level_up(const std::string& hero_idx,
                                                     std::int32_t to_level) {
     auto existing = db_.hero_by_idx(hero_idx);
     const int prev = existing ? existing->level : 1;
 
     if (existing) {
-        existing->level = to_level;
+        const int max_lv = hero_max_level_for_grade(existing->grade_sno);
+        existing->level = to_level > max_lv ? max_lv : to_level;
         db_.upsert_hero(*existing);
     }
 
@@ -544,12 +551,15 @@ std::string EndpointMutationService::hero_upgrade(const std::string& hero_idx_li
     std::string out;
     for (std::size_t i = 0; i < idxs.size(); ++i) {
         if (idxs[i].empty()) continue;
+        if (i >= nos.size() || nos[i].empty()) {
+            db_.delete_hero(idxs[i]);
+            pb_string(out, 2, idxs[i]);
+            continue;
+        }
         auto hero = db_.hero_by_idx(idxs[i]);
         if (!hero) continue;
-        if (i < nos.size() && !nos[i].empty()) {
-            int next_grade = static_cast<int>(std::strtol(nos[i].c_str(), nullptr, 10));
-            if (next_grade > 0) hero->grade_sno = next_grade;
-        }
+        int upgrade_no = static_cast<int>(std::strtol(nos[i].c_str(), nullptr, 10));
+        if (upgrade_no > 0) hero->grade_sno = 110011 + (upgrade_no - 1) % 15;
         db_.upsert_hero(*hero);
         pb_message(out, 1, hero_pb_msg(*hero));
 
@@ -667,7 +677,7 @@ std::string EndpointMutationService::equip_item_transcendence(
         else       item.id = slot_row->item_equip_id;
     }
     if (item.id) {
-        item.item_no += 1;
+        item.item_no += 100;
         db_.upsert_item_equip(item);
     }
     if (material_no) db_.item_etc_add(material_no, -1);

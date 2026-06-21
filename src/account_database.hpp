@@ -172,6 +172,7 @@ public:
     std::vector<HeroRow>           heroes() const;
     std::optional<HeroRow>         hero_by_idx(const std::string& idx) const;
     void                           upsert_hero(const HeroRow& row);
+    void                           delete_hero(const std::string& idx);
 
     // ---- hero_reputation ----
     std::vector<HeroReputationRow>           hero_reputations() const;

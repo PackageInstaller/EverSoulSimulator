@@ -46,6 +46,8 @@ namespace eversoul
         std::string game_server_url = "http://127.0.0.1:9991";
         std::string data_dir = ".";
         std::string state_dir = "runtime_state";
+        std::string tables_dir = "sss/Tables_json";
+        std::string tables_cache_dir = "runtime_tbl";
         std::string exe_dir = ".";
         bool prefer_fixtures = true;
 #endif

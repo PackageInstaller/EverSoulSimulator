@@ -37,6 +37,7 @@ set(EVERSOUL_DESKTOP_SOURCES
   src/userinfo_repository.cpp
   src/endpoint_mutation_service.cpp
   src/game_catalog.cpp
+  src/game_tables.cpp
   src/sse_log.cpp
   src/router.cpp
   src/server.cpp

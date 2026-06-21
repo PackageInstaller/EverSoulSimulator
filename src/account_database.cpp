@@ -576,6 +576,18 @@ void AccountDatabase::upsert_hero(const HeroRow& r) {
     sqlite3_finalize(st);
 }
 
+void AccountDatabase::delete_hero(const std::string& idx) {
+    if (!db_) return;
+    sqlite3_stmt* st = nullptr;
+    if (sqlite3_prepare_v2(db_,
+            "DELETE FROM hero WHERE idx=?1",
+            -1, &st, nullptr) == SQLITE_OK) {
+        sqlite3_bind_text(st, 1, idx.c_str(), -1, SQLITE_TRANSIENT);
+        sqlite3_step(st);
+    }
+    sqlite3_finalize(st);
+}
+
 // ---- hero_reputation ----
 
 HeroReputationRow AccountDatabase::row_to_hero_rep(sqlite3_stmt* st) const {
@@ -1484,7 +1496,8 @@ bool AccountDatabase::seed_from_json(const std::string& userinfo_json,
     if (heq_v && heq_v->is_array()) {
         for (const auto& he : heq_v->arr) {
             const json::Value* hidx_v = he.find("heroIdx");
-            const json::Value* slots_v = he.find("slot");
+            const json::Value* slots_v = he.find("equip");
+            if (!slots_v) slots_v = he.find("slot");
             if (!hidx_v || !hidx_v->is_string()) continue;
             if (!slots_v || !slots_v->is_array()) continue;
             for (const auto& slot_entry : slots_v->arr) {

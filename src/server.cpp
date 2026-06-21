@@ -11,6 +11,7 @@
 #include "fixture_store.hpp"
 #include "http.hpp"
 #include "log.hpp"
+#include "game_tables.hpp"
 #include "orm/storage.hpp"
 #include "proxy.hpp"
 #include "router.hpp"
@@ -141,6 +142,13 @@ namespace eversoul
         fixture_store().load(config().data_dir);
         // Load WebSocket replay fixtures (Kakao session + socket.io chat).
         ws_load_fixtures(config().data_dir);
+
+        // Tables_json → tables.sqlite3 로드 (Hero/HeroGrade/HeroUpgrade/Item/ItemTranscendence/HeroGachaProb)
+        if (game_tables().open()) {
+            game_tables().populate(config().tables_dir);
+        } else {
+            log_line(0, "WARN", "game_tables open failed — Tables_json will not be available");
+        }
 
         // 서버 리슨 전에 sqlite3 계정 체계를 준비한다.
         // 레지스트리가 비어있으면 acct-default 계정과 state.sqlite3를 자동 생성한다.
