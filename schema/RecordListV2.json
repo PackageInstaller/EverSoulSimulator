@@ -1,0 +1,175 @@
+{
+ "root": "RecordListV2",
+ "messages": {
+  "RecordListV2": {
+   "fields": [
+    {
+     "name": "arrRecord",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sBattleRecordV2",
+     "packed": false
+    }
+   ]
+  },
+  "sBattleRecordV2": {
+   "fields": [
+    {
+     "name": "thumbnail",
+     "number": 1,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sThumbnail",
+     "packed": false
+    },
+    {
+     "name": "tThumbnail",
+     "number": 2,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sThumbnail",
+     "packed": false
+    },
+    {
+     "name": "bName",
+     "number": 3,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "beforeRank",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "afterRank",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "winUserIdx",
+     "number": 6,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "tUserIdx",
+     "number": 7,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "dt",
+     "number": 8,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "battletype",
+     "number": 9,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "nickname",
+     "number": 10,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "tNickname",
+     "number": 11,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "battleStatus",
+     "number": 12,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "fileName",
+     "number": 13,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "clientVersion",
+     "number": 14,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "userIdx",
+     "number": 15,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    }
+   ]
+  },
+  "sThumbnail": {
+   "fields": [
+    {
+     "name": "thumbnailFrame",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "thumbnailImage",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "useCustom",
+     "number": 3,
+     "repeated": false,
+     "type": "bool",
+     "packed": false
+    },
+    {
+     "name": "thumbnail",
+     "number": 4,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    },
+    {
+     "name": "firstTitle",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "secondTitle",
+     "number": 6,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

@@ -675,8 +675,7 @@ bool DoUnHook(ArtMethod *target, ArtMethod *backup) {
     return true;
 }
 
-std::string GetProxyMethodShorty(JNIEnv *env, jobject proxy_method) {
-    const auto return_type = JNI_CallObjectMethod(env, proxy_method, method_get_return_type);
+std::string GetProxyMethodShorty(JNIEnv *env, jobject proxy_method, bool is_constructor = false) {
     const auto parameter_types =
         JNI_Cast<jobjectArray>(JNI_CallObjectMethod(env, proxy_method, method_get_parameter_types));
     auto integer_class = JNI_FindClass(env, "java/lang/Integer");
@@ -730,7 +729,12 @@ std::string GetProxyMethodShorty(JNIEnv *env, jobject proxy_method) {
         if (JNI_IsSameObject(env, type, void_type)) return 'V';
         return 'L';
     };
-    out += type_to_shorty(return_type);
+    if (is_constructor) {
+        out += 'V';
+    } else {
+        const auto return_type = JNI_CallObjectMethod(env, proxy_method, method_get_return_type);
+        out += type_to_shorty(return_type);
+    }
     for (const auto &param : parameter_types) {
         out += type_to_shorty(param);
     }
@@ -800,8 +804,9 @@ using ::lsplant::IsHooked;
         std::tie(built_class, hooker_field, hook_method, backup_method) = WrapScope(
             env,
             BuildDex(env, callback_class_loader.get(),
-                     __builtin_expect(is_proxy, 0) ? GetProxyMethodShorty(env, target_method)
-                                                   : ArtMethod::GetMethodShorty(env, target_method),
+                     (__builtin_expect(is_proxy, 0) || !ArtMethod::HasNativeGetMethodShorty())
+                         ? GetProxyMethodShorty(env, target_method, target->IsConstructor())
+                         : ArtMethod::GetMethodShorty(env, target_method),
                      is_static, target->IsConstructor() ? "constructor" : target_method_name.get(),
                      class_name.get(), callback_method_name.get()));
         if (!built_class || !hooker_field || !hook_method || !backup_method) {

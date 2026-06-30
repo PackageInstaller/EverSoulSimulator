@@ -1,0 +1,38 @@
+.class public final synthetic Lcom/google/android/gms/internal/fido/zzat;
+.super Ljava/lang/Object;
+.source "com.google.android.gms:play-services-fido@@21.0.0"
+
+# interfaces
+.implements Lcom/google/android/gms/internal/fido/zzax;
+
+
+# static fields
+.field public static final synthetic zza:Lcom/google/android/gms/internal/fido/zzat;
+
+
+# direct methods
+.method static synthetic constructor <clinit>()V
+    .locals 1
+
+    new-instance v0, Lcom/google/android/gms/internal/fido/zzat;
+
+    invoke-direct {v0}, Lcom/google/android/gms/internal/fido/zzat;-><init>()V
+
+    sput-object v0, Lcom/google/android/gms/internal/fido/zzat;->zza:Lcom/google/android/gms/internal/fido/zzat;
+
+    return-void
+
+    .array-data 1
+    .end array-data
+.end method
+
+.method private synthetic constructor <init>()V
+    .locals 0
+
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    return-void
+
+    .array-data 1
+    .end array-data
+.end method

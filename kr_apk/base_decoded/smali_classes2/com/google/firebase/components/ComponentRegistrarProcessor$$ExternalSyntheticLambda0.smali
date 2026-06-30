@@ -1,0 +1,36 @@
+.class public final synthetic Lcom/google/firebase/components/ComponentRegistrarProcessor$$ExternalSyntheticLambda0;
+.super Ljava/lang/Object;
+.source "D8$$SyntheticClass"
+
+# interfaces
+.implements Lcom/google/firebase/components/ComponentRegistrarProcessor;
+
+
+# direct methods
+.method public synthetic constructor <init>()V
+    .locals 0
+
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    return-void
+
+    .array-data 1
+    .end array-data
+.end method
+
+
+# virtual methods
+.method public final processRegistrar(Lcom/google/firebase/components/ComponentRegistrar;)Ljava/util/List;
+    .locals 0
+
+    invoke-interface {p1}, Lcom/google/firebase/components/ComponentRegistrar;->getComponents()Ljava/util/List;
+
+    move-result-object p1
+
+    return-object p1
+
+    nop
+
+    .array-data 1
+    .end array-data
+.end method

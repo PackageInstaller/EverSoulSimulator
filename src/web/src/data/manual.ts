@@ -9,9 +9,9 @@ export const MANUAL_CONTENT: Record<Lang, ManualLangContent> = {
 
     sectionDownload: '다운로드',
     downloadApkLabel: 'APK 다운로드 (Google Drive)',
-    downloadApkUrl: 'https://drive.google.com/file/d/1v7oG2i1bFFInL-bW6YRYowwcKiqSaBuR/view?usp=sharing',
+    downloadApkUrl: 'https://drive.google.com/file/d/1ACg6C7FIn7r35vP9NKieTxg7ulQk2v1O/view?usp=sharing',
     downloadMumuLabel: 'MuMu Player 다운로드',
-    downloadMumuUrl: 'https://www.mumuplayer.com/kr/download/',
+    downloadMumuUrl: 'https://unsafelink.com/https://a11.gdl.netease.com/MuMu-setup-V5.28.0.3580-overseas-0522191800.exe',
 
     sectionSetup: '설치 및 설정 가이드',
     setupSteps: [
@@ -40,9 +40,9 @@ export const MANUAL_CONTENT: Record<Lang, ManualLangContent> = {
     ],
 
     sectionAdbSetup: 'ADB 연결 설정',
-    adbNote: '중요: 에뮬레이터 내부 에이전트는 포트 9999를 사용하고 PC 서버는 포트 9991을 사용합니다. 아래 역방향 포워딩 명령이 반드시 필요합니다.',
-    adbReverseCmd: 'adb reverse tcp:9999 tcp:9991',
-    adbReverseCmdDesc: '이 명령은 에뮬레이터의 9999 포트 트래픽을 PC의 9991 포트로 터널링합니다. 서버 .exe 실행 전 또는 직후에 반드시 실행해야 합니다.',
+    adbNote: '중요: 에뮬레이터 내부 요청과 PC 서버는 모두 포트 9991을 사용합니다. 아래 역방향 포워딩 명령이 반드시 필요합니다.',
+    adbReverseCmd: 'adb reverse tcp:9991 tcp:9991',
+    adbReverseCmdDesc: '이 명령은 기기 내부 9991 포트 트래픽을 PC의 9991 포트로 터널링합니다. 서버 .exe 실행 전 또는 직후에 반드시 실행해야 합니다.',
 
     sectionRouter: '공유기 포트포워딩 설정 (실제 Android 기기 사용 시)',
     routerNote: 'MuMu Player 에뮬레이터는 adb reverse로 통신합니다. 공유기 포트포워딩은 실제 Android 기기를 WiFi로 연결할 때만 필요합니다.',
@@ -100,9 +100,9 @@ export const MANUAL_CONTENT: Record<Lang, ManualLangContent> = {
       { cmd: 'adb disconnect <IP>:<PORT>',                                                               desc: '디바이스 연결 해제' },
       { cmd: 'adb root',                                                                                 desc: 'ADB 데몬을 root 권한으로 재시작' },
       { cmd: 'adb unroot',                                                                               desc: 'root 권한 해제, 일반 사용자로 복원' },
-      { cmd: 'adb reverse tcp:9999 tcp:9991',                                                           desc: '에뮬레이터 9999 → PC 9991 역방향 터널 (필수)' },
+      { cmd: 'adb reverse tcp:9991 tcp:9991',                                                           desc: '기기 9991 → PC 9991 역방향 터널 (필수)' },
       { cmd: 'adb reverse --list',                                                                      desc: '현재 설정된 역방향 포워딩 목록 확인' },
-      { cmd: 'adb reverse --remove tcp:9999',                                                           desc: '9999 역방향 포워딩 제거' },
+      { cmd: 'adb reverse --remove tcp:9991',                                                           desc: '9991 역방향 포워딩 제거' },
       { cmd: 'adb install -r <apk경로>',                                                                 desc: 'APK 설치 / 이미 설치된 경우 재설치 (-r 플래그)' },
       { cmd: 'adb push <로컬경로> <기기경로>',                                                            desc: 'PC에서 기기로 파일 전송' },
       { cmd: 'adb pull <기기경로> <로컬경로>',                                                            desc: '기기에서 PC로 파일 가져오기' },
@@ -125,9 +125,9 @@ export const MANUAL_CONTENT: Record<Lang, ManualLangContent> = {
 
     sectionDownload: 'Download',
     downloadApkLabel: 'Download APK (Google Drive)',
-    downloadApkUrl: 'https://drive.google.com/file/d/1v7oG2i1bFFInL-bW6YRYowwcKiqSaBuR/view?usp=sharing',
+    downloadApkUrl: 'https://drive.google.com/file/d/1ACg6C7FIn7r35vP9NKieTxg7ulQk2v1O/view?usp=sharing',
     downloadMumuLabel: 'Download MuMu Player',
-    downloadMumuUrl: 'https://www.mumuplayer.com/kr/download/',
+    downloadMumuUrl: 'https://unsafelink.com/https://a11.gdl.netease.com/MuMu-setup-V5.28.0.3580-overseas-0522191800.exe',
 
     sectionSetup: 'Installation & Setup Guide',
     setupSteps: [
@@ -156,9 +156,9 @@ export const MANUAL_CONTENT: Record<Lang, ManualLangContent> = {
     ],
 
     sectionAdbSetup: 'ADB Connection Setup',
-    adbNote: 'Important: The internal agent uses port 9999, while the PC server uses port 9991. The reverse forwarding command below is required.',
-    adbReverseCmd: 'adb reverse tcp:9999 tcp:9991',
-    adbReverseCmdDesc: 'This command tunnels emulator port 9999 traffic to PC port 9991. Must be run before or immediately after starting the server .exe.',
+    adbNote: 'Important: Emulator requests and the PC server both use port 9991. The reverse forwarding command below is required.',
+    adbReverseCmd: 'adb reverse tcp:9991 tcp:9991',
+    adbReverseCmdDesc: 'This command tunnels device internal port 9991 traffic to PC port 9991. Must be run before or immediately after starting the server .exe.',
 
     sectionRouter: 'Router Port Forwarding (for real Android devices)',
     routerNote: 'MuMu Player communicates via adb reverse. Router port forwarding is only needed when using a real Android device over WiFi.',
@@ -216,9 +216,9 @@ export const MANUAL_CONTENT: Record<Lang, ManualLangContent> = {
       { cmd: 'adb disconnect <IP>:<PORT>',                                                               desc: 'Disconnect from device' },
       { cmd: 'adb root',                                                                                 desc: 'Restart ADB daemon with root privileges' },
       { cmd: 'adb unroot',                                                                               desc: 'Restart ADB daemon without root privileges' },
-      { cmd: 'adb reverse tcp:9999 tcp:9991',                                                           desc: 'Reverse tunnel: emulator 9999 → PC 9991 (required)' },
+      { cmd: 'adb reverse tcp:9991 tcp:9991',                                                           desc: 'Reverse tunnel: device 9991 → PC 9991 (required)' },
       { cmd: 'adb reverse --list',                                                                      desc: 'List currently active reverse forwards' },
-      { cmd: 'adb reverse --remove tcp:9999',                                                           desc: 'Remove reverse forward on port 9999' },
+      { cmd: 'adb reverse --remove tcp:9991',                                                           desc: 'Remove reverse forward on port 9991' },
       { cmd: 'adb install -r <apk>',                                                                    desc: 'Install APK, reinstall if already present (-r flag)' },
       { cmd: 'adb push <local> <remote>',                                                               desc: 'Copy file from PC to device' },
       { cmd: 'adb pull <remote> <local>',                                                               desc: 'Copy file from device to PC' },
@@ -241,9 +241,9 @@ export const MANUAL_CONTENT: Record<Lang, ManualLangContent> = {
 
     sectionDownload: '下载',
     downloadApkLabel: '下载APK（Google云端硬盘）',
-    downloadApkUrl: 'https://drive.google.com/file/d/1v7oG2i1bFFInL-bW6YRYowwcKiqSaBuR/view?usp=sharing',
+    downloadApkUrl: 'https://drive.google.com/file/d/1ACg6C7FIn7r35vP9NKieTxg7ulQk2v1O/view?usp=sharing',
     downloadMumuLabel: '下载MuMu Player',
-    downloadMumuUrl: 'https://www.mumuplayer.com/kr/download/',
+    downloadMumuUrl: 'https://unsafelink.com/https://a11.gdl.netease.com/MuMu-setup-V5.28.0.3580-overseas-0522191800.exe',
 
     sectionSetup: '安装和设置指南',
     setupSteps: [
@@ -272,9 +272,9 @@ export const MANUAL_CONTENT: Record<Lang, ManualLangContent> = {
     ],
 
     sectionAdbSetup: 'ADB连接设置',
-    adbNote: '重要提示：内部代理使用9999端口，PC服务器使用9991端口。必须执行以下反向转发命令。',
-    adbReverseCmd: 'adb reverse tcp:9999 tcp:9991',
-    adbReverseCmdDesc: '此命令将模拟器9999端口流量隧道传输到PC的9991端口。必须在启动服务器.exe之前或之后立即执行。',
+    adbNote: '重要提示：模拟器请求和PC服务器都使用9991端口。必须执行以下反向转发命令。',
+    adbReverseCmd: 'adb reverse tcp:9991 tcp:9991',
+    adbReverseCmdDesc: '此命令将设备内部9991端口流量隧道传输到PC的9991端口。必须在启动服务器.exe之前或之后立即执行。',
 
     sectionRouter: '路由器端口转发（使用真实Android设备时）',
     routerNote: 'MuMu Player模拟器通过adb reverse通信。仅在通过WiFi使用真实Android设备时才需要路由器端口转发。',
@@ -332,9 +332,9 @@ export const MANUAL_CONTENT: Record<Lang, ManualLangContent> = {
       { cmd: 'adb disconnect <IP>:<PORT>',                                                               desc: '断开设备连接' },
       { cmd: 'adb root',                                                                                 desc: '以root权限重启ADB守护进程' },
       { cmd: 'adb unroot',                                                                               desc: '取消root权限' },
-      { cmd: 'adb reverse tcp:9999 tcp:9991',                                                           desc: '反向隧道：模拟器9999→PC 9991（必须）' },
+      { cmd: 'adb reverse tcp:9991 tcp:9991',                                                           desc: '反向隧道：设备9991→PC 9991（必须）' },
       { cmd: 'adb reverse --list',                                                                      desc: '查看当前反向转发列表' },
-      { cmd: 'adb reverse --remove tcp:9999',                                                           desc: '移除9999端口的反向转发' },
+      { cmd: 'adb reverse --remove tcp:9991',                                                           desc: '移除9991端口的反向转发' },
       { cmd: 'adb install -r <apk>',                                                                    desc: '安装APK，已安装则重新安装（-r参数）' },
       { cmd: 'adb push <本地路径> <设备路径>',                                                           desc: '从PC传输文件到设备' },
       { cmd: 'adb pull <设备路径> <本地路径>',                                                           desc: '从设备获取文件到PC' },
@@ -357,9 +357,9 @@ export const MANUAL_CONTENT: Record<Lang, ManualLangContent> = {
 
     sectionDownload: 'Скачать',
     downloadApkLabel: 'Скачать APK (Google Drive)',
-    downloadApkUrl: 'https://drive.google.com/file/d/1v7oG2i1bFFInL-bW6YRYowwcKiqSaBuR/view?usp=sharing',
+    downloadApkUrl: 'https://drive.google.com/file/d/1ACg6C7FIn7r35vP9NKieTxg7ulQk2v1O/view?usp=sharing',
     downloadMumuLabel: 'Скачать MuMu Player',
-    downloadMumuUrl: 'https://www.mumuplayer.com/kr/download/',
+    downloadMumuUrl: 'https://unsafelink.com/https://a11.gdl.netease.com/MuMu-setup-V5.28.0.3580-overseas-0522191800.exe',
 
     sectionSetup: 'Руководство по установке и настройке',
     setupSteps: [
@@ -388,9 +388,9 @@ export const MANUAL_CONTENT: Record<Lang, ManualLangContent> = {
     ],
 
     sectionAdbSetup: 'Настройка подключения ADB',
-    adbNote: 'Важно: внутренний агент использует порт 9999, серверный компонент на ПК — порт 9991. Обратная переадресация ниже обязательна.',
-    adbReverseCmd: 'adb reverse tcp:9999 tcp:9991',
-    adbReverseCmdDesc: 'Эта команда туннелирует трафик порта 9999 эмулятора на порт 9991 ПК. Должна быть выполнена до или сразу после запуска .exe сервера.',
+    adbNote: 'Важно: запросы эмулятора и серверный компонент на ПК используют порт 9991. Обратная переадресация ниже обязательна.',
+    adbReverseCmd: 'adb reverse tcp:9991 tcp:9991',
+    adbReverseCmdDesc: 'Эта команда туннелирует трафик внутреннего порта 9991 устройства на порт 9991 ПК. Должна быть выполнена до или сразу после запуска .exe сервера.',
 
     sectionRouter: 'Проброс портов роутера (для реального Android-устройства)',
     routerNote: 'MuMu Player взаимодействует через adb reverse. Проброс портов роутера нужен только при использовании реального Android-устройства по WiFi.',
@@ -448,9 +448,9 @@ export const MANUAL_CONTENT: Record<Lang, ManualLangContent> = {
       { cmd: 'adb disconnect <IP>:<PORT>',                                                               desc: 'Отключение от устройства' },
       { cmd: 'adb root',                                                                                 desc: 'Перезапустить ADB-демон с правами root' },
       { cmd: 'adb unroot',                                                                               desc: 'Перезапустить ADB-демон без прав root' },
-      { cmd: 'adb reverse tcp:9999 tcp:9991',                                                           desc: 'Обратный туннель: эмулятор 9999 → ПК 9991 (обязательно)' },
+      { cmd: 'adb reverse tcp:9991 tcp:9991',                                                           desc: 'Обратный туннель: устройство 9991 → ПК 9991 (обязательно)' },
       { cmd: 'adb reverse --list',                                                                      desc: 'Список активных обратных переадресаций' },
-      { cmd: 'adb reverse --remove tcp:9999',                                                           desc: 'Удалить обратную переадресацию порта 9999' },
+      { cmd: 'adb reverse --remove tcp:9991',                                                           desc: 'Удалить обратную переадресацию порта 9991' },
       { cmd: 'adb install -r <apk>',                                                                    desc: 'Установить APK, переустановить если уже есть (-r)' },
       { cmd: 'adb push <локальный> <устройство>',                                                       desc: 'Скопировать файл с ПК на устройство' },
       { cmd: 'adb pull <устройство> <локальный>',                                                       desc: 'Скопировать файл с устройства на ПК' },
@@ -473,9 +473,9 @@ export const MANUAL_CONTENT: Record<Lang, ManualLangContent> = {
 
     sectionDownload: 'Download',
     downloadApkLabel: 'APK herunterladen (Google Drive)',
-    downloadApkUrl: 'https://drive.google.com/file/d/1v7oG2i1bFFInL-bW6YRYowwcKiqSaBuR/view?usp=sharing',
+    downloadApkUrl: 'https://drive.google.com/file/d/1ACg6C7FIn7r35vP9NKieTxg7ulQk2v1O/view?usp=sharing',
     downloadMumuLabel: 'MuMu Player herunterladen',
-    downloadMumuUrl: 'https://www.mumuplayer.com/kr/download/',
+    downloadMumuUrl: 'https://unsafelink.com/https://a11.gdl.netease.com/MuMu-setup-V5.28.0.3580-overseas-0522191800.exe',
 
     sectionSetup: 'Installations- und Einrichtungsanleitung',
     setupSteps: [
@@ -504,9 +504,9 @@ export const MANUAL_CONTENT: Record<Lang, ManualLangContent> = {
     ],
 
     sectionAdbSetup: 'ADB-Verbindungseinrichtung',
-    adbNote: 'Wichtig: Der interne Agent nutzt Port 9999, der PC-Server Port 9991. Der folgende Reverse-Forwarding-Befehl ist erforderlich.',
-    adbReverseCmd: 'adb reverse tcp:9999 tcp:9991',
-    adbReverseCmdDesc: 'Dieser Befehl tunnelt den Port 9999 des Emulators zum Port 9991 des PCs. Muss vor oder unmittelbar nach dem Start der Server-.exe ausgeführt werden.',
+    adbNote: 'Wichtig: Emulatoranfragen und PC-Server nutzen Port 9991. Der folgende Reverse-Forwarding-Befehl ist erforderlich.',
+    adbReverseCmd: 'adb reverse tcp:9991 tcp:9991',
+    adbReverseCmdDesc: 'Dieser Befehl tunnelt den internen Port 9991 des Geräts zum Port 9991 des PCs. Muss vor oder unmittelbar nach dem Start der Server-.exe ausgeführt werden.',
 
     sectionRouter: 'Router-Portweiterleitung (bei echten Android-Geräten)',
     routerNote: 'MuMu Player kommuniziert über adb reverse. Router-Portweiterleitung ist nur bei echten Android-Geräten über WLAN erforderlich.',
@@ -564,9 +564,9 @@ export const MANUAL_CONTENT: Record<Lang, ManualLangContent> = {
       { cmd: 'adb disconnect <IP>:<PORT>',                                                               desc: 'Geräteverbindung trennen' },
       { cmd: 'adb root',                                                                                 desc: 'ADB-Daemon mit Root-Rechten neu starten' },
       { cmd: 'adb unroot',                                                                               desc: 'ADB-Daemon ohne Root-Rechte neu starten' },
-      { cmd: 'adb reverse tcp:9999 tcp:9991',                                                           desc: 'Rückwärts-Tunnel: Emulator 9999 → PC 9991 (erforderlich)' },
+      { cmd: 'adb reverse tcp:9991 tcp:9991',                                                           desc: 'Rückwärts-Tunnel: Gerät 9991 → PC 9991 (erforderlich)' },
       { cmd: 'adb reverse --list',                                                                      desc: 'Aktive Rückwärtsweiterleitungen auflisten' },
-      { cmd: 'adb reverse --remove tcp:9999',                                                           desc: 'Rückwärtsweiterleitung Port 9999 entfernen' },
+      { cmd: 'adb reverse --remove tcp:9991',                                                           desc: 'Rückwärtsweiterleitung Port 9991 entfernen' },
       { cmd: 'adb install -r <apk>',                                                                    desc: 'APK installieren, bei vorhandener Installation neu installieren (-r)' },
       { cmd: 'adb push <lokal> <gerät>',                                                                desc: 'Datei vom PC auf Gerät kopieren' },
       { cmd: 'adb pull <gerät> <lokal>',                                                                desc: 'Datei vom Gerät auf PC kopieren' },
@@ -589,9 +589,9 @@ export const MANUAL_CONTENT: Record<Lang, ManualLangContent> = {
 
     sectionDownload: 'Téléchargement',
     downloadApkLabel: 'Télécharger l\'APK (Google Drive)',
-    downloadApkUrl: 'https://drive.google.com/file/d/1v7oG2i1bFFInL-bW6YRYowwcKiqSaBuR/view?usp=sharing',
+    downloadApkUrl: 'https://drive.google.com/file/d/1ACg6C7FIn7r35vP9NKieTxg7ulQk2v1O/view?usp=sharing',
     downloadMumuLabel: 'Télécharger MuMu Player',
-    downloadMumuUrl: 'https://www.mumuplayer.com/kr/download/',
+    downloadMumuUrl: 'https://unsafelink.com/https://a11.gdl.netease.com/MuMu-setup-V5.28.0.3580-overseas-0522191800.exe',
 
     sectionSetup: 'Guide d\'installation et de configuration',
     setupSteps: [
@@ -620,9 +620,9 @@ export const MANUAL_CONTENT: Record<Lang, ManualLangContent> = {
     ],
 
     sectionAdbSetup: 'Configuration de la connexion ADB',
-    adbNote: 'Important : l\'agent interne utilise le port 9999, le serveur PC utilise le port 9991. La commande de redirection inverse ci-dessous est obligatoire.',
-    adbReverseCmd: 'adb reverse tcp:9999 tcp:9991',
-    adbReverseCmdDesc: 'Cette commande tunnelise le trafic du port 9999 de l\'émulateur vers le port 9991 du PC. Doit être exécutée avant ou immédiatement après le démarrage du serveur .exe.',
+    adbNote: 'Important : les requêtes de l\'émulateur et le serveur PC utilisent le port 9991. La commande de redirection inverse ci-dessous est obligatoire.',
+    adbReverseCmd: 'adb reverse tcp:9991 tcp:9991',
+    adbReverseCmdDesc: 'Cette commande tunnelise le trafic du port interne 9991 de l\'appareil vers le port 9991 du PC. Doit être exécutée avant ou immédiatement après le démarrage du serveur .exe.',
 
     sectionRouter: 'Redirection de port routeur (pour les appareils Android réels)',
     routerNote: 'MuMu Player communique via adb reverse. La redirection de port du routeur n\'est nécessaire que pour les appareils Android réels via WiFi.',
@@ -680,9 +680,9 @@ export const MANUAL_CONTENT: Record<Lang, ManualLangContent> = {
       { cmd: 'adb disconnect <IP>:<PORT>',                                                               desc: 'Déconnecter un périphérique' },
       { cmd: 'adb root',                                                                                 desc: 'Redémarrer le démon ADB avec les droits root' },
       { cmd: 'adb unroot',                                                                               desc: 'Redémarrer le démon ADB sans droits root' },
-      { cmd: 'adb reverse tcp:9999 tcp:9991',                                                           desc: 'Tunnel inverse : émulateur 9999 → PC 9991 (obligatoire)' },
+      { cmd: 'adb reverse tcp:9991 tcp:9991',                                                           desc: 'Tunnel inverse : appareil 9991 → PC 9991 (obligatoire)' },
       { cmd: 'adb reverse --list',                                                                      desc: 'Lister les redirections inverses actives' },
-      { cmd: 'adb reverse --remove tcp:9999',                                                           desc: 'Supprimer la redirection inverse du port 9999' },
+      { cmd: 'adb reverse --remove tcp:9991',                                                           desc: 'Supprimer la redirection inverse du port 9991' },
       { cmd: 'adb install -r <apk>',                                                                    desc: 'Installer l\'APK, réinstaller si déjà présent (-r)' },
       { cmd: 'adb push <local> <appareil>',                                                             desc: 'Copier un fichier du PC vers l\'appareil' },
       { cmd: 'adb pull <appareil> <local>',                                                             desc: 'Copier un fichier de l\'appareil vers le PC' },
@@ -705,9 +705,9 @@ export const MANUAL_CONTENT: Record<Lang, ManualLangContent> = {
 
     sectionDownload: 'Tải xuống',
     downloadApkLabel: 'Tải APK (Google Drive)',
-    downloadApkUrl: 'https://drive.google.com/file/d/1v7oG2i1bFFInL-bW6YRYowwcKiqSaBuR/view?usp=sharing',
+    downloadApkUrl: 'https://drive.google.com/file/d/1ACg6C7FIn7r35vP9NKieTxg7ulQk2v1O/view?usp=sharing',
     downloadMumuLabel: 'Tải MuMu Player',
-    downloadMumuUrl: 'https://www.mumuplayer.com/kr/download/',
+    downloadMumuUrl: 'https://unsafelink.com/https://a11.gdl.netease.com/MuMu-setup-V5.28.0.3580-overseas-0522191800.exe',
 
     sectionSetup: 'Hướng dẫn cài đặt và thiết lập',
     setupSteps: [
@@ -736,9 +736,9 @@ export const MANUAL_CONTENT: Record<Lang, ManualLangContent> = {
     ],
 
     sectionAdbSetup: 'Thiết lập kết nối ADB',
-    adbNote: 'Quan trọng: agent nội bộ dùng cổng 9999, máy chủ PC dùng cổng 9991. Lệnh chuyển tiếp ngược dưới đây là bắt buộc.',
-    adbReverseCmd: 'adb reverse tcp:9999 tcp:9991',
-    adbReverseCmdDesc: 'Lệnh này tạo đường hầm lưu lượng cổng 9999 của máy giả lập đến cổng 9991 của PC. Phải chạy trước hoặc ngay sau khi khởi động tệp .exe máy chủ.',
+    adbNote: 'Quan trọng: yêu cầu từ trình giả lập và máy chủ PC đều dùng cổng 9991. Lệnh chuyển tiếp ngược dưới đây là bắt buộc.',
+    adbReverseCmd: 'adb reverse tcp:9991 tcp:9991',
+    adbReverseCmdDesc: 'Lệnh này tạo đường hầm lưu lượng cổng nội bộ 9991 của thiết bị đến cổng 9991 của PC. Phải chạy trước hoặc ngay sau khi khởi động tệp .exe máy chủ.',
 
     sectionRouter: 'Chuyển tiếp cổng router (khi dùng thiết bị Android thật)',
     routerNote: 'MuMu Player giao tiếp qua adb reverse. Chuyển tiếp cổng router chỉ cần thiết khi dùng thiết bị Android thật qua WiFi.',
@@ -796,9 +796,9 @@ export const MANUAL_CONTENT: Record<Lang, ManualLangContent> = {
       { cmd: 'adb disconnect <IP>:<PORT>',                                                               desc: 'Ngắt kết nối thiết bị' },
       { cmd: 'adb root',                                                                                 desc: 'Khởi động lại ADB daemon với quyền root' },
       { cmd: 'adb unroot',                                                                               desc: 'Khởi động lại ADB daemon không có quyền root' },
-      { cmd: 'adb reverse tcp:9999 tcp:9991',                                                           desc: 'Tunnel ngược: giả lập 9999 → PC 9991 (bắt buộc)' },
+      { cmd: 'adb reverse tcp:9991 tcp:9991',                                                           desc: 'Tunnel ngược: thiết bị 9991 → PC 9991 (bắt buộc)' },
       { cmd: 'adb reverse --list',                                                                      desc: 'Liệt kê các chuyển tiếp ngược đang hoạt động' },
-      { cmd: 'adb reverse --remove tcp:9999',                                                           desc: 'Xóa chuyển tiếp ngược cổng 9999' },
+      { cmd: 'adb reverse --remove tcp:9991',                                                           desc: 'Xóa chuyển tiếp ngược cổng 9991' },
       { cmd: 'adb install -r <apk>',                                                                    desc: 'Cài APK, cài lại nếu đã có (-r)' },
       { cmd: 'adb push <local> <thiết bị>',                                                             desc: 'Sao chép tệp từ PC sang thiết bị' },
       { cmd: 'adb pull <thiết bị> <local>',                                                             desc: 'Sao chép tệp từ thiết bị sang PC' },

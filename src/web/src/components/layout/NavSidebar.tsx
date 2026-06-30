@@ -3,38 +3,12 @@ import avatarUrl from '@/assets/GarnetRapture_Costume01_512.png'
 import { cn } from '@/lib/utils'
 import { useI18n } from '@/lib/i18n'
 import { APP_VERSION } from '@/lib/version'
-import { type NavPage, type NavItemConfig } from '@/types/nav'
-import {
-  LayoutDashboard,
-  Users,
-  Sword,
-  Database,
-  Activity,
-  Package,
-  BookOpen,
-  FolderOpen,
-  ScrollText,
-  MonitorSmartphone,
-  BookMarked,
-} from 'lucide-react'
-
-const NAV_ITEMS: NavItemConfig[] = [
-  { page: 'dashboard', i18nKey: 'admin.dashboard', icon: LayoutDashboard,   colorClass: 'text-indigo-500 dark:text-indigo-400',   activeGradient: 'from-indigo-500 to-violet-500',  activeShadow: 'shadow-indigo-500/30' },
-  { page: 'accounts',  i18nKey: 'admin.accounts',  icon: Users,             colorClass: 'text-sky-500 dark:text-sky-400',         activeGradient: 'from-sky-500 to-blue-500',       activeShadow: 'shadow-sky-500/30' },
-  { page: 'cheat',     i18nKey: 'admin.cheat',     icon: Sword,             colorClass: 'text-amber-500 dark:text-amber-400',     activeGradient: 'from-amber-400 to-orange-500',   activeShadow: 'shadow-amber-500/30' },
-  { page: 'db',        i18nKey: 'admin.db',        icon: Database,          colorClass: 'text-emerald-500 dark:text-emerald-400', activeGradient: 'from-emerald-500 to-teal-500',   activeShadow: 'shadow-emerald-500/30' },
-  { page: 'health',    i18nKey: 'admin.health',    icon: Activity,          colorClass: 'text-rose-500 dark:text-rose-400',       activeGradient: 'from-rose-500 to-pink-500',      activeShadow: 'shadow-rose-500/30' },
-  { page: 'logs',      i18nKey: 'admin.logs',      icon: ScrollText,        colorClass: 'text-cyan-500 dark:text-cyan-400',       activeGradient: 'from-cyan-500 to-sky-500',       activeShadow: 'shadow-cyan-500/30' },
-  { page: 'fixtures',  i18nKey: 'admin.fixtures',  icon: Package,           colorClass: 'text-violet-500 dark:text-violet-400',   activeGradient: 'from-violet-500 to-purple-500',  activeShadow: 'shadow-violet-500/30' },
-  { page: 'gamedata',  i18nKey: 'admin.gamedata',  icon: BookOpen,          colorClass: 'text-fuchsia-500 dark:text-fuchsia-400', activeGradient: 'from-fuchsia-500 to-pink-500',   activeShadow: 'shadow-fuchsia-500/30' },
-  { page: 'files',     i18nKey: 'admin.files',     icon: FolderOpen,        colorClass: 'text-yellow-500 dark:text-yellow-400',   activeGradient: 'from-yellow-400 to-amber-500',   activeShadow: 'shadow-yellow-500/30' },
-  { page: 'injector',  i18nKey: 'admin.injector',  icon: MonitorSmartphone, colorClass: 'text-lime-500 dark:text-lime-400',       activeGradient: 'from-lime-500 to-green-500',     activeShadow: 'shadow-lime-500/30' },
-  { page: 'manual',    i18nKey: 'admin.manual',    icon: BookMarked,        colorClass: 'text-orange-500 dark:text-orange-400',   activeGradient: 'from-orange-500 to-red-500',     activeShadow: 'shadow-orange-500/30' },
-]
+import { type AdminSurface } from '@/types/admin'
+import { ADMIN_ROUTES } from '@/app/adminRoutes'
 
 interface NavSidebarProps {
-  current: NavPage
-  onNavigate: (page: NavPage) => void
+  current: AdminSurface
+  onNavigate: (surface: AdminSurface) => void
   serverPort?: number
   className?: string
 }
@@ -75,12 +49,12 @@ export function NavSidebar({ current, onNavigate, serverPort, className }: NavSi
       <div className="mx-3 h-px bg-linear-to-r from-transparent via-slate-200 dark:via-white/10 to-transparent" />
 
       <nav className="flex-1 overflow-y-auto py-2 px-2 space-y-0.5">
-        {NAV_ITEMS.map(({ page, i18nKey, icon: Icon, colorClass, activeGradient, activeShadow }) => {
-          const isActive = current === page
+        {ADMIN_ROUTES.map(({ surface, i18nKey, icon: Icon, colorClass, activeGradient, activeShadow }) => {
+          const isActive = current === surface
           return (
             <button
-              key={page}
-              onClick={() => onNavigate(page)}
+              key={surface}
+              onClick={() => onNavigate(surface)}
               className={cn(
                 'w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium',
                 'transition-all duration-200 active:scale-95',

@@ -1,4 +1,4 @@
-import { type ComponentType } from 'react'
+import type { LucideIcon } from 'lucide-react'
 
 export const E_CURRENCY = {
   None: 0,
@@ -82,7 +82,7 @@ export interface CurrencyCardConfig {
   i18nKey: string
   gradient: string
   iconBg: string
-  icon: ComponentType<{ className?: string }>
+  icon: LucideIcon
   iconColor: string
 }
 
@@ -90,7 +90,7 @@ export interface HeroCardConfig {
   i18nKey: string
   gradient: string
   iconBg: string
-  icon: ComponentType<{ className?: string }>
+  icon: LucideIcon
   iconColor: string
 }
 

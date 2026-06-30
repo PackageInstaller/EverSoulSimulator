@@ -12,9 +12,17 @@
      "packed": false
     },
     {
+     "name": "itemEquip",
+     "number": 2,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sItemEquip",
+     "packed": false
+    },
+    {
      "name": "itemEtc",
      "number": 3,
-     "repeated": false,
+     "repeated": true,
      "type": "message",
      "type_name": "sItemEtc",
      "packed": false
@@ -26,53 +34,10 @@
      "type": "message",
      "type_name": "sShopItem",
      "packed": false
-    }
-   ]
-  },
-  "sShopItem": {
-   "fields": [
-    {
-     "name": "no",
-     "number": 1,
-     "repeated": false,
-     "type": "int32",
-     "packed": false
     },
     {
-     "name": "shopNo",
-     "number": 2,
-     "repeated": false,
-     "type": "int32",
-     "packed": false
-    },
-    {
-     "name": "itemNo",
-     "number": 3,
-     "repeated": false,
-     "type": "int32",
-     "packed": false
-    },
-    {
-     "name": "totalBuy",
-     "number": 4,
-     "repeated": false,
-     "type": "int32",
-     "packed": false
-    }
-   ]
-  },
-  "sItemEtc": {
-   "fields": [
-    {
-     "name": "itemNo",
-     "number": 1,
-     "repeated": false,
-     "type": "int32",
-     "packed": false
-    },
-    {
-     "name": "cnt",
-     "number": 2,
+     "name": "eventPassPoint",
+     "number": 5,
      "repeated": false,
      "type": "int32",
      "packed": false
@@ -106,6 +71,81 @@
      "number": 2,
      "repeated": false,
      "type": "int64",
+     "packed": false
+    }
+   ]
+  },
+  "sItemEquip": {
+   "fields": [
+    {
+     "name": "id",
+     "number": 1,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "itemNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "exp",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sItemEtc": {
+   "fields": [
+    {
+     "name": "itemNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "cnt",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sShopItem": {
+   "fields": [
+    {
+     "name": "no",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "shopNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "shopItemNo",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "buyCnt",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
      "packed": false
     }
    ]

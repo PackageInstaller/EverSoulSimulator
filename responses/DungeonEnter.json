@@ -1,0 +1,15 @@
+{
+  "dungeon": {
+    "id": 1406786,
+    "dungeonNo": 10001,
+    "x": 999.0,
+    "z": 999.0,
+    "heroInfo": "AA==",
+    "isEnter": 1,
+    "missionNo": -1,
+    "missionCnt": -1,
+    "seed": 13457,
+    "difficulty": 1
+  },
+  "__format__": "proto"
+}

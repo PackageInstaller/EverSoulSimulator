@@ -1,0 +1,17 @@
+{
+  "townVisitHero": [
+    {
+      "heroNo": 1010
+    },
+    {
+      "heroNo": 1060
+    },
+    {
+      "heroNo": 2110
+    },
+    {
+      "heroNo": 4080
+    }
+  ],
+  "__format__": "proto"
+}

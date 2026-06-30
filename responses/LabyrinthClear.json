@@ -1,0 +1,208 @@
+{
+  "currency": {
+    "allCurrency": [
+      {
+        "type": "Gold",
+        "value": "1165405"
+      },
+      {
+        "type": "FreeDia",
+        "value": "1813"
+      },
+      {
+        "type": "ManaDust",
+        "value": "1787806"
+      },
+      {
+        "type": "ManaCrystal",
+        "value": "846"
+      },
+      {
+        "type": "Exp",
+        "value": "208653"
+      },
+      {
+        "type": "Heart"
+      },
+      {
+        "type": "LifeEssence",
+        "value": "500"
+      },
+      {
+        "type": "ArenaTicket",
+        "value": "1"
+      },
+      {
+        "type": "Dungeon",
+        "value": "6820"
+      },
+      {
+        "type": "Guild",
+        "value": "30000"
+      },
+      {
+        "type": "Release",
+        "value": "12600"
+      },
+      {
+        "type": "Arena",
+        "value": "100"
+      },
+      {
+        "type": "Relics",
+        "value": "1200"
+      },
+      {
+        "type": "Silver",
+        "value": "1400"
+      },
+      {
+        "type": "SingleRaidCoin"
+      },
+      {
+        "type": "PickupGachaTicket"
+      },
+      {
+        "type": "Sign1",
+        "value": "38"
+      },
+      {
+        "type": "Sign2"
+      },
+      {
+        "type": "SignHuman"
+      },
+      {
+        "type": "SignFurry"
+      },
+      {
+        "type": "SignElf"
+      },
+      {
+        "type": "SignUndead"
+      },
+      {
+        "type": "SignAngel"
+      },
+      {
+        "type": "SignDemon"
+      },
+      {
+        "type": "NormalTicket",
+        "value": "10"
+      },
+      {
+        "type": "RaceTicket",
+        "value": "17"
+      },
+      {
+        "type": "RareSoulstone",
+        "value": "386"
+      },
+      {
+        "type": "EpicSoulstone",
+        "value": "35"
+      },
+      {
+        "type": "EquipExp",
+        "value": "130"
+      },
+      {
+        "type": "CollaborationSummonTicket"
+      },
+      {
+        "type": "PayDia"
+      },
+      {
+        "type": "TeamarenaTicket"
+      },
+      {
+        "type": "SignatureGachaTicket",
+        "value": "7"
+      },
+      {
+        "type": "PremiumGachaTicket"
+      },
+      {
+        "type": "MonthlyHeroResetTicket"
+      },
+      {
+        "type": "EquipExpMiddle"
+      },
+      {
+        "type": "EquipExpHigh"
+      },
+      {
+        "type": "ZodiacExp"
+      },
+      {
+        "type": "LabyrinthTicket"
+      },
+      {
+        "type": "TranscendentStone"
+      },
+      {
+        "type": "SingleRaidTicket"
+      },
+      {
+        "type": "SetItemEngrave"
+      },
+      {
+        "type": "RotationDungeonTicket"
+      },
+      {
+        "type": "EdenCoin"
+      },
+      {
+        "type": "TypeBarrierGateTicket"
+      },
+      {
+        "type": "OriginTowerTicket"
+      },
+      {
+        "type": "DoubleGateNormalTicket",
+        "value": "3"
+      },
+      {
+        "type": "DoubleGateNormalTicketCharge"
+      },
+      {
+        "type": "SignatureEnhanceStone"
+      },
+      {
+        "type": "HeroOptionChangeStone"
+      },
+      {
+        "type": "WishGachaTicket",
+        "value": "1"
+      },
+      {
+        "type": "TotalDia",
+        "value": "1813"
+      }
+    ]
+  },
+  "dungeon": {
+    "id": 1406797,
+    "dungeonNo": 5001,
+    "dungeonLevel": 3,
+    "x": -499.649,
+    "z": 40.8878,
+    "mapInfo": "dVCLEsAgCDKO/P9PnuF6buVuJRdIFLNair3Lo6uxQ5+1Tn0itIEtqH3QLvUD81fjIkKeIglkA8isB7lKtVhs7Nzl/1lM9f1uQxBvRBSnLVnz1SSdUEP2ABrvGHmMvo68We0EHoT1QsbjtoWYGUV2+ZT5lmE33LZoqZKiqIAwVIFMu8HxtKGaJ00Y5wc=",
+    "conditionInfo": "Y2JgAkMogmEkJjZJIAQBsAC5AIutqCJYOZTYSB5gZAJCKIJhFAGsHCZGqC9RggnIASoDmskIAA==",
+    "heroInfo": "fZTLasNADEV/aDC683CZbeiUrtpCaEOyMWneya6FrvLxnQnYERHcjTeHcyVLsjH0EYvjvMwHPJXi4NCJiJMu+ysG+BtcN7ipULrkc31KrLD3o5kvF2UiNxOjmbbHm5lzMzOaGUYz7KBMkQZVQ+tHiDDGxtXWmJhiXwoxl++spolFnMzTksBzYLEb0u0smlg1+ETg857Bk6l5X9nBDEG9yv7TQLXPGatpoB7CL4PfrOYHq/lHZlu+2D7Zss+emTZ2OrCEH2buGFwwuGLdmjNRs301n4OGbw9QotRoV88ZIojOI4kL/f3XEK7/",
+    "additionalInfo": "q1ZyVrKqVjJSsjLSUTJWsjKu1VFyA1I6SmFKVkqGeoZKOkqOYL6TkpWlaS0A",
+    "relicInfo": "MjMzMywyMjAzLDIyMDUsMjMyOSwyMjE3LDIyMTQsMjIwOCwyMjA3LDIxMTMsMjIxNSwyMzMxLDIyMDYsMjMyNiwyMjE4LDIyMTM=",
+    "isEnter": 1,
+    "isFirstClear": 1,
+    "missionNo": -1,
+    "missionCnt": -1,
+    "seed": 4373,
+    "dungeonItem": "MjAwMTMsMjAwMTQsMjAwMTU=",
+    "difficulty": 3,
+    "ultimatePoint": 4000,
+    "playerObjectId": 1171,
+    "randomGimmickSeed": 4373
+  },
+  "__format__": "proto"
+}

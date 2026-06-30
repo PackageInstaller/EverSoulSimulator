@@ -1,9 +1,12 @@
 import { Activity, RefreshCw } from 'lucide-react'
 import { GlassCard, GlassCardHeader } from '@/components/ui/GlassCard'
 import { StatusBadge } from '@/components/ui/StatusBadge'
+import { PageHeader } from '@/components/ui/PageHeader'
+import { Button } from '@/components/ui/Button'
 import { usePolling } from '@/hooks/usePolling'
 import { useI18n } from '@/lib/i18n'
 import { cn } from '@/lib/utils'
+import { layout, typo, badge, dataConsole as dc } from '@/styles/tokens'
 import { type HealthCheck } from '@/types/api'
 
 export function HealthPage() {
@@ -11,50 +14,30 @@ export function HealthPage() {
   const { data, loading, refresh } = usePolling<HealthCheck[]>({ url: '/web/api/health', intervalMs: 5000 })
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between gap-4">
-        <div className="min-w-0">
-          <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white truncate">
-            {t('admin.health')}
-          </h2>
-        </div>
-        <button
-          onClick={refresh}
-          className="p-2 rounded-xl text-slate-400 hover:bg-white/40 dark:hover:bg-white/10 transition-all active:scale-95 shrink-0"
-        >
-          <RefreshCw className={cn('w-4 h-4', loading && 'animate-spin')} />
-        </button>
-      </div>
+    <div className={layout.page}>
+      <PageHeader
+        title={t('admin.health')}
+        actions={
+          <Button variant="ghost" onClick={refresh}>
+            <RefreshCw size={16} className={loading ? dc.spin : undefined} />
+          </Button>
+        }
+      />
 
-      {loading && !data && (
-        <p className="text-sm text-slate-400 text-center py-8">{t('admin.loading')}</p>
-      )}
+      {loading && !data && <p className={typo.hint}>{t('admin.loading')}</p>}
+      {data && data.length === 0 && <p className={typo.hint}>{t('admin.health_load_fail')}</p>}
 
-      {data && data.length === 0 && (
-        <p className="text-sm text-slate-400 text-center py-8">{t('admin.health_load_fail')}</p>
-      )}
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+      <div className={layout.grid3}>
         {data?.map(check => (
-          <GlassCard key={check.name}>
-            <GlassCardHeader
-              icon={<Activity className={cn('w-4 h-4', check.status === 'ok' ? 'text-emerald-600' : check.status === 'warn' ? 'text-amber-500' : 'text-rose-600')} />}
-              title={check.name}
-              iconBg={check.status === 'ok' ? 'bg-emerald-100 dark:bg-emerald-900/40' : check.status === 'warn' ? 'bg-amber-100 dark:bg-amber-900/40' : 'bg-rose-100 dark:bg-rose-900/40'}
-            />
-            <div className="mt-3 flex items-center gap-2">
+          <GlassCard key={check.name} hover>
+            <GlassCardHeader icon={<Activity size={18} />} title={check.name} />
+            <div className={cn(layout.sectionGap, 'flex items-center gap-2 flex-wrap')}>
               <StatusBadge variant={check.status === 'ok' ? 'ok' : check.status === 'warn' ? 'warn' : 'fail'}>
                 {check.status.toUpperCase()}
               </StatusBadge>
-              {check.detail && (
-                <span className="text-xs text-slate-500 dark:text-slate-400 truncate">{check.detail}</span>
-              )}
+              {check.detail && <span className={typo.hint}>{check.detail}</span>}
             </div>
-            {check.hint && (
-              <div className="mt-2 px-2.5 py-1.5 rounded-lg bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700/40">
-                <p className="text-xs text-amber-700 dark:text-amber-400 leading-snug">{check.hint}</p>
-              </div>
-            )}
+            {check.hint && <p className={cn('mt-2', badge.warn)}>{check.hint}</p>}
           </GlassCard>
         ))}
       </div>

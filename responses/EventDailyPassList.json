@@ -1,0 +1,12 @@
+{
+  "passInfo": [
+    {
+      "eventGroup": 1,
+      "eventNumber": 1,
+      "lastReceivedNo": 1,
+      "startDate": 20260610,
+      "lastReceivedDate": 20260610
+    }
+  ],
+  "__format__": "proto"
+}

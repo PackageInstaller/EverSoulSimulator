@@ -1,4 +1,4 @@
-import { type ComponentType } from 'react'
+import type { LucideIcon } from 'lucide-react'
 
 export type NavPage =
   | 'dashboard'
@@ -9,6 +9,7 @@ export type NavPage =
   | 'logs'
   | 'fixtures'
   | 'gamedata'
+  | 'schedule'
   | 'files'
   | 'injector'
   | 'manual'
@@ -16,7 +17,7 @@ export type NavPage =
 export interface NavItemConfig {
   page: NavPage
   i18nKey: string
-  icon: ComponentType<{ className?: string }>
+  icon: LucideIcon
   colorClass: string
   activeGradient: string
   activeShadow: string

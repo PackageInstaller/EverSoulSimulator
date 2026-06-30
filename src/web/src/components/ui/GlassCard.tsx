@@ -1,30 +1,23 @@
 import { cn } from '@/lib/utils'
 import { type ReactNode } from 'react'
+import { surface, pad, typo } from '@/styles/tokens'
 
 interface GlassCardProps {
   children: ReactNode
   className?: string
   size?: 'sm' | 'md' | 'lg'
+  hover?: boolean
 }
 
 const sizeMap = {
-  sm: 'p-3',
-  md: 'p-5',
-  lg: 'p-6',
+  sm: pad.cardSm,
+  md: pad.card,
+  lg: pad.cardLg,
 }
 
-export function GlassCard({ children, className, size = 'md' }: GlassCardProps) {
+export function GlassCard({ children, className, size = 'md', hover = false }: GlassCardProps) {
   return (
-    <div
-      className={cn(
-        'rounded-2xl border border-white/20 dark:border-white/10',
-        'bg-white/70 dark:bg-white/5',
-        'backdrop-blur-xl',
-        'shadow-xl shadow-black/5 dark:shadow-black/30',
-        sizeMap[size],
-        className
-      )}
-    >
+    <div className={cn(surface.glass, hover && surface.hover, sizeMap[size], className)}>
       {children}
     </div>
   )
@@ -40,16 +33,14 @@ interface GlassCardHeaderProps {
 
 export function GlassCardHeader({ icon, iconBg, title, action, className }: GlassCardHeaderProps) {
   return (
-    <div className={cn('flex items-center justify-between', className)}>
+    <div className={cn('flex items-center justify-between gap-3', className)}>
       <div className="flex items-center gap-2.5 min-w-0">
         {icon && (
-          <div className={cn('w-7 h-7 rounded-xl flex items-center justify-center shrink-0', iconBg ?? 'bg-slate-100 dark:bg-white/10')}>
+          <div className={cn('w-9 h-9 rounded-xl flex items-center justify-center shrink-0', iconBg ?? 'bg-(--es-glass-fill-soft) border border-(--es-glass-border)')}>
             {icon}
           </div>
         )}
-        <h2 className="text-sm font-semibold text-slate-700 dark:text-slate-200 tracking-wide uppercase truncate">
-          {title}
-        </h2>
+        <h2 className={cn(typo.cardTitle, 'truncate uppercase')}>{title}</h2>
       </div>
       {action && <div className="shrink-0 ml-2">{action}</div>}
     </div>

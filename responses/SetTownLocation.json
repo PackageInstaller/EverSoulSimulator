@@ -1,0 +1,19 @@
+{
+  "townObjectList": {
+    "objetNo": 48001,
+    "uid": 13850346,
+    "position": "[-6.374992,0.006000042,14.625]",
+    "rotation": "[0,0,0]"
+  },
+  "currency": {},
+  "itemEtc": [
+    {
+      "itemNo": 48001
+    }
+  ],
+  "townInfo": {
+    "townLevel": 1,
+    "currentDevelopPoint": "10"
+  },
+  "__format__": "proto"
+}

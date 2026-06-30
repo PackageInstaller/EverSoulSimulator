@@ -1,28 +1,17 @@
 import { useState, useEffect } from 'react'
 import { cn } from '@/lib/utils'
 import { I18nProvider, useI18n } from '@/lib/i18n'
-import { type NavPage } from '@/types/nav'
+import { type AdminSurface } from '@/types/admin'
+import { ADMIN_ROUTES } from '@/app/adminRoutes'
 import { useServerStatus } from '@/hooks/useServerStatus'
 import { NavSidebar } from './NavSidebar'
 import { TopBar } from './TopBar'
+import { BuilderCredit } from './BuilderCredit'
+import { apiShutdownServer } from '@/api/server'
 import styles from '@/styles/shell.module.css'
 
-const PAGE_I18N_KEYS: Record<NavPage, string> = {
-  dashboard: 'admin.dashboard',
-  accounts:  'admin.accounts',
-  cheat:     'admin.cheat',
-  db:        'admin.db',
-  health:    'admin.health',
-  logs:      'admin.logs',
-  fixtures:  'admin.fixtures',
-  gamedata:  'admin.gamedata',
-  files:     'admin.files',
-  injector:  'admin.injector',
-  manual:    'admin.manual',
-}
-
 interface AppShellProps {
-  children: (page: NavPage) => React.ReactNode
+  children: (surface: AdminSurface) => React.ReactNode
 }
 
 export function AppShell({ children }: AppShellProps) {
@@ -36,7 +25,7 @@ export function AppShell({ children }: AppShellProps) {
 function AppShellInner({ children }: AppShellProps) {
   const { t } = useI18n()
   const { data: serverStatus } = useServerStatus()
-  const [page, setPage] = useState<NavPage>('dashboard')
+  const [page, setPage] = useState<AdminSurface>('home')
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
     if (typeof window !== 'undefined') {
       return (localStorage.getItem('es-theme') as 'light' | 'dark') ??
@@ -60,13 +49,18 @@ function AppShellInner({ children }: AppShellProps) {
     setTheme(prev => prev === 'dark' ? 'light' : 'dark')
   }
 
-  function navigate(target: NavPage) {
+  function navigate(target: AdminSurface) {
     setPage(target)
     setSidebarOpen(false)
   }
 
+  async function shutdownServer() {
+    await apiShutdownServer()
+  }
+
   return (
     <div className={cn('min-h-screen overflow-hidden bg-slate-50 dark:bg-slate-950', styles.shellBackground)}>
+      <BuilderCredit />
       <div className="relative flex h-screen overflow-hidden">
         <NavSidebar
           current={page}
@@ -87,10 +81,11 @@ function AppShellInner({ children }: AppShellProps) {
 
         <div className="flex flex-col flex-1 min-w-0 overflow-hidden">
           <TopBar
-            title={t(PAGE_I18N_KEYS[page])}
+            title={t(ADMIN_ROUTES.find(r => r.surface === page)?.i18nKey ?? page)}
             theme={theme}
             onToggleTheme={toggleTheme}
             onToggleSidebar={() => setSidebarOpen(prev => !prev)}
+            onShutdownServer={shutdownServer}
             serverPort={serverStatus?.port}
           />
           <main className="flex-1 overflow-y-auto p-3 sm:p-4 md:p-6">

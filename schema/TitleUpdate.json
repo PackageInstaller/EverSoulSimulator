@@ -1,0 +1,24 @@
+{
+ "root": "TitleUpdate",
+ "messages": {
+  "TitleUpdate": {
+   "fields": [
+    {
+     "name": "firstTitle",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "secondTitle",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

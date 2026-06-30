@@ -1,0 +1,46 @@
+.class final Lcom/bumptech/glide/manager/EmptyRequestManagerTreeNode;
+.super Ljava/lang/Object;
+.source "EmptyRequestManagerTreeNode.java"
+
+# interfaces
+.implements Lcom/bumptech/glide/manager/RequestManagerTreeNode;
+
+
+# direct methods
+.method constructor <init>()V
+    .locals 0
+
+    .line 99
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    return-void
+
+    .array-data 1
+    .end array-data
+.end method
+
+
+# virtual methods
+.method public getDescendants()Ljava/util/Set;
+    .locals 1
+    .annotation system Ldalvik/annotation/Signature;
+        value = {
+            "()",
+            "Ljava/util/Set<",
+            "Lcom/bumptech/glide/RequestManager;",
+            ">;"
+        }
+    .end annotation
+
+    .line 139
+    invoke-static {}, Ljava/util/Collections;->emptySet()Ljava/util/Set;
+
+    move-result-object v0
+
+    return-object v0
+
+    nop
+
+    .array-data 1
+    .end array-data
+.end method

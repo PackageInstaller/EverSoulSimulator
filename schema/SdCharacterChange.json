@@ -1,0 +1,17 @@
+{
+ "root": "SdCharacterChange",
+ "messages": {
+  "SdCharacterChange": {
+   "fields": [
+    {
+     "name": "sdHeroNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

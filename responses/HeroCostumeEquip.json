@@ -1,0 +1,18 @@
+{
+  "heroRepuation": {
+    "heroNo": 6530,
+    "reputation": 81100,
+    "state": 1,
+    "lastUpdateDt": "1780876054211",
+    "giftDt": "1742345011238",
+    "costumeItemNo": 2354,
+    "maxGradeSno": 110025,
+    "objetUid": 13584343,
+    "maxLevelDt": "1744333552025",
+    "arbeitExp": 14434,
+    "priority": 6,
+    "restFinishDt": "1780843157667",
+    "objetNo": "0"
+  },
+  "__format__": "proto"
+}

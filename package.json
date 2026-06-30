@@ -1,11 +1,5 @@
 {
-  "name": "eversoul-offline-simulator",
-  "version": "0.0.15",
-  "description": "EverSoul Offline Simulator",
-  "authors": [
-    "Shao Jiang",
-    "GarnetRapture",
-    "MelodyDeck"
-  ],
-  "license": "SEE LICENSE IN LICENSE"
+  "name": "eversoul-offline",
+  "version": "0.0.24",
+  "description": "Eversoul Offline project"
 }
