@@ -1,0 +1,514 @@
+{
+  "guild": {
+    "idx": "0_011PdILo_2p7l",
+    "name": "月心小築",
+    "exp": 1623140,
+    "cnt": 26,
+    "limitLv": 100,
+    "notice": "~ 休閒公會~<br>目前視狀況清幽靈<br>有事可請假",
+    "dt": "1673102137215",
+    "regularRaidNo": 1,
+    "irregularRaidNo": 1001,
+    "useSkillPoint": 65,
+    "skillLevel": "[4,4,9]",
+    "customEmblem": "MSw2MDIwNCw4Ny40NjU4NCwtMTUyLjI2MTgsMC41NSwwLjU1LDA=",
+    "skillResetDt": "1763450248834",
+    "introduction": "休閒公會 視工會營運狀況清幽靈<br>"
+  },
+  "guildMember": [
+    {
+      "guildIdx": "0_011PdILo_2p7l",
+      "userIdx": "0_021PdILo_6aJ",
+      "grade": 1,
+      "dt": "1774923050905",
+      "contribution": 1060,
+      "nickName": "Almond",
+      "lastLoginDt": "1780308280535",
+      "thumbnail": {
+        "thumbnailFrame": 5611,
+        "thumbnailImage": 33080,
+        "firstTitle": 6705
+      },
+      "power": "2297439",
+      "level": 152,
+      "logoutDt": "1780308280535"
+    },
+    {
+      "guildIdx": "0_011PdILo_2p7l",
+      "userIdx": "0_111TDJA5_cVa",
+      "grade": 1,
+      "dt": "1773599113954",
+      "contribution": 4970,
+      "nickName": "諾亞",
+      "lastLoginDt": "1781101123130",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "thumbnailImage": 34160,
+        "firstTitle": 6815,
+        "secondTitle": 6822
+      },
+      "power": "8561685",
+      "level": 412,
+      "logoutDt": "1781101385753",
+      "weeklyContribution": 190
+    },
+    {
+      "guildIdx": "0_011PdILo_2p7l",
+      "userIdx": "0_121SZ7AI_rLJ",
+      "grade": 1,
+      "dt": "1779636243015",
+      "contribution": 870,
+      "nickName": "mai",
+      "lastLoginDt": "1781018622824",
+      "thumbnail": {
+        "thumbnailFrame": 5694,
+        "thumbnailImage": 36540
+      },
+      "power": "2403846",
+      "level": 153,
+      "logoutDt": "1781018976675",
+      "weeklyContribution": 130
+    },
+    {
+      "guildIdx": "0_011PdILo_2p7l",
+      "userIdx": "0_231TbnLm_3hj",
+      "grade": 1,
+      "dt": "1737175600686",
+      "contribution": 26290,
+      "nickName": "奶粉",
+      "lastLoginDt": "1777430379777",
+      "thumbnail": {
+        "thumbnailFrame": 5654,
+        "useCustom": true,
+        "thumbnail": "MywyMjI4LC0xNDQuNzc5NCwtNDIzLjIyMTEsMS4yMDc4MjMsMS4yMDc4MjMsMzQ5LjI5MTQ=",
+        "firstTitle": 6822,
+        "secondTitle": 6830
+      },
+      "power": "19312205",
+      "level": 430,
+      "logoutDt": "1777430379777"
+    },
+    {
+      "guildIdx": "0_011PdILo_2p7l",
+      "userIdx": "0_541PdeSx_cnX",
+      "grade": 1,
+      "dt": "1679401843965",
+      "contribution": 64790,
+      "nickName": "大冰奶",
+      "lastLoginDt": "1777472017356",
+      "thumbnail": {
+        "thumbnailFrame": 5504,
+        "useCustom": true,
+        "thumbnail": "MywyMjc0LC02OS4yMjQwNywtMTI5LjIzMDksMC40MzQwNDM1LDAuNDM0MDQzNSwzNTcuNzI2NQ==",
+        "firstTitle": 6705,
+        "secondTitle": 6701
+      },
+      "power": "25650635",
+      "level": 532,
+      "logoutDt": "1777472017356"
+    },
+    {
+      "guildIdx": "0_011PdILo_2p7l",
+      "userIdx": "0_641VD4Sv_99G",
+      "grade": 1,
+      "dt": "1771678175795",
+      "contribution": 3480,
+      "nickName": "RIP",
+      "lastLoginDt": "1777067829582",
+      "thumbnail": {
+        "thumbnailFrame": 5622,
+        "useCustom": true,
+        "thumbnail": "MCw2NTQwLDM4LjA4NTg4LC03LjY5MDQzLDAuNDEyODIyMywwLjQxMjgyMjMsMzU0LjA2MDc=",
+        "firstTitle": 6830,
+        "secondTitle": 6831
+      },
+      "power": "5817771",
+      "level": 234,
+      "logoutDt": "1777067829582"
+    },
+    {
+      "guildIdx": "0_011PdILo_2p7l",
+      "userIdx": "0_711PdILo_2v2c",
+      "grade": 1,
+      "dt": "1779129239968",
+      "contribution": 100,
+      "nickName": "Mihel",
+      "lastLoginDt": "1780844185106",
+      "thumbnail": {
+        "thumbnailFrame": 5653,
+        "thumbnailImage": 30001,
+        "firstTitle": 6701,
+        "secondTitle": 6705
+      },
+      "power": "9268486",
+      "level": 212,
+      "logoutDt": "1780845910141"
+    },
+    {
+      "guildIdx": "0_011PdILo_2p7l",
+      "userIdx": "0_721PdILo_243r",
+      "grade": 1,
+      "dt": "1677291363888",
+      "contribution": 68620,
+      "nickName": "善良老百姓",
+      "lastLoginDt": "1781055590449",
+      "thumbnail": {
+        "thumbnailFrame": 5613,
+        "useCustom": true,
+        "thumbnail": "MSw2MDIwMywxNjAuNDkwNCwtMC4xNjk1OTE5LDAuMzI4MjY0LDAuMzI4MjY0LDAuODcwMTc5Nw==",
+        "firstTitle": 6815,
+        "secondTitle": 6804
+      },
+      "power": "37094924",
+      "level": 657,
+      "logoutDt": "1781055919569",
+      "weeklyContribution": 190
+    },
+    {
+      "guildIdx": "0_011PdILo_2p7l",
+      "userIdx": "0_811PfYMb_3AeZ",
+      "grade": 1,
+      "dt": "1774916473698",
+      "contribution": 1090,
+      "nickName": "Beckman",
+      "lastLoginDt": "1776670049761",
+      "thumbnail": {
+        "thumbnailFrame": 5700,
+        "useCustom": true,
+        "thumbnail": "MSw2NjIsNDUuMDQ0MSwtMjExLjUyOTEsMC43Mzc3NjE0LDAuNzM3NzYxNCwzNTkuNzg2Ng=="
+      },
+      "power": "17484215",
+      "level": 317,
+      "logoutDt": "1776670049761"
+    },
+    {
+      "guildIdx": "0_011PdILo_2p7l",
+      "userIdx": "0_831Roagi_dLj",
+      "grade": 1,
+      "dt": "1774886855490",
+      "nickName": "Haguri",
+      "lastLoginDt": "1780995593268",
+      "thumbnail": {
+        "thumbnailFrame": 5643,
+        "useCustom": true,
+        "thumbnail": "MSw2NTMwMSwtNDIuNDMxNjEsLTY2LjM3MTIzLDAuNDE5MjU4OSwwLjQxOTI1ODksMzU2LjkxMTc=",
+        "firstTitle": 6701,
+        "secondTitle": 6705
+      },
+      "power": "6283947",
+      "level": 143,
+      "logoutDt": "1780995625679"
+    },
+    {
+      "guildIdx": "0_011PdILo_2p7l",
+      "userIdx": "0_b21PdeSE_wRt",
+      "grade": 1,
+      "dt": "1776204144803",
+      "contribution": 850,
+      "nickName": "april",
+      "lastLoginDt": "1777458712665",
+      "thumbnail": {
+        "thumbnailFrame": 5622,
+        "useCustom": true,
+        "thumbnail": "MSw2MDEwMSwzMC4yODU3MywtMTIxLjEwNTQsMC41NSwwLjU1LDA=",
+        "firstTitle": 6812,
+        "secondTitle": 560601
+      },
+      "power": "34974140",
+      "level": 617,
+      "logoutDt": "1777458712665"
+    },
+    {
+      "guildIdx": "0_011PdILo_2p7l",
+      "userIdx": "0_e31PdeSE_1BCj",
+      "grade": 9,
+      "dt": "1683264794547",
+      "contribution": 64680,
+      "nickName": "Rein",
+      "lastLoginDt": "1781094576100",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MSw5MDAwMSwtMTU0LjgzNCwxMjguNDc1NiwwLjU1LDAuNTUsMA==",
+        "firstTitle": 6817,
+        "secondTitle": 6813
+      },
+      "power": "35114025",
+      "level": 581,
+      "logoutDt": "1781094629731",
+      "weeklyContribution": 180
+    },
+    {
+      "guildIdx": "0_011PdILo_2p7l",
+      "userIdx": "1_131RApP3_4E4",
+      "channelNo": 1,
+      "grade": 1,
+      "dt": "1772742571502",
+      "contribution": 530,
+      "nickName": "EasonPog",
+      "lastLoginDt": "1778573398523",
+      "thumbnail": {
+        "thumbnailFrame": 5701,
+        "useCustom": true,
+        "thumbnail": "Miw4NDEsMjIuMzA1NzYsLTE0MC43NjkyLDAuNjAwNzk4NCwwLjYwMDc5ODQsMzU5LjY1MjY=",
+        "firstTitle": 6705,
+        "secondTitle": 6804
+      },
+      "power": "17336259",
+      "level": 347,
+      "logoutDt": "1778573398523"
+    },
+    {
+      "guildIdx": "0_011PdILo_2p7l",
+      "userIdx": "1_141PdILo_4BI4",
+      "channelNo": 1,
+      "grade": 1,
+      "dt": "1690965878873",
+      "contribution": 55570,
+      "nickName": "嗚姆",
+      "lastLoginDt": "1775965656616",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MSw0MTAwNSwtNzUuNTA0MjQsLTE1NC40ODQyLDAuNTQ4NDAzMiwwLjU0ODQwMzIsMzU5LjM4MDM=",
+        "firstTitle": 6815,
+        "secondTitle": 541601
+      },
+      "power": "32085517",
+      "level": 565,
+      "logoutDt": "1775965656616"
+    },
+    {
+      "guildIdx": "0_011PdILo_2p7l",
+      "userIdx": "1_221SanZo_7EP",
+      "channelNo": 1,
+      "grade": 1,
+      "dt": "1775501729392",
+      "contribution": 3150,
+      "nickName": "VANSAMA异世界再见",
+      "lastLoginDt": "1781059693814",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MSw5MjgwNCw1MzIuMjUxLDIzMy4zNDk2LDAuOTM3MDc2OSwwLjkzNzA3NjksMC43NzY5NjAz",
+        "firstTitle": 6706,
+        "secondTitle": 6705
+      },
+      "power": "20375124",
+      "level": 354,
+      "logoutDt": "1781059938127",
+      "weeklyContribution": 120
+    },
+    {
+      "guildIdx": "0_011PdILo_2p7l",
+      "userIdx": "1_611PdeSx_tg",
+      "channelNo": 1,
+      "grade": 1,
+      "dt": "1735477184573",
+      "contribution": 10850,
+      "nickName": "Bisket",
+      "lastLoginDt": "1776533133746",
+      "thumbnail": {
+        "thumbnailFrame": 5711,
+        "useCustom": true,
+        "thumbnail": "MSw0MDIwOSwwLDAsMC4yMzA0MzA0LDAuMjMwNDMwNCwzNTkuNTIzOQ=="
+      },
+      "power": "26110438",
+      "level": 414,
+      "logoutDt": "1776533133746"
+    },
+    {
+      "guildIdx": "0_011PdILo_2p7l",
+      "userIdx": "1_611TvLui_7Ul",
+      "channelNo": 1,
+      "grade": 1,
+      "dt": "1771653451557",
+      "contribution": 5780,
+      "nickName": "流白",
+      "lastLoginDt": "1781071672057",
+      "thumbnail": {
+        "thumbnailFrame": 5612,
+        "useCustom": true,
+        "thumbnail": "MywyMjA2LDQuNTQ0MTI4LC00NjMuNzE3OCwxLjE3NDMyNSwxLjE3NDMyNSwzNTkuNjMzOQ=="
+      },
+      "power": "13212825",
+      "level": 281,
+      "logoutDt": "1781071782678",
+      "weeklyContribution": 130
+    },
+    {
+      "guildIdx": "0_011PdILo_2p7l",
+      "userIdx": "1_941PdeSE_fw",
+      "channelNo": 1,
+      "grade": 1,
+      "dt": "1691718415212",
+      "contribution": 56940,
+      "nickName": "Krust",
+      "lastLoginDt": "1777939718914",
+      "thumbnail": {
+        "thumbnailFrame": 5653,
+        "thumbnailImage": 30001,
+        "thumbnail": "MSwzMDQwMSwxODMuMzEwNCwxLjAzNzUzNywwLjg1MTYzLDAuODUxNjMsMy42NzE5NzM=",
+        "firstTitle": 531301,
+        "secondTitle": 565201
+      },
+      "power": "32710589",
+      "level": 478,
+      "logoutDt": "1777939718914"
+    },
+    {
+      "guildIdx": "0_011PdILo_2p7l",
+      "userIdx": "2_121PfYyH_4qKA",
+      "channelNo": 2,
+      "grade": 1,
+      "dt": "1770565111977",
+      "contribution": 4570,
+      "nickName": "鯊王",
+      "lastLoginDt": "1779720301582",
+      "thumbnail": {
+        "thumbnailFrame": 5700,
+        "thumbnailImage": 31040
+      },
+      "power": "26281637",
+      "level": 619,
+      "logoutDt": "1779720301582"
+    },
+    {
+      "guildIdx": "0_011PdILo_2p7l",
+      "userIdx": "2_121QrS7F_4O1",
+      "channelNo": 2,
+      "grade": 1,
+      "dt": "1757188844983",
+      "contribution": 12650,
+      "nickName": "尾光",
+      "lastLoginDt": "1780500577649",
+      "thumbnail": {
+        "thumbnailFrame": 5700,
+        "useCustom": true,
+        "thumbnail": "MSw2MDIwNywtMTA1LjYxOTgsLTE5NS40MTAxLDAuNjY5ODc2NCwwLjY2OTg3NjQsMC42NTE5NTc1",
+        "firstTitle": 531601,
+        "secondTitle": 6705
+      },
+      "power": "19611383",
+      "level": 340,
+      "logoutDt": "1780500577649"
+    },
+    {
+      "guildIdx": "0_011PdILo_2p7l",
+      "userIdx": "2_211PdeSx_8C3",
+      "channelNo": 2,
+      "grade": 1,
+      "dt": "1686524651207",
+      "contribution": 61770,
+      "nickName": "百里冰",
+      "lastLoginDt": "1781024955834",
+      "thumbnail": {
+        "thumbnailFrame": 5652,
+        "thumbnailImage": 34080,
+        "firstTitle": 6811,
+        "secondTitle": 6804
+      },
+      "power": "29904412",
+      "level": 516,
+      "logoutDt": "1781025253235",
+      "weeklyContribution": 110
+    },
+    {
+      "guildIdx": "0_011PdILo_2p7l",
+      "userIdx": "2_311Pnnp2_Bhd",
+      "channelNo": 2,
+      "grade": 1,
+      "dt": "1771399850358",
+      "contribution": 2670,
+      "nickName": "肯尼弟弟",
+      "lastLoginDt": "1778558240438",
+      "thumbnail": {
+        "thumbnailFrame": 5700,
+        "useCustom": true,
+        "thumbnail": "MywyMzA2LC00LjE4NDM4NywtMjM3LjIwOTMsMC44ODk2MTU1LDAuODg5NjE1NSwzNTUuNTIzMg==",
+        "firstTitle": 6831,
+        "secondTitle": 6706
+      },
+      "power": "9299843",
+      "level": 307,
+      "logoutDt": "1778558240438"
+    },
+    {
+      "guildIdx": "0_011PdILo_2p7l",
+      "userIdx": "2_821RnJ4E_eeD",
+      "channelNo": 2,
+      "grade": 1,
+      "dt": "1742651293881",
+      "contribution": 18690,
+      "nickName": "Emreon",
+      "lastLoginDt": "1780501175317",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "thumbnailImage": 36540,
+        "firstTitle": 6705,
+        "secondTitle": 6701
+      },
+      "power": "9078566",
+      "level": 247,
+      "logoutDt": "1780501175317"
+    },
+    {
+      "guildIdx": "0_011PdILo_2p7l",
+      "userIdx": "2_921PMpdN_sme",
+      "channelNo": 2,
+      "grade": 1,
+      "dt": "1776840832012",
+      "contribution": 110,
+      "nickName": "百鬼綾目Ch",
+      "lastLoginDt": "1778177819404",
+      "thumbnail": {
+        "thumbnailFrame": 5723,
+        "thumbnailImage": 36060,
+        "firstTitle": 6812,
+        "secondTitle": 60003
+      },
+      "power": "5956241",
+      "level": 217,
+      "logoutDt": "1778177819404"
+    },
+    {
+      "guildIdx": "0_011PdILo_2p7l",
+      "userIdx": "2_b11PdeSE_ho",
+      "channelNo": 2,
+      "grade": 1,
+      "dt": "1673535632474",
+      "contribution": 57050,
+      "nickName": "紅酒迷迭香碳烤羊小排",
+      "lastLoginDt": "1778064237587",
+      "thumbnail": {
+        "thumbnailFrame": 5723,
+        "useCustom": true,
+        "thumbnail": "MSwyMDEwNiwtOC42OTQxODMsLTYwLjg2OTYzLDAuMzQ2NDUxOSwwLjM0NjQ1MTksMi41Mzc3Mjk=",
+        "firstTitle": 6802,
+        "secondTitle": 6705
+      },
+      "power": "22593774",
+      "level": 384,
+      "logoutDt": "1778064237587"
+    },
+    {
+      "guildIdx": "0_011PdILo_2p7l",
+      "userIdx": "2_b41PiKaK_eQ8",
+      "channelNo": 2,
+      "grade": 1,
+      "dt": "1778394019535",
+      "contribution": 330,
+      "nickName": "ZUHO",
+      "lastLoginDt": "1779110614966",
+      "thumbnail": {
+        "thumbnailFrame": 5507,
+        "useCustom": true,
+        "thumbnail": "MSw5MTMwMiwtOTEuODUxNzgsMTY5LjYyOTYsMC41NSwwLjU1LDAuMTMyMzA1Ng=="
+      },
+      "power": "2719340",
+      "level": 123,
+      "logoutDt": "1779110614966"
+    }
+  ],
+  "__format__": "proto"
+}

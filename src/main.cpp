@@ -1,6 +1,8 @@
 // main.cpp — desktop entry point (capture/proxy/mock CLI).
 #include <csignal>
 #include <cstddef>
+#include <atomic>
+#include <cstdlib>
 #include <filesystem>
 #include <string>
 
@@ -19,6 +21,8 @@ extern const std::size_t kWebBlobSize;
 
 namespace
 {
+    std::atomic<bool> g_adb_cleanup_done{false};
+
     std::string exe_dir()
     {
 #ifdef _WIN32
@@ -28,6 +32,14 @@ namespace
 #else
         return std::filesystem::canonical("/proc/self/exe").parent_path().string();
 #endif
+    }
+
+    void cleanup_adb()
+    {
+        bool expected = false;
+        if (!g_adb_cleanup_done.compare_exchange_strong(expected, true))
+            return;
+        eversoul::adb_runner::kill_server();
     }
 }
 
@@ -44,19 +56,13 @@ int main(int argc, char **argv)
             if (GetConsoleMode(hOut, &mode))
                 SetConsoleMode(hOut, mode | ENABLE_VIRTUAL_TERMINAL_PROCESSING | ENABLE_PROCESSED_OUTPUT);
         }
-        HANDLE hIn = GetStdHandle(STD_INPUT_HANDLE);
-        if (hIn != INVALID_HANDLE_VALUE) {
-            DWORD mode = 0;
-            if (GetConsoleMode(hIn, &mode))
-                SetConsoleMode(hIn, (mode & ~ENABLE_QUICK_EDIT_MODE) | ENABLE_EXTENDED_FLAGS);
-        }
     }
 #endif
 
     // adb 경로: EXE 위치를 동적으로 구해 copy_only/adb/adb.exe 절대 경로 설정.
     adb_runner::set_adb_path(
         (std::filesystem::path(exe_dir()) / "adb" / "adb.exe").string());
-    config().exe_dir = exe_dir();
+    std::atexit(cleanup_adb);
 
     int port = kServerListenPort;
     for (int i = 1; i < argc; ++i)
@@ -88,9 +94,5 @@ int main(int argc, char **argv)
                 { eversoul::request_shutdown(); });
     std::signal(SIGTERM, [](int)
                 { eversoul::request_shutdown(); });
-
-    adb_runner::start_server();
-    int ret = run_server(port);
-    adb_runner::kill_server();
-    return ret;
+    return run_server(port);
 }

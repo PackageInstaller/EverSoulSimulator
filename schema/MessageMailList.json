@@ -1,0 +1,36 @@
+{
+ "root": "MessageMailList",
+ "messages": {
+  "MessageMailList": {
+   "fields": [
+    {
+     "name": "messageMail",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sMessageMail",
+     "packed": false
+    }
+   ]
+  },
+  "sMessageMail": {
+   "fields": [
+    {
+     "name": "no",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "isReceive",
+     "number": 2,
+     "repeated": false,
+     "type": "bool",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

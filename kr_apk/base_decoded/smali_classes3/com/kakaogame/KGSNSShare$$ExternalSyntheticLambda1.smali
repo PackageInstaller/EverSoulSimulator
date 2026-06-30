@@ -1,0 +1,40 @@
+.class public final synthetic Lcom/kakaogame/KGSNSShare$$ExternalSyntheticLambda1;
+.super Ljava/lang/Object;
+.source "D8$$SyntheticClass"
+
+# interfaces
+.implements Landroid/content/DialogInterface$OnClickListener;
+
+
+# instance fields
+.field public final synthetic f$0:Lcom/kakaogame/web/WebDialog;
+
+
+# direct methods
+.method public synthetic constructor <init>(Lcom/kakaogame/web/WebDialog;)V
+    .locals 0
+
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    iput-object p1, p0, Lcom/kakaogame/KGSNSShare$$ExternalSyntheticLambda1;->f$0:Lcom/kakaogame/web/WebDialog;
+
+    return-void
+
+    .array-data 1
+    .end array-data
+.end method
+
+
+# virtual methods
+.method public final onClick(Landroid/content/DialogInterface;I)V
+    .locals 1
+
+    iget-object v0, p0, Lcom/kakaogame/KGSNSShare$$ExternalSyntheticLambda1;->f$0:Lcom/kakaogame/web/WebDialog;
+
+    invoke-static {v0, p1, p2}, Lcom/kakaogame/KGSNSShare;->$r8$lambda$FXdfI5xUhjflZA8H4Hb79otPL04(Lcom/kakaogame/web/WebDialog;Landroid/content/DialogInterface;I)V
+
+    return-void
+
+    .array-data 1
+    .end array-data
+.end method

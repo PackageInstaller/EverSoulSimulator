@@ -4,10 +4,10 @@
   "HeroEquip": {
    "fields": [
     {
-     "name": "heroIdx",
+     "name": "heroEquip_",
      "number": 1,
      "repeated": false,
-     "type": "string",
+     "type": "bytes",
      "packed": false
     }
    ]

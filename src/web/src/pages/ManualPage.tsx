@@ -1,6 +1,6 @@
-import { Download, Smartphone, Settings, Terminal, Router, BookMarked, ExternalLink, Mail, AlertCircle } from 'lucide-react'
-import avatarUrl from '@/assets/GarnetRapture_Costume01_512.png'
+import { Download, Smartphone, Settings, Terminal, Router, BookMarked, ExternalLink } from 'lucide-react'
 import { GlassCard } from '@/components/ui/GlassCard'
+import { DeveloperCard } from '@/components/manual/DeveloperCard'
 import { SectionCard } from '@/components/manual/SectionCard'
 import { StepList } from '@/components/manual/StepList'
 import { RouterCard } from '@/components/manual/RouterCard'
@@ -110,51 +110,7 @@ export function ManualPage() {
         ))}
       </SectionCard>
 
-      <GlassCard>
-        <div className="flex items-center gap-4">
-          <div className="relative shrink-0">
-            <img
-              src={avatarUrl}
-              alt="Nekoi"
-              className="w-20 h-20 rounded-2xl object-cover ring-2 ring-violet-400/40 shadow-xl shadow-violet-500/20"
-            />
-            <span className="absolute -bottom-1 -right-1 w-3 h-3 rounded-full bg-emerald-400 ring-2 ring-white dark:ring-slate-900" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <div className="flex items-baseline gap-2 flex-wrap">
-              <span className="text-base font-bold text-slate-900 dark:text-white tracking-tight">Nekoi</span>
-              <span className="text-[11px] text-slate-400 dark:text-slate-500 font-mono">Web UI Developer</span>
-            </div>
-            <div className="mt-2.5 flex flex-col gap-1.5">
-              <a
-                href="https://github.com/GarnetRapture"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-300 hover:text-violet-600 dark:hover:text-violet-400 transition-colors group"
-              >
-                <ExternalLink className="w-3.5 h-3.5 shrink-0 text-slate-400 group-hover:text-violet-500 transition-colors" />
-                <span className="font-mono">github.com/GarnetRapture</span>
-              </a>
-              <a
-                href="mailto:nekoi@everlib.pro"
-                className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-300 hover:text-sky-600 dark:hover:text-sky-400 transition-colors group"
-              >
-                <Mail className="w-3.5 h-3.5 shrink-0 text-slate-400 group-hover:text-sky-500 transition-colors" />
-                <span className="font-mono">nekoi@everlib.pro</span>
-              </a>
-              <a
-                href="https://github.com/PackageInstaller/EverSoulSimulator/issues"
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-300 hover:text-rose-600 dark:hover:text-rose-400 transition-colors group"
-              >
-                <AlertCircle className="w-3.5 h-3.5 shrink-0 text-slate-400 group-hover:text-rose-500 transition-colors" />
-                <span className="font-mono">이슈 보고 / Bug Report</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </GlassCard>
+      <DeveloperCard />
     </div>
   )
 }

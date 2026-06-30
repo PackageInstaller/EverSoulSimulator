@@ -2198,5 +2198,2910 @@
     "has_request_proto": false,
     "format": "proto",
     "roundtrip": true
+  },
+  "EventDailyPassList": {
+    "hits": 2,
+    "resp_bytes": 18,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "EventDailyPassReceive": {
+    "hits": 1,
+    "resp_bytes": 34,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "eventGroup": 1,
+      "eventNumber": 1
+    }
+  },
+  "EventPickupGachaSelect": {
+    "hits": 1,
+    "resp_bytes": 0,
+    "empty": true,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "empty",
+    "roundtrip": true,
+    "request_decoded": {
+      "eventGroup": 4,
+      "gachaNo": 5416
+    }
+  },
+  "EventQuestAllReceive": {
+    "hits": 1,
+    "resp_bytes": 1268,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "day": 2
+    }
+  },
+  "EventQuestList": {
+    "hits": 3,
+    "resp_bytes": 1596,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "GuideQuestRewardAllReceive": {
+    "hits": 1,
+    "resp_bytes": 292,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "Logout": {
+    "hits": 1,
+    "resp_bytes": 2,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "deviceType": "Aos",
+      "deviceModel": "Pixel 5"
+    }
+  },
+  "SaveIllust": {
+    "hits": 1,
+    "resp_bytes": 0,
+    "empty": true,
+    "has_response_proto": false,
+    "has_request_proto": true,
+    "format": "empty",
+    "roundtrip": true,
+    "request_decoded": {
+      "illusts": "///+//8HAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    }
+  },
+  "TutorialActive": {
+    "hits": 1,
+    "resp_bytes": 5,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "tutorialNo": 4901
+    }
+  },
+  "ArkEnhanceCore": {
+    "hits": 7,
+    "resp_bytes": 10,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "coreType01": 1,
+      "coreType02": 110051
+    }
+  },
+  "ArkOverClockInfo": {
+    "hits": 3,
+    "resp_bytes": 11,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "AutoRelease": {
+    "hits": 1,
+    "resp_bytes": 0,
+    "empty": true,
+    "has_response_proto": false,
+    "has_request_proto": true,
+    "format": "empty",
+    "roundtrip": true,
+    "request_decoded": {
+      "heroAutoRelease": 1
+    }
+  },
+  "BattleSave": {
+    "hits": 230,
+    "resp_bytes": 0,
+    "empty": true,
+    "has_response_proto": false,
+    "has_request_proto": true,
+    "format": "empty",
+    "roundtrip": true,
+    "request_decoded": {
+      "userIdx": "1_621WhSES_19fD",
+      "stageNo": 1,
+      "formationKind": 1,
+      "heroIdx": [
+        "1_131WhSEa_14YK",
+        "1_131WhSEa_14YN",
+        "1_131WhSEa_14YL",
+        "1_131WhSEa_14YM"
+      ],
+      "skill": [
+        {
+          "skill": [
+            {
+              "heroIdx": "TutorialRental_Mephisto",
+              "frame": "85",
+              "flag": true,
+              "battleBuffType": "UseActive"
+            }
+          ]
+        }
+      ],
+      "clientVersion": "1.34.101",
+      "tableVersion": "4725",
+      "option": [
+        76
+      ],
+      "random": [
+        541684250
+      ]
+    }
+  },
+  "ContentClearDeckSave": {
+    "hits": 230,
+    "resp_bytes": 0,
+    "empty": true,
+    "has_response_proto": false,
+    "has_request_proto": true,
+    "format": "empty",
+    "roundtrip": true,
+    "request_decoded": {
+      "contentNo": 1,
+      "contentClearDeck": [
+        {
+          "formationType": 2,
+          "sumPower": 3420,
+          "clearHero": [
+            {
+              "heroNo": 10,
+              "gradeSno": 110011,
+              "level": 1,
+              "heroIdx": "1_131WhSEa_14YK"
+            },
+            {
+              "heroNo": 20,
+              "gradeSno": 110011,
+              "level": 1,
+              "heroIdx": "1_131WhSEa_14YL"
+            },
+            {
+              "heroNo": 30,
+              "gradeSno": 110011,
+              "level": 1,
+              "heroIdx": "1_131WhSEa_14YM"
+            },
+            {
+              "heroNo": 40,
+              "gradeSno": 110011,
+              "level": 1,
+              "heroIdx": "1_131WhSEa_14YN"
+            },
+            {}
+          ]
+        }
+      ]
+    }
+  },
+  "ContentLimitSave": {
+    "hits": 38,
+    "resp_bytes": 6,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "no": 10060001
+    }
+  },
+  "DestinyStoryEpisodeClear": {
+    "hits": 1,
+    "resp_bytes": 275,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "storyNo": 2101001,
+      "talkNoList": "210100115,210100136"
+    }
+  },
+  "DestinyStoryEpisodeStart": {
+    "hits": 1,
+    "resp_bytes": 12,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "heroNo": 1010,
+      "storyNo": 2101001
+    }
+  },
+  "DungeonBattle": {
+    "hits": 59,
+    "resp_bytes": 0,
+    "empty": true,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "empty",
+    "roundtrip": true,
+    "request_decoded": {
+      "heroIdx": [
+        "1_641WhSES_17Ea",
+        "1_131WhSEa_14YO",
+        "1_131WhSEa_14YK",
+        "1_131WhSEa_14YL",
+        "1_131WhSEa_14YM"
+      ],
+      "stageNo": 30101,
+      "stageType": 9,
+      "monsterPowerSum": 1941
+    }
+  },
+  "DungeonChestRewardCheck": {
+    "hits": 7,
+    "resp_bytes": 0,
+    "empty": true,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "empty",
+    "roundtrip": true,
+    "request_decoded": {
+      "dungeonId": 1406797,
+      "rewardNo": 1001105001
+    }
+  },
+  "DungeonClear": {
+    "hits": 5,
+    "resp_bytes": 252,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "dungeonId": 1406786
+    }
+  },
+  "DungeonEnter": {
+    "hits": 5,
+    "resp_bytes": 53,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "dungeonNo": 10001,
+      "x": 999.0,
+      "z": 999.0
+    }
+  },
+  "DungeonInfoUpdate": {
+    "hits": 268,
+    "resp_bytes": 216,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "x": -500.0,
+      "z": 0.2666688,
+      "dungeonId": 1406786,
+      "mapInfo": "Y2UBAkYQYIUCRihgYQCRDEDAwoAALGCIDQAA",
+      "conditionInfo": "Y2JiRAAGEAQCMAEA",
+      "additionalInfo": "q1ZyUbKqVjI0NzCE0kZKVgY6IIaxkpUhmGGiZGUMZpgqWZnU1uoouYGVhClZKRnqGSrpKDkCVdYCAA==",
+      "missionNo": -1,
+      "missionCnt": -1,
+      "heroInfo": "M4w3MzEMzwh2DY43NHdN1DHUMdQzMDDQMQCSNYbxhsZgycR4Q5NIf3yS3vgkffBJ+uKT9EOVBAA=",
+      "playerObjectId": 1701
+    }
+  },
+  "DungeonLevelScaling": {
+    "hits": 9,
+    "resp_bytes": 2,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "scalingLevel": 1
+    }
+  },
+  "DungeonMode": {
+    "hits": 3,
+    "resp_bytes": 5,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "dungeonId": 1406797,
+      "difficulty": 2,
+      "dungeonLevel": 2
+    }
+  },
+  "DungeonMonsterRewardCheck": {
+    "hits": 22,
+    "resp_bytes": 0,
+    "empty": true,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "empty",
+    "roundtrip": true,
+    "request_decoded": {
+      "dungeonId": 1406797,
+      "monsterUid": 20102
+    }
+  },
+  "DungeonObjectReward": {
+    "hits": 4,
+    "resp_bytes": 287,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "dungeonId": 1406796,
+      "dungeonObjectReward_": "CAIQmicY6Qc="
+    }
+  },
+  "DungeonPerfectClear": {
+    "hits": 1,
+    "resp_bytes": 566,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "dungeonId": 1406796
+    }
+  },
+  "DungeonRestart": {
+    "hits": 2,
+    "resp_bytes": 96,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "dungeonId": 1406786
+    }
+  },
+  "DungeonSave": {
+    "hits": 2,
+    "resp_bytes": 0,
+    "empty": true,
+    "has_response_proto": false,
+    "has_request_proto": true,
+    "format": "empty",
+    "roundtrip": true,
+    "request_decoded": {
+      "dungeonId": 1406797
+    }
+  },
+  "DungeonShopItemBuy": {
+    "hits": 2,
+    "resp_bytes": 288,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "no": 102001008,
+      "uid": 10411,
+      "dungeonType": 2
+    }
+  },
+  "DungeonShopOpen": {
+    "hits": 2,
+    "resp_bytes": 80,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "stageNo": 196,
+      "dungeonType": 2,
+      "uid": 10411,
+      "dungeonNo": 2001
+    }
+  },
+  "EverTalkSetGroupNo": {
+    "hits": 4,
+    "resp_bytes": 15,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "heroNo": 1010,
+      "groupNo": 7101001
+    }
+  },
+  "FriendRecommendList": {
+    "hits": 4,
+    "resp_bytes": 2203,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "FriendRequest": {
+    "hits": 25,
+    "resp_bytes": 42,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "responseUserIdx": "2_131WhSEa_ZDT"
+    }
+  },
+  "GachaHeroTutorial": {
+    "hits": 1,
+    "resp_bytes": 144,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "GachaHeroTutorialFix": {
+    "hits": 1,
+    "resp_bytes": 366,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "GachaMileageUse": {
+    "hits": 6,
+    "resp_bytes": 251,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "mileageType": 2,
+      "mileageNo": 4508,
+      "rewardPoint": 40
+    }
+  },
+  "GachaSignature": {
+    "hits": 8,
+    "resp_bytes": 310,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "gachaNo": 10001,
+      "count": 5
+    }
+  },
+  "GetContentClearDeck": {
+    "hits": 230,
+    "resp_bytes": 617,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "contentNo": 2
+    }
+  },
+  "GuildInfo": {
+    "hits": 1,
+    "resp_bytes": 0,
+    "empty": true,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "empty",
+    "roundtrip": true
+  },
+  "GuildJoinRequest": {
+    "hits": 1,
+    "resp_bytes": 3451,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "guildIdx": "0_131Rvl2J_a1N"
+    }
+  },
+  "GuildJoinRequestList": {
+    "hits": 3,
+    "resp_bytes": 0,
+    "empty": true,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "empty",
+    "roundtrip": true,
+    "request_decoded": {
+      "guildIdx": "0_011PdILo_2p7l"
+    }
+  },
+  "GuildList": {
+    "hits": 1,
+    "resp_bytes": 2823,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "GuildTargetInfo": {
+    "hits": 3,
+    "resp_bytes": 3635,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "guildIdx": "0_011PdILo_2p7l"
+    }
+  },
+  "GuildTimeCheck": {
+    "hits": 1,
+    "resp_bytes": 0,
+    "empty": true,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "empty",
+    "roundtrip": true
+  },
+  "HeroEquipMulti": {
+    "hits": 9,
+    "resp_bytes": 35,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "heroIdx": "1_641WhSES_17Ea",
+      "equipMulti": [
+        {
+          "itemEquipId": "25885374"
+        },
+        {
+          "slot": "Helmet",
+          "itemEquipId": "25885383"
+        }
+      ]
+    }
+  },
+  "HeroEquipPresetApply": {
+    "hits": 1,
+    "resp_bytes": 1038,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "presetSlot": -99,
+      "presetHero": [
+        {
+          "heroIdx": "1_641WhSES_17EE",
+          "itemSlot": [
+            {
+              "itemEquipId": "25885407"
+            },
+            {
+              "slot": "Helmet",
+              "itemEquipId": "25885406"
+            },
+            {
+              "slot": "Armor",
+              "itemEquipId": "25885384"
+            },
+            {
+              "slot": "Boot",
+              "itemEquipId": "25885395"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_111WhSEa_15dh",
+          "itemSlot": [
+            {
+              "itemEquipId": "25885394"
+            },
+            {
+              "slot": "Helmet",
+              "itemEquipId": "25885402"
+            },
+            {
+              "slot": "Armor",
+              "itemEquipId": "25885396"
+            },
+            {
+              "slot": "Boot",
+              "itemEquipId": "25885397"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_631WhSES_13e1",
+          "itemSlot": [
+            {
+              "itemEquipId": "25885401"
+            },
+            {
+              "slot": "Helmet",
+              "itemEquipId": "25885409"
+            },
+            {
+              "slot": "Armor",
+              "itemEquipId": "25885404"
+            },
+            {
+              "slot": "Boot",
+              "itemEquipId": "25885405"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_641WhSES_17Ea",
+          "itemSlot": [
+            {
+              "itemEquipId": "25885374"
+            },
+            {
+              "slot": "Helmet",
+              "itemEquipId": "25885383"
+            },
+            {
+              "slot": "Armor",
+              "itemEquipId": "25885410"
+            },
+            {
+              "slot": "Boot",
+              "itemEquipId": "25885411"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_131WhSEa_14Zd",
+          "itemSlot": [
+            {
+              "itemEquipId": "25885408"
+            },
+            {
+              "slot": "Helmet",
+              "itemEquipId": "25885413"
+            },
+            {
+              "slot": "Armor",
+              "itemEquipId": "25885419"
+            },
+            {
+              "slot": "Boot",
+              "itemEquipId": "25885420"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_611WhSES_13FE",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_131WhSEa_14YO",
+          "itemSlot": [
+            {
+              "itemEquipId": "25885412"
+            },
+            {
+              "slot": "Helmet",
+              "itemEquipId": "25885422"
+            },
+            {
+              "slot": "Armor",
+              "itemEquipId": "25885430"
+            },
+            {
+              "slot": "Boot",
+              "itemEquipId": "25885436"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_641WhSES_17Ed",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_131WhSEa_14Ze",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_641WhSES_17HO",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_111WhSEa_15hL",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_641WhSES_17Ec",
+          "itemSlot": [
+            {
+              "itemEquipId": "25885421"
+            },
+            {
+              "slot": "Helmet",
+              "itemEquipId": "25885439"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_611WhSES_13B4",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_121WhSEa_17E5",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_121WhSEa_17Df",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_121WhSEa_17Di",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_621WhSES_19gO",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_141WhSEa_14fU",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_111WhSEa_15dB",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_121WhSEa_17DB",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_121WhSEa_17Ec",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_641WhSES_17Es",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_641WhSES_17Eb",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_111WhSEa_15dP",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_121WhSEa_17Ea",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_121WhSEa_17Dv",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_611WhSES_13EV",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_141WhSEa_14id",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_131WhSEa_151r",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_141WhSEa_14ie",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_641WhSES_17HE",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_641WhSES_17HN",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "HeroEquipPresetInfoList": {
+    "hits": 3,
+    "resp_bytes": 0,
+    "empty": true,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "empty",
+    "roundtrip": true
+  },
+  "HeroEquipPresetSave": {
+    "hits": 1,
+    "resp_bytes": 1141,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "presetName": "yyy",
+      "presetHero": [
+        {
+          "heroIdx": "1_641WhSES_17EE",
+          "itemSlot": [
+            {
+              "itemEquipId": "25885407"
+            },
+            {
+              "slot": "Helmet",
+              "itemEquipId": "25885406"
+            },
+            {
+              "slot": "Armor",
+              "itemEquipId": "25885384"
+            },
+            {
+              "slot": "Boot",
+              "itemEquipId": "25885395"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_111WhSEa_15dh",
+          "itemSlot": [
+            {
+              "itemEquipId": "25885394"
+            },
+            {
+              "slot": "Helmet",
+              "itemEquipId": "25885402"
+            },
+            {
+              "slot": "Armor",
+              "itemEquipId": "25885396"
+            },
+            {
+              "slot": "Boot",
+              "itemEquipId": "25885397"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_631WhSES_13e1",
+          "itemSlot": [
+            {
+              "itemEquipId": "25885401"
+            },
+            {
+              "slot": "Helmet",
+              "itemEquipId": "25885409"
+            },
+            {
+              "slot": "Armor",
+              "itemEquipId": "25885404"
+            },
+            {
+              "slot": "Boot",
+              "itemEquipId": "25885405"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_641WhSES_17Ea",
+          "itemSlot": [
+            {
+              "itemEquipId": "25885374"
+            },
+            {
+              "slot": "Helmet",
+              "itemEquipId": "25885383"
+            },
+            {
+              "slot": "Armor",
+              "itemEquipId": "25885410"
+            },
+            {
+              "slot": "Boot",
+              "itemEquipId": "25885411"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_131WhSEa_14Zd",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_611WhSES_13FE",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_131WhSEa_14YO",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_641WhSES_17Ed",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_131WhSEa_14Ze",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_641WhSES_17HO",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_111WhSEa_15hL",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_641WhSES_17Ec",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_611WhSES_13B4",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_121WhSEa_17E5",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_121WhSEa_17Df",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_121WhSEa_17Di",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_621WhSES_19gO",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_141WhSEa_14fU",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_111WhSEa_15dB",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_121WhSEa_17DB",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_121WhSEa_17Ec",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_641WhSES_17Es",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_641WhSES_17Eb",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_111WhSEa_15dP",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_121WhSEa_17Ea",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_121WhSEa_17Dv",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_611WhSES_13EV",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_141WhSEa_14id",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_131WhSEa_151r",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_141WhSEa_14ie",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_641WhSES_17HE",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        },
+        {
+          "heroIdx": "1_641WhSES_17HN",
+          "itemSlot": [
+            {},
+            {
+              "slot": "Helmet"
+            },
+            {
+              "slot": "Armor"
+            },
+            {
+              "slot": "Boot"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "HeroLevelUp": {
+    "hits": 16,
+    "resp_bytes": 230,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "heroIdx": "1_641WhSES_17Ea",
+      "toLevel": 2
+    }
+  },
+  "HeroRelease": {
+    "hits": 4,
+    "resp_bytes": 752,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "heroIdxList": "1_131WhSEa_14YK,1_641WhSES_17Eu,1_641WhSES_17EC,1_121WhSEa_17Dh,1_121WhSEa_17Dq,1_121WhSEa_17DD,1_621WhSES_19gv,1_621WhSES_19gA,1_621WhSES_19gQ,1_111WhSEa_15dE,1_621WhSES_19gW,1_621WhSES_19gZ,1_621WhSES_19h5,1_621WhSES_19h6,1_111WhSEa_15dU,1_111WhSEa_15dX,1_621WhSES_19hf,1_621WhSES_19ho,1_621WhSES_19hy,1_621WhSES_19hC,1_621WhSES_19hE,1_621WhSES_19hK,1_621WhSES_19hT,1_621WhSES_19hU,1_621WhSES_19hX,1_621WhSES_19hY,1_131WhSEa_14YL,1_641WhSES_17Eg,1_641WhSES_17Ei,1_131WhSEa_14Zj"
+    }
+  },
+  "HeroUpgrade": {
+    "hits": 25,
+    "resp_bytes": 314,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "heroIdxList": "[[\"1_131WhSEa_14YO\",\"1_641WhSES_17Em\",\"1_641WhSES_17El\"]]",
+      "heroUpgradeNoList": "[[\"2\"]]"
+    }
+  },
+  "ItemUse": {
+    "hits": 44,
+    "resp_bytes": 64,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "itemNo": 3351,
+      "useCount": 1,
+      "choiceBox": "0",
+      "choiceCount": "0"
+    }
+  },
+  "LabyrinthClear": {
+    "hits": 1,
+    "resp_bytes": 922,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "dungeonId": 1406797
+    }
+  },
+  "LabyrinthHiddenChestReward": {
+    "hits": 1,
+    "resp_bytes": 307,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "dungeonId": 1406797,
+      "rewardNo": 1003315001
+    }
+  },
+  "LabyrinthHiddenMonsterReward": {
+    "hits": 1,
+    "resp_bytes": 289,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "dungeonId": 1406797,
+      "monsterUid": 990201,
+      "levelGroupNo": 3211
+    }
+  },
+  "LabyrinthReward": {
+    "hits": 3,
+    "resp_bytes": 877,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "dungeonId": 1406797,
+      "rewardNo": 1001105001
+    }
+  },
+  "LabyrinthRewardList": {
+    "hits": 3,
+    "resp_bytes": 21,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "dungeonId": 1406797
+    }
+  },
+  "LabyrinthTempChestReward": {
+    "hits": 3,
+    "resp_bytes": 26,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "dungeonId": 1406797,
+      "rewardNo": 1005015001
+    }
+  },
+  "LabyrinthTempMonsterReward": {
+    "hits": 21,
+    "resp_bytes": 32,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "dungeonId": 1406797,
+      "monsterUid": 20102,
+      "levelGroupNo": 1002,
+      "monsterType": 1
+    }
+  },
+  "MissionPassList": {
+    "hits": 2,
+    "resp_bytes": 15,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "MissionPassRewardAll": {
+    "hits": 2,
+    "resp_bytes": 29,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "no": 900
+    }
+  },
+  "MissionPassSelectRewardType": {
+    "hits": 1,
+    "resp_bytes": 18,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "selectRewardNo": 902
+    }
+  },
+  "ObjetBuffList": {
+    "hits": 1,
+    "resp_bytes": 10,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "ProfileUpdateVisible": {
+    "hits": 1,
+    "resp_bytes": 0,
+    "empty": true,
+    "has_response_proto": false,
+    "has_request_proto": true,
+    "format": "empty",
+    "roundtrip": true,
+    "request_decoded": {
+      "profileVisibleBase64": "YwBkAQEBAgEDAQQBBQEGAQcBCAEJAQoBCwEMAQ0BDgEPARABEQESARMBFAEVARYBFwE="
+    }
+  },
+  "RankingAchievementAllReward": {
+    "hits": 12,
+    "resp_bytes": 238,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "rankNo": 1000
+    }
+  },
+  "ReviewPopUp": {
+    "hits": 1,
+    "resp_bytes": 9,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "flag": 1
+    }
+  },
+  "RotationDungeonReward": {
+    "hits": 28,
+    "resp_bytes": 280,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "dungeonId": 1406796,
+      "type": "Monster",
+      "rewardNo": 20010102
+    }
+  },
+  "SetArenaFormation": {
+    "hits": 1,
+    "resp_bytes": 0,
+    "empty": true,
+    "has_response_proto": false,
+    "has_request_proto": true,
+    "format": "empty",
+    "roundtrip": true,
+    "request_decoded": {
+      "arenaFormation": [
+        {
+          "formationOrder": 1,
+          "formationType": 1,
+          "formationHero": [
+            {
+              "heroOrder": 1,
+              "heroIdx": "1_641WhSES_17EE"
+            },
+            {
+              "heroOrder": 2,
+              "heroIdx": "1_111WhSEa_15dh"
+            },
+            {
+              "heroOrder": 3,
+              "heroIdx": "1_631WhSES_13e1"
+            },
+            {
+              "heroOrder": 4,
+              "heroIdx": "1_641WhSES_17Ea"
+            },
+            {
+              "heroOrder": 5,
+              "heroIdx": "1_131WhSEa_14Zd"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "SetTownLocation": {
+    "hits": 1,
+    "resp_bytes": 66,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "townObjet": {
+        "objetNo": 48001,
+        "position": "[-6.374992,0.006000042,14.625]",
+        "rotation": "[0,0,0]"
+      }
+    }
+  },
+  "SignatureEquip": {
+    "hits": 1,
+    "resp_bytes": 103,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "no": 5081,
+      "heroIdx": "1_641WhSES_17EE"
+    }
+  },
+  "SignatureLevelUp": {
+    "hits": 3,
+    "resp_bytes": 269,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "no": 5081,
+      "toLevel": 2
+    }
+  },
+  "SignatureUpgrade": {
+    "hits": 2,
+    "resp_bytes": 18,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "no": 5081,
+      "heroIdx": "0"
+    }
+  },
+  "SoulLinkBuffOpen": {
+    "hits": 3,
+    "resp_bytes": 2,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "collectionNo": 7
+    }
+  },
+  "SpiritTreeSlotAdd": {
+    "hits": 5,
+    "resp_bytes": 255,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "openType": 1
+    }
+  },
+  "StageClear": {
+    "hits": 230,
+    "resp_bytes": 467,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "stageNo": 1,
+      "heroIdx": [
+        {
+          "heroIdx": [
+            "1_131WhSEa_14YK",
+            "1_131WhSEa_14YN",
+            "1_131WhSEa_14YL",
+            "1_131WhSEa_14YM"
+          ],
+          "formationIndex": 1
+        }
+      ],
+      "stageLog": [
+        {
+          "attack": 3723,
+          "skill": [
+            {
+              "type": 110500,
+              "no": 1010,
+              "cnt": 3
+            },
+            {
+              "type": 110501,
+              "no": 1011,
+              "cnt": 1
+            },
+            {
+              "type": 110502,
+              "no": 1012,
+              "cnt": 1
+            }
+          ],
+          "heroNo": 1010,
+          "heroIdx": "TutorialRental_Mephisto",
+          "formationIndex": 1
+        },
+        {
+          "attack": 970,
+          "damage": 1117,
+          "skill": [
+            {
+              "type": 110500,
+              "no": 10,
+              "cnt": 4
+            },
+            {
+              "type": 110502,
+              "no": 12,
+              "cnt": 1
+            }
+          ],
+          "heroNo": 10,
+          "heroIdx": "1_131WhSEa_14YK",
+          "formationIndex": 1
+        },
+        {
+          "attack": 921,
+          "recovery": 277,
+          "skill": [
+            {
+              "type": 110500,
+              "no": 40,
+              "cnt": 4
+            },
+            {
+              "type": 110502,
+              "no": 42,
+              "cnt": 1
+            }
+          ],
+          "heroNo": 40,
+          "heroIdx": "1_131WhSEa_14YN",
+          "formationIndex": 1
+        },
+        {
+          "attack": 1025,
+          "skill": [
+            {
+              "type": 110502,
+              "no": 22,
+              "cnt": 1
+            },
+            {
+              "type": 110500,
+              "no": 20,
+              "cnt": 4
+            }
+          ],
+          "heroNo": 20,
+          "heroIdx": "1_131WhSEa_14YL",
+          "formationIndex": 1
+        },
+        {
+          "attack": 661,
+          "skill": [
+            {
+              "type": 110500,
+              "no": 30,
+              "cnt": 4
+            },
+            {
+              "type": 110502,
+              "no": 32,
+              "cnt": 1
+            }
+          ],
+          "heroNo": 30,
+          "heroIdx": "1_131WhSEa_14YM",
+          "formationIndex": 1
+        },
+        {
+          "attack": 632,
+          "damage": 2244,
+          "skill": [
+            {
+              "type": 110500,
+              "no": 8140,
+              "cnt": 4
+            },
+            {
+              "type": 110502,
+              "no": 8142,
+              "cnt": 1
+            }
+          ],
+          "heroNo": 9250,
+          "heroIdx": "1_1_3",
+          "formationIndex": 1
+        },
+        {
+          "attack": 255,
+          "damage": 2528,
+          "skill": [
+            {
+              "type": 110500,
+              "no": 8130,
+              "cnt": 3
+            },
+            {
+              "type": 110502,
+              "no": 8132,
+              "cnt": 1
+            }
+          ],
+          "heroNo": 9240,
+          "heroIdx": "1_1_0",
+          "formationIndex": 1
+        },
+        {
+          "attack": 230,
+          "damage": 2528,
+          "skill": [
+            {
+              "type": 110500,
+              "no": 8130,
+              "cnt": 3
+            },
+            {
+              "type": 110502,
+              "no": 8132,
+              "cnt": 1
+            }
+          ],
+          "heroNo": 9240,
+          "heroIdx": "1_1_1",
+          "formationIndex": 1
+        }
+      ],
+      "stagePower": [
+        {
+          "heroIdx": "TutorialRental_Mephisto",
+          "power": 1007
+        },
+        {
+          "heroIdx": "1_131WhSEa_14YK",
+          "power": 855
+        },
+        {
+          "heroIdx": "1_131WhSEa_14YN",
+          "power": 855
+        },
+        {
+          "heroIdx": "1_131WhSEa_14YL",
+          "power": 855
+        },
+        {
+          "heroIdx": "1_131WhSEa_14YM",
+          "power": 855
+        }
+      ]
+    }
+  },
+  "StageEnter": {
+    "hits": 230,
+    "resp_bytes": 0,
+    "empty": true,
+    "has_response_proto": false,
+    "has_request_proto": true,
+    "format": "empty",
+    "roundtrip": true,
+    "request_decoded": {
+      "stageNo": 1,
+      "contentClearDeck": [
+        {
+          "formationType": 2,
+          "sumPower": 4427,
+          "clearHero": [
+            {
+              "heroNo": 10,
+              "gradeSno": 110011,
+              "level": 1,
+              "heroIdx": "1_131WhSEa_14YK"
+            },
+            {
+              "heroNo": 20,
+              "gradeSno": 110011,
+              "level": 1,
+              "heroIdx": "1_131WhSEa_14YL"
+            },
+            {
+              "heroNo": 30,
+              "gradeSno": 110011,
+              "level": 1,
+              "heroIdx": "1_131WhSEa_14YM"
+            },
+            {
+              "heroNo": 40,
+              "gradeSno": 110011,
+              "level": 1,
+              "heroIdx": "1_131WhSEa_14YN"
+            },
+            {
+              "heroNo": 1010,
+              "gradeSno": 110014,
+              "level": 1,
+              "heroIdx": "TutorialRental_Mephisto"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "StoryClear": {
+    "hits": 18,
+    "resp_bytes": 13,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "storyNo": 1
+    }
+  },
+  "TownDevelopPointRefresh": {
+    "hits": 1,
+    "resp_bytes": 6,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "TownLevelUpCheck": {
+    "hits": 2,
+    "resp_bytes": 279,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "TownVisitHeroList": {
+    "hits": 1,
+    "resp_bytes": 20,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "TripKeyword": {
+    "hits": 1,
+    "resp_bytes": 11,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "tripKeyword_": "CIqVBhDyBw=="
+    }
+  },
+  "TutorialStoryClear": {
+    "hits": 11,
+    "resp_bytes": 9,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "storyNo": 3000499
+    }
+  },
+  "UserNicknameChange": {
+    "hits": 1,
+    "resp_bytes": 7,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "nickName": "11111"
+    }
+  },
+  "ZodiacActive": {
+    "hits": 2,
+    "resp_bytes": 4,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "zodiacNo": 1
+    }
+  },
+  "ArenaRankListV2": {
+    "hits": 5,
+    "resp_bytes": 2417,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "arenaType": 1
+    }
+  },
+  "ArenaWaitRewardReceive": {
+    "hits": 1,
+    "resp_bytes": 330,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "arenaType": 1
+    }
+  },
+  "ChangeArenaFormation": {
+    "hits": 2,
+    "resp_bytes": 0,
+    "empty": true,
+    "has_response_proto": false,
+    "has_request_proto": true,
+    "format": "empty",
+    "roundtrip": true,
+    "request_decoded": {
+      "arenaType": 1,
+      "arenaFormation": [
+        {
+          "formationOrder": 1,
+          "relicNo": 1602,
+          "formationType": 2,
+          "formationHero": [
+            {
+              "heroOrder": 1,
+              "heroIdx": "1936605"
+            },
+            {
+              "heroOrder": 2,
+              "heroIdx": "1936606"
+            },
+            {
+              "heroOrder": 3,
+              "heroIdx": "1936608"
+            },
+            {
+              "heroOrder": 4,
+              "heroIdx": "1936607"
+            },
+            {
+              "heroOrder": 5,
+              "heroIdx": "1936604"
+            }
+          ]
+        },
+        {
+          "formationOrder": 2,
+          "relicNo": 1405,
+          "formationType": 2,
+          "formationHero": [
+            {
+              "heroOrder": 1,
+              "heroIdx": "1936613"
+            },
+            {
+              "heroOrder": 2,
+              "heroIdx": "1936612"
+            },
+            {
+              "heroOrder": 3,
+              "heroIdx": "1936610"
+            },
+            {
+              "heroOrder": 4,
+              "heroIdx": "1936611"
+            },
+            {
+              "heroOrder": 5,
+              "heroIdx": "1936609"
+            }
+          ]
+        },
+        {
+          "formationOrder": 3,
+          "relicNo": 1504,
+          "formationType": 2,
+          "formationHero": [
+            {
+              "heroOrder": 2,
+              "heroIdx": "1936615"
+            },
+            {
+              "heroOrder": 3,
+              "heroIdx": "1936614"
+            },
+            {
+              "heroOrder": 4,
+              "heroIdx": "1936617"
+            },
+            {
+              "heroOrder": 5,
+              "heroIdx": "1936616"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "ChangeThumbnail": {
+    "hits": 4,
+    "resp_bytes": 47,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "thumbnailFrame": 5692,
+      "thumbnailImage": 35010,
+      "thumbnail": "MSwxMTYsNTQ5LjcxMzYsLTc0LjA5ODAzLDAuNTUsMC41NSww"
+    }
+  },
+  "DailyTalk": {
+    "hits": 1,
+    "resp_bytes": 22,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "talkNo": 331100006,
+      "heroNo": 3110
+    }
+  },
+  "FriendHeartReceiveAll": {
+    "hits": 1,
+    "resp_bytes": 539,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "FriendRentHero": {
+    "hits": 5,
+    "resp_bytes": 13329,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "heroIdxList": "0_621VyzEK_4KG"
+    }
+  },
+  "GachaPremium": {
+    "hits": 1,
+    "resp_bytes": 456,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "count": 10,
+      "gachaNo": 20001
+    }
+  },
+  "GuildRaidBattleSkip": {
+    "hits": 1,
+    "resp_bytes": 13,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "LostFoundEnd": {
+    "hits": 1,
+    "resp_bytes": 40,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "id": 185780
+    }
+  },
+  "LostFoundStart": {
+    "hits": 1,
+    "resp_bytes": 15,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "heroNo": 3110,
+      "no": 311010
+    }
+  },
+  "LostFoundWaitClear": {
+    "hits": 1,
+    "resp_bytes": 15,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "id": 185780
+    }
+  },
+  "MessageMailList": {
+    "hits": 1,
+    "resp_bytes": 1056,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "RecordListV2": {
+    "hits": 1,
+    "resp_bytes": 2058,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "battleType": 120,
+      "clientVersion": "4725"
+    }
+  },
+  "SdCharacterChange": {
+    "hits": 2,
+    "resp_bytes": 3,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "sdHeroNo": 5010
+    }
+  },
+  "SpiritTreeSlotEquip": {
+    "hits": 1,
+    "resp_bytes": 28,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "slotNo": 33,
+      "heroIdx": "2_631WhSES_125b"
+    }
+  },
+  "SpiritTreeSlotUnEquip": {
+    "hits": 1,
+    "resp_bytes": 11,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "slotNo": 33
+    }
+  },
+  "SyncArenaFormation": {
+    "hits": 1,
+    "resp_bytes": 0,
+    "empty": true,
+    "has_response_proto": false,
+    "has_request_proto": true,
+    "format": "empty",
+    "roundtrip": true,
+    "request_decoded": {
+      "arenaType": 1,
+      "arenaFormation": [
+        {
+          "formationOrder": 1,
+          "relicNo": 1602,
+          "formationType": 2,
+          "formationHero": [
+            {
+              "heroOrder": 1,
+              "heroIdx": "2_341QtYTi_cc"
+            },
+            {
+              "heroOrder": 2,
+              "heroIdx": "2_411QTgRr_3wn"
+            },
+            {
+              "heroOrder": 3,
+              "heroIdx": "2_731T6j99_2Fl"
+            },
+            {
+              "heroOrder": 4,
+              "heroIdx": "2_441V472N_32S"
+            },
+            {
+              "heroOrder": 5,
+              "heroIdx": "2_131VyzEF_4T4"
+            }
+          ]
+        },
+        {
+          "formationOrder": 2,
+          "relicNo": 1405,
+          "formationType": 2,
+          "formationHero": [
+            {
+              "heroOrder": 1,
+              "heroIdx": "2_a31R8uY0_263"
+            },
+            {
+              "heroOrder": 2,
+              "heroIdx": "2_521PRPPz_2rn"
+            },
+            {
+              "heroOrder": 3,
+              "heroIdx": "2_131UJQ9a_1sR"
+            },
+            {
+              "heroOrder": 4,
+              "heroIdx": "2_221Voq10_p1"
+            },
+            {
+              "heroOrder": 5,
+              "heroIdx": "2_021SOA49_rtZ"
+            }
+          ]
+        },
+        {
+          "formationOrder": 3,
+          "relicNo": 1503,
+          "formationType": 2,
+          "formationHero": [
+            {
+              "heroOrder": 1,
+              "heroIdx": "2_a21QfsMt_9V1"
+            },
+            {
+              "heroOrder": 2,
+              "heroIdx": "2_231SmHGM_1N5"
+            },
+            {
+              "heroOrder": 3,
+              "heroIdx": "2_131VIL74_2Tk"
+            },
+            {
+              "heroOrder": 4,
+              "heroIdx": "2_611TXDkd_xJ"
+            },
+            {
+              "heroOrder": 5,
+              "heroIdx": "2_311QeH7I_3S0"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "TitleUpdate": {
+    "hits": 4,
+    "resp_bytes": 3,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "secondTitle": 6612
+    }
+  },
+  "UserAboutChange": {
+    "hits": 1,
+    "resp_bytes": 30,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "raw",
+    "roundtrip": true,
+    "decode_error": "DecodeError: Error parsing message with type 'EsPb.UserAboutChange': Wire format was corrupt",
+    "note": "decode failed (DecodeError); raw passthrough",
+    "request_decoded_error": "DecodeError: Error parsing message with type 'ReqPb.UserAboutChange': Wire format was corrupt",
+    "request_hex": "0a430a522e492e502e0a0a323032332e312e352d323032362e362e33300a"
+  },
+  "ZodiacInit": {
+    "hits": 1,
+    "resp_bytes": 322,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "ZodiacMainActive": {
+    "hits": 2,
+    "resp_bytes": 326,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "zodiacNo": 16
+    }
+  },
+  "ZodiacPresetActive": {
+    "hits": 3,
+    "resp_bytes": 750,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "presetIdx": "4191"
+    }
+  },
+  "ZodiacPresetList": {
+    "hits": 3,
+    "resp_bytes": 1769,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "FriendHeartSendAll": {
+    "hits": 1,
+    "resp_bytes": 1768,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "HeroCostumeEquip": {
+    "hits": 1,
+    "resp_bytes": 59,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "heroNo": 6530,
+      "itemNo": 2354,
+      "flag": 1
+    }
+  },
+  "SetHeroSlotObjet": {
+    "hits": 1,
+    "resp_bytes": 72687,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "heroNo": 5010,
+      "objetUid": 10634402
+    }
+  },
+  "ShopItemBuy": {
+    "hits": 1,
+    "resp_bytes": 340,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "shopType": 1,
+      "shopNo": 10100,
+      "no": 187191029,
+      "buyCnt": 1
+    }
+  },
+  "SimpleTrip": {
+    "hits": 3,
+    "resp_bytes": 25,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "heroNo": 4020
+    }
+  },
+  "TownEnemyDestroySkip": {
+    "hits": 1,
+    "resp_bytes": 351,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": false,
+    "format": "proto",
+    "roundtrip": true
+  },
+  "TownMissionReward": {
+    "hits": 1,
+    "resp_bytes": 330,
+    "empty": false,
+    "has_response_proto": true,
+    "has_request_proto": true,
+    "format": "proto",
+    "roundtrip": true,
+    "request_decoded": {
+      "no": 100
+    }
   }
 }

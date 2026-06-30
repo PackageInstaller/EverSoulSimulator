@@ -43,6 +43,7 @@
 build/
 Build/
 build-*/
+src/web/dist/
 
 # CMake generated files
 CMakeFiles/
@@ -73,12 +74,20 @@ Testing/
 *.har
 *.db
 .claude/
+CLAUDE.md
 tutorial_decode_out/
 
+# IDE / 에디터 설정
+.vscode/
+.vs/
+.idea/
+*.code-workspace
+.agents/
+
+# Git 훅 (개발 전용)
+.githooks/
+
 # Third-party binary tools (not source deps)
-third_party/apktool*.jar
-third_party/jadx-*/
-third_party/tailwindcss*
 
 # Build artifacts
 build/offline_data/
@@ -91,19 +100,30 @@ __pycache__/
 *.pyd
 
 # APK
-apk/
-global_apk/
-kr_apk/
-
-#no push
 sss/
+schemas/
 
-# Node.js
-node_modules/
-dist/
-.vite/
+# kr_apk — 바이너리/빌드 결과물 무시, smali 패치 소스 + keystore만 저장
+kr_apk/*.apk
+kr_apk/*.idsig
+kr_apk/base_extracted/
+kr_apk/base_patched/
+kr_apk/jadx_out/
+kr_apk/originKrserver/
+kr_apk/base_decoded/assets/
+kr_apk/base_decoded/lib/
+kr_apk/base_decoded/res/
+kr_apk/base_decoded/original/
+kr_apk/base_decoded/build/
+kr_apk/base_decoded/unknown/
+tbl_json/
+tbl/
+src/web/node_modules/
 
-#AI
-CLAUDE.md
-.githooks/
-.vscode/
+AGENTS.md
+
+research/
+
+# Ensure docs and research reports are explicitly tracked
+!docs/
+!docs/**

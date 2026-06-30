@@ -1,0 +1,701 @@
+{
+  "event": [
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "behavior": 101,
+      "value": 30,
+      "no": 2
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "behavior": 203,
+      "value": 10,
+      "no": 4
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "behavior": 218,
+      "value": 10,
+      "no": 6
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "behavior": 220,
+      "value": 3,
+      "no": 8
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "behavior": 112,
+      "value": 1,
+      "no": 10
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "behavior": 103,
+      "value": 1,
+      "no": 11
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "behavior": 404,
+      "value": 3,
+      "no": 12
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "behavior": 203,
+      "value": 30,
+      "no": 13
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "behavior": 102,
+      "value": 1,
+      "no": 14
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "behavior": 701,
+      "value": 1,
+      "no": 15
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "behavior": 220,
+      "value": 4,
+      "no": 16
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "behavior": 108,
+      "value": 1,
+      "no": 18
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "behavior": 217,
+      "value": 1,
+      "no": 20
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "behavior": 215,
+      "value": 10,
+      "no": 21
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "behavior": 701,
+      "value": 2,
+      "no": 23
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "behavior": 101,
+      "value": 60,
+      "no": 26
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "behavior": 215,
+      "value": 20,
+      "no": 29
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "behavior": 602,
+      "value": 10,
+      "no": 31
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "behavior": 221,
+      "value": 2,
+      "no": 32
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "behavior": 112,
+      "value": 1,
+      "no": 34
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "behavior": 204,
+      "value": 8,
+      "no": 36
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "behavior": 603,
+      "value": 2,
+      "no": 37
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "behavior": 404,
+      "value": 3,
+      "no": 38
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "behavior": 602,
+      "value": 20,
+      "no": 40
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "behavior": 101,
+      "value": 90,
+      "no": 42
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "behavior": 204,
+      "value": 12,
+      "no": 44
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "behavior": 217,
+      "value": 1,
+      "no": 45
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "behavior": 603,
+      "value": 3,
+      "no": 46
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "behavior": 219,
+      "value": 1,
+      "no": 48
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "behavior": 112,
+      "value": 1,
+      "no": 50
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "behavior": 103,
+      "value": 1,
+      "no": 51
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "behavior": 218,
+      "value": 50,
+      "no": 53
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "behavior": 604,
+      "value": 1,
+      "no": 54
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "behavior": 221,
+      "value": 2,
+      "no": 55
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "behavior": 219,
+      "value": 3,
+      "no": 56
+    }
+  ],
+  "eventResult": [
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "subNo": 2,
+      "isReceive": 2,
+      "dt": "1781104963201"
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "subNo": 4,
+      "isReceive": 2,
+      "dt": "1781102835145"
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "subNo": 6,
+      "isReceive": 2,
+      "dt": "1781101903988"
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "subNo": 8,
+      "isReceive": 2,
+      "dt": "1781102835145"
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "subNo": 10
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "subNo": 11
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "subNo": 12,
+      "isReceive": 2,
+      "dt": "1781147558245"
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "subNo": 13,
+      "isReceive": 2,
+      "dt": "1781147558245"
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "subNo": 14
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "subNo": 15
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "subNo": 16
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "subNo": 18
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "subNo": 20
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "subNo": 21,
+      "isReceive": 2,
+      "dt": "1781147558245"
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "subNo": 23
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "subNo": 26
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "subNo": 29
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "subNo": 31
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "subNo": 32
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "subNo": 34
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "subNo": 36
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "subNo": 37
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "subNo": 38
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "subNo": 40
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "subNo": 42
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "subNo": 44
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "subNo": 45
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "subNo": 46
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "subNo": 48
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "subNo": 50
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "subNo": 51
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "subNo": 53
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "subNo": 54
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "subNo": 55
+    },
+    {
+      "eventType": 3,
+      "group": 1,
+      "eventNumber": 1,
+      "subNo": 56
+    }
+  ],
+  "currency": {
+    "allCurrency": [
+      {
+        "type": "Gold",
+        "value": "1687030"
+      },
+      {
+        "type": "FreeDia",
+        "value": "378"
+      },
+      {
+        "type": "ManaDust",
+        "value": "2174776"
+      },
+      {
+        "type": "ManaCrystal",
+        "value": "600"
+      },
+      {
+        "type": "Exp",
+        "value": "286353"
+      },
+      {
+        "type": "Heart"
+      },
+      {
+        "type": "LifeEssence",
+        "value": "800"
+      },
+      {
+        "type": "ArenaTicket",
+        "value": "1"
+      },
+      {
+        "type": "Dungeon",
+        "value": "7420"
+      },
+      {
+        "type": "Guild",
+        "value": "30000"
+      },
+      {
+        "type": "Release",
+        "value": "14800"
+      },
+      {
+        "type": "Arena",
+        "value": "100"
+      },
+      {
+        "type": "Relics",
+        "value": "1200"
+      },
+      {
+        "type": "Silver",
+        "value": "1850"
+      },
+      {
+        "type": "SingleRaidCoin"
+      },
+      {
+        "type": "PickupGachaTicket"
+      },
+      {
+        "type": "Sign1",
+        "value": "18"
+      },
+      {
+        "type": "Sign2"
+      },
+      {
+        "type": "SignHuman"
+      },
+      {
+        "type": "SignFurry"
+      },
+      {
+        "type": "SignElf"
+      },
+      {
+        "type": "SignUndead"
+      },
+      {
+        "type": "SignAngel"
+      },
+      {
+        "type": "SignDemon"
+      },
+      {
+        "type": "NormalTicket",
+        "value": "20"
+      },
+      {
+        "type": "RaceTicket",
+        "value": "23"
+      },
+      {
+        "type": "RareSoulstone",
+        "value": "86"
+      },
+      {
+        "type": "EpicSoulstone",
+        "value": "45"
+      },
+      {
+        "type": "EquipExp",
+        "value": "136"
+      },
+      {
+        "type": "CollaborationSummonTicket"
+      },
+      {
+        "type": "PayDia"
+      },
+      {
+        "type": "TeamarenaTicket"
+      },
+      {
+        "type": "SignatureGachaTicket",
+        "value": "30"
+      },
+      {
+        "type": "PremiumGachaTicket"
+      },
+      {
+        "type": "MonthlyHeroResetTicket"
+      },
+      {
+        "type": "EquipExpMiddle",
+        "value": "10"
+      },
+      {
+        "type": "EquipExpHigh"
+      },
+      {
+        "type": "ZodiacExp"
+      },
+      {
+        "type": "LabyrinthTicket"
+      },
+      {
+        "type": "TranscendentStone"
+      },
+      {
+        "type": "SingleRaidTicket"
+      },
+      {
+        "type": "SetItemEngrave"
+      },
+      {
+        "type": "RotationDungeonTicket"
+      },
+      {
+        "type": "EdenCoin"
+      },
+      {
+        "type": "TypeBarrierGateTicket"
+      },
+      {
+        "type": "OriginTowerTicket"
+      },
+      {
+        "type": "DoubleGateNormalTicket",
+        "value": "3"
+      },
+      {
+        "type": "DoubleGateNormalTicketCharge"
+      },
+      {
+        "type": "SignatureEnhanceStone"
+      },
+      {
+        "type": "HeroOptionChangeStone"
+      },
+      {
+        "type": "WishGachaTicket",
+        "value": "1"
+      },
+      {
+        "type": "TotalDia",
+        "value": "378"
+      }
+    ]
+  },
+  "itemEtc": [
+    {
+      "itemNo": 4104,
+      "cnt": 5
+    }
+  ],
+  "__format__": "proto"
+}

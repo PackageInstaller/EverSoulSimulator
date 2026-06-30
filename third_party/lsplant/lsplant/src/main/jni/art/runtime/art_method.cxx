@@ -69,6 +69,10 @@ public:
         return GetMethodShorty_(env, env->FromReflectedMethod(method));
     }
 
+    inline static bool HasNativeGetMethodShorty() {
+        return GetMethodShortyL_ || GetMethodShorty_;
+    }
+
     void SetNonCompilable() {
         auto access_flags = GetAccessFlags();
         access_flags |= kAccCompileDontBother;
@@ -333,8 +337,7 @@ public:
         }
 
         if (!handler(GetMethodShortyL_, true, GetMethodShorty_)) {
-            LOGE("Failed to find GetMethodShorty");
-            return false;
+            LOGW("GetMethodShorty not found, using JNI-based shorty fallback");
         }
 
         handler(PrettyMethod_, PrettyMethodStatic_, PrettyMethodMirror_);

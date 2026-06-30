@@ -1,18 +1,25 @@
 {
-  "name": "web",
+  "name": "eversoul-fixture-web",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
+  "packageManager": "npm@11.12.1",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "typecheck": "tsc -b --pretty false",
+    "build": "npm run typecheck && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
+  },
+  "engines": {
+    "node": ">=22",
+    "npm": ">=11"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.1",
     "clsx": "^2.1.1",
     "lucide-react": "^1.21.0",
+    "motion": "^12.42.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "tailwind-merge": "^3.6.0",

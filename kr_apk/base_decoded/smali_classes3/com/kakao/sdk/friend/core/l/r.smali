@@ -1,0 +1,92 @@
+.class public final Lcom/kakao/sdk/friend/core/l/r;
+.super Lkotlin/jvm/internal/Lambda;
+.source "SourceFile"
+
+# interfaces
+.implements Lkotlin/jvm/functions/Function0;
+
+
+# instance fields
+.field public final synthetic a:Lcom/kakao/sdk/friend/core/l/s;
+
+
+# direct methods
+.method public constructor <init>(Lcom/kakao/sdk/friend/core/l/s;)V
+    .locals 0
+
+    .line 19
+    iput-object p1, p0, Lcom/kakao/sdk/friend/core/l/r;->a:Lcom/kakao/sdk/friend/core/l/s;
+
+    const/4 p1, 0x0
+
+    invoke-direct {p0, p1}, Lkotlin/jvm/internal/Lambda;-><init>(I)V
+
+    return-void
+
+    nop
+
+    .array-data 1
+    .end array-data
+.end method
+
+
+# virtual methods
+.method public final invoke()Ljava/lang/Object;
+    .locals 5
+
+    .line 19
+    iget-object v0, p0, Lcom/kakao/sdk/friend/core/l/r;->a:Lcom/kakao/sdk/friend/core/l/s;
+
+    invoke-virtual {v0}, Landroidx/fragment/app/Fragment;->getArguments()Landroid/os/Bundle;
+
+    move-result-object v0
+
+    if-eqz v0, :cond_0
+
+    const-string v1, "key.picker.setting"
+
+    .line 29
+    const-class v2, Lcom/kakao/sdk/friend/core/i/o;
+
+    invoke-static {v0, v1, v2}, Landroidx/core/os/BundleCompat;->getParcelable(Landroid/os/Bundle;Ljava/lang/String;Ljava/lang/Class;)Ljava/lang/Object;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/kakao/sdk/friend/core/i/o;
+
+    goto :goto_0
+
+    :cond_0
+    const/4 v0, 0x0
+
+    .line 39
+    :goto_0
+    new-instance v1, Landroidx/lifecycle/ViewModelProvider;
+
+    iget-object v2, p0, Lcom/kakao/sdk/friend/core/l/r;->a:Lcom/kakao/sdk/friend/core/l/s;
+
+    new-instance v3, Lcom/kakao/sdk/friend/core/m/c;
+
+    invoke-static {}, Lcom/kakao/sdk/friend/core/a/m;->a()Lcom/kakao/sdk/friend/core/d/a;
+
+    move-result-object v4
+
+    invoke-direct {v3, v4, v0}, Lcom/kakao/sdk/friend/core/m/c;-><init>(Lcom/kakao/sdk/friend/core/d/a;Lcom/kakao/sdk/friend/core/i/o;)V
+
+    invoke-direct {v1, v2, v3}, Landroidx/lifecycle/ViewModelProvider;-><init>(Landroidx/lifecycle/ViewModelStoreOwner;Landroidx/lifecycle/ViewModelProvider$Factory;)V
+
+    const-class v0, Lcom/kakao/sdk/friend/core/m/b;
+
+    invoke-virtual {v1, v0}, Landroidx/lifecycle/ViewModelProvider;->get(Ljava/lang/Class;)Landroidx/lifecycle/ViewModel;
+
+    move-result-object v0
+
+    check-cast v0, Lcom/kakao/sdk/friend/core/m/b;
+
+    return-object v0
+
+    nop
+
+    .array-data 1
+    .end array-data
+.end method

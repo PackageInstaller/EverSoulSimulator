@@ -9,11 +9,13 @@ interface ServerLogEntry {
   timestamp: string
   tag: string
   text: string
+  count?: number
 }
 
 interface AdbLogEntry {
   timestamp: string
   text: string
+  count?: number
 }
 
 type LogChannel = 'all' | 'request' | 'headers' | 'adb'
@@ -43,6 +45,27 @@ function adbLevelColor(text: string): string {
   return map[m[1]] ?? 'text-slate-400'
 }
 
+// 연속 중복(같은 tag+text) 압축 — 1줄로 합치고 count 로 횟수 표시.
+function dedupServer(entries: ServerLogEntry[]): ServerLogEntry[] {
+  const out: ServerLogEntry[] = []
+  for (const e of entries) {
+    const last = out[out.length - 1]
+    if (last && last.tag === e.tag && last.text === e.text) { last.count = (last.count ?? 1) + 1; continue }
+    out.push({ ...e, count: 1 })
+  }
+  return out
+}
+
+function dedupAdb(entries: AdbLogEntry[]): AdbLogEntry[] {
+  const out: AdbLogEntry[] = []
+  for (const e of entries) {
+    const last = out[out.length - 1]
+    if (last && last.text === e.text) { last.count = (last.count ?? 1) + 1; continue }
+    out.push({ ...e, count: 1 })
+  }
+  return out
+}
+
 export function LogsPage() {
   const { t } = useI18n()
   const [channel, setChannel] = useState<LogChannel>('all')
@@ -59,7 +82,13 @@ export function LogsPage() {
   function appendServer(entry: ServerLogEntry) {
     if (pausedRef.current) return
     setServerLogs(prev => {
-      const next = [...prev, entry]
+      const last = prev[prev.length - 1]
+      if (last && last.tag === entry.tag && last.text === entry.text) {
+        const copy = prev.slice()
+        copy[copy.length - 1] = { ...last, count: (last.count ?? 1) + 1 }
+        return copy
+      }
+      const next = [...prev, { ...entry, count: 1 }]
       return next.length > MAX_ENTRIES ? next.slice(-MAX_ENTRIES) : next
     })
     requestAnimationFrame(() => {
@@ -70,7 +99,13 @@ export function LogsPage() {
   function appendAdb(entry: AdbLogEntry) {
     if (pausedRef.current) return
     setAdbLogs(prev => {
-      const next = [...prev, entry]
+      const last = prev[prev.length - 1]
+      if (last && last.text === entry.text) {
+        const copy = prev.slice()
+        copy[copy.length - 1] = { ...last, count: (last.count ?? 1) + 1 }
+        return copy
+      }
+      const next = [...prev, { ...entry, count: 1 }]
       return next.length > MAX_ENTRIES ? next.slice(-MAX_ENTRIES) : next
     })
     requestAnimationFrame(() => {
@@ -81,12 +116,12 @@ export function LogsPage() {
   useEffect(() => {
     fetch('/web/api/logs/server/recent?n=200')
       .then(r => r.json())
-      .then((entries: ServerLogEntry[]) => setServerLogs(entries.slice(-MAX_ENTRIES)))
+      .then((entries: ServerLogEntry[]) => setServerLogs(dedupServer(entries).slice(-MAX_ENTRIES)))
       .catch(() => {})
 
     fetch('/web/api/logs/adb/recent?n=200')
       .then(r => r.json())
-      .then((entries: AdbLogEntry[]) => setAdbLogs(entries.slice(-MAX_ENTRIES)))
+      .then((entries: AdbLogEntry[]) => setAdbLogs(dedupAdb(entries).slice(-MAX_ENTRIES)))
       .catch(() => {})
   }, [])
 
@@ -238,7 +273,10 @@ export function LogsPage() {
                 <span className={cn('shrink-0 font-bold uppercase text-[10px] tracking-wider min-w-16', tagColor(e.tag))}>
                   [{e.tag}]
                 </span>
-                <span className="text-slate-700 dark:text-slate-300 break-all">{e.text}</span>
+                <span className="flex-1 text-slate-700 dark:text-slate-300 break-all">{e.text}</span>
+                {(e.count ?? 1) > 1 && (
+                  <span className="shrink-0 px-1.5 rounded-md bg-slate-200 dark:bg-white/10 text-[10px] font-bold tabular-nums text-slate-600 dark:text-slate-300">×{e.count}</span>
+                )}
               </div>
             ))}
           </div>
@@ -257,7 +295,10 @@ export function LogsPage() {
                 <span className="text-slate-600 shrink-0 tabular-nums">
                   {e.timestamp ? e.timestamp.slice(11, 19) : ''}
                 </span>
-                <span className={cn('break-all', adbLevelColor(e.text))}>{e.text}</span>
+                <span className={cn('flex-1 break-all', adbLevelColor(e.text))}>{e.text}</span>
+                {(e.count ?? 1) > 1 && (
+                  <span className="shrink-0 px-1.5 rounded-md bg-white/10 text-[10px] font-bold tabular-nums text-slate-300">×{e.count}</span>
+                )}
               </div>
             ))}
           </div>

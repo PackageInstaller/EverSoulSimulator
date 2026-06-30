@@ -1,0 +1,519 @@
+{
+  "zodiac": [
+    {
+      "zodiacNo": 1
+    },
+    {
+      "zodiacNo": 2
+    },
+    {
+      "zodiacNo": 3
+    },
+    {
+      "zodiacNo": 4
+    },
+    {
+      "zodiacNo": 28
+    },
+    {
+      "zodiacNo": 29
+    },
+    {
+      "zodiacNo": 30
+    },
+    {
+      "zodiacNo": 31
+    },
+    {
+      "zodiacNo": 102
+    },
+    {
+      "zodiacNo": 103
+    },
+    {
+      "zodiacNo": 104
+    },
+    {
+      "zodiacNo": 105
+    },
+    {
+      "zodiacNo": 106
+    },
+    {
+      "zodiacNo": 107
+    },
+    {
+      "zodiacNo": 108
+    },
+    {
+      "zodiacNo": 91
+    },
+    {
+      "zodiacNo": 92
+    },
+    {
+      "zodiacNo": 93
+    },
+    {
+      "zodiacNo": 94
+    },
+    {
+      "zodiacNo": 95
+    },
+    {
+      "zodiacNo": 96
+    },
+    {
+      "zodiacNo": 97
+    },
+    {
+      "zodiacNo": 98
+    },
+    {
+      "zodiacNo": 99
+    },
+    {
+      "zodiacNo": 44
+    },
+    {
+      "zodiacNo": 45
+    },
+    {
+      "zodiacNo": 46
+    },
+    {
+      "zodiacNo": 47
+    },
+    {
+      "zodiacNo": 48
+    },
+    {
+      "zodiacNo": 50
+    },
+    {
+      "zodiacNo": 49
+    },
+    {
+      "zodiacNo": 51
+    },
+    {
+      "zodiacNo": 52
+    },
+    {
+      "zodiacNo": 100
+    },
+    {
+      "zodiacNo": 73
+    },
+    {
+      "zodiacNo": 74
+    },
+    {
+      "zodiacNo": 75
+    },
+    {
+      "zodiacNo": 6
+    },
+    {
+      "zodiacNo": 76
+    },
+    {
+      "zodiacNo": 77
+    },
+    {
+      "zodiacNo": 78
+    },
+    {
+      "zodiacNo": 79
+    },
+    {
+      "zodiacNo": 80
+    },
+    {
+      "zodiacNo": 81
+    },
+    {
+      "zodiacNo": 82
+    },
+    {
+      "zodiacNo": 7
+    },
+    {
+      "zodiacNo": 8
+    },
+    {
+      "zodiacNo": 10
+    },
+    {
+      "zodiacNo": 9
+    },
+    {
+      "zodiacNo": 11
+    },
+    {
+      "zodiacNo": 12
+    },
+    {
+      "zodiacNo": 13
+    },
+    {
+      "zodiacNo": 14
+    },
+    {
+      "zodiacNo": 15
+    },
+    {
+      "zodiacNo": 84
+    },
+    {
+      "zodiacNo": 85
+    },
+    {
+      "zodiacNo": 86
+    },
+    {
+      "zodiacNo": 87
+    },
+    {
+      "zodiacNo": 88
+    },
+    {
+      "zodiacNo": 89
+    },
+    {
+      "zodiacNo": 62
+    },
+    {
+      "zodiacNo": 63
+    },
+    {
+      "zodiacNo": 64
+    },
+    {
+      "zodiacNo": 65
+    },
+    {
+      "zodiacNo": 66
+    },
+    {
+      "zodiacNo": 67
+    },
+    {
+      "zodiacNo": 68
+    },
+    {
+      "zodiacNo": 33
+    },
+    {
+      "zodiacNo": 34
+    },
+    {
+      "zodiacNo": 35
+    },
+    {
+      "zodiacNo": 36
+    },
+    {
+      "zodiacNo": 37
+    },
+    {
+      "zodiacNo": 38
+    },
+    {
+      "zodiacNo": 39
+    },
+    {
+      "zodiacNo": 40
+    },
+    {
+      "zodiacNo": 55
+    },
+    {
+      "zodiacNo": 56
+    },
+    {
+      "zodiacNo": 57
+    },
+    {
+      "zodiacNo": 58
+    },
+    {
+      "zodiacNo": 17
+    },
+    {
+      "zodiacNo": 18
+    },
+    {
+      "zodiacNo": 19
+    },
+    {
+      "zodiacNo": 20
+    },
+    {
+      "zodiacNo": 21
+    },
+    {
+      "zodiacNo": 22
+    },
+    {
+      "zodiacNo": 23
+    },
+    {
+      "zodiacNo": 24
+    },
+    {
+      "zodiacNo": 110
+    },
+    {
+      "zodiacNo": 111
+    },
+    {
+      "zodiacNo": 112
+    },
+    {
+      "zodiacNo": 113
+    },
+    {
+      "zodiacNo": 114
+    },
+    {
+      "zodiacNo": 115
+    },
+    {
+      "zodiacNo": 25
+    },
+    {
+      "zodiacNo": 117
+    },
+    {
+      "zodiacNo": 116
+    },
+    {
+      "zodiacNo": 118
+    },
+    {
+      "zodiacNo": 26
+    },
+    {
+      "zodiacNo": 41
+    },
+    {
+      "zodiacNo": 42
+    },
+    {
+      "zodiacNo": 53
+    },
+    {
+      "zodiacNo": 69
+    },
+    {
+      "zodiacNo": 70
+    },
+    {
+      "zodiacNo": 71
+    },
+    {
+      "zodiacNo": 59
+    },
+    {
+      "zodiacNo": 60
+    },
+    {
+      "zodiacNo": 72
+    }
+  ],
+  "currency": {
+    "allCurrency": [
+      {
+        "type": "Gold",
+        "value": "2674312090"
+      },
+      {
+        "type": "FreeDia",
+        "value": "340"
+      },
+      {
+        "type": "ManaDust",
+        "value": "6017632045"
+      },
+      {
+        "type": "ManaCrystal",
+        "value": "40028"
+      },
+      {
+        "type": "Exp",
+        "value": "33684285"
+      },
+      {
+        "type": "Heart",
+        "value": "3598"
+      },
+      {
+        "type": "LifeEssence",
+        "value": "93931"
+      },
+      {
+        "type": "ArenaTicket",
+        "value": "41"
+      },
+      {
+        "type": "Dungeon",
+        "value": "5829"
+      },
+      {
+        "type": "Guild",
+        "value": "84640"
+      },
+      {
+        "type": "Release",
+        "value": "374250"
+      },
+      {
+        "type": "Arena",
+        "value": "865480"
+      },
+      {
+        "type": "Relics",
+        "value": "258870"
+      },
+      {
+        "type": "Silver",
+        "value": "6830"
+      },
+      {
+        "type": "SingleRaidCoin",
+        "value": "220635"
+      },
+      {
+        "type": "PickupGachaTicket"
+      },
+      {
+        "type": "Sign1",
+        "value": "19188"
+      },
+      {
+        "type": "Sign2",
+        "value": "4995"
+      },
+      {
+        "type": "SignHuman"
+      },
+      {
+        "type": "SignFurry"
+      },
+      {
+        "type": "SignElf"
+      },
+      {
+        "type": "SignUndead"
+      },
+      {
+        "type": "SignAngel"
+      },
+      {
+        "type": "SignDemon"
+      },
+      {
+        "type": "NormalTicket",
+        "value": "138"
+      },
+      {
+        "type": "RaceTicket"
+      },
+      {
+        "type": "RareSoulstone",
+        "value": "4394"
+      },
+      {
+        "type": "EpicSoulstone",
+        "value": "1240"
+      },
+      {
+        "type": "EquipExp",
+        "value": "2218"
+      },
+      {
+        "type": "CollaborationSummonTicket"
+      },
+      {
+        "type": "PayDia",
+        "value": "982"
+      },
+      {
+        "type": "TeamarenaTicket"
+      },
+      {
+        "type": "SignatureGachaTicket",
+        "value": "122"
+      },
+      {
+        "type": "PremiumGachaTicket",
+        "value": "4"
+      },
+      {
+        "type": "MonthlyHeroResetTicket",
+        "value": "1"
+      },
+      {
+        "type": "EquipExpMiddle",
+        "value": "184"
+      },
+      {
+        "type": "EquipExpHigh",
+        "value": "205"
+      },
+      {
+        "type": "ZodiacExp"
+      },
+      {
+        "type": "LabyrinthTicket"
+      },
+      {
+        "type": "TranscendentStone",
+        "value": "1503"
+      },
+      {
+        "type": "SingleRaidTicket"
+      },
+      {
+        "type": "SetItemEngrave"
+      },
+      {
+        "type": "RotationDungeonTicket"
+      },
+      {
+        "type": "EdenCoin",
+        "value": "6250"
+      },
+      {
+        "type": "TypeBarrierGateTicket"
+      },
+      {
+        "type": "OriginTowerTicket"
+      },
+      {
+        "type": "DoubleGateNormalTicket"
+      },
+      {
+        "type": "DoubleGateNormalTicketCharge"
+      },
+      {
+        "type": "SignatureEnhanceStone",
+        "value": "2839"
+      },
+      {
+        "type": "HeroOptionChangeStone",
+        "value": "30928"
+      },
+      {
+        "type": "WishGachaTicket",
+        "value": "40"
+      },
+      {
+        "type": "TotalDia",
+        "value": "1322"
+      }
+    ]
+  },
+  "__format__": "proto"
+}

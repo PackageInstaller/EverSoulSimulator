@@ -11,7 +11,7 @@ interface UsePollingResult<T> {
   data: T | null
   loading: boolean
   error: string | null
-  refresh: () => void
+  refresh: () => Promise<void>
 }
 
 export function usePolling<T>({

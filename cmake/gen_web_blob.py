@@ -26,18 +26,17 @@ def main():
     out_cpp = sys.argv[2]
 
     entries = []
-    for root, _dirs, files in os.walk(src_dir):
-        for fname in sorted(files):
-            full = os.path.join(root, fname)
-            _, ext = os.path.splitext(fname)
-            if ext.lower() not in ALLOWED_EXTENSIONS:
-                continue
-            with open(full, "rb") as f:
-                data = f.read()
-            rel_path = os.path.relpath(full, src_dir).replace(os.sep, "/")
-            rel = "web/" + rel_path
-            entries.append((rel.encode("utf-8"), data))
-    entries.sort(key=lambda e: e[0])
+    for fname in sorted(os.listdir(src_dir)):
+        full = os.path.join(src_dir, fname)
+        if not os.path.isfile(full):
+            continue
+        _, ext = os.path.splitext(fname)
+        if ext.lower() not in ALLOWED_EXTENSIONS:
+            continue
+        with open(full, "rb") as f:
+            data = f.read()
+        rel = "web/" + fname
+        entries.append((rel.encode("utf-8"), data))
 
     blob = bytearray()
     blob += MAGIC

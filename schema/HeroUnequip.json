@@ -4,10 +4,10 @@
   "HeroUnequip": {
    "fields": [
     {
-     "name": "heroIdx",
+     "name": "heroUnequip_",
      "number": 1,
      "repeated": false,
-     "type": "string",
+     "type": "bytes",
      "packed": false
     }
    ]

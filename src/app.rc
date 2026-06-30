@@ -3,8 +3,8 @@
 IDI_APP_ICON ICON "assets/logo.ico"
 
 VS_VERSION_INFO VERSIONINFO
-FILEVERSION 0,0,2,0
-PRODUCTVERSION 0,0,2,0
+FILEVERSION 0,0,1,0
+PRODUCTVERSION 0,0,1,0
 FILEFLAGSMASK VS_FFI_FILEFLAGSMASK
 FILEFLAGS 0
 FILEOS VOS_NT_WINDOWS32
@@ -15,15 +15,14 @@ BEGIN
   BEGIN
     BLOCK "040904B0"
     BEGIN
-      VALUE "CompanyName",      "EOS TEAM\0"
-      VALUE "FileDescription",  "Eversoul Offline Server — GUI Edition\0"
-      VALUE "FileVersion",      "0.0.2.0\0"
-      VALUE "InternalName",     "eversoul_gui\0"
-      VALUE "LegalCopyright",   "Copyright (C) 2026 Shao Jiang, GarnetRapture, MelodyDeck\0"
-      VALUE "OriginalFilename", "eversoul_gui.exe\0"
-      VALUE "ProductName",      "Eversoul Offline Simulator\0"
-      VALUE "ProductVersion",   "Alpha V0.0.2\0"
-      VALUE "Comments",         "Alpha Release V0.0.2 — GUI mode with embedded WebView2 browser. Listens on port 9991. Requires adb\\ next to EXE.\0"
+      VALUE "CompanyName",      "Shao Jiang, GarnetRapture, MelodyDeck\0"
+      VALUE "FileDescription",  "EverSoul Offline Simulator\0"
+      VALUE "FileVersion",      "0.0.1.0\0"
+      VALUE "InternalName",     "eversoul_offline_server\0"
+      VALUE "LegalCopyright",   "SEE LICENSE IN LICENSE\0"
+      VALUE "OriginalFilename", "eversoul_offline_server.exe\0"
+      VALUE "ProductName",      "EverSoul Offline Simulator\0"
+      VALUE "ProductVersion",   "0.0.1.0\0"
     END
   END
   BLOCK "VarFileInfo"

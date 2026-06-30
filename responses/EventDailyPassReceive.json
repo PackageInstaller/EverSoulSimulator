@@ -1,0 +1,23 @@
+{
+  "passInfo": {
+    "eventGroup": 1,
+    "eventNumber": 1,
+    "lastReceivedNo": 2,
+    "startDate": 20260610,
+    "lastReceivedDate": 20260611
+  },
+  "currency": {},
+  "itemEtc": [
+    {
+      "itemNo": 3326,
+      "cnt": 60
+    }
+  ],
+  "itemChangeAmount": [
+    {
+      "itemNo": 3326,
+      "cnt": 60
+    }
+  ],
+  "__format__": "proto"
+}

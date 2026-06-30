@@ -1,0 +1,40 @@
+{
+  "dungeonShopItem": [
+    {
+      "no": 102001008,
+      "slotNo": 1,
+      "itemNo": 3001,
+      "sellCnt": 1,
+      "payItemNo": 100,
+      "payAmount": 16,
+      "saleRate": 20
+    },
+    {
+      "no": 102002015,
+      "slotNo": 2,
+      "itemNo": 302,
+      "sellCnt": 1,
+      "payItemNo": 100,
+      "payAmount": 144,
+      "saleRate": 10
+    },
+    {
+      "no": 102003002,
+      "slotNo": 3,
+      "itemNo": 20,
+      "sellCnt": 15,
+      "payItemNo": 100,
+      "payAmount": 150
+    },
+    {
+      "no": 102004001,
+      "slotNo": 4,
+      "itemNo": 20004,
+      "sellCnt": 1,
+      "payItemNo": 100,
+      "payAmount": 75,
+      "saleRate": 25
+    }
+  ],
+  "__format__": "proto"
+}

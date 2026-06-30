@@ -6,7 +6,7 @@ set -euo pipefail
 SRC_DIR="$1"
 BUILD_DIR="$2"
 
-JAVA_SRC="$SRC_DIR/smali_inject/RedirectHooks.java"
+JAVA_SRC="$SRC_DIR/src/apk/smali_inject/RedirectHooks.java"
 CLASSES_DIR="$BUILD_DIR/redirect_dex_classes"
 DEX_JAR="$BUILD_DIR/classes.jar"
 DEX_OUT="$BUILD_DIR/redirect_hooks.dex"

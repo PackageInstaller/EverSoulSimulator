@@ -1,0 +1,59 @@
+.class public Lcom/singular/sdk/internal/ApiGDPRUnder13$OnResolveCallback;
+.super Ljava/lang/Object;
+.source "ApiGDPRUnder13.java"
+
+# interfaces
+.implements Lcom/singular/sdk/internal/Api$OnApiCallback;
+
+
+# annotations
+.annotation system Ldalvik/annotation/EnclosingClass;
+    value = Lcom/singular/sdk/internal/ApiGDPRUnder13;
+.end annotation
+
+.annotation system Ldalvik/annotation/InnerClass;
+    accessFlags = 0x1
+    name = "OnResolveCallback"
+.end annotation
+
+
+# instance fields
+.field final synthetic this$0:Lcom/singular/sdk/internal/ApiGDPRUnder13;
+
+
+# direct methods
+.method public constructor <init>(Lcom/singular/sdk/internal/ApiGDPRUnder13;)V
+    .locals 0
+
+    .line 319
+    iput-object p1, p0, Lcom/singular/sdk/internal/ApiGDPRUnder13$OnResolveCallback;->this$0:Lcom/singular/sdk/internal/ApiGDPRUnder13;
+
+    invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+
+    return-void
+
+    .array-data 1
+    .end array-data
+.end method
+
+
+# virtual methods
+.method public handle(Lcom/singular/sdk/internal/SingularInstance;ILjava/lang/String;)Z
+    .locals 0
+
+    const/16 p1, 0xc8
+
+    if-eq p2, p1, :cond_0
+
+    const/4 p1, 0x0
+
+    return p1
+
+    :cond_0
+    const/4 p1, 0x1
+
+    return p1
+
+    .array-data 1
+    .end array-data
+.end method

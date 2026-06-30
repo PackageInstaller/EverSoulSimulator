@@ -29,6 +29,11 @@ import os
 import sys
 from urllib.parse import urlparse
 
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8")
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
@@ -37,7 +42,7 @@ import har_to_json as h2j                  # noqa: E402
 
 
 def load_entries(path):
-    with open(path) as f:
+    with open(path, encoding="utf-8", errors="replace") as f:
         return json.load(f)["log"]["entries"]
 
 
@@ -82,7 +87,7 @@ def main():
             if fn.endswith((".json", ".hex")):
                 os.remove(os.path.join(resp_dir, fn))
     man_path = os.path.join(resp_dir, "_manifest.json")
-    manifest = json.load(open(man_path)) if os.path.exists(man_path) else {}
+    manifest = json.load(open(man_path, encoding="utf-8")) if os.path.exists(man_path) else {}
     protect = {x.strip().lstrip("/") for x in a.protect.split(",") if x.strip()}
 
     reg = ProtoRegistry()
@@ -115,7 +120,7 @@ def main():
             decision = "覆盖"
         else:
             try:
-                cur = json.load(open(path))
+                cur = json.load(open(path, encoding="utf-8"))
             except Exception:  # noqa: BLE001
                 cur = None
             base_obj = None
@@ -132,13 +137,13 @@ def main():
                 decision = "跳过-手改"          # 与原始不同 = 你改过 -> 保护
 
         if decision in ("新增", "覆盖", "刷新") and not a.dry_run:
-            with open(path, "w") as f:
+            with open(path, "w", encoding="utf-8") as f:
                 json.dump(obj, f, indent=2, ensure_ascii=False)
             manifest[ep] = {"hits": hits_by_ep.get(ep, 1), **info}
         acts[decision].append(ep)
 
     if not a.dry_run:
-        with open(man_path, "w") as f:
+        with open(man_path, "w", encoding="utf-8") as f:
             json.dump(manifest, f, indent=2, ensure_ascii=False)
 
     # ---- 报告 ----

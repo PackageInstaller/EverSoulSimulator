@@ -1,0 +1,43 @@
+{
+ "root": "SpiritTreeSlotUnEquip",
+ "messages": {
+  "SpiritTreeSlotUnEquip": {
+   "fields": [
+    {
+     "name": "spiritTree",
+     "number": 1,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sSpiritTree",
+     "packed": false
+    }
+   ]
+  },
+  "sSpiritTree": {
+   "fields": [
+    {
+     "name": "slotNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "heroIdx",
+     "number": 2,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "enableDt",
+     "number": 3,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

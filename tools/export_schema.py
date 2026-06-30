@@ -42,6 +42,11 @@ import sys
 
 from google.protobuf.descriptor_pb2 import FieldDescriptorProto as FD
 
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
+if hasattr(sys.stderr, "reconfigure"):
+    sys.stderr.reconfigure(encoding="utf-8")
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
@@ -118,10 +123,6 @@ def main():
         if os.path.exists(man_path):
             manifests.append(json.load(open(man_path, encoding='utf-8')))
     out_dir = os.path.join(ROOT, "schema")
-    if os.path.isdir(out_dir):
-        for fn in os.listdir(out_dir):
-            if fn.endswith(".json"):
-                os.remove(os.path.join(out_dir, fn))
     os.makedirs(out_dir, exist_ok=True)
 
     count = 0
@@ -134,7 +135,7 @@ def main():
         if not reg.has("Response", ep):
             continue  # empty/raw need no schema
         sch = schema_for(reg, ep)
-        with open(os.path.join(out_dir, ep + ".json"), "w") as f:
+        with open(os.path.join(out_dir, ep + ".json"), "w", encoding="utf-8") as f:
             json.dump(sch, f, indent=1, ensure_ascii=False)
         count += 1
     print(f"wrote schema/ for {count} proto endpoints")

@@ -1,0 +1,17 @@
+{
+  "labyrinthItem": [
+    {
+      "itemNo": 1,
+      "cnt": 23130
+    },
+    {
+      "itemNo": 10,
+      "cnt": 1200
+    },
+    {
+      "itemNo": 32,
+      "cnt": 10
+    }
+  ],
+  "__format__": "proto"
+}

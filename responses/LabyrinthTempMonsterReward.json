@@ -1,0 +1,24 @@
+{
+  "labyrinthTempReward": {
+    "dungeonReward": {
+      "type": "Monster",
+      "rewardNo": 20102
+    },
+    "dungeonNo": 5001,
+    "labyrinthItem": [
+      {
+        "itemNo": 10,
+        "cnt": 120
+      },
+      {
+        "itemNo": 1,
+        "cnt": 3720
+      },
+      {
+        "itemNo": 32,
+        "cnt": 2
+      }
+    ]
+  },
+  "__format__": "proto"
+}

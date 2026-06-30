@@ -1,0 +1,6611 @@
+{
+  "rentHeroList": [
+    {
+      "heroIdx": "0_621VyzEK_4KG",
+      "userIdx": "0_a41PdeSF_ajM",
+      "heroNo": 5080,
+      "level": 791,
+      "gradeSno": 110025,
+      "raceSno": 110056,
+      "power": "618484",
+      "nickName": "Regina",
+      "costumeItemNo": 2416,
+      "slotAndEquipItem": [
+        {
+          "itemEquip": {
+            "id": "25497164",
+            "itemNo": 1493,
+            "exp": 329400
+          }
+        },
+        {
+          "slot": 1,
+          "itemEquip": {
+            "id": "26145670",
+            "itemNo": 1494,
+            "exp": 329400
+          }
+        },
+        {
+          "slot": 2,
+          "itemEquip": {
+            "id": "25685805",
+            "itemNo": 1495,
+            "exp": 329400
+          }
+        },
+        {
+          "slot": 3,
+          "itemEquip": {
+            "id": "25769495",
+            "itemNo": 1496,
+            "exp": 329400
+          }
+        }
+      ],
+      "signature": {
+        "itemNo": 5081,
+        "grade": 110020,
+        "level": 45
+      },
+      "buff": [
+        {
+          "buffType": 4,
+          "buffNo": 91,
+          "value": 110042
+        },
+        {
+          "buffType": 4,
+          "buffNo": 92,
+          "value": 110042
+        },
+        {
+          "buffType": 4,
+          "buffNo": 93,
+          "value": 110042
+        },
+        {
+          "buffType": 4,
+          "buffNo": 96,
+          "value": 110042
+        },
+        {
+          "buffType": 4,
+          "buffNo": 98,
+          "value": 110042
+        },
+        {
+          "buffType": 4,
+          "buffNo": 95,
+          "value": 110042
+        },
+        {
+          "buffType": 4,
+          "buffNo": 94,
+          "value": 110042
+        },
+        {
+          "buffType": 4,
+          "buffNo": 97,
+          "value": 110042
+        },
+        {
+          "buffType": 4,
+          "buffNo": 100,
+          "value": 110042
+        },
+        {
+          "buffType": 1,
+          "buffNo": 102,
+          "value": 110052
+        },
+        {
+          "buffType": 1,
+          "buffNo": 103,
+          "value": 110052
+        },
+        {
+          "buffType": 1,
+          "buffNo": 104,
+          "value": 110052
+        },
+        {
+          "buffType": 1,
+          "buffNo": 106,
+          "value": 110052
+        },
+        {
+          "buffType": 1,
+          "buffNo": 105,
+          "value": 110052
+        },
+        {
+          "buffType": 1,
+          "buffNo": 107,
+          "value": 110052
+        },
+        {
+          "buffType": 1,
+          "buffNo": 109,
+          "value": 110052
+        },
+        {
+          "buffType": 1,
+          "buffNo": 124,
+          "value": 110054
+        },
+        {
+          "buffType": 1,
+          "buffNo": 125,
+          "value": 110054
+        },
+        {
+          "buffType": 1,
+          "buffNo": 126,
+          "value": 110054
+        },
+        {
+          "buffType": 1,
+          "buffNo": 130,
+          "value": 110054
+        },
+        {
+          "buffType": 1,
+          "buffNo": 127,
+          "value": 110054
+        },
+        {
+          "buffType": 1,
+          "buffNo": 129,
+          "value": 110054
+        },
+        {
+          "buffType": 1,
+          "buffNo": 142,
+          "value": 110055
+        },
+        {
+          "buffType": 1,
+          "buffNo": 143,
+          "value": 110055
+        },
+        {
+          "buffType": 1,
+          "buffNo": 144,
+          "value": 110055
+        },
+        {
+          "buffType": 1,
+          "buffNo": 146,
+          "value": 110055
+        },
+        {
+          "buffType": 1,
+          "buffNo": 147,
+          "value": 110055
+        },
+        {
+          "buffType": 1,
+          "buffNo": 148,
+          "value": 110055
+        },
+        {
+          "buffType": 1,
+          "buffNo": 149,
+          "value": 110055
+        },
+        {
+          "buffType": 4,
+          "buffNo": 153,
+          "value": 110043
+        },
+        {
+          "buffType": 4,
+          "buffNo": 154,
+          "value": 110043
+        },
+        {
+          "buffType": 4,
+          "buffNo": 155,
+          "value": 110043
+        },
+        {
+          "buffType": 4,
+          "buffNo": 156,
+          "value": 110043
+        },
+        {
+          "buffType": 4,
+          "buffNo": 158,
+          "value": 110043
+        },
+        {
+          "buffType": 4,
+          "buffNo": 159,
+          "value": 110043
+        },
+        {
+          "buffType": 4,
+          "buffNo": 171,
+          "value": 110044
+        },
+        {
+          "buffType": 4,
+          "buffNo": 174,
+          "value": 110044
+        },
+        {
+          "buffType": 4,
+          "buffNo": 172,
+          "value": 110044
+        },
+        {
+          "buffType": 4,
+          "buffNo": 173,
+          "value": 110044
+        },
+        {
+          "buffType": 4,
+          "buffNo": 176,
+          "value": 110044
+        },
+        {
+          "buffType": 4,
+          "buffNo": 175,
+          "value": 110044
+        },
+        {
+          "buffType": 4,
+          "buffNo": 177,
+          "value": 110044
+        },
+        {
+          "buffType": 4,
+          "buffNo": 178,
+          "value": 110044
+        },
+        {
+          "buffType": 4,
+          "buffNo": 179,
+          "value": 110044
+        },
+        {
+          "buffType": 1,
+          "buffNo": 132,
+          "value": 110054
+        },
+        {
+          "buffType": 1,
+          "buffNo": 135,
+          "value": 110056
+        },
+        {
+          "buffType": 1,
+          "buffNo": 150,
+          "value": 110055
+        },
+        {
+          "buffType": 1,
+          "buffNo": 151,
+          "value": 110055
+        },
+        {
+          "buffType": 1,
+          "buffNo": 110,
+          "value": 110052
+        },
+        {
+          "buffType": 4,
+          "buffNo": 157,
+          "value": 110043
+        },
+        {
+          "buffType": 4,
+          "buffNo": 160,
+          "value": 110043
+        },
+        {
+          "buffType": 4,
+          "buffNo": 161,
+          "value": 110043
+        },
+        {
+          "buffType": 4,
+          "buffNo": 180,
+          "value": 110044
+        },
+        {
+          "buffType": 1,
+          "buffNo": 136,
+          "value": 110056
+        },
+        {
+          "buffType": 1,
+          "buffNo": 138,
+          "value": 110056
+        },
+        {
+          "buffType": 1,
+          "buffNo": 164,
+          "value": 110057
+        },
+        {
+          "buffType": 1,
+          "buffNo": 111,
+          "value": 110052
+        },
+        {
+          "buffType": 1,
+          "buffNo": 165,
+          "value": 110057
+        },
+        {
+          "buffType": 1,
+          "buffNo": 166,
+          "value": 110057
+        },
+        {
+          "buffType": 1,
+          "buffNo": 167,
+          "value": 110057
+        },
+        {
+          "buffType": 1,
+          "buffNo": 168,
+          "value": 110057
+        },
+        {
+          "buffType": 1,
+          "buffNo": 113,
+          "value": 110053
+        },
+        {
+          "buffType": 1,
+          "buffNo": 114,
+          "value": 110053
+        },
+        {
+          "buffType": 1,
+          "buffNo": 115,
+          "value": 110053
+        },
+        {
+          "buffType": 1,
+          "buffNo": 128,
+          "value": 110054
+        },
+        {
+          "buffType": 1,
+          "buffNo": 145,
+          "value": 110055
+        },
+        {
+          "buffType": 1,
+          "buffNo": 116,
+          "value": 110053
+        },
+        {
+          "buffType": 1,
+          "buffNo": 118,
+          "value": 110053
+        },
+        {
+          "buffType": 1,
+          "buffNo": 117,
+          "value": 110053
+        },
+        {
+          "buffType": 1,
+          "buffNo": 120,
+          "value": 110053
+        },
+        {
+          "buffType": 1,
+          "buffNo": 121,
+          "value": 110053
+        },
+        {
+          "buffType": 1,
+          "buffNo": 122,
+          "value": 110053
+        },
+        {
+          "buffType": 1,
+          "buffNo": 81,
+          "value": 110058
+        },
+        {
+          "buffType": 1,
+          "buffNo": 82,
+          "value": 110058
+        },
+        {
+          "buffType": 1,
+          "buffNo": 83,
+          "value": 110058
+        },
+        {
+          "buffType": 1,
+          "buffNo": 84,
+          "value": 110058
+        },
+        {
+          "buffType": 1,
+          "buffNo": 86,
+          "value": 110058
+        },
+        {
+          "buffType": 1,
+          "buffNo": 88,
+          "value": 110058
+        },
+        {
+          "buffType": 4,
+          "buffNo": 99,
+          "value": 110042
+        },
+        {
+          "buffType": 1,
+          "buffNo": 85,
+          "value": 110058
+        },
+        {
+          "buffType": 1,
+          "buffNo": 87,
+          "value": 110058
+        },
+        {
+          "buffType": 1,
+          "buffNo": 137,
+          "value": 110056
+        },
+        {
+          "buffType": 1,
+          "buffNo": 139,
+          "value": 110056
+        },
+        {
+          "buffType": 1,
+          "buffNo": 140,
+          "value": 110056
+        },
+        {
+          "buffType": 1,
+          "buffNo": 89,
+          "value": 110058
+        },
+        {
+          "buffType": 1,
+          "buffNo": 108,
+          "value": 110052
+        },
+        {
+          "buffType": 4,
+          "buffNo": 162,
+          "value": 110043
+        },
+        {
+          "buffType": 1,
+          "buffNo": 169,
+          "value": 110057
+        },
+        {
+          "buffType": 1,
+          "buffNo": 119,
+          "value": 110053
+        },
+        {
+          "buffType": 1,
+          "buffNo": 131,
+          "value": 110054
+        },
+        {
+          "buffType": 1,
+          "buffNo": 133,
+          "value": 110054
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 10,
+          "value": 1010
+        },
+        {
+          "contentType": 1,
+          "value": 1020
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 30,
+          "value": 1020
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 20,
+          "value": 1030
+        },
+        {
+          "contentType": 1,
+          "value": 1040
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 10,
+          "value": 1040
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 5,
+          "value": 1080
+        },
+        {
+          "contentType": 1,
+          "value": 1090
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 30,
+          "value": 1090
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 13,
+          "value": 1110
+        },
+        {
+          "contentType": 1,
+          "value": 1150
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 10,
+          "value": 1150
+        },
+        {
+          "contentType": 1,
+          "value": 1160
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 10,
+          "value": 1160
+        },
+        {
+          "contentType": 1,
+          "value": 1170
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 10,
+          "value": 1170
+        },
+        {
+          "contentType": 1,
+          "value": 2010
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 10,
+          "value": 2010
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 23,
+          "value": 2020
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 25,
+          "value": 2030
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 3,
+          "value": 2080
+        },
+        {
+          "contentType": 1,
+          "value": 2100
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 20,
+          "value": 2100
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 15,
+          "value": 2110
+        },
+        {
+          "contentType": 1,
+          "value": 2120
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 10,
+          "value": 2120
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 30,
+          "value": 2140
+        },
+        {
+          "contentType": 1,
+          "value": 2160
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 30,
+          "value": 2160
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 5,
+          "value": 2170
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 23,
+          "value": 3040
+        },
+        {
+          "contentType": 1,
+          "value": 3080
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 10,
+          "value": 3080
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 20,
+          "value": 3100
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 25,
+          "value": 3130
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 30,
+          "value": 3150
+        },
+        {
+          "contentType": 1,
+          "value": 3160
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 10,
+          "value": 3160
+        },
+        {
+          "contentType": 1,
+          "value": 3170
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 10,
+          "value": 3170
+        },
+        {
+          "contentType": 1,
+          "value": 4010
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 10,
+          "value": 4010
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 23,
+          "value": 4020
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 25,
+          "value": 4030
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 15,
+          "value": 4050
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 20,
+          "value": 4100
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 13,
+          "value": 4110
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 3,
+          "value": 4120
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 15,
+          "value": 4130
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 3,
+          "value": 4140
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 13,
+          "value": 4160
+        },
+        {
+          "contentType": 1,
+          "value": 4170
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 10,
+          "value": 4170
+        },
+        {
+          "contentType": 1,
+          "value": 5010
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 10,
+          "value": 5010
+        },
+        {
+          "contentType": 1,
+          "value": 5030
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 10,
+          "value": 5030
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 10,
+          "value": 5040
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 5,
+          "value": 5060
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 10,
+          "value": 5080
+        },
+        {
+          "contentType": 1,
+          "value": 6010
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 30,
+          "value": 6010
+        },
+        {
+          "contentType": 1,
+          "value": 6020
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 10,
+          "value": 6020
+        },
+        {
+          "contentType": 1,
+          "value": 6050
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 30,
+          "value": 6050
+        },
+        {
+          "contentType": 1,
+          "value": 6060
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 10,
+          "value": 6060
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 30,
+          "value": 6070
+        },
+        {
+          "contentType": 1,
+          "value": 6510
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 10,
+          "value": 6510
+        },
+        {
+          "contentType": 1,
+          "value": 6520
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 10,
+          "value": 6520
+        },
+        {
+          "contentType": 1,
+          "value": 6540
+        },
+        {
+          "contentType": 1,
+          "buffType": 2,
+          "buffNo": 10,
+          "value": 6540
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 182,
+          "value": 3100
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 183,
+          "value": 3100
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 184,
+          "value": 3100
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 185,
+          "value": 3100
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 186,
+          "value": 3100
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 187,
+          "value": 3100
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 188,
+          "value": 3100
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 189,
+          "value": 3100
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 190,
+          "value": 3100
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 182,
+          "value": 1060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 183,
+          "value": 1060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 184,
+          "value": 1060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 185,
+          "value": 1060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 186,
+          "value": 1060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 187,
+          "value": 1060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 188,
+          "value": 1060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 189,
+          "value": 1060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 190,
+          "value": 1060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 182,
+          "value": 120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 183,
+          "value": 120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 184,
+          "value": 120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 185,
+          "value": 120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 186,
+          "value": 120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 187,
+          "value": 120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 188,
+          "value": 120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 189,
+          "value": 120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 190,
+          "value": 120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 209,
+          "value": 1030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 210,
+          "value": 1030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 211,
+          "value": 1030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 212,
+          "value": 1030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 213,
+          "value": 1030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 214,
+          "value": 1030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 215,
+          "value": 1030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 216,
+          "value": 1030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 217,
+          "value": 1030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 209,
+          "value": 2010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 210,
+          "value": 2010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 211,
+          "value": 2010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 212,
+          "value": 2010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 213,
+          "value": 2010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 214,
+          "value": 2010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 215,
+          "value": 2010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 216,
+          "value": 2010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 217,
+          "value": 2010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 200,
+          "value": 1010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 201,
+          "value": 1010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 202,
+          "value": 1010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 203,
+          "value": 1010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 204,
+          "value": 1010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 205,
+          "value": 1010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 206,
+          "value": 1010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 207,
+          "value": 1010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 208,
+          "value": 1010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 200,
+          "value": 3090
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 201,
+          "value": 3090
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 202,
+          "value": 3090
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 203,
+          "value": 3090
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 204,
+          "value": 3090
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 205,
+          "value": 3090
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 206,
+          "value": 3090
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 207,
+          "value": 3090
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 208,
+          "value": 3090
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 209,
+          "value": 2050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 210,
+          "value": 2050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 211,
+          "value": 2050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 212,
+          "value": 2050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 213,
+          "value": 2050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 214,
+          "value": 2050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 215,
+          "value": 2050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 216,
+          "value": 2050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 217,
+          "value": 2050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 209,
+          "value": 2040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 210,
+          "value": 2040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 211,
+          "value": 2040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 212,
+          "value": 2040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 213,
+          "value": 2040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 214,
+          "value": 2040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 215,
+          "value": 2040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 216,
+          "value": 2040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 217,
+          "value": 2040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 218,
+          "value": 3080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 219,
+          "value": 3080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 220,
+          "value": 3080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 221,
+          "value": 3080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 222,
+          "value": 3080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 223,
+          "value": 3080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 224,
+          "value": 3080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 225,
+          "value": 3080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 226,
+          "value": 3080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 218,
+          "value": 1100
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 219,
+          "value": 1100
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 220,
+          "value": 1100
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 221,
+          "value": 1100
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 222,
+          "value": 1100
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 223,
+          "value": 1100
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 224,
+          "value": 1100
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 225,
+          "value": 1100
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 226,
+          "value": 1100
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 218,
+          "value": 1090
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 219,
+          "value": 1090
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 220,
+          "value": 1090
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 221,
+          "value": 1090
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 222,
+          "value": 1090
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 223,
+          "value": 1090
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 224,
+          "value": 1090
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 225,
+          "value": 1090
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 226,
+          "value": 1090
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 245,
+          "value": 4090
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 246,
+          "value": 4090
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 247,
+          "value": 4090
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 248,
+          "value": 4090
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 249,
+          "value": 4090
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 250,
+          "value": 4090
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 251,
+          "value": 4090
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 252,
+          "value": 4090
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 253,
+          "value": 4090
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 245,
+          "value": 4070
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 246,
+          "value": 4070
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 247,
+          "value": 4070
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 248,
+          "value": 4070
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 249,
+          "value": 4070
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 250,
+          "value": 4070
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 251,
+          "value": 4070
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 252,
+          "value": 4070
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 253,
+          "value": 4070
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 245,
+          "value": 4060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 246,
+          "value": 4060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 247,
+          "value": 4060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 248,
+          "value": 4060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 249,
+          "value": 4060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 250,
+          "value": 4060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 251,
+          "value": 4060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 252,
+          "value": 4060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 253,
+          "value": 4060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 236,
+          "value": 410
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 237,
+          "value": 410
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 238,
+          "value": 410
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 239,
+          "value": 410
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 240,
+          "value": 410
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 241,
+          "value": 410
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 242,
+          "value": 410
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 243,
+          "value": 410
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 244,
+          "value": 410
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 236,
+          "value": 2110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 237,
+          "value": 2110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 238,
+          "value": 2110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 239,
+          "value": 2110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 240,
+          "value": 2110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 241,
+          "value": 2110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 242,
+          "value": 2110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 243,
+          "value": 2110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 244,
+          "value": 2110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 245,
+          "value": 4030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 246,
+          "value": 4030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 247,
+          "value": 4030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 248,
+          "value": 4030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 249,
+          "value": 4030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 250,
+          "value": 4030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 251,
+          "value": 4030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 252,
+          "value": 4030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 253,
+          "value": 4030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 245,
+          "value": 220
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 246,
+          "value": 220
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 247,
+          "value": 220
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 248,
+          "value": 220
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 249,
+          "value": 220
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 250,
+          "value": 220
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 251,
+          "value": 220
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 252,
+          "value": 220
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 253,
+          "value": 220
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 245,
+          "value": 420
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 246,
+          "value": 420
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 247,
+          "value": 420
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 248,
+          "value": 420
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 249,
+          "value": 420
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 250,
+          "value": 420
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 251,
+          "value": 420
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 252,
+          "value": 420
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 253,
+          "value": 420
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 245,
+          "value": 3030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 246,
+          "value": 3030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 247,
+          "value": 3030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 248,
+          "value": 3030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 249,
+          "value": 3030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 250,
+          "value": 3030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 251,
+          "value": 3030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 252,
+          "value": 3030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 253,
+          "value": 3030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 254,
+          "value": 2030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 255,
+          "value": 2030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 256,
+          "value": 2030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 257,
+          "value": 2030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 258,
+          "value": 2030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 259,
+          "value": 2030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 260,
+          "value": 2030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 261,
+          "value": 2030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 262,
+          "value": 2030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 254,
+          "value": 5020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 255,
+          "value": 5020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 256,
+          "value": 5020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 257,
+          "value": 5020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 258,
+          "value": 5020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 259,
+          "value": 5020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 260,
+          "value": 5020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 261,
+          "value": 5020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 262,
+          "value": 5020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 254,
+          "value": 110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 255,
+          "value": 110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 256,
+          "value": 110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 257,
+          "value": 110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 258,
+          "value": 110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 259,
+          "value": 110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 260,
+          "value": 110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 261,
+          "value": 110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 262,
+          "value": 110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 218,
+          "value": 310
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 219,
+          "value": 310
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 220,
+          "value": 310
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 221,
+          "value": 310
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 222,
+          "value": 310
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 223,
+          "value": 310
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 224,
+          "value": 310
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 225,
+          "value": 310
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 226,
+          "value": 310
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 218,
+          "value": 320
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 219,
+          "value": 320
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 220,
+          "value": 320
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 221,
+          "value": 320
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 222,
+          "value": 320
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 223,
+          "value": 320
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 224,
+          "value": 320
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 225,
+          "value": 320
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 226,
+          "value": 320
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 218,
+          "value": 3070
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 219,
+          "value": 3070
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 220,
+          "value": 3070
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 221,
+          "value": 3070
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 222,
+          "value": 3070
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 223,
+          "value": 3070
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 224,
+          "value": 3070
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 225,
+          "value": 3070
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 226,
+          "value": 3070
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 218,
+          "value": 2090
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 219,
+          "value": 2090
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 220,
+          "value": 2090
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 221,
+          "value": 2090
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 222,
+          "value": 2090
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 223,
+          "value": 2090
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 224,
+          "value": 2090
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 225,
+          "value": 2090
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 226,
+          "value": 2090
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 182,
+          "value": 2020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 183,
+          "value": 2020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 184,
+          "value": 2020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 185,
+          "value": 2020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 186,
+          "value": 2020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 187,
+          "value": 2020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 188,
+          "value": 2020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 189,
+          "value": 2020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 190,
+          "value": 2020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 182,
+          "value": 4020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 183,
+          "value": 4020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 184,
+          "value": 4020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 185,
+          "value": 4020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 186,
+          "value": 4020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 187,
+          "value": 4020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 188,
+          "value": 4020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 189,
+          "value": 4020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 190,
+          "value": 4020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 218,
+          "value": 210
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 219,
+          "value": 210
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 220,
+          "value": 210
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 221,
+          "value": 210
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 222,
+          "value": 210
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 223,
+          "value": 210
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 224,
+          "value": 210
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 225,
+          "value": 210
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 226,
+          "value": 210
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 218,
+          "value": 1050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 219,
+          "value": 1050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 220,
+          "value": 1050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 221,
+          "value": 1050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 222,
+          "value": 1050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 223,
+          "value": 1050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 224,
+          "value": 1050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 225,
+          "value": 1050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 226,
+          "value": 1050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 218,
+          "value": 3120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 219,
+          "value": 3120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 220,
+          "value": 3120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 221,
+          "value": 3120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 222,
+          "value": 3120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 223,
+          "value": 3120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 224,
+          "value": 3120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 225,
+          "value": 3120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 226,
+          "value": 3120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 218,
+          "value": 3010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 219,
+          "value": 3010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 220,
+          "value": 3010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 221,
+          "value": 3010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 222,
+          "value": 3010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 223,
+          "value": 3010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 224,
+          "value": 3010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 225,
+          "value": 3010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 226,
+          "value": 3010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 218,
+          "value": 3040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 219,
+          "value": 3040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 220,
+          "value": 3040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 221,
+          "value": 3040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 222,
+          "value": 3040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 223,
+          "value": 3040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 224,
+          "value": 3040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 225,
+          "value": 3040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 226,
+          "value": 3040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 218,
+          "value": 3110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 219,
+          "value": 3110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 220,
+          "value": 3110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 221,
+          "value": 3110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 222,
+          "value": 3110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 223,
+          "value": 3110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 224,
+          "value": 3110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 225,
+          "value": 3110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 226,
+          "value": 3110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 200,
+          "value": 6030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 201,
+          "value": 6030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 202,
+          "value": 6030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 203,
+          "value": 6030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 204,
+          "value": 6030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 205,
+          "value": 6030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 206,
+          "value": 6030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 207,
+          "value": 6030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 208,
+          "value": 6030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 200,
+          "value": 4080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 201,
+          "value": 4080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 202,
+          "value": 4080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 203,
+          "value": 4080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 204,
+          "value": 4080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 205,
+          "value": 4080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 206,
+          "value": 4080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 207,
+          "value": 4080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 208,
+          "value": 4080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 254,
+          "value": 1110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 255,
+          "value": 1110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 256,
+          "value": 1110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 257,
+          "value": 1110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 258,
+          "value": 1110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 259,
+          "value": 1110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 260,
+          "value": 1110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 261,
+          "value": 1110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 262,
+          "value": 1110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 254,
+          "value": 1040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 255,
+          "value": 1040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 256,
+          "value": 1040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 257,
+          "value": 1040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 258,
+          "value": 1040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 259,
+          "value": 1040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 260,
+          "value": 1040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 261,
+          "value": 1040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 262,
+          "value": 1040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 200,
+          "value": 4010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 201,
+          "value": 4010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 202,
+          "value": 4010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 203,
+          "value": 4010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 204,
+          "value": 4010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 205,
+          "value": 4010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 206,
+          "value": 4010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 207,
+          "value": 4010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 208,
+          "value": 4010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 200,
+          "value": 4110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 201,
+          "value": 4110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 202,
+          "value": 4110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 203,
+          "value": 4110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 204,
+          "value": 4110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 205,
+          "value": 4110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 206,
+          "value": 4110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 207,
+          "value": 4110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 208,
+          "value": 4110
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 182,
+          "value": 4100
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 183,
+          "value": 4100
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 184,
+          "value": 4100
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 185,
+          "value": 4100
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 186,
+          "value": 4100
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 187,
+          "value": 4100
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 188,
+          "value": 4100
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 189,
+          "value": 4100
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 190,
+          "value": 4100
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 182,
+          "value": 6020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 183,
+          "value": 6020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 184,
+          "value": 6020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 185,
+          "value": 6020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 186,
+          "value": 6020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 187,
+          "value": 6020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 188,
+          "value": 6020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 189,
+          "value": 6020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 190,
+          "value": 6020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 245,
+          "value": 3130
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 246,
+          "value": 3130
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 247,
+          "value": 3130
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 248,
+          "value": 3130
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 249,
+          "value": 3130
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 250,
+          "value": 3130
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 251,
+          "value": 3130
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 252,
+          "value": 3130
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 253,
+          "value": 3130
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 245,
+          "value": 2070
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 246,
+          "value": 2070
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 247,
+          "value": 2070
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 248,
+          "value": 2070
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 249,
+          "value": 2070
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 250,
+          "value": 2070
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 251,
+          "value": 2070
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 252,
+          "value": 2070
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 253,
+          "value": 2070
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 254,
+          "value": 4040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 255,
+          "value": 4040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 256,
+          "value": 4040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 257,
+          "value": 4040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 258,
+          "value": 4040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 259,
+          "value": 4040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 260,
+          "value": 4040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 261,
+          "value": 4040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 262,
+          "value": 4040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 254,
+          "value": 4050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 255,
+          "value": 4050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 256,
+          "value": 4050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 257,
+          "value": 4050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 258,
+          "value": 4050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 259,
+          "value": 4050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 260,
+          "value": 4050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 261,
+          "value": 4050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 262,
+          "value": 4050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 236,
+          "value": 5030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 237,
+          "value": 5030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 238,
+          "value": 5030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 239,
+          "value": 5030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 240,
+          "value": 5030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 241,
+          "value": 5030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 242,
+          "value": 5030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 243,
+          "value": 5030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 244,
+          "value": 5030
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 236,
+          "value": 2120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 237,
+          "value": 2120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 238,
+          "value": 2120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 239,
+          "value": 2120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 240,
+          "value": 2120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 241,
+          "value": 2120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 242,
+          "value": 2120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 243,
+          "value": 2120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 244,
+          "value": 2120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 209,
+          "value": 3060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 210,
+          "value": 3060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 211,
+          "value": 3060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 212,
+          "value": 3060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 213,
+          "value": 3060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 214,
+          "value": 3060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 215,
+          "value": 3060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 216,
+          "value": 3060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 217,
+          "value": 3060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 209,
+          "value": 5010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 210,
+          "value": 5010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 211,
+          "value": 5010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 212,
+          "value": 5010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 213,
+          "value": 5010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 214,
+          "value": 5010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 215,
+          "value": 5010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 216,
+          "value": 5010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 217,
+          "value": 5010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 236,
+          "value": 2100
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 237,
+          "value": 2100
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 238,
+          "value": 2100
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 239,
+          "value": 2100
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 240,
+          "value": 2100
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 241,
+          "value": 2100
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 242,
+          "value": 2100
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 243,
+          "value": 2100
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 244,
+          "value": 2100
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 236,
+          "value": 1140
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 237,
+          "value": 1140
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 238,
+          "value": 1140
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 239,
+          "value": 1140
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 240,
+          "value": 1140
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 241,
+          "value": 1140
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 242,
+          "value": 1140
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 243,
+          "value": 1140
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 244,
+          "value": 1140
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 245,
+          "value": 1120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 246,
+          "value": 1120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 247,
+          "value": 1120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 248,
+          "value": 1120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 249,
+          "value": 1120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 250,
+          "value": 1120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 251,
+          "value": 1120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 252,
+          "value": 1120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 253,
+          "value": 1120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 245,
+          "value": 4120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 246,
+          "value": 4120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 247,
+          "value": 4120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 248,
+          "value": 4120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 249,
+          "value": 4120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 250,
+          "value": 4120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 251,
+          "value": 4120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 252,
+          "value": 4120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 253,
+          "value": 4120
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 209,
+          "value": 1070
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 210,
+          "value": 1070
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 211,
+          "value": 1070
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 212,
+          "value": 1070
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 213,
+          "value": 1070
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 214,
+          "value": 1070
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 215,
+          "value": 1070
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 216,
+          "value": 1070
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 217,
+          "value": 1070
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 209,
+          "value": 6050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 210,
+          "value": 6050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 211,
+          "value": 6050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 212,
+          "value": 6050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 213,
+          "value": 6050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 214,
+          "value": 6050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 215,
+          "value": 6050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 216,
+          "value": 6050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 217,
+          "value": 6050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 236,
+          "value": 2130
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 237,
+          "value": 2130
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 238,
+          "value": 2130
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 239,
+          "value": 2130
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 240,
+          "value": 2130
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 241,
+          "value": 2130
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 242,
+          "value": 2130
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 243,
+          "value": 2130
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 244,
+          "value": 2130
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 236,
+          "value": 3140
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 237,
+          "value": 3140
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 238,
+          "value": 3140
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 239,
+          "value": 3140
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 240,
+          "value": 3140
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 241,
+          "value": 3140
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 242,
+          "value": 3140
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 243,
+          "value": 3140
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 244,
+          "value": 3140
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 200,
+          "value": 6010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 201,
+          "value": 6010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 202,
+          "value": 6010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 203,
+          "value": 6010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 204,
+          "value": 6010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 205,
+          "value": 6010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 206,
+          "value": 6010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 207,
+          "value": 6010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 208,
+          "value": 6010
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 200,
+          "value": 2080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 201,
+          "value": 2080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 202,
+          "value": 2080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 203,
+          "value": 2080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 204,
+          "value": 2080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 205,
+          "value": 2080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 206,
+          "value": 2080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 207,
+          "value": 2080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 208,
+          "value": 2080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 182,
+          "value": 1020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 183,
+          "value": 1020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 184,
+          "value": 1020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 185,
+          "value": 1020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 186,
+          "value": 1020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 187,
+          "value": 1020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 188,
+          "value": 1020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 189,
+          "value": 1020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 190,
+          "value": 1020
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 182,
+          "value": 4130
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 183,
+          "value": 4130
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 184,
+          "value": 4130
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 185,
+          "value": 4130
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 186,
+          "value": 4130
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 187,
+          "value": 4130
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 188,
+          "value": 4130
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 189,
+          "value": 4130
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 190,
+          "value": 4130
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 200,
+          "value": 1130
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 201,
+          "value": 1130
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 202,
+          "value": 1130
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 203,
+          "value": 1130
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 204,
+          "value": 1130
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 205,
+          "value": 1130
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 206,
+          "value": 1130
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 207,
+          "value": 1130
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 208,
+          "value": 1130
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 200,
+          "value": 4140
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 201,
+          "value": 4140
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 202,
+          "value": 4140
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 203,
+          "value": 4140
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 204,
+          "value": 4140
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 205,
+          "value": 4140
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 206,
+          "value": 4140
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 207,
+          "value": 4140
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 208,
+          "value": 4140
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 218,
+          "value": 2140
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 219,
+          "value": 2140
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 220,
+          "value": 2140
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 221,
+          "value": 2140
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 222,
+          "value": 2140
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 223,
+          "value": 2140
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 224,
+          "value": 2140
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 225,
+          "value": 2140
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 226,
+          "value": 2140
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 218,
+          "value": 3050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 219,
+          "value": 3050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 220,
+          "value": 3050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 221,
+          "value": 3050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 222,
+          "value": 3050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 223,
+          "value": 3050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 224,
+          "value": 3050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 225,
+          "value": 3050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 226,
+          "value": 3050
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 254,
+          "value": 1080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 255,
+          "value": 1080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 256,
+          "value": 1080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 257,
+          "value": 1080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 258,
+          "value": 1080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 259,
+          "value": 1080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 260,
+          "value": 1080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 261,
+          "value": 1080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 262,
+          "value": 1080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 254,
+          "value": 6520
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 255,
+          "value": 6520
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 256,
+          "value": 6520
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 257,
+          "value": 6520
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 258,
+          "value": 6520
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 259,
+          "value": 6520
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 260,
+          "value": 6520
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 261,
+          "value": 6520
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 262,
+          "value": 6520
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 254,
+          "value": 3150
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 255,
+          "value": 3150
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 256,
+          "value": 3150
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 257,
+          "value": 3150
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 258,
+          "value": 3150
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 259,
+          "value": 3150
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 260,
+          "value": 3150
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 261,
+          "value": 3150
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 262,
+          "value": 3150
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 254,
+          "value": 6510
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 255,
+          "value": 6510
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 256,
+          "value": 6510
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 257,
+          "value": 6510
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 258,
+          "value": 6510
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 259,
+          "value": 6510
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 260,
+          "value": 6510
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 261,
+          "value": 6510
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 262,
+          "value": 6510
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 200,
+          "value": 1150
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 201,
+          "value": 1150
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 202,
+          "value": 1150
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 203,
+          "value": 1150
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 204,
+          "value": 1150
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 205,
+          "value": 1150
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 206,
+          "value": 1150
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 207,
+          "value": 1150
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 208,
+          "value": 1150
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 200,
+          "value": 6530
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 201,
+          "value": 6530
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 202,
+          "value": 6530
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 203,
+          "value": 6530
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 204,
+          "value": 6530
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 205,
+          "value": 6530
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 206,
+          "value": 6530
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 207,
+          "value": 6530
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 208,
+          "value": 6530
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 182,
+          "value": 5040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 183,
+          "value": 5040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 184,
+          "value": 5040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 185,
+          "value": 5040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 186,
+          "value": 5040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 187,
+          "value": 5040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 188,
+          "value": 5040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 189,
+          "value": 5040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 190,
+          "value": 5040
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 182,
+          "value": 2160
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 183,
+          "value": 2160
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 184,
+          "value": 2160
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 185,
+          "value": 2160
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 186,
+          "value": 2160
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 187,
+          "value": 2160
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 188,
+          "value": 2160
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 189,
+          "value": 2160
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 190,
+          "value": 2160
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 200,
+          "value": 2150
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 201,
+          "value": 2150
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 202,
+          "value": 2150
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 203,
+          "value": 2150
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 204,
+          "value": 2150
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 205,
+          "value": 2150
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 206,
+          "value": 2150
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 207,
+          "value": 2150
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 208,
+          "value": 2150
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 200,
+          "value": 1160
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 201,
+          "value": 1160
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 202,
+          "value": 1160
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 203,
+          "value": 1160
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 204,
+          "value": 1160
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 205,
+          "value": 1160
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 206,
+          "value": 1160
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 207,
+          "value": 1160
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 208,
+          "value": 1160
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 200,
+          "value": 4150
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 201,
+          "value": 4150
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 202,
+          "value": 4150
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 203,
+          "value": 4150
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 204,
+          "value": 4150
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 205,
+          "value": 4150
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 206,
+          "value": 4150
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 207,
+          "value": 4150
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 208,
+          "value": 4150
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 200,
+          "value": 3160
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 201,
+          "value": 3160
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 202,
+          "value": 3160
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 203,
+          "value": 3160
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 204,
+          "value": 3160
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 205,
+          "value": 3160
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 206,
+          "value": 3160
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 207,
+          "value": 3160
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 208,
+          "value": 3160
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 182,
+          "value": 3180
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 183,
+          "value": 3180
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 184,
+          "value": 3180
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 185,
+          "value": 3180
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 186,
+          "value": 3180
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 187,
+          "value": 3180
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 188,
+          "value": 3180
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 189,
+          "value": 3180
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 190,
+          "value": 3180
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 182,
+          "value": 2170
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 183,
+          "value": 2170
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 184,
+          "value": 2170
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 185,
+          "value": 2170
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 186,
+          "value": 2170
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 187,
+          "value": 2170
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 188,
+          "value": 2170
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 189,
+          "value": 2170
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 190,
+          "value": 2170
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 182,
+          "value": 3170
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 183,
+          "value": 3170
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 184,
+          "value": 3170
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 185,
+          "value": 3170
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 186,
+          "value": 3170
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 187,
+          "value": 3170
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 188,
+          "value": 3170
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 189,
+          "value": 3170
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 190,
+          "value": 3170
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 182,
+          "value": 4160
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 183,
+          "value": 4160
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 184,
+          "value": 4160
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 185,
+          "value": 4160
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 186,
+          "value": 4160
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 187,
+          "value": 4160
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 188,
+          "value": 4160
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 189,
+          "value": 4160
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 190,
+          "value": 4160
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 182,
+          "value": 4170
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 183,
+          "value": 4170
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 184,
+          "value": 4170
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 185,
+          "value": 4170
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 186,
+          "value": 4170
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 187,
+          "value": 4170
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 188,
+          "value": 4170
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 189,
+          "value": 4170
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 190,
+          "value": 4170
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 182,
+          "value": 6060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 183,
+          "value": 6060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 184,
+          "value": 6060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 185,
+          "value": 6060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 186,
+          "value": 6060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 187,
+          "value": 6060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 188,
+          "value": 6060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 189,
+          "value": 6060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 190,
+          "value": 6060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 182,
+          "value": 5060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 183,
+          "value": 5060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 184,
+          "value": 5060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 185,
+          "value": 5060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 186,
+          "value": 5060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 187,
+          "value": 5060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 188,
+          "value": 5060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 189,
+          "value": 5060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 190,
+          "value": 5060
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 182,
+          "value": 1170
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 183,
+          "value": 1170
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 184,
+          "value": 1170
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 185,
+          "value": 1170
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 186,
+          "value": 1170
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 187,
+          "value": 1170
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 188,
+          "value": 1170
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 189,
+          "value": 1170
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 190,
+          "value": 1170
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 200,
+          "value": 5080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 201,
+          "value": 5080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 202,
+          "value": 5080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 203,
+          "value": 5080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 204,
+          "value": 5080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 205,
+          "value": 5080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 206,
+          "value": 5080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 207,
+          "value": 5080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 208,
+          "value": 5080
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 200,
+          "value": 6540
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 201,
+          "value": 6540
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 202,
+          "value": 6540
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 203,
+          "value": 6540
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 204,
+          "value": 6540
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 205,
+          "value": 6540
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 206,
+          "value": 6540
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 207,
+          "value": 6540
+        },
+        {
+          "contentType": 2,
+          "buffType": 2,
+          "buffNo": 208,
+          "value": 6540
+        },
+        {
+          "contentType": 3,
+          "buffType": 3,
+          "buffNo": 1000461,
+          "value": 110051
+        },
+        {
+          "contentType": 3,
+          "buffType": 3,
+          "buffNo": 990460
+        },
+        {
+          "contentType": 3,
+          "buffType": 5,
+          "buffNo": 3010430,
+          "value": 110101
+        },
+        {
+          "contentType": 3,
+          "buffType": 5,
+          "buffNo": 3020431,
+          "value": 110102
+        },
+        {
+          "contentType": 3,
+          "buffType": 5,
+          "buffNo": 3030433,
+          "value": 110103
+        },
+        {
+          "contentType": 3,
+          "buffType": 5,
+          "buffNo": 3040437,
+          "value": 110104
+        },
+        {
+          "contentType": 3,
+          "buffType": 5,
+          "buffNo": 3050424,
+          "value": 110105
+        },
+        {
+          "contentType": 3,
+          "buffType": 5,
+          "buffNo": 3060425,
+          "value": 110106
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20021,
+          "value": 1010
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20021,
+          "value": 6530
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20013,
+          "value": 1020
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20015,
+          "value": 1030
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20014,
+          "value": 1040
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20018,
+          "value": 1050
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20020,
+          "value": 1060
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20020,
+          "value": 6520
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20015,
+          "value": 1070
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20019,
+          "value": 1080
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20013,
+          "value": 1090
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20013,
+          "value": 6510
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20019,
+          "value": 1100
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20019,
+          "value": 1170
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20015,
+          "value": 1110
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20013,
+          "value": 1120
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20013,
+          "value": 1160
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20019,
+          "value": 1130
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20019,
+          "value": 1140
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20019,
+          "value": 1150
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20016,
+          "value": 1160
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20016,
+          "value": 1120
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20021,
+          "value": 1170
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20021,
+          "value": 1100
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20021,
+          "value": 2010
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20021,
+          "value": 2160
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20014,
+          "value": 2020
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20015,
+          "value": 2030
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20013,
+          "value": 2040
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20015,
+          "value": 2050
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20013,
+          "value": 2070
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20015,
+          "value": 2080
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20019,
+          "value": 2090
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20019,
+          "value": 2170
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20013,
+          "value": 2100
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20013,
+          "value": 2110
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20014,
+          "value": 2120
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20013,
+          "value": 2130
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20013,
+          "value": 2150
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20019,
+          "value": 2140
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20016,
+          "value": 2150
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20016,
+          "value": 2130
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20021,
+          "value": 2160
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20021,
+          "value": 2010
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20021,
+          "value": 2170
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20021,
+          "value": 2090
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20013,
+          "value": 3010
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20013,
+          "value": 3030
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20013,
+          "value": 3160
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20013,
+          "value": 3040
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20017,
+          "value": 3050
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20019,
+          "value": 3060
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20013,
+          "value": 3070
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20015,
+          "value": 3080
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20021,
+          "value": 3090
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20021,
+          "value": 3170
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20015,
+          "value": 3100
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20013,
+          "value": 3110
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20018,
+          "value": 3120
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20016,
+          "value": 3130
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20019,
+          "value": 3140
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20021,
+          "value": 3150
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20013,
+          "value": 3160
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20013,
+          "value": 3030
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20021,
+          "value": 3170
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20021,
+          "value": 3090
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20012,
+          "value": 3180
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20015,
+          "value": 4010
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20019,
+          "value": 4020
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20019,
+          "value": 4170
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20019,
+          "value": 4030
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20015,
+          "value": 4040
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20015,
+          "value": 4050
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20014,
+          "value": 4060
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20015,
+          "value": 4070
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20012,
+          "value": 4080
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20017,
+          "value": 4090
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20019,
+          "value": 4100
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20019,
+          "value": 4160
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20015,
+          "value": 4110
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20019,
+          "value": 4120
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20017,
+          "value": 4130
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20019,
+          "value": 4140
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20019,
+          "value": 4150
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20019,
+          "value": 4160
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20019,
+          "value": 4100
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20021,
+          "value": 4170
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20021,
+          "value": 4020
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20021,
+          "value": 5010
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20021,
+          "value": 5080
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20021,
+          "value": 5020
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20021,
+          "value": 5030
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20021,
+          "value": 6540
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20021,
+          "value": 5040
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20021,
+          "value": 5060
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20021,
+          "value": 5080
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20021,
+          "value": 5010
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20021,
+          "value": 6010
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20018,
+          "value": 6020
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20019,
+          "value": 6030
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20019,
+          "value": 6070
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20021,
+          "value": 6050
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20019,
+          "value": 6060
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20021,
+          "value": 6070
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20021,
+          "value": 6030
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20019,
+          "value": 6510
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20019,
+          "value": 1090
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20019,
+          "value": 6520
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20019,
+          "value": 1060
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20021,
+          "value": 6530
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20021,
+          "value": 1010
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20021,
+          "value": 6540
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20021,
+          "value": 5030
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20013,
+          "value": 6980
+        },
+        {
+          "contentType": 4,
+          "buffType": 2,
+          "buffNo": 20013,
+          "value": 6990
+        }
+      ],
+      "heroOption": [
+        {
+          "heroNo": 5080,
+          "groupNo": 1,
+          "optionNo": 5,
+          "optionValue": 17,
+          "optionType": 2,
+          "optionLock": 1
+        },
+        {
+          "heroNo": 5080,
+          "groupNo": 1,
+          "optionSlot": 1,
+          "optionNo": 6,
+          "optionValue": 19,
+          "optionType": 2,
+          "optionLock": 1
+        },
+        {
+          "heroNo": 5080,
+          "groupNo": 1,
+          "optionSlot": 2,
+          "optionNo": 18,
+          "optionValue": 15,
+          "optionType": 2
+        },
+        {
+          "heroNo": 5080,
+          "groupNo": 2,
+          "optionNo": 1,
+          "optionValue": 19,
+          "optionType": 2,
+          "optionLock": 1
+        },
+        {
+          "heroNo": 5080,
+          "groupNo": 2,
+          "optionSlot": 1,
+          "optionNo": 5,
+          "optionValue": 16,
+          "optionType": 2,
+          "optionLock": 1
+        },
+        {
+          "heroNo": 5080,
+          "groupNo": 2,
+          "optionSlot": 2,
+          "optionNo": 17,
+          "optionValue": 15,
+          "optionType": 2
+        },
+        {
+          "heroNo": 5080,
+          "groupNo": 3,
+          "optionNo": 5,
+          "optionValue": 16,
+          "optionType": 2
+        },
+        {
+          "heroNo": 5080,
+          "groupNo": 3,
+          "optionSlot": 1,
+          "optionNo": 19,
+          "optionValue": 19,
+          "optionType": 2,
+          "optionLock": 1
+        },
+        {
+          "heroNo": 5080,
+          "groupNo": 3,
+          "optionSlot": 2,
+          "optionNo": 1,
+          "optionValue": 15,
+          "optionType": 2
+        },
+        {
+          "heroNo": 5080,
+          "groupNo": 4,
+          "optionNo": 5,
+          "optionValue": 20,
+          "optionType": 2,
+          "optionLock": 1
+        },
+        {
+          "heroNo": 5080,
+          "groupNo": 4,
+          "optionSlot": 1,
+          "optionNo": 16,
+          "optionValue": 14,
+          "optionType": 2
+        },
+        {
+          "heroNo": 5080,
+          "groupNo": 4,
+          "optionSlot": 2,
+          "optionNo": 1,
+          "optionValue": 18,
+          "optionType": 2,
+          "optionLock": 1
+        }
+      ]
+    }
+  ],
+  "__format__": "proto"
+}

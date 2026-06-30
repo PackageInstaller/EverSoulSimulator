@@ -12,7 +12,7 @@
      "packed": false
     },
     {
-     "name": "materialItem",
+     "name": "itemEtc",
      "number": 2,
      "repeated": false,
      "type": "message",
@@ -20,16 +20,65 @@
      "packed": false
     },
     {
-     "name": "heroEquipInfo",
+     "name": "resultEquipItem",
      "number": 3,
      "repeated": false,
      "type": "message",
-     "type_name": "sHeroEquipInfo",
+     "type_name": "sHeroEquipAndItemInfo",
      "packed": false
     }
    ]
   },
-  "sHeroEquipInfo": {
+  "sCurrencyAll": {
+   "fields": [
+    {
+     "name": "allCurrency",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sCurrency",
+     "packed": false
+    }
+   ]
+  },
+  "sCurrency": {
+   "fields": [
+    {
+     "name": "type",
+     "number": 1,
+     "repeated": false,
+     "type": "enum",
+     "type_name": "E_CURRENCY",
+     "packed": false
+    },
+    {
+     "name": "value",
+     "number": 2,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    }
+   ]
+  },
+  "sItemEtc": {
+   "fields": [
+    {
+     "name": "itemNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "cnt",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sHeroEquipAndItemInfo": {
    "fields": [
     {
      "name": "heroIdx",
@@ -39,16 +88,16 @@
      "packed": false
     },
     {
-     "name": "equip",
+     "name": "slotAndEquipItem",
      "number": 2,
      "repeated": false,
      "type": "message",
-     "type_name": "sSlotEquipItem",
+     "type_name": "sSlotAndEquipItem",
      "packed": false
     }
    ]
   },
-  "sSlotEquipItem": {
+  "sSlotAndEquipItem": {
    "fields": [
     {
      "name": "slot",
@@ -88,55 +137,6 @@
      "number": 3,
      "repeated": false,
      "type": "int32",
-     "packed": false
-    }
-   ]
-  },
-  "sItemEtc": {
-   "fields": [
-    {
-     "name": "itemNo",
-     "number": 1,
-     "repeated": false,
-     "type": "int32",
-     "packed": false
-    },
-    {
-     "name": "cnt",
-     "number": 2,
-     "repeated": false,
-     "type": "int32",
-     "packed": false
-    }
-   ]
-  },
-  "sCurrencyAll": {
-   "fields": [
-    {
-     "name": "allCurrency",
-     "number": 1,
-     "repeated": true,
-     "type": "message",
-     "type_name": "sCurrency",
-     "packed": false
-    }
-   ]
-  },
-  "sCurrency": {
-   "fields": [
-    {
-     "name": "type",
-     "number": 1,
-     "repeated": false,
-     "type": "enum",
-     "type_name": "E_CURRENCY",
-     "packed": false
-    },
-    {
-     "name": "value",
-     "number": 2,
-     "repeated": false,
-     "type": "int64",
      "packed": false
     }
    ]

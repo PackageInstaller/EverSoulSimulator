@@ -28,25 +28,36 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 
 MAGIC = b"ESOFLND1"
-# 要打包的目录与文件白名单（只打包运行时真正要读的）。
-DIRS = ["responses", "responses_newbie", "schema", "web"]
+JSON_DIRS = ["responses", "responses_newbie", "schema"]
+WEB_DIST_DIR = os.path.join(ROOT, "src", "web", "dist")
 WSS_FILES = ["wss/session_replies.json", "wss/chat_engineio.json"]
 
 
 def collect():
     """返回 [(相对路径, 字节内容)]。"""
     entries = []
-    for d in DIRS:
+    for d in JSON_DIRS:
         dpath = os.path.join(ROOT, d)
         if not os.path.isdir(dpath):
             print(f"警告：缺少目录 {d}/", file=sys.stderr)
             continue
         for fn in sorted(os.listdir(dpath)):
-            if d != "web" and not fn.endswith(".json"):
+            if not fn.endswith(".json"):
                 continue
             rel = f"{d}/{fn}"
             with open(os.path.join(dpath, fn), "rb") as f:
                 entries.append((rel, f.read()))
+    if not os.path.isdir(WEB_DIST_DIR):
+        print(f"警告：缺少 src/web/dist/", file=sys.stderr)
+    else:
+        for dirpath, dirnames, filenames in os.walk(WEB_DIST_DIR):
+            dirnames.sort()
+            for fn in sorted(filenames):
+                full = os.path.join(dirpath, fn)
+                rel_from_dist = os.path.relpath(full, WEB_DIST_DIR).replace("\\", "/")
+                rel = f"web/{rel_from_dist}"
+                with open(full, "rb") as f:
+                    entries.append((rel, f.read()))
     for rel in WSS_FILES:
         fpath = os.path.join(ROOT, rel)
         if os.path.exists(fpath):

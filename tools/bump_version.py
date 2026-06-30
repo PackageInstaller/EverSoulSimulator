@@ -36,7 +36,16 @@ def bump():
         path.write_text(new_text, encoding="utf-8")
         updated.append(str(path))
 
-    subprocess.run(["git", "add", "--"] + updated, cwd=ROOT, check=True)
+    # Stage package.json with force (-f) flag since it is ignored in .gitignore,
+    # and stage README files normally.
+    try:
+        subprocess.run(["git", "add", "-f", str(pkg_path)], cwd=ROOT, check=True)
+        for path_str in updated[1:]:
+            subprocess.run(["git", "add", path_str], cwd=ROOT, check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"Error staging files: {e}")
+        raise e
+
     print(f"version bumped to {new_version}")
 
 

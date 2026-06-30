@@ -172,12 +172,15 @@ bool smoke_test() {
 }
 
 bool ensure_ready(const std::string& data_dir, const std::string& db_path_override) {
-    (void)db_path_override;
+    const bool use_override = !db_path_override.empty();
     auto& mgr = account_db_manager();
-    if (mgr.active_db()) return true;
+    if (use_override)
+        mgr.close_active();
+    else if (mgr.active_db())
+        return true;
 
     auto& reg = account_registry();
-    if (!reg.list_active().empty()) {
+    if (!use_override && !reg.list_active().empty()) {
         const bool ok = mgr.reload_active();
         const std::string aid = reg.active_account_id();
         if (!aid.empty() && !reg.find_session(aid)) {
@@ -189,9 +192,15 @@ bool ensure_ready(const std::string& data_dir, const std::string& db_path_overri
     }
 
     const std::int64_t now = unix_ms();
-    const std::string account_id = "acct-default";
-    const std::string abs_dir =
-        (std::filesystem::path(config().state_dir) / "accounts" / account_id).string();
+    const std::string account_id = use_override ? "acct-override" : "acct-default";
+    const std::string abs_dir = [&]() -> std::string {
+        if (!use_override)
+            return (std::filesystem::path(config().state_dir) / "accounts" / account_id).string();
+        std::filesystem::path override_path(db_path_override);
+        if (override_path.extension() == ".sqlite3" || override_path.extension() == ".db")
+            return override_path.parent_path().empty() ? "." : override_path.parent_path().string();
+        return override_path.string();
+    }();
 
     auto adb = std::make_unique<AccountDatabase>(abs_dir);
     if (!adb->open()) {
@@ -208,14 +217,20 @@ bool ensure_ready(const std::string& data_dir, const std::string& db_path_overri
     e.player_id          = kDefaultPlayerId;
     e.idp_code           = "zd3";
     e.profile_source     = "responses";
-    e.state_db_relpath   = "accounts/" + account_id + "/state.sqlite3";
-    e.session_db_relpath = "accounts/" + account_id + "/session.sqlite3";
+    e.state_db_relpath   = !use_override
+        ? "accounts/" + account_id + "/state.sqlite3"
+        : (std::filesystem::path(abs_dir) / "state.sqlite3").string();
+    e.session_db_relpath = !use_override
+        ? "accounts/" + account_id + "/session.sqlite3"
+        : (std::filesystem::path(abs_dir) / "session.sqlite3").string();
     e.created_at_ms      = now;
     e.updated_at_ms      = now;
 
     if (!reg.insert(e)) {
-        log_line(0, "ORM", "bootstrap: registry insert failed");
-        return false;
+        if (!use_override || !reg.update(e)) {
+            log_line(0, "ORM", "bootstrap: registry insert failed");
+            return false;
+        }
     }
 
     {

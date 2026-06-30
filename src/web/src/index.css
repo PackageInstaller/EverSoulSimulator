@@ -2,6 +2,101 @@
 
 @variant dark (&:where(.dark, .dark *));
 
+/* ───────────────────────────────────────────────────────────────────
+   Eversoul Offline — 디자인 토큰 (CSS 변수)
+   라이트: 아주 연한 빛나는 하늘색 + 프리즘
+   다크  : 라이트의 반전 — 연한 분홍빛 계열
+   모든 컴포넌트는 이 변수를 styles/tokens.ts 의 상수로만 참조한다.
+   ─────────────────────────────────────────────────────────────────── */
+:root {
+  /* 배경: 아주 흐리게 (거의 흰색 + 미세 하늘빛) */
+  --es-bg-base: #eef8ff;
+  --es-bg-glow-1: rgba(125, 211, 252, 0.18);
+  --es-bg-glow-2: rgba(165, 243, 252, 0.13);
+  --es-bg-glow-3: rgba(186, 230, 253, 0.12);
+  --es-prism-1: rgba(96, 165, 250, 0.08);
+  --es-prism-2: rgba(56, 189, 248, 0.07);
+  --es-prism-3: rgba(167, 139, 250, 0.06);
+  --es-prism-4: rgba(125, 211, 252, 0.07);
+
+  /* 카드: 선명한 흰 유리 + 검정 굵은 외곽선 */
+  --es-glass-fill: rgba(255, 255, 255, 0.74);
+  --es-glass-fill-strong: rgba(255, 255, 255, 0.88);
+  --es-glass-fill-soft: rgba(255, 255, 255, 0.52);
+  --es-glass-border: rgba(11, 30, 48, 0.62);
+  --es-glass-edge: rgba(14, 165, 233, 0.60);
+  --es-glass-inner: rgba(255, 255, 255, 0.78);
+
+  --es-text-strong: #0b3a5b;
+  --es-text: #15506e;
+  --es-text-soft: #3b7da3;
+  --es-text-faint: #6aa6c4;
+
+  --es-accent: #0ea5e9;
+  --es-accent-2: #38bdf8;
+  --es-accent-3: #6366f1;
+  --es-success: #0d9488;
+  --es-danger: #e11d48;
+  --es-warn: #d97706;
+
+  /* 그림자: 검정 기반 강한 입체 */
+  --es-shadow-card: 0 10px 26px -8px rgba(8, 22, 38, 0.32), 0 4px 10px -3px rgba(8, 22, 38, 0.26);
+  --es-shadow-card-hover: 0 18px 42px -10px rgba(8, 22, 38, 0.44), 0 8px 18px -4px rgba(8, 22, 38, 0.34);
+  --es-shadow-float: 0 12px 30px -8px rgba(8, 22, 38, 0.38);
+  --es-text-shadow: 0 1px 2px rgba(255, 255, 255, 0.95), 0 1px 7px rgba(56, 189, 248, 0.28);
+  --es-text-shadow-strong: 0 1px 2px rgba(255, 255, 255, 0.95), 0 2px 12px rgba(14, 165, 233, 0.42);
+  --es-text-outline: rgba(255, 255, 255, 0.88);
+  /* 유리 위 프리즘 오버레이 (연한 하늘색 무지개) */
+  --es-card-prism: linear-gradient(135deg, rgba(56,189,248,0.16) 0%, rgba(167,139,250,0.10) 38%, transparent 60%, rgba(125,211,252,0.16) 100%);
+  /* 버튼 그라데이션 */
+  --es-btn-primary: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 50%, #6366f1 100%);
+  --es-btn-danger: linear-gradient(135deg, #e11d48 0%, #fb7185 100%);
+}
+
+.dark {
+  /* 배경: 검정 */
+  --es-bg-base: #050507;
+  --es-bg-glow-1: rgba(244, 114, 182, 0.14);
+  --es-bg-glow-2: rgba(251, 207, 232, 0.08);
+  --es-bg-glow-3: rgba(249, 168, 212, 0.10);
+  --es-prism-1: rgba(244, 114, 182, 0.10);
+  --es-prism-2: rgba(232, 121, 249, 0.08);
+  --es-prism-3: rgba(129, 140, 248, 0.07);
+  --es-prism-4: rgba(251, 146, 60, 0.06);
+
+  /* 카드: 아주 연한 분홍 반투명 유리 + 분홍 굵은 외곽선 */
+  --es-glass-fill: rgba(255, 192, 222, 0.09);
+  --es-glass-fill-strong: rgba(255, 192, 222, 0.15);
+  --es-glass-fill-soft: rgba(255, 192, 222, 0.05);
+  --es-glass-border: rgba(255, 180, 216, 0.55);
+  --es-glass-edge: rgba(244, 114, 182, 0.62);
+  --es-glass-inner: rgba(255, 214, 236, 0.14);
+  /* 유리 위 프리즘 오버레이 (연한 분홍 무지개) */
+  --es-card-prism: linear-gradient(135deg, rgba(244,114,182,0.18) 0%, rgba(192,132,252,0.12) 38%, transparent 60%, rgba(129,140,248,0.12) 100%);
+
+  --es-text-strong: #ffe4f3;
+  --es-text: #fbcfe8;
+  --es-text-soft: #f0abce;
+  --es-text-faint: #c98aa9;
+
+  --es-accent: #f472b6;
+  --es-accent-2: #f9a8d4;
+  --es-accent-3: #c084fc;
+  --es-success: #2dd4bf;
+  --es-danger: #fb7185;
+  --es-warn: #fbbf24;
+
+  /* 그림자: 검정 기반 강한 입체 */
+  --es-shadow-card: 0 10px 28px -8px rgba(0, 0, 0, 0.62), 0 4px 12px -3px rgba(0, 0, 0, 0.52);
+  --es-shadow-card-hover: 0 18px 44px -10px rgba(0, 0, 0, 0.72), 0 8px 20px -4px rgba(0, 0, 0, 0.58);
+  --es-shadow-float: 0 12px 32px -8px rgba(0, 0, 0, 0.6);
+  --es-text-shadow: 0 1px 2px rgba(0, 0, 0, 0.82), 0 1px 9px rgba(244, 114, 182, 0.42);
+  --es-text-shadow-strong: 0 1px 2px rgba(0, 0, 0, 0.88), 0 2px 14px rgba(244, 114, 182, 0.55);
+  --es-text-outline: rgba(0, 0, 0, 0.70);
+  --es-btn-primary: linear-gradient(135deg, #f472b6 0%, #c084fc 55%, #818cf8 100%);
+  --es-btn-danger: linear-gradient(135deg, #fb7185 0%, #f472b6 100%);
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -14,13 +109,114 @@ html, body, #root {
   min-height: 100svh;
 }
 
+html {
+  font-size: 16px;
+}
+
 body {
-  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  font-family: system-ui, 'Segoe UI', Roboto, 'Pretendard', sans-serif;
+  font-size: 12px;
+  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  color: var(--es-text);
+  background-color: var(--es-bg-base);
+  background-image:
+    radial-gradient(ellipse 70% 55% at 12% -5%, var(--es-bg-glow-1) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 92% 8%, var(--es-bg-glow-2) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 60% at 50% 110%, var(--es-bg-glow-3) 0%, transparent 60%),
+    conic-gradient(from 210deg at 80% 20%, var(--es-prism-1), var(--es-prism-2), var(--es-prism-3), var(--es-prism-4), var(--es-prism-1));
+  background-attachment: fixed;
+  background-size: 100% 100%, 100% 100%, 100% 100%, 220% 220%;
+  animation: es-prism-drift 26s ease-in-out infinite alternate;
 }
 
 #root {
   display: contents;
+}
+
+/* 최소 폰트 12px 강제 — 7~11px 인라인 흔적이 남아도 시각적으로 12px 보장 */
+[class*="text-[7px]"],
+[class*="text-[8px]"],
+[class*="text-[9px]"],
+[class*="text-[10px]"],
+[class*="text-[11px]"] {
+  font-size: 12px !important;
+}
+
+/* ── 동적 효과 keyframes ── */
+@keyframes es-prism-drift {
+  0%   { background-position: 0 0, 0 0, 0 0, 0% 50%; }
+  100% { background-position: 0 0, 0 0, 0 0, 100% 50%; }
+}
+@keyframes es-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+@keyframes es-shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes es-glow-pulse {
+  0%, 100% { opacity: 0.6; }
+  50%      { opacity: 1; }
+}
+@keyframes es-rise {
+  0%   { opacity: 0; transform: translateY(10px) scale(0.985); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes es-fade-in {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes es-pop {
+  0%   { opacity: 0; transform: scale(0.94); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes progress-indeterminate {
+  0%   { transform: translateX(-100%); }
+  60%  { transform: translateX(150%); }
+  100% { transform: translateX(150%); }
+}
+
+/* ── 중앙 유틸 (@utility — tokens.ts 에서 클래스명으로만 참조) ── */
+@utility text-glow {
+  text-shadow: var(--es-text-shadow);
+}
+@utility text-glow-strong {
+  text-shadow: var(--es-text-shadow-strong);
+}
+@utility text-outlined {
+  -webkit-text-stroke: 0.45px var(--es-text-outline);
+  paint-order: stroke fill;
+}
+@utility es-prism-edge {
+  position: relative;
+}
+@utility animate-rise {
+  animation: es-rise 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@utility animate-fade-in {
+  animation: es-fade-in 0.5s ease both;
+}
+@utility animate-pop {
+  animation: es-pop 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@utility animate-float {
+  animation: es-float 4.5s ease-in-out infinite;
+}
+@utility animate-glow-pulse {
+  animation: es-glow-pulse 2.4s ease-in-out infinite;
+}
+@utility scrollbar-none {
+  scrollbar-width: none;
+}
+@utility scrollbar-none-x {
+  scrollbar-width: none;
+}
+/* 아크릴 판: 반투명 유리 위 프리즘 무지개 오버레이 */
+@utility es-glass-prism {
+  background-image: var(--es-card-prism);
+  background-blend-mode: soft-light;
 }
