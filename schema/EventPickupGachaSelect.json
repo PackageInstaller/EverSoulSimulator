@@ -1,0 +1,24 @@
+{
+ "root": "EventPickupGachaSelect",
+ "messages": {
+  "EventPickupGachaSelect": {
+   "fields": [
+    {
+     "name": "eventGroup",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "gachaNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

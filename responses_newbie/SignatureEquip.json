@@ -1,0 +1,47 @@
+{
+  "heroEquip": {
+    "heroIdx": "1_641WhSES_17EE",
+    "equip": {
+      "slot": 4,
+      "itemEquipId": 5081
+    }
+  },
+  "itemSignature": [
+    {
+      "itemNo": 2031,
+      "grade": 110014,
+      "level": 1
+    },
+    {
+      "itemNo": 3071,
+      "grade": 110014,
+      "level": 1
+    },
+    {
+      "itemNo": 3161,
+      "grade": 110014,
+      "level": 1
+    },
+    {
+      "itemNo": 4061,
+      "grade": 110014,
+      "level": 1
+    },
+    {
+      "itemNo": 5081,
+      "grade": 110015,
+      "level": 1
+    },
+    {
+      "itemNo": 6051,
+      "grade": 110014,
+      "level": 1
+    },
+    {
+      "itemNo": 6071,
+      "grade": 110014,
+      "level": 1
+    }
+  ],
+  "__format__": "proto"
+}

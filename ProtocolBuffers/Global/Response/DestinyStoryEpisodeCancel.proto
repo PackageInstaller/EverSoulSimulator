@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package EsPb;
+
+message DestinyStoryEpisodeCancel {
+  repeated sDestinyStoryEpisode destinyStoryEpisode = 1;
+}
+
+message sDestinyStoryEpisode {
+  int64 storyNo = 1;
+  int32 state = 2;
+  int32 heroNo = 3;
+  int32 happy = 4;
+  int32 normal = 5;
+  int32 bad = 6;
+  int32 lastReceiveStoryNo = 7;
+}
+

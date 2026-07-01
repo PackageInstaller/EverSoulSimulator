@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message GuildLimitLevelChange {
+  string guildIdx = 1;
+  int32 limitLv = 2;
+}
+

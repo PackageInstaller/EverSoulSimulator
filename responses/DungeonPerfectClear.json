@@ -1,0 +1,26 @@
+{
+  "dungeon": {
+    "id": 1406796,
+    "dungeonNo": 2001,
+    "dungeonLevel": 1,
+    "x": -507.29,
+    "z": 43.7955,
+    "mapInfo": "Xc7RDcAgCATQg57ROBdJ99+oIkq070sQOUlXJAEofwxZNyd6wjvVVJ7JxsreVSnYJ2Bnda/VF0ey4PzGDKBJVbUcpa3Ra27cj8dEdJrcPg==",
+    "conditionInfo": "Y2KCAkYggLKYEACZjQIA",
+    "heroInfo": "fZM7b8MwDIT/kGCQEiUla1AVndoAQRoki5Hm0Ty2FuiUHx/LgF3CBG7x8vHuKJLmNglvLquyajmX4thxQ0SOmvnswS37Hu4rPHSQmpQrjKGDyQ/K+f3ew5zrN1BV8qCMx4uylVyVYVCGE+tMX6FqaK8g9bZhsJXdcQoTj7avBSi3H0apMo0ty6i8bgG8BWR7AN0uxNiqwUcAX84IXk3m/8q+zRDUU85rA9U+FyjTQD2EXwS/UOYSZf6B2ZZPtE+07JtHSms7HljkH6Q8IbhBcIe6NWeiZvtmfgcN3yeQhHLrXXfOTMTihCO5kKY1M10TWKY1Tw==",
+    "additionalInfo": "HcuxDYAwEATBXjZ+oT9s9NJlBFACzVjuHUM2yQwuPJCqY8WHhvcfB25BZSlxn8GNM3gw2kRwrjJf",
+    "relicInfo": "MjEwMiwyMTA4LDIyMTUsMjIxNywyMTE5LDIxMTcsMjExMSwyMjE2LDIyMTksMjEwNiwyMTAzLDIxMDQsMjMzMCwyMjAzLDIzMzUsMjEwNSwyMjEyLDIyMTQsMjMzMiwyMTA5LDIyMDE=",
+    "isEnter": 1,
+    "isClear": 1,
+    "isFirstClear": 1,
+    "missionNo": 100113,
+    "missionCnt": 1,
+    "seed": 45796,
+    "difficulty": 1,
+    "ultimatePoint": 1000,
+    "playerObjectId": 1170,
+    "maxClearLevel": 1,
+    "isPerfectClear": 1
+  },
+  "__format__": "proto"
+}

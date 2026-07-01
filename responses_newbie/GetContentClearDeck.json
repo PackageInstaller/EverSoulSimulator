@@ -1,0 +1,356 @@
+{
+  "contentNo": 2,
+  "contentClearDecks": [
+    {
+      "contentClearDeckInfo": [
+        {
+          "formationType": 2,
+          "sumPower": 15789,
+          "clearHero": [
+            {
+              "heroNo": 1010,
+              "gradeSno": 110015,
+              "level": 20
+            },
+            {
+              "heroNo": 1150,
+              "gradeSno": 110014,
+              "level": 20
+            },
+            {
+              "heroNo": 5080,
+              "gradeSno": 110014,
+              "level": 20
+            },
+            {
+              "heroNo": 1060,
+              "gradeSno": 110014,
+              "level": 12
+            },
+            {
+              "heroNo": 3030,
+              "gradeSno": 110016,
+              "level": 10
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "contentClearDeckInfo": [
+        {
+          "formationType": 2,
+          "sumPower": 11936,
+          "clearHero": [
+            {
+              "heroNo": 1150,
+              "gradeSno": 110014,
+              "level": 20
+            },
+            {
+              "heroNo": 1010,
+              "gradeSno": 110015,
+              "level": 10
+            },
+            {
+              "heroNo": 5080,
+              "gradeSno": 110014,
+              "level": 10
+            },
+            {
+              "heroNo": 1060,
+              "gradeSno": 110014,
+              "level": 10
+            },
+            {
+              "heroNo": 3030,
+              "gradeSno": 110016,
+              "level": 5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "contentClearDeckInfo": [
+        {
+          "formationType": 2,
+          "sumPower": 10978,
+          "clearHero": [
+            {
+              "heroNo": 1150,
+              "gradeSno": 110014,
+              "level": 20
+            },
+            {
+              "heroNo": 1010,
+              "gradeSno": 110015,
+              "level": 10
+            },
+            {
+              "heroNo": 1060,
+              "gradeSno": 110014,
+              "level": 10
+            },
+            {
+              "heroNo": 5080,
+              "gradeSno": 110014,
+              "level": 6
+            },
+            {
+              "heroNo": 3030,
+              "gradeSno": 110016,
+              "level": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "contentClearDeckInfo": [
+        {
+          "formationType": 2,
+          "sumPower": 10978,
+          "clearHero": [
+            {
+              "heroNo": 1150,
+              "gradeSno": 110014,
+              "level": 20
+            },
+            {
+              "heroNo": 1010,
+              "gradeSno": 110015,
+              "level": 10
+            },
+            {
+              "heroNo": 1060,
+              "gradeSno": 110014,
+              "level": 10
+            },
+            {
+              "heroNo": 5080,
+              "gradeSno": 110014,
+              "level": 6
+            },
+            {
+              "heroNo": 3030,
+              "gradeSno": 110016,
+              "level": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "contentClearDeckInfo": [
+        {
+          "formationType": 2,
+          "sumPower": 4427,
+          "clearHero": [
+            {
+              "heroNo": 10,
+              "gradeSno": 110011,
+              "level": 1
+            },
+            {
+              "heroNo": 20,
+              "gradeSno": 110011,
+              "level": 1
+            },
+            {
+              "heroNo": 30,
+              "gradeSno": 110011,
+              "level": 1
+            },
+            {
+              "heroNo": 40,
+              "gradeSno": 110011,
+              "level": 1
+            },
+            {
+              "heroNo": 2140,
+              "gradeSno": 110014,
+              "level": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "contentClearDeckInfo": [
+        {
+          "formationType": 2,
+          "sumPower": 4427,
+          "clearHero": [
+            {
+              "heroNo": 10,
+              "gradeSno": 110011,
+              "level": 1
+            },
+            {
+              "heroNo": 20,
+              "gradeSno": 110011,
+              "level": 1
+            },
+            {
+              "heroNo": 30,
+              "gradeSno": 110011,
+              "level": 1
+            },
+            {
+              "heroNo": 40,
+              "gradeSno": 110011,
+              "level": 1
+            },
+            {
+              "heroNo": 3150,
+              "gradeSno": 110014,
+              "level": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "contentClearDeckInfo": [
+        {
+          "formationType": 2,
+          "sumPower": 4427,
+          "clearHero": [
+            {
+              "heroNo": 10,
+              "gradeSno": 110011,
+              "level": 1
+            },
+            {
+              "heroNo": 20,
+              "gradeSno": 110011,
+              "level": 1
+            },
+            {
+              "heroNo": 30,
+              "gradeSno": 110011,
+              "level": 1
+            },
+            {
+              "heroNo": 40,
+              "gradeSno": 110011,
+              "level": 1
+            },
+            {
+              "heroNo": 3060,
+              "gradeSno": 110014,
+              "level": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "contentClearDeckInfo": [
+        {
+          "formationType": 2,
+          "sumPower": 4427,
+          "clearHero": [
+            {
+              "heroNo": 10,
+              "gradeSno": 110011,
+              "level": 1
+            },
+            {
+              "heroNo": 20,
+              "gradeSno": 110011,
+              "level": 1
+            },
+            {
+              "heroNo": 30,
+              "gradeSno": 110011,
+              "level": 1
+            },
+            {
+              "heroNo": 40,
+              "gradeSno": 110011,
+              "level": 1
+            },
+            {
+              "heroNo": 2010,
+              "gradeSno": 110014,
+              "level": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "contentClearDeckInfo": [
+        {
+          "formationType": 2,
+          "sumPower": 4427,
+          "clearHero": [
+            {
+              "heroNo": 10,
+              "gradeSno": 110011,
+              "level": 1
+            },
+            {
+              "heroNo": 20,
+              "gradeSno": 110011,
+              "level": 1
+            },
+            {
+              "heroNo": 30,
+              "gradeSno": 110011,
+              "level": 1
+            },
+            {
+              "heroNo": 40,
+              "gradeSno": 110011,
+              "level": 1
+            },
+            {
+              "heroNo": 1150,
+              "gradeSno": 110014,
+              "level": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "contentClearDeckInfo": [
+        {
+          "formationType": 2,
+          "sumPower": 4326,
+          "clearHero": [
+            {
+              "heroNo": 10,
+              "gradeSno": 110011,
+              "level": 1
+            },
+            {
+              "heroNo": 20,
+              "gradeSno": 110011,
+              "level": 1
+            },
+            {
+              "heroNo": 30,
+              "gradeSno": 110011,
+              "level": 1
+            },
+            {
+              "heroNo": 40,
+              "gradeSno": 110011,
+              "level": 1
+            },
+            {
+              "heroNo": 120,
+              "gradeSno": 110012,
+              "level": 1
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "__format__": "proto"
+}

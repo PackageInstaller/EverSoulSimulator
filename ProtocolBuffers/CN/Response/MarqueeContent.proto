@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package EsPb;
+
+message MarqueeContent {
+  string lang = 1;
+  string text = 2;
+}
+

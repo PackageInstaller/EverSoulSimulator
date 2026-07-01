@@ -1,0 +1,271 @@
+{
+  "originTower": [
+    {
+      "towerNo": 200,
+      "stageNo": 4200063,
+      "firstConquerorUserIdx": "2_a51Pf6uL_2v5T",
+      "firstConquerorNickName": "QUIT",
+      "firstConquerorThumbnail": {
+        "thumbnailFrame": 5504,
+        "useCustom": true,
+        "thumbnail": "MSw5MTMwMywtNDAuNzc5NjYsLTIyMy4xOTk5LDAuNjUwMTUwNSwwLjY1MDE1MDUsMzU5Ljk1NzQ="
+      }
+    },
+    {
+      "towerNo": 201,
+      "stageNo": 4201063,
+      "firstConquerorUserIdx": "0_531PdeSx_6zt",
+      "firstConquerorNickName": "雪月花",
+      "firstConquerorThumbnail": {
+        "thumbnailFrame": 5659,
+        "useCustom": true,
+        "thumbnail": "MSw2MDIwMiwtMzE4LjQ2MTUsLTE2OS4yMzA3LDAuNTUsMC41NSww"
+      }
+    },
+    {
+      "towerNo": 202,
+      "stageNo": 4202063,
+      "firstConquerorUserIdx": "2_b41PdeSE_uOX",
+      "firstConquerorNickName": "烏鴉",
+      "firstConquerorThumbnail": {
+        "thumbnailFrame": 5719,
+        "useCustom": true,
+        "thumbnail": "MiwzMDkwNiwtMTQ1LjIwMjYsLTMyNC41MzYxLDAuOTU0NzQ2NCwwLjk1NDc0NjQsMzU4LjgzNQ=="
+      }
+    },
+    {
+      "towerNo": 203,
+      "stageNo": 4203063,
+      "firstConquerorUserIdx": "2_a51Pf6uL_2v5T",
+      "firstConquerorNickName": "QUIT",
+      "firstConquerorThumbnail": {
+        "thumbnailFrame": 5504,
+        "useCustom": true,
+        "thumbnail": "MSw5MTMwMywtNDAuNzc5NjYsLTIyMy4xOTk5LDAuNjUwMTUwNSwwLjY1MDE1MDUsMzU5Ljk1NzQ="
+      }
+    },
+    {
+      "towerNo": 204,
+      "stageNo": 4204063,
+      "firstConquerorUserIdx": "2_a51Pf6uL_2v5T",
+      "firstConquerorNickName": "QUIT",
+      "firstConquerorThumbnail": {
+        "thumbnailFrame": 5504,
+        "useCustom": true,
+        "thumbnail": "MSw5MTMwMywtNDAuNzc5NjYsLTIyMy4xOTk5LDAuNjUwMTUwNSwwLjY1MDE1MDUsMzU5Ljk1NzQ="
+      }
+    },
+    {
+      "towerNo": 205,
+      "stageNo": 4205063,
+      "firstConquerorUserIdx": "2_f41PdILw_1l4W",
+      "firstConquerorNickName": "samurai",
+      "firstConquerorThumbnail": {
+        "thumbnailFrame": 5631,
+        "useCustom": true,
+        "thumbnail": "MywyMjg1LDkzLjA2NzU3LC0zNzIuMzA3NywxLDEsMA=="
+      }
+    },
+    {
+      "towerNo": 206,
+      "stageNo": 4206063,
+      "firstConquerorUserIdx": "0_041PdeSx_1r0V",
+      "firstConquerorNickName": "Mew",
+      "firstConquerorThumbnail": {
+        "thumbnailFrame": 5700,
+        "useCustom": true,
+        "thumbnail": "MSwzMTEwMiwtMjc4LjE4NDUsLTYwLjMwOTY2LDAuNTUsMC41NSw0NC4yMTEwNA=="
+      }
+    },
+    {
+      "towerNo": 207,
+      "stageNo": 4207063,
+      "firstConquerorUserIdx": "0_431PdeSx_0",
+      "firstConquerorNickName": "siun",
+      "firstConquerorThumbnail": {
+        "thumbnailFrame": 5716,
+        "useCustom": true,
+        "thumbnail": "MywyMjIwLDU2My45ODA0LDM0NC4yMDY1LDAuOTgwMDAwMywwLjk4MDAwMDMsMzU5LjQ5OTk="
+      }
+    },
+    {
+      "towerNo": 208,
+      "stageNo": 4208063,
+      "firstConquerorUserIdx": "0_041PdeSx_1r0V",
+      "firstConquerorNickName": "Mew",
+      "firstConquerorThumbnail": {
+        "thumbnailFrame": 5700,
+        "useCustom": true,
+        "thumbnail": "MSwzMTEwMiwtMjc4LjE4NDUsLTYwLjMwOTY2LDAuNTUsMC41NSw0NC4yMTEwNA=="
+      }
+    },
+    {
+      "towerNo": 209,
+      "stageNo": 4209063,
+      "firstConquerorUserIdx": "0_441PdeSx_AS",
+      "firstConquerorNickName": "MenTroS",
+      "firstConquerorThumbnail": {
+        "thumbnailFrame": 5682,
+        "useCustom": true,
+        "thumbnail": "MywyMzIwLDIzLjY1MDE4LC0yMjkuNzcxLDAuNjI4ODMsMC42Mjg4MywxLjEzODg3NQ==",
+        "firstTitle": 6604,
+        "secondTitle": 6609
+      }
+    },
+    {
+      "towerNo": 210,
+      "stageNo": 4210063,
+      "firstConquerorUserIdx": "0_441PdeSx_AS",
+      "firstConquerorNickName": "MenTroS",
+      "firstConquerorThumbnail": {
+        "thumbnailFrame": 5682,
+        "useCustom": true,
+        "thumbnail": "MywyMzIwLDIzLjY1MDE4LC0yMjkuNzcxLDAuNjI4ODMsMC42Mjg4MywxLjEzODg3NQ==",
+        "firstTitle": 6604,
+        "secondTitle": 6609
+      }
+    },
+    {
+      "towerNo": 211,
+      "stageNo": 4211063,
+      "firstConquerorUserIdx": "0_b21PfYMc_1F2U",
+      "firstConquerorNickName": "hattiecos",
+      "firstConquerorThumbnail": {
+        "thumbnailFrame": 5701,
+        "useCustom": true,
+        "thumbnail": "MSwzMTEwMiwtOTEuNjQ2OTQsLTIwNy4yMDIxLDAuNjQxOTU0OSwwLjY0MTk1NDksMTAuNDg3NDg="
+      }
+    },
+    {
+      "towerNo": 212,
+      "stageNo": 4212063,
+      "firstConquerorUserIdx": "2_a51Pf6uL_2v5T",
+      "firstConquerorNickName": "QUIT",
+      "firstConquerorThumbnail": {
+        "thumbnailFrame": 5504,
+        "useCustom": true,
+        "thumbnail": "MSw5MTMwMywtNDAuNzc5NjYsLTIyMy4xOTk5LDAuNjUwMTUwNSwwLjY1MDE1MDUsMzU5Ljk1NzQ="
+      }
+    },
+    {
+      "towerNo": 213,
+      "stageNo": 4213063,
+      "firstConquerorUserIdx": "0_b31PdILw_1yJP",
+      "firstConquerorNickName": "夢幻泡影",
+      "firstConquerorThumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MSw5MjgwNCwxMjEuNzMwOCwtMjYuNjQwNjIsMC40NzE5Mjg5LDAuNDcxOTI4OSwzNS4wMzc2NQ==",
+        "firstTitle": 6706,
+        "secondTitle": 6612
+      }
+    },
+    {
+      "towerNo": 214,
+      "stageNo": 4214063,
+      "firstConquerorUserIdx": "0_b41PfYMc_33Lq",
+      "firstConquerorNickName": "yuraShigure",
+      "firstConquerorThumbnail": {
+        "thumbnailFrame": 5656,
+        "useCustom": true,
+        "thumbnail": "MSwzMTAwMSwtMjM0Ljc4MjYsNDMuNDc4MTgsMC41NSwwLjU1LDA="
+      }
+    },
+    {
+      "towerNo": 215,
+      "stageNo": 4215063,
+      "firstConquerorUserIdx": "0_b41PfYMc_33Lq",
+      "firstConquerorNickName": "yuraShigure",
+      "firstConquerorThumbnail": {
+        "thumbnailFrame": 5656,
+        "useCustom": true,
+        "thumbnail": "MSwzMTAwMSwtMjM0Ljc4MjYsNDMuNDc4MTgsMC41NSwwLjU1LDA="
+      }
+    },
+    {
+      "towerNo": 216,
+      "stageNo": 4216063,
+      "firstConquerorUserIdx": "1_221PdeSx_4M",
+      "firstConquerorNickName": "癒月巧可天下第一",
+      "firstConquerorThumbnail": {
+        "thumbnailFrame": 5680,
+        "useCustom": true,
+        "thumbnail": "MSwyMTYwMSwzMi4xMzU1OSwtMTAzLjc3MiwwLjQ1MzY3MjgsMC40NTM2NzI4LDAuMDQ0ODE2MDY="
+      }
+    },
+    {
+      "towerNo": 217,
+      "stageNo": 4217063,
+      "firstConquerorUserIdx": "0_b31PdILw_1yJP",
+      "firstConquerorNickName": "夢幻泡影",
+      "firstConquerorThumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MSw5MjgwNCwxMjEuNzMwOCwtMjYuNjQwNjIsMC40NzE5Mjg5LDAuNDcxOTI4OSwzNS4wMzc2NQ==",
+        "firstTitle": 6706,
+        "secondTitle": 6612
+      }
+    },
+    {
+      "towerNo": 218,
+      "stageNo": 4218063,
+      "firstConquerorUserIdx": "2_741PdILo_Px4",
+      "firstConquerorNickName": "柏木文香",
+      "firstConquerorThumbnail": {
+        "thumbnailFrame": 5701,
+        "useCustom": true,
+        "thumbnail": "MSwzMDgwNCw1NC41MjE2NSwtMzEuNDg3NjksMC44NTk5OTk4LDAuODU5OTk5OCwzMTEuOTk5NA==",
+        "firstTitle": 550801,
+        "secondTitle": 6604
+      }
+    },
+    {
+      "towerNo": 219,
+      "stageNo": 4219063,
+      "firstConquerorUserIdx": "1_221PdeSx_4M",
+      "firstConquerorNickName": "癒月巧可天下第一",
+      "firstConquerorThumbnail": {
+        "thumbnailFrame": 5680,
+        "useCustom": true,
+        "thumbnail": "MSwyMTYwMSwzMi4xMzU1OSwtMTAzLjc3MiwwLjQ1MzY3MjgsMC40NTM2NzI4LDAuMDQ0ODE2MDY="
+      }
+    },
+    {
+      "towerNo": 220,
+      "stageNo": 4220063,
+      "firstConquerorUserIdx": "1_441PdeSx_1GzS",
+      "firstConquerorNickName": "結月",
+      "firstConquerorThumbnail": {
+        "thumbnailFrame": 5693,
+        "useCustom": true,
+        "thumbnail": "MSwxMDkwMSwtNjIuNDc1NTksLTEzMy4wMzI5LDAuNTUsMC41NSww",
+        "firstTitle": 60005,
+        "secondTitle": 60004
+      }
+    },
+    {
+      "towerNo": 400,
+      "stageNo": 4400004,
+      "firstConquerorUserIdx": "0_f11PdeSF_Y5",
+      "firstConquerorNickName": "RekiShin",
+      "firstConquerorThumbnail": {
+        "thumbnailFrame": 5700,
+        "useCustom": true,
+        "thumbnail": "MSw5MDcwMyw1Mi41MDAwMywtMy4wNTE3NThFLTA1LDAuMjQwMjUzOSwwLjI0MDI1MzksMC40MjM2NzY1"
+      }
+    },
+    {
+      "towerNo": 401,
+      "firstConquerorUserIdx": "2_a21PtzII_4Ye",
+      "firstConquerorNickName": "Rew",
+      "firstConquerorThumbnail": {
+        "thumbnailFrame": 5677,
+        "useCustom": true,
+        "thumbnail": "MywyNDA0LDE3NC45MzE2LC00NjYuMDQ0MywxLDEsMA==",
+        "firstTitle": 6436,
+        "secondTitle": 6607
+      }
+    }
+  ],
+  "__format__": "proto"
+}

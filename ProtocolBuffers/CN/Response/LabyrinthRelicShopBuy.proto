@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package EsPb;
+
+message LabyrinthRelicShopBuy {
+  repeated sLabyrinthRelicShopItem labyrinthRelicShopItem = 1;
+  bytes relicInfo = 2;
+  sLabyrinthItem remainCoin = 3;
+}
+
+message sLabyrinthRelicShopItem {
+  int32 relicNo = 1;
+  int32 soldOut = 2;
+}
+
+message sLabyrinthItem {
+  int32 itemNo = 1;
+  int32 cnt = 2;
+}
+

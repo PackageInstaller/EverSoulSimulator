@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package EsPb;
+
+message BattleConfigSave {
+  repeated sHeroActionPriority heroActionPriority = 1;
+  int32 speed = 2;
+  bool battleAutoActive = 3;
+  bool actionActive = 4;
+  bool actionUltimate = 6;
+  bool battleAutoUltimate = 7;
+}
+
+message sHeroActionPriority {
+  int32 heroNo = 1;
+  int32 priority = 2;
+}
+

@@ -1,0 +1,50 @@
+{
+ "root": "FriendHeartSendAll",
+ "messages": {
+  "FriendHeartSendAll": {
+   "fields": [
+    {
+     "name": "heartSendAll",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sHeartSend",
+     "packed": false
+    },
+    {
+     "name": "heartSendCnt",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sHeartSend": {
+   "fields": [
+    {
+     "name": "requestUserIdx",
+     "number": 1,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "responseUserIdx",
+     "number": 2,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "heartSendFlag",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

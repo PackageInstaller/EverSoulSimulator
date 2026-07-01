@@ -1,0 +1,9 @@
+{
+  "townInfo": {
+    "townLevel": 1
+  },
+  "castleMaxFloorNo": 101,
+  "playerPosition": {},
+  "visitBattleMaxCount": 3,
+  "__format__": "proto"
+}

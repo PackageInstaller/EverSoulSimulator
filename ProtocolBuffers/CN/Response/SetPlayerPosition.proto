@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package EsPb;
+
+message SetPlayerPosition {
+  sVector3 playerPosition = 1;
+}
+
+message sVector3 {
+  float x = 1;
+  float y = 2;
+  float z = 3;
+}
+

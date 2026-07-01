@@ -1,0 +1,76 @@
+{
+ "root": "ArenaMyRank",
+ "messages": {
+  "ArenaMyRank": {
+   "fields": [
+    {
+     "name": "myNormalArena",
+     "number": 1,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sMyNormalArena",
+     "packed": false
+    },
+    {
+     "name": "myChampionsArena",
+     "number": 2,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sMyChampionsArena",
+     "packed": false
+    }
+   ]
+  },
+  "sMyNormalArena": {
+   "fields": [
+    {
+     "name": "normalRank",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "arenaOpenNotificationDt",
+     "number": 2,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    }
+   ]
+  },
+  "sMyChampionsArena": {
+   "fields": [
+    {
+     "name": "championsRank",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "waitRewardStartDt",
+     "number": 2,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "waitRewardPercentage",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "championsArenaOpenNotificationDt",
+     "number": 4,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

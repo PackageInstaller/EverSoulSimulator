@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message OriginTowerStoryClear {
+  int32 towerNo = 1;
+  int32 stageNo = 2;
+}
+

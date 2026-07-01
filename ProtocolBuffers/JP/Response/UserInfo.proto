@@ -1,0 +1,487 @@
+syntax = "proto3";
+
+package EsPb;
+
+enum E_CURRENCY {
+  None = 0;
+  Gold = 1;
+  FreeDia = 2;
+  ManaDust = 3;
+  ManaCrystal = 4;
+  Exp = 5;
+  Heart = 6;
+  LifeEssence = 8;
+  ArenaTicket = 9;
+  Dungeon = 10;
+  Guild = 11;
+  Release = 12;
+  Arena = 13;
+  Relics = 14;
+  Silver = 16;
+  SingleRaidCoin = 18;
+  PickupGachaTicket = 19;
+  Sign1 = 20;
+  Sign2 = 21;
+  SignHuman = 22;
+  SignFurry = 23;
+  SignElf = 24;
+  SignUndead = 25;
+  SignAngel = 26;
+  SignDemon = 27;
+  NormalTicket = 28;
+  RaceTicket = 29;
+  RareSoulstone = 30;
+  EpicSoulstone = 31;
+  EquipExp = 32;
+  CollaborationSummonTicket = 33;
+  PayDia = 42;
+  TeamarenaTicket = 44;
+  SignatureGachaTicket = 45;
+  PremiumGachaTicket = 46;
+  MonthlyHeroResetTicket = 47;
+  EquipExpMiddle = 48;
+  EquipExpHigh = 49;
+  ZodiacExp = 50;
+  LabyrinthTicket = 51;
+  TranscendentStone = 52;
+  SingleRaidTicket = 53;
+  SetItemEngrave = 54;
+  RotationDungeonTicket = 55;
+  EdenCoin = 57;
+  TypeBarrierGateTicket = 58;
+  OriginTowerTicket = 59;
+  DoubleGateNormalTicket = 60;
+  DoubleGateNormalTicketCharge = 62;
+  SignatureEnhanceStone = 64;
+  HeroOptionChangeStone = 65;
+  WishGachaTicket = 66;
+  TotalDia = 100;
+}
+
+enum eDoubleGateStageType {
+  DoubleGateStageTypeNone = 0;
+  DoubleGateNormalManaCrystal = 1;
+  DoubleGateNormalGold = 2;
+  DoubleGateNormalManaDust = 3;
+  DoubleGateNormalEnhanceStone = 4;
+}
+
+enum eDungeonRewardType {
+  NoneDungeonReward = 0;
+  Mission = 1;
+  Object = 2;
+  Monster = 3;
+  Chest = 4;
+}
+
+enum eDungeonMaxLevelType {
+  Weekly = 0;
+  Training = 1;
+}
+
+message UserInfo {
+  sUser user = 1;
+  sCurrencyAll currency = 2;
+  repeated sHero hero = 3;
+  repeated sHeroEquipAll heroEquip = 4;
+  repeated sStage stage = 5;
+  repeated sZodiac zodiac = 6;
+  repeated sFormation formation = 7;
+  repeated sHeroReputation heroReputation = 8;
+  sAutoHunt autoHunt = 9;
+  repeated sSpiritTree spiritTree = 10;
+  repeated sBuilding building = 11;
+  sDailyContent dailyContent = 12;
+  repeated sTalk talk = 13;
+  repeated sTutorial tutorial = 14;
+  repeated sStory story = 15;
+  repeated sItemEquip itemEquip = 17;
+  repeated sItemEtc itemEtc = 18;
+  sGuild guild = 19;
+  repeated sGuildMember guildMember = 20;
+  repeated sGuildJoinRequest guildJoinRequest = 21;
+  repeated sDoubleGate doubleGate = 22;
+  int64 secureSeed = 23;
+  sLobbyBackground lobbyBackground = 24;
+  sDungeonList dungeonList = 25;
+  sBGM bgm = 26;
+  repeated sContentBuff buff = 27;
+  string chatKey = 28;
+  repeated int32 collectionNo = 29;
+  repeated sDungeonFirstReward dungeonFirstRewardList = 30;
+  string chatServerUrl = 31;
+  int32 sdHeroNo = 32;
+  int32 speed = 33;
+  bool battleAutoActive = 34;
+  repeated sCashDailyN cashDailyN = 36;
+  bool battleAutoUltimate = 37;
+  int32 scalingLevel = 38;
+  int32 lastClearDungeonLevel = 39;
+  repeated sTownVisitHero townVisitHero = 40;
+  int32 monthlyHeroResetFlag = 41;
+  repeated sTutorialStory tutorialStory = 42;
+  repeated sChallengeMode challengeMode = 43;
+  repeated sArkCore arkCore = 44;
+  bool actionActive = 45;
+  bool actionUltimate = 46;
+  repeated int32 contentLimitNo = 47;
+  int32 arkOverClockLevel = 48;
+  int32 arkOperator = 49;
+  repeated DoubleGateDailyContent doubleGateDailyContent = 50;
+  repeated sHeroOption heroOption = 51;
+}
+
+message sUser {
+  string idx = 1;
+  string nickName = 2;
+  int64 lastLoginDt = 3;
+  int32 channelNo = 4;
+  int32 treeLevel = 5;
+  int32 isLog = 6;
+  string about = 7;
+  int64 returnUserDt = 8;
+  int64 createdDt = 9;
+  sThumbnail thumbnail = 10;
+  int32 popularity = 11;
+  int32 isFirstCashBuy = 12;
+  int32 reviewFlag = 13;
+  int64 reviewDt = 14;
+  int32 equipFlag = 15;
+  int64 paymentAgreeDt = 16;
+  int32 paymentAgreeType = 17;
+}
+
+message sThumbnail {
+  int32 thumbnailFrame = 1;
+  int32 thumbnailImage = 2;
+  bool useCustom = 3;
+  bytes thumbnail = 4;
+}
+
+message sCurrencyAll {
+  repeated sCurrency allCurrency = 1;
+}
+
+message sCurrency {
+  E_CURRENCY type = 1;
+  int64 value = 2;
+}
+
+message sHero {
+  string idx = 1;
+  int32 heroNo = 2;
+  int32 level = 3;
+  int32 isResonance = 4;
+  int32 gradeSno = 5;
+  int32 raceSno = 6;
+  int32 isLock = 7;
+}
+
+message sHeroEquipAll {
+  string heroIdx = 1;
+  repeated sSlotAndEquipId equip = 2;
+}
+
+message sSlotAndEquipId {
+  int32 slot = 1;
+  int32 itemEquipId = 2;
+}
+
+message sStage {
+  int32 stageNo = 1;
+  int32 stageType = 2;
+  int64 updateDt = 3;
+}
+
+message sZodiac {
+  int32 zodiacNo = 1;
+}
+
+message sFormation {
+  int32 no = 1;
+  int32 kind = 2;
+  repeated string heroidx = 3;
+  int32 formationType = 4;
+  string formationName = 5;
+  sRelic relic = 6;
+}
+
+message sRelic {
+  int32 type = 1;
+  int32 formation = 2;
+  int32 relicOrder = 3;
+  int32 relicNo = 4;
+}
+
+message sHeroReputation {
+  int32 heroNo = 1;
+  int32 reputation = 2;
+  int32 state = 3;
+  int32 stress = 4;
+  int64 lastUpdateDt = 5;
+  int64 giftDt = 6;
+  int32 costumeItemNo = 7;
+  int32 storyReward = 8;
+  int32 maxGradeSno = 9;
+  int32 objetUid = 10;
+  int64 maxLevelDt = 11;
+  int32 arbeitExp = 12;
+  int32 priority = 13;
+  int64 restFinishDt = 14;
+}
+
+message sAutoHunt {
+  int32 stageNo = 1;
+  int64 labDt = 2;
+  int64 receiveDt = 3;
+}
+
+message sSpiritTree {
+  int32 slotNo = 1;
+  string heroIdx = 2;
+  int64 enableDt = 3;
+}
+
+message sBuilding {
+  int32 buildingNo = 1;
+  int32 slot = 2;
+  int64 buildFinishDt = 3;
+  int32 isOpen = 4;
+  int32 heroNo = 5;
+}
+
+message sDailyContent {
+  int32 arenaCnt = 1;
+  int32 townCoin = 2;
+  int32 raceSno = 3;
+  int32 ahQuickCnt = 4;
+  int32 teamarenaCnt = 5;
+  int32 doubleGateNormalTicketBuyCount = 6;
+}
+
+message sTalk {
+  int32 talkNo = 1;
+  int32 heroNo = 2;
+  int64 talkDt = 3;
+}
+
+message sTutorial {
+  int32 tutorialNo = 1;
+}
+
+message sStory {
+  int32 storyNo = 1;
+  int64 updateDt = 2;
+}
+
+message sItemEquip {
+  int64 id = 1;
+  int32 itemNo = 2;
+  int32 exp = 3;
+}
+
+message sItemEtc {
+  int32 itemNo = 1;
+  int32 cnt = 2;
+}
+
+message sGuild {
+  string idx = 1;
+  int32 emblemNo = 2;
+  string name = 3;
+  int32 exp = 4;
+  int32 cnt = 5;
+  int32 joinType = 6;
+  int32 limitLv = 7;
+  string notice = 8;
+  int64 dt = 9;
+  int32 regularRaidNo = 10;
+  int32 irregularRaidNo = 11;
+  int32 raidPoint = 12;
+  int32 useSkillPoint = 13;
+  string skillLevel = 14;
+  bytes customEmblem = 15;
+  int64 skillResetDt = 16;
+  string introduction = 17;
+}
+
+message sGuildMember {
+  string guildIdx = 1;
+  string userIdx = 2;
+  int32 channelNo = 3;
+  int32 grade = 4;
+  int64 dt = 5;
+  int32 contribution = 6;
+  string nickName = 7;
+  int64 lastLoginDt = 8;
+  sThumbnail thumbnail = 9;
+  int64 power = 10;
+  int32 level = 11;
+  int64 logoutDt = 12;
+  int32 weeklyContribution = 13;
+}
+
+message sGuildJoinRequest {
+  string guildIdx = 1;
+  string userIdx = 2;
+  int32 level = 3;
+  string nickName = 4;
+  int64 dt = 5;
+  sThumbnail thumbnail = 6;
+  int64 power = 7;
+}
+
+message sDoubleGate {
+  eDoubleGateStageType stageType = 1;
+  int32 difficulty = 2;
+  int32 isEnter = 3;
+  int32 sweepDifficulty = 4;
+  repeated sDoubleGateRecord record = 5;
+}
+
+message sDoubleGateRecord {
+  int32 roundType = 1;
+  repeated sDoubleGateHero heroInfo = 2;
+}
+
+message sDoubleGateHero {
+  string heroIdx = 1;
+  int32 heroNo = 2;
+  int32 level = 3;
+  int32 gradeSno = 4;
+}
+
+message sLobbyBackground {
+  int32 type = 1;
+  int32 heroNo1 = 2;
+  int32 heroNo2 = 3;
+  int32 heroNo3 = 4;
+  int32 heroNo4 = 5;
+  int32 heroNo5 = 6;
+  int32 backgroundId = 7;
+  int32 illustId = 8;
+  float angle1 = 9;
+  float angle2 = 10;
+  float angle3 = 11;
+  float angle4 = 12;
+  float angle5 = 13;
+}
+
+message sDungeonList {
+  repeated sDungeonAndReward dungeonReward = 1;
+  repeated sDungeonPerfectClearRecord dungeonPerfectClearRecord = 2;
+  int32 rotationDungeonNo = 3;
+  int64 rotationDungeonExpireDt = 4;
+  int64 labyrinthExpireDt = 5;
+  int32 labyrinthClearCnt = 6;
+  int32 labyrinthTicketCnt = 7;
+  int32 rotationDungeonClearCnt = 8;
+  int32 rotationDungeonTicketCnt = 9;
+}
+
+message sDungeonAndReward {
+  sDungeon dungeon = 1;
+  repeated sDungeonReward dungeonReward = 2;
+}
+
+message sDungeon {
+  int32 id = 1;
+  int32 dungeonNo = 2;
+  int32 dungeonLevel = 3;
+  float x = 4;
+  float z = 5;
+  bytes mapInfo = 6;
+  bytes conditionInfo = 7;
+  bytes heroInfo = 8;
+  bytes additionalInfo = 9;
+  bytes relicInfo = 10;
+  int32 isEnter = 11;
+  int32 isClear = 12;
+  int32 isFirstClear = 13;
+  int32 missionNo = 14;
+  int32 missionCnt = 15;
+  int32 seed = 16;
+  bytes dungeonItem = 17;
+  int32 difficulty = 18;
+  int32 ultimatePoint = 19;
+  int32 playerObjectId = 20;
+  bool useTicket = 21;
+  int32 maxClearLevel = 22;
+  int32 isSweep = 23;
+  int32 isPerfectClear = 24;
+  int32 isHiddenKeyNotAvailable = 25;
+  int32 randomGimmickSeed = 26;
+}
+
+message sDungeonReward {
+  eDungeonRewardType type = 1;
+  int32 rewardNo = 2;
+}
+
+message sDungeonPerfectClearRecord {
+  eDungeonMaxLevelType type = 1;
+  int32 dungeonNo = 2;
+  int32 dungeonLevel = 3;
+}
+
+message sBGM {
+  bytes lobbyBgm = 1;
+  bytes battleBgm = 2;
+}
+
+message sContentBuff {
+  int32 contentType = 1;
+  int32 buffType = 2;
+  int32 buffNo = 3;
+  int32 value = 4;
+}
+
+message sDungeonFirstReward {
+  int32 rewardNo = 1;
+}
+
+message sCashDailyN {
+  int32 packageNo = 1;
+  int32 rewardYyyymmdd = 2;
+  int32 endYyyymmdd = 3;
+}
+
+message sTownVisitHero {
+  int32 heroNo = 1;
+  int32 pickUpFlag = 2;
+}
+
+message sTutorialStory {
+  int32 storyNo = 1;
+}
+
+message sChallengeMode {
+  int32 clearStageNo = 1;
+  repeated int32 clearTaskNo = 2;
+}
+
+message sArkCore {
+  int32 coreType01 = 1;
+  int32 coreType02 = 2;
+  int32 coreLevel = 3;
+}
+
+message DoubleGateDailyContent {
+  eDoubleGateStageType stageType = 1;
+  int32 firstDoubleGateGroupNo = 2;
+  int32 secondDoubleGateGroupNo = 3;
+  int32 buffNo = 4;
+  int32 debuffNo = 5;
+  int32 globalDebuffNo = 6;
+}
+
+message sHeroOption {
+  int32 heroNo = 1;
+  int32 groupNo = 2;
+  int32 optionSlot = 3;
+  int32 optionNo = 4;
+  int32 optionValue = 5;
+  int32 optionType = 6;
+  int32 optionLock = 7;
+}
+

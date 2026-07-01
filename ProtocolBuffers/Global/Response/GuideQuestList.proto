@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package EsPb;
+
+message GuideQuestList {
+  repeated sGuideQuest guideQuest = 1;
+  repeated int32 completeNoList = 2;
+  repeated int32 receiveNoList = 3;
+}
+
+message sGuideQuest {
+  int32 questNo = 1;
+  int32 value = 2;
+}
+

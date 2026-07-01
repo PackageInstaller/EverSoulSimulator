@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message SaveBGM {
+  bytes bgmData = 1;
+  int32 bgmType = 2;
+}
+

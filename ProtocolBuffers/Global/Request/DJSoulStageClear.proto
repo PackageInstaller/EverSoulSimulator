@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message DJSoulStageClear {
+  int32 stageNo = 1;
+  int32 level = 2;
+  int32 score = 3;
+}
+

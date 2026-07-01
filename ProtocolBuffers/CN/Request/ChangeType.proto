@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package ReqPb;
+
+enum eLoginType {
+  Dev = 0;
+  Kakao = 1;
+  KakaoFacebook = 2;
+  KakaoGoogle = 3;
+  KakaoApple = 4;
+  KakaoGuest = 5;
+  Zilong = 11;
+  ZilongWechat = 12;
+  ZilongWeibo = 13;
+  ZilongQq = 14;
+  ZilongGuest = 15;
+}
+
+message ChangeType {
+  eLoginType type = 1;
+}
+

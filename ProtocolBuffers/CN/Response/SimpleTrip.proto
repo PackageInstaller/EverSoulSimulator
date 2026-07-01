@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package EsPb;
+
+message SimpleTrip {
+  sTrip trip = 1;
+  int32 reputation = 2;
+  int32 remainCount = 3;
+}
+
+message sTrip {
+  int32 heroNo = 1;
+  int32 isReceive = 2;
+  int64 yymmdd = 3;
+  int32 uid = 4;
+}
+

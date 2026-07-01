@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package EsPb;
+
+message LabyrinthInfo {
+  string labyrinthInfo_ = 1;
+}
+

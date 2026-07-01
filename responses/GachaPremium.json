@@ -1,0 +1,276 @@
+{
+  "gacha": {
+    "heroGachaCeilCnt": 17,
+    "premiumGachaCeilCnt": 52,
+    "heroWishGachaCeilCnt": 14,
+    "heroGachaTutorialFixed": 1,
+    "heroGachaAutoRelease": 1,
+    "signatureGachaAutoRelease": 1
+  },
+  "gachaPremiumPickInfo": [
+    {
+      "itemNo": 3009,
+      "itemCount": 1
+    },
+    {
+      "itemNo": 30,
+      "itemCount": 240
+    },
+    {
+      "itemNo": 3014,
+      "itemCount": 1
+    },
+    {
+      "itemNo": 3014,
+      "itemCount": 1
+    },
+    {
+      "itemNo": 30,
+      "itemCount": 120
+    },
+    {
+      "itemNo": 4208,
+      "itemCount": 1
+    },
+    {
+      "itemNo": 4118,
+      "itemCount": 1
+    },
+    {
+      "itemNo": 3024,
+      "itemCount": 1
+    },
+    {
+      "itemNo": 4126,
+      "itemCount": 3
+    },
+    {
+      "itemNo": 4108,
+      "itemCount": 1
+    }
+  ],
+  "currency": {
+    "allCurrency": [
+      {
+        "type": "Gold",
+        "value": "2670977862"
+      },
+      {
+        "type": "FreeDia",
+        "value": "340"
+      },
+      {
+        "type": "ManaDust",
+        "value": "6016426575"
+      },
+      {
+        "type": "ManaCrystal",
+        "value": "39543"
+      },
+      {
+        "type": "Exp",
+        "value": "33681905"
+      },
+      {
+        "type": "Heart",
+        "value": "3692"
+      },
+      {
+        "type": "LifeEssence",
+        "value": "93852"
+      },
+      {
+        "type": "ArenaTicket",
+        "value": "41"
+      },
+      {
+        "type": "Dungeon",
+        "value": "5829"
+      },
+      {
+        "type": "Guild",
+        "value": "84640"
+      },
+      {
+        "type": "Release",
+        "value": "372650"
+      },
+      {
+        "type": "Arena",
+        "value": "865480"
+      },
+      {
+        "type": "Relics",
+        "value": "258120"
+      },
+      {
+        "type": "Silver",
+        "value": "6830"
+      },
+      {
+        "type": "SingleRaidCoin",
+        "value": "220635"
+      },
+      {
+        "type": "PickupGachaTicket"
+      },
+      {
+        "type": "Sign1",
+        "value": "19187"
+      },
+      {
+        "type": "Sign2",
+        "value": "4995"
+      },
+      {
+        "type": "SignHuman"
+      },
+      {
+        "type": "SignFurry"
+      },
+      {
+        "type": "SignElf"
+      },
+      {
+        "type": "SignUndead"
+      },
+      {
+        "type": "SignAngel"
+      },
+      {
+        "type": "SignDemon"
+      },
+      {
+        "type": "NormalTicket",
+        "value": "148"
+      },
+      {
+        "type": "RaceTicket"
+      },
+      {
+        "type": "RareSoulstone",
+        "value": "4364"
+      },
+      {
+        "type": "EpicSoulstone",
+        "value": "1235"
+      },
+      {
+        "type": "EquipExp",
+        "value": "2117"
+      },
+      {
+        "type": "CollaborationSummonTicket"
+      },
+      {
+        "type": "PayDia",
+        "value": "982"
+      },
+      {
+        "type": "TeamarenaTicket"
+      },
+      {
+        "type": "SignatureGachaTicket",
+        "value": "132"
+      },
+      {
+        "type": "PremiumGachaTicket",
+        "value": "4"
+      },
+      {
+        "type": "MonthlyHeroResetTicket",
+        "value": "1"
+      },
+      {
+        "type": "EquipExpMiddle",
+        "value": "183"
+      },
+      {
+        "type": "EquipExpHigh",
+        "value": "205"
+      },
+      {
+        "type": "ZodiacExp"
+      },
+      {
+        "type": "LabyrinthTicket"
+      },
+      {
+        "type": "TranscendentStone",
+        "value": "1502"
+      },
+      {
+        "type": "SingleRaidTicket"
+      },
+      {
+        "type": "SetItemEngrave"
+      },
+      {
+        "type": "RotationDungeonTicket"
+      },
+      {
+        "type": "EdenCoin",
+        "value": "6250"
+      },
+      {
+        "type": "TypeBarrierGateTicket"
+      },
+      {
+        "type": "OriginTowerTicket"
+      },
+      {
+        "type": "DoubleGateNormalTicket"
+      },
+      {
+        "type": "DoubleGateNormalTicketCharge"
+      },
+      {
+        "type": "SignatureEnhanceStone",
+        "value": "2838"
+      },
+      {
+        "type": "HeroOptionChangeStone",
+        "value": "30928"
+      },
+      {
+        "type": "WishGachaTicket",
+        "value": "50"
+      },
+      {
+        "type": "TotalDia",
+        "value": "1322"
+      }
+    ]
+  },
+  "itemEtc": [
+    {
+      "itemNo": 3009,
+      "cnt": 3
+    },
+    {
+      "itemNo": 3014,
+      "cnt": 2
+    },
+    {
+      "itemNo": 4208,
+      "cnt": 5
+    },
+    {
+      "itemNo": 4118,
+      "cnt": 5
+    },
+    {
+      "itemNo": 3024,
+      "cnt": 1
+    },
+    {
+      "itemNo": 4126,
+      "cnt": 197
+    },
+    {
+      "itemNo": 4108,
+      "cnt": 1
+    }
+  ],
+  "__format__": "proto"
+}

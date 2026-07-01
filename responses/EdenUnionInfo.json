@@ -1,0 +1,41 @@
+{
+  "unionGroup": 6001,
+  "mission": [
+    {
+      "missionNo": 45,
+      "isRewarded": 1
+    },
+    {
+      "missionNo": 47,
+      "isRewarded": 1
+    },
+    {
+      "missionNo": 49,
+      "isRewarded": 1
+    },
+    {
+      "missionNo": 51,
+      "isRewarded": 1
+    },
+    {
+      "missionNo": 52,
+      "isRewarded": 1
+    },
+    {
+      "missionNo": 46,
+      "isRewarded": 1
+    },
+    {
+      "missionNo": 48,
+      "isRewarded": 1
+    },
+    {
+      "missionNo": 50,
+      "isRewarded": 1
+    }
+  ],
+  "day": 15,
+  "maxLevel": 2000,
+  "tierNo": 100,
+  "__format__": "proto"
+}

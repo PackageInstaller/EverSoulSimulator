@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package EsPb;
+
+message RelationList {
+  repeated sOtherUserInfo friend = 1;
+  repeated sOtherUserInfo guildMember = 2;
+  repeated sOtherUserInfo heart = 3;
+  int32 visitBattleCount = 4;
+  int32 visitBattleMaxCount = 5;
+  int32 visitBattleFriendCount = 6;
+}
+
+message sOtherUserInfo {
+  string userIdx = 1;
+  string nickName = 2;
+  int64 lastLoginDt = 3;
+  sThumbnail thumbnail = 4;
+  int32 stageNo = 5;
+  int32 popularity = 6;
+  bool likeClick = 7;
+  int32 enemyTotalCount = 8;
+  int32 enemyDefeatCount = 9;
+  int32 townLevel = 10;
+  int32 isVisitBattleFlag = 11;
+  int32 visitBattleFriendCount = 12;
+  int32 isVisitBattleFriendFlag = 13;
+  bool isFavorite = 14;
+  bool isYesterdayHelper = 15;
+}
+
+message sThumbnail {
+  int32 thumbnailFrame = 1;
+  int32 thumbnailImage = 2;
+  bool useCustom = 3;
+  bytes thumbnail = 4;
+}
+

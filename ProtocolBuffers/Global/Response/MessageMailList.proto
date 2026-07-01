@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package EsPb;
+
+message MessageMailList {
+  repeated sMessageMail messageMail = 1;
+}
+
+message sMessageMail {
+  int32 no = 1;
+  bool isReceive = 2;
+}
+

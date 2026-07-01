@@ -1,0 +1,214 @@
+{
+ "root": "WorldRaidInfo",
+ "messages": {
+  "WorldRaidInfo": {
+   "fields": [
+    {
+     "name": "worldRaid",
+     "number": 1,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sWorldRaidInfo",
+     "packed": false
+    }
+   ]
+  },
+  "sWorldRaidInfo": {
+   "fields": [
+    {
+     "name": "scheduleNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "raidNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "startDt",
+     "number": 3,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "endDt",
+     "number": 4,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "adjustmentEndDt",
+     "number": 5,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "rewardEndDt",
+     "number": 6,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "nextRaidStartDt",
+     "number": 7,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "score",
+     "number": 8,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "myRank",
+     "number": 9,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "myDamage",
+     "number": 10,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "rewardReceiveFlag",
+     "number": 11,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "rankRewardReceiveFlag",
+     "number": 12,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "battleRewardDamage",
+     "number": 13,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "firstRankingData",
+     "number": 14,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sWorldRaidRanking",
+     "packed": false
+    },
+    {
+     "name": "bannedHeroNo",
+     "number": 15,
+     "repeated": true,
+     "type": "int32",
+     "packed": true
+    }
+   ]
+  },
+  "sWorldRaidRanking": {
+   "fields": [
+    {
+     "name": "userIdx",
+     "number": 1,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "nickName",
+     "number": 2,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "thumbnail",
+     "number": 3,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sThumbnail",
+     "packed": false
+    },
+    {
+     "name": "rank",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "userDamage",
+     "number": 5,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    }
+   ]
+  },
+  "sThumbnail": {
+   "fields": [
+    {
+     "name": "thumbnailFrame",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "thumbnailImage",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "useCustom",
+     "number": 3,
+     "repeated": false,
+     "type": "bool",
+     "packed": false
+    },
+    {
+     "name": "thumbnail",
+     "number": 4,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    },
+    {
+     "name": "firstTitle",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "secondTitle",
+     "number": 6,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

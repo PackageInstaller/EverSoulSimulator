@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package EsPb;
+
+message TownEnemyList {
+  repeated sTownEnemy townEnemy = 1;
+  int32 townEnemyDefeatCount = 2;
+}
+
+message sTownEnemy {
+  int32 no = 1;
+  int32 count = 2;
+  int32 type = 3;
+  int32 section = 4;
+}
+

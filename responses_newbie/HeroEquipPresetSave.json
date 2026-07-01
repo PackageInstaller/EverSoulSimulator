@@ -1,0 +1,506 @@
+{
+  "presetName": "yyy",
+  "presetHero": [
+    {
+      "heroIdx": "1_641WhSES_17EE",
+      "itemSlot": [
+        {
+          "itemEquipId": 25885407
+        },
+        {
+          "slot": 1,
+          "itemEquipId": 25885406
+        },
+        {
+          "slot": 2,
+          "itemEquipId": 25885384
+        },
+        {
+          "slot": 3,
+          "itemEquipId": 25885395
+        }
+      ]
+    },
+    {
+      "heroIdx": "1_111WhSEa_15dh",
+      "itemSlot": [
+        {
+          "itemEquipId": 25885394
+        },
+        {
+          "slot": 1,
+          "itemEquipId": 25885402
+        },
+        {
+          "slot": 2,
+          "itemEquipId": 25885396
+        },
+        {
+          "slot": 3,
+          "itemEquipId": 25885397
+        }
+      ]
+    },
+    {
+      "heroIdx": "1_631WhSES_13e1",
+      "itemSlot": [
+        {
+          "itemEquipId": 25885401
+        },
+        {
+          "slot": 1,
+          "itemEquipId": 25885409
+        },
+        {
+          "slot": 2,
+          "itemEquipId": 25885404
+        },
+        {
+          "slot": 3,
+          "itemEquipId": 25885405
+        }
+      ]
+    },
+    {
+      "heroIdx": "1_641WhSES_17Ea",
+      "itemSlot": [
+        {
+          "itemEquipId": 25885374
+        },
+        {
+          "slot": 1,
+          "itemEquipId": 25885383
+        },
+        {
+          "slot": 2,
+          "itemEquipId": 25885410
+        },
+        {
+          "slot": 3,
+          "itemEquipId": 25885411
+        }
+      ]
+    },
+    {
+      "heroIdx": "1_131WhSEa_14Zd",
+      "itemSlot": [
+        {},
+        {
+          "slot": 1
+        },
+        {
+          "slot": 2
+        },
+        {
+          "slot": 3
+        }
+      ]
+    },
+    {
+      "heroIdx": "1_611WhSES_13FE",
+      "itemSlot": [
+        {},
+        {
+          "slot": 1
+        },
+        {
+          "slot": 2
+        },
+        {
+          "slot": 3
+        }
+      ]
+    },
+    {
+      "heroIdx": "1_131WhSEa_14YO",
+      "itemSlot": [
+        {},
+        {
+          "slot": 1
+        },
+        {
+          "slot": 2
+        },
+        {
+          "slot": 3
+        }
+      ]
+    },
+    {
+      "heroIdx": "1_641WhSES_17Ed",
+      "itemSlot": [
+        {},
+        {
+          "slot": 1
+        },
+        {
+          "slot": 2
+        },
+        {
+          "slot": 3
+        }
+      ]
+    },
+    {
+      "heroIdx": "1_131WhSEa_14Ze",
+      "itemSlot": [
+        {},
+        {
+          "slot": 1
+        },
+        {
+          "slot": 2
+        },
+        {
+          "slot": 3
+        }
+      ]
+    },
+    {
+      "heroIdx": "1_641WhSES_17HO",
+      "itemSlot": [
+        {},
+        {
+          "slot": 1
+        },
+        {
+          "slot": 2
+        },
+        {
+          "slot": 3
+        }
+      ]
+    },
+    {
+      "heroIdx": "1_111WhSEa_15hL",
+      "itemSlot": [
+        {},
+        {
+          "slot": 1
+        },
+        {
+          "slot": 2
+        },
+        {
+          "slot": 3
+        }
+      ]
+    },
+    {
+      "heroIdx": "1_641WhSES_17Ec",
+      "itemSlot": [
+        {},
+        {
+          "slot": 1
+        },
+        {
+          "slot": 2
+        },
+        {
+          "slot": 3
+        }
+      ]
+    },
+    {
+      "heroIdx": "1_611WhSES_13B4",
+      "itemSlot": [
+        {},
+        {
+          "slot": 1
+        },
+        {
+          "slot": 2
+        },
+        {
+          "slot": 3
+        }
+      ]
+    },
+    {
+      "heroIdx": "1_121WhSEa_17E5",
+      "itemSlot": [
+        {},
+        {
+          "slot": 1
+        },
+        {
+          "slot": 2
+        },
+        {
+          "slot": 3
+        }
+      ]
+    },
+    {
+      "heroIdx": "1_121WhSEa_17Df",
+      "itemSlot": [
+        {},
+        {
+          "slot": 1
+        },
+        {
+          "slot": 2
+        },
+        {
+          "slot": 3
+        }
+      ]
+    },
+    {
+      "heroIdx": "1_121WhSEa_17Di",
+      "itemSlot": [
+        {},
+        {
+          "slot": 1
+        },
+        {
+          "slot": 2
+        },
+        {
+          "slot": 3
+        }
+      ]
+    },
+    {
+      "heroIdx": "1_621WhSES_19gO",
+      "itemSlot": [
+        {},
+        {
+          "slot": 1
+        },
+        {
+          "slot": 2
+        },
+        {
+          "slot": 3
+        }
+      ]
+    },
+    {
+      "heroIdx": "1_141WhSEa_14fU",
+      "itemSlot": [
+        {},
+        {
+          "slot": 1
+        },
+        {
+          "slot": 2
+        },
+        {
+          "slot": 3
+        }
+      ]
+    },
+    {
+      "heroIdx": "1_111WhSEa_15dB",
+      "itemSlot": [
+        {},
+        {
+          "slot": 1
+        },
+        {
+          "slot": 2
+        },
+        {
+          "slot": 3
+        }
+      ]
+    },
+    {
+      "heroIdx": "1_121WhSEa_17DB",
+      "itemSlot": [
+        {},
+        {
+          "slot": 1
+        },
+        {
+          "slot": 2
+        },
+        {
+          "slot": 3
+        }
+      ]
+    },
+    {
+      "heroIdx": "1_121WhSEa_17Ec",
+      "itemSlot": [
+        {},
+        {
+          "slot": 1
+        },
+        {
+          "slot": 2
+        },
+        {
+          "slot": 3
+        }
+      ]
+    },
+    {
+      "heroIdx": "1_641WhSES_17Es",
+      "itemSlot": [
+        {},
+        {
+          "slot": 1
+        },
+        {
+          "slot": 2
+        },
+        {
+          "slot": 3
+        }
+      ]
+    },
+    {
+      "heroIdx": "1_641WhSES_17Eb",
+      "itemSlot": [
+        {},
+        {
+          "slot": 1
+        },
+        {
+          "slot": 2
+        },
+        {
+          "slot": 3
+        }
+      ]
+    },
+    {
+      "heroIdx": "1_111WhSEa_15dP",
+      "itemSlot": [
+        {},
+        {
+          "slot": 1
+        },
+        {
+          "slot": 2
+        },
+        {
+          "slot": 3
+        }
+      ]
+    },
+    {
+      "heroIdx": "1_121WhSEa_17Ea",
+      "itemSlot": [
+        {},
+        {
+          "slot": 1
+        },
+        {
+          "slot": 2
+        },
+        {
+          "slot": 3
+        }
+      ]
+    },
+    {
+      "heroIdx": "1_121WhSEa_17Dv",
+      "itemSlot": [
+        {},
+        {
+          "slot": 1
+        },
+        {
+          "slot": 2
+        },
+        {
+          "slot": 3
+        }
+      ]
+    },
+    {
+      "heroIdx": "1_611WhSES_13EV",
+      "itemSlot": [
+        {},
+        {
+          "slot": 1
+        },
+        {
+          "slot": 2
+        },
+        {
+          "slot": 3
+        }
+      ]
+    },
+    {
+      "heroIdx": "1_141WhSEa_14id",
+      "itemSlot": [
+        {},
+        {
+          "slot": 1
+        },
+        {
+          "slot": 2
+        },
+        {
+          "slot": 3
+        }
+      ]
+    },
+    {
+      "heroIdx": "1_131WhSEa_151r",
+      "itemSlot": [
+        {},
+        {
+          "slot": 1
+        },
+        {
+          "slot": 2
+        },
+        {
+          "slot": 3
+        }
+      ]
+    },
+    {
+      "heroIdx": "1_141WhSEa_14ie",
+      "itemSlot": [
+        {},
+        {
+          "slot": 1
+        },
+        {
+          "slot": 2
+        },
+        {
+          "slot": 3
+        }
+      ]
+    },
+    {
+      "heroIdx": "1_641WhSES_17HE",
+      "itemSlot": [
+        {},
+        {
+          "slot": 1
+        },
+        {
+          "slot": 2
+        },
+        {
+          "slot": 3
+        }
+      ]
+    },
+    {
+      "heroIdx": "1_641WhSES_17HN",
+      "itemSlot": [
+        {},
+        {
+          "slot": 1
+        },
+        {
+          "slot": 2
+        },
+        {
+          "slot": 3
+        }
+      ]
+    }
+  ],
+  "__format__": "proto"
+}

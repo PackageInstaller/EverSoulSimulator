@@ -1,0 +1,1882 @@
+{
+  "currency": {
+    "allCurrency": [
+      {
+        "type": "Gold",
+        "value": "2683493418"
+      },
+      {
+        "type": "FreeDia",
+        "value": "205"
+      },
+      {
+        "type": "ManaDust",
+        "value": "6029768965"
+      },
+      {
+        "type": "ManaCrystal",
+        "value": "46438"
+      },
+      {
+        "type": "Exp",
+        "value": "33693965"
+      },
+      {
+        "type": "Heart",
+        "value": "3636"
+      },
+      {
+        "type": "LifeEssence",
+        "value": "94329"
+      },
+      {
+        "type": "ArenaTicket",
+        "value": "42"
+      },
+      {
+        "type": "Dungeon",
+        "value": "5829"
+      },
+      {
+        "type": "Guild",
+        "value": "84640"
+      },
+      {
+        "type": "Release",
+        "value": "374350"
+      },
+      {
+        "type": "Arena",
+        "value": "872780"
+      },
+      {
+        "type": "Relics",
+        "value": "261870"
+      },
+      {
+        "type": "Silver",
+        "value": "26930"
+      },
+      {
+        "type": "SingleRaidCoin",
+        "value": "220635"
+      },
+      {
+        "type": "PickupGachaTicket"
+      },
+      {
+        "type": "Sign1",
+        "value": "19193"
+      },
+      {
+        "type": "Sign2",
+        "value": "4997"
+      },
+      {
+        "type": "SignHuman"
+      },
+      {
+        "type": "SignFurry"
+      },
+      {
+        "type": "SignElf"
+      },
+      {
+        "type": "SignUndead"
+      },
+      {
+        "type": "SignAngel"
+      },
+      {
+        "type": "SignDemon"
+      },
+      {
+        "type": "NormalTicket",
+        "value": "138"
+      },
+      {
+        "type": "RaceTicket"
+      },
+      {
+        "type": "RareSoulstone",
+        "value": "4429"
+      },
+      {
+        "type": "EpicSoulstone",
+        "value": "1252"
+      },
+      {
+        "type": "EquipExp",
+        "value": "2225"
+      },
+      {
+        "type": "CollaborationSummonTicket"
+      },
+      {
+        "type": "PayDia",
+        "value": "982"
+      },
+      {
+        "type": "TeamarenaTicket"
+      },
+      {
+        "type": "SignatureGachaTicket",
+        "value": "122"
+      },
+      {
+        "type": "PremiumGachaTicket",
+        "value": "4"
+      },
+      {
+        "type": "MonthlyHeroResetTicket",
+        "value": "1"
+      },
+      {
+        "type": "EquipExpMiddle",
+        "value": "187"
+      },
+      {
+        "type": "EquipExpHigh",
+        "value": "210"
+      },
+      {
+        "type": "ZodiacExp"
+      },
+      {
+        "type": "LabyrinthTicket"
+      },
+      {
+        "type": "TranscendentStone",
+        "value": "1511"
+      },
+      {
+        "type": "SingleRaidTicket"
+      },
+      {
+        "type": "SetItemEngrave"
+      },
+      {
+        "type": "RotationDungeonTicket"
+      },
+      {
+        "type": "EdenCoin",
+        "value": "6250"
+      },
+      {
+        "type": "TypeBarrierGateTicket"
+      },
+      {
+        "type": "OriginTowerTicket"
+      },
+      {
+        "type": "DoubleGateNormalTicket",
+        "value": "3"
+      },
+      {
+        "type": "DoubleGateNormalTicketCharge"
+      },
+      {
+        "type": "SignatureEnhanceStone",
+        "value": "2840"
+      },
+      {
+        "type": "HeroOptionChangeStone",
+        "value": "31628"
+      },
+      {
+        "type": "WishGachaTicket",
+        "value": "40"
+      },
+      {
+        "type": "TotalDia",
+        "value": "1187"
+      }
+    ]
+  },
+  "itemEtc": [
+    {
+      "itemNo": 4132,
+      "cnt": 823
+    }
+  ],
+  "heroReputation": [
+    {
+      "heroNo": 10,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1773306542337",
+      "maxGradeSno": 110011,
+      "arbeitExp": 32551,
+      "restFinishDt": "1773201462623",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 20,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1773373376926",
+      "maxGradeSno": 110011,
+      "arbeitExp": 25910,
+      "restFinishDt": "1773201462623",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 30,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1773306542337",
+      "maxGradeSno": 110011,
+      "arbeitExp": 27706,
+      "restFinishDt": "1773201462623",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 40,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1773373376926",
+      "maxGradeSno": 110011,
+      "arbeitExp": 22445,
+      "restFinishDt": "1773201462623",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 110,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1779605398139",
+      "maxGradeSno": 110017,
+      "arbeitExp": 34321,
+      "restFinishDt": "1779472245702",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 120,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1779773215948",
+      "maxGradeSno": 110017,
+      "arbeitExp": 40954,
+      "priority": 6,
+      "restFinishDt": "1779649250473",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 210,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1779605398139",
+      "maxGradeSno": 110017,
+      "arbeitExp": 34108,
+      "restFinishDt": "1779472245702",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 220,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1779734661646",
+      "maxGradeSno": 110017,
+      "arbeitExp": 36110,
+      "priority": 6,
+      "restFinishDt": "1779605811055",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 310,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1779552758488",
+      "maxGradeSno": 110017,
+      "arbeitExp": 32583,
+      "restFinishDt": "1779472245702",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 320,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1779605398139",
+      "maxGradeSno": 110017,
+      "arbeitExp": 31418,
+      "restFinishDt": "1779472245702",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 410,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1773306542337",
+      "maxGradeSno": 110017,
+      "arbeitExp": 29884,
+      "restFinishDt": "1773201462623",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 420,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1779773215948",
+      "maxGradeSno": 110017,
+      "arbeitExp": 42443,
+      "restFinishDt": "1779649250473",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 1010,
+      "reputation": 81100,
+      "stress": 50,
+      "lastUpdateDt": "1781053827831",
+      "giftDt": "1747319515036",
+      "costumeItemNo": 2418,
+      "maxGradeSno": 110025,
+      "objetUid": 9150902,
+      "maxLevelDt": "1688972566533",
+      "arbeitExp": 50117,
+      "priority": 6,
+      "restFinishDt": "1781009604268",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 1020,
+      "reputation": 34276,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1781016489067",
+      "giftDt": "1743251375674",
+      "costumeItemNo": 2397,
+      "maxGradeSno": 110025,
+      "objetUid": 13753088,
+      "arbeitExp": 34426,
+      "priority": 6,
+      "restFinishDt": "1780960280335",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 1030,
+      "reputation": 81100,
+      "stress": 50,
+      "lastUpdateDt": "1781053827831",
+      "giftDt": "1777473528271",
+      "costumeItemNo": 2260,
+      "maxGradeSno": 110025,
+      "maxLevelDt": "1777473512224",
+      "arbeitExp": 69023,
+      "priority": 6,
+      "restFinishDt": "1781009604268",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 1040,
+      "reputation": 81100,
+      "lastUpdateDt": "1781053807932",
+      "giftDt": "1714493103202",
+      "costumeItemNo": 2313,
+      "maxGradeSno": 110025,
+      "objetUid": 9620557,
+      "maxLevelDt": "1691069061551",
+      "arbeitExp": 66300,
+      "priority": 1,
+      "restFinishDt": "1781048896010",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 1050,
+      "reputation": 81100,
+      "stress": 50,
+      "lastUpdateDt": "1781053827831",
+      "giftDt": "1777473738400",
+      "costumeItemNo": 2357,
+      "maxGradeSno": 110025,
+      "maxLevelDt": "1777473738400",
+      "arbeitExp": 63662,
+      "priority": 6,
+      "restFinishDt": "1781009604268",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 1060,
+      "reputation": 81100,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1781016489067",
+      "giftDt": "1731457245783",
+      "costumeItemNo": 2261,
+      "maxGradeSno": 110025,
+      "objetUid": 8382018,
+      "maxLevelDt": "1695821621240",
+      "arbeitExp": 49498,
+      "priority": 6,
+      "restFinishDt": "1780958120335",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 1070,
+      "reputation": 40776,
+      "lastUpdateDt": "1781053807932",
+      "giftDt": "1715104963590",
+      "costumeItemNo": 2335,
+      "maxGradeSno": 110025,
+      "objetUid": 8067211,
+      "maxLevelDt": "1691017367660",
+      "arbeitExp": 59683,
+      "priority": 6,
+      "restFinishDt": "1781051056010",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 1080,
+      "reputation": 81100,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1780945397881",
+      "giftDt": "1777472572850",
+      "costumeItemNo": 2341,
+      "maxGradeSno": 110025,
+      "objetUid": 8871243,
+      "maxLevelDt": "1777472572850",
+      "arbeitExp": 14817,
+      "priority": 1,
+      "restFinishDt": "1780843157667",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 1090,
+      "reputation": 81100,
+      "lastUpdateDt": "1781053807932",
+      "giftDt": "1777473477613",
+      "costumeItemNo": 2283,
+      "maxGradeSno": 110025,
+      "objetUid": 10206354,
+      "maxLevelDt": "1691901146453",
+      "arbeitExp": 65227,
+      "priority": 6,
+      "restFinishDt": "1781048896010",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 1100,
+      "reputation": 33460,
+      "stress": 50,
+      "lastUpdateDt": "1781053827831",
+      "giftDt": "1745550816010",
+      "costumeItemNo": 2208,
+      "maxGradeSno": 110025,
+      "arbeitExp": 68762,
+      "priority": 6,
+      "restFinishDt": "1781011764268",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 1110,
+      "reputation": 16560,
+      "lastUpdateDt": "1781016485004",
+      "giftDt": "1702544151920",
+      "costumeItemNo": 2211,
+      "maxGradeSno": 110025,
+      "objetUid": 8018959,
+      "maxLevelDt": "1700747196684",
+      "arbeitExp": 62512,
+      "priority": 6,
+      "restFinishDt": "1781013924268",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 1120,
+      "reputation": 16920,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1781016489067",
+      "giftDt": "1702543954797",
+      "costumeItemNo": 2286,
+      "maxGradeSno": 110025,
+      "objetUid": 8382035,
+      "maxLevelDt": "1698947529755",
+      "arbeitExp": 52722,
+      "priority": 6,
+      "restFinishDt": "1780962440335",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 1130,
+      "reputation": 81100,
+      "lastUpdateDt": "1781016485004",
+      "giftDt": "1777473137011",
+      "costumeItemNo": 2322,
+      "maxGradeSno": 110025,
+      "maxLevelDt": "1777473137011",
+      "arbeitExp": 19676,
+      "priority": 6,
+      "restFinishDt": "1781009604268",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 1140,
+      "reputation": 19978,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1781016489067",
+      "giftDt": "1699895718468",
+      "costumeItemNo": 2330,
+      "maxGradeSno": 110025,
+      "objetUid": 9180822,
+      "maxLevelDt": "1699894780573",
+      "arbeitExp": 32897,
+      "priority": 6,
+      "restFinishDt": "1780962440335",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 1150,
+      "reputation": 81100,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1780515206389",
+      "giftDt": "1777473420521",
+      "costumeItemNo": 2360,
+      "maxGradeSno": 110025,
+      "objetUid": 12917694,
+      "maxLevelDt": "1777473420521",
+      "arbeitExp": 10180,
+      "priority": 6,
+      "restFinishDt": "1780452665115",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 1160,
+      "reputation": 81100,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1780624887578",
+      "giftDt": "1777473792038",
+      "costumeItemNo": 2369,
+      "maxGradeSno": 110025,
+      "objetUid": 13224003,
+      "maxLevelDt": "1777473792038",
+      "arbeitExp": 7056,
+      "priority": 6,
+      "restFinishDt": "1780535665969",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 1170,
+      "reputation": 81100,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1779818978458",
+      "giftDt": "1777472463542",
+      "maxGradeSno": 110025,
+      "objetUid": 13798485,
+      "maxLevelDt": "1777472463542",
+      "arbeitExp": 2851,
+      "priority": 6,
+      "restFinishDt": "1779725236196",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 2010,
+      "reputation": 81100,
+      "stress": 50,
+      "lastUpdateDt": "1781053827831",
+      "giftDt": "1777473031449",
+      "costumeItemNo": 2303,
+      "maxGradeSno": 110025,
+      "objetUid": 12274356,
+      "maxLevelDt": "1692892972517",
+      "arbeitExp": 54050,
+      "priority": 6,
+      "restFinishDt": "1781009604268",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 2020,
+      "reputation": 16528,
+      "stress": 50,
+      "lastUpdateDt": "1781053827831",
+      "giftDt": "1702543987036",
+      "costumeItemNo": 2364,
+      "maxGradeSno": 110025,
+      "objetUid": 8622419,
+      "maxLevelDt": "1697216831294",
+      "arbeitExp": 59874,
+      "priority": 6,
+      "restFinishDt": "1781013924268",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 2030,
+      "reputation": 40210,
+      "lastUpdateDt": "1781053807932",
+      "giftDt": "1738167823066",
+      "maxGradeSno": 110025,
+      "objetUid": 9159650,
+      "arbeitExp": 69885,
+      "priority": 6,
+      "restFinishDt": "1781051056010",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 2040,
+      "reputation": 19467,
+      "stress": 50,
+      "lastUpdateDt": "1781053827831",
+      "giftDt": "1702544516929",
+      "costumeItemNo": 2333,
+      "maxGradeSno": 110025,
+      "arbeitExp": 55543,
+      "priority": 6,
+      "restFinishDt": "1781013924268",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 2050,
+      "reputation": 19790,
+      "stress": 50,
+      "lastUpdateDt": "1781053827831",
+      "giftDt": "1764948718508",
+      "costumeItemNo": 2334,
+      "maxGradeSno": 110025,
+      "objetUid": 9264267,
+      "arbeitExp": 64995,
+      "priority": 6,
+      "restFinishDt": "1781013924268",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 2070,
+      "reputation": 16636,
+      "lastUpdateDt": "1781053807932",
+      "giftDt": "1702544037146",
+      "costumeItemNo": 2352,
+      "maxGradeSno": 110025,
+      "objetUid": 8374342,
+      "maxLevelDt": "1698303772638",
+      "arbeitExp": 63359,
+      "priority": 6,
+      "restFinishDt": "1781053216010",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 2080,
+      "reputation": 81100,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1781016489067",
+      "giftDt": "1777472664212",
+      "costumeItemNo": 2219,
+      "maxGradeSno": 110025,
+      "objetUid": 8545616,
+      "maxLevelDt": "1777472664212",
+      "arbeitExp": 39426,
+      "priority": 6,
+      "restFinishDt": "1780958120335",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 2090,
+      "reputation": 81100,
+      "lastUpdateDt": "1781053807932",
+      "giftDt": "1777473209623",
+      "costumeItemNo": 2258,
+      "maxGradeSno": 110025,
+      "objetUid": 9054176,
+      "maxLevelDt": "1697087188598",
+      "arbeitExp": 68842,
+      "priority": 6,
+      "restFinishDt": "1781048896010",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 2100,
+      "reputation": 37186,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1781016489067",
+      "giftDt": "1759104793651",
+      "costumeItemNo": 2340,
+      "maxGradeSno": 110025,
+      "objetUid": 12274353,
+      "maxLevelDt": "1696608737661",
+      "arbeitExp": 48608,
+      "priority": 6,
+      "restFinishDt": "1780960280335",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 2110,
+      "reputation": 24960,
+      "lastUpdateDt": "1781016485004",
+      "giftDt": "1725283610444",
+      "costumeItemNo": 2259,
+      "maxGradeSno": 110025,
+      "arbeitExp": 52716,
+      "priority": 6,
+      "restFinishDt": "1781013924268",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 2120,
+      "reputation": 14290,
+      "lastUpdateDt": "1781053807932",
+      "giftDt": "1702544339155",
+      "costumeItemNo": 2309,
+      "maxGradeSno": 110025,
+      "objetUid": 10938116,
+      "maxLevelDt": "1687321061799",
+      "arbeitExp": 65497,
+      "priority": 6,
+      "restFinishDt": "1781053216010",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 2130,
+      "reputation": 31530,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1781016489067",
+      "giftDt": "1725281229934",
+      "costumeItemNo": 2315,
+      "maxGradeSno": 110025,
+      "objetUid": 8541376,
+      "arbeitExp": 26960,
+      "priority": 6,
+      "restFinishDt": "1780960280335",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 2140,
+      "reputation": 81100,
+      "lastUpdateDt": "1781016485004",
+      "giftDt": "1777473877847",
+      "costumeItemNo": 2326,
+      "maxGradeSno": 110025,
+      "maxLevelDt": "1777473877847",
+      "arbeitExp": 20407,
+      "priority": 6,
+      "restFinishDt": "1781009604268",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 2150,
+      "reputation": 38508,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1780945397881",
+      "giftDt": "1735052178036",
+      "costumeItemNo": 2391,
+      "maxGradeSno": 110025,
+      "objetUid": 8494115,
+      "arbeitExp": 13948,
+      "priority": 6,
+      "restFinishDt": "1780845317667",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 2160,
+      "reputation": 81100,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1780515206389",
+      "giftDt": "1777472191131",
+      "costumeItemNo": 2363,
+      "maxGradeSno": 110025,
+      "objetUid": 13022863,
+      "maxLevelDt": "1777472172189",
+      "arbeitExp": 8992,
+      "priority": 6,
+      "restFinishDt": "1780452665115",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 2170,
+      "reputation": 81100,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1780057625231",
+      "giftDt": "1777472850983",
+      "costumeItemNo": 2384,
+      "maxGradeSno": 110025,
+      "objetUid": 8773841,
+      "maxLevelDt": "1777472850983",
+      "arbeitExp": 4339,
+      "priority": 6,
+      "restFinishDt": "1779942214683",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 3010,
+      "reputation": 23175,
+      "stress": 50,
+      "lastUpdateDt": "1781053827831",
+      "giftDt": "1743221560745",
+      "costumeItemNo": 2223,
+      "maxGradeSno": 110025,
+      "maxLevelDt": "1700582973176",
+      "arbeitExp": 71500,
+      "priority": 6,
+      "restFinishDt": "1781013924268",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 3030,
+      "reputation": 21280,
+      "lastUpdateDt": "1781053807932",
+      "giftDt": "1764948741151",
+      "costumeItemNo": 2351,
+      "maxGradeSno": 110025,
+      "arbeitExp": 64825,
+      "priority": 6,
+      "restFinishDt": "1781053216010",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 3040,
+      "reputation": 28976,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1781016489067",
+      "giftDt": "1720192568745",
+      "costumeItemNo": 2307,
+      "maxGradeSno": 110025,
+      "maxLevelDt": "1686278576706",
+      "arbeitExp": 35312,
+      "priority": 6,
+      "restFinishDt": "1780960280335",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 3050,
+      "reputation": 41829,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1781016489067",
+      "giftDt": "1757473536238",
+      "costumeItemNo": 2371,
+      "maxGradeSno": 110025,
+      "arbeitExp": 32832,
+      "priority": 6,
+      "restFinishDt": "1780960280335",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 3060,
+      "reputation": 81100,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1781016489067",
+      "giftDt": "1777474042806",
+      "costumeItemNo": 2228,
+      "maxGradeSno": 110025,
+      "maxLevelDt": "1701703135001",
+      "arbeitExp": 37166,
+      "priority": 6,
+      "restFinishDt": "1780958120335",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 3070,
+      "reputation": 16021,
+      "lastUpdateDt": "1781053807932",
+      "giftDt": "1702544748757",
+      "costumeItemNo": 2338,
+      "maxGradeSno": 110025,
+      "arbeitExp": 61318,
+      "priority": 6,
+      "restFinishDt": "1781053216010",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 3080,
+      "reputation": 42550,
+      "lastUpdateDt": "1781053807932",
+      "giftDt": "1750696930704",
+      "costumeItemNo": 2270,
+      "maxGradeSno": 110025,
+      "objetUid": 11514031,
+      "arbeitExp": 59262,
+      "priority": 6,
+      "restFinishDt": "1781051056010",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 3090,
+      "reputation": 41240,
+      "lastUpdateDt": "1781053807932",
+      "giftDt": "1763709441971",
+      "costumeItemNo": 2311,
+      "maxGradeSno": 110025,
+      "arbeitExp": 58222,
+      "priority": 6,
+      "restFinishDt": "1781051056010",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 3100,
+      "reputation": 81100,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1781016489067",
+      "giftDt": "1777473357690",
+      "costumeItemNo": 2361,
+      "maxGradeSno": 110025,
+      "maxLevelDt": "1777473357690",
+      "arbeitExp": 40531,
+      "priority": 6,
+      "restFinishDt": "1780958120335",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 3110,
+      "reputation": 31358,
+      "lastUpdateDt": "1781053807932",
+      "giftDt": "1780992838312",
+      "costumeItemNo": 2349,
+      "maxGradeSno": 110025,
+      "maxLevelDt": "1693905196513",
+      "arbeitExp": 72759,
+      "priority": 6,
+      "restFinishDt": "1781051056010",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 3120,
+      "reputation": 15748,
+      "lastUpdateDt": "1781053807932",
+      "giftDt": "1685237814740",
+      "costumeItemNo": 2318,
+      "maxGradeSno": 110025,
+      "maxLevelDt": "1685237814740",
+      "arbeitExp": 57150,
+      "priority": 1,
+      "restFinishDt": "1781053216010",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 3130,
+      "reputation": 81100,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1781016489067",
+      "giftDt": "1777474135287",
+      "costumeItemNo": 2317,
+      "maxGradeSno": 110025,
+      "maxLevelDt": "1692376301284",
+      "arbeitExp": 44190,
+      "priority": 6,
+      "restFinishDt": "1780958120335",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 3140,
+      "reputation": 81100,
+      "stress": 50,
+      "lastUpdateDt": "1781053827831",
+      "giftDt": "1738126285034",
+      "costumeItemNo": 2323,
+      "maxGradeSno": 110025,
+      "maxLevelDt": "1738126285034",
+      "arbeitExp": 26296,
+      "priority": 6,
+      "restFinishDt": "1781009604268",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 3150,
+      "reputation": 81100,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1780876038756",
+      "giftDt": "1777472983488",
+      "costumeItemNo": 2343,
+      "maxGradeSno": 110025,
+      "maxLevelDt": "1777472983488",
+      "arbeitExp": 15047,
+      "priority": 6,
+      "restFinishDt": "1780756951346",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 3160,
+      "reputation": 27080,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1780057625231",
+      "giftDt": "1747063629317",
+      "costumeItemNo": 2372,
+      "maxGradeSno": 110025,
+      "objetUid": 13370986,
+      "arbeitExp": 5501,
+      "priority": 6,
+      "restFinishDt": "1779944374683",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 3170,
+      "reputation": 81100,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1779993488963",
+      "giftDt": "1777472894800",
+      "costumeItemNo": 2375,
+      "maxGradeSno": 110025,
+      "objetUid": 13705478,
+      "maxLevelDt": "1777472885455",
+      "arbeitExp": 3585,
+      "priority": 6,
+      "restFinishDt": "1779806240706",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 3180,
+      "reputation": 20780,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1780681616162",
+      "giftDt": "1764948683011",
+      "maxGradeSno": 110025,
+      "arbeitExp": 5701,
+      "restFinishDt": "1780539985969",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 4010,
+      "reputation": 28200,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1781016489067",
+      "giftDt": "1719384871553",
+      "costumeItemNo": 2328,
+      "maxGradeSno": 110025,
+      "objetUid": 11602420,
+      "maxLevelDt": "1694151258568",
+      "arbeitExp": 50093,
+      "priority": 6,
+      "restFinishDt": "1780960280335",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 4020,
+      "reputation": 40794,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1781016489067",
+      "giftDt": "1764781627461",
+      "costumeItemNo": 2329,
+      "maxGradeSno": 110025,
+      "objetUid": 8871242,
+      "maxLevelDt": "1684245883879",
+      "arbeitExp": 37993,
+      "priority": 6,
+      "restFinishDt": "1780960280335",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 4030,
+      "reputation": 81100,
+      "lastUpdateDt": "1781053807932",
+      "giftDt": "1777473651040",
+      "costumeItemNo": 2236,
+      "maxGradeSno": 110025,
+      "objetUid": 9165827,
+      "maxLevelDt": "1777473651040",
+      "arbeitExp": 62778,
+      "priority": 6,
+      "restFinishDt": "1781048896010",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 4040,
+      "reputation": 28010,
+      "stress": 50,
+      "lastUpdateDt": "1781053827831",
+      "giftDt": "1720743536236",
+      "costumeItemNo": 2382,
+      "maxGradeSno": 110025,
+      "maxLevelDt": "1693473629957",
+      "arbeitExp": 47986,
+      "priority": 6,
+      "restFinishDt": "1781011764268",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 4050,
+      "reputation": 32218,
+      "stress": 50,
+      "lastUpdateDt": "1781053827831",
+      "giftDt": "1725433633933",
+      "costumeItemNo": 2383,
+      "maxGradeSno": 110025,
+      "maxLevelDt": "1694067867917",
+      "arbeitExp": 47431,
+      "priority": 6,
+      "restFinishDt": "1781011764268",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 4060,
+      "reputation": 14796,
+      "lastUpdateDt": "1781053807932",
+      "giftDt": "1702544007266",
+      "costumeItemNo": 2310,
+      "maxGradeSno": 110025,
+      "maxLevelDt": "1695044491535",
+      "arbeitExp": 55852,
+      "priority": 6,
+      "restFinishDt": "1781053216010",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 4070,
+      "reputation": 27580,
+      "lastUpdateDt": "1781053807932",
+      "giftDt": "1720225056980",
+      "costumeItemNo": 2367,
+      "maxGradeSno": 110025,
+      "arbeitExp": 56157,
+      "priority": 6,
+      "restFinishDt": "1781051056010",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 4080,
+      "reputation": 21580,
+      "lastUpdateDt": "1781053807932",
+      "giftDt": "1764948696577",
+      "costumeItemNo": 2290,
+      "maxGradeSno": 110025,
+      "arbeitExp": 54382,
+      "priority": 1,
+      "restFinishDt": "1781053216010",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 4090,
+      "reputation": 53802,
+      "lastUpdateDt": "1781053807932",
+      "giftDt": "1734528514658",
+      "costumeItemNo": 2339,
+      "maxGradeSno": 110025,
+      "arbeitExp": 70179,
+      "priority": 6,
+      "restFinishDt": "1781049976010",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 4100,
+      "reputation": 81100,
+      "lastUpdateDt": "1781053807932",
+      "giftDt": "1754713711851",
+      "costumeItemNo": 2273,
+      "maxGradeSno": 110025,
+      "maxLevelDt": "1756090816649",
+      "arbeitExp": 54324,
+      "priority": 6,
+      "restFinishDt": "1781048896010",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 4110,
+      "reputation": 16998,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1781016489067",
+      "giftDt": "1702543814668",
+      "costumeItemNo": 2264,
+      "maxGradeSno": 110025,
+      "maxLevelDt": "1693704954908",
+      "arbeitExp": 51196,
+      "priority": 6,
+      "restFinishDt": "1780962440335",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 4120,
+      "reputation": 81100,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1781016489067",
+      "giftDt": "1777474312567",
+      "costumeItemNo": 2403,
+      "maxGradeSno": 110025,
+      "objetUid": 8381996,
+      "maxLevelDt": "1777474312567",
+      "arbeitExp": 36964,
+      "priority": 6,
+      "restFinishDt": "1780958120335",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 4130,
+      "reputation": 27730,
+      "stress": 50,
+      "lastUpdateDt": "1781053827831",
+      "giftDt": "1746953897503",
+      "costumeItemNo": 2312,
+      "maxGradeSno": 110025,
+      "objetUid": 8067210,
+      "arbeitExp": 26275,
+      "priority": 6,
+      "restFinishDt": "1781011764268",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 4140,
+      "reputation": 81100,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1780876038756",
+      "giftDt": "1777472715332",
+      "costumeItemNo": 2325,
+      "maxGradeSno": 110025,
+      "maxLevelDt": "1777472715332",
+      "arbeitExp": 16854,
+      "priority": 6,
+      "restFinishDt": "1780756951346",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 4150,
+      "reputation": 81100,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1780515206389",
+      "giftDt": "1751441545809",
+      "costumeItemNo": 2374,
+      "maxGradeSno": 110025,
+      "maxLevelDt": "1766968217719",
+      "arbeitExp": 10463,
+      "priority": 6,
+      "restFinishDt": "1780452665115",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 4160,
+      "reputation": 81100,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1779818978458",
+      "giftDt": "1757911716283",
+      "costumeItemNo": 2395,
+      "maxGradeSno": 110025,
+      "maxLevelDt": "1763709360738",
+      "arbeitExp": 3329,
+      "priority": 6,
+      "restFinishDt": "1779725236196",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 4170,
+      "reputation": 81100,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1779818978458",
+      "giftDt": "1777472351707",
+      "costumeItemNo": 2401,
+      "maxGradeSno": 110025,
+      "objetUid": 13779881,
+      "maxLevelDt": "1777472351707",
+      "arbeitExp": 2704,
+      "priority": 1,
+      "restFinishDt": "1779725236196",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 5010,
+      "reputation": 81100,
+      "stress": 50,
+      "lastUpdateDt": "1781053827831",
+      "giftDt": "1777472805236",
+      "costumeItemNo": 2306,
+      "maxGradeSno": 110025,
+      "objetUid": 10634402,
+      "maxLevelDt": "1688781594076",
+      "arbeitExp": 46379,
+      "priority": 6,
+      "restFinishDt": "1781009604268",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 5020,
+      "reputation": 37410,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1781016489067",
+      "giftDt": "1764131778489",
+      "costumeItemNo": 2279,
+      "maxGradeSno": 110025,
+      "maxLevelDt": "1701791193657",
+      "arbeitExp": 47030,
+      "priority": 6,
+      "restFinishDt": "1780960280335",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 5030,
+      "reputation": 81100,
+      "stress": 50,
+      "lastUpdateDt": "1781053827831",
+      "giftDt": "1777472943109",
+      "maxGradeSno": 110025,
+      "objetUid": 11327276,
+      "maxLevelDt": "1697903801075",
+      "arbeitExp": 46700,
+      "priority": 6,
+      "restFinishDt": "1781009604268",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 5040,
+      "reputation": 81100,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1780681616162",
+      "giftDt": "1777473581043",
+      "costumeItemNo": 2366,
+      "maxGradeSno": 110025,
+      "objetUid": 8644793,
+      "maxLevelDt": "1777473581043",
+      "arbeitExp": 7213,
+      "priority": 6,
+      "restFinishDt": "1780535665969",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 5060,
+      "reputation": 81100,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1779818978458",
+      "giftDt": "1777472222242",
+      "costumeItemNo": 2400,
+      "maxGradeSno": 110025,
+      "objetUid": 8517123,
+      "maxLevelDt": "1777472222242",
+      "arbeitExp": 2711,
+      "priority": 6,
+      "restFinishDt": "1779638450473",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 5080,
+      "reputation": 81100,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1779818978458",
+      "giftDt": "1777472759435",
+      "costumeItemNo": 2416,
+      "maxGradeSno": 110025,
+      "objetUid": 8709313,
+      "maxLevelDt": "1777472759435",
+      "arbeitExp": 2743,
+      "priority": 6,
+      "restFinishDt": "1779725236196",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 6010,
+      "reputation": 81100,
+      "stress": 50,
+      "lastUpdateDt": "1781053827831",
+      "giftDt": "1751787402269",
+      "costumeItemNo": 2350,
+      "maxGradeSno": 110025,
+      "objetUid": 12656013,
+      "maxLevelDt": "1751787402269",
+      "arbeitExp": 23110,
+      "priority": 6,
+      "restFinishDt": "1781009604268",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 6020,
+      "reputation": 81100,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1781016489067",
+      "giftDt": "1720122964328",
+      "costumeItemNo": 2336,
+      "maxGradeSno": 110025,
+      "objetUid": 12173098,
+      "maxLevelDt": "1687787042011",
+      "arbeitExp": 41985,
+      "priority": 6,
+      "restFinishDt": "1780958120335",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 6030,
+      "reputation": 34100,
+      "lastUpdateDt": "1781053807932",
+      "giftDt": "1746954401540",
+      "costumeItemNo": 2275,
+      "maxGradeSno": 110025,
+      "objetUid": 8545612,
+      "maxLevelDt": "1683344600088",
+      "arbeitExp": 66947,
+      "priority": 6,
+      "restFinishDt": "1781051056010",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 6050,
+      "reputation": 81100,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1781016489067",
+      "giftDt": "1726855585714",
+      "costumeItemNo": 2332,
+      "maxGradeSno": 110025,
+      "objetUid": 11940941,
+      "maxLevelDt": "1728311670252",
+      "arbeitExp": 36143,
+      "priority": 6,
+      "restFinishDt": "1780958120335",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 6060,
+      "reputation": 81100,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1780013391346",
+      "giftDt": "1777473070163",
+      "costumeItemNo": 2389,
+      "maxGradeSno": 110025,
+      "objetUid": 13585884,
+      "maxLevelDt": "1777473070163",
+      "arbeitExp": 3705,
+      "priority": 1,
+      "restFinishDt": "1779416662560",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 6070,
+      "reputation": 23490,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1779870278607",
+      "giftDt": "1771517499560",
+      "costumeItemNo": 2424,
+      "maxGradeSno": 110025,
+      "objetUid": 8681641,
+      "arbeitExp": 2711,
+      "priority": 6,
+      "restFinishDt": "1779771389260",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 6500,
+      "maxGradeSno": 110014,
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 6510,
+      "reputation": 81100,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1781016489067",
+      "giftDt": "1777473275782",
+      "costumeItemNo": 2396,
+      "maxGradeSno": 110025,
+      "objetUid": 12830685,
+      "maxLevelDt": "1777473275782",
+      "arbeitExp": 26841,
+      "priority": 6,
+      "restFinishDt": "1780958120335",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 6520,
+      "reputation": 81100,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1780876038756",
+      "giftDt": "1731372909792",
+      "costumeItemNo": 2327,
+      "maxGradeSno": 110025,
+      "objetUid": 13448848,
+      "maxLevelDt": "1733446493998",
+      "arbeitExp": 16173,
+      "priority": 6,
+      "restFinishDt": "1780756951346",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 6530,
+      "reputation": 81100,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1780945397881",
+      "giftDt": "1742345011238",
+      "costumeItemNo": 2354,
+      "maxGradeSno": 110025,
+      "objetUid": 13584343,
+      "maxLevelDt": "1744333552025",
+      "arbeitExp": 14534,
+      "priority": 6,
+      "restFinishDt": "1780843157667",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 6540,
+      "reputation": 81100,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1779903846850",
+      "giftDt": "1777472140151",
+      "maxGradeSno": 110025,
+      "maxLevelDt": "1777472118715",
+      "arbeitExp": 2624,
+      "priority": 6,
+      "restFinishDt": "1779806239481",
+      "objetNo": "45033"
+    },
+    {
+      "heroNo": 6980,
+      "reputation": 37208,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1780945397881",
+      "giftDt": "1754587159832",
+      "maxGradeSno": 110025,
+      "objetUid": 8419314,
+      "arbeitExp": 13247,
+      "priority": 6,
+      "restFinishDt": "1780845317667",
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 6990,
+      "reputation": 20470,
+      "state": 9,
+      "stress": 100,
+      "lastUpdateDt": "1780945397881",
+      "giftDt": "1764948751187",
+      "maxGradeSno": 110017,
+      "objetUid": 8939905,
+      "arbeitExp": 12205,
+      "restFinishDt": "1780847477667",
+      "objetNo": "0"
+    }
+  ],
+  "arbeitList": [
+    {
+      "no": 272203,
+      "date": 260609,
+      "arbeitChoiceNo": 367,
+      "arbeitNo": 780602,
+      "objetNo": -1,
+      "arbeitStartTimestamp": "1781016500877",
+      "arbeitEndTimestamp": "1781021900877",
+      "state": 3,
+      "heroNo": [
+        1010,
+        5010
+      ],
+      "kind": "SPECIAL"
+    },
+    {
+      "no": 272204,
+      "date": 260609,
+      "arbeitChoiceNo": 368,
+      "arbeitNo": 790204,
+      "objetNo": -2,
+      "arbeitStartTimestamp": "1781016500877",
+      "arbeitEndTimestamp": "1781025140877",
+      "state": 3,
+      "heroNo": [
+        4050
+      ],
+      "kind": "EMERGENCY"
+    },
+    {
+      "no": 272209,
+      "date": 260609,
+      "arbeitChoiceNo": 385,
+      "arbeitNo": 710208,
+      "objetNo": 48012,
+      "arbeitStartTimestamp": "1781016500877",
+      "arbeitEndTimestamp": "1781022440877",
+      "state": 3,
+      "heroNo": [
+        2040,
+        2010
+      ],
+      "kind": "LANDMARK"
+    },
+    {
+      "no": 272210,
+      "date": 260609,
+      "arbeitChoiceNo": 389,
+      "arbeitNo": 720209,
+      "objetNo": 48013,
+      "arbeitStartTimestamp": "1781016500877",
+      "arbeitEndTimestamp": "1781024600877",
+      "state": 3,
+      "heroNo": [
+        5030
+      ],
+      "kind": "LANDMARK"
+    },
+    {
+      "no": 272211,
+      "date": 260609,
+      "arbeitChoiceNo": 391,
+      "arbeitNo": 700308,
+      "objetNo": 48021,
+      "arbeitStartTimestamp": "1781016500877",
+      "arbeitEndTimestamp": "1781025140877",
+      "state": 3,
+      "heroNo": [
+        1100
+      ],
+      "kind": "LANDMARK"
+    },
+    {
+      "no": 272212,
+      "date": 260609,
+      "arbeitChoiceNo": 394,
+      "arbeitNo": 710308,
+      "objetNo": 48022,
+      "arbeitStartTimestamp": "1781016500877",
+      "arbeitEndTimestamp": "1781024600877",
+      "state": 3,
+      "heroNo": [
+        1030
+      ],
+      "kind": "LANDMARK"
+    },
+    {
+      "no": 272215,
+      "date": 260609,
+      "arbeitChoiceNo": 404,
+      "arbeitNo": 710409,
+      "objetNo": 48032,
+      "arbeitStartTimestamp": "1781016500877",
+      "arbeitEndTimestamp": "1781022440877",
+      "state": 3,
+      "heroNo": [
+        6010,
+        4130
+      ],
+      "kind": "LANDMARK"
+    },
+    {
+      "no": 272216,
+      "date": 260609,
+      "arbeitChoiceNo": 405,
+      "arbeitNo": 720407,
+      "objetNo": 48033,
+      "arbeitStartTimestamp": "1781016500877",
+      "arbeitEndTimestamp": "1781025140877",
+      "state": 3,
+      "heroNo": [
+        2050
+      ],
+      "kind": "LANDMARK"
+    },
+    {
+      "no": 272221,
+      "date": 260609,
+      "arbeitChoiceNo": 421,
+      "arbeitNo": 710608,
+      "objetNo": 48052,
+      "arbeitStartTimestamp": "1781016500877",
+      "arbeitEndTimestamp": "1781025140877",
+      "state": 3,
+      "heroNo": [
+        3010
+      ],
+      "kind": "LANDMARK"
+    },
+    {
+      "no": 272226,
+      "date": 260609,
+      "arbeitChoiceNo": 436,
+      "arbeitNo": 700808,
+      "objetNo": 48071,
+      "arbeitStartTimestamp": "1781016500877",
+      "arbeitEndTimestamp": "1781025140877",
+      "state": 3,
+      "heroNo": [
+        4040
+      ],
+      "kind": "LANDMARK"
+    },
+    {
+      "no": 272227,
+      "date": 260609,
+      "arbeitChoiceNo": 439,
+      "arbeitNo": 710808,
+      "objetNo": 48072,
+      "arbeitStartTimestamp": "1781016500877",
+      "arbeitEndTimestamp": "1781024600877",
+      "state": 3,
+      "heroNo": [
+        3140
+      ],
+      "kind": "LANDMARK"
+    },
+    {
+      "no": 272232,
+      "date": 260609,
+      "arbeitChoiceNo": 457,
+      "arbeitNo": 711111,
+      "objetNo": 48091,
+      "arbeitStartTimestamp": "1781016500877",
+      "arbeitEndTimestamp": "1781024600877",
+      "state": 3,
+      "heroNo": [
+        1050
+      ],
+      "kind": "LANDMARK"
+    },
+    {
+      "no": 272248,
+      "date": 260609,
+      "arbeitChoiceNo": 502,
+      "arbeitNo": 721414,
+      "objetNo": 48095,
+      "arbeitStartTimestamp": "1781016500877",
+      "arbeitEndTimestamp": "1781025680877",
+      "state": 3,
+      "heroNo": [
+        2020
+      ],
+      "kind": "LANDMARK"
+    }
+  ],
+  "arbeitReward": [
+    {
+      "arbeitNo": 780602,
+      "no": 16,
+      "count": 500
+    },
+    {
+      "arbeitNo": 780602,
+      "no": 4132,
+      "count": 2
+    },
+    {
+      "arbeitNo": 790204,
+      "no": 16,
+      "count": 500
+    },
+    {
+      "arbeitNo": 790204,
+      "no": 4132,
+      "count": 3
+    },
+    {
+      "arbeitNo": 710208,
+      "no": 16,
+      "count": 270
+    },
+    {
+      "arbeitNo": 710208,
+      "no": 1,
+      "count": 43200
+    },
+    {
+      "arbeitNo": 720209,
+      "no": 16,
+      "count": 540
+    },
+    {
+      "arbeitNo": 720209,
+      "no": 4132,
+      "count": 6
+    },
+    {
+      "arbeitNo": 700308,
+      "no": 16,
+      "count": 90
+    },
+    {
+      "arbeitNo": 700308,
+      "no": 3,
+      "count": 32400
+    },
+    {
+      "arbeitNo": 710308,
+      "no": 16,
+      "count": 270
+    },
+    {
+      "arbeitNo": 710308,
+      "no": 3,
+      "count": 64800
+    },
+    {
+      "arbeitNo": 710409,
+      "no": 16,
+      "count": 270
+    },
+    {
+      "arbeitNo": 710409,
+      "no": 3,
+      "count": 64800
+    },
+    {
+      "arbeitNo": 720407,
+      "no": 16,
+      "count": 540
+    },
+    {
+      "arbeitNo": 720407,
+      "no": 4132,
+      "count": 6
+    },
+    {
+      "arbeitNo": 710608,
+      "no": 16,
+      "count": 270
+    },
+    {
+      "arbeitNo": 710608,
+      "no": 1,
+      "count": 43200
+    },
+    {
+      "arbeitNo": 700808,
+      "no": 16,
+      "count": 90
+    },
+    {
+      "arbeitNo": 700808,
+      "no": 1,
+      "count": 21600
+    },
+    {
+      "arbeitNo": 710808,
+      "no": 16,
+      "count": 270
+    },
+    {
+      "arbeitNo": 710808,
+      "no": 1,
+      "count": 43200
+    },
+    {
+      "arbeitNo": 711111,
+      "no": 14,
+      "count": 3000
+    },
+    {
+      "arbeitNo": 711111,
+      "no": 3,
+      "count": 64800
+    },
+    {
+      "arbeitNo": 721414,
+      "no": 4,
+      "count": 300
+    },
+    {
+      "arbeitNo": 721414,
+      "no": 3,
+      "count": 64800
+    }
+  ],
+  "__format__": "proto"
+}

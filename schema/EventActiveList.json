@@ -1,0 +1,71 @@
+{
+ "root": "EventActiveList",
+ "messages": {
+  "EventActiveList": {
+   "fields": [
+    {
+     "name": "eventActive",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sEventActive",
+     "packed": false
+    }
+   ]
+  },
+  "sEventActive": {
+   "fields": [
+    {
+     "name": "eventType",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "userType",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "group",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "eventNumber",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "startTs",
+     "number": 5,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "endTs",
+     "number": 6,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "delayOffTs",
+     "number": 7,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

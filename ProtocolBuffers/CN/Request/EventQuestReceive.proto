@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message EventQuestReceive {
+  int32 eventType = 1;
+  int32 group = 2;
+  int32 eventNumber = 3;
+  int32 subNo = 4;
+}
+

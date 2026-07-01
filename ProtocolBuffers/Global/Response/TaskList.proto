@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package EsPb;
+
+message TaskList {
+  sTaskDaily taskDaily = 1;
+  sTaskWeekly taskWeekly = 2;
+}
+
+message sTaskDaily {
+  uint32 days = 1;
+  repeated sTaskValue taskValue = 2;
+  repeated sTaskReceive taskReceive = 3;
+}
+
+message sTaskValue {
+  uint32 val = 1;
+}
+
+message sTaskReceive {
+  uint32 val = 1;
+}
+
+message sTaskWeekly {
+  uint32 weeks = 1;
+  repeated sTaskValue taskValue = 2;
+  repeated sTaskReceive taskReceive = 3;
+}
+

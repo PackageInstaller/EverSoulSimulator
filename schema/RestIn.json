@@ -1,0 +1,127 @@
+{
+ "root": "RestIn",
+ "messages": {
+  "RestIn": {
+   "fields": [
+    {
+     "name": "heroReputation",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sHeroReputation",
+     "packed": false
+    }
+   ]
+  },
+  "sHeroReputation": {
+   "fields": [
+    {
+     "name": "heroNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "reputation",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "state",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "stress",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "lastUpdateDt",
+     "number": 5,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "giftDt",
+     "number": 6,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "costumeItemNo",
+     "number": 7,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "storyReward",
+     "number": 8,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "maxGradeSno",
+     "number": 9,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "objetUid",
+     "number": 10,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "maxLevelDt",
+     "number": 11,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "arbeitExp",
+     "number": 12,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "priority",
+     "number": 13,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "restFinishDt",
+     "number": 14,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "objetNo",
+     "number": 15,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

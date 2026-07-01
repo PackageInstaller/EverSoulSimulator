@@ -1,0 +1,36 @@
+{
+ "root": "LabyrinthRewardList",
+ "messages": {
+  "LabyrinthRewardList": {
+   "fields": [
+    {
+     "name": "labyrinthItem",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sLabyrinthItem",
+     "packed": false
+    }
+   ]
+  },
+  "sLabyrinthItem": {
+   "fields": [
+    {
+     "name": "itemNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "cnt",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

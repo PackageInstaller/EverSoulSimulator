@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message TownFurnace {
+  repeated sTownObjetFurnace townObjetFurnace = 1;
+}
+
+message sTownObjetFurnace {
+  int32 itemNo = 1;
+  int32 itemCnt = 2;
+}
+

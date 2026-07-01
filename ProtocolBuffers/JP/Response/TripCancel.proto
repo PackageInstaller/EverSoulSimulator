@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package EsPb;
+
+message TripCancel {
+  string tripCancel_ = 1;
+}
+

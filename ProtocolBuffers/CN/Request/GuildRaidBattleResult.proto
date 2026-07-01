@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message GuildRaidBattleResult {
+  int32 scheduleId = 1;
+  repeated int64 score = 2;
+  repeated string heroIdxes = 3;
+  repeated int32 relicNo = 4;
+}
+

@@ -1,0 +1,92 @@
+{
+  "info": [
+    {
+      "stageNo": 1,
+      "level": 8
+    },
+    {
+      "stageNo": 18,
+      "level": 8,
+      "maxScore": 868119
+    },
+    {
+      "stageNo": 21,
+      "level": 10,
+      "maxScore": 887026
+    },
+    {
+      "stageNo": 26,
+      "level": 16,
+      "maxScore": 764369
+    },
+    {
+      "stageNo": 27,
+      "level": 15,
+      "maxScore": 831730
+    },
+    {
+      "stageNo": 28,
+      "level": 9
+    },
+    {
+      "stageNo": 29,
+      "level": 10
+    },
+    {
+      "stageNo": 30,
+      "level": 13,
+      "maxScore": 790721
+    },
+    {
+      "stageNo": 31,
+      "level": 16
+    },
+    {
+      "stageNo": 32,
+      "level": 7
+    },
+    {
+      "stageNo": 33,
+      "level": 10
+    },
+    {
+      "stageNo": 34,
+      "level": 11
+    },
+    {
+      "stageNo": 35,
+      "level": 12
+    },
+    {
+      "stageNo": 36,
+      "level": 13
+    },
+    {
+      "stageNo": 37,
+      "level": 4
+    },
+    {
+      "stageNo": 38,
+      "level": 14
+    }
+  ],
+  "receiveRewardNo": [
+    30,
+    27,
+    18,
+    26,
+    21,
+    29,
+    28,
+    31,
+    32,
+    33,
+    35,
+    34,
+    36,
+    38,
+    37,
+    1
+  ],
+  "__format__": "proto"
+}

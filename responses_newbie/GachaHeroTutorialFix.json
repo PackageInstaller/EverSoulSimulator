@@ -1,0 +1,100 @@
+{
+  "heros": [
+    {
+      "idx": "1_641WhSES_17Eb",
+      "heroNo": 4080,
+      "level": 1,
+      "gradeSno": 110014,
+      "raceSno": 110055
+    },
+    {
+      "idx": "1_641WhSES_17Ec",
+      "heroNo": 320,
+      "level": 1,
+      "gradeSno": 110012,
+      "raceSno": 110054
+    },
+    {
+      "idx": "1_641WhSES_17Ed",
+      "heroNo": 120,
+      "level": 1,
+      "gradeSno": 110012,
+      "raceSno": 110052
+    },
+    {
+      "idx": "1_641WhSES_17Ee",
+      "heroNo": 220,
+      "level": 1,
+      "gradeSno": 110012,
+      "raceSno": 110053
+    },
+    {
+      "idx": "1_641WhSES_17Ef",
+      "heroNo": 310,
+      "level": 1,
+      "gradeSno": 110012,
+      "raceSno": 110054
+    },
+    {
+      "idx": "1_641WhSES_17Eg",
+      "heroNo": 20,
+      "level": 1,
+      "gradeSno": 110011,
+      "raceSno": 110053
+    },
+    {
+      "idx": "1_641WhSES_17Eh",
+      "heroNo": 40,
+      "level": 1,
+      "gradeSno": 110011,
+      "raceSno": 110055
+    },
+    {
+      "idx": "1_641WhSES_17Ei",
+      "heroNo": 20,
+      "level": 1,
+      "gradeSno": 110011,
+      "raceSno": 110053
+    },
+    {
+      "idx": "1_641WhSES_17Ej",
+      "heroNo": 40,
+      "level": 1,
+      "gradeSno": 110011,
+      "raceSno": 110055
+    },
+    {
+      "idx": "1_641WhSES_17Ek",
+      "heroNo": 30,
+      "level": 1,
+      "gradeSno": 110011,
+      "raceSno": 110054
+    }
+  ],
+  "reputations": [
+    {
+      "heroNo": 4080,
+      "maxGradeSno": 110014,
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 320,
+      "maxGradeSno": 110012,
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 220,
+      "maxGradeSno": 110012,
+      "objetNo": "0"
+    },
+    {
+      "heroNo": 310,
+      "maxGradeSno": 110012,
+      "objetNo": "0"
+    }
+  ],
+  "gacha": {
+    "heroGachaTutorialFixed": 1
+  },
+  "__format__": "proto"
+}

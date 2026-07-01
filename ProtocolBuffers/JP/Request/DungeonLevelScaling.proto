@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message DungeonLevelScaling {
+  int32 scalingLevel = 1;
+}
+

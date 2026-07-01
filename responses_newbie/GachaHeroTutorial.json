@@ -1,0 +1,65 @@
+{
+  "heros": [
+    {
+      "heroNo": 4080,
+      "level": 1,
+      "gradeSno": 110014,
+      "raceSno": 110055
+    },
+    {
+      "heroNo": 320,
+      "level": 1,
+      "gradeSno": 110012,
+      "raceSno": 110054
+    },
+    {
+      "heroNo": 120,
+      "level": 1,
+      "gradeSno": 110012,
+      "raceSno": 110052
+    },
+    {
+      "heroNo": 220,
+      "level": 1,
+      "gradeSno": 110012,
+      "raceSno": 110053
+    },
+    {
+      "heroNo": 310,
+      "level": 1,
+      "gradeSno": 110012,
+      "raceSno": 110054
+    },
+    {
+      "heroNo": 20,
+      "level": 1,
+      "gradeSno": 110011,
+      "raceSno": 110053
+    },
+    {
+      "heroNo": 40,
+      "level": 1,
+      "gradeSno": 110011,
+      "raceSno": 110055
+    },
+    {
+      "heroNo": 20,
+      "level": 1,
+      "gradeSno": 110011,
+      "raceSno": 110053
+    },
+    {
+      "heroNo": 40,
+      "level": 1,
+      "gradeSno": 110011,
+      "raceSno": 110055
+    },
+    {
+      "heroNo": 30,
+      "level": 1,
+      "gradeSno": 110011,
+      "raceSno": 110054
+    }
+  ],
+  "__format__": "proto"
+}

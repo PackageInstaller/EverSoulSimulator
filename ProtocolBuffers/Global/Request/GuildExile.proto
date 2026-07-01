@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message GuildExile {
+  string tUserIdx = 1;
+  string guildIdx = 2;
+}
+

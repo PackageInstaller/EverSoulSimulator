@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message ProfileInfos {
+  string targetUserIdxs = 1;
+}
+

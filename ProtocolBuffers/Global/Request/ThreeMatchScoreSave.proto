@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message ThreeMatchScoreSave {
+  int32 groupNo = 1;
+  int32 stageNo = 2;
+  int32 score = 3;
+  int32 heartCount = 4;
+  int32 clickCount = 5;
+  int32 validCount = 6;
+}
+

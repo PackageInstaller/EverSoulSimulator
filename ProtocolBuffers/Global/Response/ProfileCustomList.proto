@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package EsPb;
+
+message ProfileCustomList {
+  repeated sProfileCustom profile = 1;
+}
+
+message sProfileCustom {
+  int32 uid = 1;
+  bytes profile = 2;
+}
+

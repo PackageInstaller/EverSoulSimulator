@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message GachaMileageUse {
+  int32 mileageType = 1;
+  int32 mileageNo = 2;
+  int32 rewardPoint = 3;
+}
+

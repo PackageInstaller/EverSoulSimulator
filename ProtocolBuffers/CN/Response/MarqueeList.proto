@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package EsPb;
+
+message MarqueeList {
+  repeated sMarquee notice = 1;
+}
+
+message sMarquee {
+  int32 noticeId = 1;
+  int64 expireDt = 2;
+  repeated MarqueeContent content = 3;
+}
+
+message MarqueeContent {
+  string lang = 1;
+  string text = 2;
+}
+

@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message EventDoubleStageReward {
+  int32 eventGroup = 1;
+  int32 eventNumber = 2;
+  int64 id = 3;
+  int32 difficulty = 4;
+}
+

@@ -1,0 +1,430 @@
+{
+  "itemSignature": [
+    {
+      "itemNo": 1011,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 1021,
+      "grade": 110020,
+      "level": 30
+    },
+    {
+      "itemNo": 1031,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 1041,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 1051,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 1061,
+      "grade": 110020,
+      "level": 40
+    },
+    {
+      "itemNo": 1071,
+      "grade": 110020,
+      "level": 40
+    },
+    {
+      "itemNo": 1081,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 1091,
+      "grade": 110019,
+      "level": 40
+    },
+    {
+      "itemNo": 1101,
+      "grade": 110018,
+      "level": 30
+    },
+    {
+      "itemNo": 1111,
+      "grade": 110020,
+      "level": 25
+    },
+    {
+      "itemNo": 1121,
+      "grade": 110018,
+      "level": 25
+    },
+    {
+      "itemNo": 1131,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 1141,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 1151,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 1161,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 1171,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 2011,
+      "grade": 110020,
+      "level": 40
+    },
+    {
+      "itemNo": 2021,
+      "grade": 110019,
+      "level": 35
+    },
+    {
+      "itemNo": 2031,
+      "grade": 110019,
+      "level": 40
+    },
+    {
+      "itemNo": 2041,
+      "grade": 110020,
+      "level": 10
+    },
+    {
+      "itemNo": 2051,
+      "grade": 110019,
+      "level": 20
+    },
+    {
+      "itemNo": 2071,
+      "grade": 110018,
+      "level": 25
+    },
+    {
+      "itemNo": 2081,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 2091,
+      "grade": 110018,
+      "level": 25
+    },
+    {
+      "itemNo": 2101,
+      "grade": 110020,
+      "level": 40
+    },
+    {
+      "itemNo": 2111,
+      "grade": 110019,
+      "level": 25
+    },
+    {
+      "itemNo": 2121,
+      "grade": 110019,
+      "level": 30
+    },
+    {
+      "itemNo": 2131,
+      "grade": 110018,
+      "level": 25
+    },
+    {
+      "itemNo": 2141,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 2151,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 2161,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 2171,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 3011,
+      "grade": 110020,
+      "level": 35
+    },
+    {
+      "itemNo": 3031,
+      "grade": 110018,
+      "level": 35
+    },
+    {
+      "itemNo": 3041,
+      "grade": 110019,
+      "level": 30
+    },
+    {
+      "itemNo": 3051,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 3061,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 3071,
+      "grade": 110019,
+      "level": 35
+    },
+    {
+      "itemNo": 3081,
+      "grade": 110020,
+      "level": 40
+    },
+    {
+      "itemNo": 3091,
+      "grade": 110019,
+      "level": 40
+    },
+    {
+      "itemNo": 3101,
+      "grade": 110020,
+      "level": 40
+    },
+    {
+      "itemNo": 3111,
+      "grade": 110020,
+      "level": 40
+    },
+    {
+      "itemNo": 3121,
+      "grade": 110018,
+      "level": 20
+    },
+    {
+      "itemNo": 3131,
+      "grade": 110020,
+      "level": 40
+    },
+    {
+      "itemNo": 3141,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 3151,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 3161,
+      "grade": 110017,
+      "level": 25
+    },
+    {
+      "itemNo": 3171,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 3181,
+      "grade": 110016,
+      "level": 1
+    },
+    {
+      "itemNo": 4011,
+      "grade": 110019,
+      "level": 35
+    },
+    {
+      "itemNo": 4021,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 4031,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 4041,
+      "grade": 110019,
+      "level": 35
+    },
+    {
+      "itemNo": 4051,
+      "grade": 110019,
+      "level": 40
+    },
+    {
+      "itemNo": 4061,
+      "grade": 110018,
+      "level": 30
+    },
+    {
+      "itemNo": 4071,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 4081,
+      "grade": 110018,
+      "level": 1
+    },
+    {
+      "itemNo": 4091,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 4101,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 4111,
+      "grade": 110020,
+      "level": 35
+    },
+    {
+      "itemNo": 4121,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 4131,
+      "grade": 110020,
+      "level": 40
+    },
+    {
+      "itemNo": 4141,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 4151,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 4161,
+      "grade": 110020,
+      "level": 40
+    },
+    {
+      "itemNo": 4171,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 5011,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 5021,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 5031,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 5041,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 5061,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 5081,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 6011,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 6021,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 6031,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 6051,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 6061,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 6071,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 6511,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 6521,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 6531,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 6541,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 6981,
+      "grade": 110020,
+      "level": 45
+    },
+    {
+      "itemNo": 6991,
+      "grade": 110017,
+      "level": 30
+    }
+  ],
+  "__format__": "proto"
+}

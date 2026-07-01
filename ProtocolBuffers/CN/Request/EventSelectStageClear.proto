@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message EventSelectStageClear {
+  int32 sweepFlag = 1;
+  repeated string heroIdx = 2;
+  int32 eventStageGroup = 3;
+  int32 eventStagePhase = 4;
+  int32 sweepCount = 5;
+  int32 eventGroup = 6;
+  int32 eventNumber = 7;
+}
+

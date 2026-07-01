@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message RemoveObjetAll {
+  bool isBuilding = 1;
+  repeated int32 objetGroupNo = 2;
+}
+

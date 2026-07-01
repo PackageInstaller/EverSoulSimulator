@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message EventPassReward {
+  int32 rewardPoint = 1;
+  int32 group = 2;
+  int32 eventNumber = 3;
+}
+

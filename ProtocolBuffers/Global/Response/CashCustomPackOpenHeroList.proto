@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package EsPb;
+
+message CashCustomPackOpenHeroList {
+  repeated sCashCustomPackOpenHero cashCustomPackOpenHeroes = 1;
+}
+
+message sCashCustomPackOpenHero {
+  int32 type = 1;
+  repeated int32 itemNo = 2;
+}
+

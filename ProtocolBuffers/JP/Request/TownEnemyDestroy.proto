@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message TownEnemyDestroy {
+  int32 no = 1;
+  int32 section = 2;
+  string otherUserIdx = 3;
+}
+

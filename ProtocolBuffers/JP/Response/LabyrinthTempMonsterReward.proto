@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package EsPb;
+
+enum eDungeonRewardType {
+  NoneDungeonReward = 0;
+  Mission = 1;
+  Object = 2;
+  Monster = 3;
+  Chest = 4;
+}
+
+message LabyrinthTempMonsterReward {
+  sLabyrinthTempReward labyrinthTempReward = 1;
+}
+
+message sLabyrinthTempReward {
+  sDungeonReward dungeonReward = 1;
+  int32 dungeonNo = 2;
+  repeated sLabyrinthItem labyrinthItem = 3;
+}
+
+message sDungeonReward {
+  eDungeonRewardType type = 1;
+  int32 rewardNo = 2;
+}
+
+message sLabyrinthItem {
+  int32 itemNo = 1;
+  int32 cnt = 2;
+}
+

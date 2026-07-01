@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package ReqPb;
+
+enum eDeviceType {
+  Ios = 0;
+  Aos = 1;
+  Pc = 2;
+  Emul = 3;
+  Etc = 4;
+}
+
+enum eLogOutType {
+  Logout_ = 0;
+  Withdrawal = 1;
+}
+
+message Logout {
+  eDeviceType deviceType = 1;
+  string deviceModel = 2;
+  eLogOutType logoutType = 3;
+}
+

@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package EsPb;
+
+message GetContentClearDeck {
+  int32 contentType = 1;
+  int32 contentNo = 2;
+  repeated sContentClearDeckList contentClearDecks = 3;
+}
+
+message sContentClearDeckList {
+  repeated sContentClearDeckInfo contentClearDeckInfo = 1;
+}
+
+message sContentClearDeckInfo {
+  int32 formationType = 1;
+  int32 sumPower = 2;
+  int32 deckOrderNo = 3;
+  repeated sContentClearHeroInfo clearHero = 4;
+}
+
+message sContentClearHeroInfo {
+  int32 heroNo = 1;
+  int32 gradeSno = 2;
+  int32 level = 3;
+}
+

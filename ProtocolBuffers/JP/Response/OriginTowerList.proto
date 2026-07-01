@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package EsPb;
+
+message OriginTowerList {
+  repeated sOriginTower originTower = 1;
+}
+
+message sOriginTower {
+  int32 towerNo = 1;
+  int32 stageNo = 2;
+  string firstConquerorUserIdx = 3;
+  string firstConquerorNickName = 4;
+  sThumbnail firstConquerorThumbnail = 5;
+}
+
+message sThumbnail {
+  int32 thumbnailFrame = 1;
+  int32 thumbnailImage = 2;
+  bool useCustom = 3;
+  bytes thumbnail = 4;
+}
+

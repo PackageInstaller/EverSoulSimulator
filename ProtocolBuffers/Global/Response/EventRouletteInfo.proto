@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package EsPb;
+
+message EventRouletteInfo {
+  repeated sEventRoulette eventRoulette = 1;
+}
+
+message sEventRoulette {
+  int32 eventGroup = 1;
+  int32 eventNumber = 2;
+  int32 currentCount = 3;
+  int32 lastRewardNo = 4;
+  int32 repeatCount = 5;
+}
+

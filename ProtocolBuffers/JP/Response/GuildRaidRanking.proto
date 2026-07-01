@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package EsPb;
+
+message GuildRaidRanking {
+  repeated sGuildRaidRankGroup guildRaidRankGroup = 1;
+  sGuildRaidRankGroup myGuildRaidRankInfo = 2;
+}
+
+message sGuildRaidRankGroup {
+  string guildIdx = 1;
+  int32 emblemNo = 2;
+  string name = 3;
+  int32 rank = 4;
+  int64 score = 5;
+  int64 scheduleId = 6;
+  bytes customEmblem = 7;
+  bool isDelete = 8;
+}
+

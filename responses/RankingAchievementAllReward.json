@@ -1,0 +1,173 @@
+{
+  "currency": {
+    "allCurrency": [
+      {
+        "type": "Gold",
+        "value": "32835"
+      },
+      {
+        "type": "FreeDia",
+        "value": "3800"
+      },
+      {
+        "type": "ManaDust",
+        "value": "45980"
+      },
+      {
+        "type": "ManaCrystal",
+        "value": "106"
+      },
+      {
+        "type": "Exp",
+        "value": "333"
+      },
+      {
+        "type": "Heart"
+      },
+      {
+        "type": "LifeEssence"
+      },
+      {
+        "type": "ArenaTicket",
+        "value": "1"
+      },
+      {
+        "type": "Dungeon"
+      },
+      {
+        "type": "Guild"
+      },
+      {
+        "type": "Release"
+      },
+      {
+        "type": "Arena"
+      },
+      {
+        "type": "Relics"
+      },
+      {
+        "type": "Silver"
+      },
+      {
+        "type": "SingleRaidCoin"
+      },
+      {
+        "type": "PickupGachaTicket"
+      },
+      {
+        "type": "Sign1"
+      },
+      {
+        "type": "Sign2"
+      },
+      {
+        "type": "SignHuman"
+      },
+      {
+        "type": "SignFurry"
+      },
+      {
+        "type": "SignElf"
+      },
+      {
+        "type": "SignUndead"
+      },
+      {
+        "type": "SignAngel"
+      },
+      {
+        "type": "SignDemon"
+      },
+      {
+        "type": "NormalTicket",
+        "value": "1"
+      },
+      {
+        "type": "RaceTicket"
+      },
+      {
+        "type": "RareSoulstone",
+        "value": "5"
+      },
+      {
+        "type": "EpicSoulstone"
+      },
+      {
+        "type": "EquipExp"
+      },
+      {
+        "type": "CollaborationSummonTicket"
+      },
+      {
+        "type": "PayDia"
+      },
+      {
+        "type": "TeamarenaTicket"
+      },
+      {
+        "type": "SignatureGachaTicket"
+      },
+      {
+        "type": "PremiumGachaTicket"
+      },
+      {
+        "type": "MonthlyHeroResetTicket"
+      },
+      {
+        "type": "EquipExpMiddle"
+      },
+      {
+        "type": "EquipExpHigh"
+      },
+      {
+        "type": "ZodiacExp"
+      },
+      {
+        "type": "LabyrinthTicket"
+      },
+      {
+        "type": "TranscendentStone"
+      },
+      {
+        "type": "SingleRaidTicket"
+      },
+      {
+        "type": "SetItemEngrave"
+      },
+      {
+        "type": "RotationDungeonTicket"
+      },
+      {
+        "type": "EdenCoin"
+      },
+      {
+        "type": "TypeBarrierGateTicket"
+      },
+      {
+        "type": "OriginTowerTicket"
+      },
+      {
+        "type": "DoubleGateNormalTicket",
+        "value": "3"
+      },
+      {
+        "type": "DoubleGateNormalTicketCharge"
+      },
+      {
+        "type": "SignatureEnhanceStone"
+      },
+      {
+        "type": "HeroOptionChangeStone"
+      },
+      {
+        "type": "WishGachaTicket"
+      },
+      {
+        "type": "TotalDia",
+        "value": "3800"
+      }
+    ]
+  },
+  "__format__": "proto"
+}

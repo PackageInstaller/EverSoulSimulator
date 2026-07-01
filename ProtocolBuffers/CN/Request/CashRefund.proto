@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message CashRefund {
+  int32 iapType = 1;
+  int64 payDt = 2;
+  string receipt = 3;
+  string country = 4;
+  string currency = 5;
+  string price = 6;
+  string iapProductId = 7;
+  int64 marketRefundSeq = 8;
+  string marketIdentifier = 9;
+  string marketCountryCode = 10;
+}
+

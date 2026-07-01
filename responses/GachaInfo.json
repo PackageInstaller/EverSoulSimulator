@@ -1,0 +1,110 @@
+{
+  "gachaLimit": [
+    {
+      "gachaNo": 401,
+      "expiredDt": "32503597200000"
+    },
+    {
+      "gachaNo": 901,
+      "ableCnt": 1
+    },
+    {
+      "gachaNo": 902,
+      "expiredDt": "1781049600000"
+    },
+    {
+      "gachaNo": 1101,
+      "ableCnt": 1,
+      "expiredDt": "1781049600000"
+    },
+    {
+      "gachaNo": 1201,
+      "expiredDt": "1781049600000"
+    }
+  ],
+  "gacha": {
+    "heroGachaCeilCnt": 27,
+    "premiumGachaCeilCnt": 52,
+    "heroWishGachaCeilCnt": 1,
+    "heroGachaTutorialFixed": 1,
+    "heroGachaAutoRelease": 1,
+    "signatureGachaAutoRelease": 1
+  },
+  "gachaWish": [
+    {
+      "gachaType": 1,
+      "wishId": 6010
+    },
+    {
+      "gachaType": 1,
+      "slotNum": 1,
+      "wishId": 3140
+    },
+    {
+      "gachaType": 1,
+      "slotNum": 2,
+      "wishId": 4100
+    },
+    {
+      "gachaType": 1,
+      "slotNum": 3,
+      "wishId": 4160
+    },
+    {
+      "gachaType": 1,
+      "slotNum": 4,
+      "wishId": 4150
+    },
+    {
+      "gachaType": 1,
+      "slotNum": 5,
+      "wishId": 4170
+    },
+    {
+      "gachaType": 1,
+      "slotNum": 6,
+      "wishId": 320
+    },
+    {
+      "gachaType": 2,
+      "wishId": 2051
+    },
+    {
+      "gachaType": 2,
+      "slotNum": 1,
+      "wishId": 3091
+    },
+    {
+      "gachaType": 2,
+      "slotNum": 2,
+      "wishId": 4061
+    },
+    {
+      "gachaType": 3,
+      "wishId": 6500
+    }
+  ],
+  "gachaPeriod": [
+    {
+      "gachaNo": 5002,
+      "startDt": "1688437555101",
+      "endDt": "1689647155101"
+    },
+    {
+      "gachaNo": 5114,
+      "startDt": "1713974810356",
+      "endDt": "1715184410356"
+    },
+    {
+      "gachaNo": 5204,
+      "startDt": "1753313737890",
+      "endDt": "1754523337890"
+    },
+    {
+      "gachaNo": 5416,
+      "startDt": "1777468405242",
+      "endDt": "1778678005242"
+    }
+  ],
+  "__format__": "proto"
+}

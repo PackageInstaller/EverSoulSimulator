@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package EsPb;
+
+message ArkOverClockInfo {
+  int32 overClockLevel = 1;
+  int64 overClockResetCoolTime = 2;
+}
+

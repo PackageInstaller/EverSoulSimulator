@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package EsPb;
+
+message EdenOperationClear {
+  repeated sEdenOperationMission mission = 1;
+  int32 maxScore = 2;
+}
+
+message sEdenOperationMission {
+  int32 missionNo = 1;
+  int32 isReceive = 2;
+}
+

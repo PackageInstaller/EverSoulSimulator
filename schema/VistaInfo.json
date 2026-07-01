@@ -1,0 +1,36 @@
+{
+ "root": "VistaInfo",
+ "messages": {
+  "VistaInfo": {
+   "fields": [
+    {
+     "name": "vistaInfo_",
+     "number": 1,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    },
+    {
+     "name": "vistaHero",
+     "number": 2,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sVistaHero",
+     "packed": false
+    }
+   ]
+  },
+  "sVistaHero": {
+   "fields": [
+    {
+     "name": "heroNo",
+     "number": 1,
+     "repeated": true,
+     "type": "int32",
+     "packed": true
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

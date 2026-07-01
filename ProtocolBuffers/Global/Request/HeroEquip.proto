@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package ReqPb;
+
+enum eEquipSlot {
+  Weapon = 0;
+  Helmet = 1;
+  Armor = 2;
+  Boot = 3;
+  Signature = 4;
+}
+
+message HeroEquip {
+  string heroIdx = 1;
+  int64 itemEquipId = 2;
+  eEquipSlot slot = 3;
+}
+

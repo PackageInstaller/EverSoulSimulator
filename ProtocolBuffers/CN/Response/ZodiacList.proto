@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package EsPb;
+
+message ZodiacList {
+  repeated sZodiac zodiac = 1;
+}
+
+message sZodiac {
+  int32 zodiacNo = 1;
+}
+

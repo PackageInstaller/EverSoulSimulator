@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package EsPb;
+
+message EdenUnionRankList {
+  sEdenUnionRank myRank = 1;
+  repeated sEdenUnionRank rankList = 2;
+}
+
+message sEdenUnionRank {
+  string userIdx = 1;
+  string nickName = 2;
+  sThumbnail thumbnail = 3;
+  int32 rank = 4;
+  int32 maxLevel = 5;
+  int64 totalBattleTime = 7;
+}
+
+message sThumbnail {
+  int32 thumbnailFrame = 1;
+  int32 thumbnailImage = 2;
+  bool useCustom = 3;
+  bytes thumbnail = 4;
+  int32 firstTitle = 5;
+  int32 secondTitle = 6;
+}
+

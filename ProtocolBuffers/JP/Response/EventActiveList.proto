@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package EsPb;
+
+message EventActiveList {
+  repeated sEventActive eventActive = 1;
+}
+
+message sEventActive {
+  int32 eventType = 1;
+  int32 userType = 2;
+  int32 group = 3;
+  int32 eventNumber = 4;
+  int64 startTs = 5;
+  int64 endTs = 6;
+  int64 delayOffTs = 7;
+}
+

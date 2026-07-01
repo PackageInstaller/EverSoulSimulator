@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package EsPb;
+
+message CashShopItemBuy {
+  string playerId = 1;
+  int32 tabNo = 2;
+  repeated sCashShop cashShop = 3;
+  repeated sCashDailyN cashDailyN = 4;
+  sDailyContent dailyContent = 5;
+}
+
+message sCashShop {
+  int32 no = 1;
+  int32 buyCount = 2;
+  int64 expiredDt = 3;
+  int64 openDt = 4;
+}
+
+message sCashDailyN {
+  int32 packageNo = 1;
+  int32 rewardYyyymmdd = 2;
+  int32 endYyyymmdd = 3;
+}
+
+message sDailyContent {
+  int32 arenaCnt = 1;
+  int32 townCoin = 2;
+  int32 raceSno = 3;
+  int32 ahQuickCnt = 4;
+  int32 teamarenaCnt = 5;
+  int32 doubleGateNormalTicketBuyCount = 6;
+}
+

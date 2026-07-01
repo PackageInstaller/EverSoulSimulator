@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package EsPb;
+
+message SignatureLevelUpForAdmin {
+  sItemSignature itemSignature = 1;
+  sHeroEquip heroEquip = 2;
+}
+
+message sItemSignature {
+  int32 itemNo = 1;
+  int32 grade = 2;
+  int32 level = 3;
+}
+
+message sHeroEquip {
+  string heroIdx = 1;
+  sSlotAndEquipId equip = 2;
+}
+
+message sSlotAndEquipId {
+  int32 slot = 1;
+  int32 itemEquipId = 2;
+}
+

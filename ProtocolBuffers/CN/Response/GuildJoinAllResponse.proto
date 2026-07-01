@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package EsPb;
+
+message GuildJoinAllResponse {
+  sGuild guild = 1;
+  repeated sGuildMember guildMember = 2;
+  repeated sGuildJoinRequest guildJoinRequest = 3;
+}
+
+message sGuild {
+  string idx = 1;
+  int32 emblemNo = 2;
+  string name = 3;
+  int32 exp = 4;
+  int32 cnt = 5;
+  int32 joinType = 6;
+  int32 limitLv = 7;
+  string notice = 8;
+  int64 dt = 9;
+  int32 regularRaidNo = 10;
+  int32 irregularRaidNo = 11;
+  int32 raidPoint = 12;
+  int32 useSkillPoint = 13;
+  string skillLevel = 14;
+  bytes customEmblem = 15;
+  int64 skillResetDt = 16;
+  string introduction = 17;
+}
+
+message sGuildMember {
+  string guildIdx = 1;
+  string userIdx = 2;
+  int32 channelNo = 3;
+  int32 grade = 4;
+  int64 dt = 5;
+  int32 contribution = 6;
+  string nickName = 7;
+  int64 lastLoginDt = 8;
+  sThumbnail thumbnail = 9;
+  int64 power = 10;
+  int32 level = 11;
+  int64 logoutDt = 12;
+  int32 weeklyContribution = 13;
+}
+
+message sThumbnail {
+  int32 thumbnailFrame = 1;
+  int32 thumbnailImage = 2;
+  bool useCustom = 3;
+  bytes thumbnail = 4;
+}
+
+message sGuildJoinRequest {
+  string guildIdx = 1;
+  string userIdx = 2;
+  int32 level = 3;
+  string nickName = 4;
+  int64 dt = 5;
+  sThumbnail thumbnail = 6;
+  int64 power = 7;
+}
+

@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package EsChatPb;
+
+message GuildChatEnter {
+  tUserInfo userInfo = 1;
+  int64 dt = 2;
+}
+
+message tUserInfo {
+  string chatKey = 1;
+  string userIdx = 2;
+  string nickname = 3;
+  sThumbnail thumbnail = 4;
+  int64 guildGrade = 5;
+}
+
+message sThumbnail {
+  int32 thumbnailFrame = 1;
+  int32 thumbnailImage = 2;
+  bool useCustom = 3;
+  bytes thumbnail = 4;
+}
+

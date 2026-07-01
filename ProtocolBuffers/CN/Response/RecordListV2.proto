@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package EsPb;
+
+message RecordListV2 {
+  repeated sBattleRecordV2 arrRecord = 1;
+}
+
+message sBattleRecordV2 {
+  sThumbnail thumbnail = 1;
+  sThumbnail tThumbnail = 2;
+  string bName = 3;
+  int32 beforeRank = 4;
+  int32 afterRank = 5;
+  string winUserIdx = 6;
+  string tUserIdx = 7;
+  int64 dt = 8;
+  int32 battletype = 9;
+  string nickname = 10;
+  string tNickname = 11;
+  int32 battleStatus = 12;
+  string fileName = 13;
+  string clientVersion = 14;
+  string userIdx = 15;
+}
+
+message sThumbnail {
+  int32 thumbnailFrame = 1;
+  int32 thumbnailImage = 2;
+  bool useCustom = 3;
+  bytes thumbnail = 4;
+}
+

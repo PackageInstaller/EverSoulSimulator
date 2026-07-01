@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package EsPb;
+
+message GachaWishRegister {
+  repeated sGachaWish gachaWish = 1;
+}
+
+message sGachaWish {
+  int32 gachaType = 1;
+  int32 slotNum = 2;
+  int32 wishId = 3;
+}
+

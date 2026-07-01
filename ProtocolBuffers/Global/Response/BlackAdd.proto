@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package EsPb;
+
+message BlackAdd {
+  string blackAdd_ = 1;
+}
+

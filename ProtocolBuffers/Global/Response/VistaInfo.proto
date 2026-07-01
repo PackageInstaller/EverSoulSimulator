@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package EsPb;
+
+message VistaInfo {
+  string vistaInfo_ = 1;
+  sVistaHero vistaHero = 2;
+}
+
+message sVistaHero {
+  repeated int32 heroNo = 1;
+}
+

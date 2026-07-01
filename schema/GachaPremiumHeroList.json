@@ -1,0 +1,17 @@
+{
+ "root": "GachaPremiumHeroList",
+ "messages": {
+  "GachaPremiumHeroList": {
+   "fields": [
+    {
+     "name": "heroNo",
+     "number": 1,
+     "repeated": true,
+     "type": "int32",
+     "packed": true
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

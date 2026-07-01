@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package EsPb;
+
+message GuildMemberList {
+  repeated sGuildMember guildMember = 1;
+}
+
+message sGuildMember {
+  string guildIdx = 1;
+  string userIdx = 2;
+  int32 channelNo = 3;
+  int32 grade = 4;
+  int64 dt = 5;
+  int32 contribution = 6;
+  string nickName = 7;
+  int64 lastLoginDt = 8;
+  sThumbnail thumbnail = 9;
+  int64 power = 10;
+  int32 level = 11;
+  int64 logoutDt = 12;
+  int32 weeklyContribution = 13;
+}
+
+message sThumbnail {
+  int32 thumbnailFrame = 1;
+  int32 thumbnailImage = 2;
+  bool useCustom = 3;
+  bytes thumbnail = 4;
+}
+

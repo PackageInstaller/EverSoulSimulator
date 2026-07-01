@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package EsPb;
+
+message UsedRelicSet {
+  int32 contentsType = 1;
+  int32 relicNo = 2;
+}
+

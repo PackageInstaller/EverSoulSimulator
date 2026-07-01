@@ -1,0 +1,190 @@
+{
+ "root": "StoryClear",
+ "messages": {
+  "StoryClear": {
+   "fields": [
+    {
+     "name": "story",
+     "number": 1,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sStory",
+     "packed": false
+    },
+    {
+     "name": "currency",
+     "number": 2,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sCurrencyAll",
+     "packed": false
+    },
+    {
+     "name": "itemEquip",
+     "number": 3,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sItemEquip",
+     "packed": false
+    },
+    {
+     "name": "itemEtc",
+     "number": 4,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sItemEtc",
+     "packed": false
+    }
+   ]
+  },
+  "sStory": {
+   "fields": [
+    {
+     "name": "storyNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "updateDt",
+     "number": 2,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    }
+   ]
+  },
+  "sCurrencyAll": {
+   "fields": [
+    {
+     "name": "allCurrency",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sCurrency",
+     "packed": false
+    }
+   ]
+  },
+  "sCurrency": {
+   "fields": [
+    {
+     "name": "type",
+     "number": 1,
+     "repeated": false,
+     "type": "enum",
+     "type_name": "E_CURRENCY",
+     "packed": false
+    },
+    {
+     "name": "value",
+     "number": 2,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    }
+   ]
+  },
+  "sItemEquip": {
+   "fields": [
+    {
+     "name": "id",
+     "number": 1,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "itemNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "exp",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sItemEtc": {
+   "fields": [
+    {
+     "name": "itemNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "cnt",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {
+  "E_CURRENCY": {
+   "None": 0,
+   "Gold": 1,
+   "FreeDia": 2,
+   "ManaDust": 3,
+   "ManaCrystal": 4,
+   "Exp": 5,
+   "Heart": 6,
+   "LifeEssence": 8,
+   "ArenaTicket": 9,
+   "Dungeon": 10,
+   "Guild": 11,
+   "Release": 12,
+   "Arena": 13,
+   "Relics": 14,
+   "Silver": 16,
+   "SingleRaidCoin": 18,
+   "PickupGachaTicket": 19,
+   "Sign1": 20,
+   "Sign2": 21,
+   "SignHuman": 22,
+   "SignFurry": 23,
+   "SignElf": 24,
+   "SignUndead": 25,
+   "SignAngel": 26,
+   "SignDemon": 27,
+   "NormalTicket": 28,
+   "RaceTicket": 29,
+   "RareSoulstone": 30,
+   "EpicSoulstone": 31,
+   "EquipExp": 32,
+   "CollaborationSummonTicket": 33,
+   "PayDia": 42,
+   "TeamarenaTicket": 44,
+   "SignatureGachaTicket": 45,
+   "PremiumGachaTicket": 46,
+   "MonthlyHeroResetTicket": 47,
+   "EquipExpMiddle": 48,
+   "EquipExpHigh": 49,
+   "ZodiacExp": 50,
+   "LabyrinthTicket": 51,
+   "TranscendentStone": 52,
+   "SingleRaidTicket": 53,
+   "SetItemEngrave": 54,
+   "RotationDungeonTicket": 55,
+   "EdenCoin": 57,
+   "TypeBarrierGateTicket": 58,
+   "OriginTowerTicket": 59,
+   "DoubleGateNormalTicket": 60,
+   "DoubleGateNormalTicketCharge": 62,
+   "SignatureEnhanceStone": 64,
+   "HeroOptionChangeStone": 65,
+   "WishGachaTicket": 66,
+   "TotalDia": 100
+  }
+ }
+}

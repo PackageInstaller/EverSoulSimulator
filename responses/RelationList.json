@@ -1,0 +1,1148 @@
+{
+  "friend": [
+    {
+      "userIdx": "0_011TY1Sz_wlg",
+      "nickName": "少姜",
+      "lastLoginDt": "1780221565103",
+      "thumbnail": {
+        "thumbnailFrame": 5621,
+        "thumbnailImage": 35060
+      },
+      "stageNo": 1773,
+      "popularity": 1093,
+      "townLevel": 12
+    },
+    {
+      "userIdx": "0_011VyXg5_gnY",
+      "nickName": "小雪啾",
+      "lastLoginDt": "1779341390508",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "thumbnailImage": 32140,
+        "thumbnail": "MCwyMTQwLDMwLjE0Mzg5LC00MjQuOTkyMSwwLjYyNDQwMTQsMC42MjQ0MDE0LDIuNjY2ODg="
+      },
+      "stageNo": 1589,
+      "popularity": 4725,
+      "townLevel": 19
+    },
+    {
+      "userIdx": "0_021QDpLY_17V",
+      "nickName": "偵探熊BiuBiu",
+      "lastLoginDt": "1780914209782",
+      "thumbnail": {
+        "thumbnailFrame": 5723,
+        "useCustom": true,
+        "thumbnail": "MSwzMDQwMSwtNjEzLjAxNjQsNzE2LjE1MzksMS4xMjE1NjgsMS4xMjE1NjgsMzM1LjgwNTM="
+      },
+      "stageNo": 1890,
+      "popularity": 41441,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "0_111TDJA5_cVa",
+      "nickName": "諾亞",
+      "lastLoginDt": "1781013842404",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "thumbnailImage": 34160
+      },
+      "stageNo": 1824,
+      "popularity": 3644,
+      "townLevel": 20,
+      "isYesterdayHelper": true
+    },
+    {
+      "userIdx": "0_131RD2pP_boa",
+      "nickName": "Arnold",
+      "lastLoginDt": "1781049459868",
+      "thumbnail": {
+        "thumbnailFrame": 5633,
+        "thumbnailImage": 30001
+      },
+      "stageNo": 1890,
+      "popularity": 29883,
+      "townLevel": 25,
+      "visitBattleFriendCount": 1,
+      "isVisitBattleFriendFlag": 1
+    },
+    {
+      "userIdx": "0_221PdeSx_dMk",
+      "nickName": "shiraichii",
+      "lastLoginDt": "1781020297487",
+      "thumbnail": {
+        "thumbnailFrame": 5504,
+        "useCustom": true,
+        "thumbnail": "MSw2MDIwMywyMjIuODc3OCwxNC44MTA5NywwLjQyMTYyMzQsMC40MjE2MjM0LDAuMTExMjg3MQ=="
+      },
+      "stageNo": 1890,
+      "popularity": 30909,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "0_331PAymE_euH",
+      "nickName": "細水長流",
+      "lastLoginDt": "1781031762050",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "thumbnailImage": 31010
+      },
+      "stageNo": 1890,
+      "popularity": 32324,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "0_341Q9GK3_2n7",
+      "nickName": "Henry",
+      "lastLoginDt": "1781008334678",
+      "thumbnail": {
+        "thumbnailFrame": 5701,
+        "useCustom": true,
+        "thumbnail": "MSw1MDMwMywyMS41MzYzMiwtMTY0LjYxNTQsMC41NSwwLjU1LDM1OS45ODIz"
+      },
+      "stageNo": 1890,
+      "popularity": 40036,
+      "townLevel": 24,
+      "visitBattleFriendCount": 3
+    },
+    {
+      "userIdx": "0_411V76fa_h58",
+      "nickName": "nails",
+      "lastLoginDt": "1781038688223",
+      "thumbnail": {
+        "thumbnailFrame": 5622,
+        "thumbnailImage": 31150
+      },
+      "stageNo": 1824,
+      "popularity": 8930,
+      "townLevel": 19,
+      "isYesterdayHelper": true
+    },
+    {
+      "userIdx": "0_431PdeSx_b0",
+      "nickName": "哎吓呀想在台中生活",
+      "lastLoginDt": "1781048635891",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MSw4OTQsNS44MzMzMTMsLTk0LjE2NjYxLDAuNTM3Mzc4MiwwLjUzNzM3ODIsNi42NjE2ODQ="
+      },
+      "stageNo": 1890,
+      "popularity": 42128,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "0_541QBxmy_3kj",
+      "nickName": "喬喬",
+      "lastLoginDt": "1781040760597",
+      "thumbnail": {
+        "thumbnailFrame": 5660,
+        "useCustom": true,
+        "thumbnail": "MSw5MTMwMiwtMTA2LjUyMTcsMTc3LjUzNjEsMC41NSwwLjU1LDA="
+      },
+      "stageNo": 1218,
+      "popularity": 31923,
+      "townLevel": 25,
+      "visitBattleFriendCount": 2
+    },
+    {
+      "userIdx": "0_621STCqW_cWj",
+      "nickName": "PetchZ",
+      "lastLoginDt": "1781051525935",
+      "thumbnail": {
+        "thumbnailFrame": 5701,
+        "thumbnailImage": 36520
+      },
+      "stageNo": 1209,
+      "popularity": 10421,
+      "townLevel": 22
+    },
+    {
+      "userIdx": "0_711PdeSx_9JZ",
+      "nickName": "混沌龍騎",
+      "lastLoginDt": "1781042710889",
+      "thumbnail": {
+        "thumbnailFrame": 5653,
+        "thumbnailImage": 36030,
+        "thumbnail": "MCwxMDQwLC0yMjEuNjk0MywtNDQ5LjMyMjksMi4xMDE0OTMsMi4xMDE0OTMsMS4wNDQ1MTI="
+      },
+      "stageNo": 1184,
+      "popularity": 28621,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "0_861PeSX6_3bCo",
+      "nickName": "花月一刹",
+      "lastLoginDt": "1780385589700",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MSw2NTQwMSwxMTEuMTUxMywtMTA4LjIwMzEsMC40NTY0OTExLDAuNDU2NDkxMSwzNTkuMzczOA=="
+      },
+      "stageNo": 1644,
+      "popularity": 2736,
+      "townLevel": 16
+    },
+    {
+      "userIdx": "0_911PdeSE_1c",
+      "nickName": "拉斐爾",
+      "lastLoginDt": "1781021440925",
+      "thumbnail": {
+        "thumbnailFrame": 5631,
+        "useCustom": true,
+        "thumbnail": "MiwzMTUwMywtNjYuNjY2NjksMC44MzMzMzQsMC4yMzgwMDYyLDAuMjM4MDA2MiwzNTkuNzI3"
+      },
+      "stageNo": 1890,
+      "popularity": 38340,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "0_a41PdeSF_ajM",
+      "nickName": "Regina",
+      "lastLoginDt": "1781040329948",
+      "thumbnail": {
+        "thumbnailFrame": 5723,
+        "useCustom": true,
+        "thumbnail": "Miw5MDgwMSwxLjg4NDg0MiwtNDAuMjA5OTYsMC4zMjkyOTIsMC4zMjkyOTIsMzU5Ljk3MDM="
+      },
+      "stageNo": 1890,
+      "popularity": 55522,
+      "townLevel": 25,
+      "visitBattleFriendCount": 2
+    },
+    {
+      "userIdx": "0_c11PdILv_4KJQ",
+      "nickName": "JOHN316",
+      "lastLoginDt": "1779838487672",
+      "thumbnail": {
+        "thumbnailFrame": 5501,
+        "thumbnailImage": 30001,
+        "thumbnail": "Miw5MjQwMSwtMjc4LjY1MzUsMTIyLjkyMjYsMSwxLDA="
+      },
+      "stageNo": 1635,
+      "popularity": 36491,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "0_d11PdeSF_5Lo",
+      "nickName": "LuLuMi",
+      "lastLoginDt": "1777699277633",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "thumbnailImage": 32160,
+        "thumbnail": "MywyMzYyLDE2Ljk0OTA5LC00MjIuMjk3OCwwLjY2OTk2MzcsMC42Njk5NjM3LDM1OS44NDU4"
+      },
+      "stageNo": 1890,
+      "popularity": 56760,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "0_d21PdeSF_WpF",
+      "nickName": "NoMercy",
+      "lastLoginDt": "1781028976044",
+      "thumbnail": {
+        "thumbnailFrame": 5711,
+        "useCustom": true,
+        "thumbnail": "MiwxMDkwMiwtMTE0LjcwODYsLTgxLjk1ODAxLDAuMzg5NTU1MSwwLjM4OTU1NTEsMzU5Ljc3OTQ="
+      },
+      "stageNo": 1890,
+      "popularity": 46582,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "0_d41PvqPw_9yt",
+      "nickName": "顾学文",
+      "lastLoginDt": "1781048948914",
+      "thumbnail": {
+        "thumbnailFrame": 5700,
+        "useCustom": true,
+        "thumbnail": "MSw2MDIwNywwLDAsMC4yNDIxNDkyLDAuMjQyMTQ5MiwwLjA0MzA1Nzk5"
+      },
+      "stageNo": 1890,
+      "popularity": 22046,
+      "townLevel": 21,
+      "isYesterdayHelper": true
+    },
+    {
+      "userIdx": "0_l21Pnnph_Gc8",
+      "nickName": "TCT",
+      "lastLoginDt": "1780478280544",
+      "thumbnail": {
+        "thumbnailFrame": 5623,
+        "thumbnailImage": 36540,
+        "thumbnail": "MSw5MDYwMSw4Ni45MDA5OSwtMS4xMDczMzQsMC4yNDI1MzUzLDAuMjQyNTM1MywwLjE3MTEyMjk="
+      },
+      "stageNo": 1163,
+      "popularity": 9904,
+      "townLevel": 14
+    },
+    {
+      "userIdx": "1_031VD4Sv_lif",
+      "nickName": "채수빈",
+      "lastLoginDt": "1781044190128",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MCw0MTcwLC02Ni42OTEwMSwtMzM1LjE5MjgsMS4yMzY1MTYsMS4yMzY1MTYsMC40ODc4MDAz"
+      },
+      "stageNo": 505,
+      "popularity": 2392,
+      "townLevel": 15,
+      "visitBattleFriendCount": 1
+    },
+    {
+      "userIdx": "1_211SZ7DR_n38",
+      "nickName": "Synchro",
+      "lastLoginDt": "1781014247063",
+      "thumbnail": {
+        "thumbnailFrame": 5701,
+        "thumbnailImage": 34050
+      },
+      "stageNo": 1890,
+      "popularity": 17447,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "1_221UCdEU_pek",
+      "nickName": "prabhat",
+      "lastLoginDt": "1781045143714",
+      "thumbnail": {
+        "thumbnailFrame": 5653,
+        "useCustom": true,
+        "thumbnail": "MSw4OTUsMTUuMDE1NSwtNS4wMDI0MjYsMC4yNTYzMDA4LDAuMjU2MzAwOCwwLjEzNDQ4Nw=="
+      },
+      "stageNo": 295,
+      "popularity": 197,
+      "townLevel": 11
+    },
+    {
+      "userIdx": "1_431TvLui_uPm",
+      "nickName": "古月",
+      "lastLoginDt": "1778860994177",
+      "thumbnail": {
+        "thumbnailFrame": 5723,
+        "useCustom": true,
+        "thumbnail": "MywyMzkyLC0zNC4xMjkxOCwtMzU2Ljk1ODksMC41ODA0OTA5LDAuNTgwNDkwOSwzNTUuNjA2NA=="
+      },
+      "stageNo": 1890,
+      "popularity": 15046,
+      "townLevel": 24
+    },
+    {
+      "userIdx": "1_631PdeSx_pzv",
+      "nickName": "Krunox",
+      "lastLoginDt": "1781049481713",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MSwxMDUwNCwtOTkuNzcwNzIsLTk0LjI5MjkxLDAuNDIwMjQ5MywwLjQyMDI0OTMsMC4yNjcxODI2"
+      },
+      "stageNo": 1544,
+      "popularity": 45136,
+      "townLevel": 25,
+      "visitBattleFriendCount": 2
+    },
+    {
+      "userIdx": "1_711Ri21T_3gu",
+      "nickName": "有情人終成未亡人",
+      "lastLoginDt": "1780963864076",
+      "thumbnail": {
+        "thumbnailFrame": 5653,
+        "useCustom": true,
+        "thumbnail": "MSw5MDYwMSwyMTkuOTQ0NSwtNTcuNDQ2ODYsMC40OTk5MTAxLDAuNDk5OTEwMSwzNTkuMjgxMw=="
+      },
+      "stageNo": 1890,
+      "popularity": 30826,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "1_711W312v_kRR",
+      "nickName": "Yzsbel",
+      "lastLoginDt": "1780638246588",
+      "thumbnail": {
+        "thumbnailFrame": 5501,
+        "useCustom": true,
+        "thumbnail": "MSwzMDYwNywxOTkuMjExLC0xMTMuODQ2MiwwLjUwNDgwNzQsMC41MDQ4MDc0LDM1OS44NjIy"
+      },
+      "stageNo": 446,
+      "popularity": 796,
+      "townLevel": 15
+    },
+    {
+      "userIdx": "1_741VIL75_ewp",
+      "nickName": "丈八蛇喵",
+      "lastLoginDt": "1780994777623",
+      "thumbnail": {
+        "thumbnailFrame": 5501,
+        "thumbnailImage": 30001
+      },
+      "stageNo": 58,
+      "popularity": 1,
+      "townLevel": 8
+    },
+    {
+      "userIdx": "1_811PdILv_4dQa",
+      "nickName": "星之碎片",
+      "lastLoginDt": "1778612145741",
+      "thumbnail": {
+        "thumbnailFrame": 5653,
+        "useCustom": true,
+        "thumbnail": "MSwyNzEsMjcuMzIzMTUsLTE2OC4yMjQzLDAuNTUsMC41NSww"
+      },
+      "stageNo": 1890,
+      "popularity": 48458,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "1_a21PdeSF_kA9",
+      "nickName": "跳过仙人",
+      "lastLoginDt": "1781050145038",
+      "thumbnail": {
+        "thumbnailFrame": 5613,
+        "useCustom": true,
+        "thumbnail": "MSw1MDMwMSwxODAuMzM2NywtMTY0Ljg0NDUsMC41OTI4OTU0LDAuNTkyODk1NCwzNTEuOTIxOA=="
+      },
+      "stageNo": 1890,
+      "popularity": 43662,
+      "townLevel": 25,
+      "isYesterdayHelper": true
+    },
+    {
+      "userIdx": "1_a31PdeSF_Lhi",
+      "nickName": "Lunaria",
+      "lastLoginDt": "1781048876543",
+      "thumbnail": {
+        "thumbnailFrame": 5507,
+        "useCustom": true,
+        "thumbnail": "MSwxMDkwMSwtMzYuOTU2MjQsLTEuMTIyNzc2LDAuMjQwNTc5NiwwLjI0MDU3OTYsMzU5Ljg4MjU="
+      },
+      "stageNo": 1890,
+      "popularity": 37434,
+      "townLevel": 25,
+      "visitBattleFriendCount": 1
+    },
+    {
+      "userIdx": "1_a31PdeSF_u0x",
+      "nickName": "雨曝亭Tako",
+      "lastLoginDt": "1781053407569",
+      "thumbnail": {
+        "thumbnailFrame": 5701,
+        "useCustom": true,
+        "thumbnail": "MSw0MTUwMSwtMTYwLjQzMDUsLTI2MS40OTQ2LDAuNzIwMzY5NCwwLjcyMDM2OTQsMC42NTc4Njc2"
+      },
+      "stageNo": 1890,
+      "popularity": 52005,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "1_b41PdILw_3WGu",
+      "nickName": "Aquila",
+      "lastLoginDt": "1781047247944",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MSw5MzUsLTU0Ljk0OTI1LDEyLjA1MTY0LDAuMzIwMjE0MiwwLjMyMDIxNDIsMzU5Ljg5OTk="
+      },
+      "stageNo": 1890,
+      "popularity": 40862,
+      "townLevel": 24,
+      "visitBattleFriendCount": 1
+    },
+    {
+      "userIdx": "2_021Vtzcm_8Yj",
+      "nickName": "LOrz",
+      "lastLoginDt": "1781050783596",
+      "thumbnail": {
+        "thumbnailFrame": 5502,
+        "useCustom": true,
+        "thumbnail": "MywyMjIxLC0wLjE4MDY2NDEsMTAyLjk0NjUsMC4yNzU4MTAxLDAuMjc1ODEwMSwzNDcuODY3NA=="
+      },
+      "stageNo": 1890,
+      "popularity": 5731,
+      "townLevel": 20,
+      "visitBattleFriendCount": 2
+    },
+    {
+      "userIdx": "2_031T7Phm_aX8",
+      "nickName": "REDIUS",
+      "lastLoginDt": "1781023839229",
+      "thumbnail": {
+        "thumbnailFrame": 5612,
+        "useCustom": true,
+        "thumbnail": "Miw2MDYwNiwtMTU2LjY4MjksLTU0Ljk0Nzg4LDAuMzQwMDAwNiwwLjM0MDAwMDYsMA=="
+      },
+      "stageNo": 1234,
+      "popularity": 15020,
+      "townLevel": 22,
+      "visitBattleFriendCount": 1
+    },
+    {
+      "userIdx": "2_131W311a_qDw",
+      "nickName": "蘇Kyokou",
+      "lastLoginDt": "1780993843733",
+      "thumbnail": {
+        "thumbnailFrame": 5612,
+        "useCustom": true,
+        "thumbnail": "MywyMjAxLDExOS45MDY0LC0xNTAuNjQ2MiwxLDEsMA=="
+      },
+      "stageNo": 1154,
+      "popularity": 348,
+      "townLevel": 15,
+      "isYesterdayHelper": true
+    },
+    {
+      "userIdx": "2_141TInoB_bd6",
+      "nickName": "xoxo",
+      "lastLoginDt": "1780117056207",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MiwxMTQwMiw1NC44MTQ4LC00OS42Mjk1OSwwLjM0MzYzNDcsMC4zNDM2MzQ3LDEuMjA0NDUy"
+      },
+      "stageNo": 755,
+      "popularity": 4012,
+      "townLevel": 18
+    },
+    {
+      "userIdx": "2_411Sftwd_4HY",
+      "nickName": "无败之龍",
+      "lastLoginDt": "1781014379892",
+      "thumbnail": {
+        "thumbnailFrame": 5705,
+        "useCustom": true,
+        "thumbnail": "MSwxMDEyLDYzLjUxMTQsLTExNi45NDM1LDAuNTUsMC41NSww"
+      },
+      "stageNo": 1890,
+      "popularity": 22994,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "2_521PdeSx_8IJ",
+      "nickName": "gigachad",
+      "lastLoginDt": "1781037290666",
+      "thumbnail": {
+        "thumbnailFrame": 5701,
+        "useCustom": true,
+        "thumbnail": "MSwyMDkwNiwtNDUzLjY5MTcsLTEyMy45MTE4LDAuNTUsMC41NSwzNTYuMTA1NQ=="
+      },
+      "stageNo": 1890,
+      "popularity": 42707,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "2_531PdeSx_1GE",
+      "nickName": "夜星河",
+      "lastLoginDt": "1777959683848",
+      "thumbnail": {
+        "thumbnailFrame": 5697,
+        "useCustom": true,
+        "thumbnail": "MSw2MDEwNywzMTQuNTM4NSwtMTkxLjg2MDYsMC42MTMwNjEzLDAuNjEzMDYxMywwLjg3ODAyNzk="
+      },
+      "stageNo": 1890,
+      "popularity": 47809,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "2_531QYlvG_adW",
+      "nickName": "米垛",
+      "lastLoginDt": "1781048843918",
+      "thumbnail": {
+        "thumbnailFrame": 5700,
+        "thumbnailImage": 36050
+      },
+      "stageNo": 1890,
+      "popularity": 26093,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "2_531R6mBd_19t",
+      "nickName": "Boss",
+      "lastLoginDt": "1781044737218",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "Miw5MjgwMywtMjIwLjU3MDQsMjM4LjE2ODIsMC43MjM2NzAxLDAuNzIzNjcwMSwzNTkuODg0OQ=="
+      },
+      "stageNo": 1355,
+      "popularity": 37409,
+      "townLevel": 22,
+      "visitBattleFriendCount": 2
+    },
+    {
+      "userIdx": "2_711T3LvA_7CE",
+      "nickName": "六月華",
+      "lastLoginDt": "1781045904342",
+      "thumbnail": {
+        "thumbnailFrame": 5507,
+        "useCustom": true,
+        "thumbnail": "MSwxMjIsLTc0LjEyOTEsMC4zMzYwNTAzLDAuMjUwMDAwMywwLjI1MDAwMDMsMzU4Ljk5OTk="
+      },
+      "stageNo": 1802,
+      "popularity": 21587,
+      "townLevel": 22
+    },
+    {
+      "userIdx": "2_711VemiN_h19",
+      "nickName": "千夏",
+      "lastLoginDt": "1777966952157",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MSw1MDMwOCwzNDEuNjE2LC00NS40NzU3NCwwLjU1LDAuNTUsNy43MzQ2MDY="
+      },
+      "stageNo": 1890,
+      "popularity": 4066,
+      "townLevel": 19
+    },
+    {
+      "userIdx": "2_731PdeSx_5dB",
+      "nickName": "RonanBYE",
+      "lastLoginDt": "1781033838130",
+      "thumbnail": {
+        "thumbnailFrame": 5623,
+        "useCustom": true,
+        "thumbnail": "MywyMjgxLC0yLjEwMTgyMiwtMTMxLjA3NDcsMC4yNzU2NTYsMC4yNzU2NTYsMzUyLjkxMzI="
+      },
+      "stageNo": 1890,
+      "popularity": 47885,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "2_731PdeSx_Fwm",
+      "nickName": "NA09",
+      "lastLoginDt": "1781020172524",
+      "thumbnail": {
+        "thumbnailFrame": 5701,
+        "useCustom": true,
+        "thumbnail": "MSw5MjgwMywwLjAwMDE4MzEwNTUsMjkuNDM5MDcsMC41NDY0NDU0LDAuNTQ2NDQ1NCwxLjgwNDU2OQ=="
+      },
+      "stageNo": 1489,
+      "popularity": 33558,
+      "townLevel": 25,
+      "isYesterdayHelper": true
+    },
+    {
+      "userIdx": "2_731W312v_5SP",
+      "nickName": "PentilHunter",
+      "lastLoginDt": "1780250503084",
+      "thumbnail": {
+        "thumbnailFrame": 5653,
+        "useCustom": true,
+        "thumbnail": "MSw2MDcwMSw3OS4zMDA0OSwtMTEuOTU2NTMsMC4yNTcyOTcsMC4yNTcyOTcsMzU5LjI3ODY="
+      },
+      "stageNo": 520,
+      "popularity": 532,
+      "townLevel": 14
+    },
+    {
+      "userIdx": "2_811QyY0s_2ZF",
+      "nickName": "wenAmin",
+      "lastLoginDt": "1781050262505",
+      "thumbnail": {
+        "thumbnailFrame": 5704,
+        "thumbnailImage": 30001
+      },
+      "stageNo": 1890,
+      "popularity": 36948,
+      "townLevel": 25
+    }
+  ],
+  "guildMember": [
+    {
+      "userIdx": "0_111PHKfl_553",
+      "nickName": "不好看",
+      "lastLoginDt": "1781048358885",
+      "thumbnail": {
+        "thumbnailFrame": 5503,
+        "thumbnailImage": 35020
+      },
+      "stageNo": 1890,
+      "popularity": 41592,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "0_131PdILo_1YYt",
+      "nickName": "千叶",
+      "lastLoginDt": "1780926401407",
+      "thumbnail": {
+        "thumbnailFrame": 5674,
+        "useCustom": true,
+        "thumbnail": "MSwxMDEwMiwyMjcuODE5NCw2LjgzNzIzNCwwLjU1LDAuNTUsMA=="
+      },
+      "stageNo": 1890,
+      "popularity": 48473,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "0_231RL1Gh_mJC",
+      "nickName": "Kafeiii",
+      "lastLoginDt": "1777437206169",
+      "thumbnail": {
+        "thumbnailFrame": 5653,
+        "thumbnailImage": 31020
+      },
+      "stageNo": 1890,
+      "popularity": 13840,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "0_231Sftwd_2bi",
+      "nickName": "丑丑白",
+      "lastLoginDt": "1777269119868",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "thumbnailImage": 36540,
+        "thumbnail": "MywyMzUzLDEzLjA3NTYyLC01MDIuMzA3OCwwLjgxNTEzMzYsMC44MTUxMzM2LDM1OS43MDY3"
+      },
+      "stageNo": 1890,
+      "popularity": 24814,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "0_421RZUM6_8Tn",
+      "nickName": "以鲜血换汝归",
+      "lastLoginDt": "1777647893730",
+      "thumbnail": {
+        "thumbnailFrame": 5674,
+        "thumbnailImage": 32130
+      },
+      "stageNo": 1890,
+      "popularity": 24225,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "0_441Te5v3_6PK",
+      "nickName": "瑞夏",
+      "lastLoginDt": "1775145546841",
+      "thumbnail": {
+        "thumbnailFrame": 5697,
+        "useCustom": true,
+        "thumbnail": "MywyMzk3LC03LjQ1NzYyNiwtMzA3LjA2NCwwLjgyNTEyNDEsMC44MjUxMjQxLDM1OC45OTI2"
+      },
+      "stageNo": 1890,
+      "popularity": 16116,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "0_731PdeSx_1qK",
+      "nickName": "六月的金木樨",
+      "lastLoginDt": "1778594377890",
+      "thumbnail": {
+        "thumbnailFrame": 5700,
+        "useCustom": true,
+        "thumbnail": "MSw1MDMwOCwxMDQuOTU5Myw1LjE5MDAxMiwwLjI1NzAxMTIsMC4yNTcwMTEyLDAuMzU2NzA0Mw=="
+      },
+      "stageNo": 1890,
+      "popularity": 40486,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "0_931PdeSE_56H",
+      "nickName": "Lerche",
+      "lastLoginDt": "1780473869007",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "thumbnailImage": 36530,
+        "thumbnail": "MSw5MDgwMSwtMTUuNTkzMTYsLTEzLjU1MTg4LDAuMjczODkyNywwLjI3Mzg5MjcsMS40MDM4Nzk="
+      },
+      "stageNo": 1890,
+      "popularity": 51322,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "0_a31PKrLK_6NJ",
+      "nickName": "冰水啼霓石精海神",
+      "lastLoginDt": "1780801632843",
+      "thumbnail": {
+        "thumbnailFrame": 5694,
+        "useCustom": true,
+        "thumbnail": "MSw2MDIwNSwtMTI4Ljk1NzUsLTIxLjM1MTExLDAuMjk3NzA0NSwwLjI5NzcwNDUsMzU4LjUwNjg="
+      },
+      "stageNo": 1890,
+      "popularity": 42532,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "0_b31PdILw_1yJP",
+      "nickName": "夢幻泡影",
+      "lastLoginDt": "1775539479615",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MSw5MjgwNCwxMjEuNzMwOCwtMjYuNjQwNjIsMC40NzE5Mjg5LDAuNDcxOTI4OSwzNS4wMzc2NQ=="
+      },
+      "stageNo": 1890,
+      "popularity": 48515,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "1_031VyXg5_eoG",
+      "nickName": "Seeha",
+      "lastLoginDt": "1777512335007",
+      "thumbnail": {
+        "thumbnailFrame": 5501,
+        "useCustom": true,
+        "thumbnail": "MSwxMDMwNywtMjEuMjQ5ODIsLTMxLjY2NjY5LDAuMzE4MDQ1MSwwLjMxODA0NTEsMzU5LjI5NTc="
+      },
+      "stageNo": 1890,
+      "popularity": 3507,
+      "townLevel": 18
+    },
+    {
+      "userIdx": "1_121TAReC_cc8",
+      "nickName": "梅梅合法丈夫",
+      "lastLoginDt": "1774913444553",
+      "thumbnail": {
+        "thumbnailFrame": 5701,
+        "useCustom": true,
+        "thumbnail": "MSwyMTEwMSwxMjAuNjU0NSwtMTM5LjUzNDksMC41NSwwLjU1LDA="
+      },
+      "stageNo": 1890,
+      "popularity": 10044,
+      "townLevel": 23
+    },
+    {
+      "userIdx": "1_421Q73D8_akF",
+      "nickName": "玫兰",
+      "lastLoginDt": "1773218999047",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MywyNDIwLDE5Ljc1ODM5LC0zNjMuMzM0NywwLjcyODEwOTgsMC43MjgxMDk4LDM1OS43ODIx"
+      },
+      "stageNo": 1890,
+      "popularity": 33296,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "1_521PfYyH_3amk",
+      "nickName": "Hextor",
+      "lastLoginDt": "1780965140268",
+      "thumbnail": {
+        "thumbnailFrame": 5700,
+        "useCustom": true,
+        "thumbnail": "MywyMjgxLDEyLjc2NDgyLC0yNDUuNzk5NywwLjUwMTE5MjUsMC41MDExOTI1LDM1OC43OTA5"
+      },
+      "stageNo": 1890,
+      "popularity": 49922,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "1_621SwU19_269",
+      "nickName": "Mio",
+      "lastLoginDt": "1778715316050",
+      "thumbnail": {
+        "thumbnailFrame": 5653,
+        "thumbnailImage": 36990
+      },
+      "stageNo": 1890,
+      "popularity": 15750,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "1_621T7Pee_lbk",
+      "nickName": "喵月",
+      "lastLoginDt": "1775022788178",
+      "thumbnail": {
+        "thumbnailFrame": 5711,
+        "useCustom": true,
+        "thumbnail": "MywyMjI4LC0xMTkuMjExNywtNTM1LjMzODUsMC44NzUwODMzLDAuODc1MDgzMywzNTkuNzkwMg=="
+      },
+      "stageNo": 1890,
+      "popularity": 13717,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "1_641RFzBU_dcz",
+      "nickName": "Yzero",
+      "lastLoginDt": "1774434991798",
+      "thumbnail": {
+        "thumbnailFrame": 5633,
+        "thumbnailImage": 36030,
+        "thumbnail": "MywyMjAxLC0xOTIuNjU5NSwxNDQuNDA4LDAuOTk5MDM0NiwwLjk5OTAzNDYsMTMuNTA0MjQ="
+      },
+      "stageNo": 1890,
+      "popularity": 25398,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "1_821PxwOU_ezt",
+      "nickName": "忠党爱国",
+      "lastLoginDt": "1777390689882",
+      "thumbnail": {
+        "thumbnailFrame": 5700,
+        "useCustom": true,
+        "thumbnail": "MCw2MDMwLDQ4LjEyNTAyLC0yNzAsMSwxLDA="
+      },
+      "stageNo": 1890,
+      "popularity": 38645,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "1_841PdILv_6uMy",
+      "nickName": "夙念",
+      "lastLoginDt": "1776731051708",
+      "thumbnail": {
+        "thumbnailFrame": 5723,
+        "useCustom": true,
+        "thumbnail": "Miw2MDEwNywxMjguNTQwOSwtNi41MzI0MzMsMC4yNjQ0OTgsMC4yNjQ0OTgsMzU4Ljg4Mzg="
+      },
+      "stageNo": 1890,
+      "popularity": 42236,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "1_941PdILv_5sPo",
+      "nickName": "koyuki",
+      "lastLoginDt": "1775173158783",
+      "thumbnail": {
+        "thumbnailFrame": 5701,
+        "useCustom": true,
+        "thumbnail": "MSwzMDYwNyw3OC4xNzM0NSwtMzkuOTk5OTcsMC4zMTkzMzk4LDAuMzE5MzM5OCwzNTkuMDQzOQ=="
+      },
+      "stageNo": 1312,
+      "popularity": 9245,
+      "townLevel": 19
+    },
+    {
+      "userIdx": "1_a11PdeSF_9QL",
+      "nickName": "天堂猫",
+      "lastLoginDt": "1775725975006",
+      "thumbnail": {
+        "thumbnailFrame": 5611,
+        "thumbnailImage": 32010
+      },
+      "stageNo": 1890,
+      "popularity": 49299,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "1_a21PdeSF_kA9",
+      "nickName": "跳过仙人",
+      "lastLoginDt": "1781050145038",
+      "thumbnail": {
+        "thumbnailFrame": 5613,
+        "useCustom": true,
+        "thumbnail": "MSw1MDMwMSwxODAuMzM2NywtMTY0Ljg0NDUsMC41OTI4OTU0LDAuNTkyODk1NCwzNTEuOTIxOA=="
+      },
+      "stageNo": 1890,
+      "popularity": 43662,
+      "townLevel": 25,
+      "isYesterdayHelper": true
+    },
+    {
+      "userIdx": "1_b21PdILw_4zxW",
+      "nickName": "四夕丸子",
+      "lastLoginDt": "1777269859572",
+      "thumbnail": {
+        "thumbnailFrame": 5679,
+        "useCustom": true,
+        "thumbnail": "MywyMjgyLDgyLjAxNDQzLC0xNjkuMDY0OCwwLjU2MzQ3NDMsMC41NjM0NzQzLDM1OC42MDgy"
+      },
+      "stageNo": 1890,
+      "popularity": 43595,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "2_041PdeSx_sMx",
+      "nickName": "建良",
+      "lastLoginDt": "1778149598394",
+      "thumbnail": {
+        "thumbnailFrame": 5700,
+        "thumbnailImage": 35030,
+        "thumbnail": "MSwxMDEwMiwyMDcuNDA3NCwtMTgyLjk2MjksMC42MTUzMDQ4LDAuNjE1MzA0OCwzMTguNDA5OA=="
+      },
+      "stageNo": 1890,
+      "popularity": 54345,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "2_221RL1Gh_erb",
+      "nickName": "夜修逆",
+      "lastLoginDt": "1774484452456",
+      "thumbnail": {
+        "thumbnailFrame": 5501,
+        "thumbnailImage": 36520
+      },
+      "stageNo": 1890,
+      "popularity": 23581,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "2_531QYlvG_adW",
+      "nickName": "米垛",
+      "lastLoginDt": "1781048843918",
+      "thumbnail": {
+        "thumbnailFrame": 5700,
+        "thumbnailImage": 36050
+      },
+      "stageNo": 1890,
+      "popularity": 26093,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "2_621RI22o_65C",
+      "nickName": "長鰭蓑鮋",
+      "lastLoginDt": "1781048832494",
+      "thumbnail": {
+        "thumbnailFrame": 5623,
+        "useCustom": true,
+        "thumbnail": "MiwxMDIwMywtMy44MDg2MjQsLTE0Ni41NTc2LDAuNTI2OTc2MiwwLjUyNjk3NjIsMzU5Ljg1NQ=="
+      },
+      "stageNo": 1890,
+      "popularity": 33823,
+      "townLevel": 25,
+      "visitBattleFriendCount": 2
+    },
+    {
+      "userIdx": "2_831PdILv_bsD8",
+      "nickName": "xalee",
+      "lastLoginDt": "1773493588193",
+      "thumbnail": {
+        "thumbnailFrame": 5700,
+        "useCustom": true,
+        "thumbnail": "MiwyMTQwNSwtMzA0Ljc3MjMsNDcuOTgyNTgsMC4zNjUzMDE2LDAuMzY1MzAxNiwxLjUyOTIyMg=="
+      },
+      "stageNo": 1890,
+      "popularity": 38671,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "2_c11PsAFi_61D",
+      "nickName": "纸乔",
+      "lastLoginDt": "1776070463758",
+      "thumbnail": {
+        "thumbnailFrame": 5633,
+        "useCustom": true,
+        "thumbnail": "MSw1MDMwOCw0LjUxNzA5LC0xMTIuOTMyLDAuMTkzNjM5MSwwLjE5MzYzOTEsMjcwLjAwMzI="
+      },
+      "stageNo": 1890,
+      "popularity": 39171,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "2_e21PMpdN_mcP",
+      "nickName": "旅游的sensei",
+      "lastLoginDt": "1781049498936",
+      "thumbnail": {
+        "thumbnailFrame": 5692,
+        "useCustom": true,
+        "thumbnail": "MSwxMTYsNTQ5LjcxMzYsLTc0LjA5ODAzLDAuNTUsMC41NSww"
+      },
+      "stageNo": 1890,
+      "popularity": 46663,
+      "townLevel": 25,
+      "visitBattleFriendCount": 1
+    }
+  ],
+  "heart": [
+    {
+      "userIdx": "0_131RD2pP_boa",
+      "nickName": "Arnold",
+      "lastLoginDt": "1781049459868",
+      "thumbnail": {
+        "thumbnailFrame": 5633,
+        "thumbnailImage": 30001
+      },
+      "stageNo": 1890,
+      "popularity": 29883,
+      "townLevel": 25,
+      "visitBattleFriendCount": 1,
+      "isVisitBattleFriendFlag": 1
+    },
+    {
+      "userIdx": "0_411V76fa_h58",
+      "nickName": "nails",
+      "lastLoginDt": "1781038688223",
+      "thumbnail": {
+        "thumbnailFrame": 5622,
+        "thumbnailImage": 31150
+      },
+      "stageNo": 1824,
+      "popularity": 8930,
+      "townLevel": 19,
+      "isYesterdayHelper": true
+    },
+    {
+      "userIdx": "0_621STCqW_cWj",
+      "nickName": "PetchZ",
+      "lastLoginDt": "1781051525935",
+      "thumbnail": {
+        "thumbnailFrame": 5701,
+        "thumbnailImage": 36520
+      },
+      "stageNo": 1209,
+      "popularity": 10421,
+      "townLevel": 22
+    },
+    {
+      "userIdx": "1_631PdeSx_pzv",
+      "nickName": "Krunox",
+      "lastLoginDt": "1781049481713",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MSwxMDUwNCwtOTkuNzcwNzIsLTk0LjI5MjkxLDAuNDIwMjQ5MywwLjQyMDI0OTMsMC4yNjcxODI2"
+      },
+      "stageNo": 1544,
+      "popularity": 45136,
+      "townLevel": 25,
+      "visitBattleFriendCount": 2
+    },
+    {
+      "userIdx": "1_a31PdeSF_u0x",
+      "nickName": "雨曝亭Tako",
+      "lastLoginDt": "1781053407569",
+      "thumbnail": {
+        "thumbnailFrame": 5701,
+        "useCustom": true,
+        "thumbnail": "MSw0MTUwMSwtMTYwLjQzMDUsLTI2MS40OTQ2LDAuNzIwMzY5NCwwLjcyMDM2OTQsMC42NTc4Njc2"
+      },
+      "stageNo": 1890,
+      "popularity": 52005,
+      "townLevel": 25
+    },
+    {
+      "userIdx": "1_b41PdILw_3WGu",
+      "nickName": "Aquila",
+      "lastLoginDt": "1781047247944",
+      "thumbnail": {
+        "thumbnailFrame": 5724,
+        "useCustom": true,
+        "thumbnail": "MSw5MzUsLTU0Ljk0OTI1LDEyLjA1MTY0LDAuMzIwMjE0MiwwLjMyMDIxNDIsMzU5Ljg5OTk="
+      },
+      "stageNo": 1890,
+      "popularity": 40862,
+      "townLevel": 24,
+      "visitBattleFriendCount": 1
+    },
+    {
+      "userIdx": "2_021Vtzcm_8Yj",
+      "nickName": "LOrz",
+      "lastLoginDt": "1781050783596",
+      "thumbnail": {
+        "thumbnailFrame": 5502,
+        "useCustom": true,
+        "thumbnail": "MywyMjIxLC0wLjE4MDY2NDEsMTAyLjk0NjUsMC4yNzU4MTAxLDAuMjc1ODEwMSwzNDcuODY3NA=="
+      },
+      "stageNo": 1890,
+      "popularity": 5731,
+      "townLevel": 20,
+      "visitBattleFriendCount": 2
+    },
+    {
+      "userIdx": "2_811QyY0s_2ZF",
+      "nickName": "wenAmin",
+      "lastLoginDt": "1781050262505",
+      "thumbnail": {
+        "thumbnailFrame": 5704,
+        "thumbnailImage": 30001
+      },
+      "stageNo": 1890,
+      "popularity": 36948,
+      "townLevel": 25
+    }
+  ],
+  "visitBattleMaxCount": 3,
+  "visitBattleFriendCount": 1,
+  "__format__": "proto"
+}

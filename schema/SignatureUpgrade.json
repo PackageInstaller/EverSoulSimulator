@@ -1,0 +1,69 @@
+{
+ "root": "SignatureUpgrade",
+ "messages": {
+  "SignatureUpgrade": {
+   "fields": [
+    {
+     "name": "itemSignature",
+     "number": 1,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sItemSignature",
+     "packed": false
+    },
+    {
+     "name": "itemEtc",
+     "number": 2,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sItemEtc",
+     "packed": false
+    }
+   ]
+  },
+  "sItemSignature": {
+   "fields": [
+    {
+     "name": "itemNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "grade",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "level",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sItemEtc": {
+   "fields": [
+    {
+     "name": "itemNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "cnt",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

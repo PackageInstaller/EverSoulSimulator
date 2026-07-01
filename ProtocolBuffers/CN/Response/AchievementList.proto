@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package EsPb;
+
+message AchievementList {
+  repeated sAchievement achievement = 1;
+}
+
+message sAchievement {
+  int32 behavior = 1;
+  int32 group = 2;
+  int64 value = 3;
+  int32 lastReceivedNo = 4;
+}
+

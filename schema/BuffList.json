@@ -1,0 +1,50 @@
+{
+ "root": "BuffList",
+ "messages": {
+  "BuffList": {
+   "fields": [
+    {
+     "name": "buff",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sContentBuff",
+     "packed": false
+    }
+   ]
+  },
+  "sContentBuff": {
+   "fields": [
+    {
+     "name": "contentType",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "buffType",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "buffNo",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "value",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message EventSelectStageBuyCount {
+  int32 count = 1;
+  int32 eventGroup = 2;
+  int32 eventNumber = 3;
+}
+

@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package ReqPb;
+
+enum eDoubleGateRoundType {
+  First = 0;
+  Second = 1;
+}
+
+enum eDoubleGateStageType {
+  DoubleGateStageTypeNone = 0;
+  DoubleGateNormalManaCrystal = 1;
+  DoubleGateNormalGold = 2;
+  DoubleGateNormalManaDust = 3;
+  DoubleGateNormalEnhanceStone = 4;
+}
+
+message DoubleGateRoundReset {
+  eDoubleGateRoundType roundType = 1;
+  eDoubleGateStageType stageType = 2;
+}
+

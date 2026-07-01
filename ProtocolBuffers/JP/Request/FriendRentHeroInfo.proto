@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message FriendRentHeroInfo {
+  string heroIdx = 1;
+}
+

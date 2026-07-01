@@ -1,0 +1,43 @@
+{
+ "root": "SetTripKeywordList",
+ "messages": {
+  "SetTripKeywordList": {
+   "fields": [
+    {
+     "name": "tripKeyword",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sTripKeyword",
+     "packed": false
+    }
+   ]
+  },
+  "sTripKeyword": {
+   "fields": [
+    {
+     "name": "keywordNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "isFirst",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "heroNo",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

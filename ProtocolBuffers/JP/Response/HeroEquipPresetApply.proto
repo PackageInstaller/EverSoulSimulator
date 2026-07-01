@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package EsPb;
+
+message HeroEquipPresetApply {
+  int32 presetSlot = 1;
+  repeated sHeroEquipAll heroEquipAll = 2;
+}
+
+message sHeroEquipAll {
+  string heroIdx = 1;
+  repeated sSlotAndEquipId equip = 2;
+}
+
+message sSlotAndEquipId {
+  int32 slot = 1;
+  int32 itemEquipId = 2;
+}
+

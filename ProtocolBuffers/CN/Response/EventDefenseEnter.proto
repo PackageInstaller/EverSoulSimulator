@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package EsPb;
+
+message EventDefenseEnter {
+  int32 eventGroup = 1;
+  int32 eventNumber = 2;
+  int32 isJoinHiddenHelper = 3;
+  int32 maxLevel = 4;
+}
+

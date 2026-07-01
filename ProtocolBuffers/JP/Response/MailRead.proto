@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package EsPb;
+
+message MailRead {
+  sMail mail = 1;
+}
+
+message sMail {
+  string idx = 1;
+  int32 type = 2;
+  string sender = 3;
+  string subject = 4;
+  string context = 5;
+  string reward = 6;
+  int32 isRead = 7;
+  int32 isItemReceived = 8;
+  int32 isDelete = 9;
+  int64 dt = 10;
+  int64 expireDt = 11;
+  string additionalParameter = 12;
+}
+

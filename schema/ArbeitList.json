@@ -1,0 +1,17 @@
+{
+ "root": "ArbeitList",
+ "messages": {
+  "ArbeitList": {
+   "fields": [
+    {
+     "name": "arbeitList_",
+     "number": 1,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

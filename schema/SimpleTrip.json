@@ -1,0 +1,64 @@
+{
+ "root": "SimpleTrip",
+ "messages": {
+  "SimpleTrip": {
+   "fields": [
+    {
+     "name": "trip",
+     "number": 1,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sTrip",
+     "packed": false
+    },
+    {
+     "name": "reputation",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "remainCount",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sTrip": {
+   "fields": [
+    {
+     "name": "heroNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "isReceive",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "yymmdd",
+     "number": 3,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "uid",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

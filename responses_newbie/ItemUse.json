@@ -1,0 +1,32 @@
+{
+  "currency": {},
+  "itemEtc": [
+    {
+      "itemNo": 3351
+    }
+  ],
+  "hero": [
+    {
+      "idx": "1_141WhSEa_14fU",
+      "heroNo": 1120,
+      "level": 1,
+      "gradeSno": 110014,
+      "raceSno": 110052
+    }
+  ],
+  "heroReputation": [
+    {
+      "heroNo": 1120,
+      "maxGradeSno": 110014,
+      "objetNo": "0"
+    }
+  ],
+  "dailyContent": {
+    "arenaCnt": 5,
+    "townCoin": 1,
+    "raceSno": 201,
+    "ahQuickCnt": 5,
+    "teamarenaCnt": 5
+  },
+  "__format__": "proto"
+}

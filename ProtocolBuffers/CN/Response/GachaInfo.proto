@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package EsPb;
+
+message GachaInfo {
+  repeated sGachaMileage gachaMileage = 1;
+  repeated sGachaLimit gachaLimit = 2;
+  sGacha gacha = 3;
+  repeated sGachaWish gachaWish = 4;
+  repeated sGachaPeriod gachaPeriod = 5;
+}
+
+message sGachaMileage {
+  int32 mileageNo = 1;
+  int32 changedPoint = 2;
+  int32 afterPoint = 3;
+  int32 rewardedPoint = 4;
+}
+
+message sGachaLimit {
+  int32 gachaNo = 1;
+  int32 ableCnt = 2;
+  int64 expiredDt = 3;
+}
+
+message sGacha {
+  int32 heroGachaCeilCnt = 1;
+  int32 premiumGachaCeilCnt = 2;
+  int32 heroWishGachaCeilCnt = 3;
+  int32 heroGachaTutorialFixed = 4;
+  int32 heroGachaAutoRelease = 5;
+  int32 signatureGachaAutoRelease = 6;
+}
+
+message sGachaWish {
+  int32 gachaType = 1;
+  int32 slotNum = 2;
+  int32 wishId = 3;
+}
+
+message sGachaPeriod {
+  int32 gachaNo = 1;
+  int64 startDt = 2;
+  int64 endDt = 3;
+}
+

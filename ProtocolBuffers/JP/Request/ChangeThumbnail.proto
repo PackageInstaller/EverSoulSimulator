@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message ChangeThumbnail {
+  int32 thumbnailFrame = 1;
+  int32 thumbnailImage = 2;
+  bool useCustom = 3;
+  bytes thumbnail = 4;
+}
+

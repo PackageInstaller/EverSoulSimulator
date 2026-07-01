@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package EsPb;
+
+message FriendRequest {
+  string friendRequest_ = 1;
+}
+

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message ArenaEnter {
+  int32 arenaType = 1;
+  int32 isTicket = 2;
+  string tUserIdx = 3;
+}
+

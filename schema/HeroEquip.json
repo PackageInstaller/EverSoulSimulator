@@ -1,0 +1,17 @@
+{
+ "root": "HeroEquip",
+ "messages": {
+  "HeroEquip": {
+   "fields": [
+    {
+     "name": "heroEquip_",
+     "number": 1,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

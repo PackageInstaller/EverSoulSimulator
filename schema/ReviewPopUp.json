@@ -1,0 +1,24 @@
+{
+ "root": "ReviewPopUp",
+ "messages": {
+  "ReviewPopUp": {
+   "fields": [
+    {
+     "name": "reviewDt",
+     "number": 1,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "flag",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

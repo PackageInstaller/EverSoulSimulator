@@ -1,0 +1,103 @@
+{
+ "root": "GuildRaidInfo",
+ "messages": {
+  "GuildRaidInfo": {
+   "fields": [
+    {
+     "name": "open",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "remainTs",
+     "number": 2,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "scheduleId",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "todayScore",
+     "number": 4,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "maxScore",
+     "number": 5,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "totalScore",
+     "number": 6,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "guildRank",
+     "number": 7,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "guildTotalScore",
+     "number": 8,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "guildRaidOpenNotificationDt",
+     "number": 9,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "remainCnt",
+     "number": 10,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "maxCnt",
+     "number": 11,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "seasonRewardState",
+     "number": 12,
+     "repeated": false,
+     "type": "enum",
+     "type_name": "eGuildRaidRewardState",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {
+  "eGuildRaidRewardState": {
+   "AlreadyRewarded": 0,
+   "CanReward": 1,
+   "NoHistory": 2,
+   "Calculating": 3,
+   "InProcess": 4
+  }
+ }
+}

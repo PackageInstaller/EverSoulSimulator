@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message GuildRaidFinish {
+  int32 raidNo = 1;
+  int32 yymmdd = 2;
+}
+

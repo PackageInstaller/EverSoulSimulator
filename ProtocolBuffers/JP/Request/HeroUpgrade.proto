@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message HeroUpgrade {
+  string heroIdxList = 1;
+  string heroUpgradeNoList = 2;
+}
+

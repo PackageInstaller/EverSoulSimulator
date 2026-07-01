@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package EsPb;
+
+message HeroOptionSlotLock {
+  int32 heroNo = 1;
+  int32 groupNo = 2;
+  int32 optionSlot = 3;
+  int32 lock = 4;
+}
+

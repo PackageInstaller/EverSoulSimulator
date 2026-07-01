@@ -1,0 +1,57 @@
+{
+ "root": "LostFoundWaitClear",
+ "messages": {
+  "LostFoundWaitClear": {
+   "fields": [
+    {
+     "name": "lostFound",
+     "number": 1,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sLostFound",
+     "packed": false
+    }
+   ]
+  },
+  "sLostFound": {
+   "fields": [
+    {
+     "name": "heroNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "lastNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "state",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "id",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "clearDt",
+     "number": 5,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

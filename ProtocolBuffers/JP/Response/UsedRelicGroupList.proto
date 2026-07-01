@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package EsPb;
+
+message UsedRelicGroupList {
+  repeated int32 relicGroupNo = 1;
+}
+

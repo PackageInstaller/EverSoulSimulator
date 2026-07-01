@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message UnprocessedCashProduct {
+  repeated sUnprocessedCashProduct product = 1;
+}
+
+message sUnprocessedCashProduct {
+  string productId = 1;
+  string token = 2;
+  string currency = 3;
+  string country = 4;
+  string price = 5;
+  string playerId = 6;
+  string paymentUserId = 7;
+}
+

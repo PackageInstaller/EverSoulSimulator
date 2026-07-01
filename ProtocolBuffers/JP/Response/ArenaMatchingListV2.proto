@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package EsPb;
+
+message ArenaMatchingListV2 {
+  repeated sRankListV2 rankList = 1;
+}
+
+message sRankListV2 {
+  string userIdx = 1;
+  int32 rank = 2;
+  int64 power = 3;
+  sThumbnail thumbnail = 4;
+  string nickName = 5;
+}
+
+message sThumbnail {
+  int32 thumbnailFrame = 1;
+  int32 thumbnailImage = 2;
+  bool useCustom = 3;
+  bytes thumbnail = 4;
+}
+

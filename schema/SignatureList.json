@@ -1,0 +1,43 @@
+{
+ "root": "SignatureList",
+ "messages": {
+  "SignatureList": {
+   "fields": [
+    {
+     "name": "itemSignature",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sItemSignature",
+     "packed": false
+    }
+   ]
+  },
+  "sItemSignature": {
+   "fields": [
+    {
+     "name": "itemNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "grade",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "level",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

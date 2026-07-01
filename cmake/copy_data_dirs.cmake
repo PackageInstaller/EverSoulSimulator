@@ -1,0 +1,21 @@
+foreach(D responses responses_newbie schema wss tbl_json)
+  if(IS_DIRECTORY "${SRC_DIR}/${D}")
+    file(COPY "${SRC_DIR}/${D}" DESTINATION "${DST_DIR}")
+  endif()
+endforeach()
+
+set(_WEB_DIST "${SRC_DIR}/src/web/dist")
+if(IS_DIRECTORY "${_WEB_DIST}")
+  file(REMOVE_RECURSE "${DST_DIR}/web")
+  file(COPY "${_WEB_DIST}/" DESTINATION "${DST_DIR}/web")
+else()
+  message(FATAL_ERROR "Missing ${_WEB_DIST}. Run npm run build in src/web before building eversoul_console.")
+endif()
+
+if(IS_DIRECTORY "${SRC_DIR}/copy_only/dll")
+  file(GLOB _COPY_DLLS "${SRC_DIR}/copy_only/dll/*")
+  foreach(F ${_COPY_DLLS})
+    file(COPY "${F}" DESTINATION "${DST_DIR}")
+  endforeach()
+endif()
+

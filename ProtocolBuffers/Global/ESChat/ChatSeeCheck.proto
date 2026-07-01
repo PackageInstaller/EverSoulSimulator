@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package EsChatPb;
+
+message ChatSeeCheck {
+  int32 chatType = 1;
+  string chatKey = 2;
+}
+

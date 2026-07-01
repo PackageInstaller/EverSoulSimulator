@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message GuildEmblemChange {
+  string guildIdx = 1;
+  int32 emblemNo = 2;
+  bool isCustom = 3;
+}
+

@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package EsPb;
+
+message DoubleGateRoundClear {
+  sDoubleGateRecord record = 1;
+  repeated sRentUsedHero rentUsedHero = 2;
+}
+
+message sDoubleGateRecord {
+  int32 roundType = 1;
+  repeated sDoubleGateHero heroInfo = 2;
+}
+
+message sDoubleGateHero {
+  string heroIdx = 1;
+  int32 heroNo = 2;
+  int32 level = 3;
+  int32 gradeSno = 4;
+}
+
+message sRentUsedHero {
+  string heroIdx = 1;
+  int32 used = 2;
+}
+

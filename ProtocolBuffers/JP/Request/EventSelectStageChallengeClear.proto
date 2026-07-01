@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message EventSelectStageChallengeClear {
+  repeated string heroIdx = 1;
+  int32 eventStagePhase = 2;
+  repeated sRentalHero rentalHero = 3;
+  int32 eventGroup = 4;
+  int32 eventNumber = 5;
+}
+
+message sRentalHero {
+  int32 level = 1;
+  int32 heroNo = 2;
+  int32 gradeSno = 3;
+  int32 raceSno = 4;
+}
+

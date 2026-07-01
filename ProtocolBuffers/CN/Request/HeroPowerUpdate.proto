@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message HeroPowerUpdate {
+  repeated sHeroPower heroPower = 1;
+}
+
+message sHeroPower {
+  string heroIdx = 1;
+  int32 power = 2;
+}
+

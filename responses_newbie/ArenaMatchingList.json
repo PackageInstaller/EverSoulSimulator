@@ -1,0 +1,27 @@
+{
+  "rankList": [
+    {
+      "userIdx": "0_121WhSEa_Vyx",
+      "rank": 151,
+      "score": 1000,
+      "power": "24491",
+      "thumbnail": {
+        "thumbnailFrame": 5501,
+        "thumbnailImage": 30001
+      },
+      "nickName": "Estel"
+    },
+    {
+      "userIdx": "2_711VemiN_de",
+      "rank": 162,
+      "score": 1000,
+      "power": "61593",
+      "thumbnail": {
+        "thumbnailFrame": 5501,
+        "thumbnailImage": 30001
+      },
+      "nickName": "Romio"
+    }
+  ],
+  "__format__": "proto"
+}

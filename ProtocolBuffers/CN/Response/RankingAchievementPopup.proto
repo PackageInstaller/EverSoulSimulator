@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package EsPb;
+
+message RankingAchievementPopup {
+  repeated sRankAchievementUser rankAchievementUser = 1;
+}
+
+message sRankAchievementUser {
+  int32 no = 1;
+  int32 rankNo = 2;
+  int32 value = 3;
+  int32 itemNo = 4;
+  int32 itemAmount = 5;
+  string userIdx = 6;
+  string nickName = 7;
+  int32 level = 8;
+  int64 lastLoginDt = 9;
+  sThumbnail thumbnail = 10;
+  int32 popularity = 11;
+  int64 updateDt = 12;
+  bool isReward = 13;
+}
+
+message sThumbnail {
+  int32 thumbnailFrame = 1;
+  int32 thumbnailImage = 2;
+  bool useCustom = 3;
+  bytes thumbnail = 4;
+}
+

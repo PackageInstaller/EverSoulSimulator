@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message MissionPassReward {
+  int32 no = 1;
+  int32 rewardPoint = 2;
+}
+

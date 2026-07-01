@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package EsPb;
+
+message CashShopList {
+  repeated sCashShop cashShop = 1;
+}
+
+message sCashShop {
+  int32 no = 1;
+  int32 buyCount = 2;
+  int64 expiredDt = 3;
+  int64 openDt = 4;
+}
+

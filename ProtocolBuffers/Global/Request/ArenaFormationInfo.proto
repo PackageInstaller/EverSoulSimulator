@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message ArenaFormationInfo {
+  int32 arenaType = 1;
+}
+

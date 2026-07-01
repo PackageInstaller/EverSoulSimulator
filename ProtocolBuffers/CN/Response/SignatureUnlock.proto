@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package EsPb;
+
+message SignatureUnlock {
+  sItemSignature itemSignature = 1;
+  sItemEtc itemEtc = 2;
+}
+
+message sItemSignature {
+  int32 itemNo = 1;
+  int32 grade = 2;
+  int32 level = 3;
+}
+
+message sItemEtc {
+  int32 itemNo = 1;
+  int32 cnt = 2;
+}
+

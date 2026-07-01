@@ -1,0 +1,9 @@
+{
+  "itemUseAbleGachaGrade": {
+    "epic": 1
+  },
+  "itemUseAbleGachaTribe": {
+    "human": 1
+  },
+  "__format__": "proto"
+}

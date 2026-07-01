@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message BarrierStageClear {
+  int32 stageNo = 1;
+  int32 stageType = 2;
+  repeated sStageClearDeck heroIdx = 3;
+  sStageClearDeck friendHeroIdx = 4;
+  repeated stagePower stagePower = 5;
+  int32 skipFlag = 6;
+}
+
+message sStageClearDeck {
+  repeated string heroIdx = 1;
+  int32 formationIndex = 2;
+}
+
+message stagePower {
+  string heroIdx = 1;
+  int32 power = 2;
+}
+

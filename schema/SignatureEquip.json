@@ -1,0 +1,88 @@
+{
+ "root": "SignatureEquip",
+ "messages": {
+  "SignatureEquip": {
+   "fields": [
+    {
+     "name": "heroEquip",
+     "number": 1,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sHeroEquip",
+     "packed": false
+    },
+    {
+     "name": "itemSignature",
+     "number": 2,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sItemSignature",
+     "packed": false
+    }
+   ]
+  },
+  "sHeroEquip": {
+   "fields": [
+    {
+     "name": "heroIdx",
+     "number": 1,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "equip",
+     "number": 2,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sSlotAndEquipId",
+     "packed": false
+    }
+   ]
+  },
+  "sSlotAndEquipId": {
+   "fields": [
+    {
+     "name": "slot",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "itemEquipId",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sItemSignature": {
+   "fields": [
+    {
+     "name": "itemNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "grade",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "level",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

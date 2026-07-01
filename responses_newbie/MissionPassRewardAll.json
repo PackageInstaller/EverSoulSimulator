@@ -1,0 +1,17 @@
+{
+  "missionPass": {
+    "missionPassNo": 900,
+    "point": 200,
+    "rewardedPoint": 1,
+    "rewardNo": 902,
+    "expiredDt": "1783693939000"
+  },
+  "currency": {},
+  "itemEtc": [
+    {
+      "itemNo": 3022,
+      "cnt": 2
+    }
+  ],
+  "__format__": "proto"
+}

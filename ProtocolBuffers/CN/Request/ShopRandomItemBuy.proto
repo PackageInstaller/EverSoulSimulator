@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message ShopRandomItemBuy {
+  int32 shopNo = 1;
+  int32 shopDrawBoxStep = 2;
+  int32 buyCount = 3;
+  int32 repeatPickFlag = 4;
+}
+

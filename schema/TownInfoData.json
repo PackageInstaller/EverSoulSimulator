@@ -1,0 +1,111 @@
+{
+ "root": "TownInfoData",
+ "messages": {
+  "TownInfoData": {
+   "fields": [
+    {
+     "name": "townInfo",
+     "number": 1,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sTownInfo",
+     "packed": false
+    },
+    {
+     "name": "castleMaxFloorNo",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "additionalRestSlotCount",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "playerPosition",
+     "number": 4,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sVector3",
+     "packed": false
+    },
+    {
+     "name": "missionClearNo",
+     "number": 5,
+     "repeated": true,
+     "type": "int32",
+     "packed": true
+    },
+    {
+     "name": "visitBattleCount",
+     "number": 6,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "visitBattleMaxCount",
+     "number": 7,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "managerHeroNo",
+     "number": 8,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sTownInfo": {
+   "fields": [
+    {
+     "name": "townLevel",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "currentDevelopPoint",
+     "number": 2,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    }
+   ]
+  },
+  "sVector3": {
+   "fields": [
+    {
+     "name": "x",
+     "number": 1,
+     "repeated": false,
+     "type": "float",
+     "packed": false
+    },
+    {
+     "name": "y",
+     "number": 2,
+     "repeated": false,
+     "type": "float",
+     "packed": false
+    },
+    {
+     "name": "z",
+     "number": 3,
+     "repeated": false,
+     "type": "float",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

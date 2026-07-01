@@ -1,0 +1,62 @@
+{
+ "root": "ZodiacPresetList",
+ "messages": {
+  "ZodiacPresetList": {
+   "fields": [
+    {
+     "name": "zodiacPreset",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sZodiacPreset",
+     "packed": false
+    }
+   ]
+  },
+  "sZodiacPreset": {
+   "fields": [
+    {
+     "name": "presetIdx",
+     "number": 1,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "presetName",
+     "number": 2,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "presetOrder",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "zodiacNo",
+     "number": 4,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sZodiac",
+     "packed": false
+    }
+   ]
+  },
+  "sZodiac": {
+   "fields": [
+    {
+     "name": "zodiacNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

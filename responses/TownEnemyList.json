@@ -1,0 +1,65 @@
+{
+  "townEnemy": [
+    {
+      "no": 2,
+      "count": 6,
+      "type": 1,
+      "section": 1
+    },
+    {
+      "no": 3,
+      "count": 4,
+      "type": 1,
+      "section": 1
+    },
+    {
+      "no": 4,
+      "count": 7,
+      "type": 2,
+      "section": 1
+    },
+    {
+      "no": 5,
+      "count": 3,
+      "type": 2,
+      "section": 1
+    },
+    {
+      "no": 6,
+      "count": 3,
+      "type": 1,
+      "section": 2
+    },
+    {
+      "no": 7,
+      "count": 3,
+      "type": 1,
+      "section": 2
+    },
+    {
+      "no": 8,
+      "count": 4,
+      "type": 1,
+      "section": 2
+    },
+    {
+      "no": 9,
+      "count": 3,
+      "type": 2,
+      "section": 2
+    },
+    {
+      "no": 10,
+      "count": 4,
+      "type": 2,
+      "section": 2
+    },
+    {
+      "no": 11,
+      "count": 3,
+      "type": 2,
+      "section": 2
+    }
+  ],
+  "__format__": "proto"
+}

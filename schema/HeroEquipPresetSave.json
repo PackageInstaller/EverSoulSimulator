@@ -1,0 +1,69 @@
+{
+ "root": "HeroEquipPresetSave",
+ "messages": {
+  "HeroEquipPresetSave": {
+   "fields": [
+    {
+     "name": "presetSlot",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "presetName",
+     "number": 2,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "presetHero",
+     "number": 3,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sHeroEquipPresetHero",
+     "packed": false
+    }
+   ]
+  },
+  "sHeroEquipPresetHero": {
+   "fields": [
+    {
+     "name": "heroIdx",
+     "number": 1,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "itemSlot",
+     "number": 2,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sHeroEquipPresetItemSlot",
+     "packed": false
+    }
+   ]
+  },
+  "sHeroEquipPresetItemSlot": {
+   "fields": [
+    {
+     "name": "slot",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "itemEquipId",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

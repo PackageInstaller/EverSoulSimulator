@@ -1,0 +1,24 @@
+{
+ "root": "ArkOverClockInfo",
+ "messages": {
+  "ArkOverClockInfo": {
+   "fields": [
+    {
+     "name": "overClockLevel",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "overClockResetCoolTime",
+     "number": 2,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

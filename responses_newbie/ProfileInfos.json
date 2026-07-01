@@ -1,0 +1,100 @@
+{
+  "profileInfo": [
+    {
+      "profileBase": {
+        "userIdx": "1_621WhSES_19fD",
+        "channelNo": 1,
+        "nickName": "11111",
+        "currentStageNo": 25,
+        "thumbnail": {
+          "thumbnailFrame": 5501,
+          "thumbnailImage": 30001
+        },
+        "power": "33982",
+        "spritTreeLevel": 1,
+        "ownedHeroCount": 16,
+        "id": "762362151071745",
+        "hallOfFameMyRank": [
+          {
+            "id": 1000,
+            "rank": 332853
+          },
+          {
+            "id": 2000,
+            "rank": 236265
+          },
+          {
+            "id": 2100,
+            "rank": 246233
+          },
+          {
+            "id": 2200,
+            "rank": 281612
+          },
+          {
+            "id": 2300,
+            "rank": 269191
+          },
+          {
+            "id": 2400,
+            "rank": 323788
+          },
+          {
+            "id": 3000
+          },
+          {
+            "id": 4000
+          },
+          {
+            "id": 4100
+          },
+          {
+            "id": 4200
+          },
+          {
+            "id": 4300
+          },
+          {
+            "id": 4400
+          }
+        ],
+        "createdDt": "1781101455820",
+        "townLevel": 3,
+        "stickerCount": 1,
+        "frameCount": 7,
+        "sdCharacterHeroNo": 1,
+        "guildRaidRecord": [
+          {
+            "bossNo": 1
+          },
+          {
+            "bossNo": 2
+          },
+          {
+            "bossNo": 3
+          },
+          {
+            "bossNo": 4
+          },
+          {
+            "bossNo": 5
+          },
+          {
+            "bossNo": 10001
+          },
+          {
+            "bossNo": 10002
+          },
+          {
+            "bossNo": 10003
+          }
+        ],
+        "profileVisibleBase64": "a",
+        "userLevel": 8,
+        "maxHeroCount": 95
+      },
+      "profileCustom": {}
+    }
+  ],
+  "__format__": "proto"
+}

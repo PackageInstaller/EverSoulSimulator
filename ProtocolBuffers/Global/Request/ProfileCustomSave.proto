@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message ProfileCustomSave {
+  int32 saveType = 1;
+  int32 uid = 2;
+  bytes profile = 3;
+}
+

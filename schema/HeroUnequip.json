@@ -1,0 +1,17 @@
+{
+ "root": "HeroUnequip",
+ "messages": {
+  "HeroUnequip": {
+   "fields": [
+    {
+     "name": "heroUnequip_",
+     "number": 1,
+     "repeated": false,
+     "type": "bytes",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

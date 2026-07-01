@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package EsPb;
+
+message TownVisitHeroList {
+  repeated sTownVisitHero townVisitHero = 1;
+}
+
+message sTownVisitHero {
+  int32 heroNo = 1;
+  int32 pickUpFlag = 2;
+}
+

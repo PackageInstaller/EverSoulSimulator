@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package EsPb;
+
+message EventDailyPassList {
+  repeated sEventDailyPass passInfo = 1;
+}
+
+message sEventDailyPass {
+  int32 eventGroup = 1;
+  int32 eventNumber = 2;
+  int32 lastReceivedNo = 3;
+  bool bought = 4;
+  int32 startDate = 5;
+  int32 lastReceivedDate = 6;
+}
+

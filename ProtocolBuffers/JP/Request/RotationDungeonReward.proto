@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package ReqPb;
+
+enum eDungeonRewardType {
+  NoneDungeonReward = 0;
+  Mission = 1;
+  Object = 2;
+  Monster = 3;
+  Chest = 4;
+}
+
+message RotationDungeonReward {
+  int32 dungeonId = 1;
+  eDungeonRewardType type = 2;
+  int32 rewardNo = 3;
+}
+

@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message ChangeArenaFormation {
+  int32 arenaType = 1;
+  repeated sArenaFormation arenaFormation = 2;
+}
+
+message sArenaFormation {
+  int32 formationOrder = 1;
+  int32 relicNo = 2;
+  int32 formationType = 3;
+  repeated sArenaFormationHero formationHero = 4;
+}
+
+message sArenaFormationHero {
+  int32 heroOrder = 1;
+  string heroIdx = 2;
+}
+

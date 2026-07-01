@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message Log {
+  int32 logType = 1;
+  string logJson = 2;
+}
+

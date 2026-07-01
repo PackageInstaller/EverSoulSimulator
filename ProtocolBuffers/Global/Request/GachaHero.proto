@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package ReqPb;
+
+message GachaHero {
+  int32 count = 1;
+  int32 gachaNo = 2;
+  int32 autoRelease = 3;
+  int32 isUsePayDia = 4;
+}
+

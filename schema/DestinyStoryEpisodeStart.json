@@ -1,0 +1,277 @@
+{
+ "root": "DestinyStoryEpisodeStart",
+ "messages": {
+  "DestinyStoryEpisodeStart": {
+   "fields": [
+    {
+     "name": "heroReputation",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sHeroReputation",
+     "packed": false
+    },
+    {
+     "name": "cancelArbeitList",
+     "number": 2,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sArbeitList",
+     "packed": false
+    },
+    {
+     "name": "destinyStoryEpisode",
+     "number": 3,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sDestinyStoryEpisode",
+     "packed": false
+    }
+   ]
+  },
+  "sHeroReputation": {
+   "fields": [
+    {
+     "name": "heroNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "reputation",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "state",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "stress",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "lastUpdateDt",
+     "number": 5,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "giftDt",
+     "number": 6,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "costumeItemNo",
+     "number": 7,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "storyReward",
+     "number": 8,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "maxGradeSno",
+     "number": 9,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "objetUid",
+     "number": 10,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "maxLevelDt",
+     "number": 11,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "arbeitExp",
+     "number": 12,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "priority",
+     "number": 13,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "restFinishDt",
+     "number": 14,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "objetNo",
+     "number": 15,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    }
+   ]
+  },
+  "sArbeitList": {
+   "fields": [
+    {
+     "name": "no",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "date",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "arbeitChoiceNo",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "arbeitNo",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "objetNo",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "arbeitStartTimestamp",
+     "number": 6,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "arbeitEndTimestamp",
+     "number": 7,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "state",
+     "number": 8,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "heroNo",
+     "number": 9,
+     "repeated": true,
+     "type": "int32",
+     "packed": true
+    },
+    {
+     "name": "kind",
+     "number": 10,
+     "repeated": false,
+     "type": "string",
+     "packed": false
+    },
+    {
+     "name": "ingameDay",
+     "number": 11,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  },
+  "sDestinyStoryEpisode": {
+   "fields": [
+    {
+     "name": "storyNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    },
+    {
+     "name": "state",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "heroNo",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "happy",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "normal",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "bad",
+     "number": 6,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "lastReceiveStoryNo",
+     "number": 7,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

@@ -1,0 +1,3 @@
+[submodule "EverSoulSimulator"]
+	path = EverSoulSimulator
+	url = https://github.com/PackageInstaller/EverSoulSimulator.git

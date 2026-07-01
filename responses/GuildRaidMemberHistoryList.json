@@ -1,0 +1,69 @@
+{
+  "guildRaidPlayMemberHistory": [
+    {
+      "otherGuildUserIdx": "1_a21PdeSF_kA9",
+      "scheduleId": 58,
+      "maxScore": "11576361898",
+      "nickName": "跳过仙人",
+      "thumbnail": {
+        "thumbnailFrame": 5613,
+        "useCustom": true,
+        "thumbnail": "MSw1MDMwMSwxODAuMzM2NywtMTY0Ljg0NDUsMC41OTI4OTU0LDAuNTkyODk1NCwzNTEuOTIxOA=="
+      }
+    },
+    {
+      "otherGuildUserIdx": "1_521PfYyH_3amk",
+      "scheduleId": 58,
+      "maxScore": "30540025219",
+      "nickName": "Hextor",
+      "thumbnail": {
+        "thumbnailFrame": 5700,
+        "useCustom": true,
+        "thumbnail": "MywyMjgxLDEyLjc2NDgyLC0yNDUuNzk5NywwLjUwMTE5MjUsMC41MDExOTI1LDM1OC43OTA5"
+      }
+    },
+    {
+      "otherGuildUserIdx": "2_621RI22o_65C",
+      "scheduleId": 58,
+      "maxScore": "35083149568",
+      "nickName": "長鰭蓑鮋",
+      "thumbnail": {
+        "thumbnailFrame": 5623,
+        "useCustom": true,
+        "thumbnail": "MiwxMDIwMywtMy44MDg2MjQsLTE0Ni41NTc2LDAuNTI2OTc2MiwwLjUyNjk3NjIsMzU5Ljg1NQ=="
+      }
+    },
+    {
+      "otherGuildUserIdx": "0_111PHKfl_553",
+      "scheduleId": 58,
+      "maxScore": "49030493340",
+      "nickName": "不好看",
+      "thumbnail": {
+        "thumbnailFrame": 5503,
+        "thumbnailImage": 35020
+      }
+    },
+    {
+      "otherGuildUserIdx": "2_531QYlvG_adW",
+      "scheduleId": 58,
+      "maxScore": "38929194447",
+      "nickName": "米垛",
+      "thumbnail": {
+        "thumbnailFrame": 5700,
+        "thumbnailImage": 36050
+      }
+    },
+    {
+      "otherGuildUserIdx": "2_e21PMpdN_mcP",
+      "scheduleId": 58,
+      "maxScore": "18766413237",
+      "nickName": "旅游的sensei",
+      "thumbnail": {
+        "thumbnailFrame": 5692,
+        "useCustom": true,
+        "thumbnail": "MSwxMTYsNTQ5LjcxMzYsLTc0LjA5ODAzLDAuNTUsMC41NSww"
+      }
+    }
+  ],
+  "__format__": "proto"
+}

@@ -1,0 +1,36 @@
+{
+ "root": "BestScore",
+ "messages": {
+  "BestScore": {
+   "fields": [
+    {
+     "name": "score",
+     "number": 1,
+     "repeated": true,
+     "type": "message",
+     "type_name": "sBestScore",
+     "packed": false
+    }
+   ]
+  },
+  "sBestScore": {
+   "fields": [
+    {
+     "name": "category",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "score",
+     "number": 2,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

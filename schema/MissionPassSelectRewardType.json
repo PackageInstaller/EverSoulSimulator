@@ -1,0 +1,64 @@
+{
+ "root": "MissionPassSelectRewardType",
+ "messages": {
+  "MissionPassSelectRewardType": {
+   "fields": [
+    {
+     "name": "missionPass",
+     "number": 1,
+     "repeated": false,
+     "type": "message",
+     "type_name": "sMissionPass",
+     "packed": false
+    }
+   ]
+  },
+  "sMissionPass": {
+   "fields": [
+    {
+     "name": "missionPassNo",
+     "number": 1,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "point",
+     "number": 2,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "rewardedPoint",
+     "number": 3,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "isBuyTicket",
+     "number": 4,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "rewardNo",
+     "number": 5,
+     "repeated": false,
+     "type": "int32",
+     "packed": false
+    },
+    {
+     "name": "expiredDt",
+     "number": 6,
+     "repeated": false,
+     "type": "int64",
+     "packed": false
+    }
+   ]
+  }
+ },
+ "enums": {}
+}

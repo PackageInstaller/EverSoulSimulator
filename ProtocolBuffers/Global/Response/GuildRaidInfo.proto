@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package EsPb;
+
+enum eGuildRaidRewardState {
+  AlreadyRewarded = 0;
+  CanReward = 1;
+  NoHistory = 2;
+  Calculating = 3;
+  InProcess = 4;
+}
+
+message GuildRaidInfo {
+  int32 open = 1;
+  int64 remainTs = 2;
+  int32 scheduleId = 3;
+  int64 todayScore = 4;
+  int64 maxScore = 5;
+  int64 totalScore = 6;
+  int32 guildRank = 7;
+  int64 guildTotalScore = 8;
+  int64 guildRaidOpenNotificationDt = 9;
+  int32 remainCnt = 10;
+  int32 maxCnt = 11;
+  eGuildRaidRewardState seasonRewardState = 12;
+}
+
